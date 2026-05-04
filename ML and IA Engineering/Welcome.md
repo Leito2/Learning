@@ -26,6 +26,12 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M02 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|🚀 M02 - Sistemas de LLMs en Producción]]
 - [[M02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida|🧩 M02 - Arquitecturas Avanzadas y MoE]]
 
+### AI Agents y Agentic Systems
+- [[M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida|🤖 M03 - Fundamentos de Agentes AI]]
+- [[M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida|🔧 M03 - Frameworks y Orquestación]]
+- [[M03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|🕸️ M03 - Sistemas Multi-Agente]]
+- [[M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida|🚀 M03 - Agentes Autónomos y Auto-Mejora]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
