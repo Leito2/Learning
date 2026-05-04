@@ -6,6 +6,10 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 
 ## 📚 Cursos disponibles
 
+### Fundamentos
+- [[M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida|🐍 M00 - Python Avanzado para ML]]
+
+### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
 

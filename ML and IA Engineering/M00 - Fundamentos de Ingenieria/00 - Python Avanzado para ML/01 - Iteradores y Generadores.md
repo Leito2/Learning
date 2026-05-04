@@ -1,0 +1,233 @@
+# 01 - Iteradores y Generadores
+
+En ML, los datasets a menudo son enormes. Cargar 10 millones de registros en memoria es inviable. Los iteradores y generadores resuelven esto procesando datos **bajo demanda**, uno a uno.
+
+---
+
+## 1. Protocolo del Iterador
+
+Un iterador en Python es cualquier objeto que implemente dos métodos:
+
+- `__iter__()`: devuelve el propio iterador.
+- `__next__()`: devuelve el siguiente valor o lanza `StopIteration`.
+
+### Cómo funciona internamente
+
+Cuando escribes `for x in iterable:`, Python hace esto:
+
+1. Llama `iter(iterable)` → obtiene el iterador (método `__iter__`).
+2. Llama repetidamente `next(iterador)` → obtiene valores (método `__next__`).
+3. Cuando `__next__` lanza `StopIteration`, el bucle termina.
+
+### Ejemplo: iterador manual
+
+```python
+class Contador:
+    def __init__(self, limite):
+        self.limite = limite
+        self.actual = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.actual >= self.limite:
+            raise StopIteration
+        valor = self.actual
+        self.actual += 1
+        return valor
+
+# Uso
+for numero in Contador(5):
+    print(numero)  # 0, 1, 2, 3, 4
+```
+
+> 💡 **Caso real:** PyTorch usa iteradores en `DataLoader`. Cada llamada a `next()` carga un nuevo batch del disco a RAM.
+
+---
+
+## 2. Generadores con `yield`
+
+Un generador es una función que usa `yield` en lugar de `return`. Cada vez que se llama, retoma desde donde se quedó.
+
+### Ventajas clave
+
+| Aspecto | Función normal | Generador |
+|---------|----------------|-----------|
+| Memoria | Crea toda la lista | Genera valores bajo demanda |
+| Estado | Pierde estado entre llamadas | Mantiene estado pausado |
+| Lazy evaluation | No | Sí |
+
+### Ejemplo básico
+
+```python
+def contador_generador(limite):
+    actual = 0
+    while actual < limite:
+        yield actual
+        actual += 1
+
+# Uso
+for numero in contador_generador(5):
+    print(numero)  # 0, 1, 2, 3, 4
+```
+
+### Ejemplo: leer archivo línea por línea
+
+```python
+def leer_log(ruta):
+    """Lee un archivo de log sin cargarlo completo en memoria."""
+    with open(ruta, 'r') as archivo:
+        for linea in archivo:
+            yield linea.strip()
+
+# Procesar millones de líneas con RAM constante
+for linea in leer_log('servidor.log'):
+    if 'ERROR' in linea:
+        print(linea)
+```
+
+---
+
+## 3. Expresiones generadoras
+
+Sintaxis compacta similar a list comprehensions pero con `()` en lugar de `[]`.
+
+```python
+# List comprehension (crea lista completa en memoria)
+cuadrados_lista = [x**2 for x in range(1_000_000)]
+
+# Generator expression (genera valores bajo demanda)
+cuadrados_gen = (x**2 for x in range(1_000_000))
+
+# Uso
+print(next(cuadrados_gen))  # 0
+print(next(cuadrados_gen))  # 1
+```
+
+> 💡 **Regla práctica:** Si solo vas a iterar una vez, usa expresiones generadoras. Si necesitas indexar o recorrer múltiples veces, usa listas.
+
+---
+
+## 4. Generadores infinitos
+
+Útiles para entrenamiento de modelos con epochs infinitos o data augmentation en tiempo real.
+
+```python
+def ciclo_infinito(datos):
+    """Cicla sobre datos para siempre (útil para epochs infinitos)."""
+    while True:
+        for item in datos:
+            yield item
+
+# Uso en entrenamiento
+dataset = [1, 2, 3]
+loader = ciclo_infinito(dataset)
+
+for _ in range(10):
+    print(next(loader))  # 1, 2, 3, 1, 2, 3, 1, 2, 3, 1
+```
+
+---
+
+## 5. `yield from` — Delegación
+
+Delega a otro generador sin escribir un bucle manual.
+
+```python
+def generador_a():
+    yield 1
+    yield 2
+
+def generador_b():
+    yield from generador_a()
+    yield 3
+
+print(list(generador_b()))  # [1, 2, 3]
+```
+
+> 💡 En pipelines de datos, `yield from` permite componer transformaciones como si fueran tuberías Unix.
+
+---
+
+## 📦 Código de compresión: Pipeline de DataLoader desde cero
+
+```python
+"""
+Mini DataLoader usando generadores.
+Demuestra cómo PyTorch carga datos sin saturar la memoria.
+"""
+import random
+
+def dataset_generator(rutas_imagenes):
+    """Generador base: produce rutas de imágenes."""
+    for ruta in rutas_imagenes:
+        yield ruta
+
+def augmentacion_generator(generator):
+    """Transformación intermedia: aplica augmentación."""
+    for ruta in generator:
+        # Simulamos augmentación aleatoria
+        flip = random.choice([True, False])
+        yield {"ruta": ruta, "flip": flip}
+
+def batch_generator(generator, batch_size=4):
+    """Agrupa elementos en batches."""
+    batch = []
+    for item in generator:
+        batch.append(item)
+        if len(batch) == batch_size:
+            yield batch
+            batch = []
+    if batch:
+        yield batch  # Último batch incompleto
+
+# --- Flujo completo ---
+imagenes = [f"img_{i}.jpg" for i in range(10)]
+
+pipeline = batch_generator(
+    augmentacion_generator(
+        dataset_generator(imagenes)
+    ),
+    batch_size=3
+)
+
+for batch in pipeline:
+    print(f"Batch con {len(batch)} elementos: {batch}")
+
+# Salida:
+# Batch con 3 elementos: [{'ruta': 'img_0.jpg', 'flip': False}, ...]
+# Batch con 3 elementos: [...]
+# Batch con 3 elementos: [...]
+# Batch con 1 elementos: [...]
+```
+
+---
+
+## 🎯 Proyecto documentado: Generador de Dataset para LLM Fine-tuning
+
+### Descripción
+Diseña un pipeline de datos que lea documentos de texto desde un directorio, los tokenice con un tokenizer de Hugging Face, y produzca batches de secuencias de longitud fija para entrenar un LLM, todo usando generadores para mantener el uso de RAM constante.
+
+### Requisitos funcionales
+- Leer archivos `.txt` de forma lazy desde un directorio con miles de archivos.
+- Tokenizar cada documento usando `AutoTokenizer`.
+- Concatenar tokens y dividirlos en chunks de longitud fija (ej. 512 tokens).
+- Agrupar chunks en batches con padding y attention masks.
+- Soportar shuffling con un buffer de memoria limitado.
+
+### Componentes principales
+1. `file_iterator(directorio)`: genera rutas de archivos `.txt`.
+2. `tokenize_iterator(file_iterator, tokenizer)`: lee contenido y produce tokens.
+3. `chunk_iterator(token_iterator, block_size=512)`: agrupa tokens en chunks.
+4. `batch_iterator(chunk_iterator, batch_size=8)`: produce batches con padding.
+
+### Métricas de éxito
+- RAM máxima utilizada menor a 500 MB independientemente del tamaño del dataset.
+- Throughput mayor a 1000 secuencias/segundo en CPU.
+- Compatible con `torch.utils.data.IterableDataset`.
+
+### Referencias de implementación
+- PyTorch `IterableDataset`: [docs](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset)
+- Hugging Face `DataCollatorForLanguageModeling`
+- Patrón "streaming dataset" de `datasets` library
