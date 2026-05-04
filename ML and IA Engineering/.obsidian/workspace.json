@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/01 - Iteradores y Generadores.md",
+                "file": "PROMPT - Continuar Proyecto.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01 - Iteradores y Generadores"
+              "title": "PROMPT - Continuar Proyecto"
             }
           }
         ]
@@ -185,6 +185,9 @@
   },
   "active": "d907ab6e5339f734",
   "lastOpenFiles": [
+    "00 - Indice Maestro de Cursos.md",
+    "PROMPT - Continuar Proyecto.md",
+    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/01 - Iteradores y Generadores.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/07 - Caso Practico - Sistema de Recomendacion en Tiempo Real.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/06 - Programacion Dinamica.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/05 - Algoritmos de Busqueda y Ordenamiento.md",
@@ -192,8 +195,6 @@
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/03 - Arboles y Heaps.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/02 - Arrays, Listas y Hash Tables.md",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/01 - Iteradores y Generadores.md",
-    "00 - Indice Maestro de Cursos.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/01 - Complejidad Algoritmica.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/00 - Bienvenida.md",
     "Welcome.md",
@@ -213,7 +214,6 @@
     "Curso SQL con PostgreSQL/04 - Consultas Avanzadas.md",
     "Curso SQL con PostgreSQL/03 - DML - Manipulando Datos.md",
     "Curso SQL con PostgreSQL/02 - DDL - Definiendo la Estructura.md",
-    "Curso SQL con PostgreSQL/01 - Introduccion y Configuracion.md",
-    "Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL.md"
+    "Curso SQL con PostgreSQL/01 - Introduccion y Configuracion.md"
   ]
 }
