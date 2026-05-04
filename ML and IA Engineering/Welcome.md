@@ -19,6 +19,13 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/00 - Bienvenida|👁️ M01 - Computer Vision Avanzada]]
 - [[M01 - Deep Learning y Computer Vision/05 - Multimodal AI/00 - Bienvenida|🖼️ M01 - Multimodal AI]]
 
+### Large Language Models
+- [[M02 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida|🤖 M02 - Fundamentos de LLMs]]
+- [[M02 - Large Language Models/07 - Fine-Tuning y Adaptacion de LLMs/00 - Bienvenida|🔧 M02 - Fine-Tuning y Adaptación de LLMs]]
+- [[M02 - Large Language Models/08 - Generacion de Texto y Decodificacion/00 - Bienvenida|✨ M02 - Generación de Texto y Decodificación]]
+- [[M02 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|🚀 M02 - Sistemas de LLMs en Producción]]
+- [[M02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida|🧩 M02 - Arquitecturas Avanzadas y MoE]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
