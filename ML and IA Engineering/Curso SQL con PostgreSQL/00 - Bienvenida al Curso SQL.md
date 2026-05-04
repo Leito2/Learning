@@ -6,12 +6,13 @@ Bienvenido al curso comprimido de **SQL con PostgreSQL**. Aquí aprenderás desd
 
 ## 🗂️ Módulos del curso
 
-1. [[01 - Introduccion y Configuracion|Introducción y Configuración]]
+1. [[01 - Introduccion y Configuracion|Introducción y Configuración (con Supabase)]]
 2. [[02 - DDL - Definiendo la Estructura|DDL: Definiendo la Estructura]]
 3. [[03 - DML - Manipulando Datos|DML: Manipulando Datos]]
 4. [[04 - Consultas Avanzadas|Consultas Avanzadas]]
 5. [[05 - Funciones, Vistas e Indices|Funciones, Vistas e Índices]]
 6. [[06 - Relaciones y Joins|Relaciones y Joins]]
+7. [[07 - Supabase en Profundidad|Supabase en Profundidad]]
 
 ---
 
