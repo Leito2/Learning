@@ -17,6 +17,36 @@ Eres ML Engineer en una fintech. Recibes transacciones bancarias en tiempo real 
 
 Todo debe ser tolerante a fallos, monitoreable y reproducible.
 
+### Arquitecturas de stream processing
+
+Existen tres paradigmas principales para procesar datos en tiempo real:
+
+1. **Native Streaming (True Streaming):** Cada evento se procesa individualmente en cuanto llega. Latencia muy baja (< 100ms). Ejemplos: Apache Flink, Kafka Streams, Ray.
+2. **Micro-batching:** Los eventos se acumulan en pequeños batches (ej. 100ms) y se procesan como batch. Latencia media. Ejemplo: Apache Spark Streaming.
+3. **Batch sobre ventanas:** Se definen ventanas temporales (tumbling, sliding, session) y se procesan todos los eventos de la ventana juntos. Ejemplo: Apache Beam.
+
+**Nuestro pipeline usa Native Streaming** porque la detección de fraude requiere latencia mínima.
+
+### Backpressure y control de flujo
+
+Cuando el productor de eventos (Kafka) es más rápido que el consumidor (nuestro pipeline), ocurre **backpressure**. Sin manejarlo, la memoria se satura y el sistema colapsa.
+
+**Estrategias de backpressure:**
+- **Buffer bounded:** `asyncio.Queue(maxsize=1000)` bloquea al productor cuando está lleno.
+- **Shedding:** descartar eventos de baja prioridad cuando el sistema está saturado.
+- **Rate limiting:** limitar la tasa de consumo de Kafka.
+- **Escalado horizontal:** añadir más instancias del consumidor (particiones de Kafka).
+
+### Exactly-once vs At-least-once vs At-most-once
+
+| Garantía | Significado | Costo | Uso en ML |
+|----------|-------------|-------|-----------|
+| **At-most-once** | Cada evento se procesa 0 o 1 veces | Bajo | Métricas, logs no críticos |
+| **At-least-once** | Cada evento se procesa 1 o más veces | Medio | La mayoría de pipelines ML (idempotencia necesaria) |
+| **Exactly-once** | Cada evento se procesa exactamente 1 vez | Alto | Pagos, transacciones financieras |
+
+> 💡 **En nuestro pipeline:** usamos **at-least-once** con idempotencia en el modelo de fraude (misma entrada → mismo score). El costo de exactly-once en una fintech es justificado.
+
 ---
 
 ## 🏗️ Arquitectura del sistema

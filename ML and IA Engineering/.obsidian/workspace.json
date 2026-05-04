@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Curso SQL con PostgreSQL/07 - Supabase en Profundidad.md",
+                "file": "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/01 - Iteradores y Generadores.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "07 - Supabase en Profundidad"
+              "title": "01 - Iteradores y Generadores"
             }
           }
         ]
@@ -183,16 +183,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "e00ee6632ca363b0",
+  "active": "d907ab6e5339f734",
   "lastOpenFiles": [
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/07 - Caso Practico - Pipeline de Datos en Streaming.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/06 - Metaclases y Metaprogramacion.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/05 - Typing y Type Hints.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/04 - Async y Await.md",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/03 - Context Managers.md",
+    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/04 - Async y Await.md",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/02 - Decoradores.md",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/01 - Iteradores y Generadores.md",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida.md",
+    "Curso SQL con PostgreSQL/07 - Supabase en Profundidad.md",
+    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/07 - Caso Practico - Pipeline de Datos en Streaming.md",
+    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/06 - Metaclases y Metaprogramacion.md",
+    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/05 - Typing y Type Hints.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos",
     "M00 - Fundamentos de Ingenieria/01 - Matematicas para ML",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML",
@@ -204,7 +205,6 @@
     "Curso SQL con PostgreSQL/02 - DDL - Definiendo la Estructura.md",
     "Curso SQL con PostgreSQL/01 - Introduccion y Configuracion.md",
     "Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL.md",
-    "Curso SQL con PostgreSQL/07 - Supabase en Profundidad.md",
     "02 - Git - Conexion y Sincronizacion.md",
     "03 - Eliminacion Segura de Archivos y Carpetas.md",
     "04 - Caso Practico - Sincronizando Learning.md",

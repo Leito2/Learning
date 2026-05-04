@@ -44,6 +44,32 @@ for numero in Contador(5):
 
 > 💡 **Caso real:** PyTorch usa iteradores en `DataLoader`. Cada llamada a `next()` carga un nuevo batch del disco a RAM.
 
+### Iterables vs Iteradores
+
+Es crucial distinguir ambos conceptos:
+
+- **Iterable**: Cualquier objeto que puedes recorrer con `for`. Implementa `__iter__()` y devuelve un iterador. Ejemplos: `list`, `str`, `dict`, `range`.
+- **Iterator**: El objeto que *realmente* realiza el recorrido. Implementa `__iter__()` (devolviendo `self`) y `__next__()`.
+
+```python
+lista = [1, 2, 3]
+print(hasattr(lista, '__iter__'))  # True → es iterable
+print(hasattr(lista, '__next__'))  # False → no es iterador
+
+iterador = iter(lista)
+print(hasattr(iterador, '__next__'))  # True → es iterador
+```
+
+> 💡 **Regla mnemotécnica:** Todos los iteradores son iterables, pero no todos los iterables son iteradores. Un iterador se "agota" después de un solo recorrido.
+
+### Patrones de diseño: Iterator Pattern
+
+El patrón Iterator es uno de los 23 patrones GoF (Gang of Four). Permite recorrer una colección sin exponer su representación interna. En Python, está tan integrado que raramente necesitas implementarlo manualmente, pero entenderlo te ayuda a diseñar colecciones complejas (como árboles de decisión o grafos de computación).
+
+**Beneficios:**
+- **Single Responsibility**: la lógica de recorrido vive en el iterador, no en la colección.
+- **Open/Closed**: puedes añadir nuevos tipos de recorrido (pre-order, post-order, level-order) sin modificar la colección.
+
 ---
 
 ## 2. Generadores con `yield`
@@ -147,6 +173,54 @@ print(list(generador_b()))  # [1, 2, 3]
 ```
 
 > 💡 En pipelines de datos, `yield from` permite componer transformaciones como si fueran tuberías Unix.
+
+## 6. Métodos avanzados de generadores: `send`, `throw`, `close`
+
+Los generadores en Python son más potentes de lo que parecen. Además de producir valores, pueden **recibir** valores y manejar excepciones.
+
+### `send()` — Comunicación bidireccional
+
+```python
+def acumulador():
+    total = 0
+    while True:
+        valor = yield total  # Produce total, recibe valor
+        if valor is None:
+            break
+        total += valor
+
+acc = acumulador()
+next(acc)  # Inicializa el generador (hasta el primer yield)
+
+print(acc.send(10))   # 10
+print(acc.send(20))   # 30
+print(acc.send(5))    # 35
+acc.close()
+```
+
+> 💡 **Caso real:** `send()` es la base de los **async/await** de Python. Una corrutina async no es más que un generador que recibe valores vía `send()`.
+
+### `throw()` — Inyectar excepciones
+
+```python
+def procesador():
+    try:
+        while True:
+            dato = yield
+            print(f"Procesando: {dato}")
+    except ValueError:
+        print("Error manejado, reiniciando...")
+
+p = procesador()
+next(p)
+p.send("A")
+p.throw(ValueError, "dato inválido")  # Inyecta excepción
+p.send("B")
+```
+
+### `close()` — Terminar graceful
+
+Lanza `GeneratorExit` dentro del generador, permitiendo liberar recursos (cerrar archivos, conexiones).
 
 ---
 

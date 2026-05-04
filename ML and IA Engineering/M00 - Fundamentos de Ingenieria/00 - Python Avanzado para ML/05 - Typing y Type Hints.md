@@ -99,6 +99,64 @@ ejecutar_entrenamiento(MiModelo())  # OK
 
 > 💡 **Caso real:** PyTorch usa protocols para definir interfaces de `nn.Module`, optimizers, y schedulers.
 
+### Nominal vs Structural Subtyping
+
+Python tradicionalmente usa **subtipado nominal**: una clase es subtipo de otra solo si hereda explícitamente de ella. Los `Protocol` introducen **subtipado estructural** (duck typing formalizado): un objeto es válido si implementa los métodos requeridos, sin importar su herencia.
+
+```python
+from typing import Protocol
+
+class Volador(Protocol):
+    def volar(self) -> str: ...
+
+class Pato:
+    def volar(self) -> str:
+        return "El pato vuela"
+
+class Avion:
+    def volar(self) -> str:
+        return "El avión vuela"
+
+def hacer_volar(objeto: Volador) -> None:
+    print(objeto.volar())
+
+hacer_volar(Pato())   # OK
+hacer_volar(Avion())  # OK
+# hacer_volar("string")  # mypy error: str no tiene método volar()
+```
+
+> 💡 **Ventaja:** Puedes hacer que clases de librerías de terceros "cumplan" un protocolo sin modificar su código.
+
+### Varianza: Covarianza, Contravarianza e Invarianza
+
+Cuando usas `TypeVar`, controlas cómo los subtipos se relacionan:
+
+```python
+from typing import TypeVar, Generic, List
+
+# Invariante (por defecto): solo acepta exactamente T
+T = TypeVar('T')
+
+# Covariante: acepta T o subtipos de T
+T_co = TypeVar('T_co', covariant=True)
+
+# Contravariante: acepta T o supertipos de T
+T_contra = TypeVar('T_contra', contravariant=True)
+
+class Productor(Generic[T_co]):
+    def producir(self) -> T_co: ...
+
+class Consumidor(Generic[T_contra]):
+    def consumir(self, item: T_contra) -> None: ...
+```
+
+**Reglas prácticas:**
+- **Covariante**: tipos que "producen" valores (`List[+T]`, `Callable[[], +T]`).
+- **Contravariante**: tipos que "consumen" valores (`Callable[[-T], None]`).
+- **Invariante**: tipos que producen Y consumen (`List[T]` permite lectura y escritura).
+
+> 💡 **Caso real:** `typing.Iterable[T]` es covariante porque solo produce valores. `typing.List[T]` es invariante porque permite lectura y escritura.
+
 ---
 
 ## 4. `@overload` — sobrecarga de funciones

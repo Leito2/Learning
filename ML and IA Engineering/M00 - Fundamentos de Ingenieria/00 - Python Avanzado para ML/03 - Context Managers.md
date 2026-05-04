@@ -75,6 +75,41 @@ with timer("entrenamiento"):
 
 > 💡 `yield` divide el código: antes es `__enter__`, después es `__exit__`.
 
+### El patrón RAII (Resource Acquisition Is Initialization)
+
+Los context managers implementan RAII, un patrón de C++ adoptado por Python. La idea es simple: **el ciclo de vida de un recurso está ligado al de un objeto**. Cuando el objeto se destruye (o sale del bloque `with`), el recurso se libera automáticamente.
+
+**Recursos comunes en ML:**
+- Archivos de datos (CSV, Parquet, TFRecord).
+- Conexiones a bases de datos (PostgreSQL, Redis, MongoDB).
+- Sesiones de GPU (CUDA context).
+- Locks para sincronización entre threads.
+- Sesiones HTTP (pools de conexiones).
+
+> 💡 **Sin RAII:** Cada vez que abres un recurso, necesitas `try...finally` manual. Con RAII, `with` lo hace por ti.
+
+### `__exit__` y supresión de excepciones
+
+El valor de retorno de `__exit__` controla si la excepción se propaga:
+
+```python
+class SuprimirErrores:
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_type is not None:
+            print(f"Capturado: {exc_val}")
+            return True  # True = suprimir excepción
+        return False     # False = propagar normalmente
+
+with SuprimirErrores():
+    raise ValueError("Esto no se propagará")
+print("Continuamos")  # Se ejecuta
+```
+
+> ⚠️ **Usar con extrema cautela.** Suprimir excepciones sin loggearlas es un anti-patrón peligroso.
+
 ---
 
 ## 4. Suprimir excepciones

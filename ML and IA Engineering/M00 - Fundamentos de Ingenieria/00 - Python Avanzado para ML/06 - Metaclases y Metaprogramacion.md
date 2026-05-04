@@ -196,6 +196,79 @@ print(c1 is c2)  # True
 
 > 💡 Regla: si puedes resolverlo con un decorador de clase, no uses metaclases. Las metaclases son para cuando necesitas controlar la **creación** de la clase misma.
 
+### El modelo de objetos de Python (MRO y `super`)
+
+Python usa el algoritmo **C3 Linearization** para calcular el Method Resolution Order (MRO). Determina el orden en que Python busca métodos en la jerarquía de herencia.
+
+```python
+class A:
+    def metodo(self):
+        print("A")
+
+class B(A):
+    def metodo(self):
+        print("B")
+        super().metodo()
+
+class C(A):
+    def metodo(self):
+        print("C")
+        super().metodo()
+
+class D(B, C):
+    def metodo(self):
+        print("D")
+        super().metodo()
+
+d = D()
+d.metodo()
+# D → B → C → A (orden MRO)
+print(D.__mro__)
+# (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)
+```
+
+> 💡 **`super()` no llama al padre directo**, llama al **siguiente en el MRO**. Esto permite patrones de herencia cooperativa (cooperative multiple inheritance).
+
+### `__prepare__` — Controlar el namespace de la clase
+
+Antes de que el cuerpo de la clase se ejecute, Python llama a `__prepare__` para crear el diccionario donde vivirán los atributos. Puedes devolver un `OrderedDict`, un `defaultdict`, o incluso un objeto personalizado.
+
+```python
+class OrderedMeta(type):
+    @classmethod
+    def __prepare__(mcs, name, bases, **kwargs):
+        print(f"Preparando namespace para {name}")
+        return {}  # Podrías devolver OrderedDict para preservar orden
+
+class Ejemplo(metaclass=OrderedMeta):
+    a = 1
+    b = 2
+```
+
+### `__init_subclass__` — Alternativa moderna a metaclases
+
+Desde Python 3.6, `__init_subclass__` permite ejecutar código cuando una clase es subclasificada, sin necesidad de metaclases.
+
+```python
+class PluginBase:
+    _plugins = []
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        cls._plugins.append(cls)
+        print(f"Plugin registrado: {cls.__name__}")
+
+class PluginA(PluginBase):
+    pass
+
+class PluginB(PluginBase):
+    pass
+
+print(PluginBase._plugins)  # [<class '__main__.PluginA'>, <class '__main__.PluginB'>]
+```
+
+> 💡 **Recomendación:** Usa `__init_subclass__` antes que metaclases siempre que sea posible. Es más simple y suficiente para la mayoría de los casos.
+
 ---
 
 ## 📦 Código de compresión: Mini ORM con metaclases

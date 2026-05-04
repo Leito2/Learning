@@ -52,6 +52,44 @@ asyncio.run(main())
 
 > 💡 `await` solo puede usarse dentro de funciones `async`. No bloquea el CPU, cede el control al event loop.
 
+### El Event Loop: corazón de async
+
+El **event loop** es un bucle infinito que:
+
+1. Revisa qué tareas están listas para ejecutarse.
+2. Ejecuta la siguiente tarea hasta que encuentra un `await`.
+3. Cuando una tarea se suspende (`await`), el loop pasa a otra tarea lista.
+4. Cuando una operación de I/O termina (ej. respuesta HTTP llega), la tarea suspendida se vuelve lista.
+
+**Analogía:** El event loop es como un chef en un restaurante. En lugar de esperar a que hierva el agua (bloqueo), el chef pone la olla y mientras tanto corta verduras (otra tarea). Cuando el agua hierve, vuelve a la olla.
+
+```python
+import asyncio
+
+async def tarea_visual(nombre, pasos):
+    for paso in range(pasos):
+        print(f"  [{nombre}] paso {paso + 1}/{pasos}")
+        await asyncio.sleep(0.1)  # Cede control
+
+async def main():
+    # El event loop intercala ambas tareas automáticamente
+    await asyncio.gather(
+        tarea_visual("A", 3),
+        tarea_visual("B", 3),
+    )
+
+asyncio.run(main())
+```
+
+### Concurrencia vs Paralelismo
+
+| Concepto | Definición | En Python async |
+|----------|------------|-----------------|
+| **Concurrencia** | Múltiples tareas progresan en un período de tiempo | Async: una sola tarea ejecuta a la vez, pero se alternan rápidamente |
+| **Paralelismo** | Múltiples tareas ejecutan simultáneamente | No lo da async solo; necesitas multiprocessing o threads |
+
+> ⚠️ **El GIL (Global Interpreter Lock):** Python tiene un GIL que impide que múltiples threads ejecuten bytecode Python simultáneamente. Por eso, async no acelera tareas CPU-bound. Para CPU-bound, usa `multiprocessing` o `ProcessPoolExecutor`.
+
 ---
 
 ## 3. Ejecutar múltiples tareas en paralelo

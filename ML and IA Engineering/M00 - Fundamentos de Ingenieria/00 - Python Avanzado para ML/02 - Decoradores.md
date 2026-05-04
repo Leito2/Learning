@@ -29,6 +29,42 @@ saludar("Ana")
 
 **Sintaxis `@`:** `saludar = mi_decorador(saludar)`
 
+### El modelo de cierre (Closure)
+
+Los decoradores funcionan gracias a los **closures**. Un closure es una función que recuerda el entorno léxico donde fue creada, incluso cuando se ejecuta fuera de ese alcance.
+
+```python
+def fabrica_multiplicador(factor):
+    def multiplicador(x):
+        return x * factor  # `factor` viene del closure
+    return multiplicador
+
+doble = fabrica_multiplicador(2)
+triple = fabrica_multiplicador(3)
+
+print(doble(5))   # 10
+print(triple(5))  # 15
+```
+
+En un decorador, el closure captura la función original (`funcion_original`) para poder llamarla dentro del wrapper.
+
+### Reglas de alcance: `nonlocal` y `global`
+
+Cuando un decorador necesita modificar variables del closure, usa `nonlocal`:
+
+```python
+def contador_llamadas(func):
+    cuenta = 0
+    def wrapper(*args, **kwargs):
+        nonlocal cuenta  # Indica que no es local, es del closure
+        cuenta += 1
+        print(f"Llamada #{cuenta}")
+        return func(*args, **kwargs)
+    return wrapper
+```
+
+> ⚠️ Sin `nonlocal`, Python crea una variable local `cuenta` en `wrapper` y falla al intentar incrementarla.
+
 ---
 
 ## 2. Decoradores con argumentos
