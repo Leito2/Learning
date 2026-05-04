@@ -1,5 +1,24 @@
-This is your new *vault*.
+# 🧠 ML and IA Engineering
 
-Make a note of something, [[create a link]], or try [the Importer](https://help.obsidian.md/Plugins/Importer)!
+Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aquí centralizas todo tu aprendizaje y proyectos.
 
-When you're ready, delete this note and make the vault your own.
+---
+
+## 📚 Cursos disponibles
+
+- [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
+
+---
+
+## 🛠️ Herramientas del vault
+
+| Atajo | Acción |
+|-------|--------|
+| `Ctrl + O` | Abrir nota rápida |
+| `Ctrl + E` | Cambiar vista Editor / Lectura |
+| `Ctrl + G` | Abrir Graph |
+| `[[` | Crear enlace a otra nota |
+
+---
+
+> **Tip:** Usa el **Graph** (`Ctrl + G`) para visualizar cómo se conectan tus notas.
