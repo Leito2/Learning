@@ -7,6 +7,7 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 ## 📚 Cursos disponibles
 
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
+- [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
 
 ---
 
