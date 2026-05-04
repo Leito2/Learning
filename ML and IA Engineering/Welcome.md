@@ -14,6 +14,11 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 ### Índice Maestro
 - [[00 - Indice Maestro de Cursos|📋 Índice Maestro de Cursos]]
 
+### Deep Learning y Computer Vision
+- [[M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|🔥 M01 - Deep Learning con PyTorch]]
+- [[M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/00 - Bienvenida|👁️ M01 - Computer Vision Avanzada]]
+- [[M01 - Deep Learning y Computer Vision/05 - Multimodal AI/00 - Bienvenida|🖼️ M01 - Multimodal AI]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
