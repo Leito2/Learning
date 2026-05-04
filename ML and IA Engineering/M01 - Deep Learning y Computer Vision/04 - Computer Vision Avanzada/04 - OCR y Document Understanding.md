@@ -23,6 +23,8 @@ El paradigma moderno unifica detección y reconocimiento mediante redes neuronal
 
 Caso real: **Adobe Acrobat Pro** utiliza modelos de deep learning para OCR en PDF escaneados, superando significativamente a motores tradicionales en documentos con layouts complejos.
 
+![Documento de prueba para OCR](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Test_OCR_document.jpg/640px-Test_OCR_document.jpg)
+
 ---
 
 ## 2. Detección de texto: EAST
@@ -40,6 +42,14 @@ Zhou et al. (2017) propusieron **EAST (Efficient and Accurate Scene Text detecti
 ### 2.2 Ventajas clave
 
 EAST elimina los componentes intermedios (propuesta de región, filtrado, refinemiento) y produce boxes directamente. Es **end-to-end trainable** y funciona a tiempo real.
+
+```mermaid
+flowchart TD
+    A[Imagen] --> B[EAST<br/>Detección de texto]
+    B --> C[CRNN<br/>Reconocimiento]
+    C --> D[CTC<br/>Alineación]
+    D --> E[Texto final]
+```
 
 ⚠️ **Advertencia**: EAST puede fusionar líneas de texto cercanas si el umbral de NMS no está bien calibrado. En documentos densos, modelos basados en transformers (como LayoutLMv3) suelen ser más robustos.
 
@@ -138,6 +148,18 @@ Pretraining tasks:
 - **Donut**: modelo OCR-free que recibe la imagen directamente y genera JSON estructurado mediante un decoder transformer.
 
 Caso real: **Amazon Textract** y **Google Document AI** utilizan arquitecturas derivadas de LayoutLM para extraer pares key-value de facturas y recibos con precisión comercial.
+
+```mermaid
+flowchart TD
+    A[Imagen] --> B[Text Embeddings]
+    A --> C[Layout Embeddings]
+    A --> D[Image Embeddings]
+    B --> E[Suma<br/>E = E_text + E_layout + E_image]
+    C --> E
+    D --> E
+    E --> F[Transformer Encoder]
+    F --> G[NER / Key-Value]
+```
 
 💡 **Regla mnemotécnica**: **"Texto dice qué, layout dice dónde, imagen dice cómo"**. Los modelos de Document AI fusionan estas tres señales.
 

@@ -23,6 +23,19 @@ CLIP consta de dos encoders independientes:
 
 Ambos vectores se normalizan (L2) y se proyectan a través de una capa lineal de proyección aprendida. No hay fusión temprana; la interacción ocurre exclusivamente en el espacio de embeddings.
 
+```mermaid
+flowchart LR
+    A[Imagen] --> B[Image Encoder<br/>ViT/ResNet]
+    C[Texto] --> D[Text Encoder<br/>Transformer]
+    B --> E[Embedding z_i]
+    D --> F[Embedding z_t]
+    E --> G[Espacio Compartido]
+    F --> G
+    G --> H[InfoNCE Loss]
+```
+
+![Diagrama de arquitectura CLIP](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/CLIP_research_paper_diagram.png/640px-CLIP_research_paper_diagram.png)
+
 ### Tabla Comparativa: Enfoques de Alineamiento
 
 | Enfoque | Interacción | Escalabilidad | Generalización Zero-Shot |
@@ -49,6 +62,15 @@ Análogamente para texto-a-imagen $\mathcal{L}_{t \to i}$. La pérdida total es 
 $$\mathcal{L}_{CLIP} = \frac{1}{2} \left( \mathcal{L}_{i \to t} + \mathcal{L}_{t \to i} \right)$$
 
 El numerador promueve el par positivo; el denominador penaliza la confusión con todos los pares negativos del batch.
+
+```mermaid
+flowchart TD
+    A[Batch N pares] --> B[Matriz Similitud NxN]
+    B --> C[Diagonales = Positivos]
+    B --> D[Off-Diagonales = Negativos]
+    C --> E[InfoNCE Loss]
+    D --> E
+```
 
 ## 5. Zero-Shot Classification
 

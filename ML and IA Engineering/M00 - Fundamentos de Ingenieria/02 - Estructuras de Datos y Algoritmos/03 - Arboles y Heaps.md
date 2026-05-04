@@ -8,12 +8,24 @@ Los árboles son estructuras jerárquicas que aparecen constantemente en ML: des
 
 Un árbol binario es una estructura donde cada nodo tiene como máximo dos hijos: izquierdo y derecho.
 
+![Árbol binario](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Binary_tree.svg/640px-Binary_tree.svg.png)
+
 ### Propiedades
 
 - **Altura (h):** número máximo de aristas desde la raíz a una hoja.
 - **Nodos en nivel i:** como máximo `2^i`.
 - **Nodos totales:** como máximo `2^(h+1) - 1`.
 - **Altura mínima:** `⌈log₂(n)⌉` (árbol balanceado).
+
+```mermaid
+graph TD
+    A[Raíz] --> B[Hijo Izq]
+    A --> C[Hijo Der]
+    B --> D[Nieto Izq]
+    B --> E[Nieto Der]
+    C --> F[Nieto Izq]
+    C --> G[Nieto Der]
+```
 
 ```python
 class TreeNode:
@@ -97,6 +109,22 @@ class BST:
 ### AVL Tree
 
 Un AVL es un BST donde la diferencia de alturas entre subárboles de cualquier nodo es como máximo 1. Si se viola, se reequilibra con **rotaciones**.
+
+```mermaid
+graph TD
+    subgraph Antes
+        Z1[Z] --> Y1[Y]
+        Z1 --> T41[T4]
+        Y1 --> T11[T1]
+        Y1 --> T21[T2]
+    end
+    subgraph Después
+        Y2[Y] --> T12[T1]
+        Y2 --> Z2[Z]
+        Z2 --> T22[T2]
+        Z2 --> T42[T4]
+    end
+```
 
 ```python
 class AVLNode(TreeNode):

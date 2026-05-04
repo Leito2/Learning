@@ -6,6 +6,17 @@ Este curso te lleva de "sé Python" a "domino Python como un ingeniero de ML sen
 
 ## 🗂️ Módulos del curso
 
+```mermaid
+flowchart LR
+    A[Python Avanzado para ML] --> B[Iteradores y Generadores]
+    A --> C[Decoradores]
+    A --> D[Context Managers]
+    A --> E[Async y Await]
+    A --> F[Typing y Type Hints]
+    A --> G[Metaclases y Metaprogramación]
+    A --> H[Caso Práctico: Pipeline de Datos en Streaming]
+```
+
 1. [[01 - Iteradores y Generadores|Iteradores y Generadores]]
 2. [[02 - Decoradores|Decoradores]]
 3. [[03 - Context Managers|Context Managers]]
@@ -17,6 +28,8 @@ Este curso te lleva de "sé Python" a "domino Python como un ingeniero de ML sen
 ---
 
 ## 🤔 ¿Por qué Python avanzado para ML?
+
+![Python Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/640px-Python-logo-notext.svg.png)
 
 Los frameworks de ML no son magia. Son Python puro usando:
 

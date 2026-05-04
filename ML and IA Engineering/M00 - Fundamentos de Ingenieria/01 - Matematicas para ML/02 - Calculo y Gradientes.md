@@ -116,6 +116,20 @@ $$y = f_L(f_{L-1}(...f_1(x)...))$$
 
 $$\frac{\partial y}{\partial x} = \frac{\partial f_L}{\partial f_{L-1}} \cdot \frac{\partial f_{L-1}}{\partial f_{L-2}} \cdot ... \cdot \frac{\partial f_1}{\partial x}$$
 
+```mermaid
+flowchart LR
+    X["x"] --> L1["f₁"]
+    L1 --> L2["f₂"]
+    L2 --> L3["..."]
+    L3 --> LL["f_L"]
+    LL --> Y["y"]
+    
+    Y -. "∂f_L/∂f_{L-1}" .-> LL
+    LL -. "∂f_{L-1}/∂f_{L-2}" .-> L3
+    L3 -. "..." .-> L2
+    L2 -. "∂f_1/∂x" .-> X
+```
+
 ```python
 # Ejemplo ilustrativo: red de 3 capas
 def capa1(x, w1):
@@ -160,6 +174,8 @@ print(f"dy/dw1 = {dy_dw1}")  # 40.0
 | ReLU | $\max(0, x)$ | $1$ si $x>0$, $0$ si $x<0$ | Dying ReLU |
 | Leaky ReLU | $\max(\alpha x, x)$ | $1$ si $x>0$, $\alpha$ si $x<0$ | Mitiga dying ReLU |
 | Softmax | $\frac{e^{x_i}}{\sum e^{x_j}}$ | Compleja (matriz Jacobiana) | Usada en output layer |
+
+![Funciones de activación](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ayfancy.svg/640px-Ayfancy.svg.png)
 
 ### El problema del vanishing gradient
 
@@ -207,6 +223,8 @@ La Hessiana describe la **curvatura** de la función. Es usada en métodos de op
 ---
 
 ## 📦 Código de compresión: Gradiente Descendente desde cero
+
+![Gradient Descent](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Gradient_descent.svg/640px-Gradient_descent.svg.png)
 
 ```python
 """

@@ -30,6 +30,16 @@ Descongelamos (total o parcialmente) los pesos del modelo pre-entrenado y los ac
 | Fine-tuning completo | Moderados | Horas | Alto | Dataset grande, dominio diferente |
 | Fine-tuning progresivo | Moderados | Horas | Medio | Dataset mediano, busca balance |
 
+```mermaid
+flowchart TD
+    subgraph FeatureExtraction["Feature Extraction"]
+        A1[Backbone Pre-entrenado] -->|Congelado| B1[Clasificador Nuevo]
+    end
+    subgraph FineTuning["Fine-Tuning"]
+        A2[Backbone Pre-entrenado] -->|Descongelado| B2[Clasificador Nuevo]
+    end
+```
+
 Caso real: en la detección de neumonía en radiografías de tórax, los investigadores parten de ResNet-50 pre-entrenado en ImageNet. Las texturas de bajo nivel (bordes, contrastes) son universales, por lo que feature extraction ya da buenos resultados; sin embargo, fine-tuning de las últimas capas mejora la sensibilidad al adaptar los filtros a patrones pulmonares específicos.
 
 ---
@@ -56,6 +66,12 @@ Una estrategia avanzada es descongelar capas de forma gradual, empezando por las
 1. Entrenar solo el clasificador final (epochs 1-5).
 2. Descongelar las últimas dos capas convolucionales y entrenar con LR muy bajo (epochs 6-10).
 3. Descongelar todo con LR aún menor (epochs 11-20).
+
+```mermaid
+flowchart LR
+    A[Epochs 1-5<br/>Solo FC] --> B[Epochs 6-10<br/>Layer4 + FC]
+    B --> C[Epochs 11-20<br/>Todo el modelo]
+```
 
 💡 **Tip:** Las capas tempranas de una CNN aprenden características de bajo nivel (bordes, colores) que son casi universales. Las capas profundas aprenden patrones de alto nivel (formas de objetos) que son específicos del dataset original. Por eso, en dominios similares, solo se fine-tunean las capas finales.
 
@@ -134,6 +150,8 @@ Modelos populares disponibles:
 ---
 
 ## 6. Implementación en PyTorch
+
+![Transfer Learning con backbone pre-entrenado](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/640px-Colored_neural_network.svg.png)
 
 ```python
 import torch

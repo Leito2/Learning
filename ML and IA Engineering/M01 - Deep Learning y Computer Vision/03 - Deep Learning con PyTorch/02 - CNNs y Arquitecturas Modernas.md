@@ -18,6 +18,8 @@ El kernel se desliza (stride) sobre la imagen, computando productos punto locale
 
 Caso real: los sistemas de conducción autónoma (Tesla, Waymo) utilizan CNNs para detectar vehículos, peatones y señales de tráfico en tiempo real a partir de cámaras frontales.
 
+![Operación de convolución 2D](https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Conv_layer.png/640px-Conv_layer.png)
+
 ---
 
 ## 2. Padding y Stride
@@ -106,6 +108,14 @@ $$
 
 Donde $\mathcal{F}$ es el mapeo residual. Si la identidad es óptima, la red solo necesita aprender a producir ceros, lo cual es más fácil que aprender una identidad a través de una pila de capas no lineales.
 
+```mermaid
+flowchart LR
+    X[Entrada x] --> F[Bloque Residual F(x)]
+    F --> S[Suma +]
+    X --> S
+    S --> Y[Salida y]
+```
+
 ### 5.5 DenseNet (2017)
 
 Conecta cada capa con todas las capas posteriores dentro de un *dense block*. Promueve el reuso de características y reduce el número de parámetros:
@@ -152,6 +162,20 @@ Beneficios:
 ---
 
 ## 7. Implementación en PyTorch
+
+```mermaid
+flowchart TD
+    A[Input 1x28x28] --> B[Conv1 32ch]
+    B --> C[BN + ReLU]
+    C --> D[MaxPool]
+    D --> E[Conv2 64ch]
+    E --> F[BN + ReLU]
+    F --> G[MaxPool]
+    G --> H[Flatten]
+    H --> I[FC 128]
+    I --> J[Dropout]
+    J --> K[FC 10]
+```
 
 ```python
 import torch

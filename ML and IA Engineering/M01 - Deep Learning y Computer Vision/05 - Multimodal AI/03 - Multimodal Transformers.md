@@ -12,7 +12,24 @@ En **cross-attention**, las queries provienen de una modalidad destino (e.g., te
 
 $$\text{Cross-Att}(Q_{text}, K_{img}, V_{img}) = \text{softmax}\left(\frac{Q_{text} K_{img}^T}{\sqrt{d_k}}\right) V_{img}$$
 
-El porqué de la separación es clave: self-attention modela relaciones intra-modales (e.g., qué palabra depende de qué otra palabra, o qué parche de imagen está relacionado con otro). Cross-attention modela relaciones **inter-modales**, permitiendo que el texto "consulte" directamente la información visual. Arquitecturas como DETR y los decoders de captioning usan cross-attention para condicionar la generación textual en contenido visual.
+El porqué de la separación es clave: self-attention modela relaciones intra-modales (e.g., qué palabra depende de qué otra palabra, o qué parche de imagen está relacionado con otro). Cross-attention modela relaciones **inter-modales**, permitiendo que el texto "consulte" directamente la información visual.
+
+![Ilustración del mecanismo de atención](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Attention_is_all_you_need_illustration.svg/640px-Attention_is_all_you_need_illustration.svg.png)
+
+```mermaid
+flowchart LR
+    subgraph Texto
+        Q[Queries]
+    end
+    subgraph Imagen
+        K[Keys]
+        V[Values]
+    end
+    Q --> A[Cross-Attention]
+    K --> A
+    V --> A
+    A --> O[Output Textual]
+``` Arquitecturas como DETR y los decoders de captioning usan cross-attention para condicionar la generación textual en contenido visual.
 
 ## 2. Modelos Encoder-Only: ALBEF
 
@@ -29,6 +46,15 @@ BLIP (Bootstraping Language-Image Pre-training) unifica comprensión y generaci�
 3. **Image captioning** (decoder con cross-attention).
 
 El decoder de BLIP genera texto auto-regresivamente, condicionado en la imagen mediante cross-attention. Esto permite que el mismo modelo pre-entrenado sirva tanto para retrieval (encoder) como para captioning (decoder).
+
+```mermaid
+flowchart TD
+    A[Imagen] --> B[Image Encoder]
+    B --> C[Multimodal Encoder<br/>Cross-Attention]
+    C --> D[Image-Text Matching]
+    B --> E[Decoder]
+    E --> F[Captioning]
+```
 
 ## 4. Flamingo y el In-Context Learning Visual
 

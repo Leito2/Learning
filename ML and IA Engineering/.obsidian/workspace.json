@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROMPT - Continuar Proyecto.md",
+                "file": "Welcome.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PROMPT - Continuar Proyecto"
+              "title": "Welcome"
             }
           }
         ]
@@ -185,35 +185,35 @@
   },
   "active": "d907ab6e5339f734",
   "lastOpenFiles": [
-    "00 - Indice Maestro de Cursos.md",
     "PROMPT - Continuar Proyecto.md",
+    "M01 - Deep Learning y Computer Vision/05 - Multimodal AI/04 - Caso Practico - Buscador Visual Multimodal.md",
+    "M01 - Deep Learning y Computer Vision/05 - Multimodal AI/03 - Multimodal Transformers.md",
+    "M01 - Deep Learning y Computer Vision/05 - Multimodal AI/02 - Modelos de Image Captioning.md",
+    "M01 - Deep Learning y Computer Vision/05 - Multimodal AI/01 - CLIP y Representaciones Conjuntas.md",
+    "M01 - Deep Learning y Computer Vision/05 - Multimodal AI/00 - Bienvenida.md",
+    "M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/04 - OCR y Document Understanding.md",
+    "M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/03 - Vision Transformers.md",
+    "M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/02 - Segmentacion Semantica.md",
+    "M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/01 - Object Detection.md",
+    "M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/00 - Bienvenida.md",
+    "M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/05 - Transfer Learning.md",
+    "M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/04 - Training Strategies.md",
+    "M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/03 - RNNs y Secuencias.md",
+    "M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/02 - CNNs y Arquitecturas Modernas.md",
+    "M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/01 - Introduccion a Redes Neuronales.md",
+    "M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida.md",
+    "M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/06 - Caso Practico - Clasificador de Imagenes Medico.md",
+    "M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/05 - Caso Practico - Sistema de Document Intelligence.md",
+    "00 - Indice Maestro de Cursos.md",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/01 - Iteradores y Generadores.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/07 - Caso Practico - Sistema de Recomendacion en Tiempo Real.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/06 - Programacion Dinamica.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/05 - Algoritmos de Busqueda y Ordenamiento.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/04 - Grafos.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/03 - Arboles y Heaps.md",
-    "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/02 - Arrays, Listas y Hash Tables.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida.md",
-    "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/01 - Complejidad Algoritmica.md",
-    "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/00 - Bienvenida.md",
-    "Welcome.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/03 - Context Managers.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/04 - Async y Await.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/02 - Decoradores.md",
-    "Curso SQL con PostgreSQL/07 - Supabase en Profundidad.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/07 - Caso Practico - Pipeline de Datos en Streaming.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/06 - Metaclases y Metaprogramacion.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/05 - Typing y Type Hints.md",
     "M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos",
     "M00 - Fundamentos de Ingenieria/01 - Matematicas para ML",
     "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML",
-    "M00 - Fundamentos de Ingenieria",
-    "Curso SQL con PostgreSQL/06 - Relaciones y Joins.md",
-    "Curso SQL con PostgreSQL/05 - Funciones, Vistas e Indices.md",
-    "Curso SQL con PostgreSQL/04 - Consultas Avanzadas.md",
-    "Curso SQL con PostgreSQL/03 - DML - Manipulando Datos.md",
-    "Curso SQL con PostgreSQL/02 - DDL - Definiendo la Estructura.md",
-    "Curso SQL con PostgreSQL/01 - Introduccion y Configuracion.md"
+    "M00 - Fundamentos de Ingenieria"
   ]
 }

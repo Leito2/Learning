@@ -11,6 +11,8 @@ El sistema debe soportar dos modos de consulta:
 
 Ambos modos son posibles gracias a un espacio de embeddings compartido (CLIP).
 
+![Embeddings compartidos con CLIP](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/CLIP_research_paper_diagram.png/640px-CLIP_research_paper_diagram.png)
+
 **Requisitos funcionales**:
 1. Ingesta batch de imágenes con preprocesamiento (resize, normalización).
 2. Extracción de embeddings de imagen y texto usando modelo CLIP.
@@ -23,6 +25,21 @@ Ambos modos son posibles gracias a un espacio de embeddings compartido (CLIP).
 ## 2. Arquitectura de Retrieval
 
 La arquitectura sigue el patrón clásico de información retrieval adaptado a vectores densos:
+
+```mermaid
+flowchart TD
+    subgraph Offline
+        A[Corpus Imágenes] --> B[CLIP Encoder]
+        B --> C[Embeddings]
+        C --> D[FAISS Index]
+    end
+    subgraph Online
+        E[Query Texto/Imagen] --> F[CLIP Encoder]
+        F --> G[Embedding Consulta]
+        G --> D
+        D --> H[Top-k Resultados]
+    end
+```
 
 1. **Offline**: Indexación.
    - Procesamiento de corpus $\mathcal{D} = \{i_1, i_2, \dots, i_N\}$.
@@ -53,6 +70,15 @@ porque $\|z_q\| = \|z_i\| = 1$.
 ## 4. API con FastAPI
 
 FastAPI permite construir APIs asíncronas con tipado Python. El servicio debe:
+
+```mermaid
+flowchart TD
+    A[Cliente] -->|POST /search/text| B[FastAPI]
+    B --> C[CLIP Text Encoder]
+    C --> D[FAISS Search]
+    D --> E[Resultados + Metadata]
+    E --> A
+```
 
 - Cargar el modelo CLIP y el índice FAISS en memoria al iniciar (lifespan).
 - Recibir queries y transformarlas en embeddings.

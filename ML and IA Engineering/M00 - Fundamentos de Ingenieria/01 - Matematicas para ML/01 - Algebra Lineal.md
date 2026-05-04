@@ -10,6 +10,8 @@ El álgebra lineal es el lenguaje de los datos en ML. Una imagen es una matriz, 
 
 Un vector es un objeto matemático que tiene **magnitud** y **dirección**. En ML, los vectores representan datos: una palabra es un vector de embeddings, una imagen se aplana a un vector, un usuario es un vector de features.
 
+![Vector projection](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vector_projection.svg/640px-Vector_projection.svg.png)
+
 ```python
 import numpy as np
 
@@ -162,6 +164,16 @@ $$A = U \Sigma V^T$$
 - `U`: matriz ortogonal (eigenvectors de `A·Aᵀ`).
 - `Σ`: matriz diagonal con valores singulares (raíces cuadradas de eigenvalues).
 - `Vᵀ`: matriz ortogonal transpuesta (eigenvectors de `Aᵀ·A`).
+
+```mermaid
+flowchart LR
+    A[Matriz A<br/>m x n] --> U[Matriz U<br/>m x m]
+    A --> S[Matriz Σ<br/>m x n]
+    A --> Vt[Matriz V^T<br/>n x n]
+    U --> R[Reconstrucción]
+    S --> R
+    Vt --> R
+```
 
 ```python
 A = np.array([[1, 2, 3], [4, 5, 6]])

@@ -6,6 +6,15 @@ La teoría de la información, fundada por Claude Shannon en 1948, cuantifica la
 
 ## 1. Información y Entropía
 
+```mermaid
+flowchart TD
+    A[Evento con probabilidad p] --> B{¿Qué tan raro?}
+    B -->|p ≈ 1<br/>Muy probable| C[Poca información]
+    B -->|p ≈ 0<br/>Muy raro| D[Mucha información]
+    C --> E[Entropía = Valor esperado de I(x)]
+    D --> E
+```
+
 ### Información de un evento
 
 La información (en bits) de un evento con probabilidad `p` es:
@@ -86,6 +95,13 @@ print(f"Loss C (inseguro): {loss_c:.4f}")
 ---
 
 ## 3. Divergencia KL (Kullback-Leibler)
+
+```mermaid
+flowchart LR
+    A[Distribución real p] --> C[Divergencia KL]
+    B[Distribución aproximada q] --> C
+    C --> D{¿Cuánta información se pierde?}
+```
 
 La divergencia KL mide cuánta información se pierde al aproximar `p` con `q`:
 

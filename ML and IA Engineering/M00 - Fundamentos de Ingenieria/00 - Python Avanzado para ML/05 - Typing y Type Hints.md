@@ -26,6 +26,21 @@ def cargar_modelo(ruta: Union[str, bytes]) -> Optional[object]:
     return object()
 ```
 
+```mermaid
+classDiagram
+    class TypingHierarchy
+    TypingHierarchy : +int
+    TypingHierarchy : +float
+    TypingHierarchy : +str
+    TypingHierarchy : +bool
+    TypingHierarchy : +List~T~
+    TypingHierarchy : +Dict~K,V~
+    TypingHierarchy : +Tuple~A,B~
+    TypingHierarchy : +Optional~T~
+    TypingHierarchy : +Union~A,B~
+    TypingHierarchy : +Any
+```
+
 | Hint | Significado |
 |------|-------------|
 | `int`, `float`, `str`, `bool` | Tipos primitivos |
@@ -73,6 +88,25 @@ batch_strs = Batch(["a", "b"])
 ---
 
 ## 3. Protocolos (duck typing estructural)
+
+```mermaid
+classDiagram
+    class Entrenable {
+        <<Protocol>>
+        +fit(X, y)
+        +predict(X)
+    }
+    class MiModelo {
+        +fit(X, y)
+        +predict(X)
+    }
+    class OtroModelo {
+        +fit(X, y)
+        +predict(X)
+    }
+    MiModelo ..|> Entrenable : cumple
+    OtroModelo ..|> Entrenable : cumple
+```
 
 Un `Protocol` define una interfaz sin herencia explícita. Si un objeto implementa los métodos, "cumple" el protocolo.
 

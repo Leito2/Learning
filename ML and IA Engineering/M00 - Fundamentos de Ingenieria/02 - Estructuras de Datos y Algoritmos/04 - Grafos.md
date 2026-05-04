@@ -10,6 +10,8 @@ Un grafo `G = (V, E)` consiste en:
 - **V:** conjunto de vértices (nodos).
 - **E:** conjunto de aristas (conexiones entre nodos).
 
+![Grafo no dirigido](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/6n-graf.svg/640px-6n-graf.svg.png)
+
 ### Tipos de grafos
 
 | Tipo | Característica | Ejemplo en ML |
@@ -20,6 +22,17 @@ Un grafo `G = (V, E)` consiste en:
 | **Cíclico** | Contiene ciclos | RNNs desenrolladas (cadenas) |
 | **Acíclico (DAG)** | Sin ciclos | Pipelines de ML, Bayesian networks |
 | **Bipartito** | Nodos divididos en dos grupos | Recommender systems (usuarios ↔ items) |
+
+```mermaid
+flowchart LR
+    A((A)) --> B((B))
+    B --> C((C))
+    C --> A
+    A --> D((D))
+    D --> E((E))
+    E --> F((F))
+    F --> D
+```
 
 ### Representaciones en memoria
 
@@ -53,6 +66,15 @@ grafo = {
 
 Explora nivel por nivel, usando una cola. Encuentra el camino más corto en grafos no ponderados.
 
+```mermaid
+graph TD
+    A((A)) --> B((B))
+    A --> C((C))
+    B --> D((D))
+    B --> E((E))
+    C --> F((F))
+```
+
 ```python
 from collections import deque
 
@@ -78,6 +100,15 @@ def bfs(grafo, inicio):
 ### DFS (Depth-First Search)
 
 Explora tan profundo como sea posible antes de retroceder. Usa una pila (explícita o recursiva).
+
+```mermaid
+graph TD
+    A((A)) --> B((B))
+    B --> D((D))
+    D --> E((E))
+    B --> C((C))
+    C --> F((F))
+```
 
 ```python
 def dfs(grafo, inicio, visitados=None):

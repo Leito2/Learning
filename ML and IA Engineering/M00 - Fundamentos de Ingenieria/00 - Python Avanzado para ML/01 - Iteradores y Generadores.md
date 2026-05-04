@@ -19,6 +19,30 @@ Cuando escribes `for x in iterable:`, Python hace esto:
 2. Llama repetidamente `next(iterador)` → obtiene valores (método `__next__`).
 3. Cuando `__next__` lanza `StopIteration`, el bucle termina.
 
+```mermaid
+sequenceDiagram
+    participant F as for loop
+    participant I as iter()
+    participant O as Objeto Iterable
+    participant N as next()
+    participant It as Iterador
+
+    F->>I: iter(iterable)
+    I->>O: __iter__()
+    O-->>I: retorna iterador
+    I-->>F: iterador
+    loop Mientras haya elementos
+        F->>N: next(iterador)
+        N->>It: __next__()
+        It-->>N: valor
+        N-->>F: valor
+    end
+    N->>It: __next__()
+    It-->>N: StopIteration
+    N-->>F: StopIteration
+    F->>F: termina bucle
+```
+
 ### Ejemplo: iterador manual
 
 ```python
@@ -225,6 +249,13 @@ Lanza `GeneratorExit` dentro del generador, permitiendo liberar recursos (cerrar
 ---
 
 ## 📦 Código de compresión: Pipeline de DataLoader desde cero
+
+```mermaid
+flowchart TD
+    A[Dataset Generator] -->|rutas de imágenes| B[Augmentación Generator]
+    B -->|imágenes transformadas| C[Batch Generator]
+    C -->|batches de tamaño N| D[Modelo de Entrenamiento]
+```
 
 ```python
 """

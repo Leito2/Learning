@@ -25,6 +25,8 @@ Los transformers eliminan estos priors y aprenden relaciones globales directamen
 
 Caso real: **Google Vision API** migra gradualmente sus modelos de clasificación general a arquitecturas híbridas transformer-CNN para mejorar precisión en clases finas.
 
+![Arquitectura completa del Transformer](https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Transformer%2C_full_architecture.png/640px-Transformer%2C_full_architecture.png)
+
 ---
 
 ## 2. Patch Embedding: de imagen a secuencia
@@ -105,6 +107,8 @@ cada cabeza puede especializarse en diferentes tipos de relaciones: texturas loc
 
 ViT-Huge (632M parámetros) entrenado en JFT-300M (300 millones de imágenes) supera a ResNet-152 en ImageNet. Sin embargo, ViT-Base entrenado **solo en ImageNet** (1.3M imágenes) es inferior a ResNet-50.
 
+![Vision Transformer (ViT)](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Vision_Transformer.png/640px-Vision_Transformer.png)
+
 **Conclusión crítica**: los transformers para visión requieren **pretraining masivo**. Sin suficientes datos, los priors inductivos de las CNNs son insustituibles.
 
 ---
@@ -146,6 +150,16 @@ Esto introduce conexiones entre ventanas vecinas sin perder eficiencia. El despl
 Swin también introduce capas de **patch merging** (análogas a pooling) que reducen la resolución y duplican la dimensión de características, creando una pirámide jerárquica útil para detección y segmentación.
 
 Caso real: **Microsoft Azure Computer Vision** utiliza Swin Transformer como backbone en sus APIs de detección y segmentación por su eficiencia y precisión balanceadas.
+
+```mermaid
+flowchart TD
+    A[Imagen] --> B[Patch Embed]
+    B --> C[Stage 1<br/>Window Attention]
+    C --> D[Stage 2<br/>Shifted Window]
+    D --> E[Stage 3<br/>Window Attention]
+    E --> F[Stage 4<br/>Shifted Window]
+    F --> G[Head]
+```
 
 💡 **Tip**: si necesitas un transformer para visión con datasets medianos (~100k imágenes), empieza con **Swin-T** (tiny) en lugar de ViT-Base. Las ventanas locales actúan como regularización.
 

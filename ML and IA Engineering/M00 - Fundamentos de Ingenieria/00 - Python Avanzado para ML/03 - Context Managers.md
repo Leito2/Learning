@@ -29,6 +29,26 @@ Un objeto es un context manager si implementa:
 - `__enter__(self)`: código que se ejecuta al entrar al bloque `with`. Devuelve el recurso.
 - `__exit__(self, exc_type, exc_val, exc_tb)`: código que se ejecuta al salir, incluso si hubo excepción.
 
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant W as with
+    participant CM as Context Manager
+    participant B as Bloque de código
+
+    U->>W: with CM() as r:
+    W->>CM: __enter__()
+    CM-->>W: recurso r
+    W->>B: ejecuta bloque
+    alt Sin excepción
+        B-->>W: ok
+    else Con excepción
+        B-->>W: exc_type, exc_val, exc_tb
+    end
+    W->>CM: __exit__(exc_type, exc_val, exc_tb)
+    CM-->>W: ¿suprimir excepción?
+```
+
 ### Ejemplo: medir tiempo de un bloque
 
 ```python
@@ -121,6 +141,16 @@ from contextlib import suppress
 with suppress(FileNotFoundError):
     os.remove("archivo_temporal.txt")
 # Si el archivo no existe, no pasa nada
+```
+
+```mermaid
+flowchart TD
+    A[with suppress] --> B[Ejecutar bloque]
+    B --> C{¿Excepción?}
+    C -->|Sí| D[¿Está en suppress?]
+    D -->|Sí| E[Ignorar]
+    D -->|No| F[Propag]
+    C -->|No| G[Continuar normal]
 ```
 
 ---

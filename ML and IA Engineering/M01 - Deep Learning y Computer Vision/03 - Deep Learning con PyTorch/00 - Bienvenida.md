@@ -2,6 +2,17 @@
 
 Este curso está diseñado para llevarte desde los fundamentos matemáticos de las redes neuronales hasta la implementación de soluciones avanzadas en visión por computadora y procesamiento de secuencias, utilizando PyTorch como framework principal.
 
+![Red neuronal artificial](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/640px-Colored_neural_network.svg.png)
+
+```mermaid
+flowchart LR
+    A[Redes Neuronales] --> B[CNNs]
+    B --> C[RNNs]
+    C --> D[Training Strategies]
+    D --> E[Transfer Learning]
+    E --> F[Caso Médico]
+```
+
 Comprender Deep Learning no se trata solo de saber invocar capas predefinidas; se trata de entender por qué ciertas arquitecturas emergen, cómo fluye la información y el gradiente, y cómo tomar decisiones informadas en problemas reales de Machine Learning.
 
 ---

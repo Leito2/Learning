@@ -17,6 +17,16 @@ Eres Data Scientist en una empresa de genómica. Cada muestra de ADN tiene 20,00
 
 ## 🏗️ Arquitectura matemática del sistema
 
+```mermaid
+flowchart TD
+    A[Datos brutos<br/>X ∈ R^{n×d}] --> B[Centrar datos<br/>X̃ = X - μ]
+    B --> C[Matriz de covarianza<br/>Σ = X̃^T·X̃ / (n-1)]
+    C --> D[Eigenvalores y eigenvectors<br/>Σv = λv]
+    D --> E[Seleccionar top k<br/>V_k = [v₁...v_k]]
+    E --> F[Proyección<br/>Z = X̃·V_k]
+    F --> G[Reconstrucción<br/>X̂ = Z·V_k^T + μ]
+```
+
 ### Fase 1: Preparación de datos
 
 **Entrada:** Matriz `X ∈ R^(n×d)` donde `n` = muestras, `d` = genes.
@@ -151,6 +161,8 @@ def interpretar_componente(v, nombres_genes, top_n=10):
 | Error de reconstrucción | `‖X - X̂‖²_F / n` | Mínimo para k dado |
 | Silhouette score (clustering) | Cohesión vs separación | > 0.5 en proyección 2D |
 | Tiempo de computación | Wall-clock | < 1 minuto para 10k × 20k |
+
+![Red neuronal](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/640px-Colored_neural_network.svg.png)
 
 ---
 

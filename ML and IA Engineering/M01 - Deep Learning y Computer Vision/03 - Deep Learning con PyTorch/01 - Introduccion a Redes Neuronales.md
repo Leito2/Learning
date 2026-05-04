@@ -20,6 +20,8 @@ $$
 
 Caso real: en los sistemas de detección de fraudes bancarios, un perceptrón puede actuar como clasificador binario inicial que pondera variables como monto, frecuencia y ubicación para emitir una probabilidad de fraude.
 
+![Arquitectura de red neuronal fully-connected](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/640px-Colored_neural_network.svg.png)
+
 ⚠️ **Advertencia:** Un perceptrón sin función de activación no lineal es equivalente a una regresión lineal, sin importar cuántas capas apiles. La no linealidad es indispensable para modelar fronteras de decisión complejas.
 
 ---
@@ -135,6 +137,15 @@ Caso real: en sistemas de recomendación de contenido (Netflix, Spotify), la cro
 
 Backpropagation no es más que la aplicación sistemática de la regla de la cadena del cálculo diferencial para calcular $\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{[l]}}$ y $\frac{\partial \mathcal{L}}{\partial \mathbf{b}^{[l]}}$.
 
+```mermaid
+flowchart TD
+    A[Forward Pass] --> B[Calcular Pérdida]
+    B --> C[Backward Pass]
+    C --> D[Calcular Gradientes]
+    D --> E[Actualizar Pesos]
+    E --> A
+```
+
 Para la capa $l$:
 
 $$
@@ -200,6 +211,14 @@ Caso real: el entrenamiento de GPT-4 utiliza variantes de mini-batch con tamaño
 ---
 
 ## 7. Implementación en PyTorch
+
+```mermaid
+flowchart LR
+    X[Input x] --> FC1[fc1<br/>Linear]
+    FC1 --> R[ReLU]
+    R --> FC2[fc2<br/>Linear]
+    FC2 --> Y[Output ŷ]
+```
 
 ```python
 import torch

@@ -26,6 +26,18 @@ $$c_t = \sum_{i=1}^{L} \alpha_{ti} a_i$$
 
 Este vector $c_t$ se concatena con el estado oculto $s_{t-1}$ para predecir la siguiente palabra. La atención permite al modelo "mirar" diferentes regiones mientras genera cada palabra, introduciendo una forma temprana de explicabilidad.
 
+```mermaid
+flowchart TD
+    A[Imagen] --> B[CNN Encoder]
+    B --> C[Features Espaciales]
+    C --> D[Atención]
+    D --> E[LSTM/Transformer Decoder]
+    E --> F[Palabra t]
+    F --> E
+```
+
+![Encoder-Decoder para Image Captioning](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Vision_Transformer.png/640px-Vision_Transformer.png)
+
 ## 3. Métricas de Evaluación
 
 Evaluar captioning es intrínsecamente difícil porque múltiples descripciones válidas pueden existir para una imagen. Las métricas automáticas comparan el candidato contra referencias humanas.
@@ -62,6 +74,15 @@ Durante la inferencia, el decoder genera palabras de forma autoregresiva. Las es
 - **Nucleus Sampling (top-p)**: Muestrea de entre los tokens más probables cuya masa de probabilidad acumulada supera $p$. Introduce diversidad y creatividad, a costa de menor coherencia ocasional.
 
 El porqué de la diferencia radica en la función objetivo: beam search optimiza la esperanza de la log-verosimilitud, mientras que nucleus sampling optimiza la percepción humana de interesante/novedoso.
+
+```mermaid
+flowchart TD
+    A[Decoder Output] --> B{Estrategia}
+    B -->|Beam Search| C[Top-k secuencias<br/>Mayor probabilidad]
+    B -->|Nucleus Sampling| D[Top-p tokens<br/>Diversidad]
+    C --> E[Caption]
+    D --> E
+```
 
 ## 5. Modelos Modernos: BLIP, BLIP-2 y LLaVA
 

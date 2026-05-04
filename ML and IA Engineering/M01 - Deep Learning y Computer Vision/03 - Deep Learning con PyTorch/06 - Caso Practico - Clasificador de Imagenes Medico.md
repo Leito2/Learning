@@ -22,6 +22,8 @@ Las particularidades del dominio médico incluyen:
 - **Etiquetado costoso:** solo médicos especialistas pueden etiquetar correctamente.
 - **Interpretabilidad obligatoria:** los clínicos necesitan saber *por qué* el modelo emitió un diagnóstico.
 
+![Ejemplo de Grad-CAM en imagen médica](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/CAM_and_Grad-CAM_example.png/640px-CAM_and_Grad-CAM_example.png)
+
 Caso real: el modelo CheXNet de Stanford alcanzó rendimiento de radiólogo en la detección de neumonía en radiografías de tórax utilizando DenseNet-121 pre-entrenado en ImageNet, demostrando que el transfer learning es viable en dominios médicos.
 
 ---
@@ -35,6 +37,17 @@ Las imágenes médicas suelen venir en formatos DICOM. El pipeline debe:
 2. Aplicar windowing (ajuste de contraste para tejidos específicos).
 3. Redimensionar a una resolución estándar (ej. $224 \times 224$ o $512 \times 512$).
 4. Normalizar por el valor medio y desviación estándar del dataset.
+
+```mermaid
+flowchart TD
+    A[DICOM] --> B[Windowing]
+    B --> C[Resize 512x512]
+    C --> D[Normalización]
+    D --> E[Data Augmentation]
+    E --> F[DenseNet-121]
+    F --> G[Predicción]
+    G --> H[Grad-CAM]
+```
 
 ```python
 import pydicom
@@ -205,6 +218,14 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision import models, transforms
+
+```mermaid
+flowchart TD
+    A[Input 1x224x224] --> B[DenseNet-121 Backbone]
+    B --> C[Dropout]
+    C --> D[Linear 2 clases]
+    D --> E[Softmax]
+```
 
 class MedicalClassifier(nn.Module):
     def __init__(self, num_classes=2, dropout=0.5):

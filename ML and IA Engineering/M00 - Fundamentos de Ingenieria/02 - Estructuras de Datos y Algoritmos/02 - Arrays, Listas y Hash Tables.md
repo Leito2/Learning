@@ -86,6 +86,8 @@ class LinkedList:
 
 Las hash tables son la estructura detrás de los `dict` y `set` de Python. Permiten operaciones de inserción, búsqueda y eliminación en `O(1)` promedio.
 
+![Hash Table](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/640px-Hash_table_3_1_1_0_1_0_0_SP.svg.png)
+
 ### Función hash
 
 Una función hash convierte una clave en un índice del array subyacente:
@@ -95,6 +97,15 @@ $$\text{índice} = \text{hash}(\text{clave}) \mod \text{capacidad}$$
 ### Manejo de colisiones
 
 Cuando dos claves producen el mismo índice, ocurre una **colisión**.
+
+```mermaid
+flowchart TD
+    A[Clave A] -->|hash(A) % cap| B[Índice 2]
+    C[Clave B] -->|hash(B) % cap| B
+    B --> D[Bucket 2]
+    D -->|chaining| E[Nodo A]
+    E --> F[Nodo B]
+```
 
 **Chaining (encadenamiento):** Cada bucket es una lista enlazada de elementos que colisionaron.
 

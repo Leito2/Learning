@@ -69,6 +69,15 @@ $$
 
 Esto hizo que el detector fuera completamente diferenciable y entrenable end-to-end.
 
+```mermaid
+flowchart TD
+    A[Imagen] --> B[Backbone CNN]
+    B --> C[RPN]
+    C --> D[ROI Pooling]
+    D --> E[Clasificación]
+    D --> F[Regresión Box]
+```
+
 ⚠️ **Advertencia**: los anchor boxes requieren ajuste según el dataset. Anchors demasiado pequeños para objetos grandes generan propuestas inútiles y viceversa.
 
 ---
@@ -112,6 +121,15 @@ La raíz cuadrada en $w$ y $h$ penaliza proporcionalmente errores en boxes peque
 
 Caso real: **Tesla Autopilot** utiliza arquitecturas de detección en tiempo real derivadas de YOLO para identificar vehículos, señales y peatones a más de 30 FPS.
 
+```mermaid
+flowchart TD
+    A[Imagen] --> B[CNN Backbone]
+    B --> C[Grid SxS]
+    C --> D[Predicción<br/>Box + Clase]
+    D --> E[NMS]
+    E --> F[Detecciones Finales]
+```
+
 💡 **Regla mnemotécnica**: **"YOLO mira una vez, R-CNN mira dos veces"**. Si necesitas velocidad, usa YOLO; si necesitas precisión en objetos pequeños, usa Faster R-CNN o variantes.
 
 ---
@@ -153,6 +171,8 @@ $$
 $$
 
 Una detección se considera correcta (True Positive) si $\text{IoU} \geq \text{umbral}$, típicamente 0.50.
+
+![Intersección sobre Unión (IoU)](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Intersection_over_Union_-_visual_equation.png/640px-Intersection_over_Union_-_visual_equation.png)
 
 ### 6.2 mAP (mean Average Precision)
 

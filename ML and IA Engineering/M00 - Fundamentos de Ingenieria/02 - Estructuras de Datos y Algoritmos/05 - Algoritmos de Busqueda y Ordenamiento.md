@@ -26,6 +26,18 @@ def busqueda_lineal(arr, objetivo):
 
 Requiere datos **ordenados**. Divide el espacio de búsqueda a la mitad en cada paso.
 
+```mermaid
+flowchart TD
+    A[Array ordenado] --> B[ mid = (izq + der) // 2 ]
+    B --> C{arr[mid] == objetivo?}
+    C -->|Sí| D[Retornar mid]
+    C -->|No| E{arr[mid] < objetivo?}
+    E -->|Sí| F[izq = mid + 1]
+    E -->|No| G[der = mid - 1]
+    F --> B
+    G --> B
+```
+
 ```python
 def busqueda_binaria(arr, objetivo):
     izq, der = 0, len(arr) - 1
@@ -68,6 +80,19 @@ def buscar_primero(arr, objetivo):
 ---
 
 ## 3. Ordenamiento
+
+```mermaid
+flowchart TD
+    A[Quicksort] --> B{¿len <= 1?}
+    B -->|Sí| C[Retornar array]
+    B -->|No| D[Seleccionar pivote]
+    D --> E[Particionar menores]
+    D --> F[Particionar mayores]
+    E --> G[Quicksort izq]
+    F --> H[Quicksort der]
+    G --> I[Concatenar]
+    H --> I
+```
 
 ### Quicksort
 

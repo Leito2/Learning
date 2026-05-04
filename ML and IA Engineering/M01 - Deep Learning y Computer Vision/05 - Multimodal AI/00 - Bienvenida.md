@@ -2,6 +2,17 @@
 
 La inteligencia artificial multimodal representa uno de los frentes más ambiciosos del aprendizaje profundo moderno. Mientras que los modelos unimodales (solo texto, solo imagen) han alcanzado niveles sobresalientes de desempeño, la verdadera comprensión del mundo requiere integrar múltiples fuentes sensoriales. Este módulo explora cómo las arquitecturas de deep learning pueden alinear, fusionar y razonar sobre información visual y lingüística de forma conjunta.
 
+![Modelo multimodal CLIP](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/CLIP_research_paper_diagram.png/640px-CLIP_research_paper_diagram.png)
+
+```mermaid
+flowchart LR
+    A[Imagen] --> E[Embedding Visual]
+    B[Texto] --> F[Embedding Textual]
+    E --> G[Espacio Compartido]
+    F --> G
+    G --> H[Similitud Coseno]
+```
+
 ## Índice del Curso
 
 1. [[01 - CLIP y Representaciones Conjuntas]]

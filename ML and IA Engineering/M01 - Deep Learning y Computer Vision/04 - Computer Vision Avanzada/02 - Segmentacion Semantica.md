@@ -37,6 +37,18 @@ $$
 
 ### 2.2 Skip connections en FCN
 
+```mermaid
+flowchart TD
+    A[Input] --> B[Encoder Conv1]
+    B --> C[Encoder Conv2]
+    C --> D[Encoder Conv3]
+    D --> E[Decoder Up]
+    C -->|Skip| E
+    E --> F[Decoder Up]
+    B -->|Skip| F
+    F --> G[Output Máscara]
+```
+
 FCN-16 y FCN-8 combinan capas de distintas profundidades del encoder con el decoder. Esto preserva detalles finos de bordes que se pierden en las capas profundas.
 
 💡 **Tip**: los skip connections funcionan porque las capas tempranas capturan información de bajo nivel (bordes, texturas) y las capas profundas capturan semántica de alto nivel (objetos completos). Combinar ambas mejora los contornos.
@@ -56,6 +68,20 @@ U-Net consiste en:
 - **Skip connections**: concatenación de features del encoder con el decoder en cada nivel.
 
 La forma de "U" en el diagrama de arquitectura le da el nombre.
+
+![Arquitectura U-Net](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/U-Net_Architecture.png/640px-U-Net_Architecture.png)
+
+```mermaid
+flowchart TD
+    A[Input] --> B[Encoder Block 1]
+    B --> C[Encoder Block 2]
+    C --> D[Bottleneck]
+    D --> E[Decoder Block 2]
+    C -->|Skip| E
+    E --> F[Decoder Block 1]
+    B -->|Skip| F
+    F --> G[Output]
+```
 
 ### 3.2 ¿Por qué funciona tan bien con pocos datos?
 

@@ -15,6 +15,18 @@ class MiClase:
 print(type(MiClase))  # <class 'type'>
 ```
 
+```mermaid
+classDiagram
+    class type
+    class MiClase
+    class objeto
+    type : metaclase
+    MiClase : clase
+    objeto : instancia
+    type --> MiClase : crea
+    MiClase --> objeto : crea
+```
+
 Por defecto, `type` es la metaclase de todas las clases. Puedes crear tu propia metaclase heredando de `type`.
 
 ---
@@ -199,6 +211,22 @@ print(c1 is c2)  # True
 ### El modelo de objetos de Python (MRO y `super`)
 
 Python usa el algoritmo **C3 Linearization** para calcular el Method Resolution Order (MRO). Determina el orden en que Python busca métodos en la jerarquía de herencia.
+
+```mermaid
+classDiagram
+    class A
+    class B
+    class C
+    class D
+    A : metodo()
+    B : metodo()
+    C : metodo()
+    D : metodo()
+    A <|-- B
+    A <|-- C
+    B <|-- D
+    C <|-- D
+```
 
 ```python
 class A:

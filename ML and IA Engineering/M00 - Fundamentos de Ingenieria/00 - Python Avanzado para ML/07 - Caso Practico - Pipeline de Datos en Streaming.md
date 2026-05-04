@@ -8,6 +8,16 @@ Este caso práctico integra todos los conceptos del curso: generadores, decorado
 
 Eres ML Engineer en una fintech. Recibes transacciones bancarias en tiempo real (10,000 tx/segundo). Necesitas:
 
+```mermaid
+flowchart LR
+    A[Transacciones<br/>10K tx/s] --> B[Ingesta]
+    B --> C[Enriquecimiento]
+    C --> D[Scoring ML]
+    D --> E{Score > umbral?}
+    E -->|Sí| F[Alerta de fraude]
+    E -->|No| G[Transacción normal]
+```
+
 1. Ingerir el stream sin perder eventos.
 2. Enriquecer cada transacción con features históricas (DB lookup).
 3. Validar el schema de cada evento.
@@ -50,6 +60,17 @@ Cuando el productor de eventos (Kafka) es más rápido que el consumidor (nuestr
 ---
 
 ## 🏗️ Arquitectura del sistema
+
+```mermaid
+flowchart LR
+    A[Kafka / WebSocket] --> B[Ingestor async]
+    B --> C[Enriquecer async DB]
+    C --> D[Modelo CPU/GPU]
+    D --> E[Decisor sync rule]
+    E --> F[Alertador async]
+    E --> G[Tracker decorator]
+    G --> H[Logger / Metrics]
+```
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌──────────────┐     ┌─────────────┐

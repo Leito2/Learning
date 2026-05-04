@@ -61,6 +61,20 @@ El **event loop** es un bucle infinito que:
 3. Cuando una tarea se suspende (`await`), el loop pasa a otra tarea lista.
 4. Cuando una operación de I/O termina (ej. respuesta HTTP llega), la tarea suspendida se vuelve lista.
 
+```mermaid
+flowchart TD
+    A[Inicio Event Loop] --> B{¿Tareas pendientes?}
+    B -->|Sí| C[Seleccionar tarea lista]
+    C --> D[Ejecutar hasta await]
+    D --> E[Tarea suspendida]
+    E --> B
+    D --> F[Tarea completada]
+    F --> B
+    B -->|No| G[Esperar I/O]
+    G --> H[Despertar tarea]
+    H --> B
+```
+
 **Analogía:** El event loop es como un chef en un restaurante. En lugar de esperar a que hierva el agua (bloqueo), el chef pone la olla y mientras tanto corta verduras (otra tarea). Cuando el agua hierve, vuelve a la olla.
 
 ```python
@@ -178,6 +192,15 @@ asyncio.run(consultar())
 | Descarga de datasets desde URLs | ✅ | I/O-bound |
 | Entrenamiento de red neuronal | ❌ | GPU-bound, usa PyTorch nativo |
 | Streaming de predicciones en tiempo real | ✅ | I/O-bound con WebSockets |
+
+```mermaid
+flowchart TD
+    A[Tarea en Python] --> B{¿I/O-bound?}
+    B -->|Sí| C[Usar async/await]
+    B -->|No| D{¿CPU-bound?}
+    D -->|Sí| E[Usar multiprocessing]
+    D -->|No| F[Usar threads]
+```
 
 > ⚠️ **Regla de oro:** Async solo acelera operaciones de **I/O** (red, disco, sleep). Para CPU intensivo, usa `multiprocessing` o `ProcessPoolExecutor`.
 

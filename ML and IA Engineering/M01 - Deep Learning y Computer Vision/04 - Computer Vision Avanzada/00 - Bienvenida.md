@@ -4,6 +4,16 @@ Esta carpeta contiene las notas del curso **04 - Computer Vision Avanzada**, par
 
 La visión por computadora avanzada representa el salto de entender "qué hay en una imagen" a entender "dónde está", "qué forma tiene" y "qué relación guarda con el texto". Estas capacidades son el núcleo de sistemas modernos de conducción autónoma, análisis médico, robótica e inteligencia documental.
 
+![Detección de objetos con bounding boxes](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Intersection_over_Union_-_object_detection_bounding_boxes.jpg/640px-Intersection_over_Union_-_object_detection_bounding_boxes.jpg)
+
+```mermaid
+flowchart LR
+    A[Object Detection] --> B[Segmentación]
+    B --> C[Vision Transformers]
+    C --> D[OCR]
+    D --> E[Document Intelligence]
+```
+
 ---
 
 ## 📚 Índice del curso

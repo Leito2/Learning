@@ -10,6 +10,18 @@ En ML productivo, dominar estas estrategias marca la diferencia entre un modelo 
 
 Los optimizadores determinan cómo actualizamos los parámetros $\theta$ usando el gradiente $\nabla_{\theta} \mathcal{L}$.
 
+```mermaid
+flowchart TD
+    A[Datos] --> B[Forward]
+    B --> C[Loss]
+    C --> D[Backward]
+    D --> E[Optimizer Step]
+    E --> F[Scheduler Step]
+    F --> G{Early Stop?}
+    G -->|No| A
+    G -->|Sí| H[Guardar Mejor Modelo]
+```
+
 ### 1.1 SGD (Stochastic Gradient Descent)
 
 $$
@@ -136,6 +148,16 @@ $$
 
 Dropout obliga a la red a aprender representaciones redundantes, reduciendo la co-adaptación entre neuronas.
 
+```mermaid
+flowchart TD
+    A[Input] --> B[Linear]
+    B --> C[BatchNorm]
+    C --> D[ReLU]
+    D --> E[Dropout]
+    E --> F[Linear]
+    F --> G[Output]
+```
+
 ⚠️ **Advertencia:** No uses dropout en capas de salida. Además, recuerda llamar `model.train()` (dropout activo) durante entrenamiento y `model.eval()` (dropout desactivado) durante evaluación.
 
 Caso real: en sistemas de recomendación de Netflix, el dropout se aplica sobre embeddings de usuarios e ítems para prevenir que el modelo memorice interacciones puntuales y mejore la recomendación a usuarios nuevos.
@@ -145,6 +167,8 @@ Caso real: en sistemas de recomendación de Netflix, el dropout se aplica sobre 
 ## 5. Data Augmentation
 
 Aumenta artificialmente el dataset aplicando transformaciones que preservan la etiqueta:
+
+![Pipeline de entrenamiento robusto](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/640px-Colored_neural_network.svg.png)
 
 - Imágenes: rotaciones, recortes, volteos, cambios de brillo/contraste.
 - Audio: cambios de velocidad, adición de ruido, desplazamiento temporal.

@@ -16,26 +16,23 @@ Las organizaciones procesan millones de documentos físicos y digitales diariame
 
 Caso real: **SAP Document Information Extraction** y **UiPath Document Understanding** son plataformas enterprise que implementan pipelines similares, reduciendo el procesamiento manual de facturas en un 80 %.
 
+![Procesamiento de documentos](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Test_OCR_document.jpg/640px-Test_OCR_document.jpg)
+
 ---
 
 ## 2. Arquitectura del sistema
 
 ### 2.1 Pipeline de inferencia
 
-```
-Documento (PDF/Imagen)
-    ↓
-[Preprocesamiento] → Deskew, denoise, binarización, detección de orientación
-    ↓
-[Layout Analysis] → Detección de regiones (título, párrafo, tabla, firma)
-    ↓
-[OCR] → Extracción de texto por región (TrOCR / Tesseract)
-    ↓
-[Entendimiento Documental] → LayoutLM / Donut para NER y key-value
-    ↓
-[Postprocesamiento] → Validación, normalización, estructuración JSON
-    ↓
-[Exportación] → API REST, webhook, base de datos
+```mermaid
+flowchart TD
+    A[Documento PDF/Imagen] --> B[Preprocesamiento]
+    B --> C[Layout Analysis]
+    C --> D[OCR por Región]
+    D --> E[LayoutLM NER]
+    E --> F[Validación]
+    F --> G[JSON Estructurado]
+    G --> H[API REST]
 ```
 
 ### 2.2 Decisiones arquitectónicas clave
@@ -146,18 +143,13 @@ Para tablas y estructuras jerárquicas, comparamos el árbol predicho vs el árb
 
 ### 7.1 Infraestructura recomendada
 
-```
-[Load Balancer]
-    ↓
-[FastAPI Workers] (CPU) → gestión de requests, validaciones ligeras
-    ↓
-[Celery Workers] (GPU) → inferencia de modelos pesados (LayoutLM, TrOCR)
-    ↓
-[Redis] → cola de tareas
-    ↓
-[MinIO / S3] → almacenamiento de documentos y resultados
-    ↓
-[PostgreSQL] → metadatos, auditoría, métricas
+```mermaid
+flowchart TD
+    A[Load Balancer] --> B[FastAPI Workers]
+    B --> C[Celery + GPU]
+    C --> D[Redis Queue]
+    D --> E[MinIO / S3]
+    E --> F[PostgreSQL]
 ```
 
 ### 7.2 Optimizaciones

@@ -15,6 +15,8 @@ Entrenar un modelo de machine learning es, matemáticamente, un problema de opti
 | **Convexo** | Función convexa, dominio convexo | Regresión logística, regresión lineal |
 | **No convexo** | Múltiples mínimos locales | Redes neuronales profundas |
 
+![Gradient Descent](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Gradient_descent.svg/640px-Gradient_descent.svg.png)
+
 ### Convexidad
 
 Una función `f` es **convexa** si el segmento entre cualquier par de puntos está por encima de la función:
@@ -86,6 +88,15 @@ Compromiso entre GD y SGD: usa un batch de tamaño `B` (típicamente 32, 64, 128
 ---
 
 ## 3. Momentum y aceleración
+
+```mermaid
+flowchart TD
+    A[Gradiente actual] --> B[¿Momentum?]
+    B -->|Sí| C[Acumular dirección pasada]
+    C --> D[Actualizar parámetros]
+    B -->|No| D
+    D --> E[Nueva posición]
+```
 
 ### Momentum
 

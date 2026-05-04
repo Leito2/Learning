@@ -23,6 +23,17 @@ $$O(f(n)) = \{g(n) : \exists c, n_0 \text{ tal que } 0 \leq g(n) \leq c \cdot f(
 | `O(2ⁿ)` | Exponencial | Fuerza bruta en selección de features |
 | `O(n!)` | Factorial | Permutaciones de secuencias |
 
+```mermaid
+flowchart TD
+    A[O(1)] --> B[O(log n)]
+    B --> C[O(n)]
+    C --> D[O(n log n)]
+    D --> E[O(n^2)]
+    E --> F[O(n^3)]
+    F --> G[O(2^n)]
+    G --> H[O(n!)]
+```
+
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -47,6 +58,16 @@ plt.title('Crecimiento de funciones')
 ---
 
 ## 2. Análisis de algoritmos
+
+```mermaid
+flowchart TD
+    A[Código] --> B[Bucles anidados]
+    B -->|Multiplicar| C[O(n^2)]
+    A --> D[Bucles secuenciales]
+    D -->|Sumar, queda mayor| E[O(n)]
+    A --> F[Recursión]
+    F -->|Master Theorem| G[O(n log n)]
+```
 
 ### Reglas para calcular Big-O
 

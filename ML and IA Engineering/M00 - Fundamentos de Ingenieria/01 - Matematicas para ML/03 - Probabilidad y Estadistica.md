@@ -27,6 +27,16 @@ $$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
 
 $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
 
+```mermaid
+flowchart TD
+    A[Evento A] --> C[P(A|B)]
+    B[Evento B] --> C
+    A --> D[P(B|A)]
+    B --> E[P(B)]
+    D --> C
+    E --> C
+```
+
 > 💡 **Caso real:** Los filtros de spam usan Bayes. `P(spam|palabras) = P(palabras|spam) · P(spam) / P(palabras)`.
 
 ### Independencia
@@ -65,6 +75,8 @@ Una variable aleatoria es una función que asigna un número a cada resultado de
 | **Normal (Gaussiana)** | `f(x) = (1/√(2πσ²)) e^(-(x-μ)²/(2σ²))` | Ruido, features, priors bayesianos |
 | **Exponencial** | `f(x) = λe^(-λx)` | Tiempo entre eventos |
 | **Beta** | Flexible en [0,1] | Priors para proporciones |
+
+![Distribución Normal](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/640px-Normal_Distribution_PDF.svg.png)
 
 ```python
 import numpy as np

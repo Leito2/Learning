@@ -24,6 +24,24 @@ La programación dinámica (DP) es una técnica para resolver problemas complejo
 
 ### Naive (exponencial)
 
+```mermaid
+graph TD
+    F5[fib(5)] --> F4[fib(4)]
+    F5 --> F3a[fib(3)]
+    F4 --> F3b[fib(3)]
+    F4 --> F2a[fib(2)]
+    F3a --> F2b[fib(2)]
+    F3a --> F1a[fib(1)]
+    F3b --> F2c[fib(2)]
+    F3b --> F1b[fib(1)]
+    F2a --> F1c[fib(1)]
+    F2a --> F0a[fib(0)]
+    F2b --> F1d[fib(1)]
+    F2b --> F0b[fib(0)]
+    F2c --> F1e[fib(1)]
+    F2c --> F0c[fib(0)]
+```
+
 ```python
 def fib_naive(n):
     if n <= 1:
@@ -79,6 +97,16 @@ def fib_optimo(n):
 ---
 
 ## 3. Problemas clásicos de DP
+
+```mermaid
+flowchart TD
+    A[Subestructura óptima] --> B[Subproblemas superpuestos]
+    B --> C{Enfoque}
+    C -->|Top-down| D[Memoización]
+    C -->|Bottom-up| E[Tabulación]
+    D --> F[O(n) stack + memo]
+    E --> G[O(n) tabla]
+```
 
 ### Knapsack (Mochila)
 

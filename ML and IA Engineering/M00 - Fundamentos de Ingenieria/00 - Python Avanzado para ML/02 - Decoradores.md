@@ -29,6 +29,13 @@ saludar("Ana")
 
 **Sintaxis `@`:** `saludar = mi_decorador(saludar)`
 
+```mermaid
+flowchart LR
+    A[Función Original] -->|envuelve| B[Decorador]
+    B -->|retorna| C[Función Modificada]
+    C -->|llama a| A
+```
+
 ### El modelo de cierre (Closure)
 
 Los decoradores funcionan gracias a los **closures**. Un closure es una función que recuerda el entorno léxico donde fue creada, incluso cuando se ejecuta fuera de ese alcance.
@@ -222,6 +229,13 @@ configurar_optimizador(tasa_aprendizaje=0.001)  # OK
 ## 6. Stacking de decoradores
 
 Los decoradores se aplican de abajo hacia arriba.
+
+```mermaid
+flowchart TD
+    A[funcion original] --> B[decorador_b]
+    B --> C[decorador_a]
+    C --> D[funcion final]
+```
 
 ```python
 @decorador_a

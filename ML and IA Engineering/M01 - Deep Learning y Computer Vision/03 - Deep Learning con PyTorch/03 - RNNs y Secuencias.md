@@ -36,6 +36,16 @@ Donde $\mathbf{W}_{hh}$ es la matriz de pesos recurrentes (la misma en todos los
 
 Este diseño hace que la red sea conceptualmente muy profunda en el tiempo: desenrollar una secuencia de longitud $T$ equivale a una red feed-forward con $T$ capas que comparten parámetros.
 
+```mermaid
+flowchart LR
+    x1[x1] --> h1[ht]
+    h0[ht-1] --> h1
+    h1 --> y1[yt]
+    h1 --> h2[ht+1]
+    x2[x2] --> h2
+    h2 --> y2[yt+1]
+```
+
 ⚠️ **Advertencia:** La RNN simple es difícil de entrenar en secuencias largas debido al problema del gradiente desvanecido (y, en menor medida, exploding gradient). Los gradientes que fluyen hacia atrás en el tiempo se multiplican repetidamente por $\mathbf{W}_{hh}^\top$, lo que hace que decaigan o exploten exponencialmente.
 
 💡 **Tip:** Si tu problema tiene secuencias cortas (< 20 pasos), una vanilla RNN puede funcionar. Para secuencias largas, usa LSTM o GRU sin dudarlo.
@@ -45,6 +55,8 @@ Este diseño hace que la red sea conceptualmente muy profunda en el tiempo: dese
 ## 3. Long Short-Term Memory (LSTM)
 
 LSTM fue diseñada explícitamente para mitigar el gradiente desvanecido mediante una *celda de memoria* $\mathbf{c}_t$ y tres compuertas que regulan el flujo de información.
+
+![Celda LSTM](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/LSTM_Cell.svg/640px-LSTM_Cell.svg.png)
 
 ### 3.1 Ecuaciones de LSTM
 
@@ -152,6 +164,21 @@ $$
 $$
 s_t = \text{Decoder}(s_{t-1}, y_{t-1}, \mathbf{c})
 $$
+
+```mermaid
+flowchart LR
+    subgraph Encoder
+        E1[x1] --> E2[x2]
+        E2 --> E3[xT]
+        E3 --> C[Contexto c]
+    end
+    subgraph Decoder
+        C --> D1[s1]
+        D1 --> D2[s2]
+        D2 --> D3[sT]
+        D3 --> Y[ŷ1...ŷT]
+    end
+```
 
 ---
 

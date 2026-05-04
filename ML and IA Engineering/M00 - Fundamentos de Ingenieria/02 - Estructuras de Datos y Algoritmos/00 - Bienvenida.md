@@ -6,6 +6,36 @@ Este curso te da las herramientas algorítmicas para construir sistemas de ML es
 
 ## 🗂️ Módulos del curso
 
+```mermaid
+mindmap
+  root((Estructuras de Datos y Algoritmos))
+    Complejidad Algorítmica
+      Big-O
+      Análisis amortizado
+    Arrays, Listas y Hash Tables
+      Arrays contiguos
+      Linked lists
+      Hash tables
+    Árboles y Heaps
+      BST
+      AVL / Red-Black
+      Heaps
+    Grafos
+      BFS / DFS
+      Dijkstra
+      GNNs
+    Búsqueda y Ordenamiento
+      Binaria
+      Quicksort
+      Top-K
+    Programación Dinámica
+      Memoización
+      Tabulación
+      Viterbi
+    Caso Práctico
+      Sistema de recomendación
+```
+
 1. [[01 - Complejidad Algoritmica|Complejidad Algorítmica]]
 2. [[02 - Arrays, Listas y Hash Tables|Arrays, Listas y Hash Tables]]
 3. [[03 - Arboles y Heaps|Árboles y Heaps]]
@@ -17,6 +47,8 @@ Este curso te da las herramientas algorítmicas para construir sistemas de ML es
 ---
 
 ## 🤔 ¿Por qué estructuras de datos para ML?
+
+![Binary tree](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Binary_tree.svg/640px-Binary_tree.svg.png)
 
 | Estructura/Algoritmo | Dónde aparece en ML |
 |---------------------|---------------------|

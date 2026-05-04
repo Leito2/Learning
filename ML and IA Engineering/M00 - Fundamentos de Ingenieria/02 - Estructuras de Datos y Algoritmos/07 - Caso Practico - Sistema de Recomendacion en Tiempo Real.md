@@ -8,6 +8,14 @@ Este caso práctico integra todas las estructuras de datos y algoritmos del curs
 
 Eres ML Engineer en una plataforma de streaming (tipo Netflix/Spotify). Tienes:
 
+```mermaid
+flowchart TD
+    U[10M usuarios] --> A[Plataforma Streaming]
+    I[1M items] --> A
+    A --> B[Recomendación<br/>Top-10]
+    B --> C[Latencia < 100ms]
+```
+
 - 10 millones de usuarios activos.
 - 1 millón de items (películas/canciones) con metadata.
 - Ratings implícitos (vistas, tiempo de reproducción, skips).
@@ -16,6 +24,24 @@ Eres ML Engineer en una plataforma de streaming (tipo Netflix/Spotify). Tienes:
 ---
 
 ## 🏗️ Arquitectura del sistema
+
+```mermaid
+flowchart TD
+    U[Usuario Request] --> API[API Gateway]
+    API --> Cold[Cold Start Handler]
+    Cold --> Pop[Popular / Hybrid items]
+    API --> PE[Personalized Engine]
+    PE --> UP[User Profile<br/>Hash Table]
+    PE --> CG[Candidate Generation]
+    CG --> CF[Collaborative Filtering<br/>ANN Index]
+    CG --> CB[Content-Based<br/>Tag matching]
+    PE --> RM[Ranking Model]
+    RM --> RR[Re-Ranking]
+    RR --> Div[Diversity filter<br/>Graph algorithms]
+    RR --> Fresh[Freshness boost<br/>Recency heap]
+    RR --> BR[Business rules]
+    RR --> Res[Top-10 Results]
+```
 
 ```
 Usuario Request
