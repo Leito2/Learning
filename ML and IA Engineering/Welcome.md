@@ -9,6 +9,10 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 ### Fundamentos
 - [[M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida|🐍 M00 - Python Avanzado para ML]]
 - [[M00 - Fundamentos de Ingenieria/01 - Matematicas para ML/00 - Bienvenida|📐 M00 - Matemáticas para ML]]
+- [[M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/00 - Bienvenida|🧮 M00 - Estructuras de Datos y Algoritmos]]
+
+### Índice Maestro
+- [[00 - Indice Maestro de Cursos|📋 Índice Maestro de Cursos]]
 
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
