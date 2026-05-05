@@ -73,11 +73,16 @@ Learning/
     │   ├── 24 - Backend para ML/                  # ✅ 6 notas
     │   └── 25 - Bases de Datos y Message Queues/  # ✅ 6 notas
     │
-    └── M07 - Research y Ciencia de Datos/         # 🚧 Pendiente
+    ├── M07 - Research y Ciencia de Datos/         # ✅ Completo + imágenes
+    │   ├── 26 - Metodologia de Investigacion en ML/ # ✅ 6 notas
+    │   ├── 27 - Visualizacion de Datos y Storytelling/ # ✅ 6 notas
+    │   ├── 28 - ETL y Data Engineering/           # ✅ 6 notas
+    │   └── 29 - Estadistica Avanzada y Causalidad/# ✅ 6 notas
+    │
     └── M08 - Producto, Negocio y Open Source/     # 🚧 Pendiente
 ```
 
-**Total actual: 252 notas creadas**
+**Total actual: 276 notas creadas**
 
 ---
 
@@ -146,57 +151,49 @@ Cada nota de curso sigue esta estructura exacta:
 | M04 - NLP Avanzado | ✅ Completo + imágenes | 17 notas |
 | M05 - MLOps y Producción | ✅ Completo + imágenes | 24 notas |
 | M06 - Cloud, Infra y Backend | ✅ Completo + imágenes | 24 notas |
-| M07 - Research y Ciencia de Datos | 🚧 Pendiente | 4 cursos |
+| M07 - Research y Ciencia de Datos | ✅ Completo + imágenes | 24 notas |
 | M08 - Producto, Negocio y Open Source | 🚧 Pendiente | 3 cursos |
 | Advanced Python | ✅ Completo + imágenes | 62 notas |
 | Software Engineering / Docker | ✅ Completo + imágenes | 7 notas |
 
 ---
 
-## 🚀 Próxima Tarea: Módulo 07 - Research y Ciencia de Datos
+## 🚀 Próxima Tarea: Módulo 08 - Producto, Negocio y Open Source
 
 Crear la siguiente estructura dentro de `ML and IA Engineering/`:
 
 ```
-M07 - Research y Ciencia de Datos/
-├── 26 - Metodologia de Investigacion en ML/
+M08 - Producto, Negocio y Open Source/
+├── 30 - Producto y Estrategia de IA/
 │   ├── 00 - Bienvenida.md
-│   ├── 01 - Como Leer Papers de ML.md
-│   ├── 02 - Reproducibilidad y Experimentos.md
-│   ├── 03 - Benchmarking y Competencias.md
-│   ├── 04 - Escritura Tecnica y Papers.md
-│   └── 05 - Caso Practico - Reproduccion de un Paper.md
+│   ├── 01 - Diseño de Productos con IA.md
+│   ├── 02 - Estrategia y Roadmap de ML.md
+│   ├── 03 - Ética y Responsabilidad en IA.md
+│   ├── 04 - Legal y Compliance en IA.md
+│   └── 05 - Caso Practico - Lanzamiento de Producto IA.md
 │
-├── 27 - Visualizacion de Datos y Storytelling/
+├── 31 - Negocio y Metricas de ML/
 │   ├── 00 - Bienvenida.md
-│   ├── 01 - Principios de Visualizacion.md
-│   ├── 02 - Herramientas de Visualizacion.md
-│   ├── 03 - Storytelling con Datos.md
-│   ├── 04 - Dashboards Interactivos.md
-│   └── 05 - Caso Practico - Dashboard de KPIs para ML.md
+│   ├── 01 - ROI de Proyectos de ML.md
+│   ├── 02 - Métricas de Negocio vs Métricas Técnicas.md
+│   ├── 03 - Costos y Presupuesto de ML.md
+│   ├── 04 - Comunicación con Stakeholders.md
+│   └── 05 - Caso Practico - Business Case para ML.md
 │
-├── 28 - ETL y Data Engineering/
-│   ├── 00 - Bienvenida.md
-│   ├── 01 - Pipeline de Datos.md
-│   ├── 02 - Apache Spark y Procesamiento Distribuido.md
-│   ├── 03 - Data Warehousing.md
-│   ├── 04 - Calidad de Datos y Data Governance.md
-│   └── 05 - Caso Practico - Pipeline ETL para Datos de Ventas.md
-│
-└── 29 - Estadistica Avanzada y Causalidad/
+└── 32 - Open Source y Comunidad/
     ├── 00 - Bienvenida.md
-    ├── 01 - Inferencia Estadistica.md
-    ├── 02 - Inferencia Causal.md
-    ├── 03 - Diseno de Experimentos.md
-    ├── 04 - Series Temporales.md
-    └── 05 - Caso Practico - Analisis Causal de Impacto de Marketing.md
+    ├── 01 - Contribución a Open Source.md
+    ├── 02 - Construcción de Comunidad Técnica.md
+    ├── 03 - Publicación de Librerías y Papers.md
+    ├── 04 - Carrera y Crecimiento Profesional.md
+    └── 05 - Caso Practico - Lanzar una Librería Open Source.md
 ```
 
 **Instrucciones específicas (aplicar reglas de subagentes):**
 1. Crea los directorios con bash primero.
-2. Lanza **máximo 2 subagentes** en paralelo para crear los cursos (ej: curso 26 + 27).
+2. Lanza **máximo 2 subagentes** en paralelo para crear los cursos (ej: curso 30 + 31).
 3. **Inmediatamente verifica** los archivos con bash.
-4. Si faltan, lanza los cursos faltantes (28 + 29).
+4. Si faltan, lanza el curso faltante (32).
 5. Cada curso tiene 6 notas → **1 subagente por curso es seguro**.
 6. La teoría debe ser **profunda**: explicar el "por qué" detrás de cada técnica.
 7. Incluir fórmulas matemáticas cuando aplique.
