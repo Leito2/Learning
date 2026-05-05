@@ -37,6 +37,12 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M04 - NLP Avanzado/16 - NLP con Transformers/00 - Bienvenida|🔄 M04 - NLP con Transformers]]
 - [[M04 - NLP Avanzado/17 - NLP Aplicado e Industria/00 - Bienvenida|🏭 M04 - NLP Aplicado e Industria]]
 
+### MLOps y Producción
+- [[M05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|📊 M05 - Experiment Tracking y Model Registry]]
+- [[M05 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida|🔧 M05 - Feature Engineering y Feature Stores]]
+- [[M05 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|🚀 M05 - Deployment y Serving]]
+- [[M05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|📈 M05 - Monitoreo y Mantenimiento]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
