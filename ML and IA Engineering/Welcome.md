@@ -32,6 +32,11 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|🕸️ M03 - Sistemas Multi-Agente]]
 - [[M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida|🚀 M03 - Agentes Autónomos y Auto-Mejora]]
 
+### NLP Avanzado
+- [[M04 - NLP Avanzado/15 - NLP Tradicional y Representaciones/00 - Bienvenida|📜 M04 - NLP Tradicional y Representaciones]]
+- [[M04 - NLP Avanzado/16 - NLP con Transformers/00 - Bienvenida|🔄 M04 - NLP con Transformers]]
+- [[M04 - NLP Avanzado/17 - NLP Aplicado e Industria/00 - Bienvenida|🏭 M04 - NLP Aplicado e Industria]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
