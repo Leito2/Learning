@@ -106,15 +106,15 @@ Cada nota de curso sigue esta estructura exacta:
 - Los prompts son muy extensos.
 
 **WORKFLOW OBLIGATORIO para crear cursos:**
-1. **Máximo 2 subagentes en paralelo** por lote.
-2. **Máximo 7 notas por subagente**. Si el curso tiene más notas, dividir en 2 subagentes secuenciales (esperar a que termine el primero antes de lanzar el segundo, o verificar filesystem).
-3. **INMEDIATAMENTE después** de lanzar subagentes, verificar el filesystem con bash:
+1. **SIEMPRE usar subagentes** para crear lotes de notas (crear una por una consume demasiado contexto del modelo principal).
+2. **Máximo 2 subagentes en paralelo** por lote.
+3. **Máximo 7 notas por subagente**. Si el curso tiene más notas, dividir en 2 subagentes secuenciales (verificar filesystem del primero antes de lanzar el segundo).
+4. **INMEDIATAMENTE después** de lanzar subagentes, verificar el filesystem con bash:
    ```powershell
    Get-ChildItem -Recurse -File "RUTA\DEL\CURSO" | ForEach-Object { $_.FullName }
    ```
-4. **Si los archivos existen**, considerar la tarea completada aunque el subagente no haya reportado nada.
-5. **Si faltan archivos**, relanzar SOLO los faltantes.
-6. **Para cursos ≤5 notas**, crear directamente sin subagentes usando Write/Edit.
+5. **Si los archivos existen**, considerar la tarea completada aunque el subagente no haya reportado nada.
+6. **Si faltan archivos**, relanzar SOLO los faltantes.
 7. **El filesystem es la única fuente de verdad.**
 
 ---

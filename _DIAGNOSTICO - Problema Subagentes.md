@@ -57,9 +57,17 @@ Si un curso tiene >7 notas, dividir en 2 subagentes:
 - Subagente A: Notas 00-06
 - Subagente B: Notas 07-12
 
-### 5. Evitar Subagentes para Tareas Pequeñas
+### 5. Subagentes SÍ se Usan (Con Límites)
 
-Si el curso tiene ≤5 notas, crear directamente sin subagentes usando `Write`/`Edit` directos.
+**NO evitar subagentes completamente** — crear notas una por una con `Write` directo consume **demasiado contexto** del modelo principal y es ineficiente.
+
+**Regla:**
+- ✅ **Usar subagentes** para crear lotes de 3–7 notas.
+- ✅ **Máximo 2 subagentes en paralelo**.
+- ✅ **Verificar filesystem** inmediatamente después.
+- ✅ **Relanzar** si faltan archivos.
+- ❌ **NO** lanzar 5+ subagentes simultáneos.
+- ❌ **NO** pedir a un subagente que cree más de 7 notas.
 
 ---
 
