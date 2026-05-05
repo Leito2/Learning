@@ -20,9 +20,18 @@ Learning/
 │
 ├── Curso Markdown/                     # ✅ Completo (5 notas)
 ├── Curso SQL con PostgreSQL/           # ✅ Completo (7 notas + assets)
+├── Advanced Python/                    # ✅ Completo (62 notas + imágenes)
+│   ├── 01 - Python Basico/             # ✅ 13 notas
+│   ├── 02 - Python Intermedio/         # ✅ 13 notas
+│   ├── 03 - Python Avanzado/           # ✅ 13 notas
+│   ├── 04 - Librerias Basicas de Python/# ✅ 8 notas
+│   └── 05 - Librerias Especificas/     # ✅ 7 notas
+│
+├── Software Engineering/               # 🚧 En progreso
+│   └── 01 - Docker Profesional/        # ✅ 7 notas
 │
 └── ML and IA Engineering/              # Vault principal de cursos
-    ├── Welcome.md                      # Índice de este sub-vault (actualizado)
+    ├── Welcome.md                      # Índice de este sub-vault
     │
     ├── M00 - Fundamentos de Ingenieria/           # ✅ Completo + imágenes
     │   ├── 00 - Python Avanzado para ML/          # ✅ 8 notas
@@ -53,7 +62,7 @@ Learning/
         └── 17 - NLP Aplicado e Industria/         # ✅ 5 notas
 ```
 
-**Total actual: 127 notas creadas**
+**Total actual: 204 notas creadas**
 
 ---
 
@@ -89,6 +98,27 @@ Cada nota de curso sigue esta estructura exacta:
 
 ---
 
+## ⚠️ REGLA CRÍTICA: Uso de Subagentes (Task Tool)
+
+**PROBLEMA IDENTIFICADO:** Los subagentes (`task` tool) a veces completan el trabajo (archivos creados en disco) pero **no retornan el mensaje de resultado**, aparentando quedarse "colgados". Esto sucede cuando:
+- Se lanzan más de 3 subagentes en paralelo.
+- Un subagente debe crear más de 7 notas de golpe.
+- Los prompts son muy extensos.
+
+**WORKFLOW OBLIGATORIO para crear cursos:**
+1. **Máximo 2 subagentes en paralelo** por lote.
+2. **Máximo 7 notas por subagente**. Si el curso tiene más notas, dividir en 2 subagentes secuenciales (esperar a que termine el primero antes de lanzar el segundo, o verificar filesystem).
+3. **INMEDIATAMENTE después** de lanzar subagentes, verificar el filesystem con bash:
+   ```powershell
+   Get-ChildItem -Recurse -File "RUTA\DEL\CURSO" | ForEach-Object { $_.FullName }
+   ```
+4. **Si los archivos existen**, considerar la tarea completada aunque el subagente no haya reportado nada.
+5. **Si faltan archivos**, relanzar SOLO los faltantes.
+6. **Para cursos ≤5 notas**, crear directamente sin subagentes usando Write/Edit.
+7. **El filesystem es la única fuente de verdad.**
+
+---
+
 ## 📋 Estado de los Módulos
 
 | Módulo | Estado | # Notas |
@@ -102,6 +132,8 @@ Cada nota de curso sigue esta estructura exacta:
 | M06 - Cloud, Infra y Backend | 🚧 Pendiente | 4 cursos |
 | M07 - Research y Ciencia de Datos | 🚧 Pendiente | 4 cursos |
 | M08 - Producto, Negocio y Open Source | 🚧 Pendiente | 3 cursos |
+| Advanced Python | ✅ Completo + imágenes | 62 notas |
+| Software Engineering / Docker | ✅ Completo + imágenes | 7 notas |
 
 ---
 
@@ -144,14 +176,18 @@ M05 - MLOps y Produccion/
     └── 05 - Caso Practico - Sistema de Monitoreo End-to-End.md
 ```
 
-**Instrucciones específicas:**
-1. Cada curso debe tener su `00 - Bienvenida.md` con el índice de notas y glosario.
-2. La teoría debe ser **profunda**: explicar el "por qué" detrás de cada técnica, no solo el "cómo".
-3. Incluir fórmulas matemáticas cuando aplique (drift detection, A/B testing, feature importance).
-4. Cada nota debe incluir **al menos 2-3 imágenes/diagramas** (Mermaid + Wikimedia Commons).
-5. Cada nota debe terminar con **📦 Código de compresión** y **🎯 Proyecto documentado**.
-6. Actualizar `ML and IA Engineering/Welcome.md` para incluir los nuevos cursos.
-7. Hacer `git add -A`, `git commit`, `git push origin master` después de cada curso completo.
+**Instrucciones específicas (aplicar reglas de subagentes):**
+1. Crea los directorios con bash primero.
+2. Lanza **máximo 2 subagentes** en paralelo para crear los cursos (ej: curso 18 + 19).
+3. **Inmediatamente verifica** los archivos con bash.
+4. Si faltan, lanza los cursos faltantes (20 + 21).
+5. Cada curso tiene 6 notas → **1 subagente por curso es seguro**.
+6. La teoría debe ser **profunda**: explicar el "por qué" detrás de cada técnica.
+7. Incluir fórmulas matemáticas cuando aplique.
+8. Cada nota debe incluir **al menos 2-3 imágenes/diagramas**.
+9. Cada nota debe terminar con **📦 Código de compresión** y **🎯 Proyecto documentado**.
+10. Actualizar `ML and IA Engineering/Welcome.md` para incluir los nuevos cursos.
+11. Hacer `git add -A`, `git commit`, `git push origin master` después de cada curso completo.
 
 ---
 
@@ -166,7 +202,7 @@ M05 - MLOps y Produccion/
 ## 📌 Comandos útiles
 
 ```bash
-# Ver estado
+# Ver estado git
 git -C "C:\Users\Leito\Documents\Learning" status
 
 # Stage, commit, push
@@ -174,7 +210,10 @@ git -C "C:\Users\Leito\Documents\Learning" add -A
 git -C "C:\Users\Leito\Documents\Learning" commit -m "mensaje"
 git -C "C:\Users\Leito\Documents\Learning" push origin master
 
-# Ver estructura
+# Verificar archivos de un curso (USAR SIEMPRE después de subagentes)
+Get-ChildItem -Recurse -File "C:\Users\Leito\Documents\Learning\RUTA\DEL\CURSO" | ForEach-Object { $_.FullName }
+
+# Ver estructura completa
 Get-ChildItem -Recurse "C:\Users\Leito\Documents\Learning\ML and IA Engineering"
 ```
 
