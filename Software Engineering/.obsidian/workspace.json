@@ -22,22 +22,6 @@
             }
           }
         ]
-      },
-      {
-        "id": "f881c704f3814989",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "21f2e1b1d0b645da",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"
@@ -201,6 +185,13 @@
   },
   "active": "026b994d93ee7461",
   "lastOpenFiles": [
+    "01 - Docker Profesional/06 - Caso Practico - Despliegue Completo con Docker.md",
+    "01 - Docker Profesional/05 - Docker Registry y CI-CD.md",
+    "01 - Docker Profesional/04 - Volumenes Redes y Persistencia.md",
+    "01 - Docker Profesional/03 - Docker Compose y Multi-Contenedores.md",
+    "01 - Docker Profesional/02 - Dockerfile y Buenas Practicas.md",
+    "01 - Docker Profesional/01 - Fundamentos de Docker y Contenedores.md",
+    "01 - Docker Profesional/00 - Bienvenida.md",
     "Welcome.md"
   ]
 }
