@@ -43,6 +43,12 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M05 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|🚀 M05 - Deployment y Serving]]
 - [[M05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|📈 M05 - Monitoreo y Mantenimiento]]
 
+### Cloud, Infra y Backend
+- [[M06 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|☁️ M06 - Cloud Computing]]
+- [[M06 - Cloud, Infra y Backend/23 - Infraestructura como Codigo/00 - Bienvenida|🏗️ M06 - Infraestructura como Código]]
+- [[M06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|🔌 M06 - Backend para ML]]
+- [[M06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/00 - Bienvenida|💾 M06 - Bases de Datos y Message Queues]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
