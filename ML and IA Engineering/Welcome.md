@@ -49,6 +49,12 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|🔌 M06 - Backend para ML]]
 - [[M06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/00 - Bienvenida|💾 M06 - Bases de Datos y Message Queues]]
 
+### Research y Ciencia de Datos
+- [[M07 - Research y Ciencia de Datos/26 - Metodologia de Investigacion en ML/00 - Bienvenida|📖 M07 - Metodología de Investigación en ML]]
+- [[M07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling/00 - Bienvenida|📊 M07 - Visualización y Storytelling]]
+- [[M07 - Research y Ciencia de Datos/28 - ETL y Data Engineering/00 - Bienvenida|🔧 M07 - ETL y Data Engineering]]
+- [[M07 - Research y Ciencia de Datos/29 - Estadistica Avanzada y Causalidad/00 - Bienvenida|📈 M07 - Estadística Avanzada y Causalidad]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
