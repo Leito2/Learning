@@ -27,7 +27,7 @@ Learning/
 │   ├── 04 - Librerias Basicas de Python/# ✅ 8 notas
 │   └── 05 - Librerias Especificas/     # ✅ 7 notas
 │
-├── Software Engineering/               # 🚧 En progreso
+├── Software Engineering/               # ✅ En progreso
 │   └── 01 - Docker Profesional/        # ✅ 7 notas
 │
 └── ML and IA Engineering/              # Vault principal de cursos
@@ -56,13 +56,28 @@ Learning/
     │   ├── 13 - Sistemas Multi-Agente/            # ✅ 5 notas
     │   └── 14 - Agentes Autonomos y Auto-Mejora/  # ✅ 5 notas
     │
-    └── M04 - NLP Avanzado/                        # ✅ Completo + imágenes
-        ├── 15 - NLP Tradicional y Representaciones/# ✅ 6 notas
-        ├── 16 - NLP con Transformers/             # ✅ 6 notas
-        └── 17 - NLP Aplicado e Industria/         # ✅ 5 notas
+    ├── M04 - NLP Avanzado/                        # ✅ Completo + imágenes
+    │   ├── 15 - NLP Tradicional y Representaciones/# ✅ 6 notas
+    │   ├── 16 - NLP con Transformers/             # ✅ 6 notas
+    │   └── 17 - NLP Aplicado e Industria/         # ✅ 5 notas
+    │
+    ├── M05 - MLOps y Produccion/                  # ✅ Completo + imágenes
+    │   ├── 18 - Experiment Tracking y Model Registry/ # ✅ 6 notas
+    │   ├── 19 - Feature Engineering y Feature Stores/ # ✅ 6 notas
+    │   ├── 20 - Deployment y Serving/             # ✅ 6 notas
+    │   └── 21 - Monitoreo y Mantenimiento/        # ✅ 6 notas
+    │
+    ├── M06 - Cloud, Infra y Backend/              # ✅ Completo + imágenes
+    │   ├── 22 - Cloud Computing/                  # ✅ 6 notas
+    │   ├── 23 - Infraestructura como Codigo/      # ✅ 6 notas
+    │   ├── 24 - Backend para ML/                  # ✅ 6 notas
+    │   └── 25 - Bases de Datos y Message Queues/  # ✅ 6 notas
+    │
+    └── M07 - Research y Ciencia de Datos/         # 🚧 Pendiente
+    └── M08 - Producto, Negocio y Open Source/     # 🚧 Pendiente
 ```
 
-**Total actual: 204 notas creadas**
+**Total actual: 252 notas creadas**
 
 ---
 
@@ -91,6 +106,7 @@ Cada nota de curso sigue esta estructura exacta:
 **Reglas de formato:**
 - Usar `[[...]]` para enlaces internos de Obsidian.
 - Nombres de archivos: `## - Nombre Descriptivo.md` (con espacios).
+- **IMPORTANTE: NO usar `/` en nombres de archivos. Usar `-` en su lugar** (Windows no lo permite).
 - Encabezado H1 único por nota.
 - Líneas en blanco entre párrafos.
 - Tablas Markdown para comparativas.
@@ -128,8 +144,8 @@ Cada nota de curso sigue esta estructura exacta:
 | M02 - Large Language Models | ✅ Completo + imágenes | 30 notas |
 | M03 - AI Agents y Agentic Systems | ✅ Completo + imágenes | 22 notas |
 | M04 - NLP Avanzado | ✅ Completo + imágenes | 17 notas |
-| M05 - MLOps y Producción | 🚧 Pendiente | 4 cursos |
-| M06 - Cloud, Infra y Backend | 🚧 Pendiente | 4 cursos |
+| M05 - MLOps y Producción | ✅ Completo + imágenes | 24 notas |
+| M06 - Cloud, Infra y Backend | ✅ Completo + imágenes | 24 notas |
 | M07 - Research y Ciencia de Datos | 🚧 Pendiente | 4 cursos |
 | M08 - Producto, Negocio y Open Source | 🚧 Pendiente | 3 cursos |
 | Advanced Python | ✅ Completo + imágenes | 62 notas |
@@ -137,50 +153,50 @@ Cada nota de curso sigue esta estructura exacta:
 
 ---
 
-## 🚀 Próxima Tarea: Módulo 05 - MLOps y Producción
+## 🚀 Próxima Tarea: Módulo 07 - Research y Ciencia de Datos
 
 Crear la siguiente estructura dentro de `ML and IA Engineering/`:
 
 ```
-M05 - MLOps y Produccion/
-├── 18 - Experiment Tracking y Model Registry/
+M07 - Research y Ciencia de Datos/
+├── 26 - Metodologia de Investigacion en ML/
 │   ├── 00 - Bienvenida.md
-│   ├── 01 - MLflow y Tracking de Experimentos.md
-│   ├── 02 - Versionado de Datos con DVC.md
-│   ├── 03 - Model Registry y Lifecycle.md
-│   ├── 04 - Testing de ML.md
-│   └── 05 - Caso Practico - Pipeline de Entrenamiento Versionado.md
+│   ├── 01 - Como Leer Papers de ML.md
+│   ├── 02 - Reproducibilidad y Experimentos.md
+│   ├── 03 - Benchmarking y Competencias.md
+│   ├── 04 - Escritura Tecnica y Papers.md
+│   └── 05 - Caso Practico - Reproduccion de un Paper.md
 │
-├── 19 - Feature Engineering y Feature Stores/
+├── 27 - Visualizacion de Datos y Storytelling/
 │   ├── 00 - Bienvenida.md
-│   ├── 01 - Feature Engineering Avanzado.md
-│   ├── 02 - Feature Stores (Feast, Tecton).md
-│   ├── 03 - Online vs Offline Features.md
-│   ├── 04 - Feature Monitoring y Drift.md
-│   └── 05 - Caso Practico - Feature Store para E-commerce.md
+│   ├── 01 - Principios de Visualizacion.md
+│   ├── 02 - Herramientas de Visualizacion.md
+│   ├── 03 - Storytelling con Datos.md
+│   ├── 04 - Dashboards Interactivos.md
+│   └── 05 - Caso Practico - Dashboard de KPIs para ML.md
 │
-├── 20 - Deployment y Serving/
+├── 28 - ETL y Data Engineering/
 │   ├── 00 - Bienvenida.md
-│   ├── 01 - Docker para ML.md
-│   ├── 02 - Model Serving Patterns.md
-│   ├── 03 - Kubernetes para ML.md
-│   ├── 04 - A-B Testing y Shadow Deployment.md
-│   └── 05 - Caso Practico - API de ML con FastAPI y K8s.md
+│   ├── 01 - Pipeline de Datos.md
+│   ├── 02 - Apache Spark y Procesamiento Distribuido.md
+│   ├── 03 - Data Warehousing.md
+│   ├── 04 - Calidad de Datos y Data Governance.md
+│   └── 05 - Caso Practico - Pipeline ETL para Datos de Ventas.md
 │
-└── 21 - Monitoreo y Mantenimiento/
+└── 29 - Estadistica Avanzada y Causalidad/
     ├── 00 - Bienvenida.md
-    ├── 01 - Data Drift y Concept Drift.md
-    ├── 02 - Monitoreo de Modelos en Produccion.md
-    ├── 03 - Retraining Automatico.md
-    ├── 04 - Explainability y Fairness Monitoring.md
-    └── 05 - Caso Practico - Sistema de Monitoreo End-to-End.md
+    ├── 01 - Inferencia Estadistica.md
+    ├── 02 - Inferencia Causal.md
+    ├── 03 - Diseno de Experimentos.md
+    ├── 04 - Series Temporales.md
+    └── 05 - Caso Practico - Analisis Causal de Impacto de Marketing.md
 ```
 
 **Instrucciones específicas (aplicar reglas de subagentes):**
 1. Crea los directorios con bash primero.
-2. Lanza **máximo 2 subagentes** en paralelo para crear los cursos (ej: curso 18 + 19).
+2. Lanza **máximo 2 subagentes** en paralelo para crear los cursos (ej: curso 26 + 27).
 3. **Inmediatamente verifica** los archivos con bash.
-4. Si faltan, lanza los cursos faltantes (20 + 21).
+4. Si faltan, lanza los cursos faltantes (28 + 29).
 5. Cada curso tiene 6 notas → **1 subagente por curso es seguro**.
 6. La teoría debe ser **profunda**: explicar el "por qué" detrás de cada técnica.
 7. Incluir fórmulas matemáticas cuando aplique.
