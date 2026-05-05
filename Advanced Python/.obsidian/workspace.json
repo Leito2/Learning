@@ -1,24 +1,40 @@
 {
   "main": {
-    "id": "295addfa6fb92907",
+    "id": "4509e84025826bd8",
     "type": "split",
     "children": [
       {
-        "id": "bb551b0a86c8af99",
+        "id": "0916e3a70133139b",
         "type": "tabs",
         "children": [
           {
-            "id": "d907ab6e5339f734",
+            "id": "35640a420fc37e44",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PROMPT - Continuar Proyecto.md",
+                "file": "Welcome.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PROMPT - Continuar Proyecto"
+              "title": "Welcome"
+            }
+          }
+        ]
+      },
+      {
+        "id": "03cec0ed418bbb7d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2c1bf5efe481f1e4",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -27,15 +43,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "806d6d84bf904381",
+    "id": "b65e0504773adf28",
     "type": "split",
     "children": [
       {
-        "id": "4fb0b7d69106626a",
+        "id": "5984ab8a2d2ac19b",
         "type": "tabs",
         "children": [
           {
-            "id": "e00ee6632ca363b0",
+            "id": "a2efbb8aff1e2e7d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +64,7 @@
             }
           },
           {
-            "id": "72d07b68b4a5022f",
+            "id": "b369a46f1640cead",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +81,7 @@
             }
           },
           {
-            "id": "a5615aafca57178a",
+            "id": "f535eb3a30edaccc",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,15 +97,15 @@
     "width": 300
   },
   "right": {
-    "id": "c0016187399be2fe",
+    "id": "ccbb9364cecfe1bb",
     "type": "split",
     "children": [
       {
-        "id": "1d3335306e6f8da5",
+        "id": "0e817a8bdcc5bdb0",
         "type": "tabs",
         "children": [
           {
-            "id": "e9000efc6c49d03d",
+            "id": "665846fd60bb6a90",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -108,7 +124,7 @@
             }
           },
           {
-            "id": "4a491ffe4b5d4a8f",
+            "id": "4c414cbde319b02a",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -122,7 +138,7 @@
             }
           },
           {
-            "id": "29197ecc61887577",
+            "id": "a831f16dbc055f77",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +153,7 @@
             }
           },
           {
-            "id": "80e8690965ecc052",
+            "id": "81e85f0f1cba7847",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,7 +167,7 @@
             }
           },
           {
-            "id": "8be604b2dfb0c4fc",
+            "id": "10288ea28c6b1b59",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -183,43 +199,8 @@
       "bases:Create new base": false
     }
   },
-  "active": "d907ab6e5339f734",
+  "active": "35640a420fc37e44",
   "lastOpenFiles": [
-    "00 - Indice Maestro de Cursos.md",
-    "M04 - NLP Avanzado/17 - NLP Aplicado e Industria/04 - Caso Practico - Motor de Busqueda Semantica Empresarial.md",
-    "M04 - NLP Avanzado/17 - NLP Aplicado e Industria/03 - Extraccion de Informacion y Grafos de Conocimiento.md",
-    "M04 - NLP Avanzado/17 - NLP Aplicado e Industria/02 - Resumen y Generacion de Texto.md",
-    "M04 - NLP Avanzado/17 - NLP Aplicado e Industria/01 - Traduccion y Multilinguismo.md",
-    "M04 - NLP Avanzado/17 - NLP Aplicado e Industria/00 - Bienvenida.md",
-    "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/04 - Despliegue y Observabilidad de Agentes.md",
-    "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/03 - CrewAI y AutoGen.md",
-    "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/02 - LlamaIndex y RAG Avanzado.md",
-    "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/01 - LangChain en Profundidad.md",
-    "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida.md",
-    "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling.md",
-    "M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida.md",
-    "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/01 - Agentes vs Modelos de Lenguaje.md",
-    "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida.md",
-    "PROMPT - Continuar Proyecto.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/05 - Typing y Type Hints.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/04 - Async y Await.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/03 - Context Managers.md",
-    "M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora",
-    "M03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente",
-    "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion",
-    "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI",
-    "M03 - AI Agents y Agentic Systems",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/01 - Iteradores y Generadores.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida.md",
-    "M02 - Large Language Models/06 - Fundamentos de LLMs/01 - Arquitectura Transformer.md",
-    "Welcome.md",
-    "M02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/04 - Caso Practico - Agente Autonomo con LLM.md",
-    "M02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/03 - Modelos Multimodales de LLMs.md",
-    "M02 - Large Language Models/08 - Generacion de Texto y Decodificacion/05 - Caso Practico - Generador de Contenido Creativo.md",
-    "M02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE",
-    "M02 - Large Language Models/09 - Sistemas de LLMs en Produccion",
-    "M02 - Large Language Models/08 - Generacion de Texto y Decodificacion",
-    "M02 - Large Language Models/07 - Fine-Tuning y Adaptacion de LLMs",
-    "M02 - Large Language Models/06 - Fundamentos de LLMs"
+    "Welcome.md"
   ]
 }
