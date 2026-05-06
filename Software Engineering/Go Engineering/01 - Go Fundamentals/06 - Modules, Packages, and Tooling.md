@@ -1,311 +1,711 @@
 # 📦 Modules, Packages, and Tooling
 
+## 🎯 Learning Objectives
+1. Understand Go's module system evolution and MVS algorithm
+2. Design scalable package hierarchies for ML microservices
+3. Apply complete Go toolchain for production quality assurance
+4. Manage dependencies with cryptographic verification
+5. Build reproducible ML pipelines with locked versions
+
 ## Introduction
 
-Software engineering at scale is as much about tooling and dependency management as it is about language syntax. Go's module system, introduced in Go 1.11 and stabilized in Go 1.14, solved one of the most painful problems in software engineering: dependency hell. Before modules, Go relied on `GOPATH`, a single workspace where all source code lived. This model broke down in large organizations where different services required different versions of the same library. For ML engineering teams, this is a daily reality: the feature store might require protobuf v3.19, while the model serving proxy requires v3.21. Without proper version isolation, these conflicts grind development to a halt.
+Go modules solve dependency hell in ML engineering where different services require incompatible library versions. Before modules (2012-2018), GOPATH forced global namespace sharing. Teams duplicated dependencies via vendoring (500MB per service), making security audits impossible. Modules introduce semantic import versioning, MVS algorithm, and checksum database for reproducible builds critical to ML systems where training pipelines must be bit-for-bit identical across environments.
 
-Go modules bring semantic versioning, reproducible builds, and minimal version selection (MVS) to dependency management. A `go.mod` file declares exactly what a module needs, while `go.sum` cryptographically verifies that the downloaded code has not been tampered with. This reproducibility is critical for ML systems where training pipelines must be bit-for-bit reproducible across environments. When a model is trained with a specific version of a data validation library, you must be able to recreate that exact environment six months later for audit purposes.
+## Module 6.1: Module System Theory
 
-This module covers the full lifecycle of a Go project: from initializing a module to publishing versioned releases, and from running tests to profiling production binaries. You will learn how to structure multi-package projects, how to use `go vet` to catch bugs before they compile, and how `golangci-lint` enforces team-wide coding standards. These skills transform you from a Go programmer into a Go engineer capable of maintaining production systems. They draw on every previous module, from [[01 - Syntax, Types, and Control Flow]] to [[05 - Error Handling and Panic Recovery]], by showing how to organize and validate that code at scale.
+### 6.1.1 Theoretical Foundation (WHY)
 
-## 1. From GOPATH to Go Modules
+The module system solves:
+1. **Dependency Hell**: Multiple packages requiring incompatible versions
+2. **Reproducibility Crisis**: Inability to rebuild identical binaries
+3. **Supply Chain Vulnerabilities**: Tampered dependencies in production
 
-Before modules, all Go code lived under `$GOPATH/src`. If two projects needed different versions of a dependency, developers used vendoring—copying dependencies into the project directory. This was brittle and consumed gigabytes of duplicated code across repositories.
+#### GOPATH Era Problem
 
-Go Modules introduced three key files:
+```
+┌─────────────────────────────────────────────────────┐
+│                    GOPATH Structure                  │
+├─────────────────────────────────────────────────────┤
+│ $GOPATH/                                            │
+│   ├── src/                                          │
+│   │   ├── github.com/user1/package1/ (v1.0)        │
+│   │   └── github.com/user1/package1/ (v1.5) ← CONFLICT │
+│   ├── bin/   (compiled executables)                 │
+│   └── pkg/   (compiled objects)                     │
+└─────────────────────────────────────────────────────┘
+```
 
-- **`go.mod`**: Declares the module path, Go version, and direct dependencies with minimum versions.
-- **`go.sum`**: Contains cryptographic hashes of the exact dependency contents downloaded.
-- **`go.work`**: (Go 1.18+) Enables multi-module workspaces for local development.
+**Problem**: All projects shared single global namespace. Teams duplicated dependencies via vendoring:
+```
+project1/vendor/   (500MB)
+project2/vendor/   (500MB)  ← Same deps, different versions
+project3/vendor/   (500MB)  ← Duplicated again
+```
 
-### go.mod Structure
+**ML Context**: TensorFlow 2.8 for training vs 2.12 for serving created container duplication.
+
+### 6.1.2 Mental Model (ASCII Diagram)
+
+#### Module Resolution Flow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Module Resolution Flow                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  go.mod         go.sum         proxy.golang.org   sum.golang.org│
+│  ┌─────────┐   ┌─────────┐   ┌───────────────┐   ┌──────────┐ │
+│  │ require  │───│ hashes  │───│  Module Proxy │───│ Checksum │ │
+│  │ github.  │   │ of each │   │  (cache)      │   │ Database │ │
+│  │ com/foo  │   │ version │   │               │   │          │ │
+│  │ v1.2.3   │   │         │   │  Downloads    │   │ Verifies │ │
+│  └─────────┘   └─────────┘   │  modules      │   │ hashes   │ │
+│       │                        └───────────────┘   └──────────┘ │
+│       ▼                                  │              ▼        │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │                    Build Cache                           │   │
+│  └──────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Dependency Graph
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    ML Service Dependency Graph                   │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│                    github.com/mlservice/featurestore            │
+│                                │                                │
+│          ┌─────────────────────┼─────────────────────┐         │
+│          │                     │                     │         │
+│          ▼                     ▼                     ▼         │
+│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     │
+│   │ google/uuid │     │ grpc-go/    │     │ stretchr/   │     │
+│   │   v1.3.0    │     │   v1.56.0   │     │ testify v1.8│     │
+│   └─────────────┘     └─────────────┘     └─────────────┘     │
+│                              │                     │           │
+│                              ▼                     ▼           │
+│                       ┌─────────────┐     ┌─────────────┐     │
+│                       │ golang/protobuf│   │ davecgh/    │     │
+│                       │   v1.5.3    │     │ go-spew v1.1│     │
+│                       └─────────────┘     └─────────────┘     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.1.3 Syntax and Semantics (code)
 
 ```go
-module github.com/mlplatform/featurestore
+// go.mod structure
+module github.com/mlservice/featurestore
 
 go 1.21
 
 require (
-    github.com/google/uuid v1.3.0
-    google.golang.org/grpc v1.56.0
-    github.com/stretchr/testify v1.8.4
+    github.com/google/uuid v1.3.0        // UUID generation
+    google.golang.org/grpc v1.56.0       // gRPC framework
+    github.com/stretchr/testify v1.8.4   // Testing utilities
 )
 
-require (
-    github.com/davecgh/go-spew v1.1.1 // indirect
-    github.com/pmezard/go-difflib v1.0.0 // indirect
-    gopkg.in/yaml.v3 v3.0.1 // indirect
-)
+// Semantic Versioning: MAJOR.MINOR.PATCH
+// v1.2.3
+// │ │ │
+// │ │ └── Patch: Bug fixes
+// │ └───── Minor: New features  
+// └─────── Major: Breaking changes
 ```
 
-The `// indirect` comment marks dependencies pulled in transitively. The Go toolchain automatically manages these entries.
+### 6.1.4 Visual Representation (Mermaid)
 
-### Multi-Package Project Structure
-
-A well-structured Go project separates concerns into packages:
-
+```mermaid
+timeline
+    title Go Module Evolution
+    2012 : GOPATH Era Begins
+         : All code in single workspace
+    2018 : Go Modules v1.11
+         : Experimental feature
+    2019 : Modules Default
+         : Go 1.13 enables by default
 ```
-featurestore/
-├── go.mod
-├── go.sum
-├── cmd/
-│   └── server/
-│       └── main.go
-├── internal/
-│   ├── storage/
-│   │   └── redis.go
-│   └── model/
-│       └── schema.go
-├── pkg/
-│   └── api/
-│       └── types.go
-└── proto/
-    └── feature.proto
-```
-
-- **`cmd/`**: Entry points for binaries. Each subdirectory becomes one executable.
-- **`internal/`**: Private application code. The Go compiler enforces that packages outside the module cannot import `internal/` packages.
-- **`pkg/`**: Public library code that external modules can import.
-
-Real case: **Uber** migrated from a monolithic `GOPATH`-based repository to Go modules in 2020. Their Go monorepo contains over 100 million lines of code across thousands of services. Before modules, vendoring consumed over 30GB per developer workstation and merge conflicts in vendor directories were a daily occurrence. After migrating to modules, Uber adopted a centralized module proxy and used `go.mod` replace directives to manage internal dependencies. Build times improved by 40%, and the elimination of vendor directories freed up terabytes of storage across their CI fleet. Uber's tooling team open-sourced parts of this migration as `uber-go/guide`, now one of the most influential Go style guides in the industry.
-
-## 2. Semantic Versioning and Dependencies
-
-Go modules enforce Semantic Versioning (SemVer). A version tag like `v1.2.3` means:
-
-- **Major (1)**: Breaking changes. Upgrading requires code changes.
-- **Minor (2)**: New features, backward compatible.
-- **Patch (3)**: Bug fixes, backward compatible.
-
-Go's Minimal Version Selection (MVS) algorithm resolves dependencies conservatively. If your module requires `A v1.2.0` and `B` requires `A v1.3.0`, MVS selects `v1.3.0`—the minimum version that satisfies all requirements. This avoids the surprising upgrades that plague other package managers.
-
-### Upgrading Dependencies
-
-```bash
-go get -u ./...           # Update all direct dependencies
-go get -u=patch ./...     # Update only to latest patch versions
-go mod tidy               # Remove unused dependencies, add missing ones
-```
-
-### Module Proxxy and Checksum Database
-
-By default, `go` downloads modules from a module proxy (`proxy.golang.org`) and verifies them against the checksum database (`sum.golang.org`). This protects against:
-
-- **Left-pad incidents**: A deleted dependency cannot break your build.
-- **Supply chain attacks**: Tampered code fails checksum verification.
-
-## 3. Core Go Tooling
-
-Go ships with a comprehensive toolchain that covers formatting, vetting, testing, and building.
-
-### go fmt
-
-`gofmt` automatically formats Go code. Every major Go project enforces it in CI:
-
-```bash
-go fmt ./...
-```
-
-### go vet
-
-`go vet` performs static analysis to catch suspicious constructs:
-
-```bash
-go vet ./...
-```
-
-It detects issues like:
-- Passing a non-pointer to `Printf`'s `%p` verb.
-- Calling `http.Response.Body.Close()` without checking the error.
-- Shadowing variables in nested scopes.
-
-### go test
-
-The built-in test framework uses files ending in `_test.go`:
-
-```bash
-go test ./...              # Run all tests
-go test -race ./...        # Enable race detector
-go test -cover ./...       # Show coverage
-go test -bench=. ./...     # Run benchmarks
-```
-
-### go build and go run
-
-```bash
-go build ./cmd/server      # Compile binary
-go run ./cmd/server        # Compile and run
-go install ./cmd/server    # Compile and install to $GOBIN
-```
-
-## 4. Advanced Tooling Ecosystem
-
-Beyond the standard toolchain, the Go community maintains tools that are essential for production engineering.
-
-### golangci-lint
-
-`golangci-lint` aggregates dozens of linters into a single fast binary:
-
-```bash
-golangci-lint run ./...
-```
-
-It catches issues that `go vet` misses: unused code, incorrect error wrapping, cyclomatic complexity, and more. Most Go projects run it in CI.
-
-### Delve Debugger
-
-`dlv` is a source-level debugger for Go:
-
-```bash
-dlv debug ./cmd/server
-dlv test ./... -run TestName
-```
-
-Unlike GDB, Delve understands Go's goroutines and channels, allowing you to inspect the scheduler state and channel buffers.
-
-### pprof Profiler
-
-Go's built-in `net/http/pprof` package serves CPU and memory profiles:
-
-```go
-import _ "net/http/pprof"
-```
-
-```bash
-go tool pprof http://localhost:6060/debug/pprof/profile
-go tool pprof http://localhost:6060/debug/pprof/heap
-```
-
-The following diagram shows a typical Go module dependency graph:
 
 ```mermaid
 flowchart TD
-    A[github.com/mlplatform/featurestore] --> B[github.com/google/uuid v1.3.0]
-    A --> C[google.golang.org/grpc v1.56.0]
-    C --> D[github.com/golang/protobuf v1.5.3]
-    C --> E[golang.org/x/net v0.10.0]
-    A --> F[github.com/stretchr/testify v1.8.4]
-    F --> G[github.com/davecgh/go-spew v1.1.1]
-    F --> H[github.com/pmezard/go-difflib v1.0.0]
+    A[go.mod declares deps] --> B[proxy.golang.org]
+    B --> C{Cache hit?}
+    C -->|Yes| D[Use cached module]
+    C -->|No| E[Download from VCS]
+    E --> F[sum.golang.org verification]
+    F --> G{Hash matches?}
+    G -->|Yes| H[Build cache]
+    G -->|No| I[Security error]
+    H --> J[ML service binary]
 ```
 
-### Go Tools Comparison Table
+### 6.1.5 Application in ML/AI Systems
 
-| Tool | Purpose | Frequency | CI Integration |
-|------|---------|-----------|----------------|
-| `go fmt` | Code formatting | Every save / pre-commit | Mandatory |
-| `go vet` | Static analysis | Every build | Mandatory |
-| `go test` | Unit tests | Every commit | Mandatory |
-| `go mod tidy` | Dependency cleanup | Before commits | Recommended |
-| `golangci-lint` | Advanced linting | Every PR | Highly recommended |
-| `dlv` | Debugging | During development | N/A |
-| `pprof` | CPU/Memory profiling | Performance tuning | Optional |
-| `go test -race` | Race detection | Before releases | Mandatory for concurrent code |
-| `go build` | Compilation | Every change | Mandatory |
+```go
+// Training pipeline with pinned dependencies
+module github.com/mlteam/training-pipeline
 
-![Package Icon](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Package.svg/240px-Package.svg.png)
+go 1.21
 
-⚠️ **Warning:** Never commit `vendor/` directories unless your organization explicitly requires it. Go modules with a module proxy provide reproducible builds without the bloat of vendored code. If you must vendor, use `go mod vendor` and verify in CI that the vendor directory matches `go.mod`.
+require (
+    // Data processing - exact patch version
+    github.com/apache/arrow/go/v12 v12.0.1
+    
+    // ML framework - minor version locked
+    gonum.org/v1/gonum v0.12.0
+    
+    // Security patch required
+    github.com/your-org/datavalid v1.4.2 // CVE-2023-12345 fixed
+)
+```
 
-💡 **Tip:** Set up a `Makefile` or `taskfile` that runs `go fmt`, `go vet`, `go test -race`, and `golangci-lint` in sequence. Run this before every push. Many teams use pre-commit hooks to automate this, ensuring that only properly formatted and vetted code reaches the repository.
+**Real Case**: Google's ML Platform manages 10,000+ internal libraries with Go modules. Teams pin dependencies for 18 months, matching model retraining cycles.
 
----
+### 6.1.6 Common Pitfalls
+
+1. **Indirect Dependency Confusion**: Manual `// indirect` instead of `go mod tidy`
+2. **Replace Directive Leaks**: Using `replace` locally but committing to main
+3. **Version Skew**: Mixing `/v2` import with v1 module declaration
+4. **Checksum Mismatch**: Modifying downloaded modules without updating `go.sum`
+
+## Module 6.2: Package Organization
+
+### 6.2.1 Theoretical Foundation (WHY)
+
+Package organization enforces:
+1. **Encapsulation**: Hide implementation behind stable interfaces
+2. **Dependency Inversion**: High-level modules depend on abstractions
+3. **Separation of Concerns**: Single responsibility per package
+
+#### API Boundary Model
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Package Visibility Model                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │                    Public API (pkg/)                      │   │
+│  │  • Exported types (ModelRegistry, FeatureRequest)        │   │
+│  │  • Stable interfaces                                     │   │
+│  │  • Major version bump required for changes               │   │
+│  └──────────────────────────────────────────────────────────┘   │
+│                               │                                 │
+│                               ▼                                 │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │                Internal Implementation (internal/)        │   │
+│  │  • Unexported types (modelStore, cache)                  │   │
+│  │  • Private helpers                                        │   │
+│  │  • Can change freely within major version                │   │
+│  └──────────────────────────────────────────────────────────┘   │
+│                                                                 │
+│  Compiler enforces: external packages CANNOT import internal/   │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.2.2 Mental Model (ASCII Diagram)
+
+#### Standard ML Project Layout
+
+```
+mlservice/
+├── go.mod
+├── cmd/                    # Entry points
+│   └── server/
+│       └── main.go
+├── internal/               # Private code
+│   ├── model/              # Domain models
+│   ├── inference/          # Business logic
+│   └── storage/            # Data access
+├── pkg/                    # Public code
+│   ├── api/                # External API types
+│   └── telemetry/          # Observability
+└── test/                   # Integration tests
+```
+
+#### Export vs Unexport Pattern
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Package api/ (Exported)                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  package api                                                    │
+│                                                                 │
+│  // Exported: starts with capital letter                        │
+│  type ModelRegistry interface {                                │
+│      GetModel(ctx context.Context, id string) (*Model, error)  │
+│  }                                                              │
+│                                                                 │
+│  // Unexported: internal use only                               │
+│  func validateModel(m *Model) error {                          │
+│      if m.Name == "" { return errors.New("name required") }    │
+│      return nil                                                 │
+│  }                                                              │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.2.3 Package Naming Conventions
+
+| Package Type | Naming Convention | ML Example |
+|-------------|-------------------|------------|
+| **cmd/** | Simple verb/noun | `server`, `trainer`, `predictor` |
+| **internal/** | Domain-specific | `inference`, `featurestore`, `preprocessing` |
+| **pkg/** | Reusable utilities | `api`, `telemetry`, `metrics` |
+| **test/** | Test types | `e2e`, `benchmark`, `integration` |
+
+#### ML Microservice Package Map
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    ML Service Package Organization              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  cmd/server/          (Entry Point)                            │
+│  ├── HTTP handlers                                             │
+│  └── Dependency wiring                                         │
+│                                                                 │
+│  internal/model/      (Domain)                                 │
+│  ├── ML model definitions                                      │
+│  └── Feature schemas                                           │
+│                                                                 │
+│  internal/inference/  (Business Logic)                         │
+│  ├── Model loading                                             │
+│  └── Prediction execution                                      │
+│                                                                 │
+│  internal/storage/    (Data Access)                            │
+│  ├── Model repository (S3, GCS)                                │
+│  └── Feature cache (Redis)                                     │
+│                                                                 │
+│  pkg/api/             (Public Interface)                       │
+│  ├── Request/Response types                                    │
+│  └── Client SDK generation                                     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.2.4 Dependency Injection Pattern
+
+```go
+// cmd/server/main.go - Dependency Wiring
+package main
+
+import (
+    "github.com/mlservice/inference"
+    "github.com/mlservice/storage"
+    "github.com/mlservice/pkg/api"
+)
+
+func main() {
+    // Create concrete implementations
+    modelRepo := storage.NewS3Repository("s3://models-bucket")
+    featureCache := storage.NewRedisCache("redis:6379")
+    
+    // Inject dependencies into business logic
+    engine := inference.NewEngine(modelRepo, featureCache)
+    
+    // Wire public API
+    server := api.NewServer(engine)
+    http.ListenAndServe(":8080", server)
+}
+```
+
+### 6.2.5 Common Pitfalls
+
+1. **Generic Package Names**: `util`, `common` become dumping grounds
+2. **Circular Dependencies**: Package A imports B which imports A
+3. **Leaky Abstractions**: Exposing internal types in public interfaces
+4. **Overly Large Packages**: 5000+ lines that take minutes to compile
+
+## Module 6.3: Tooling Ecosystem
+
+### 6.3.1 Theoretical Foundation (WHY)
+
+Go's toolchain addresses specific quality dimensions:
+
+| Tool | Quality Dimension | Theory |
+|------|------------------|--------|
+| `go fmt` | **Consistency** | Eliminates style debates |
+| `go vet` | **Correctness** | Catches common mistakes |
+| `go test` | **Reliability** | Verification through execution |
+| `golangci-lint` | **Maintainability** | Enforces architectural rules |
+| `dlv` | **Debuggability** | Runtime state inspection |
+| `pprof` | **Performance** | Resource usage measurement |
+
+### 6.3.2 Mental Model (ASCII Diagram)
+
+#### Developer Workflow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    ML Engineering Workflow                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  1. Write Code → go fmt (automatic formatting)                 │
+│  2. go vet (catch bugs)                                         │
+│  3. go test -race (verify with race detection)                 │
+│  4. golangci-lint (deep analysis)                               │
+│  5. go build (compile binary)                                   │
+│  6. go tool pprof (optimize performance)                        │
+│                                                                 │
+│  Local: Save → Format → Vet → Test → Build                     │
+│  CI:    Lint → Test → Security → Deploy                        │
+│  Prod:  Profile → Monitor → Debug                              │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.3.3 Tool Comparison Matrix
+
+| Tool | Command | When to Use | ML Example |
+|------|---------|-------------|------------|
+| **go fmt** | `go fmt ./...` | Every save | Format feature transformer |
+| **go vet** | `go vet ./...` | Every build | Check tensor shapes |
+| **go test** | `go test -race ./...` | Every commit | Test model inference |
+| **golangci-lint** | `golangci-lint run` | Every PR | Enforce error handling |
+| **dlv** | `dlv debug ./cmd` | Development | Debug training loop |
+| **pprof** | `go tool pprof` | Performance tuning | Optimize batch size |
+| **govulncheck** | `govulncheck ./...` | CI pipeline | Check dependencies |
+
+### 6.3.4 Configuration Examples
+
+#### Makefile for ML Pipeline
+
+```makefile
+.PHONY: fmt vet test lint build
+
+fmt:
+	go fmt ./...
+
+vet:
+	go vet ./...
+
+test:
+	go test -race -coverprofile=coverage.out ./...
+
+lint: fmt vet
+	golangci-lint run ./...
+
+build:
+	CGO_ENABLED=0 go build -ldflags="-s -w" -o bin/server ./cmd/server
+
+ci: lint test build
+	@echo "All checks passed"
+```
+
+#### .golangci.yml
+
+```yaml
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - gocyclo
+    - gosec
+
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+  gosec:
+    excludes:
+      - G404  # Weak random OK for ML sampling
+```
+
+### 6.3.5 Profiling ML Workloads
+
+```go
+// Enable profiling in ML service
+import _ "net/http/pprof"  // Registers /debug/pprof/ endpoints
+
+func main() {
+    go http.ListenAndServe(":6060", nil)  // Profiling server
+    startMLService(":8080")
+}
+```
+
+```bash
+# Capture CPU profile
+go tool pprof http://localhost:6060/debug/pprof/profile?seconds=30
+
+# Interactive analysis
+(pprof) top 10
+(pprof) list Predict  # Shows line-by-line timing
+```
+
+### 6.3.6 Common Pitfalls
+
+1. **Linting Overhead**: Configure IDE for incremental linting
+2. **Race Detector Overhead**: 10x slowdown → only use in CI
+3. **Profile Overhead**: 5% CPU → disable unless debugging
+4. **Over-engineering**: Use built-in tools before custom linters
+
+## Module 6.4: Dependency Management
+
+### 6.4.1 Theoretical Foundation (WHY)
+
+Dependency management rests on three pillars:
+1. **Minimal Version Selection**: Russ Cox's algorithm picking smallest required version
+2. **Reproducible Builds**: Same source + same deps = identical binary
+3. **Supply Chain Security**: Cryptographic verification of all dependencies
+
+#### Version Selection Approaches
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Version Selection Problem                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Your app:     requires libA v1.2.0                            │
+│  pkgB:         requires libA v1.3.0                            │
+│  pkgC:         requires libA v1.1.0                            │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  MVS (Go): Pick maximum of minimums                      │   │
+│  │  min(1.2.0, 1.3.0, 1.1.0) → 1.3.0                       │   │
+│  │  Conservative: Never downgrades                           │   │
+│  └──────────────────────────────────────────────────────────┘   │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  npm/yarn: Pick latest compatible                        │   │
+│  │  max(1.x) → 1.4.0 (if available)                        │   │
+│  │  Aggressive: May introduce breaking changes              │   │
+│  └──────────────────────────────────────────────────────────┘   │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.4.2 Mental Model (ASCII Diagram)
+
+#### MVS Algorithm Visualization
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Minimal Version Selection                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Your App: require libA v1.2.0, pkgB v1.0.0                   │
+│  pkgB:     require libA v1.3.0                                 │
+│  pkgC:     require libA v1.1.0                                 │
+│                                                                 │
+│  Graph:                                                         │
+│  ┌─────────┐     ┌─────────┐                                   │
+│  │ Your App│────▶│ libA    │                                   │
+│  └─────────┘     └─────────┘                                   │
+│       │              ▲                                          │
+│  ┌─────────┐         │                                          │
+│  │ pkgB    │─────────┘                                          │
+│  └─────────┘                                                    │
+│                                                                 │
+│  For libA:                                                      │
+│  • Your App requires: v1.2.0                                   │
+│  • pkgB requires: v1.3.0                                       │
+│  • pkgC requires: v1.1.0                                       │
+│  • Maximum required: v1.3.0 ✓                                  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Checksum Verification Flow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    go.sum Verification                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  go.mod: require github.com/libA v1.3.0                        │
+│                                                                 │
+│  go.sum:                                                        │
+│  github.com/libA v1.3.0 h1:abc123... (module hash)              │
+│  github.com/libA v1.3.0/go.mod h1:def456... (go.mod hash)      │
+│                                                                 │
+│  Verification:                                                  │
+│  1. Download github.com/libA@v1.3.0                            │
+│  2. Compute hash → compare to go.sum                           │
+│  3. Check sum.golang.org for issues                            │
+│  4. If matches → proceed; if mismatch → ERROR                  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.4.3 Semantic Versioning Deep Dive
+
+```go
+// Breaking changes in Go:
+// 1. Removing exported types/functions
+// 2. Changing function signatures
+// 3. Removing struct fields
+// 4. Modifying interface definitions
+
+// Non-breaking changes:
+// 1. Adding new exported identifiers
+// 2. Adding optional parameters
+// 3. Extending interfaces
+// 4. Improving performance
+```
+
+### 6.4.4 ML Dependency Management Strategies
+
+```go
+// Production ML service - Conservative pinning
+module github.com/mlservice/inference
+
+go 1.21
+
+require (
+    // Core ML - exact versions for reproducibility
+    google.golang.org/protobuf v1.30.0
+    github.com/golang/protobuf v1.5.3
+    
+    // Data processing - patch versions only
+    github.com/apache/arrow/go/v12 v12.0.1
+    
+    // Security-critical - exact with CVE tracking
+    golang.org/x/crypto v0.10.0 // CVE-2023-48795 patched
+)
+```
+
+#### Multi-Module Workspace
+
+```go
+// go.work - Local development
+go 1.21
+
+use (
+    ./featurestore
+    ./inference
+    ./training
+    ./common
+)
+```
+
+### 6.4.5 Version Resolution Timeline
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Dependency Resolution Over Time              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Time → 2023-01  2023-03  2023-06  2023-09  2023-12            │
+│                                                                 │
+│  libA releases: v1.0.0 → v1.1.0 → v1.2.0 → v1.3.0 → v1.4.0   │
+│                                                                 │
+│  Your go.mod:                                                  │
+│  Jan: require libA v1.0.0                                      │
+│  Mar: require libA v1.1.0  ← New feature                      │
+│  Jun: require libA v1.2.0  ← Security patch                   │
+│  Sep: require libA v1.3.0  ← Performance                      │
+│  Dec: require libA v1.4.0  ← ML ops features                  │
+│                                                                 │
+│  MVS ensures never accidentally downgrade                      │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.4.6 Common Pitfalls
+
+1. **Replace in Production**: Never use `replace` in committed go.mod
+2. **Checksum Drift**: Don't manually edit go.sum
+3. **Major Version Confusion**: Use `/v2` import with v2 module path
+4. **Vendoring Overkill**: Don't commit vendor/ in module-aware projects
+
+```go
+// BAD: Replace in production
+replace github.com/company/lib => ../local-lib  // Breaks CI!
+
+// GOOD: Use go.work for local development
+// go.work (gitignored)
+use ../local-lib
+```
 
 ## 📦 Compression Code
 
 ```go
 // go.mod
-module github.com/example/mlserver
+module github.com/mlservice/modelregistry
 
 go 1.21
 
 require (
     github.com/google/uuid v1.3.0
     github.com/stretchr/testify v1.8.4
+    go.opentelemetry.io/otel v1.14.0
 )
 
-// internal/storage/redis.go
-package storage
+// internal/registry/model.go
+package registry
 
-import "context"
-
-type Store interface {
-    Get(ctx context.Context, key string) (string, error)
-    Set(ctx context.Context, key, value string) error
+type Model struct {
+    ID       string            `json:"id"`
+    Name     string            `json:"name"`
+    Version  int               `json:"version"`
+    Metadata map[string]string `json:"metadata"`
 }
 
-type RedisStore struct{}
-
-func (r *RedisStore) Get(ctx context.Context, key string) (string, error) {
-    return "value", nil
+type ModelRegistry interface {
+    Register(ctx context.Context, model *Model) error
+    Get(ctx context.Context, id string) (*Model, error)
+    List(ctx context.Context) ([]*Model, error)
 }
 
-func (r *RedisStore) Set(ctx context.Context, key, value string) error {
-    return nil
+type inMemoryRegistry struct {
+    mu     sync.RWMutex
+    models map[string]*Model
 }
 
-// pkg/api/types.go
-package api
-
-type FeatureRequest struct {
-    ModelID string   `json:"model_id"`
-    Inputs  []string `json:"inputs"`
+func NewInMemoryRegistry() ModelRegistry {
+    return &inMemoryRegistry{models: make(map[string]*Model)}
 }
 
 // cmd/server/main.go
 package main
 
 import (
-    "fmt"
-    "github.com/example/mlserver/internal/storage"
-    "github.com/example/mlserver/pkg/api"
+    "github.com/mlservice/modelregistry/internal/registry"
+    "github.com/mlservice/modelregistry/pkg/api"
 )
 
 func main() {
-    var store storage.Store = &storage.RedisStore{}
-    _ = store
-
-    req := api.FeatureRequest{ModelID: "abc", Inputs: []string{"x"}}
-    fmt.Printf("%+v\n", req)
+    reg := registry.NewInMemoryRegistry()
+    server := api.NewServer(reg)
+    http.ListenAndServe(":8080", server)
 }
 ```
-
----
 
 ## 🎯 Documented Project
 
 ### Description
 
-Create a multi-package Go module for an ML model registry service. The module uses `internal/` packages for business logic, `pkg/` for public APIs, and `cmd/` for the server binary. The project includes a complete `go.mod`, table-driven tests with race detection, benchmark tests for the registry lookup path, and a CI-ready `Makefile` that runs formatting, vetting, linting, and testing.
+Build a production-ready ML model registry service using Go modules, following enterprise patterns for package organization, comprehensive tooling, and strict dependency management.
 
 ### Functional Requirements
 
-1. Initialize a Go module at `github.com/mlplatform/registry` with at least three packages: `internal/registry`, `pkg/api`, and `cmd/server`.
-2. Define a `ModelRegistry` interface in `pkg/api` and implement it in `internal/registry` using an in-memory map with mutex protection.
-3. Write table-driven tests for all registry operations with at least 80% coverage.
-4. Add a benchmark test for the `GetModel` operation and document the results.
-5. Create a `Makefile` with targets for `fmt`, `vet`, `test`, `lint` (using `golangci-lint`), and `build`.
-
-### Main Components
-
-- `go.mod`: Module declaration with semantic version constraints.
-- `internal/registry/`: Private implementation of model storage and retrieval.
-- `pkg/api/`: Public interfaces and request/response types.
-- `cmd/server/`: HTTP server entry point using the registry.
-- `Makefile`: Build automation with format, vet, test, lint, and build targets.
-- `.golangci.yml`: Linter configuration with race detection enabled.
+1. Initialize `github.com/mlplatform/modelregistry` with semantic versioning
+2. Implement `cmd/`, `internal/`, `pkg/` with proper encapsulation
+3. Pin all ML dependencies with cryptographic verification
+4. Configure golangci-lint, Makefile, pre-commit hooks
+5. Add OpenTelemetry tracing and Prometheus metrics
+6. Achieve >80% test coverage with race detection
+7. Integrate pprof endpoints for production debugging
 
 ### Success Metrics
 
-- `go mod tidy` produces a clean `go.mod` and `go.sum` with no unused dependencies.
-- `go test -race ./...` passes with zero data races.
-- `golangci-lint run` reports zero issues.
-- Benchmark tests show `GetModel` latency under 100 nanoseconds for 1000 entries.
-- The module builds successfully with `go build ./cmd/server` and produces a static binary.
+- `go mod verify` passes with zero checksum mismatches
+- `go test -race ./...` completes with zero data races
+- `golangci-lint run` reports zero issues
+- `go test -bench=BenchmarkPredict` shows <100ns latency
+- `govulncheck ./...` finds zero critical vulnerabilities
+- Binary size <20MB with `go build -ldflags="-s -w"`
+- Code coverage >80% across all packages
 
 ### References
 
 - Go Modules Reference: https://go.dev/ref/modules
+- Minimal Version Selection: https://research.swtch.com/vgo-mvs
 - Go Command Documentation: https://pkg.go.dev/cmd/go
 - golangci-lint: https://golangci-lint.run/
 - Uber Go Style Guide: https://github.com/uber-go/guide

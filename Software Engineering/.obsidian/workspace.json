@@ -185,6 +185,8 @@
   },
   "active": "026b994d93ee7461",
   "lastOpenFiles": [
+    "Go Engineering/01 - Go Fundamentals/assets/README.md",
+    "Go Engineering/01 - Go Fundamentals/assets",
     "Rust Engineering/00 - Welcome to Rust Engineering.md",
     "Rust Engineering/projects/05 - Building an MCP Agent in Rust.md",
     "Rust Engineering/projects/04 - Contributing to Ruff or Polars.md",
@@ -209,7 +211,6 @@
     "Rust Engineering/04 - Rust for ML and AI/05 - Vector Databases in Rust (Qdrant, pgvector).md",
     "Rust Engineering/04 - Rust for ML and AI/06 - Model Quantization and Optimization.md",
     "Rust Engineering/05 - WebAssembly and Edge AI/04 - WASM vs Native Performance.md",
-    "Rust Engineering/06 - Agentic AI with Rust/02 - Building Agents with Goose.md",
-    "Rust Engineering/04 - Rust for ML and AI/00 - Welcome.md"
+    "Rust Engineering/06 - Agentic AI with Rust/02 - Building Agents with Goose.md"
   ]
 }
