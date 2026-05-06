@@ -55,6 +55,11 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M07 - Research y Ciencia de Datos/28 - ETL y Data Engineering/00 - Bienvenida|🔧 M07 - ETL y Data Engineering]]
 - [[M07 - Research y Ciencia de Datos/29 - Estadistica Avanzada y Causalidad/00 - Bienvenida|📈 M07 - Estadística Avanzada y Causalidad]]
 
+### Producto, Negocio y Open Source
+- [[M08 - Producto, Negocio y Open Source/30 - Producto y Estrategia de IA/00 - Bienvenida|🎯 M08 - Producto y Estrategia de IA]]
+- [[M08 - Producto, Negocio y Open Source/31 - Negocio y Metricas de ML/00 - Bienvenida|📊 M08 - Negocio y Métricas de ML]]
+- [[M08 - Producto, Negocio y Open Source/32 - Open Source y Comunidad/00 - Bienvenida|🌐 M08 - Open Source y Comunidad]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
