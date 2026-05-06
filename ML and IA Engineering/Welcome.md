@@ -95,6 +95,15 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[../Software Engineering/Go Engineering/05 - Local AI with Go/00 - Welcome|🤖 Local AI with Go]]
 - [[../Software Engineering/Go Engineering/06 - Go for ML Backend/00 - Welcome|⚙️ Go for ML Backend]]
 
+### Rust Engineering (English)
+- [[../Software Engineering/Rust Engineering/00 - Welcome to Rust Engineering|🦀 Rust Engineering]]
+- [[../Software Engineering/Rust Engineering/01 - Rust Fundamentals/00 - Welcome|🔒 Rust Fundamentals]]
+- [[../Software Engineering/Rust Engineering/02 - Advanced Rust/00 - Welcome|🚀 Advanced Rust]]
+- [[../Software Engineering/Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|📊 Rust for Data Engineering]]
+- [[../Software Engineering/Rust Engineering/04 - Rust for ML and AI/00 - Welcome|🤖 Rust for ML and AI]]
+- [[../Software Engineering/Rust Engineering/05 - WebAssembly and Edge AI/00 - Welcome|🌐 WebAssembly and Edge AI]]
+- [[../Software Engineering/Rust Engineering/06 - Agentic AI with Rust/00 - Welcome|🧠 Agentic AI with Rust]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]

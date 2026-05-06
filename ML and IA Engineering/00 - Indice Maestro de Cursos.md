@@ -182,6 +182,17 @@ Especialización
 - projects/ (6 notes)
 - extra/ (7 notes)
 
+### Rust Engineering (English)
+- 00 - Welcome to Rust Engineering
+- 01 - Rust Fundamentals (7 notes)
+- 02 - Advanced Rust (7 notes)
+- 03 - Rust for Data Engineering (7 notes)
+- 04 - Rust for ML and AI (7 notes)
+- 05 - WebAssembly and Edge AI (7 notes)
+- 06 - Agentic AI with Rust (7 notes)
+- projects/ (6 notes)
+- extra/ (7 notes)
+
 ---
 
 ## 🎯 Progresión Recomendada
