@@ -86,9 +86,9 @@ Learning/
 │   └── 03 - Technical Leadership.md
 │
 ├── Software Engineering/
-│   ├── Go Engineering/                 # ✅ COMPLETE (49 notes - English)
+│   ├── Go Engineering/                 # COMPLETE (49 notes - English)
 │   │   ├── 00 - Welcome to Go Engineering.md
-│   │   ├── 01 - Go Fundamentals/       # 7 notes
+│   │   ├── 01 - Go Fundamentals/       # ✅ IMPROVED — Deep theory, ASCII, ML context (4179 lines)
 │   │   ├── 02 - Go for Cloud Native/   # 7 notes
 │   │   ├── 03 - Microservices with Go/ # 7 notes
 │   │   ├── 04 - DevSecOps and CLI Tools/ # 7 notes
@@ -111,7 +111,12 @@ Learning/
 
 **Current total: ~483 notes created** (294 original + 42 SE/ML/Transversal + 49 Go + 49 Rust + 49 restructuring)
 
+**Format Improvement Progress:**
+- Go Fundamentals (01): ✅ IMPROVED — 1331 → 4179 lines (+3.1x deeper)
+- All other Go/Rust courses: 🚧 Pending improvement to new format
+
 **Git Checkpoints:**
+- `ef57e18` — Go Fundamentals improved with new deep format (latest)
 - `6de9e0e` — Rust Engineering complete (revert point)
 - `f17ca9b` — Go Engineering complete
 
@@ -125,47 +130,83 @@ Learning/
 
 ---
 
-## Note Style and Format (New English Content)
+## Note Style and Format
 
-Each course note follows this exact structure:
+### ⭐ NEW IMPROVED Format (applied to Go Fundamentals 01)
 
-### For Full Course Notes (01-06 within each course folder)
+The course `01 - Go Fundamentals` has been upgraded with a **deeper, modular format** that must be used for ALL future note improvements. This format produced notes of **400-1200+ lines** (vs 200-370 original).
 
 ```markdown
 # <Title with emoji>
 
+## 🎯 Learning Objectives
+<Bullet list of what the reader will master in this specific module>
+
+---
+
 ## Introduction
-2-3 paragraphs explaining relevance to ML/AI engineering. Use [[...]] internal links.
+<2-3 paragraphs. Deep context about WHY this matters for ML/AI engineering.
+Connect to other vault modules via [[...]] links.>
 
-## 1. <Section Name>
-Deep conceptual explanations with:
-- Bullet points for key ideas
-- "Real case: <specific ML/AI company example>" at least once
-- ⚠️ Warnings about common mistakes
-- 💡 Tips and mnemonic rules
+---
 
-## 2. <Section Name>
-Same depth. Include comparison tables where useful.
+## Module X: <Concept Name>
 
-## 3. <Section Name>
-At least 2-3 images/diagrams per note:
-- Mermaid diagrams (flowcharts, decision trees, timelines)
-- Wikimedia Commons image URLs: `![description](https://upload.wikimedia.org/wikipedia/commons/thumb/...)`
+### X.1 Theoretical Foundation 🧠
+<3-4 paragraphs explaining WHY this concept exists.
+Historical context, computer science theory, design motivation.
+Show the problem this concept solves before showing the solution.>
 
-## 4. <Section Name>
-Python/Go code blocks when applicable.
+### X.2 Mental Model 📐
+<ASCII diagram or conceptual table that builds intuition>
+```
+┌─────────────────────────────────────────────┐
+│  Concept Visualization (ASCII)              │
+├─────────────────────────────────────────────┤
+│  Component A ──────► Component B            │
+│       │                    │                │
+│       └────────────────────┘                │
+└─────────────────────────────────────────────┘
+```
 
-## 5. <Section Name> (if needed)
+### X.3 Syntax and Semantics 📝
+<Exact syntax with line-by-line comments explaining what each line does>
+```go / rust / python
+// code with inline comments explaining WHY, not just WHAT
+```
+
+### X.4 Visual Representation 🖼️
+<Mermaid diagram AND reference to Wikimedia image URL>
+```mermaid
+<diagram>
+```
+![Description](https://upload.wikimedia.org/wikipedia/commons/thumb/...)
+
+### X.5 Application in ML/AI Systems 🤖
+<Specific real-world ML example showing this concept in production.
+Include a mini-case study with company name, problem, solution, and impact.>
+
+| ML Use Case | This Concept | Impact |
+|-------------|-------------|--------|
+| ... | ... | ... |
+
+### X.6 Common Pitfalls ⚠️
+⚠️ <Warning with explanation of WHY it happens>
+⚠️ <Warning>
+💡 <Tip with mnemonic or mental shortcut>
+
+### X.7 Knowledge Check ❓
+<2-3 questions or mini-exercises that test understanding>
 
 ---
 
 ## 📦 Compression Code
-A complete script summarizing the entire topic.
+<Complete, production-ready code summarizing ALL concepts in the module>
 
 ## 🎯 Documented Project
 
 ### Description
-2-3 sentences about a real-world project.
+<2-3 sentences about a real-world ML project using these concepts>
 
 ### Functional Requirements
 1. ...
@@ -185,9 +226,33 @@ A complete script summarizing the entire topic.
 - ...
 
 ### References
-- <Paper or library reference>
-- <Tool or framework reference>
+- Official docs: <URL>
+- Paper/library: <URL>
 ```
+
+### Key Rules for IMPROVED Format
+- **Theory BEFORE code** in EVERY section — never show code without first explaining WHY the concept exists
+- **At least 3 ASCII diagrams** per note — use `┌─│└├┘┤┬┴┼` characters for structural diagrams
+- **At least 2 Mermaid diagrams** per note — varied types (flowchart, sequence, state, class)
+- **At least 2 Wikimedia image URLs** per note — reference the URL even if not yet downloaded
+- **Each concept has ML/AI application** — show "Real case: <company>" or a usage table
+- **Target 400-600 lines** (welcome notes: 200-300)
+- **Modular organization** — each concept is a self-contained "Module" with sub-sections X.1-X.7
+- **Code has WHY comments** — not just WHAT, but WHY each pattern is used
+
+### Assets Directory
+Each course should have an `assets/` folder for images and diagrams:
+```
+<Course>/assets/
+├── README.md                 # Asset inventory
+└── module-X-topic.png        # Images referenced in notes
+```
+Reference images as: `![Description](assets/module-X-topic.png)`
+Keep Wikimedia URLs as fallback: `![Description](https://upload.wikimedia.org/...)`
+
+---
+
+### Original Format (Legacy courses - M00-M08, SE extra/projects)
 
 ### For Project Guide Notes (projects/ folder)
 
@@ -262,70 +327,52 @@ Subagents sometimes complete work (files created on disk) but do not return a re
 
 ## Upcoming Work Queue
 
-### 1. Go Engineering (✅ COMPLETE)
-### 2. Rust Engineering (✅ COMPLETE)
+### 1. Go Engineering (✅ COMPLETE — 49 notes)
+- **01 - Go Fundamentals:** ✅ IMPROVED to new deep format (4179 lines, ASCII + Mermaid, ML context)
+- **02-06 courses:** 🚧 PENDING improvement to new deep format
+- **Projects and Extra:** 🚧 PENDING improvement
 
-### 3. Deep Content Expansion — Go (PLANNED — Priority 1)
-Expand Go Engineering with deeper ML content. Create additional notes or expand existing ones to cover:
+### 2. Rust Engineering (✅ COMPLETE — 49 notes)
+- **All 6 courses:** 🚧 PENDING improvement to new deep format (same structure as Go Fundamentals)
+- **Projects and Extra:** 🚧 PENDING improvement
 
-**Gorgonia (Go Deep Learning Framework):**
-- Gorgonia architecture: tensors, computation graphs, automatic differentiation
-- Building neural networks from scratch in Go
-- Gorgonia vs TensorFlow vs PyTorch (when to use Go for DL)
-- GPU support via CUDA bindings
-- Real case: How Gorgonia powers ML in Go-only environments (no Python allowed)
-- Include Go code: MLP, CNN, RNN built with Gorgonia
+### 3. Note Improvement Priority (Apply NEW Format)
 
-**LocalAI (Local LLM Server in Go):**
-- LocalAI architecture: Go backend, model backends (llama.cpp, whisper.cpp, stable diffusion)
-- API compatibility with OpenAI
-- Hardware acceleration: CUDA, Metal, Vulkan, CPU
-- Model formats: GGUF, GGML, ONNX, TensorRT
-- Real case: How LocalAI enables private AI for enterprises
-- Include Go code: LocalAI API client, custom backend
+| Course | Current Avg Lines | Target | Priority |
+|--------|-------------------|--------|----------|
+| Go 02 - Functions, Methods, Interfaces | 608 | Refresh | 🔴 High |
+| Go 03 - Structs, Embedding, Composition | 758 | Refresh | 🔴 High |
+| Go 04 - Goroutines and Channels | 1210 | Refresh | 🔴 High |
+| Go 05 - Error Handling | 600 | Refresh | 🔴 High |
+| Go 06 - Modules, Packages, Tooling | 586 | Refresh | 🔴 High |
+| Rust 01-06 courses | 200-400 | 400-600 | 🟡 Medium |
+| Go projects/extra | 200-300 | 300-500 | 🟢 Lower |
+| Rust projects/extra | 200-300 | 300-500 | 🟢 Lower |
 
-**Go ML Ecosystem Deep Dive:**
-- gonum: numerical computing, statistics, optimization
-- gorgonia.org/tensor: NDArray operations
-- gotch: PyTorch bindings for Go
-- Go + ONNX: onnxruntime-go for cross-platform inference
-- Go + HuggingFace: hfgo for model downloading and inference
-- Go + MLflow: tracking experiments from Go
+**Format Improvement Rules for Existing Notes:**
+- Break into modular concepts (Module X.Y sections)
+- Add Theoretical Foundation (WHY) before any code
+- Add ASCII diagrams alongside Mermaid
+- Add Wikimedia image URLs
+- Add ML/AI Application table in each module
+- Add Knowledge Check questions
+- Target: 400-600 lines per note
 
-### 4. Deep Content Expansion — Rust (PLANNED — Priority 2)
-Expand Rust Engineering with deeper ML content:
+### 4. Deep Content Expansion — Go (PLANNED — Priority 1)
+Create new courses inside `Go Engineering/` or as additional modules:
 
-**Polars Deep Dive:**
-- Polars internals: query optimization, lazy execution, memory mapping
-- Custom expressions and UDFs in Polars
-- Polars vs DataFusion vs DuckDB (Rust-based alternatives)
-- Streaming API for datasets larger than RAM
+**Course: Gorgonia — Deep Learning in Go** (6 notes)
+- Tensor Operations, Computational Graphs, Neural Networks, GPU, Real Projects, vs PyTorch
 
-**Candle Advanced Patterns:**
-- Custom model architectures in Candle
-- Candle + CUDA: GPU training and inference
-- Model quantization with Candle
-- Candle vs PyTorch Rust (tch-rs) comparison
+**Course: LocalAI — Local LLM Server** (6 notes)
+- Architecture, LLMs, Image Gen, Audio, API Compatibility, Enterprise Deployment
 
-**PyO3 Advanced Patterns:**
-- Complex type conversions (nested structs, enums)
-- Async PyO3 with tokio
-- PyO3 + Rayon for parallel Python extensions
-- Building production Python wheels with maturin
+### 5. Deep Content Expansion — Rust (PLANNED — Priority 2)
+**Course: Polars Internals and Advanced** (6 notes)
+**Course: Candle Advanced Patterns** (6 notes)
 
-**Vector Search Deep Dive:**
-- HNSW algorithm implementation
-- Product Quantization (PQ) and IVF indexes
-- Hybrid search: sparse + dense vectors
-- Qdrant clustering and sharding
-
-### 5. Portfolio Web Redesign (PLANNED)
-Update `leito2.github.io` from basic course index to a professional ML/AI Engineer portfolio showcasing:
-- GitHub repos with real projects (Go + Rust ML tools)
-- Kaggle profile and competition results
-- HuggingFace models (Candle, Ollama integrations)
-- Technical blog posts about Go/Rust for ML
-- Interactive demo (WASM-based ML model in browser)
+### 6. Portfolio Web Redesign (PLANNED)
+Update `leito2.github.io` to professional ML/AI Engineer portfolio.
 
 ---
 
