@@ -171,6 +171,17 @@ Especialización
 - 02 - Technical Communication and Storytelling
 - 03 - Technical Leadership
 
+### Go Engineering (English)
+- 00 - Welcome to Go Engineering
+- 01 - Go Fundamentals (7 notes)
+- 02 - Go for Cloud Native (7 notes)
+- 03 - Microservices with Go (7 notes)
+- 04 - DevSecOps and CLI Tools (7 notes)
+- 05 - Local AI with Go (7 notes)
+- 06 - Go for ML Backend (7 notes)
+- projects/ (6 notes)
+- extra/ (7 notes)
+
 ---
 
 ## 🎯 Progresión Recomendada

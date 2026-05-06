@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
+                "file": "Go Engineering/01 - Go Fundamentals/00 - Welcome.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Welcome"
+              "title": "00 - Welcome"
             }
           }
         ]
@@ -183,15 +183,30 @@
       "bases:Create new base": false
     }
   },
-  "active": "026b994d93ee7461",
+  "active": "b180f08c9e9b5a70",
   "lastOpenFiles": [
+    "Go Engineering/04 - DevSecOps and CLI Tools/00 - Welcome.md",
+    "Go Engineering/02 - Go for Cloud Native/06 - Cloud Networking and Observability.md",
+    "Go Engineering/01 - Go Fundamentals/01 - Syntax, Types, and Control Flow.md",
+    "Go Engineering/01 - Go Fundamentals/00 - Welcome.md",
+    "Go Engineering/01 - Go Fundamentals/02 - Functions, Methods, and Interfaces.md",
+    "Go Engineering/02 - Go for Cloud Native/05 - Infrastructure as Code with Pulumi.md",
+    "Go Engineering/02 - Go for Cloud Native/00 - Welcome.md",
+    "Go Engineering/02 - Go for Cloud Native/04 - Service Discovery and Load Balancing.md",
+    "Go Engineering/02 - Go for Cloud Native/03 - gRPC and Protocol Buffers.md",
+    "Go Engineering/02 - Go for Cloud Native/02 - Kubernetes Architecture Deep Dive.md",
+    "Go Engineering/02 - Go for Cloud Native/01 - Docker Internals for Go Developers.md",
+    "Go Engineering/01 - Go Fundamentals/06 - Modules, Packages, and Tooling.md",
+    "Go Engineering/01 - Go Fundamentals/05 - Error Handling and Panic Recovery.md",
+    "Go Engineering/01 - Go Fundamentals/04 - Goroutines and Channels.md",
+    "Go Engineering/01 - Go Fundamentals/03 - Structs, Embedding, and Composition.md",
+    "Welcome.md",
     "01 - Docker Profesional/06 - Caso Practico - Despliegue Completo con Docker.md",
     "01 - Docker Profesional/05 - Docker Registry y CI-CD.md",
     "01 - Docker Profesional/04 - Volumenes Redes y Persistencia.md",
     "01 - Docker Profesional/03 - Docker Compose y Multi-Contenedores.md",
     "01 - Docker Profesional/02 - Dockerfile y Buenas Practicas.md",
     "01 - Docker Profesional/01 - Fundamentos de Docker y Contenedores.md",
-    "01 - Docker Profesional/00 - Bienvenida.md",
-    "Welcome.md"
+    "01 - Docker Profesional/00 - Bienvenida.md"
   ]
 }

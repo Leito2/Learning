@@ -183,16 +183,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "d907ab6e5339f734",
+  "active": "e00ee6632ca363b0",
   "lastOpenFiles": [
+    "00 - Continuity Prompt.md",
+    "PROMPT - Continuar Proyecto.md",
     "00 - Indice Maestro de Cursos.md",
+    "Welcome.md",
     "M06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida.md",
     "M06 - Cloud, Infra y Backend/24 - Backend para ML/01 - FastAPI y APIs REST.md",
     "M06 - Cloud, Infra y Backend/22 - Cloud Computing/02 - Computo en la Nube.md",
     "M06 - Cloud, Infra y Backend/22 - Cloud Computing/01 - Fundamentos de Cloud y Modelos de Servicio.md",
     "M06 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida.md",
-    "PROMPT - Continuar Proyecto.md",
-    "Welcome.md",
     "2026-05-04.md",
     "Untitled 1.canvas",
     "Untitled.base",
@@ -213,7 +214,6 @@
     "M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida.md",
     "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/01 - Agentes vs Modelos de Lenguaje.md",
     "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida.md",
-    "M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/05 - Typing y Type Hints.md",
     "M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora",
     "M03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente",
     "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion",

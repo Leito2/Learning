@@ -86,6 +86,15 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[../Transversal Skills/02 - Technical Communication and Storytelling|🎤 Technical Communication]]
 - [[../Transversal Skills/03 - Technical Leadership|👑 Technical Leadership]]
 
+### Go Engineering (English)
+- [[../Software Engineering/Go Engineering/00 - Welcome to Go Engineering|🐹 Go Engineering]]
+- [[../Software Engineering/Go Engineering/01 - Go Fundamentals/00 - Welcome|👋 Go Fundamentals]]
+- [[../Software Engineering/Go Engineering/02 - Go for Cloud Native/00 - Welcome|☁️ Go for Cloud Native]]
+- [[../Software Engineering/Go Engineering/03 - Microservices with Go/00 - Welcome|🔌 Microservices with Go]]
+- [[../Software Engineering/Go Engineering/04 - DevSecOps and CLI Tools/00 - Welcome|🛡️ DevSecOps and CLI Tools]]
+- [[../Software Engineering/Go Engineering/05 - Local AI with Go/00 - Welcome|🤖 Local AI with Go]]
+- [[../Software Engineering/Go Engineering/06 - Go for ML Backend/00 - Welcome|⚙️ Go for ML Backend]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
