@@ -132,6 +132,45 @@ Especialización
 - 31 - Open Source y Comunidad
 - 32 - Comunicación Técnica
 
+### Software Engineering - Extra (English)
+- 01 - FastAPI for ML
+- 02 - System Design for ML
+- 03 - Testing in ML Systems
+- 04 - CI-CD for ML
+- 05 - Rust for ML Infra
+
+### Software Engineering - Projects (English)
+- Project Planning Guide for SE
+- FastAPI for ML Project Guide
+- System Design for ML Project Guide
+- Testing in ML Systems Project Guide
+- CI-CD for ML Project Guide
+- Rust for ML Infra Project Guide
+
+### ML and IA Engineering - Extra (English)
+- 01 - Kaggle Competitions
+- 02 - End-to-End ML Project
+- 03 - Fine-Tuning LLMs
+- 04 - Production RAG System
+- 05 - Computer Vision Pipeline
+- 06 - Advanced MLOps
+- 07 - Paper Reproduction
+
+### ML and IA Engineering - Projects (English)
+- Project Planning Guide for ML
+- Kaggle Competitions Project Guide
+- End-to-End ML Project Guide
+- Fine-Tuning LLMs Project Guide
+- Production RAG System Project Guide
+- Computer Vision Pipeline Project Guide
+- Advanced MLOps Project Guide
+- Paper Reproduction Project Guide
+
+### Transversal Skills (English)
+- 01 - Technical English
+- 02 - Technical Communication and Storytelling
+- 03 - Technical Leadership
+
 ---
 
 ## 🎯 Progresión Recomendada

@@ -60,6 +60,32 @@ Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aqu
 - [[M08 - Producto, Negocio y Open Source/31 - Negocio y Metricas de ML/00 - Bienvenida|📊 M08 - Negocio y Métricas de ML]]
 - [[M08 - Producto, Negocio y Open Source/32 - Open Source y Comunidad/00 - Bienvenida|🌐 M08 - Open Source y Comunidad]]
 
+### Extra Courses (English)
+- [[extra/00 - Welcome to ML Extra Courses|👋 ML Extra Courses]]
+- [[extra/01 - Kaggle Competitions|🏆 Kaggle Competitions]]
+- [[extra/02 - End-to-End ML Project|🔚 End-to-End ML Project]]
+- [[extra/03 - Fine-Tuning LLMs|🔧 Fine-Tuning LLMs]]
+- [[extra/04 - Production RAG System|🤖 Production RAG System]]
+- [[extra/05 - Computer Vision Pipeline|👁️ Computer Vision Pipeline]]
+- [[extra/06 - Advanced MLOps|⚙️ Advanced MLOps]]
+- [[extra/07 - Paper Reproduction|📄 Paper Reproduction]]
+
+### Project Guides (English)
+- [[projects/00 - Project Planning Guide for ML|📋 Project Planning Guide for ML]]
+- [[projects/01 - Kaggle Competitions - Project Guide|🏆 Kaggle Competitions Guide]]
+- [[projects/02 - End-to-End ML Project - Project Guide|🔚 End-to-End ML Project Guide]]
+- [[projects/03 - Fine-Tuning LLMs - Project Guide|🔧 Fine-Tuning LLMs Guide]]
+- [[projects/04 - Production RAG System - Project Guide|🤖 Production RAG System Guide]]
+- [[projects/05 - Computer Vision Pipeline - Project Guide|👁️ Computer Vision Pipeline Guide]]
+- [[projects/06 - Advanced MLOps - Project Guide|⚙️ Advanced MLOps Guide]]
+- [[projects/07 - Paper Reproduction - Project Guide|📄 Paper Reproduction Guide]]
+
+### Transversal Skills
+- [[../Transversal Skills/00 - Welcome to Transversal Skills|🌐 Transversal Skills]]
+- [[../Transversal Skills/01 - Technical English|🇬🇧 Technical English]]
+- [[../Transversal Skills/02 - Technical Communication and Storytelling|🎤 Technical Communication]]
+- [[../Transversal Skills/03 - Technical Leadership|👑 Technical Leadership]]
+
 ### Especialización
 - [[Curso Markdown/00 - Bienvenida al Curso Markdown|📘 Curso Comprimido de Markdown]]
 - [[Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|🐘 Curso SQL con PostgreSQL]]
