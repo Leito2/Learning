@@ -94,10 +94,13 @@ Learning/
 │   │   ├── 04 - DevSecOps and CLI Tools/ # 7 notes
 │   │   ├── 05 - Local AI with Go/      # 7 notes
 │   │   ├── 06 - Go for ML Backend/     # 7 notes
+│   │   ├── 07 - Gorgonia - Deep Learning in Go/  # ✅ NEW (6 notes - English, deep format)
+│   │   ├── 07 - LocalAI - Local LLM Server/      # ✅ NEW (6 notes - English, deep format)
+│   │   ├── 07 - Wails - Desktop Apps with Go/    # ✅ NEW (6 notes - English, deep format)
 │   │   ├── projects/                   # 6 notes
 │   │   └── extra/                      # 7 notes
 │   │
-│   └── Rust Engineering/               # ✅ COMPLETE (49 notes - English)
+│   └── Rust Engineering/               # ✅ COMPLETE (49 notes + 12 new = 61 notes - English)
 │       ├── 00 - Welcome to Rust Engineering.md
 │       ├── 01 - Rust Fundamentals/     # 7 notes
 │       ├── 02 - Advanced Rust/         # 7 notes
@@ -105,11 +108,13 @@ Learning/
 │       ├── 04 - Rust for ML and AI/    # 7 notes
 │       ├── 05 - WebAssembly and Edge AI/ # 7 notes
 │       ├── 06 - Agentic AI with Rust/  # 7 notes
+│       ├── 07 - Polars Internals and Advanced/   # ✅ NEW (6 notes - English, deep format)
+│       ├── 07 - Candle Advanced Patterns/        # ✅ NEW (6 notes - English, deep format)
 │       ├── projects/                   # 6 notes
 │       └── extra/                      # 7 notes
 ```
 
-**Current total: ~483 notes created** (294 original + 42 SE/ML/Transversal + 49 Go + 49 Rust + 49 restructuring)
+**Current total: ~513 notes created** (294 original + 42 SE/ML/Transversal + 67 Go + 61 Rust + 49 restructuring)
 
 **Format Improvement Progress:**
 - Go Fundamentals (01): ✅ IMPROVED — 1331 → 4179 lines (+3.1x deeper)
@@ -358,18 +363,21 @@ Subagents sometimes complete work (files created on disk) but do not return a re
 - Add Knowledge Check questions
 - Target: 400-600 lines per note
 
-### 4. Deep Content Expansion — Go (PLANNED — Priority 1)
+### 4. Deep Content Expansion — Go (✅ COMPLETE)
 Create new courses inside `Go Engineering/` or as additional modules:
 
-**Course: Gorgonia — Deep Learning in Go** (6 notes)
+**Course: Gorgonia — Deep Learning in Go** (6 notes) ✅ CREATED
 - Tensor Operations, Computational Graphs, Neural Networks, GPU, Real Projects, vs PyTorch
 
-**Course: LocalAI — Local LLM Server** (6 notes)
+**Course: LocalAI — Local LLM Server** (6 notes) ✅ CREATED
 - Architecture, LLMs, Image Gen, Audio, API Compatibility, Enterprise Deployment
 
-### 5. Deep Content Expansion — Rust (PLANNED — Priority 2)
-**Course: Polars Internals and Advanced** (6 notes)
-**Course: Candle Advanced Patterns** (6 notes)
+**Course: Wails — Desktop Apps with Go** (6 notes) ✅ CREATED (bonus)
+- Go-JS Bridge, Frontend Bindings, Cross-Platform, Native APIs, Production Packaging
+
+### 5. Deep Content Expansion — Rust (✅ COMPLETE)
+**Course: Polars Internals and Advanced** (6 notes) ✅ CREATED
+**Course: Candle Advanced Patterns** (6 notes) ✅ CREATED
 
 ### 6. Portfolio Web Redesign (PLANNED)
 Update `leito2.github.io` to professional ML/AI Engineer portfolio.

@@ -27,19 +27,26 @@ Rust has shifted from being a "niche" language to a cornerstone of modern tech i
 
 | # | Course | Focus | Notes |
 |---|--------|-------|-------|
-| 01 | [[01 - Rust Fundamentals/00 - Welcome\|👋 Rust Fundamentals]] | Ownership, traits, cargo, error handling, patterns | 7 notes |
-| 02 | [[02 - Advanced Rust/00 - Welcome\|🚀 Advanced Rust]] | Tokio, async, unsafe, FFI, macros, profiling | 7 notes |
-| 03 | [[03 - Rust for Data Engineering/00 - Welcome\|📊 Rust for Data Engineering]] | Polars, Arrow, ETL, uv, Ruff, CLIs | 7 notes |
-| 04 | [[04 - Rust for ML and AI/00 - Welcome\|🤖 Rust for ML and AI]] | PyO3, Candle, ONNX, inference servers, vector DBs | 7 notes |
-| 05 | [[05 - WebAssembly and Edge AI/00 - Welcome\|🌐 WebAssembly and Edge AI]] | WASM, browser ML, WASI, serverless, edge deployment | 7 notes |
-| 06 | [[06 - Agentic AI with Rust/00 - Welcome\|🧠 Agentic AI with Rust]] | MCP, Goose, autonomous agents, orchestration, security | 7 notes |
+| 01 | [[02 - Rust Engineering/01 - Rust Fundamentals/00 - Welcome\|👋 Rust Fundamentals]] | Ownership, traits, cargo, error handling, patterns | 7 notes |
+| 02 | [[02 - Rust Engineering/02 - Advanced Rust/00 - Welcome\|🚀 Advanced Rust]] | Tokio, async, unsafe, FFI, macros, profiling | 7 notes |
+| 03 | [[02 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome\|📊 Rust for Data Engineering]] | Polars, Arrow, ETL, uv, Ruff, CLIs | 7 notes |
+| 04 | [[02 - Rust Engineering/04 - Rust for ML and AI/00 - Welcome\|🤖 Rust for ML and AI]] | PyO3, Candle, ONNX, inference servers, vector DBs | 7 notes |
+| 05 | [[02 - Rust Engineering/05 - WebAssembly and Edge AI/00 - Welcome\|🌐 WebAssembly and Edge AI]] | WASM, browser ML, WASI, serverless, edge deployment | 7 notes |
+| 06 | [[02 - Rust Engineering/06 - Agentic AI with Rust/00 - Welcome\|🧠 Agentic AI with Rust]] | MCP, Goose, autonomous agents, orchestration, security | 7 notes |
+
+### Deep Content Expansion
+
+| # | Course | Focus | Notes |
+|---|--------|-------|-------|
+| 07 | [[02 - Rust Engineering/07 - Polars Internals and Advanced/00 - Welcome to Polars Internals\|📊 Polars Internals and Advanced]] | Lazy evaluation, memory mapping, streaming, Arrow, window functions | 6 notes |
+| 08 | [[02 - Rust Engineering/07 - Candle Advanced Patterns/00 - Welcome to Candle Advanced Patterns\|🕯️ Candle Advanced Patterns]] | Custom models, GPU, transformers, WebAssembly, production tuning | 6 notes |
 
 ### Practical Tracks
 
 | Track | Description |
 |-------|-------------|
-| [[projects/00 - Rust Project Planning Guide\|📋 projects/]] | Step-by-step project guides to build your portfolio |
-| [[extra/00 - Welcome to Rust Extra\|👋 extra/]] | Advanced topics: memory model, async internals, crypto, embedded, kernel, blockchain |
+| [[00 - Rust Project Planning Guide\|📋 projects/]] | Step-by-step project guides to build your portfolio |
+| [[00 - Welcome to Rust Extra\|👋 extra/]] | Advanced topics: memory model, async internals, crypto, embedded, kernel, blockchain |
 
 ---
 

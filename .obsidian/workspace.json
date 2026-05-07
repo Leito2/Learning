@@ -1,5 +1,121 @@
 {
-  "active": "d4fe1b724eac04a2",
+  "main": {
+    "id": "488383f5da8f0dd5",
+    "type": "split",
+    "children": [
+      {
+        "id": "922b72990ead5352",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "898e34fdb1fe244f",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9c4bc5af5c0983c2",
+    "type": "split",
+    "children": [
+      {
+        "id": "905ab556ce3a99eb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8882db5004c0152c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c6477d1cc7f6f380",
+    "type": "split",
+    "children": [
+      {
+        "id": "3e696694b29186af",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "da034ea470c39bae",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "789335e757399745",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "2aa7e7ca3b11880a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "898e34fdb1fe244f",
   "lastOpenFiles": [
     "Curso Comprimido de Comandos/00 - Bienvenida.md",
     "Curso Comprimido de Comandos/01 - Navegacion y Exploracion.md",

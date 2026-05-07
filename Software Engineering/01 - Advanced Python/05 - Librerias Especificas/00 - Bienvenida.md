@@ -50,7 +50,7 @@ El flujo didáctico está diseñado para ir de lo fundamental a lo integrador:
 
 | # | Nota | Enfoque |
 |---|---|---|
-| 00 | [[00 - Bienvenida]] | Contexto, glosario y objetivos. |
+| 00 | [[01 - Advanced Python/05 - Librerias Especificas/00 - Bienvenida]] | Contexto, glosario y objetivos. |
 | 01 | [[01 - Requests y Http Client]] | Comunicación de red y APIs REST. |
 | 02 | [[02 - Sqlite3 y DB API]] | Persistencia estructurada y transaccional. |
 | 03 | [[03 - Pathlib y shutil]] | Abstracción del sistema de archivos. |

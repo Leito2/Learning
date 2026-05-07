@@ -173,12 +173,15 @@ Especialización
 
 ### Go Engineering (English)
 - 00 - Welcome to Go Engineering
-- 01 - Go Fundamentals (7 notes)
+- 01 - Go Fundamentals (7 notes) ✅ IMPROVED
 - 02 - Go for Cloud Native (7 notes)
 - 03 - Microservices with Go (7 notes)
 - 04 - DevSecOps and CLI Tools (7 notes)
 - 05 - Local AI with Go (7 notes)
 - 06 - Go for ML Backend (7 notes)
+- 07 - Gorgonia — Deep Learning in Go (6 notes) ✅ NEW
+- 07 - LocalAI — Local LLM Server (6 notes) ✅ NEW
+- 07 - Wails — Desktop Apps with Go (6 notes) ✅ NEW
 - projects/ (6 notes)
 - extra/ (7 notes)
 
@@ -190,6 +193,8 @@ Especialización
 - 04 - Rust for ML and AI (7 notes)
 - 05 - WebAssembly and Edge AI (7 notes)
 - 06 - Agentic AI with Rust (7 notes)
+- 07 - Polars Internals and Advanced (6 notes) ✅ NEW
+- 07 - Candle Advanced Patterns (6 notes) ✅ NEW
 - projects/ (6 notes)
 - extra/ (7 notes)
 

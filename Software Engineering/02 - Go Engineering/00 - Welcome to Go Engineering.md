@@ -25,19 +25,27 @@ Go is the language of the cloud. Docker, Kubernetes, Terraform, Istio, and Ollam
 
 | # | Course | Focus | Notes |
 |---|--------|-------|-------|
-| 01 | [[01 - Go Fundamentals/00 - Welcome\|👋 Go Fundamentals]] | Language basics, types, concurrency, modules | 7 notes |
-| 02 | [[02 - Go for Cloud Native/00 - Welcome\|☁️ Go for Cloud Native]] | Docker, Kubernetes, gRPC, IaC, observability | 7 notes |
-| 03 | [[03 - Microservices with Go/00 - Welcome\|🔌 Microservices with Go]] | APIs, auth, databases, testing, resilience | 7 notes |
-| 04 | [[04 - DevSecOps and CLI Tools/00 - Welcome\|🛡️ DevSecOps and CLI Tools]] | Cobra, security, CI/CD, container hardening | 7 notes |
-| 05 | [[05 - Local AI with Go/00 - Welcome\|🤖 Local AI with Go]] | Ollama, chatbots, RAG, Wails, edge AI | 7 notes |
-| 06 | [[06 - Go for ML Backend/00 - Welcome\|⚙️ Go for ML Backend]] | ONNX, model serving, feature stores, gateways | 7 notes |
+| 01 | [[02 - Go Engineering/01 - Go Fundamentals/00 - Welcome\|👋 Go Fundamentals]] | Language basics, types, concurrency, modules | 7 notes |
+| 02 | [[02 - Go Engineering/02 - Go for Cloud Native/00 - Welcome\|☁️ Go for Cloud Native]] | Docker, Kubernetes, gRPC, IaC, observability | 7 notes |
+| 03 | [[02 - Go Engineering/03 - Microservices with Go/00 - Welcome\|🔌 Microservices with Go]] | APIs, auth, databases, testing, resilience | 7 notes |
+| 04 | [[02 - Go Engineering/04 - DevSecOps and CLI Tools/00 - Welcome\|🛡️ DevSecOps and CLI Tools]] | Cobra, security, CI/CD, container hardening | 7 notes |
+| 05 | [[02 - Go Engineering/05 - Local AI with Go/00 - Welcome\|🤖 Local AI with Go]] | Ollama, chatbots, RAG, Wails, edge AI | 7 notes |
+| 06 | [[02 - Go Engineering/06 - Go for ML Backend/00 - Welcome\|⚙️ Go for ML Backend]] | ONNX, model serving, feature stores, gateways | 7 notes |
+
+### Deep Content Expansion
+
+| # | Course | Focus | Notes |
+|---|--------|-------|-------|
+| 07 | [[02 - Go Engineering/07 - Gorgonia - Deep Learning in Go/00 - Welcome to Gorgonia\|🧠 Gorgonia — Deep Learning in Go]] | Tensors, autodiff, neural networks, GPU, PyTorch comparison | 6 notes |
+| 08 | [[02 - Go Engineering/07 - LocalAI - Local LLM Server/00 - Welcome to LocalAI\|🤖 LocalAI — Local LLM Server]] | Local LLMs, image gen, audio, API compatibility, enterprise deploy | 6 notes |
+| 09 | [[02 - Go Engineering/07 - Wails - Desktop Apps with Go/00 - Welcome to Wails\|🖥️ Wails — Desktop Apps with Go]] | Go-JS bridge, cross-platform, native APIs, production packaging | 6 notes |
 
 ### Practical Tracks
 
 | Track | Description |
 |-------|-------------|
-| [[projects/00 - Go Project Planning Guide\|📋 projects/]] | Step-by-step project guides to build your portfolio |
-| [[extra/00 - Welcome to Go Extra\|👋 extra/]] | Advanced topics: GC internals, eBPF, WASM, performance tuning |
+| [[00 - Go Project Planning Guide\|📋 projects/]] | Step-by-step project guides to build your portfolio |
+| [[00 - Welcome to Go Extra\|👋 extra/]] | Advanced topics: GC internals, eBPF, WASM, performance tuning |
 
 ---
 

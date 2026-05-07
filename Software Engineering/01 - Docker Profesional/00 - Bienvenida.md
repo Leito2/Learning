@@ -12,7 +12,7 @@ A continuación encontrarás el índice completo del curso con enlaces a cada m�
 
 | # | Módulo | Descripción | Enlace |
 |---|--------|-------------|--------|
-| 00 | Bienvenida | Índice, glosario y objetivos | [[00 - Bienvenida]] |
+| 00 | Bienvenida | Índice, glosario y objetivos | [[01 - Docker Profesional/00 - Bienvenida]] |
 | 01 | Fundamentos de Docker y Contenedores | Arquitectura, namespaces, cgroups, ciclo de vida | [[01 - Fundamentos de Docker y Contenedores]] |
 | 02 | Dockerfile y Buenas Prácticas | Sintaxis, multi-stage builds, seguridad, optimización | [[02 - Dockerfile y Buenas Practicas]] |
 | 03 | Docker Compose y Multi-Contenedores | Orquestación local, networking, variables de entorno | [[03 - Docker Compose y Multi-Contenedores]] |

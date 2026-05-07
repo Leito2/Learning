@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Command-line interfaces (CLIs) are the backbone of developer tooling, automation scripts, and cloud-native utilities. In the Go ecosystem, CLI design is not merely about parsing flags — it is about creating intuitive command hierarchies, discoverable help systems, and composable subcommands that scale from simple scripts to complex platforms like [[00 - Welcome|Kubernetes]] and Docker.
+Command-line interfaces (CLIs) are the backbone of developer tooling, automation scripts, and cloud-native utilities. In the Go ecosystem, CLI design is not merely about parsing flags — it is about creating intuitive command hierarchies, discoverable help systems, and composable subcommands that scale from simple scripts to complex platforms like [[02 - Go Engineering/04 - DevSecOps and CLI Tools/00 - Welcome|Kubernetes]] and Docker.
 
 This module explores CLI design patterns and the Cobra framework, the de facto standard for building professional CLIs in Go. You will learn how commands, flags, arguments, and configuration sources interact to produce user-friendly tools. Understanding these patterns is essential before moving into [[02 - Security Scanning and Hardening|security automation]] and [[03 - CI-CD Pipelines for Go Projects|CI/CD tooling]].
 

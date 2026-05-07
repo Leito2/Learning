@@ -11,7 +11,7 @@ A continuación se presenta el mapa de ruta de este curso. Cada nota está dise�
 
 | # | Nota | Enlace Interno | Enfoque Principal |
 |---|------|----------------|-------------------|
-| 00 | Bienvenida | [[00 - Bienvenida]] | Contexto, glosario y objetivos |
+| 00 | Bienvenida | [[01 - Advanced Python/04 - Librerias Basicas de Python/00 - Bienvenida]] | Contexto, glosario y objetivos |
 | 01 | Math y Random | [[01 - Math y Random]] | Cálculo numérico, estadística y aleatoriedad |
 | 02 | Datetime y Calendar | [[02 - Datetime y Calendar]] | Manejo temporal y zonas horarias |
 | 03 | Os y Sys | [[03 - Os y Sys]] | Interacción con el sistema operativo |

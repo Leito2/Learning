@@ -12,7 +12,7 @@ Python se ha convertido en el estándar de facto en ciencia de datos e IA por su
 
 | # | Nota | Descripción |
 |---|------|-------------|
-| 00 | [[00 - Bienvenida]] | Índice, glosario y objetivos. |
+| 00 | [[01 - Advanced Python/01 - Python Basico/00 - Bienvenida]] | Índice, glosario y objetivos. |
 | 01 | [[01 - Variables y Tipos de Datos]] | Variables como referencias, tipos built-in, mutabilidad, garbage collection. |
 | 02 | [[02 - Operadores Aritmeticos y Asignacion]] | Aritméticos, asignación, precedencia, comparación de floats. |
 | 03 | [[03 - Entrada y Salida de Datos]] | print, input, f-strings, argumentos de línea de comandos. |

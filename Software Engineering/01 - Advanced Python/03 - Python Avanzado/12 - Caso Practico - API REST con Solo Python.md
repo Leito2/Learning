@@ -486,4 +486,4 @@ ml_model_registry/
 
 ---
 
-**Enlaces internos de referencia:** [[00 - Bienvenida]], [[03 - Context Managers]], [[08 - Bases de Datos con SQLite]], [[09 - Testing con unittest y pytest]], [[11 - Logging y Configuracion de Proyectos]]
+**Enlaces internos de referencia:** [[01 - Advanced Python/03 - Python Avanzado/00 - Bienvenida]], [[03 - Context Managers]], [[08 - Bases de Datos con SQLite]], [[09 - Testing con unittest y pytest]], [[11 - Logging y Configuracion de Proyectos]]

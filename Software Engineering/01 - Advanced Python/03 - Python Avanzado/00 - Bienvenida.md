@@ -12,7 +12,7 @@ A continuación se presenta el índice completo de las notas que conforman este 
 
 | # | Nota | Enlace Interno | Foco Principal |
 |---|------|----------------|----------------|
-| 00 | Bienvenida | [[00 - Bienvenida]] | Contexto y objetivos |
+| 00 | Bienvenida | [[01 - Advanced Python/03 - Python Avanzado/00 - Bienvenida]] | Contexto y objetivos |
 | 01 | Iteradores y Generadores | [[01 - Iteradores y Generadores]] | Memoria y lazy evaluation |
 | 02 | Decoradores | [[02 - Decoradores]] | Reutilización y metaprogramación |
 | 03 | Context Managers | [[03 - Context Managers]] | Gestión de recursos |

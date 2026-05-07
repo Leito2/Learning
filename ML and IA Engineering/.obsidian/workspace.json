@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Continuity Prompt.md",
+                "file": "Welcome.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Continuity Prompt"
+              "title": "Welcome"
             }
           }
         ]
@@ -183,11 +183,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "e00ee6632ca363b0",
+  "active": "d907ab6e5339f734",
   "lastOpenFiles": [
+    "Continuity Prompt.md",
+    "00 - Indice Maestro de Cursos.md",
     "00 - Continuity Prompt.md",
     "PROMPT - Continuar Proyecto.md",
-    "00 - Indice Maestro de Cursos.md",
     "Welcome.md",
     "M06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida.md",
     "M06 - Cloud, Infra y Backend/24 - Backend para ML/01 - FastAPI y APIs REST.md",
@@ -213,7 +214,6 @@
     "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling.md",
     "M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida.md",
     "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/01 - Agentes vs Modelos de Lenguaje.md",
-    "M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida.md",
     "M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora",
     "M03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente",
     "M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion",

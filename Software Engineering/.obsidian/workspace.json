@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Rust Engineering/06 - Agentic AI with Rust/04 - Agent Orchestration and Reasoning Loops.md",
+                "file": "extra/05 - Rust for ML Infra.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04 - Agent Orchestration and Reasoning Loops"
+              "title": "05 - Rust for ML Infra"
             }
           }
         ]
@@ -185,32 +185,32 @@
   },
   "active": "026b994d93ee7461",
   "lastOpenFiles": [
-    "Rust Engineering/06 - Agentic AI with Rust/05 - Security and Sandboxing for Agents.md",
-    "Rust Engineering/06 - Agentic AI with Rust/06 - Building a Production-Ready AI Agent.md",
-    "Rust Engineering/03 - Rust for Data Engineering/03 - High-Performance ETL Pipelines in Rust.md",
-    "Go Engineering/01 - Go Fundamentals/06 - Modules, Packages, and Tooling.md",
-    "Go Engineering/01 - Go Fundamentals/05 - Error Handling and Panic Recovery.md",
-    "Go Engineering/01 - Go Fundamentals/04 - Goroutines and Channels.md",
-    "Go Engineering/01 - Go Fundamentals/03 - Structs, Embedding, and Composition.md",
-    "Go Engineering/01 - Go Fundamentals/assets/README.md",
-    "Go Engineering/01 - Go Fundamentals/01 - Syntax, Types, and Control Flow.md",
-    "Go Engineering/01 - Go Fundamentals/02 - Functions, Methods, and Interfaces.md",
-    "Go Engineering/01 - Go Fundamentals/00 - Welcome.md",
-    "Rust Engineering/01 - Rust Fundamentals/02 - Types, Traits, and Generics.md",
-    "Rust Engineering/01 - Rust Fundamentals/01 - Ownership, Borrowing, and Lifetimes.md",
-    "Rust Engineering/01 - Rust Fundamentals/00 - Welcome.md",
-    "Rust Engineering/01 - Rust Fundamentals/04 - Error Handling and Pattern Matching.md",
-    "Rust Engineering/01 - Rust Fundamentals/05 - Collections and Iterators.md",
-    "Rust Engineering/01 - Rust Fundamentals/06 - Structs, Enums, and Advanced Patterns.md",
-    "Rust Engineering/02 - Advanced Rust/06 - Cross-compilation and Deployment.md",
-    "Rust Engineering/02 - Advanced Rust/05 - Testing, Benchmarking, and Profiling.md",
-    "Rust Engineering/02 - Advanced Rust/04 - Memory Management Deep Dive.md",
-    "Rust Engineering/02 - Advanced Rust/01 - Concurrency with Tokio and Async-Await.md",
-    "Rust Engineering/02 - Advanced Rust/00 - Welcome.md",
-    "Rust Engineering/01 - Rust Fundamentals/03 - Cargo, Crates, and the Module System.md",
-    "Rust Engineering/04 - Rust for ML and AI/06 - Model Quantization and Optimization.md",
-    "Go Engineering/01 - Go Fundamentals/assets",
-    "Rust Engineering/00 - Welcome to Rust Engineering.md",
-    "Rust Engineering/projects/05 - Building an MCP Agent in Rust.md"
+    "extra/04 - CI-CD for ML.md",
+    "extra/03 - Testing in ML Systems.md",
+    "extra/02 - System Design for ML.md",
+    "extra/01 - FastAPI for ML.md",
+    "02 - Go Engineering/06 - Go for ML Backend/00 - Welcome.md",
+    "02 - Go Engineering/extra/00 - Welcome to Go Extra.md",
+    "02 - Go Engineering/extra/03 - Go Performance Tuning.md",
+    "02 - Go Engineering/extra/02 - Advanced Concurrency Patterns.md",
+    "02 - Go Engineering/extra/01 - Go Memory Model and GC.md",
+    "02 - Go Engineering/00 - Welcome to Go Engineering.md",
+    "02 - Rust Engineering/07 - Candle Advanced Patterns/01 - Custom Models and Autodiff.md",
+    "02 - Rust Engineering/07 - Candle Advanced Patterns/02 - GPU Acceleration and Device Abstraction.md",
+    "02 - Rust Engineering/07 - Candle Advanced Patterns/03 - candle-transformers and Pre-built Architectures.md",
+    "02 - Rust Engineering/07 - Candle Advanced Patterns/00 - Welcome to Candle Advanced Patterns.md",
+    "02 - Rust Engineering/06 - Agentic AI with Rust/04 - Agent Orchestration and Reasoning Loops.md",
+    "02 - Rust Engineering/06 - Agentic AI with Rust/05 - Security and Sandboxing for Agents.md",
+    "02 - Rust Engineering/06 - Agentic AI with Rust/06 - Building a Production-Ready AI Agent.md",
+    "02 - Rust Engineering/03 - Rust for Data Engineering/03 - High-Performance ETL Pipelines in Rust.md",
+    "02 - Go Engineering/01 - Go Fundamentals/06 - Modules, Packages, and Tooling.md",
+    "02 - Go Engineering/01 - Go Fundamentals/05 - Error Handling and Panic Recovery.md",
+    "02 - Go Engineering/01 - Go Fundamentals/04 - Goroutines and Channels.md",
+    "02 - Go Engineering/01 - Go Fundamentals/03 - Structs, Embedding, and Composition.md",
+    "02 - Go Engineering/01 - Go Fundamentals/assets/README.md",
+    "02 - Go Engineering/01 - Go Fundamentals/01 - Syntax, Types, and Control Flow.md",
+    "02 - Go Engineering/01 - Go Fundamentals/02 - Functions, Methods, and Interfaces.md",
+    "02 - Go Engineering/01 - Go Fundamentals/00 - Welcome.md",
+    "02 - Go Engineering/01 - Go Fundamentals/assets"
   ]
 }
