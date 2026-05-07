@@ -117,13 +117,32 @@ Learning/
 **Current total: ~513 notes created** (294 original + 42 SE/ML/Transversal + 67 Go + 61 Rust + 49 restructuring)
 
 **Format Improvement Progress:**
-- Go Fundamentals (01): ✅ IMPROVED — 1331 → 4179 lines (+3.1x deeper)
-- All other Go/Rust courses: 🚧 Pending improvement to new format
+| Course | Status | Avg Lines | Notes |
+|--------|--------|-----------|-------|
+| Go 01 - Fundamentals | ✅ IMPROVED | ~600 | 7/7 |
+| Go 02 - Cloud Native | ✅ IMPROVED | ~500 | 7/7 |
+| Go 03 - Microservices | ✅ IMPROVED | ~500 | 7/7 |
+| Go 04 - DevSecOps | ✅ IMPROVED | ~520 | 7/7 |
+| Go 05 - Local AI | ✅ IMPROVED | ~550 | 7/7 |
+| Go 06 - ML Backend | ✅ IMPROVED | ~530 | 7/7 |
+| Go 07 - Gorgonia | ✅ CREATED (deep format) | ~400 | 6/6 |
+| Go 07 - LocalAI | ✅ CREATED (deep format) | ~400 | 6/6 |
+| Go 07 - Wails | ✅ CREATED (deep format) | ~400 | 6/6 |
+| Rust 01 - Fundamentals | ✅ IMPROVED | ~510 | 7/7 |
+| Rust 02 - Advanced Rust | 🚧 PENDING | ~300 | 0/7 |
+| Rust 03 - Data Engineering | 🚧 PENDING | ~300 | 0/7 |
+| Rust 04 - Rust for ML/AI | 🚧 PENDING | ~300 | 0/7 |
+| Rust 05 - WebAssembly | 🚧 PENDING | ~300 | 0/7 |
+| Rust 06 - Agentic AI | 🚧 PENDING | ~300 | 0/7 |
+| Rust 07 - Polars | ✅ CREATED (deep format) | ~390 | 6/6 |
+| Rust 07 - Candle | ✅ CREATED (deep format) | ~400 | 6/6 |
+| Go projects/extra | 🚧 PENDING | ~250 | 0/13 |
+| Rust projects/extra | 🚧 PENDING | ~250 | 0/13 |
 
 **Git Checkpoints:**
-- `ef57e18` — Go Fundamentals improved with new deep format (latest)
+- `888e6a6` — Deep expansion courses + Go 02-06 + Rust 01 improved (latest)
+- `ef57e18` — Go Fundamentals improved with new deep format
 - `6de9e0e` — Rust Engineering complete (revert point)
-- `f17ca9b` — Go Engineering complete
 
 ---
 
@@ -332,27 +351,47 @@ Subagents sometimes complete work (files created on disk) but do not return a re
 
 ## Upcoming Work Queue
 
-### 1. Go Engineering (✅ COMPLETE — 49 notes)
-- **01 - Go Fundamentals:** ✅ IMPROVED to new deep format (4179 lines, ASCII + Mermaid, ML context)
-- **02-06 courses:** 🚧 PENDING improvement to new deep format
-- **Projects and Extra:** 🚧 PENDING improvement
+### 1. Go Engineering (✅ COMPLETE — 67 notes)
+- **01 - Go Fundamentals:** ✅ IMPROVED to new deep format (~600 lines/note)
+- **02 - Go for Cloud Native:** ✅ IMPROVED to new deep format (~500 lines/note)
+- **03 - Microservices with Go:** ✅ IMPROVED to new deep format (~500 lines/note)
+- **04 - DevSecOps and CLI Tools:** ✅ IMPROVED to new deep format (~520 lines/note)
+- **05 - Local AI with Go:** ✅ IMPROVED to new deep format (~550 lines/note)
+- **06 - Go for ML Backend:** ✅ IMPROVED to new deep format (~530 lines/note)
+- **07 - Gorgonia:** ✅ CREATED (deep format, 6 notes)
+- **07 - LocalAI:** ✅ CREATED (deep format, 6 notes)
+- **07 - Wails:** ✅ CREATED (deep format, 6 notes)
+- **Projects and Extra:** 🚧 PENDING improvement (13 notes)
 
-### 2. Rust Engineering (✅ COMPLETE — 49 notes)
-- **All 6 courses:** 🚧 PENDING improvement to new deep format (same structure as Go Fundamentals)
-- **Projects and Extra:** 🚧 PENDING improvement
+### 2. Rust Engineering (✅ 68 notes, partial format)
+- **01 - Rust Fundamentals:** ✅ IMPROVED to new deep format (~510 lines/note)
+- **02 - Advanced Rust:** 🚧 PENDING improvement to new deep format
+- **03 - Rust for Data Engineering:** 🚧 PENDING improvement to new deep format
+- **04 - Rust for ML and AI:** 🚧 PENDING improvement to new deep format
+- **05 - WebAssembly and Edge AI:** 🚧 PENDING improvement to new deep format
+- **06 - Agentic AI with Rust:** 🚧 PENDING improvement to new deep format
+- **07 - Polars Internals:** ✅ CREATED (deep format, 6 notes)
+- **07 - Candle Advanced:** ✅ CREATED (deep format, 6 notes)
+- **Projects and Extra:** 🚧 PENDING improvement (13 notes)
 
 ### 3. Note Improvement Priority (Apply NEW Format)
 
-| Course | Current Avg Lines | Target | Priority |
-|--------|-------------------|--------|----------|
-| Go 02 - Functions, Methods, Interfaces | 608 | Refresh | 🔴 High |
-| Go 03 - Structs, Embedding, Composition | 758 | Refresh | 🔴 High |
-| Go 04 - Goroutines and Channels | 1210 | Refresh | 🔴 High |
-| Go 05 - Error Handling | 600 | Refresh | 🔴 High |
-| Go 06 - Modules, Packages, Tooling | 586 | Refresh | 🔴 High |
-| Rust 01-06 courses | 200-400 | 400-600 | 🟡 Medium |
-| Go projects/extra | 200-300 | 300-500 | 🟢 Lower |
-| Rust projects/extra | 200-300 | 300-500 | 🟢 Lower |
+| Course | Current Avg Lines | Target | Priority | Status |
+|--------|-------------------|--------|----------|--------|
+| Go 01 - Fundamentals | ~600 | 400-600 | ✅ Done | 7/7 |
+| Go 02 - Cloud Native | ~500 | 400-600 | ✅ Done | 7/7 |
+| Go 03 - Microservices | ~500 | 400-600 | ✅ Done | 7/7 |
+| Go 04 - DevSecOps | ~520 | 400-600 | ✅ Done | 7/7 |
+| Go 05 - Local AI | ~550 | 400-600 | ✅ Done | 7/7 |
+| Go 06 - ML Backend | ~530 | 400-600 | ✅ Done | 7/7 |
+| Rust 01 - Fundamentals | ~510 | 400-600 | ✅ Done | 7/7 |
+| Rust 02 - Advanced Rust | ~300 | 400-600 | 🔴 High | 0/7 |
+| Rust 03 - Data Engineering | ~300 | 400-600 | 🔴 High | 0/7 |
+| Rust 04 - Rust for ML/AI | ~300 | 400-600 | 🔴 High | 0/7 |
+| Rust 05 - WebAssembly | ~300 | 400-600 | 🔴 High | 0/7 |
+| Rust 06 - Agentic AI | ~300 | 400-600 | 🔴 High | 0/7 |
+| Go projects/extra | ~250 | 300-500 | 🟢 Lower | 0/13 |
+| Rust projects/extra | ~250 | 300-500 | 🟢 Lower | 0/13 |
 
 **Format Improvement Rules for Existing Notes:**
 - Break into modular concepts (Module X.Y sections)

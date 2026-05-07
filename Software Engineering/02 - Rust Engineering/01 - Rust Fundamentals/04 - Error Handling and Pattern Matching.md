@@ -1,18 +1,69 @@
-# ⚠️ Error Handling and Pattern Matching
+# 🛡️ Error Handling and Pattern Matching
+
+## 🎯 Learning Objectives
+
+By the end of this module, you will be able to:
+
+- Distinguish between recoverable errors (`Result<T, E>`) and optional values (`Option<T>`) using type-theoretic reasoning.
+- Propagate failures ergonomically with the `?` operator while preserving error context.
+- Leverage exhaustive pattern matching to enforce total functions over algebraic data types.
+- Design structured error hierarchies with `thiserror` and `anyhow` for library and application boundaries.
+- Apply these patterns to build resilient ML/AI data pipelines that fail fast and report precisely.
 
 ## Introduction
 
-Error handling is not an afterthought in Rust — it is a fundamental part of the type system. Rather than exceptions that unwind the stack, Rust uses explicit return types that force programmers to acknowledge and handle failures. The `Result<T, E>` and `Option<T>` types make error cases part of the function signature, transforming runtime crashes into compile-time obligations.
+Modern machine learning systems are brittle not because models are inaccurate, but because data pipelines silently swallow malformed inputs, missing files, or shape mismatches. Rust's approach to error handling—encoding failure directly into the type system—transforms these runtime surprises into compile-time obligations. When a tokenizer cannot decode a byte sequence, or a feature store returns an empty slice, the resulting `Result` or `Option` forces the caller to acknowledge the possibility of failure before proceeding. This aligns with the robustness principle for AI infrastructure: be explicit about uncertainty.
 
-Pattern matching is the primary mechanism for working with these types and decomposing complex data structures. The `match` expression is exhaustive, meaning the compiler ensures every possible case is handled. This combination of explicit errors and exhaustive matching produces code that is both robust and self-documenting.
+Pattern matching is the complement to these explicit types. Where other languages offer `switch` statements that fall through by default, Rust's `match` is an expression that demands totality: every variant must have a corresponding arm. For ML practitioners, this means that adding a new label to an enum—say, a new token type or a new model format variant—triggers compiler-guided updates across every site that inspects the value. The combination of [[Result<T,E>]] and [[Pattern Matching]] creates self-documenting, refactor-resistant codebases that scale from research notebooks to production serving layers.
 
-This module explores the full error handling toolkit: from basic `Result` propagation to custom error types using `thiserror` and `anyhow`, and from simple `if let` bindings to deep destructuring of nested enums. You will learn to write code that fails gracefully and communicates errors clearly.
+In distributed training and inference, errors are not exceptional; they are expected. A shard may be corrupted, a GPU may run out of memory, or a schema may drift. By treating errors as ordinary values that compose through monadic operators, Rust allows AI systems to degrade gracefully rather than panic opaquely. This module explores the theoretical foundations, mental models, and production patterns that make Rust error handling a competitive advantage for [[Machine Learning Systems]].
 
-## 1. The Result and Option Types
+## Module 1: Algebraic Error Types
 
-Rust represents recoverable errors with `Result<T, E>` and optional values with `Option<T>`:
+### 1.1 Theoretical Foundation 🧠
+
+The theoretical roots of Rust's error types lie in algebraic data types (ADTs) and the elimination of null references. In 1965, Tony Hoare introduced null into ALGOL W, later calling it his "billion-dollar mistake" because it conflated the absence of a value with the presence of a sentinel. ML and Haskell addressed this with the `option` and `Either` types, respectively. Rust's `Option<T>` and `Result<T, E>` are direct descendants: they are *sum types* (tagged unions) that force the programmer to handle both variants.
+
+From a type-theoretic perspective, `Result<T, E>` corresponds to the sum `T + E`. The `?` operator is syntactic sugar for monadic bind (`>>=`) on this sum type, collapsing nested error handling into linear control flow. This design ensures that the error domain is always visible in the function signature, a property known as **signature transparency** that is essential for API stability in large ML frameworks.
+
+### 1.2 Mental Model 📐
+
+Visualize `Result<T, E>` as a railway switch where every function call is a junction:
+
+```
+┌─────────────────────────────────────────────┐
+│           Result<T, E> Railway              │
+├───────────────────┬─────────────────────────┤
+│                   │                         │
+│   Ok(T) Track     │     Err(E) Track        │
+│   ───────────►    │     ───────────►        │
+│   Continue with T │     Return early to     │
+│                   │     caller with E       │
+│                   │                         │
+└───────────────────┴─────────────────────────┘
+```
+
+Similarly, `Option<T>` is a switch between presence and absence:
+
+```
+┌─────────────────────────────────────────────┐
+│           Option<T> Switch                  │
+├───────────────────┬─────────────────────────┤
+│                   │                         │
+│   Some(T)         │     None                │
+│   ┌─────┐         │     ┌─────┐             │
+│   │  T  │────────►│     │ ∅   │────────►    │
+│   └─────┘         │     └─────┘    Skip or  │
+│   Unwrap and use  │              provide default│
+│                   │                         │
+└───────────────────┴─────────────────────────┘
+```
+
+### 1.3 Syntax and Semantics 📝
 
 ```rust
+// WHY: Enums make error cases part of the public API.
+// Callers cannot ignore them without explicit unsafe code.
 enum Result<T, E> {
     Ok(T),
     Err(E),
@@ -22,67 +73,211 @@ enum Option<T> {
     Some(T),
     None,
 }
-```
 
-These types are so central to Rust that they have dedicated operators and extensive standard library support.
-
-### The `?` Operator
-
-The `?` operator provides ergonomic error propagation:
-
-```rust
-fn read_username_from_file() -> Result<String, io::Error> {
-    let mut file = File::open("hello.txt")?;
-    let mut username = String::new();
-    file.read_to_string(&mut username)?;
-    Ok(username)
+// WHY: Using ? collapses nested match blocks into readable linear flow.
+fn read_model_config(path: &str) -> Result<ModelConfig, io::Error> {
+    let text = std::fs::read_to_string(path)?; // Early return on Err
+    let config: ModelConfig = serde_json::from_str(&text)?; // Propagate parse error
+    Ok(config)
 }
+
+// WHY: map transforms success values without unwrapping.
+let maybe_batch_size: Option<usize> = Some(32);
+let doubled = maybe_batch_size.map(|b| b * 2); // Some(64)
 ```
 
-The `?` operator:
+### 1.4 Visual Representation 🖼️
 
-- Returns `Err(e)` early if the expression is an error
-- Unwraps the `Ok` value otherwise
-- Works with any type implementing the `FromResidual` trait (including `Option`)
+![Sum type diagram](https://commons.wikimedia.org/wiki/File:Either_type.svg)
 
-💡 **Tip:** Chain multiple `?` operations in a single function, but keep the function focused. If you find yourself using `?` for wildly different error types, consider mapping them to a unified error type or splitting the function.
+```mermaid
+graph TD
+    A[Function Call] --> B{Returns Result?}
+    B -->|Ok| C[Unwrap T]
+    B -->|Err| D[Propagate E]
+    C --> E[Continue Pipeline]
+    D --> F[Caller Handles Error]
+    style A fill:#f9f,stroke:#333
+    style F fill:#bbf,stroke:#333
+```
 
-### Composing Results
+### 1.5 Application in ML/AI Systems 🤖
+
+| System | Pattern | ML/AI Benefit |
+|---|---|---|
+| Hugging Face tokenizers | `Result<Encoding, Error>` | Invalid UTF-8 in training data fails fast at the source |
+| ONNX Runtime Rust API | `Result<Session, Status>` | Model initialization errors surface before inference begins |
+| Tch-rs (PyTorch bindings) | `Option<Tensor>` | Missing indices return `None` instead of causing a segfault |
+
+### 1.6 Common Pitfalls ⚠️
+
+> **Warning:** Using `unwrap()` in data preprocessing pipelines crashes the entire training job on the first malformed sample. Prefer `?` or `match` and log the offending record.
+
+> **Warning:** Ignoring a `Result` with `let _ = file.write_all(buf);` silently drops I/O errors during model checkpointing, leading to corrupted saves.
+
+> **Tip:** Use `Result::map_err` to attach domain-specific context (e.g., shard filename) before propagating a low-level error up to the orchestrator.
+
+### 1.7 Knowledge Check ❓
+
+1. Why is `Result<T, E>` preferable to exceptions when running batch inference across thousands of input shards?
+2. What does the compiler do if you add a new variant to an enum but forget to update an existing `match` expression?
+3. When should you choose `Option<T>` over a sentinel value such as `-1` or an empty string?
+
+## Module 2: Error Propagation and the Try Mechanism
+
+### 2.1 Theoretical Foundation 🧠
+
+The `?` operator, stabilized in Rust 1.13 and generalized by the `FromResidual` trait in Rust 1.56, is a zero-cost abstraction over control-flow graphs. Its lineage traces back to Haskell's `Monad` typeclass and the `do`-notation that sequences fallible computations. In Rust, `?` desugars to a `match` that returns `Err(From::from(e))` on failure and continues with the unwrapped value on success.
+
+This mechanism preserves the **structural typing** of errors: a function may declare a unified error type, yet individual calls within its body may produce distinct lower-level errors, provided each implements `From<LowerError>`. For ML systems, this means a data loader can return a single `DataLoadError` while internally handling `io::Error`, `serde_json::Error`, and `ParseError` without manual conversion boilerplate.
+
+### 2.2 Mental Model 📐
+
+Imagine `?` as an automated elevator that sends errors straight to the caller:
+
+```
+┌─────────────────────────────────────────────┐
+│  Caller: load_dataset()                     │
+│  ┌───────────────────────────────────────┐  │
+│  │  open_file(path)?                     │  │
+│  │     │                                 │  │
+│  │     ▼ Err                             │  │
+│  │  ┌─────────┐                          │  │
+│  │  │ Elevator│──────────────────────────┼──┼──► Returns Err immediately
+│  │  └─────────┘                          │  │
+│  │     │ Ok                              │  │
+│  │     ▼                                 │  │
+│  │  parse_header()? ──► Elevator ────────┼──┼──► Same behavior
+│  │     │ Ok                              │  │
+│  │     ▼                                 │  │
+│  │  return Ok(dataset)                   │  │
+│  └───────────────────────────────────────┘  │
+└─────────────────────────────────────────────┘
+```
+
+### 2.3 Syntax and Semantics 📝
 
 ```rust
-fn divide(a: f64, b: f64) -> Result<f64, String> {
-    if b == 0.0 {
-        Err("Division by zero".to_string())
-    } else {
-        Ok(a / b)
+use std::io;
+
+// WHY: A unified error enum lets callers match on high-level categories
+// while the ? operator handles low-level conversions automatically.
+#[derive(Debug)]
+enum PipelineError {
+    Io(io::Error),
+    Parse(String),
+}
+
+impl From<io::Error> for PipelineError {
+    fn from(e: io::Error) -> Self {
+        PipelineError::Io(e)
     }
 }
 
-fn calculate() -> Result<f64, String> {
-    let x = divide(10.0, 2.0)?;
-    let y = divide(x, 3.0)?;
-    let z = divide(y, 0.0)?; // Early return with Err
-    Ok(z)
+fn process_shard(path: &str) -> Result<Vec<f64>, PipelineError> {
+    let raw = std::fs::read_to_string(path)?; // io::Error -> PipelineError
+    let values: Vec<f64> = raw
+        .lines()
+        .map(|line| line.parse().map_err(|e| PipelineError::Parse(format!("{}", e))))
+        .collect::<Result<_, _>>()?; // Collect stops on first Err
+    Ok(values)
 }
+
+// WHY: and_then chains fallible steps without nesting.
+let maybe = Some(10);
+let result = maybe.and_then(|x| Some(x * 2)).and_then(|x| Some(x + 1));
 ```
 
-⚠️ **Warning:** Do not use `unwrap()` or `expect()` in production code except in truly exceptional cases where failure represents a programming bug (e.g., failed mutex lock due to poisoning). Prefer `?`, `match`, or proper error handling. Every `unwrap()` is a potential panic point.
+### 2.4 Visual Representation 🖼️
 
-## 2. Pattern Matching
+![Control flow](https://commons.wikimedia.org/wiki/File:Control_flow_diagram.svg)
 
-The `match` expression is Rust's most powerful control flow construct. It compares a value against a series of patterns and executes the matching arm.
+```mermaid
+flowchart TD
+    A[Call returns Result] --> B{Is Ok?}
+    B -->|Yes| C[Unwrap value, continue]
+    B -->|No| D[Convert via From]
+    D --> E[Return Err early]
+    C --> F[Next statement]
+    E --> G[Caller receives Err]
+    style A fill:#f9f,stroke:#333
+    style G fill:#f44,stroke:#333
+```
 
-### Exhaustive Matching
+### 2.5 Application in ML/AI Systems 🤖
+
+| Pipeline Stage | Pattern | Benefit |
+|---|---|---|
+| Data loading | `?` on file reads | Corrupt shard fails the epoch early with a precise path |
+| Feature extraction | `Result::map` | Transformations chain without deeply nested `match` blocks |
+| Model serving | `anyhow::Context` | Attach request IDs to low-level I/O errors for distributed tracing |
+
+### 2.6 Common Pitfalls ⚠️
+
+> **Warning:** Mixing incompatible error types without a `From` implementation produces cryptic type mismatch errors at the `?` site. Always implement `From` or use `.map_err()`.
+
+> **Warning:** Using `?` inside a closure passed to `Iterator::map` does not propagate to the outer function because closures are separate control-flow boundaries. Use `try_map` or `filter_map` instead.
+
+> **Tip:** Implement `From<MyError>` for `anyhow::Error` once at the crate root to enable `?` in every application module without further conversion.
+
+### 2.7 Knowledge Check ❓
+
+1. What trait does the `?` operator rely on to convert between error types?
+2. Why is `?` permitted in `main` since Rust 1.26, and what return type does `main` need?
+3. How does `map_err` differ from `?` in terms of control flow?
+
+## Module 3: Exhaustive Pattern Matching
+
+### 3.1 Theoretical Foundation 🧠
+
+Pattern matching originated in functional languages such as SML, OCaml, and Haskell, where it serves as the primary means of decomposing sum and product types. Mathematically, a pattern is a partial inverse of a constructor: it maps a value back to the arguments used to create it. Rust extends this with *exhaustiveness checking*, which guarantees that a `match` expression covers every inhabitant of the matched type. This makes Rust `match` a tool for writing **total functions**—functions defined for all inputs—which is a cornerstone of reliable systems.
+
+In contrast to C-style `switch` statements, where missing a case is a silent bug, Rust's compiler rejects programs with non-exhaustive patterns. For ML engineers, this is invaluable when evolving label schemas, model format versions, or protocol states: the compiler becomes a refactoring assistant that prevents partial handling.
+
+### 3.2 Mental Model 📐
+
+Pattern matching is a routing table for data:
+
+```
+Incoming Value: Coin::Quarter("NY")
+              │
+              ▼
+┌─────────────────────────────────────────────┐
+│              match coin {                   │
+│  ┌──────────────┬────────────────────────┐  │
+│  │ Penny        │ ──────► 1 cent         │  │
+│  │ Nickel       │ ──────► 5 cents        │  │
+│  │ Dime         │ ──────► 10 cents       │  │
+│  │ Quarter(st)  │ ──────► 25 + print(st) │  │
+│  └──────────────┴────────────────────────┘  │
+└─────────────────────────────────────────────┘
+```
+
+Destructuring unpacks nested shapes in a single expression:
+
+```
+┌─────────────────────────────────────────────┐
+│  match point {                              │
+│    Point { x, y: 0 } ► "On x-axis"         │
+│    Point { x: 0, y } ► "On y-axis"         │
+│    Point { x, y }    ► "At ({}, {})"       │
+│  }                                          │
+└─────────────────────────────────────────────┘
+```
+
+### 3.3 Syntax and Semantics 📝
 
 ```rust
+// WHY: match is an expression, so it returns a value.
+// The compiler verifies every variant is handled.
 enum Coin {
     Penny,
     Nickel,
     Dime,
-    Quarter(String), // State name
+    Quarter(String),
 }
 
-fn value_in_cents(coin: Coin) -> u8 {
+fn value(coin: Coin) -> u8 {
     match coin {
         Coin::Penny => 1,
         Coin::Nickel => 5,
@@ -93,242 +288,176 @@ fn value_in_cents(coin: Coin) -> u8 {
         }
     }
 }
-```
 
-The compiler verifies that all variants are covered. If you add a new variant to `Coin`, the compiler will flag every `match` that doesn't handle it — a powerful refactoring aid.
-
-### `if let` and `while let`
-
-For single-pattern matches, use `if let` to reduce boilerplate:
-
-```rust
+// WHY: if let reduces boilerplate when only one variant matters.
 if let Some(3) = some_value {
     println!("Three");
 }
 
+// WHY: while let consumes an iterator until exhaustion.
 while let Some(value) = stack.pop() {
     println!("{}", value);
 }
-```
 
-### Destructuring
-
-Patterns can destructure structs, tuples, and enums:
-
-```rust
-struct Point { x: i32, y: i32 }
-
-let p = Point { x: 0, y: 7 };
-
-match p {
-    Point { x, y: 0 } => println!("On the x axis at {}", x),
-    Point { x: 0, y } => println!("On the y axis at {}", y),
-    Point { x, y } => println!("On neither axis: ({}, {})", x, y),
-}
-```
-
-### Guards and Ranges
-
-```rust
+// WHY: Guards add runtime predicates without nested logic.
 match age {
     0 => println!("Newborn"),
     n if n < 13 => println!("Child"),
-    n if n < 20 => println!("Teenager"),
     20..=65 => println!("Adult"),
     _ => println!("Senior"),
 }
 ```
 
-### Mermaid: Error Handling Flowchart
+### 3.4 Visual Representation 🖼️
+
+![Pattern matching](https://commons.wikimedia.org/wiki/File:Pattern_matching.svg)
+
+```mermaid
+flowchart LR
+    A[Enum Value] --> B{match arm}
+    B -->|Variant 1| C[Block 1]
+    B -->|Variant 2| D[Block 2]
+    B -->|Wildcard _| E[Default Block]
+    C --> F[Return Value]
+    D --> F
+    E --> F
+    style A fill:#f9f,stroke:#333
+    style F fill:#bbf,stroke:#333
+```
+
+### 3.5 Application in ML/AI Systems 🤖
+
+| Use Case | Pattern | Benefit |
+|---|---|---|
+| Token classification | `match token.label` | Compiler catches new label variants added after retraining |
+| Decision tree traversal | `if let Some(node) = children.get(i)` | Safe optional child access without panicking on missing branches |
+| Config schema validation | Destructuring nested JSON enums | Missing fields become compile-time errors when represented as structs |
+
+### 3.6 Common Pitfalls ⚠️
+
+> **Warning:** Adding a variant to a public enum in a library crate will break downstream `match` arms unless a wildcard `_ =>` arm exists. Plan migration with `#[non_exhaustive]`.
+
+> **Warning:** Shadowing a variable inside a match arm (`let x = ...` inside `Coin::Penny => { let x = 1; }`) does not affect the outer scope, but using the same name in a pattern binding can confuse readers.
+
+> **Tip:** Use `@` bindings (`value @ 1..=10`) to both test a pattern and capture the matched value for use in the arm body.
+
+### 3.7 Knowledge Check ❓
+
+1. What does the compiler do if a match arm is missing for an enum variant?
+2. When is `if let` more idiomatic than a full `match` expression?
+3. How do match guards (`if condition`) affect the exhaustiveness guarantee?
+
+## Module 4: Production Error Types
+
+### 4.1 Theoretical Foundation 🧠
+
+Production error handling distinguishes between library and application boundaries. Libraries expose structured error enums so that callers can programmatically recover—retry on timeout, skip on parse failure, or fallback on missing data. Applications, by contrast, often only need to aggregate errors for logging and crash reporting. This dichotomy mirrors the **open/closed principle**: library errors are open for extension (new variants), while application errors are closed for modification (opaque contexts).
+
+The `thiserror` crate automates the `Display` and `Error` trait implementations for library types, preserving enum structure. `anyhow` provides an opaque, context-rich error type for applications, enabling ergonomic `?` propagation without exposing internal implementation details. Together, they form a layered error architecture that is standard in the Rust ML ecosystem.
+
+### 4.2 Mental Model 📐
+
+A layered error stack separates concerns between library consumers and operators:
+
+```
+┌─────────────────────────────────────────────┐
+│              Application Layer              │
+│         anyhow::Result<Context>             │
+├─────────────────────────────────────────────┤
+│              Library Layer                  │
+│  ┌──────────────┬────────────────────────┐  │
+│  │  IoError     │  ParseError            │  │
+│  │  (#[from])   │  (#[from])             │  │
+│  ├──────────────┴────────────────────────┤  │
+│  │  ConfigError { file, line }           │  │
+│  └───────────────────────────────────────┘  │
+├─────────────────────────────────────────────┤
+│              Std Library                    │
+│         io::Error  ParseIntError            │
+└─────────────────────────────────────────────┘
+```
+
+### 4.3 Syntax and Semantics 📝
+
+```rust
+use thiserror::Error;
+
+// WHY: thiserror generates Display and Error boilerplate,
+// letting library consumers match on specific variants.
+#[derive(Error, Debug)]
+enum ModelError {
+    #[error("IO failed: {0}")]
+    Io(#[from] io::Error),
+    
+    #[error("Invalid hyperparameter: {name} = {value}")]
+    Hyperparameter { name: String, value: String },
+}
+
+use anyhow::{Context, Result};
+
+// WHY: anyhow is ideal for binaries where the caller only needs
+// to log or report, not match on variants.
+fn load_model(path: &str) -> Result<Model> {
+    let bytes = std::fs::read(path)
+        .with_context(|| format!("Failed to read model weights from {}", path))?;
+    let model = bincode::deserialize(&bytes)
+        .context("Weights corrupted or version mismatched")?;
+    Ok(model)
+}
+```
+
+### 4.4 Visual Representation 🖼️
+
+![Error hierarchy](https://commons.wikimedia.org/wiki/File:Exception_hierarchy.svg)
 
 ```mermaid
 flowchart TD
-    A[Function Call] --> B{Returns Result?}
-    B -->|Ok| C[Continue Execution]
-    B -->|Err| D{Use ? Operator?}
-    D -->|Yes| E[Return Err Early]
-    D -->|No| F[Match on Result]
-    F -->|Ok| C
-    F -->|Err| G[Handle Error Locally]
-    E --> H[Caller Receives Err]
-    G --> I[Recovery or Retry]
-    C --> J[Return Ok]
+    A[io::Error: file not found] --> B[anyhow::Context]
+    B --> C[anyhow::Error: failed to read config]
+    C --> D[main: print error chain]
+    D --> E[Operator: sees full context]
+    style A fill:#f9f,stroke:#333
+    style E fill:#bbf,stroke:#333
 ```
 
-## 3. Error Handling Comparison
+### 4.5 Application in ML/AI Systems 🤖
 
-| Feature | Rust Result | Go Error | Python Exceptions |
-|---|---|---|---|
-| Return Type | Explicit `Result<T, E>` | Multiple return `(T, error)` | Implicit exception stack |
-| Error Ignoring | Compiler warning (unused Result) | Easy to ignore `_` | Silent swallow with `pass` |
-| Propagation | `?` operator | Manual `if err != nil` | Automatic stack unwinding |
-| Stack Trace | Optional (backtrace crate) | Optional | Automatic |
-| Performance | Zero-cost | Zero-cost | Stack unwinding overhead |
-| Type Safety | Error type in signature | `error` interface | Untyped |
-| Composition | `map`, `and_then`, `or_else` | Manual chaining | `try/except` blocks |
+| System | Crate | Benefit |
+|---|---|---|
+| Burn (ML framework) | `thiserror` | Consumers match on `BackendError` variants to select fallback devices |
+| Linfa (ML toolkit) | `anyhow` in examples | Rapid experimentation without boilerplate error enums |
+| TensorFlow Rust bindings | Custom error enum | Distinguishes graph construction errors from runtime session failures |
 
-The formula for error propagation complexity:
+### 4.6 Common Pitfalls ⚠️
 
-```
-Error_Propagation = Σ(match_branches)
-```
+> **Warning:** Using `anyhow` in a public library API forces downstream crates to depend on `anyhow` and prevents programmatic error handling. Reserve `anyhow` for binaries and private internals.
 
-Where `match_branches` represents each point where a `Result` or `Option` must be unwrapped or propagated. The `?` operator reduces this sum significantly by collapsing sequential operations.
+> **Warning:** Deriving `#[from]` on every variant of a library error exposes low-level implementation details (e.g., `serde_json::Error`). Use `#[from]` only for stable, public error types.
 
-Real case: **AWS SDK for Rust** handles errors across dozens of services by defining a unified `SdkError<E>` type. Each service has its own error enum, but they all compose under the SDK error type. The `?` operator allows requests to be chained across services — for example, reading from S3, processing with Lambda, and writing to DynamoDB — with each step's errors propagating transparently. This explicit error model has caught numerous misconfigurations at compile time that would have manifested as runtime failures in other SDKs.
+> **Tip:** Provide a `source()` implementation manually when you need to hide internal error types but still want error-chain reporting for debugging.
 
-## 4. Custom Error Types
+### 4.7 Knowledge Check ❓
 
-For production applications, define structured error types that carry context.
-
-### Manual Error Enums
-
-```rust
-#[derive(Debug)]
-enum AppError {
-    Io(io::Error),
-    Parse(ParseIntError),
-    Config { file: String, line: usize },
-}
-
-impl fmt::Display for AppError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match self {
-            AppError::Io(e) => write!(f, "IO error: {}", e),
-            AppError::Parse(e) => write!(f, "Parse error: {}", e),
-            AppError::Config { file, line } => {
-                write!(f, "Config error in {} at line {}", file, line)
-            }
-        }
-    }
-}
-
-impl Error for AppError {}
-```
-
-### Using `thiserror`
-
-The `thiserror` crate reduces boilerplate for custom error types:
-
-```rust
-use thiserror::Error;
-
-#[derive(Error, Debug)]
-enum AppError {
-    #[error("IO error: {0}")]
-    Io(#[from] io::Error),
-    
-    #[error("Parse error: {0}")]
-    Parse(#[from] ParseIntError),
-    
-    #[error("Config error in {file} at line {line}")]
-    Config { file: String, line: usize },
-}
-```
-
-### Using `anyhow`
-
-For applications where you don't need structured error types, `anyhow` provides easy error handling:
-
-```rust
-use anyhow::{Context, Result};
-
-fn main() -> Result<()> {
-    let config = std::fs::read_to_string("config.json")
-        .context("Failed to read config file")?;
-    
-    let data: Config = serde_json::from_str(&config)
-        .context("Failed to parse config")?;
-    
-    Ok(())
-}
-```
-
-💡 **Tip:** Use `thiserror` for libraries where callers need to match on specific errors, and `anyhow` for applications where you just want to propagate errors with context. They can even be used together — `anyhow` will happily wrap `thiserror` types.
-
-## 5. Practical Code: Error Handling in Practice
-
-```rust
-use std::fs::File;
-use std::io::{self, BufRead, BufReader};
-use thiserror::Error;
-
-#[derive(Error, Debug)]
-enum ProcessError {
-    #[error("IO error: {0}")]
-    Io(#[from] io::Error),
-    
-    #[error("Invalid number at line {line}: {value}")]
-    InvalidNumber { line: usize, value: String },
-    
-    #[error("Division by zero at line {line}")]
-    DivisionByZero { line: usize },
-}
-
-fn process_file(path: &str) -> Result<Vec<f64>, ProcessError> {
-    let file = File::open(path)?;
-    let reader = BufReader::new(file);
-    let mut results = Vec::new();
-    
-    for (line_num, line) in reader.lines().enumerate() {
-        let line = line?;
-        let parts: Vec<&str> = line.split(',').collect();
-        
-        if parts.len() != 2 {
-            continue;
-        }
-        
-        let numerator: f64 = parts[0].parse()
-            .map_err(|_| ProcessError::InvalidNumber {
-                line: line_num + 1,
-                value: parts[0].to_string(),
-            })?;
-        
-        let denominator: f64 = parts[1].parse()
-            .map_err(|_| ProcessError::InvalidNumber {
-                line: line_num + 1,
-                value: parts[1].to_string(),
-            })?;
-        
-        if denominator == 0.0 {
-            return Err(ProcessError::DivisionByZero {
-                line: line_num + 1,
-            });
-        }
-        
-        results.push(numerator / denominator);
-    }
-    
-    Ok(results)
-}
-
-fn main() {
-    match process_file("data.csv") {
-        Ok(values) => println!("Results: {:?}", values),
-        Err(e) => eprintln!("Error: {}", e),
-    }
-}
-```
-
----
+1. When should a library use `thiserror` instead of `anyhow`?
+2. What does the `#[from]` attribute generate, and when is it appropriate?
+3. How does `anyhow::Context` improve debugging in production pipelines?
 
 ## 📦 Compression Code
 
-Complete Rust script with comprehensive error handling:
+Complete Rust script demonstrating error handling and pattern matching:
 
 ```rust
 use std::fs::File;
 use std::io::{self, Read, Write};
 use thiserror::Error;
 
+// WHY: A structured error type makes every failure mode testable and loggable.
 #[derive(Error, Debug)]
 enum CompressError {
     #[error("IO error: {0}")]
     Io(#[from] io::Error),
-    
     #[error("Empty input")]
     EmptyInput,
-    
     #[error("Output larger than input: {input} -> {output}")]
     Ineffective { input: usize, output: usize },
 }
@@ -390,25 +519,25 @@ Build a **Resilient Configuration Loader** that reads configuration from multipl
 
 ### Functional Requirements
 
-1. Read base configuration from a JSON file with `Result`-based error handling
-2. Apply environment variable overrides using `Option` and `if let`
-3. Parse command-line arguments and merge with existing config
-4. Validate that all required fields are present, returning structured errors
-5. Provide context in errors (e.g., "Failed to load config from /etc/app.conf: permission denied")
+1. Read base configuration from a JSON file with `Result`-based error handling.
+2. Apply environment variable overrides using `Option` and `if let`.
+3. Parse command-line arguments and merge with existing config.
+4. Validate that all required fields are present, returning structured errors.
+5. Provide context in errors (e.g., "Failed to load config from /etc/app.conf: permission denied").
 
 ### Main Components
 
-- `Config` struct: Represents the merged configuration
-- `FileSource`, `EnvSource`, `ArgSource`: Individual configuration sources
-- `ConfigError` enum: Structured errors with source attribution
-- `Loader`: Orchestrates sources and applies overrides
+- `Config` struct: Represents the merged configuration.
+- `FileSource`, `EnvSource`, `ArgSource`: Individual configuration sources.
+- `ConfigError` enum: Structured errors with source attribution.
+- `Loader`: Orchestrates sources and applies overrides.
 
 ### Success Metrics
 
-- Missing optional config sources are handled gracefully without failure
-- Every error message identifies the source file, line, or variable involved
-- The loader never panics — all failure paths return `Result`
-- Invalid config values are caught at load time, not at use time
+- Missing optional config sources are handled gracefully without failure.
+- Every error message identifies the source file, line, or variable involved.
+- The loader never panics — all failure paths return `Result`.
+- Invalid config values are caught at load time, not at use time.
 
 ### References
 
