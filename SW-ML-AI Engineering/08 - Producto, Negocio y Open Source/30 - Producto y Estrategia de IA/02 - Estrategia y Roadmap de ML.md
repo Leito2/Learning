@@ -1,7 +1,7 @@
 # 🗺️ Estrategia y Roadmap de ML
 
 ## Introducción
-La estrategia de machine learning trasciende la selección de arquitecturas de modelo o la optimización de hiperparámetros. Para un [[../M06 - MLOps y Produccion/22 - Introduccion a MLOps/00 - Bienvenida|ML Engineer]] senior, entender cómo alinear las iniciativas de IA con los objetivos de negocio es tan crítico como dominar el entrenamiento distribuido. Sin un roadmap claro, los equipos de datos caen en la trampa de construir modelos que resuelven problemas interesantes pero irrelevantes para la organización.
+La estrategia de machine learning trasciende la selección de arquitecturas de modelo o la optimización de hiperparámetros. Para un [[../06 - MLOps y Produccion/22 - Introduccion a MLOps/00 - Bienvenida|ML Engineer]] senior, entender cómo alinear las iniciativas de IA con los objetivos de negocio es tan crítico como dominar el entrenamiento distribuido. Sin un roadmap claro, los equipos de datos caen en la trampa de construir modelos que resuelven problemas interesantes pero irrelevantes para la organización.
 
 Esta nota introduce frameworks estratégicos como los Horizontes de Crecimiento, el análisis de deuda técnica versus velocidad de producto, y el Wardley Mapping aplicado a capacidades de ML. Comprender estos conceptos permite priorizar inversiones, gestionar expectativas de stakeholders no técnicos y construir una ventaja competitiva sostenible a través de la IA.
 

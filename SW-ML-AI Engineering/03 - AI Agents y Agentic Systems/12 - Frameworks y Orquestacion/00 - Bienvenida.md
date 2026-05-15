@@ -122,7 +122,7 @@ MODULE = {
     "frameworks": ["LangChain", "LlamaIndex", "CrewAI", "AutoGen"],
     "skills": ["LCEL", "RAG", "Multi-Agent", "Observability"],
     "deliverable": "Sistema de Soporte Multi-Agente",
-    "prerequisite": "M03 - 11 - Fundamentos de Agentes AI"
+    "prerequisite": "03 - 11 - Fundamentos de Agentes AI"
 }
 print(f"Módulo cargado: {MODULE['deliverable']}")
 ```

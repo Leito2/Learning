@@ -4,7 +4,7 @@
 - Master the complete workflow of downloading, configuring, and serving a local LLM via LocalAI
 - Understand GGUF quantization formats and their trade-offs between size, speed, and accuracy
 - Learn how LocalAI's Model Gallery automates model discovery and deployment
-- Connect quantization theory to [[M02 - Large Language Models]] and container deployment to [[Docker Profesional]]
+- Connect quantization theory to [[02 - Large Language Models]] and container deployment to [[Docker Profesional]]
 
 ---
 
@@ -12,7 +12,7 @@
 
 Running a Large Language Model locally is no longer a novelty reserved for researchers with server farms. Thanks to quantization techniques and optimized inference engines like llama.cpp, a 7-billion-parameter model can now run interactively on a consumer laptop. LocalAI abstracts the mechanical complexity of this process—model downloading, format conversion, parameter tuning—into a declarative YAML-driven workflow. This module explains not just *how* to run LLMs locally, but *why* each step matters from a systems and ML perspective.
 
-For ML engineers, local inference is a superpower. It eliminates network latency, removes token-pricing anxiety, and guarantees data sovereignty. However, it introduces new challenges: choosing the right quantization level, managing VRAM budgets, and balancing throughput against quality. If you have studied [[M02 - Large Language Models]], you already understand transformer architecture. Here, we bridge theory to practice: how do you take a 32-bit floating-point model and compress it into a 4-bit integer format that fits inside 8GB of RAM without catastrophic quality loss? If you are fluent in [[Docker Profesional]], you will appreciate how LocalAI containerizes these heavy binaries so that "it works on my machine" becomes "it works on any machine with a GPU."
+For ML engineers, local inference is a superpower. It eliminates network latency, removes token-pricing anxiety, and guarantees data sovereignty. However, it introduces new challenges: choosing the right quantization level, managing VRAM budgets, and balancing throughput against quality. If you have studied [[02 - Large Language Models]], you already understand transformer architecture. Here, we bridge theory to practice: how do you take a 32-bit floating-point model and compress it into a 4-bit integer format that fits inside 8GB of RAM without catastrophic quality loss? If you are fluent in [[Docker Profesional]], you will appreciate how LocalAI containerizes these heavy binaries so that "it works on my machine" becomes "it works on any machine with a GPU."
 
 ---
 

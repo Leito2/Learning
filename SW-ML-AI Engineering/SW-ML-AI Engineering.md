@@ -7,58 +7,58 @@ Bienvenido a tu vault principal de **Software Engineering + Machine Learning + A
 ## 📚 Cursos disponibles
 
 ### Fundamentos
-- [[M00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida|🐍 M00 - Python Avanzado para ML]]
-- [[M00 - Fundamentos de Ingenieria/01 - Matematicas para ML/00 - Bienvenida|📐 M00 - Matemáticas para ML]]
-- [[M00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/00 - Bienvenida|🧮 M00 - Estructuras de Datos y Algoritmos]]
+- [[00 - Fundamentos de Ingenieria/00 - Python Avanzado para ML/00 - Bienvenida|🐍 00 - Python Avanzado para ML]]
+- [[00 - Fundamentos de Ingenieria/01 - Matematicas para ML/00 - Bienvenida|📐 00 - Matemáticas para ML]]
+- [[00 - Fundamentos de Ingenieria/02 - Estructuras de Datos y Algoritmos/00 - Bienvenida|🧮 00 - Estructuras de Datos y Algoritmos]]
 
 ### Índice Maestro
 - [[00 - Indice Maestro de Cursos|📋 Índice Maestro de Cursos]]
 
 ### Deep Learning y Computer Vision
-- [[M01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|🔥 M01 - Deep Learning con PyTorch]]
-- [[M01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/00 - Bienvenida|👁️ M01 - Computer Vision Avanzada]]
-- [[M01 - Deep Learning y Computer Vision/05 - Multimodal AI/00 - Bienvenida|🖼️ M01 - Multimodal AI]]
+- [[01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|🔥 01 - Deep Learning con PyTorch]]
+- [[01 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/00 - Bienvenida|👁️ 01 - Computer Vision Avanzada]]
+- [[01 - Deep Learning y Computer Vision/05 - Multimodal AI/00 - Bienvenida|🖼️ 01 - Multimodal AI]]
 
 ### Large Language Models
-- [[M02 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida|🤖 M02 - Fundamentos de LLMs]]
-- [[M02 - Large Language Models/07 - Fine-Tuning y Adaptacion de LLMs/00 - Bienvenida|🔧 M02 - Fine-Tuning y Adaptación de LLMs]]
-- [[M02 - Large Language Models/08 - Generacion de Texto y Decodificacion/00 - Bienvenida|✨ M02 - Generación de Texto y Decodificación]]
-- [[M02 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|🚀 M02 - Sistemas de LLMs en Producción]]
-- [[M02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida|🧩 M02 - Arquitecturas Avanzadas y MoE]]
+- [[02 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida|🤖 02 - Fundamentos de LLMs]]
+- [[02 - Large Language Models/07 - Fine-Tuning y Adaptacion de LLMs/00 - Bienvenida|🔧 02 - Fine-Tuning y Adaptación de LLMs]]
+- [[02 - Large Language Models/08 - Generacion de Texto y Decodificacion/00 - Bienvenida|✨ 02 - Generación de Texto y Decodificación]]
+- [[02 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|🚀 02 - Sistemas de LLMs en Producción]]
+- [[02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida|🧩 02 - Arquitecturas Avanzadas y MoE]]
 
 ### AI Agents y Agentic Systems
-- [[M03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida|🤖 M03 - Fundamentos de Agentes AI]]
-- [[M03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida|🔧 M03 - Frameworks y Orquestación]]
-- [[M03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|🕸️ M03 - Sistemas Multi-Agente]]
-- [[M03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida|🚀 M03 - Agentes Autónomos y Auto-Mejora]]
+- [[03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida|🤖 03 - Fundamentos de Agentes AI]]
+- [[03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida|🔧 03 - Frameworks y Orquestación]]
+- [[03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|🕸️ 03 - Sistemas Multi-Agente]]
+- [[03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida|🚀 03 - Agentes Autónomos y Auto-Mejora]]
 
 ### NLP Avanzado
-- [[M04 - NLP Avanzado/15 - NLP Tradicional y Representaciones/00 - Bienvenida|📜 M04 - NLP Tradicional y Representaciones]]
-- [[M04 - NLP Avanzado/16 - NLP con Transformers/00 - Bienvenida|🔄 M04 - NLP con Transformers]]
-- [[M04 - NLP Avanzado/17 - NLP Aplicado e Industria/00 - Bienvenida|🏭 M04 - NLP Aplicado e Industria]]
+- [[04 - NLP Avanzado/15 - NLP Tradicional y Representaciones/00 - Bienvenida|📜 04 - NLP Tradicional y Representaciones]]
+- [[04 - NLP Avanzado/16 - NLP con Transformers/00 - Bienvenida|🔄 04 - NLP con Transformers]]
+- [[04 - NLP Avanzado/17 - NLP Aplicado e Industria/00 - Bienvenida|🏭 04 - NLP Aplicado e Industria]]
 
 ### MLOps y Producción
-- [[M05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|📊 M05 - Experiment Tracking y Model Registry]]
-- [[M05 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida|🔧 M05 - Feature Engineering y Feature Stores]]
-- [[M05 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|🚀 M05 - Deployment y Serving]]
-- [[M05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|📈 M05 - Monitoreo y Mantenimiento]]
+- [[05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|📊 05 - Experiment Tracking y Model Registry]]
+- [[05 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida|🔧 05 - Feature Engineering y Feature Stores]]
+- [[05 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|🚀 05 - Deployment y Serving]]
+- [[05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|📈 05 - Monitoreo y Mantenimiento]]
 
 ### Cloud, Infra y Backend
-- [[M06 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|☁️ M06 - Cloud Computing]]
-- [[M06 - Cloud, Infra y Backend/23 - Infraestructura como Codigo/00 - Bienvenida|🏗️ M06 - Infraestructura como Código]]
-- [[M06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|🔌 M06 - Backend para ML]]
-- [[M06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/00 - Bienvenida|💾 M06 - Bases de Datos y Message Queues]]
+- [[06 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|☁️ 06 - Cloud Computing]]
+- [[06 - Cloud, Infra y Backend/23 - Infraestructura como Codigo/00 - Bienvenida|🏗️ 06 - Infraestructura como Código]]
+- [[06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|🔌 06 - Backend para ML]]
+- [[06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/00 - Bienvenida|💾 06 - Bases de Datos y Message Queues]]
 
 ### Research y Ciencia de Datos
-- [[M07 - Research y Ciencia de Datos/26 - Metodologia de Investigacion en ML/00 - Bienvenida|📖 M07 - Metodología de Investigación en ML]]
-- [[M07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling/00 - Bienvenida|📊 M07 - Visualización y Storytelling]]
-- [[M07 - Research y Ciencia de Datos/28 - ETL y Data Engineering/00 - Bienvenida|🔧 M07 - ETL y Data Engineering]]
-- [[M07 - Research y Ciencia de Datos/29 - Estadistica Avanzada y Causalidad/00 - Bienvenida|📈 M07 - Estadística Avanzada y Causalidad]]
+- [[07 - Research y Ciencia de Datos/26 - Metodologia de Investigacion en ML/00 - Bienvenida|📖 07 - Metodología de Investigación en ML]]
+- [[07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling/00 - Bienvenida|📊 07 - Visualización y Storytelling]]
+- [[07 - Research y Ciencia de Datos/28 - ETL y Data Engineering/00 - Bienvenida|🔧 07 - ETL y Data Engineering]]
+- [[07 - Research y Ciencia de Datos/29 - Estadistica Avanzada y Causalidad/00 - Bienvenida|📈 07 - Estadística Avanzada y Causalidad]]
 
 ### Producto, Negocio y Open Source
-- [[M08 - Producto, Negocio y Open Source/30 - Producto y Estrategia de IA/00 - Bienvenida|🎯 M08 - Producto y Estrategia de IA]]
-- [[M08 - Producto, Negocio y Open Source/31 - Negocio y Metricas de ML/00 - Bienvenida|📊 M08 - Negocio y Métricas de ML]]
-- [[M08 - Producto, Negocio y Open Source/32 - Open Source y Comunidad/00 - Bienvenida|🌐 M08 - Open Source y Comunidad]]
+- [[08 - Producto, Negocio y Open Source/30 - Producto y Estrategia de IA/00 - Bienvenida|🎯 08 - Producto y Estrategia de IA]]
+- [[08 - Producto, Negocio y Open Source/31 - Negocio y Metricas de ML/00 - Bienvenida|📊 08 - Negocio y Métricas de ML]]
+- [[08 - Producto, Negocio y Open Source/32 - Open Source y Comunidad/00 - Bienvenida|🌐 08 - Open Source y Comunidad]]
 
 ### Extra Courses (English)
 - [[00 - Welcome to ML Extra Courses|👋 ML Extra Courses]]

@@ -90,7 +90,7 @@ import zlib, base64, json
 
 notas = {
     "curso": "21 - Monitoreo y Mantenimiento",
-    "modulo": "M05 - MLOps y Produccion",
+    "modulo": "05 - MLOps y Produccion",
     "glosario": ["data drift", "concept drift", "SHAP", "LIME", "retraining"]
 }
 

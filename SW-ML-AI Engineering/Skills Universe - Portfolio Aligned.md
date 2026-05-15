@@ -47,12 +47,12 @@
 
 ## ⚙️ MLOps — Missing (4)
 
-| Skill | Why Needed | Priority |
-|-------|-----------|:--------:|
-| **Kubeflow / MLflow Pipelines** | End-to-end ML workflow orchestration on Kubernetes. Enterprise standard. | 🔴 High |
-| **Weights & Biases (W&B)** | Leading experiment tracking platform. Every ML team uses it or wants to. | 🔴 High |
-| **Seldon Core / BentoML** | Specialized model serving frameworks with built-in monitoring, explainability, and A/B testing. | 🟡 Medium |
-| **Great Expectations** | Data quality validation framework. Data contracts and expectations as code. | 🟡 Medium |
+| Skill                           | Why Needed                                                                                      | Priority  |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- | :-------: |
+| **Kubeflow / MLflow Pipelines** | End-to-end ML workflow orchestration on Kubernetes. Enterprise standard.                        |  🔴 High  |
+| **Weights & Biases (W&B)**      | Leading experiment tracking platform. Every ML team uses it or wants to.                        |  🔴 High  |
+| **Seldon Core / BentoML**       | Specialized model serving frameworks with built-in monitoring, explainability, and A/B testing. | 🟡 Medium |
+| **Great Expectations**          | Data quality validation framework. Data contracts and expectations as code.                     | 🟡 Medium |
 
 ---
 

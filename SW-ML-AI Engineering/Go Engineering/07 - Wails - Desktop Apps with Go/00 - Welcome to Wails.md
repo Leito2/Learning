@@ -3,7 +3,7 @@
 ## 🎯 Learning Objectives
 - Understand why Wails represents a paradigm shift in desktop application development by combining Go's systems performance with modern web frontends.
 - Map the five-module learning trajectory from low-level bridge mechanics to production signing and distribution pipelines.
-- Articulate how local AI tooling on the desktop connects to broader [[M05 - MLOps y Produccion]] workflows and data privacy requirements.
+- Articulate how local AI tooling on the desktop connects to broader [[05 - MLOps y Produccion]] workflows and data privacy requirements.
 
 ---
 
@@ -88,7 +88,7 @@ Prerequisites flow into this course and onward to production engineering:
 │   └─────────────────────────────┘                          │
 │          │                                                  │
 │          ▼                                                  │
-│   [[M05 - MLOps y Produccion]]                              │
+│   [[05 - MLOps y Produccion]]                              │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -146,7 +146,7 @@ graph LR
     D --> E[Module 4: System APIs]
     E --> F[Module 5: Distribution]
     F --> G[Capstone: LocalMind]
-    G --> H[[M05 - MLOps y Produccion]]
+    G --> H[[05 - MLOps y Produccion]]
 ```
 
 ![Go Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/1200px-Go_Logo_Blue.svg.png)

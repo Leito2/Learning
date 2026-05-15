@@ -218,7 +218,7 @@ graph LR
 import zipfile
 from pathlib import Path
 
-base_path = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/M07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
+base_path = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
 md_files = sorted(base_path.glob("*.md"))
 zip_path = base_path.parent / "dashboards_modulo_27.zip"
 

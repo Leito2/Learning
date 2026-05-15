@@ -104,7 +104,7 @@ import os
 import zipfile
 from pathlib import Path
 
-CURSO_DIR = Path(r"C:\Users\Leito\Documents\Learning\ML and IA Engineering\M06 - Cloud, Infra y Backend\25 - Bases de Datos y Message Queues")
+CURSO_DIR = Path(r"C:\Users\Leito\Documents\Learning\ML and IA Engineering\06 - Cloud, Infra y Backend\25 - Bases de Datos y Message Queues")
 OUTPUT_ZIP = CURSO_DIR / "resumen_curso.zip"
 
 def comprimir_curso():

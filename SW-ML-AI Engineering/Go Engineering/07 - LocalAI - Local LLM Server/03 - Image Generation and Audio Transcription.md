@@ -4,7 +4,7 @@
 - Understand how LocalAI extends beyond text to multimodal inference: images and audio
 - Learn the architecture of stable-diffusion.cpp and whisper.cpp backends
 - Master the OpenAI-compatible endpoints for `/v1/images/generations` and `/v1/audio/transcriptions`
-- Connect multimodal pipelines to [[M02 - Large Language Models]] vision/audio concepts and [[Docker Profesional]] for GPU scheduling
+- Connect multimodal pipelines to [[02 - Large Language Models]] vision/audio concepts and [[Docker Profesional]] for GPU scheduling
 
 ---
 
@@ -12,7 +12,7 @@
 
 Modern AI applications are not limited to text. They generate marketing imagery from prompts, transcribe customer support calls, and synthesize narration for videos. LocalAI treats these modalities as first-class citizens by wrapping specialized C++ backends—stable-diffusion.cpp for images and whisper.cpp for audio—behind the same OpenAI-compatible REST surface. This module explains why multimodal local inference is harder than text-only inference, how LocalAI abstracts that complexity, and what you need to know to deploy these backends in production.
 
-Multimodal models are fundamentally different from LLMs in their resource profiles. An image generation model performs iterative denoising across latent space, a process that is far more GPU-intensive than autoregressive token generation. An audio transcription model processes spectrograms through convolutional and transformer layers, demanding different batching strategies. If you have studied [[M02 - Large Language Models]], you know that transformers generalize across modalities, but the inference engines and optimization kernels do not. LocalAI's value proposition is that you do not need to learn three separate server protocols; you learn one REST schema and let the Backend Manager handle the rest.
+Multimodal models are fundamentally different from LLMs in their resource profiles. An image generation model performs iterative denoising across latent space, a process that is far more GPU-intensive than autoregressive token generation. An audio transcription model processes spectrograms through convolutional and transformer layers, demanding different batching strategies. If you have studied [[02 - Large Language Models]], you know that transformers generalize across modalities, but the inference engines and optimization kernels do not. LocalAI's value proposition is that you do not need to learn three separate server protocols; you learn one REST schema and let the Backend Manager handle the rest.
 
 ---
 

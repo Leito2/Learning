@@ -162,7 +162,7 @@ import zipfile
 import os
 from pathlib import Path
 
-source_dir = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/M07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
+source_dir = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
 output_zip = source_dir.parent / "27 - Visualizacion de Datos y Storytelling.zip"
 
 with zipfile.ZipFile(output_zip, 'w', zipfile.ZIP_DEFLATED) as zf:

@@ -229,7 +229,7 @@ flowchart TB
 import zipfile
 from pathlib import Path
 
-base = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/M07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
+base = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
 files = list(base.glob("*.md"))
 out = base.parent / "curso_visualizacion.zip"
 

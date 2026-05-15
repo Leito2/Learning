@@ -50,15 +50,15 @@ Learning/
 │   ├── Welcome.md                      # Sub-vault index (Spanish + English sections)
 │   ├── 00 - Indice Maestro de Cursos.md # Master course index
 │   │
-│   ├── M00 - Fundamentos de Ingenieria/           # Complete + images (23 notes)
-│   ├── M01 - Deep Learning y Computer Vision/     # Complete + images (18 notes)
-│   ├── M02 - Large Language Models/               # Complete + images (30 notes)
-│   ├── M03 - AI Agents y Agentic Systems/         # Complete + images (22 notes)
-│   ├── M04 - NLP Avanzado/                        # Complete + images (17 notes)
-│   ├── M05 - MLOps y Produccion/                  # Complete + images (24 notes)
-│   ├── M06 - Cloud, Infra y Backend/              # Complete + images (24 notes)
-│   ├── M07 - Research y Ciencia de Datos/         # Complete + images (24 notes)
-│   ├── M08 - Producto, Negocio y Open Source/     # Complete + images (18 notes)
+│   ├── 00 - Fundamentos de Ingenieria/           # Complete + images (23 notes)
+│   ├── 01 - Deep Learning y Computer Vision/     # Complete + images (18 notes)
+│   ├── 02 - Large Language Models/               # Complete + images (30 notes)
+│   ├── 03 - AI Agents y Agentic Systems/         # Complete + images (22 notes)
+│   ├── 04 - NLP Avanzado/                        # Complete + images (17 notes)
+│   ├── 05 - MLOps y Produccion/                  # Complete + images (24 notes)
+│   ├── 06 - Cloud, Infra y Backend/              # Complete + images (24 notes)
+│   ├── 07 - Research y Ciencia de Datos/         # Complete + images (24 notes)
+│   ├── 08 - Producto, Negocio y Open Source/     # Complete + images (18 notes)
 │   │
 │   ├── extra/                          # NEW (8 notes - English)
 │   │   ├── 00 - Welcome to ML Extra Courses.md
@@ -152,7 +152,7 @@ Learning/
 
 ## Language Policy
 
-- **Existing modules (M00-M08, Advanced Python, Docker, Markdown, SQL):** Written in Spanish. **DO NOT modify** unless explicitly requested.
+- **Existing modules (00-08, Advanced Python, Docker, Markdown, SQL):** Written in Spanish. **DO NOT modify** unless explicitly requested.
 - **All new content (SE extra/projects, ML extra/projects, Transversal, Go Engineering, future Rust Engineering):** Written entirely in **English**.
 - **Welcome.md and indices:** May contain both Spanish and English sections to bridge old and new content.
 
@@ -280,7 +280,7 @@ Keep Wikimedia URLs as fallback: `![Description](https://upload.wikimedia.org/..
 
 ---
 
-### Original Format (Legacy courses - M00-M08, SE extra/projects)
+### Original Format (Legacy courses - 00-08, SE extra/projects)
 
 ### For Project Guide Notes (projects/ folder)
 
@@ -419,7 +419,7 @@ Subagents sometimes complete work (files created on disk) but do not return a re
 
 Priority: 🔴 HIGH — These are skills identified as missing from the Learning vault that are needed for job market competitiveness.
 
-#### 7A. Expand `M09 - Extra` (+8 notes)
+#### 7A. Expand `09 - Extra` (+8 notes)
 Skills: JAX/Flax, Synthetic Data Generation, Speculative Decoding, Agent Swarms, Browser Agents, TinyML/Edge ML, Federated Learning, Azure ML
 
 #### 7B. New course: `M10 - Reinforcement Learning for AI Engineers` (+6 notes)
@@ -444,7 +444,7 @@ Direct job market preparation.
 
 | Addition | Location | Notes | Priority |
 |----------|----------|:-----:|:--------:|
-| Expand M09 Extra | SW-ML-AI Engineering/M09 | 8 | 🔴 High |
+| Expand 09 Extra | SW-ML-AI Engineering/09 | 8 | 🔴 High |
 | RL for AI Engineers | SW-ML-AI Engineering/M10 | 6 | 🔴 High |
 | Graph Neural Networks | SW-ML-AI Engineering/M10 | 4 | 🟡 Medium |
 | Distributed ML Infra | SW-ML-AI Engineering/M10 | 7 | 🔴 High |

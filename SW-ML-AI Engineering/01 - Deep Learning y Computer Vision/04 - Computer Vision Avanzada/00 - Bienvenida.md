@@ -1,6 +1,6 @@
 # 🎓 Bienvenida a Computer Vision Avanzada
 
-Esta carpeta contiene las notas del curso **04 - Computer Vision Avanzada**, parte del módulo **M01 - Deep Learning y Computer Vision**.
+Esta carpeta contiene las notas del curso **04 - Computer Vision Avanzada**, parte del módulo **01 - Deep Learning y Computer Vision**.
 
 La visión por computadora avanzada representa el salto de entender "qué hay en una imagen" a entender "dónde está", "qué forma tiene" y "qué relación guarda con el texto". Estas capacidades son el núcleo de sistemas modernos de conducción autónoma, análisis médico, robótica e inteligencia documental.
 

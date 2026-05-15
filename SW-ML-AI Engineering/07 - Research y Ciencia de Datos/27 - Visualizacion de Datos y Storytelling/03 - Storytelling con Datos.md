@@ -174,7 +174,7 @@ journey
 import zipfile
 from pathlib import Path
 
-root = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/M07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
+root = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
 notes = list(root.glob("*.md"))
 target = root.parent / "storytelling_modulo.zip"
 

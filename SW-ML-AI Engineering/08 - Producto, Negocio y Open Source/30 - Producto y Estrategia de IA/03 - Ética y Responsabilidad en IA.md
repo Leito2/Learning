@@ -3,7 +3,7 @@
 ## Introducción
 La ética en inteligencia artificial ya no es un tema abstracto para filósofos; es una responsabilidad directa del ingeniero de ML que despliega modelos que afectan vidas reales. Desde sistemas de contratación que discriminan por género hasta algoritmos de salud que subestiman el riesgo en poblaciones minoritarias, los errores éticos en IA pueden destruir reputaciones corporativas y causar daño social irreparable.
 
-Como futuro [[../M06 - MLOps y Produccion/22 - Introduccion a MLOps/00 - Bienvenida|ML Engineer]], comprender los fundamentos de fairness, las fuentes de sesgo y los trade-offs entre explicabilidad y rendimiento te permitirá construir sistemas no solo potentes, sino también justos y transparentes. Esta nota proporciona el marco teórico y práctico para auditar y mitigar riesgos éticos en tus proyectos.
+Como futuro [[../06 - MLOps y Produccion/22 - Introduccion a MLOps/00 - Bienvenida|ML Engineer]], comprender los fundamentos de fairness, las fuentes de sesgo y los trade-offs entre explicabilidad y rendimiento te permitirá construir sistemas no solo potentes, sino también justos y transparentes. Esta nota proporciona el marco teórico y práctico para auditar y mitigar riesgos éticos en tus proyectos.
 
 ## 1. Métricas de Fairness
 No existe una única definición de "justicia" algorítmica. Dependiendo del contexto legal y social, se aplican diferentes métricas:

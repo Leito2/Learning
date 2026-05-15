@@ -254,7 +254,7 @@ import zipfile
 import os
 from pathlib import Path
 
-source_dir = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/M07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
+source_dir = Path("C:/Users/Leito/Documents/Learning/ML and IA Engineering/07 - Research y Ciencia de Datos/27 - Visualizacion de Datos y Storytelling")
 output_file = source_dir.parent / "Caso_Practico_Dashboard_ML.zip"
 
 if not source_dir.exists():

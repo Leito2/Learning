@@ -12,7 +12,7 @@
 
 Moving a machine learning model from a Jupyter notebook to production is not a deployment problem; it is an engineering problem. Production systems must handle concurrent requests without deadlocks, recover from out-of-memory errors without crashing the host, and maintain consistent latency under load. Python frameworks like PyTorch and TensorFlow were designed for research velocity, not for serving millions of requests per day. Their reliance on the Global Interpreter Lock, dynamic memory allocation, and interpreter overhead creates a ceiling that Rust-native frameworks like Candle are designed to break through.
 
-This note covers the operational side of Candle: how to structure inference services, how to reuse memory across requests, how to batch inputs efficiently, and how to measure performance with statistical rigor. These patterns are not Candle-specific in principle, but Rust's ownership model and Candle's explicit device management make them safer and more predictable than in any Python stack. We connect these ideas to [[M05 - MLOps y Produccion]] for CI/CD and observability, and to [[06 - Cloud, Infra y Backend]] for infrastructure patterns.
+This note covers the operational side of Candle: how to structure inference services, how to reuse memory across requests, how to batch inputs efficiently, and how to measure performance with statistical rigor. These patterns are not Candle-specific in principle, but Rust's ownership model and Candle's explicit device management make them safer and more predictable than in any Python stack. We connect these ideas to [[05 - MLOps y Produccion]] for CI/CD and observability, and to [[06 - Cloud, Infra y Backend]] for infrastructure patterns.
 
 ---
 

@@ -5,7 +5,7 @@
 - Load and run pre-trained models (Llama, Mistral, BERT, Whisper) from Hugging Face.
 - Understand how `Config` structs and `VarBuilder` enable safe model deserialization.
 - Fine-tune and adapt pre-built architectures for downstream tasks.
-- Connect transformer deployment to the broader [[M01 - Deep Learning y Computer Vision]] module.
+- Connect transformer deployment to the broader [[01 - Deep Learning y Computer Vision]] module.
 
 ---
 

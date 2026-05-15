@@ -3,7 +3,7 @@
 ## Introducción
 El panorama regulatorio de la inteligencia artificial está evolucionando a una velocidad sin precedentes. Mientras los ingenieros de ML nos enfocamos en optimizar métricas técnicas, los legisladores en la Unión Europea, Estados Unidos y China están definiendo los límites legales dentro de los cuales deben operar nuestros sistemas. Desconocer estas regulaciones ya no es una excusa aceptable; una violación del GDPR puede costar hasta el 4% del volumen de negocio mundial anual de una empresa.
 
-Esta nota analiza los marcos legales más impactantes para productos de IA, con énfasis en el GDPR y el EU AI Act. Como [[../M06 - MLOps y Produccion/22 - Introduccion a MLOps/00 - Bienvenida|ML Engineer]], entender estos requisitos te permitirá diseñar sistemas que sean compliant by design, evitando costosas reingenierías posteriores al lanzamiento.
+Esta nota analiza los marcos legales más impactantes para productos de IA, con énfasis en el GDPR y el EU AI Act. Como [[../06 - MLOps y Produccion/22 - Introduccion a MLOps/00 - Bienvenida|ML Engineer]], entender estos requisitos te permitirá diseñar sistemas que sean compliant by design, evitando costosas reingenierías posteriores al lanzamiento.
 
 ## 1. GDPR y Decisiones Automatizadas
 El Artículo 22 del GDPR establece el derecho de toda persona a no ser objeto de decisiones basadas únicamente en el tratamiento automatizado, incluida la elaboración de perfiles, que produzcan efectos jurídicos significativos o le afecten de modo sustancial.
