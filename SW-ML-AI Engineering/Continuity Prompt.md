@@ -46,7 +46,7 @@ Learning/
 │       ├── 04 - CI-CD for ML - Project Guide.md
 │       └── 05 - Rust for ML Infra - Project Guide.md
 │
-├── ML and IA Engineering/              # Main vault for ML courses
+├── SW-ML-AI Engineering/               # Main vault for SW + ML + AI courses
 │   ├── Welcome.md                      # Sub-vault index (Spanish + English sections)
 │   ├── 00 - Indice Maestro de Cursos.md # Master course index
 │   │
@@ -125,22 +125,26 @@ Learning/
 | Go 04 - DevSecOps | ✅ IMPROVED | ~520 | 7/7 |
 | Go 05 - Local AI | ✅ IMPROVED | ~550 | 7/7 |
 | Go 06 - ML Backend | ✅ IMPROVED | ~530 | 7/7 |
-| Go 07 - Gorgonia | ✅ CREATED (deep format) | ~400 | 6/6 |
-| Go 07 - LocalAI | ✅ CREATED (deep format) | ~400 | 6/6 |
-| Go 07 - Wails | ✅ CREATED (deep format) | ~400 | 6/6 |
+| Go 07 - Gorgonia | ✅ CREATED (deep format) | ~380 | 6/6 |
+| Go 07 - LocalAI | ✅ CREATED (deep format) | ~410 | 6/6 |
+| Go 07 - Wails | ✅ CREATED (deep format) | ~380 | 6/6 |
+| Go extra | ✅ IMPROVED | ~770 | 7/7 |
+| Go projects | ✅ IMPROVED | ~770 | 6/6 |
 | Rust 01 - Fundamentals | ✅ IMPROVED | ~510 | 7/7 |
-| Rust 02 - Advanced Rust | 🚧 PENDING | ~300 | 0/7 |
-| Rust 03 - Data Engineering | 🚧 PENDING | ~300 | 0/7 |
-| Rust 04 - Rust for ML/AI | 🚧 PENDING | ~300 | 0/7 |
-| Rust 05 - WebAssembly | 🚧 PENDING | ~300 | 0/7 |
-| Rust 06 - Agentic AI | 🚧 PENDING | ~300 | 0/7 |
-| Rust 07 - Polars | ✅ CREATED (deep format) | ~390 | 6/6 |
-| Rust 07 - Candle | ✅ CREATED (deep format) | ~400 | 6/6 |
-| Go projects/extra | 🚧 PENDING | ~250 | 0/13 |
-| Rust projects/extra | 🚧 PENDING | ~250 | 0/13 |
+| Rust 02 - Advanced Rust | ✅ IMPROVED | ~770 | 7/7 |
+| Rust 03 - Data Engineering | ✅ IMPROVED | ~640 | 7/7 |
+| Rust 04 - Rust for ML/AI | ✅ IMPROVED | ~760 | 7/7 |
+| Rust 05 - WebAssembly | ✅ IMPROVED | ~790 | 7/7 |
+| Rust 06 - Agentic AI | ✅ IMPROVED | ~730 | 7/7 |
+| Rust 07 - Polars | ✅ CREATED (deep format) | ~360 | 6/6 |
+| Rust 07 - Candle | ✅ CREATED (deep format) | ~290 | 6/6 |
+| Rust extra | ✅ IMPROVED | ~940 | 7/7 |
+| Rust projects | ✅ IMPROVED | ~1190 | 6/6 |
 
 **Git Checkpoints:**
-- `888e6a6` — Deep expansion courses + Go 02-06 + Rust 01 improved (latest)
+- *(next)* — Folder rename ML and IA Engineering → SW-ML-AI Engineering + skills maps + gap analysis
+- `38a4a25` — Continuity Prompt updated with improvement progress
+- `888e6a6` — Deep expansion courses + Go 02-06 + Rust 01 improved
 - `ef57e18` — Go Fundamentals improved with new deep format
 - `6de9e0e` — Rust Engineering complete (revert point)
 
@@ -351,7 +355,7 @@ Subagents sometimes complete work (files created on disk) but do not return a re
 
 ## Upcoming Work Queue
 
-### 1. Go Engineering (✅ COMPLETE — 67 notes)
+### 1. Go Engineering (✅ COMPLETE — 73 notes)
 - **01 - Go Fundamentals:** ✅ IMPROVED to new deep format (~600 lines/note)
 - **02 - Go for Cloud Native:** ✅ IMPROVED to new deep format (~500 lines/note)
 - **03 - Microservices with Go:** ✅ IMPROVED to new deep format (~500 lines/note)
@@ -361,65 +365,95 @@ Subagents sometimes complete work (files created on disk) but do not return a re
 - **07 - Gorgonia:** ✅ CREATED (deep format, 6 notes)
 - **07 - LocalAI:** ✅ CREATED (deep format, 6 notes)
 - **07 - Wails:** ✅ CREATED (deep format, 6 notes)
-- **Projects and Extra:** 🚧 PENDING improvement (13 notes)
+- **Projects:** ✅ IMPROVED (6 notes, ~770 avg lines)
+- **Extra:** ✅ IMPROVED (7 notes, ~770 avg lines)
 
-### 2. Rust Engineering (✅ 68 notes, partial format)
+### 2. Rust Engineering (✅ COMPLETE — 73 notes)
 - **01 - Rust Fundamentals:** ✅ IMPROVED to new deep format (~510 lines/note)
-- **02 - Advanced Rust:** 🚧 PENDING improvement to new deep format
-- **03 - Rust for Data Engineering:** 🚧 PENDING improvement to new deep format
-- **04 - Rust for ML and AI:** 🚧 PENDING improvement to new deep format
-- **05 - WebAssembly and Edge AI:** 🚧 PENDING improvement to new deep format
-- **06 - Agentic AI with Rust:** 🚧 PENDING improvement to new deep format
+- **02 - Advanced Rust:** ✅ IMPROVED to new deep format (~770 lines/note)
+- **03 - Rust for Data Engineering:** ✅ IMPROVED to new deep format (~640 lines/note)
+- **04 - Rust for ML and AI:** ✅ IMPROVED to new deep format (~760 lines/note)
+- **05 - WebAssembly and Edge AI:** ✅ IMPROVED to new deep format (~790 lines/note)
+- **06 - Agentic AI with Rust:** ✅ IMPROVED to new deep format (~730 lines/note)
 - **07 - Polars Internals:** ✅ CREATED (deep format, 6 notes)
 - **07 - Candle Advanced:** ✅ CREATED (deep format, 6 notes)
-- **Projects and Extra:** 🚧 PENDING improvement (13 notes)
+- **Projects:** ✅ IMPROVED (6 notes, ~1190 avg lines)
+- **Extra:** ✅ IMPROVED (7 notes, ~940 avg lines)
 
-### 3. Note Improvement Priority (Apply NEW Format)
+### 3. Note Improvement Priority — ALL DONE ✅
 
-| Course | Current Avg Lines | Target | Priority | Status |
-|--------|-------------------|--------|----------|--------|
-| Go 01 - Fundamentals | ~600 | 400-600 | ✅ Done | 7/7 |
-| Go 02 - Cloud Native | ~500 | 400-600 | ✅ Done | 7/7 |
-| Go 03 - Microservices | ~500 | 400-600 | ✅ Done | 7/7 |
-| Go 04 - DevSecOps | ~520 | 400-600 | ✅ Done | 7/7 |
-| Go 05 - Local AI | ~550 | 400-600 | ✅ Done | 7/7 |
-| Go 06 - ML Backend | ~530 | 400-600 | ✅ Done | 7/7 |
-| Rust 01 - Fundamentals | ~510 | 400-600 | ✅ Done | 7/7 |
-| Rust 02 - Advanced Rust | ~300 | 400-600 | 🔴 High | 0/7 |
-| Rust 03 - Data Engineering | ~300 | 400-600 | 🔴 High | 0/7 |
-| Rust 04 - Rust for ML/AI | ~300 | 400-600 | 🔴 High | 0/7 |
-| Rust 05 - WebAssembly | ~300 | 400-600 | 🔴 High | 0/7 |
-| Rust 06 - Agentic AI | ~300 | 400-600 | 🔴 High | 0/7 |
-| Go projects/extra | ~250 | 300-500 | 🟢 Lower | 0/13 |
-| Rust projects/extra | ~250 | 300-500 | 🟢 Lower | 0/13 |
-
-**Format Improvement Rules for Existing Notes:**
-- Break into modular concepts (Module X.Y sections)
-- Add Theoretical Foundation (WHY) before any code
-- Add ASCII diagrams alongside Mermaid
-- Add Wikimedia image URLs
-- Add ML/AI Application table in each module
-- Add Knowledge Check questions
-- Target: 400-600 lines per note
+| Course | Current Avg Lines | Target | Status |
+|--------|-------------------|--------|--------|
+| Go 01 - Fundamentals | ~600 | 400-600 | ✅ Done |
+| Go 02 - Cloud Native | ~500 | 400-600 | ✅ Done |
+| Go 03 - Microservices | ~500 | 400-600 | ✅ Done |
+| Go 04 - DevSecOps | ~520 | 400-600 | ✅ Done |
+| Go 05 - Local AI | ~550 | 400-600 | ✅ Done |
+| Go 06 - ML Backend | ~530 | 400-600 | ✅ Done |
+| Rust 01 - Fundamentals | ~510 | 400-600 | ✅ Done |
+| Rust 02 - Advanced Rust | ~770 | 400-600 | ✅ Done |
+| Rust 03 - Data Engineering | ~640 | 400-600 | ✅ Done |
+| Rust 04 - Rust for ML/AI | ~760 | 400-600 | ✅ Done |
+| Rust 05 - WebAssembly | ~790 | 400-600 | ✅ Done |
+| Rust 06 - Agentic AI | ~730 | 400-600 | ✅ Done |
+| Go projects/extra | ~770 | 300-500 | ✅ Done |
+| Rust projects/extra | ~1065 | 300-500 | ✅ Done |
+| Go 07 deep courses | ~380 | 400-600 | ✅ Done |
+| Rust 07 deep courses | ~330 | 400-600 | ✅ Done |
 
 ### 4. Deep Content Expansion — Go (✅ COMPLETE)
-Create new courses inside `Go Engineering/` or as additional modules:
-
 **Course: Gorgonia — Deep Learning in Go** (6 notes) ✅ CREATED
-- Tensor Operations, Computational Graphs, Neural Networks, GPU, Real Projects, vs PyTorch
-
 **Course: LocalAI — Local LLM Server** (6 notes) ✅ CREATED
-- Architecture, LLMs, Image Gen, Audio, API Compatibility, Enterprise Deployment
-
-**Course: Wails — Desktop Apps with Go** (6 notes) ✅ CREATED (bonus)
-- Go-JS Bridge, Frontend Bindings, Cross-Platform, Native APIs, Production Packaging
+**Course: Wails — Desktop Apps with Go** (6 notes) ✅ CREATED
 
 ### 5. Deep Content Expansion — Rust (✅ COMPLETE)
 **Course: Polars Internals and Advanced** (6 notes) ✅ CREATED
 **Course: Candle Advanced Patterns** (6 notes) ✅ CREATED
 
-### 6. Portfolio Web Redesign (PLANNED)
-Update `leito2.github.io` to professional ML/AI Engineer portfolio.
+### 6. Portfolio & Skills Analysis (✅ COMPLETE)
+- Portfolio gap analysis completed → 22 skills missing from Learning vault
+- Two skill maps created: `Skills Universe - Portfolio Aligned.md` + `Skills Tree - The AI-ML Engineer Growth Map.md`
+- Folder renamed: `ML and IA Engineering` → `SW-ML-AI Engineering`
+
+### 7. NEW — Learning Vault Gap Fill 🚧 PENDING (22 skills, 6 additions)
+
+Priority: 🔴 HIGH — These are skills identified as missing from the Learning vault that are needed for job market competitiveness.
+
+#### 7A. Expand `M09 - Extra` (+8 notes)
+Skills: JAX/Flax, Synthetic Data Generation, Speculative Decoding, Agent Swarms, Browser Agents, TinyML/Edge ML, Federated Learning, Azure ML
+
+#### 7B. New course: `M10 - Reinforcement Learning for AI Engineers` (+6 notes)
+Skills: RL fundamentals, PPO, DQN, RLHF, reward modeling, alignment theory, RL case study
+Critical because: RLHF is how ChatGPT, Claude, Gemini are aligned.
+
+#### 7C. New course: `M10 - Graph Neural Networks` (+4 notes)
+Skills: GCN, GAT, GraphSAGE, geometric DL case study
+Applications: molecular discovery, recommendation systems, knowledge graphs.
+
+#### 7D. New course: `M10 - Distributed ML Infrastructure` (+7 notes)
+Skills: Apache Kafka, Ray/Ray Serve, NVIDIA Triton, Airflow/Prefect, dbt, Dagster
+Aggregates all missing distributed infrastructure skills.
+
+#### 7E. New course: `M10 - ML Platform Engineering` (+5 notes)
+Skills: Kubeflow, Weights & Biases, Seldon Core, Great Expectations, BentoML
+The evolution beyond MLOps — internal tooling for ML teams.
+
+#### 7F. Expand `Extra Skills/` (+3 notes)
+Skills: ML Interview Preparation, Technical Sales/Solutions Engineering, ML Platform Engineering overview
+Direct job market preparation.
+
+| Addition | Location | Notes | Priority |
+|----------|----------|:-----:|:--------:|
+| Expand M09 Extra | SW-ML-AI Engineering/M09 | 8 | 🔴 High |
+| RL for AI Engineers | SW-ML-AI Engineering/M10 | 6 | 🔴 High |
+| Graph Neural Networks | SW-ML-AI Engineering/M10 | 4 | 🟡 Medium |
+| Distributed ML Infra | SW-ML-AI Engineering/M10 | 7 | 🔴 High |
+| ML Platform Engineering | SW-ML-AI Engineering/M10 | 5 | 🟡 Medium |
+| Expand Extra Skills | Extra Skills/ | 3 | 🟡 Medium |
+| **TOTAL** | | **33** | |
+
+### 8. Portfolio Web Redesign (PLANNED)
+Update `leito2.github.io` to professional ML/AI Engineer portfolio with 76 skills (up from 34).
 
 ---
 

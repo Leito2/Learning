@@ -1,6 +1,6 @@
-# 🧠 ML and IA Engineering
+# 🧠 SW-ML-AI Engineering
 
-Bienvenido a tu vault principal de **Machine Learning e Ingeniería de IA**. Aquí centralizas todo tu aprendizaje y proyectos.
+Bienvenido a tu vault principal de **Software Engineering + Machine Learning + AI Engineering**. Aquí centralizas todo tu aprendizaje y proyectos para convertirte en un AI/ML Engineer completo — desde fundamentos de ingeniería de software hasta sistemas de IA en producción.
 
 ---
 

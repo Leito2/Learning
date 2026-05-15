@@ -147,7 +147,7 @@ Especialización
 - CI-CD for ML Project Guide
 - Rust for ML Infra Project Guide
 
-### ML and IA Engineering - Extra (English)
+### SW-ML-AI Engineering - Extra (English)
 - 01 - Kaggle Competitions
 - 02 - End-to-End ML Project
 - 03 - Fine-Tuning LLMs
@@ -156,7 +156,7 @@ Especialización
 - 06 - Advanced MLOps
 - 07 - Paper Reproduction
 
-### ML and IA Engineering - Projects (English)
+### SW-ML-AI Engineering - Projects (English)
 - Project Planning Guide for ML
 - Kaggle Competitions Project Guide
 - End-to-End ML Project Guide
