@@ -35,6 +35,72 @@ This vault is **~600+ notes**. If you try to work on bulk content creation (writ
 
 ---
 
+## ⚠️ DEEP FORMAT SPECIFICATION — MANDATORY FOR ALL NOTES
+
+When creating a **new** note or **expanding** an existing note, you MUST follow this structure. No exceptions.
+
+### Required Sections (Deep Format)
+
+```markdown
+# 🏷️ Title (with emoji)
+
+## Introduction
+(2-3 paragraphs linking to related notes, contextualizing the topic)
+
+## 1. 🧠 Section Name — Theoretical Foundation
+- Deep conceptual explanation (not just definitions — WHY it works)
+- Mathematical formulas where applicable ($$...$$)
+- Comparison tables
+
+## 2. 📐 Section Name — Mental Model
+- ASCII diagram showing architecture/flow
+- Mermaid diagram for complex relationships
+
+## 3. 💻 Section Name — Code & Practice
+- Language-tagged code blocks with explanatory comments
+- Real-case examples (named companies)
+
+## 4. 🌍 Real-World Applications
+| Company | Use Case | Detail |
+
+## ⚠️ Pitfalls
+## 💡 Tips
+## 📦 Compression Code
+(Complete executable script)
+
+## ✅ Knowledge Check
+(3-5 questions with answers)
+
+## 🎯 Key Takeaways
+(5-7 bullet points — what to remember)
+
+## References
+```
+
+### Line Count Targets
+
+| Note Type | Lines |
+|-----------|:-----:|
+| Course welcome (00) | 60-90 |
+| Core course note | 400-600 |
+| Quick-reference note | 200-350 |
+| Tool comparison note | 200-400 |
+
+### Format Rules
+- **English** for all new content; **Spanish** for existing M00-M08 modules
+- Code blocks MUST have language tag: ```python, ```go, ```yaml
+- Tables MUST use aligned columns
+- Mermaid diagrams MUST use ```mermaid wrapper
+- Wikimedia images: ![Alt text](URL) with descriptive alt text
+- NEVER use comments in code unless the module format explicitly uses WHY: annotations (Go/Rust notes)
+
+### Before Marking Complete
+- Verify line count with `wc -l`
+- Verify all mermaid blocks close properly
+- Verify all internal [[links]] use correct Spanish/English note names
+
+---
+
 ## Project Context
 
 We are building an **Obsidian vault** inside `/home/white/Learning`, which is a **Git repository** connected to `https://github.com/Leito2/Learning.git`. The vault contains compressed markdown courses for an **AI/ML Engineer** learning path (500+ notes). The vault is also used to document portfolio projects for landing a first job as an ML/AI Engineer.
