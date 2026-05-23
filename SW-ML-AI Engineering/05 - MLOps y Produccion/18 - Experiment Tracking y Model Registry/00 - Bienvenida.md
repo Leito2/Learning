@@ -13,6 +13,7 @@ Este curso te proporcionará las herramientas y patrones necesarios para constru
 3. [[03 - Model Registry y Lifecycle|🏛️ Model Registry y Lifecycle]]
 4. [[04 - Testing de ML|🧪 Testing de Machine Learning]]
 5. [[05 - Caso Practico - Pipeline de Entrenamiento Versionado|🎯 Caso Práctico: Pipeline de Entrenamiento Versionado]]
+6. [[06 - MLflow y Databricks Integration|☁️ MLflow y Databricks: Integración Enterprise]]
 
 ---
 
@@ -24,6 +25,8 @@ graph LR
     B --> C[Model Registry]
     C --> D[Testing de ML]
     D --> E[Caso Práctico E2E]
+    A --> F[MLflow + Databricks]
+    C --> F
 ```
 
 ![Flujo de trabajo en ML](https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/MachineLearning.png/640px-MachineLearning.png)

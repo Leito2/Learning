@@ -2,22 +2,6 @@
 
 > **Alternative Organization.** Instead of portfolio sections, this document organizes every skill in the Learning vault as a **progressive growth map** — from fundamentals to specialization. Each tier builds on the previous, forming a complete career development tree for the AI/ML Engineer.
 
----
-
-```
-                                     ┌──────────────────────┐
-                                     │   THE COMPLETE       │
-                                     │   AI/ML ENGINEER     │
-                                     │                      │
-                                     │   🌟 Senior Impact   │
-                                     │   🧠 Research+Build  │
-                                     │   ⚙️ Production      │
-                                     │   🌐 Cloud+Infra     │
-                                     │   📐 Engineering     │
-                                     └──────────────────────┘
-```
-
----
 
 ## 🌱 ROOTS — Foundations (What Everything Grows From)
 

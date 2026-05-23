@@ -67,6 +67,16 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 05 - Computer Vision Pipeline
 ├── 06 - Advanced MLOps
 ├── 07 - Paper Reproduction
+├── 08 - Weights and Biases (4 notas)
+├── 09 - Databricks for ML (4 notas)
+├── 10 - MLOps Tooling Comparison
+├── 11 - Apache Spark for ML (5 notas)
+├── 12 - BigQuery for ML (2 notas)
+├── 13 - Reinforcement Learning for AI Engineers (6 notas)
+├── 14 - Distributed ML Infrastructure (6 notas)
+├── 15 - Advanced ML Topics (7 notas)
+├── 16 - Graph Neural Networks (4 notas)
+├── 17 - ML Platform Engineering (6 notas)
 ├── 01 - FastAPI for ML
 ├── 02 - System Design for ML
 ├── 03 - Testing in ML Systems

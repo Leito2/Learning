@@ -1,14 +1,45 @@
-# Continuity Prompt for Next Kimi Session
+# Continuity Prompt for Next Session
 
-Copy and paste this entire file into a new Kimi session to continue the project without losing context.
+Copy and paste this entire file into a new session to continue the project without losing context.
+
+---
+
+## ⚠️ CRITICAL: CONTEXT MANAGEMENT — READ THIS FIRST
+
+This vault is **~600+ notes**. If you try to work on bulk content creation (writing multiple courses, expanding many notes) in the **main thread**, you WILL saturate context and crash the session. This has happened multiple times.
+
+### MANDATORY Subagent Usage
+
+| Task Type | Tool | Rule |
+|-----------|------|------|
+| **Writing courses (3+ notes)** | `task` with `subagent_type: general` | Maximum **2 subagents in parallel**, each max **7 notes** |
+| **Research / exploring codebase** | `task` with `subagent_type: explore` | Provide explicit file paths to read |
+| **Single-note expansion or edit** | Main thread (Write/Edit tools) | OK for 1-2 files |
+| **Verification after subagents** | `bash` in main thread | Always verify file counts and line counts |
+
+### Workflow for Course Creation
+
+```
+1. Create directory (main thread, Bash tool)
+2. Launch 2 subagents in parallel (task tool):
+   ─ Agent 1: Write 01.md, 02.md, 03.md, 00-Welcome.md
+   ─ Agent 2: Write 04.md, 05.md, 06.md
+3. Verify output (main thread): check file counts, grep for errors
+4. Update Continuity Prompt + Master Index (main thread)
+```
+
+### NEVER Do This
+- Write 5+ full course notes in the main thread (context explodes)
+- Launch more than 2 subagents simultaneously
+- Skip verification after subagents finish
 
 ---
 
 ## Project Context
 
-We are building an **Obsidian vault** inside `C:\Users\Leito\Documents\Learning`, which is a **Git repository** connected to `https://github.com/Leito2/Learning.git`. The vault contains compressed markdown courses for an **AI/ML Engineer** learning path. The vault is also used to document portfolio projects for landing a first job as an ML/AI Engineer.
+We are building an **Obsidian vault** inside `/home/white/Learning`, which is a **Git repository** connected to `https://github.com/Leito2/Learning.git`. The vault contains compressed markdown courses for an **AI/ML Engineer** learning path (500+ notes). The vault is also used to document portfolio projects for landing a first job as an ML/AI Engineer.
 
-**Current Goal:** Build the vault into a comprehensive, job-ready knowledge base. All **new** courses and notes are written in **English** with deep theoretical and practical depth. The user is looking for their first ML/AI Engineer job.
+**Current Goal:** Build the vault into a comprehensive, job-ready knowledge base. All **new** courses and notes are written in **English** with deep theoretical and practical depth. The user is looking for their first ML/AI Engineer job. **Gap-fill initiative COMPLETE — all 22 original gaps filled (50 notes across 12 courses).**
 
 ---
 
@@ -60,24 +91,33 @@ Learning/
 │   ├── 07 - Research y Ciencia de Datos/         # Complete + images (24 notes)
 │   ├── 08 - Producto, Negocio y Open Source/     # Complete + images (18 notes)
 │   │
-│   ├── extra/                          # NEW (8 notes - English)
+│   ├── 09 - Extra/                                  # English courses (flat files + subfolders)
 │   │   ├── 00 - Welcome to ML Extra Courses.md
 │   │   ├── 01 - Kaggle Competitions.md
-│   │   ├── 02 - End-to-End ML Project.md
-│   │   ├── 03 - Fine-Tuning LLMs.md
-│   │   ├── 04 - Production RAG System.md
-│   │   ├── 05 - Computer Vision Pipeline.md
-│   │   ├── 06 - Advanced MLOps.md
-│   │   └── 07 - Paper Reproduction.md
-│   └── projects/                       # NEW (8 notes - English)
-│       ├── 00 - Project Planning Guide for ML.md
-│       ├── 01 - Kaggle Competitions - Project Guide.md
-│       ├── 02 - End-to-End ML Project - Project Guide.md
-│       ├── 03 - Fine-Tuning LLMs - Project Guide.md
-│       ├── 04 - Production RAG System - Project Guide.md
-│       ├── 05 - Computer Vision Pipeline - Project Guide.md
-│       ├── 06 - Advanced MLOps - Project Guide.md
-│       └── 07 - Paper Reproduction - Project Guide.md
+│   │   ├── ...
+│   │   ├── 07 - Paper Reproduction.md
+│   │   ├── 08 - Weights and Biases/                 # ✅ (5 notes)
+│   │   ├── 09 - Databricks for ML/                  # ✅ (5 notes)
+│   │   ├── 10 - MLOps Tooling Comparison.md         # ✅ (1 note)
+│   │   ├── 11 - Apache Spark for ML/                # ✅ (6 notes)
+│   │   ├── 12 - BigQuery for ML/                    # ✅ (3 notes)
+│   │   ├── 13 - Reinforcement Learning for AI/      # ✅ (7 notes)
+│   │   ├── 14 - Distributed ML Infrastructure/      # ✅ (7 notes)
+│   │   ├── 15 - Advanced ML Topics/                 # ✅ (7 notes)
+│   │   ├── 16 - Graph Neural Networks/              # ✅ (5 notes)
+│   │   └── 17 - ML Platform Engineering/            # ✅ (6 notes)
+│   │       ├── 01 - Kubeflow.md
+│   │       ├── 02 - Seldon Core and BentoML.md
+│   │       ├── 03 - Great Expectations.md
+│   │       ├── 04 - ML Interview Preparation.md
+│   │       ├── 05 - ML Platform Engineering.md
+│   │       └── 06 - Technical Sales.md
+│   │
+│   └── projects/                       # (8 notes - English)
+│       └── ...
+│
+├── Transversal Skills/                 # (4 notes - English)
+│   └── ...
 │
 ├── Transversal Skills/                 # NEW (4 notes - English)
 │   ├── 00 - Welcome to Transversal Skills.md
@@ -419,38 +459,47 @@ Subagents sometimes complete work (files created on disk) but do not return a re
 
 Priority: 🔴 HIGH — These are skills identified as missing from the Learning vault that are needed for job market competitiveness.
 
-#### 7A. Expand `09 - Extra` (+8 notes)
-Skills: JAX/Flax, Synthetic Data Generation, Speculative Decoding, Agent Swarms, Browser Agents, TinyML/Edge ML, Federated Learning, Azure ML
+#### 7A. Expand `09 - Extra` (+8 notes) ✅ DONE
+Skills: ~~JAX/Flax~~, ~~Synthetic Data Generation~~, ~~Speculative Decoding~~, ~~Agent Swarms~~, ~~Browser Agents~~, ~~TinyML/Edge ML~~, ~~Federated Learning~~, ~~Azure ML~~
+→ **Implemented** as `09 - Extra/15 - Advanced ML Topics/` (7 notes, Azure ML consolidated into other notes)
 
-#### 7B. New course: `M10 - Reinforcement Learning for AI Engineers` (+6 notes)
-Skills: RL fundamentals, PPO, DQN, RLHF, reward modeling, alignment theory, RL case study
-Critical because: RLHF is how ChatGPT, Claude, Gemini are aligned.
+#### 7B. New course: `RL for AI Engineers` (+6 notes) ✅ DONE
+Skills: ~~RL fundamentals, PPO, DQN, RLHF, reward modeling, alignment theory, RL case study~~
+→ **Implemented** as `09 - Extra/13 - RL for AI Engineers/` (7 notes)
 
-#### 7C. New course: `M10 - Graph Neural Networks` (+4 notes)
-Skills: GCN, GAT, GraphSAGE, geometric DL case study
-Applications: molecular discovery, recommendation systems, knowledge graphs.
+#### 7C. New course: `Graph Neural Networks` (+4 notes) ✅ DONE
+Skills: ~~GCN, GAT, GraphSAGE, geometric DL case study~~
+→ **Implemented** as `09 - Extra/16 - Graph Neural Networks/` (5 notes)
 
-#### 7D. New course: `M10 - Distributed ML Infrastructure` (+7 notes)
-Skills: Apache Kafka, Ray/Ray Serve, NVIDIA Triton, Airflow/Prefect, dbt, Dagster
-Aggregates all missing distributed infrastructure skills.
+#### 7D. New course: `Distributed ML Infrastructure` (+7 notes) ✅ DONE
+Skills: ~~Apache Kafka, Ray/Ray Serve, NVIDIA Triton, Airflow/Prefect, dbt, Dagster~~
+→ **Implemented** as `09 - Extra/14 - Distributed ML Infrastructure/` (7 notes)
 
-#### 7E. New course: `M10 - ML Platform Engineering` (+5 notes)
-Skills: Kubeflow, Weights & Biases, Seldon Core, Great Expectations, BentoML
-The evolution beyond MLOps — internal tooling for ML teams.
+#### 7E. ~~New course: `M10 - ML Platform Engineering`~~ ✅ PARTIALLY DONE
+Skills: ~~Weights & Biases~~ → **Implemented** as `09 - Extra/08 - Weights and Biases/` (5 notes)
+Skills: ~~Databricks for ML~~ → **Implemented** as `09 - Extra/09 - Databricks for ML/` (5 notes)
+Skills: ~~MLflow deepening~~ → **Done** — `05/18/01` expanded 262→579 lines, `05/18/06` added
+Skills: ~~MLOps Tooling Comparison~~ → **Implemented** as `09 - Extra/10 - MLOps Tooling Comparison.md`
+Skills: ~~Kubeflow~~, ~~Seldon Core~~, ~~Great Expectations~~, ~~BentoML~~ → **Implemented** as `09 - Extra/17 - ML Platform Engineering/` (6 notes)
 
-#### 7F. Expand `Extra Skills/` (+3 notes)
-Skills: ML Interview Preparation, Technical Sales/Solutions Engineering, ML Platform Engineering overview
-Direct job market preparation.
+#### 7F. Expand `Extra Skills/` (+3 notes) 🟡 PENDING
+Skills: ML Interview Preparation ✅ (in 17 - Platform Engineering), Technical Sales/Solutions Engineering ✅ (in 17), ML Platform Engineering overview ✅ (in 17)
 
-| Addition | Location | Notes | Priority |
-|----------|----------|:-----:|:--------:|
-| Expand 09 Extra | SW-ML-AI Engineering/09 | 8 | 🔴 High |
-| RL for AI Engineers | SW-ML-AI Engineering/M10 | 6 | 🔴 High |
-| Graph Neural Networks | SW-ML-AI Engineering/M10 | 4 | 🟡 Medium |
-| Distributed ML Infra | SW-ML-AI Engineering/M10 | 7 | 🔴 High |
-| ML Platform Engineering | SW-ML-AI Engineering/M10 | 5 | 🟡 Medium |
-| Expand Extra Skills | Extra Skills/ | 3 | 🟡 Medium |
-| **TOTAL** | | **33** | |
+| Addition | Location | Notes | Priority | Status |
+|----------|----------|:-----:|:--------:|:------:|
+| ~~Deepen MLflow~~ | 05 - MLOps | 2 | 🔴 High | ✅ Done |
+| ~~Weights & Biases~~ | 09 - Extra/08 | 5 | 🔴 High | ✅ Done |
+| ~~Databricks for ML~~ | 09 - Extra/09 | 5 | 🟡 Medium | ✅ Done |
+| ~~Tooling Comparison~~ | 09 - Extra/10 | 1 | 🟢 Low | ✅ Done |
+| ~~Apache Spark for ML~~ | 09 - Extra/11 | 6 | 🔴 High | ✅ Done |
+| ~~BigQuery for ML~~ | 09 - Extra/12 | 3 | 🟡 Medium | ✅ Done |
+| ~~RL for AI Engineers~~ | 09 - Extra/13 | 7 | 🔴 High | ✅ Done |
+| ~~Distributed ML Infra~~ | 09 - Extra/14 | 7 | 🔴 High | ✅ Done |
+| ~~Expand 09 Extra (Adv Topics)~~ | 09 - Extra/15 | 7 | 🔴 High | ✅ Done |
+| ~~Graph Neural Networks~~ | 09 - Extra/16 | 5 | 🟡 Medium | ✅ Done |
+| ~~Platform Engineering~~ | 09 - Extra/17 | 6 | 🟡 Medium | ✅ Done |
+| Expand Extra Skills | Extra Skills/ | 3 | 🟡 Medium | Pending |
+| **TOTAL** | | **82** | | **50 done** | |
 
 ### 8. Portfolio Web Redesign (PLANNED)
 Update `leito2.github.io` to professional ML/AI Engineer portfolio with 76 skills (up from 34).
@@ -836,8 +885,14 @@ Get-ChildItem -Recurse "C:\Users\Leito\Documents\Learning\Software Engineering\G
 ## Repository
 - **GitHub:** https://github.com/Leito2/Learning
 - **Branch:** master
-- **Local path:** C:\Users\Leito\Documents\Learning
+- **Linux path:** /home/white/Learning
+- **Actual path:** /home/white/Learning/SW-ML-AI Engineering/
 
 ---
 
-> **Tip for next session:** Start by verifying the filesystem state of any in-progress work, then proceed with the next batch of subagents following the max-2-parallel, max-7-notes rule.
+> **⚠️ MANDATORY for next session:** 
+> 1. Read the "CRITICAL: CONTEXT MANAGEMENT" section at the top of this file. 
+> 2. ALWAYS use subagents (`task` tool) for bulk content creation — max 2 in parallel, max 7 notes each. 
+> 3. Never write 5+ full course notes in the main thread. 
+> 4. Verify filesystem state after every subagent batch.
+> 5. Gap-fill initiative is **COMPLETE**. Next work: portfolio redesign, content improvements, or new user requests.
