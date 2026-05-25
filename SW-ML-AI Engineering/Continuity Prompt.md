@@ -4,961 +4,347 @@ Copy and paste this entire file into a new session to continue the project witho
 
 ---
 
-## ⚠️ CRITICAL: CONTEXT MANAGEMENT — READ THIS FIRST
+## ⚠️ CRITICAL: CONTEXT MANAGEMENT
 
-This vault is **~600+ notes**. If you try to work on bulk content creation (writing multiple courses, expanding many notes) in the **main thread**, you WILL saturate context and crash the session. This has happened multiple times.
+This vault is **~600+ notes**. Bulk content creation in the **main thread** WILL saturate context.
 
-### MANDATORY Subagent Usage
+### Mandatory Subagent Workflow
 
-| Task Type | Tool | Rule |
-|-----------|------|------|
-| **Writing courses (3+ notes)** | `task` with `subagent_type: general` | Maximum **2 subagents in parallel**, each max **7 notes** |
-| **Research / exploring codebase** | `task` with `subagent_type: explore` | Provide explicit file paths to read |
-| **Single-note expansion or edit** | Main thread (Write/Edit tools) | OK for 1-2 files |
-| **Verification after subagents** | `bash` in main thread | Always verify file counts and line counts |
+| Task Type | Rule |
+|-----------|------|
+| Writing courses (3+ notes) | `task` tool, **max 2 subagents parallel**, **max 7 notes each** |
+| Research / exploring codebase | `task` tool with `subagent_type: explore` |
+| Single-note edit | Main thread (Write/Edit) — OK for 1-2 files |
+| Post-subagent verification | `bash` — check file counts and line counts |
 
-### Workflow for Course Creation
+**Never:** write 5+ notes in main thread, launch >2 subagents, skip verification.
 
-```
-1. Create directory (main thread, Bash tool)
-2. Launch 2 subagents in parallel (task tool):
-   ─ Agent 1: Write 01.md, 02.md, 03.md, 00-Welcome.md
-   ─ Agent 2: Write 04.md, 05.md, 06.md
-3. Verify output (main thread): check file counts, grep for errors
-4. Update Continuity Prompt + Master Index (main thread)
-```
-
-### NEVER Do This
-- Write 5+ full course notes in the main thread (context explodes)
-- Launch more than 2 subagents simultaneously
-- Skip verification after subagents finish
+**Filesystem is the single source of truth.** Subagents may silently complete. Verify with `ls`/`wc -l` immediately after launch.
 
 ---
 
-## ⚠️ DEEP FORMAT SPECIFICATION — MANDATORY FOR ALL NOTES
+## ⚠️ DEEP FORMAT SPECIFICATION — MANDATORY
 
-When creating a **new** note or **expanding** an existing note, you MUST follow this structure. No exceptions.
+Applies to **all new notes** and **all expansions**. No exceptions.
 
-### Required Sections (Deep Format)
+### Required Sections
 
 ```markdown
 # 🏷️ Title (with emoji)
 
-## Introduction
-(2-3 paragraphs linking to related notes, contextualizing the topic)
-
-## 1. 🧠 Section Name — Theoretical Foundation
-- Deep conceptual explanation (not just definitions — WHY it works)
-- Mathematical formulas where applicable ($$...$$)
-- Comparison tables
-
-## 2. 📐 Section Name — Mental Model
-- ASCII diagram showing architecture/flow
-- Mermaid diagram for complex relationships
-
-## 3. 💻 Section Name — Code & Practice
-- Language-tagged code blocks with explanatory comments
-- Real-case examples (named companies)
-
-## 4. 🌍 Real-World Applications
-| Company | Use Case | Detail |
-
-## ⚠️ Pitfalls
-## 💡 Tips
-## 📦 Compression Code
-(Complete executable script)
-
-## ✅ Knowledge Check
-(3-5 questions with answers)
-
-## 🎯 Key Takeaways
-(5-7 bullet points — what to remember)
-
-## References
-```
-
-### Line Count Targets
-
-| Note Type | Lines |
-|-----------|:-----:|
-| Course welcome (00) | 60-90 |
-| Core course note | 400-600 |
-| Quick-reference note | 200-350 |
-| Tool comparison note | 200-400 |
-
-### Format Rules
-- **English** for all new content; **Spanish** for existing M00-M08 modules
-- Code blocks MUST have language tag: ```python, ```go, ```yaml
-- Tables MUST use aligned columns
-- Mermaid diagrams MUST use ```mermaid wrapper
-- Wikimedia images: ![Alt text](URL) with descriptive alt text
-- NEVER use comments in code unless the module format explicitly uses WHY: annotations (Go/Rust notes)
-
-### Before Marking Complete
-- Verify line count with `wc -l`
-- Verify all mermaid blocks close properly
-- Verify all internal [[links]] use correct Spanish/English note names
-
----
-
-## Project Context
-
-We are building an **Obsidian vault** inside `/home/white/Learning`, which is a **Git repository** connected to `https://github.com/Leito2/Learning.git`. The vault contains compressed markdown courses for an **AI/ML Engineer** learning path (500+ notes). The vault is also used to document portfolio projects for landing a first job as an ML/AI Engineer.
-
-**Current Goal:** Build the vault into a comprehensive, job-ready knowledge base. All **new** courses and notes are written in **English** with deep theoretical and practical depth. The user is looking for their first ML/AI Engineer job. **Gap-fill initiative COMPLETE — all 22 original gaps filled (50 notes across 12 courses).**
-
----
-
-## Vault Structure
-
-```
-Learning/
-├── .obsidian/                          # Obsidian configuration
-├── Welcome.md                          # Main vault index (Spanish)
-│
-├── Curso Markdown/                     # Complete (5 notes)
-├── Curso SQL con PostgreSQL/           # Complete (7 notes + assets)
-│
-├── Advanced Python/                    # Complete (62 notes + images)
-│   ├── 01 - Python Basico/             # 13 notes
-│   ├── 02 - Python Intermedio/         # 13 notes
-│   ├── 03 - Python Avanzado/           # 13 notes
-│   ├── 04 - Librerias Basicas de Python/# 8 notes
-│   └── 05 - Librerias Especificas/     # 7 notes
-│
-├── Software Engineering/               # Active area
-│   ├── 01 - Docker Profesional/        # Complete (7 notes)
-│   ├── extra/                          # NEW (6 notes - English)
-│   │   ├── 00 - Welcome to SE Extra.md
-│   │   ├── 01 - FastAPI for ML.md
-│   │   ├── 02 - System Design for ML.md
-│   │   ├── 03 - Testing in ML Systems.md
-│   │   ├── 04 - CI-CD for ML.md
-│   │   └── 05 - Rust for ML Infra.md
-│   └── projects/                       # NEW (6 notes - English)
-│       ├── 00 - Project Planning Guide for SE.md
-│       ├── 01 - FastAPI for ML - Project Guide.md
-│       ├── 02 - System Design for ML - Project Guide.md
-│       ├── 03 - Testing in ML Systems - Project Guide.md
-│       ├── 04 - CI-CD for ML - Project Guide.md
-│       └── 05 - Rust for ML Infra - Project Guide.md
-│
-├── SW-ML-AI Engineering/               # Main vault for SW + ML + AI courses
-│   ├── Welcome.md                      # Sub-vault index (Spanish + English sections)
-│   ├── 00 - Indice Maestro de Cursos.md # Master course index
-│   │
-│   ├── 00 - Fundamentos de Ingenieria/           # Complete + images (23 notes)
-│   ├── 01 - Deep Learning y Computer Vision/     # Complete + images (18 notes)
-│   ├── 02 - Large Language Models/               # Complete + images (30 notes)
-│   ├── 03 - AI Agents y Agentic Systems/         # Complete + images (22 notes)
-│   ├── 04 - NLP Avanzado/                        # Complete + images (17 notes)
-│   ├── 05 - MLOps y Produccion/                  # Complete + images (24 notes)
-│   ├── 06 - Cloud, Infra y Backend/              # Complete + images (24 notes)
-│   ├── 07 - Research y Ciencia de Datos/         # Complete + images (24 notes)
-│   ├── 08 - Producto, Negocio y Open Source/     # Complete + images (18 notes)
-│   │
-│   ├── 09 - Extra/                                  # English courses (flat files + subfolders)
-│   │   ├── 00 - Welcome to ML Extra Courses.md
-│   │   ├── 01 - Kaggle Competitions.md
-│   │   ├── ...
-│   │   ├── 07 - Paper Reproduction.md
-│   │   ├── 08 - Weights and Biases/                 # ✅ (5 notes)
-│   │   ├── 09 - Databricks for ML/                  # ✅ (5 notes)
-│   │   ├── 10 - MLOps Tooling Comparison.md         # ✅ (1 note)
-│   │   ├── 11 - Apache Spark for ML/                # ✅ (6 notes)
-│   │   ├── 12 - BigQuery for ML/                    # ✅ (3 notes)
-│   │   ├── 13 - Reinforcement Learning for AI/      # ✅ (7 notes)
-│   │   ├── 14 - Distributed ML Infrastructure/      # ✅ (7 notes)
-│   │   ├── 15 - Advanced ML Topics/                 # ✅ (7 notes)
-│   │   ├── 16 - Graph Neural Networks/              # ✅ (5 notes)
-│   │   └── 17 - ML Platform Engineering/            # ✅ (6 notes)
-│   │       ├── 01 - Kubeflow.md
-│   │       ├── 02 - Seldon Core and BentoML.md
-│   │       ├── 03 - Great Expectations.md
-│   │       ├── 04 - ML Interview Preparation.md
-│   │       ├── 05 - ML Platform Engineering.md
-│   │       └── 06 - Technical Sales.md
-│   │
-│   └── projects/                       # (8 notes - English)
-│       └── ...
-│
-├── Transversal Skills/                 # (4 notes - English)
-│   └── ...
-│
-├── Transversal Skills/                 # NEW (4 notes - English)
-│   ├── 00 - Welcome to Transversal Skills.md
-│   ├── 01 - Technical English.md
-│   ├── 02 - Technical Communication and Storytelling.md
-│   └── 03 - Technical Leadership.md
-│
-├── Software Engineering/
-│   ├── Go Engineering/                 # COMPLETE (49 notes - English)
-│   │   ├── 00 - Welcome to Go Engineering.md
-│   │   ├── 01 - Go Fundamentals/       # ✅ IMPROVED — Deep theory, ASCII, ML context (4179 lines)
-│   │   ├── 02 - Go for Cloud Native/   # 7 notes
-│   │   ├── 03 - Microservices with Go/ # 7 notes
-│   │   ├── 04 - DevSecOps and CLI Tools/ # 7 notes
-│   │   ├── 05 - Local AI with Go/      # 7 notes
-│   │   ├── 06 - Go for ML Backend/     # 7 notes
-│   │   ├── 07 - Gorgonia - Deep Learning in Go/  # ✅ NEW (6 notes - English, deep format)
-│   │   ├── 07 - LocalAI - Local LLM Server/      # ✅ NEW (6 notes - English, deep format)
-│   │   ├── 07 - Wails - Desktop Apps with Go/    # ✅ NEW (6 notes - English, deep format)
-│   │   ├── projects/                   # 6 notes
-│   │   └── extra/                      # 7 notes
-│   │
-│   └── Rust Engineering/               # ✅ COMPLETE (49 notes + 12 new = 61 notes - English)
-│       ├── 00 - Welcome to Rust Engineering.md
-│       ├── 01 - Rust Fundamentals/     # 7 notes
-│       ├── 02 - Advanced Rust/         # 7 notes
-│       ├── 03 - Rust for Data Engineering/ # 7 notes
-│       ├── 04 - Rust for ML and AI/    # 7 notes
-│       ├── 05 - WebAssembly and Edge AI/ # 7 notes
-│       ├── 06 - Agentic AI with Rust/  # 7 notes
-│       ├── 07 - Polars Internals and Advanced/   # ✅ NEW (6 notes - English, deep format)
-│       ├── 07 - Candle Advanced Patterns/        # ✅ NEW (6 notes - English, deep format)
-│       ├── projects/                   # 6 notes
-│       └── extra/                      # 7 notes
-```
-
-**Current total: ~513 notes created** (294 original + 42 SE/ML/Transversal + 67 Go + 61 Rust + 49 restructuring)
-
-**Format Improvement Progress:**
-| Course | Status | Avg Lines | Notes |
-|--------|--------|-----------|-------|
-| Go 01 - Fundamentals | ✅ IMPROVED | ~600 | 7/7 |
-| Go 02 - Cloud Native | ✅ IMPROVED | ~500 | 7/7 |
-| Go 03 - Microservices | ✅ IMPROVED | ~500 | 7/7 |
-| Go 04 - DevSecOps | ✅ IMPROVED | ~520 | 7/7 |
-| Go 05 - Local AI | ✅ IMPROVED | ~550 | 7/7 |
-| Go 06 - ML Backend | ✅ IMPROVED | ~530 | 7/7 |
-| Go 07 - Gorgonia | ✅ CREATED (deep format) | ~380 | 6/6 |
-| Go 07 - LocalAI | ✅ CREATED (deep format) | ~410 | 6/6 |
-| Go 07 - Wails | ✅ CREATED (deep format) | ~380 | 6/6 |
-| Go extra | ✅ IMPROVED | ~770 | 7/7 |
-| Go projects | ✅ IMPROVED | ~770 | 6/6 |
-| Rust 01 - Fundamentals | ✅ IMPROVED | ~510 | 7/7 |
-| Rust 02 - Advanced Rust | ✅ IMPROVED | ~770 | 7/7 |
-| Rust 03 - Data Engineering | ✅ IMPROVED | ~640 | 7/7 |
-| Rust 04 - Rust for ML/AI | ✅ IMPROVED | ~760 | 7/7 |
-| Rust 05 - WebAssembly | ✅ IMPROVED | ~790 | 7/7 |
-| Rust 06 - Agentic AI | ✅ IMPROVED | ~730 | 7/7 |
-| Rust 07 - Polars | ✅ CREATED (deep format) | ~360 | 6/6 |
-| Rust 07 - Candle | ✅ CREATED (deep format) | ~290 | 6/6 |
-| Rust extra | ✅ IMPROVED | ~940 | 7/7 |
-| Rust projects | ✅ IMPROVED | ~1190 | 6/6 |
-
-**Git Checkpoints:**
-- *(next)* — Folder rename ML and IA Engineering → SW-ML-AI Engineering + skills maps + gap analysis
-- `38a4a25` — Continuity Prompt updated with improvement progress
-- `888e6a6` — Deep expansion courses + Go 02-06 + Rust 01 improved
-- `ef57e18` — Go Fundamentals improved with new deep format
-- `6de9e0e` — Rust Engineering complete (revert point)
-
----
-
-## Language Policy
-
-- **Existing modules (00-08, Advanced Python, Docker, Markdown, SQL):** Written in Spanish. **DO NOT modify** unless explicitly requested.
-- **All new content (SE extra/projects, ML extra/projects, Transversal, Go Engineering, future Rust Engineering):** Written entirely in **English**.
-- **Welcome.md and indices:** May contain both Spanish and English sections to bridge old and new content.
-
----
-
-## Note Style and Format
-
-### ⭐ NEW IMPROVED Format (applied to Go Fundamentals 01)
-
-The course `01 - Go Fundamentals` has been upgraded with a **deeper, modular format** that must be used for ALL future note improvements. This format produced notes of **400-1200+ lines** (vs 200-370 original).
-
-```markdown
-# <Title with emoji>
-
 ## 🎯 Learning Objectives
-<Bullet list of what the reader will master in this specific module>
-
----
+(Bullet list of what the reader will master)
 
 ## Introduction
-<2-3 paragraphs. Deep context about WHY this matters for ML/AI engineering.
-Connect to other vault modules via [[...]] links.>
+(2-3 paragraphs. Deep context: WHY this matters for ML/AI engineering.
+Connect to other vault modules via [[...]] links.)
 
 ---
 
 ## Module X: <Concept Name>
 
 ### X.1 Theoretical Foundation 🧠
-<3-4 paragraphs explaining WHY this concept exists.
-Historical context, computer science theory, design motivation.
-Show the problem this concept solves before showing the solution.>
+(3-4 paragraphs: WHY the concept exists, historical context, design motivation.
+Show the problem BEFORE the solution.)
 
 ### X.2 Mental Model 📐
-<ASCII diagram or conceptual table that builds intuition>
-```
-┌─────────────────────────────────────────────┐
-│  Concept Visualization (ASCII)              │
-├─────────────────────────────────────────────┤
-│  Component A ──────► Component B            │
-│       │                    │                │
-│       └────────────────────┘                │
-└─────────────────────────────────────────────┘
-```
+(ASCII diagram using ┌─│└├┘┤┬┴┼ — at least 3 per note)
 
 ### X.3 Syntax and Semantics 📝
-<Exact syntax with line-by-line comments explaining what each line does>
+(Exact syntax with line-by-line WHY comments, not just WHAT)
 ```go / rust / python
-// code with inline comments explaining WHY, not just WHAT
+// code with inline comments explaining WHY
 ```
 
 ### X.4 Visual Representation 🖼️
-<Mermaid diagram AND reference to Wikimedia image URL>
+(Mermaid diagram — at least 2 per note, varied types)
 ```mermaid
 <diagram>
 ```
-![Description](https://upload.wikimedia.org/wikipedia/commons/thumb/...)
+(Wikimedia image URL: ![Alt](https://upload.wikimedia.org/...))
 
 ### X.5 Application in ML/AI Systems 🤖
-<Specific real-world ML example showing this concept in production.
-Include a mini-case study with company name, problem, solution, and impact.>
+(Specific real-world case: "Real case: <company>" or usage table)
 
 | ML Use Case | This Concept | Impact |
 |-------------|-------------|--------|
-| ... | ... | ... |
 
 ### X.6 Common Pitfalls ⚠️
-⚠️ <Warning with explanation of WHY it happens>
-⚠️ <Warning>
-💡 <Tip with mnemonic or mental shortcut>
+⚠️ <Warning with root cause explanation>
+💡 <Tip with mnemonic>
 
 ### X.7 Knowledge Check ❓
-<2-3 questions or mini-exercises that test understanding>
+(2-3 questions or mini-exercises)
 
 ---
 
 ## 📦 Compression Code
-<Complete, production-ready code summarizing ALL concepts in the module>
+(Complete, production-ready script summarizing ALL concepts)
 
 ## 🎯 Documented Project
+### Description, Functional Requirements, Main Components, Success Metrics
 
-### Description
-<2-3 sentences about a real-world ML project using these concepts>
+## 🎯 Key Takeaways
+(5-7 bullet points)
 
-### Functional Requirements
-1. ...
-2. ...
-3. ...
-4. ...
-5. ...
-
-### Main Components
-- ...
-- ...
-- ...
-
-### Success Metrics
-- ...
-- ...
-- ...
-
-### References
-- Official docs: <URL>
-- Paper/library: <URL>
+## References
 ```
 
-### Key Rules for IMPROVED Format
-- **Theory BEFORE code** in EVERY section — never show code without first explaining WHY the concept exists
-- **At least 3 ASCII diagrams** per note — use `┌─│└├┘┤┬┴┼` characters for structural diagrams
-- **At least 2 Mermaid diagrams** per note — varied types (flowchart, sequence, state, class)
-- **At least 2 Wikimedia image URLs** per note — reference the URL even if not yet downloaded
-- **Each concept has ML/AI application** — show "Real case: <company>" or a usage table
-- **Target 400-600 lines** (welcome notes: 200-300)
-- **Modular organization** — each concept is a self-contained "Module" with sub-sections X.1-X.7
-- **Code has WHY comments** — not just WHAT, but WHY each pattern is used
+### Line Targets
 
-### Assets Directory
-Each course should have an `assets/` folder for images and diagrams:
-```
-<Course>/assets/
-├── README.md                 # Asset inventory
-└── module-X-topic.png        # Images referenced in notes
-```
-Reference images as: `![Description](assets/module-X-topic.png)`
-Keep Wikimedia URLs as fallback: `![Description](https://upload.wikimedia.org/...)`
+| Note Type | Lines |
+|-----------|:-----:|
+| Course welcome (00) | 60-90 |
+| Core course note | 400-600 |
+| Quick-reference | 200-350 |
+| Tool comparison | 200-400 |
 
----
-
-### Original Format (Legacy courses - 00-08, SE extra/projects)
-
-### For Project Guide Notes (projects/ folder)
-
-```markdown
-# <Title with emoji>
-
-## Overview
-Why this matters for a first job.
-
-## Prerequisites
-
-## Learning Objectives
-
-## Official Resources & Links
-| Resource | Type | URL | Why It Matters |
-|----------|------|-----|----------------|
-(At least 5 links per note)
-
-## Architecture & Planning
-Mermaid diagram + key decisions.
-
-## Step-by-Step Implementation Guide
-5-10 numbered steps with what, why, code, expected output.
-
-## Guide Class / Example
-Complete copy-pasteable code.
-
-## Common Pitfalls & Checklist
-⚠️ At least 3 mistakes
-✅ Checklist table
-
-## Deployment & Portfolio Integration
-How to deploy and present for recruiters.
-
-## Next Steps
-[[...]] internal links.
-```
-
-### Formatting Rules
+### Key Rules
+- **Theory BEFORE code** in every section.
+- **English** for all new content; **Spanish** only for existing M00-M08 modules.
+- Code blocks MUST have language tag: ` ```python `, ` ```go `, ` ```rust `.
+- Tables MUST use aligned columns.
+- Mermaid MUST use ` ```mermaid ` wrapper.
 - Use `[[...]]` for internal Obsidian links.
-- File names: `## - Descriptive Name.md` (with spaces).
-- **IMPORTANT:** Do NOT use `/` in file names. Use `-` instead (Windows restriction).
-- One H1 (`#`) per note only.
-- Blank lines between paragraphs.
-- Markdown tables for comparisons.
-- Emojis for sections: 📦 (code), 🎯 (project), 💡 (tip), ⚠️ (warning).
+- File names: `## - Descriptive Name.md`. **Never use `/`** (Windows restriction).
+- One H1 per note only.
 
 ---
 
-## CRITICAL RULE: Subagent (Task Tool) Usage
+## Project Context
 
-### Identified Problem
-Subagents sometimes complete work (files created on disk) but do not return a result message, appearing "hung." This happens when:
-- More than 3 subagents are launched in parallel.
-- A subagent must create more than 7 notes at once.
-- Prompts are extremely long.
+We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git repo** connected to `https://github.com/Leito2/Learning.git`. The vault contains compressed markdown courses for an **AI/ML Engineer** learning path (~600 notes).
 
-### MANDATORY Workflow for Creating Courses
+**Current Goal:** Maintain and deepen the vault as a job-ready knowledge base. The user is seeking their first ML/AI Engineer role.
 
-1. **ALWAYS** use subagents to create batches of notes (creating one by one consumes too much main model context).
-2. **Maximum 2 subagents in parallel per batch.**
-3. **Maximum 7 notes per subagent.** If a course has more notes, split into 2 sequential subagents (verify the first's filesystem before launching the second).
-4. **IMMEDIATELY** after launching subagents, verify the filesystem with bash:
-   ```powershell
-   Get-ChildItem -Recurse -File "C:\Users\Leito\Documents\Learning\PATH\TO\COURSE" | ForEach-Object { $_.FullName }
-   ```
-5. If files exist, consider the task completed even if the subagent has not reported anything.
-6. If files are missing, re-launch ONLY the missing ones.
-7. **The filesystem is the single source of truth.**
+**Gap-fill initiative:** ✅ COMPLETE — 22 original gaps filled (50 notes across 12 courses).
 
----
+**Current total: ~545 notes** — all redistributed into logical numbered modules (00-15).
 
-## Upcoming Work Queue
+## User Profile (Leandro Cataño Cardeño)
 
-### 1. Go Engineering (✅ COMPLETE — 73 notes)
-- **01 - Go Fundamentals:** ✅ IMPROVED to new deep format (~600 lines/note)
-- **02 - Go for Cloud Native:** ✅ IMPROVED to new deep format (~500 lines/note)
-- **03 - Microservices with Go:** ✅ IMPROVED to new deep format (~500 lines/note)
-- **04 - DevSecOps and CLI Tools:** ✅ IMPROVED to new deep format (~520 lines/note)
-- **05 - Local AI with Go:** ✅ IMPROVED to new deep format (~550 lines/note)
-- **06 - Go for ML Backend:** ✅ IMPROVED to new deep format (~530 lines/note)
-- **07 - Gorgonia:** ✅ CREATED (deep format, 6 notes)
-- **07 - LocalAI:** ✅ CREATED (deep format, 6 notes)
-- **07 - Wails:** ✅ CREATED (deep format, 6 notes)
-- **Projects:** ✅ IMPROVED (6 notes, ~770 avg lines)
-- **Extra:** ✅ IMPROVED (7 notes, ~770 avg lines)
+| Field | Detail |
+|-------|--------|
+| **Role** | AI & ML Engineer — LLMs, RAG Systems, Agentic AI |
+| **Location** | Medellín, Colombia |
+| **Languages** | English B2/Advanced, Spanish Native |
+| **Portfolio** | https://white-portfolio-ia-ml-engineer.netlify.app/ |
+| **GitHub** | https://github.com/Leito2 |
+| **Resume keywords** | Python, Go, SQL, Redis, Linux, Git, Docker, Kubernetes, PyTorch, LangGraph, Hugging Face, FastAPI, Fiber, AWS, GCP |
 
-### 2. Rust Engineering (✅ COMPLETE — 73 notes)
-- **01 - Rust Fundamentals:** ✅ IMPROVED to new deep format (~510 lines/note)
-- **02 - Advanced Rust:** ✅ IMPROVED to new deep format (~770 lines/note)
-- **03 - Rust for Data Engineering:** ✅ IMPROVED to new deep format (~640 lines/note)
-- **04 - Rust for ML and AI:** ✅ IMPROVED to new deep format (~760 lines/note)
-- **05 - WebAssembly and Edge AI:** ✅ IMPROVED to new deep format (~790 lines/note)
-- **06 - Agentic AI with Rust:** ✅ IMPROVED to new deep format (~730 lines/note)
-- **07 - Polars Internals:** ✅ CREATED (deep format, 6 notes)
-- **07 - Candle Advanced:** ✅ CREATED (deep format, 6 notes)
-- **Projects:** ✅ IMPROVED (6 notes, ~1190 avg lines)
-- **Extra:** ✅ IMPROVED (7 notes, ~940 avg lines)
+### Portfolio Projects (4 core)
+1. **LLM Edge Gateway** — Go/Fiber + Redis semantic caching + Gemma 4 failover. 30-40% API cost reduction, <10ms cached responses, 99.9% uptime.
+2. **Automated LLM Evaluation Suite** — Python asyncio + Gemma 4 as Golden Judge + AWS SageMaker + GCP Vertex AI. 90% audit automation, real-time semantic drift detection.
+3. **Multi-Agent Research System** — LangGraph cyclic agents (Research → Fact-Audit → Synthesis) + Gemma 4 function calling + Tavily API. 85%+ accuracy on multi-hop tasks.
+4. **StayBot — Airbnb Property Agent** — LangGraph + CrewAI + FastAPI + Supabase. Multi-agent property management automation.
 
-### 3. Note Improvement Priority — ALL DONE ✅
-
-| Course | Current Avg Lines | Target | Status |
-|--------|-------------------|--------|--------|
-| Go 01 - Fundamentals | ~600 | 400-600 | ✅ Done |
-| Go 02 - Cloud Native | ~500 | 400-600 | ✅ Done |
-| Go 03 - Microservices | ~500 | 400-600 | ✅ Done |
-| Go 04 - DevSecOps | ~520 | 400-600 | ✅ Done |
-| Go 05 - Local AI | ~550 | 400-600 | ✅ Done |
-| Go 06 - ML Backend | ~530 | 400-600 | ✅ Done |
-| Rust 01 - Fundamentals | ~510 | 400-600 | ✅ Done |
-| Rust 02 - Advanced Rust | ~770 | 400-600 | ✅ Done |
-| Rust 03 - Data Engineering | ~640 | 400-600 | ✅ Done |
-| Rust 04 - Rust for ML/AI | ~760 | 400-600 | ✅ Done |
-| Rust 05 - WebAssembly | ~790 | 400-600 | ✅ Done |
-| Rust 06 - Agentic AI | ~730 | 400-600 | ✅ Done |
-| Go projects/extra | ~770 | 300-500 | ✅ Done |
-| Rust projects/extra | ~1065 | 300-500 | ✅ Done |
-| Go 07 deep courses | ~380 | 400-600 | ✅ Done |
-| Rust 07 deep courses | ~330 | 400-600 | ✅ Done |
-
-### 4. Deep Content Expansion — Go (✅ COMPLETE)
-**Course: Gorgonia — Deep Learning in Go** (6 notes) ✅ CREATED
-**Course: LocalAI — Local LLM Server** (6 notes) ✅ CREATED
-**Course: Wails — Desktop Apps with Go** (6 notes) ✅ CREATED
-
-### 5. Deep Content Expansion — Rust (✅ COMPLETE)
-**Course: Polars Internals and Advanced** (6 notes) ✅ CREATED
-**Course: Candle Advanced Patterns** (6 notes) ✅ CREATED
-
-### 6. Portfolio & Skills Analysis (✅ COMPLETE)
-- Portfolio gap analysis completed → 22 skills missing from Learning vault
-- Two skill maps created: `Skills Universe - Portfolio Aligned.md` + `Skills Tree - The AI-ML Engineer Growth Map.md`
-- Folder renamed: `ML and IA Engineering` → `SW-ML-AI Engineering`
-
-### 7. NEW — Learning Vault Gap Fill 🚧 PENDING (22 skills, 6 additions)
-
-Priority: 🔴 HIGH — These are skills identified as missing from the Learning vault that are needed for job market competitiveness.
-
-#### 7A. Expand `09 - Extra` (+8 notes) ✅ DONE
-Skills: ~~JAX/Flax~~, ~~Synthetic Data Generation~~, ~~Speculative Decoding~~, ~~Agent Swarms~~, ~~Browser Agents~~, ~~TinyML/Edge ML~~, ~~Federated Learning~~, ~~Azure ML~~
-→ **Implemented** as `09 - Extra/15 - Advanced ML Topics/` (7 notes, Azure ML consolidated into other notes)
-
-#### 7B. New course: `RL for AI Engineers` (+6 notes) ✅ DONE
-Skills: ~~RL fundamentals, PPO, DQN, RLHF, reward modeling, alignment theory, RL case study~~
-→ **Implemented** as `09 - Extra/13 - RL for AI Engineers/` (7 notes)
-
-#### 7C. New course: `Graph Neural Networks` (+4 notes) ✅ DONE
-Skills: ~~GCN, GAT, GraphSAGE, geometric DL case study~~
-→ **Implemented** as `09 - Extra/16 - Graph Neural Networks/` (5 notes)
-
-#### 7D. New course: `Distributed ML Infrastructure` (+7 notes) ✅ DONE
-Skills: ~~Apache Kafka, Ray/Ray Serve, NVIDIA Triton, Airflow/Prefect, dbt, Dagster~~
-→ **Implemented** as `09 - Extra/14 - Distributed ML Infrastructure/` (7 notes)
-
-#### 7E. ~~New course: `M10 - ML Platform Engineering`~~ ✅ PARTIALLY DONE
-Skills: ~~Weights & Biases~~ → **Implemented** as `09 - Extra/08 - Weights and Biases/` (5 notes)
-Skills: ~~Databricks for ML~~ → **Implemented** as `09 - Extra/09 - Databricks for ML/` (5 notes)
-Skills: ~~MLflow deepening~~ → **Done** — `05/18/01` expanded 262→579 lines, `05/18/06` added
-Skills: ~~MLOps Tooling Comparison~~ → **Implemented** as `09 - Extra/10 - MLOps Tooling Comparison.md`
-Skills: ~~Kubeflow~~, ~~Seldon Core~~, ~~Great Expectations~~, ~~BentoML~~ → **Implemented** as `09 - Extra/17 - ML Platform Engineering/` (6 notes)
-
-#### 7F. Expand `Extra Skills/` (+3 notes) 🟡 PENDING
-Skills: ML Interview Preparation ✅ (in 17 - Platform Engineering), Technical Sales/Solutions Engineering ✅ (in 17), ML Platform Engineering overview ✅ (in 17)
-
-| Addition | Location | Notes | Priority | Status |
-|----------|----------|:-----:|:--------:|:------:|
-| ~~Deepen MLflow~~ | 05 - MLOps | 2 | 🔴 High | ✅ Done |
-| ~~Weights & Biases~~ | 09 - Extra/08 | 5 | 🔴 High | ✅ Done |
-| ~~Databricks for ML~~ | 09 - Extra/09 | 5 | 🟡 Medium | ✅ Done |
-| ~~Tooling Comparison~~ | 09 - Extra/10 | 1 | 🟢 Low | ✅ Done |
-| ~~Apache Spark for ML~~ | 09 - Extra/11 | 6 | 🔴 High | ✅ Done |
-| ~~BigQuery for ML~~ | 09 - Extra/12 | 3 | 🟡 Medium | ✅ Done |
-| ~~RL for AI Engineers~~ | 09 - Extra/13 | 7 | 🔴 High | ✅ Done |
-| ~~Distributed ML Infra~~ | 09 - Extra/14 | 7 | 🔴 High | ✅ Done |
-| ~~Expand 09 Extra (Adv Topics)~~ | 09 - Extra/15 | 7 | 🔴 High | ✅ Done |
-| ~~Graph Neural Networks~~ | 09 - Extra/16 | 5 | 🟡 Medium | ✅ Done |
-| ~~Platform Engineering~~ | 09 - Extra/17 | 6 | 🟡 Medium | ✅ Done |
-| Expand Extra Skills | Extra Skills/ | 3 | 🟡 Medium | Pending |
-| **TOTAL** | | **82** | | **50 done** | |
-
-### 8. Portfolio Web Redesign (PLANNED)
-Update `leito2.github.io` to professional ML/AI Engineer portfolio with 76 skills (up from 34).
+### Vault Skills Coverage
+**Strong (have courses + portfolio projects):** Python, Go, LangGraph, FastAPI, Fiber, Docker, Redis, AWS, GCP, PyTorch, RAG
+**Present (have course notes):** Rust, Kubernetes, HuggingFace, TensorFlow, MLOps, CI/CD, SQL
+**Gaps (need new courses):** See "High-Value Technologies" section below
 
 ---
 
-## Deep Content Reference (Go & Rust for ML)
+## Vault Structure (Condensed)
 
-This section provides reference material for expanding Go and Rust tracks with deeper ML content. Use these when creating new notes or expanding existing ones.
+All courses distributed into logical numbered modules. `09 - Extra/` dissolved into 00-08. Unnumbered modules numbered 09-15.
 
----
-
-### 🐹 Go Deep Content: Gorgonia
-
-**What is Gorgonia?**
-Gorgonia is a library for machine learning in Go, similar to TensorFlow/PyTorch but native to Go. It provides:
-- Tensor operations (N-D arrays)
-- Automatic differentiation (autodiff)
-- Neural network building blocks (layers, activations, losses)
-- GPU support via CUDA
-
-**Key Concepts to Cover:**
 ```
-Gorgonia Architecture:
-├── gorgonia.org/tensor        # NDArray operations (like NumPy)
-├── gorgonia.org/gorgonia      # Computational graphs + autodiff
-├── gorgonia.org/genfuncs      # Generic functions for tensors
-└── gorgonia.org/vm            # Virtual machine for graph execution
-```
-
-**API Comparison:**
-| Operation | NumPy | PyTorch | Gorgonia |
-|-----------|-------|---------|----------|
-| Matrix multiply | `np.dot(A, B)` | `torch.matmul(A, B)` | `gorgonia.MatMul(A, B)` |
-| ReLU | `np.maximum(0, x)` | `torch.relu(x)` | `gorgonia.Rectify(x)` |
-| Softmax | `scipy.special.softmax(x)` | `torch.softmax(x, dim)` | `gorgonia.SoftMax(x)` |
-| Backward | N/A (manual) | `loss.backward()` | `gorgonia.Grad(loss)` |
-
-**When to Use Gorgonia:**
-- Go-only environments (no Python allowed)
-- Embedded systems where Go is the primary language
-- Building custom ML frameworks
-- Prototyping before porting to PyTorch
-
-**Real Cases:**
-- CockroachDB: uses gonum for query optimization
-- Various fintech companies: Go-first ML pipelines
-
----
-
-### 🐹 Go Deep Content: LocalAI
-
-**What is LocalAI?**
-LocalAI is an open-source, drop-in replacement for OpenAI API that runs locally. Written in Go by Mudler (Ettore Di Giacinto). It enables:
-- Running LLMs, image generation, audio transcription, and embedding models locally
-- OpenAI-compatible API (use existing OpenAI SDKs with local models)
-- Multiple backends: llama.cpp, whisper.cpp, stable-diffusion.cpp, piper TTS
-- Hardware acceleration: CUDA, Metal, Vulkan, CPU
-
-**Architecture:**
-```
-LocalAI Architecture:
-├── API Layer (Go)             # OpenAI-compatible REST API
-├── Backend Manager (Go)       # Manages model backends
-├── Backends (C/C++/Go):
-│   ├── llama.cpp              # LLM inference (LLama, Mistral, etc.)
-│   ├── whisper.cpp            # Audio transcription
-│   ├── stable-diffusion.cpp   # Image generation
-│   ├── piper                  # Text-to-speech
-│   └── sentencetransformers   # Embeddings
-├── Model Gallery              # One-click model download
-└── Protobuf gRPC             # Communication with backends
-```
-
-**Key APIs:**
-| Endpoint | Function | Backends |
-|----------|----------|----------|
-| `/v1/chat/completions` | Chat with LLM | llama.cpp |
-| `/v1/completions` | Text completion | llama.cpp |
-| `/v1/embeddings` | Generate embeddings | sentence-transformers |
-| `/v1/images/generations` | Generate images | stable-diffusion |
-| `/v1/audio/transcriptions` | Transcribe audio | whisper.cpp |
-
-**Configuration (YAML):**
-```yaml
-name: llama-3-8b
-backend: llama
-parameters:
-  model: llama-3-8b-Q4_K_M.gguf
-  temperature: 0.7
-  max_tokens: 2048
-context_size: 8192
-f16: true
-threads: 8
-gpu_layers: 35  # Offload to GPU
-```
-
-**Real Cases:**
-- Enterprises deploying AI without sending data to cloud
-- Hobbyists running AI on Raspberry Pi, old laptops
-- Developers building local-first AI applications
-
----
-
-### 🐹 Go Deep Content: ML Ecosystem
-
-**gonum (Numerical Computing):**
-```go
-import (
-    "gonum.org/v1/gonum/mat"
-    "gonum.org/v1/gonum/stat"
-    "gonum.org/v1/gonum/optimize"
-)
-
-// Matrix operations
-A := mat.NewDense(3, 3, []float64{1,2,3,4,5,6,7,8,9})
-B := mat.NewDense(3, 3, nil)
-B.Mul(A, A.T())  // Matrix multiply
-
-// Statistics
-data := []float64{1, 2, 3, 4, 5}
-mean := stat.Mean(data, nil)
-stddev := stat.StdDev(data, nil)
-```
-
-**gotch (PyTorch Bindings):**
-```go
-import "github.com/sugarme/gotch"
-
-// Create tensor
-ts := gotch.NewTensor([][]float32{{1, 2}, {3, 4}})
-
-// Neural network
-model := nn.NewLinear(vs, 784, 10, nil)
-output := model.Forward(&input)
-loss := output.CrossEntropyForLogits(&target)
-```
-
-**hfgo (HuggingFace for Go):**
-```go
-import "github.com/rhasspy-ai/hfgo"
-
-// Download model
-model := hfmodel.New("bert-base-uncased", nil)
-tokenizer := model.Tokenizer()
-tokens := tokenizer.Encode("Hello world")
+SW-ML-AI Engineering/
+├── Welcome.md
+├── 00 - Indice Maestro de Cursos.md
+├── Skills Tree - AI-ML Engineer Growth Map.md
+│
+├── 00 - Fundamentos/               (23 notes, Spanish)
+│   ├── 00 - Python Avanzado para ML
+│   ├── 01 - Matematicas para ML
+│   └── 02 - Estructuras de Datos
+│
+├── 01 - Deep Learning y CV/        (31 notes: 18 Spanish + 13 English)
+│   ├── 03 - DL con PyTorch         (7)
+│   ├── 04 - CV Avanzada            (6)
+│   ├── 05 - Multimodal AI          (5)
+│   ├── 06 - CV Pipeline            (1 EN)
+│   ├── 07 - Reinforcement Learning (7 EN)
+│   └── 08 - Graph Neural Networks  (5 EN)
+│
+├── 02 - Large Language Models/     (46 notes: 30 Spanish + 16 English)
+│   ├── 06 - Fundamentos de LLMs   (7)
+│   ├── 07 - Fine-Tuning            (6)
+│   ├── 08 - Gen de Texto           (6)
+│   ├── 09 - LLMs en Produccion     (6)
+│   ├── 10 - Arq Avanzadas/MoE      (5)
+│   ├── 11 - Fine-Tuning LLMs       (1 EN)
+│   ├── 12 - Production RAG         (1 EN)
+│   ├── 13 - vLLM and Advanced RAG  (6 EN)
+│   ├── 14 - Unsloth                (5 EN)
+│   └── 15 - LLM Security           (5 EN)
+│
+├── 03 - AI Agents/                 (28 notes: 22 Spanish + 6 English)
+│   ├── 11 - Fundamentos Agentes    (6)
+│   ├── 12 - Frameworks             (6)
+│   ├── 13 - Multi-Agente           (5)
+│   ├── 14 - Agentes Autonomos      (5)
+│   └── 15 - MCP and Agentic Prot   (6 EN)
+│
+├── 04 - NLP Avanzado/              (17 notes, Spanish)
+├── 05 - MLOps/                     (50 notes: 25 Spanish + 25 English)
+│   ├── 18 - Experiment Tracking    (7)
+│   ├── 19 - Feature Engineering    (6)
+│   ├── 20 - Deployment             (6)
+│   ├── 21 - Monitoreo              (6)
+│   ├── 22 - End-to-End ML          (1 EN)
+│   ├── 23 - Advanced MLOps         (1 EN)
+│   ├── 24 - Weights and Biases     (5 EN)
+│   ├── 25 - Tooling Comparison     (1 EN)
+│   ├── 26 - ML Platform Eng        (6 EN)
+│   ├── 27 - Feast                  (5 EN)
+│   ├── 28 - Testing in ML          (1 EN)
+│   └── 29 - CI-CD for ML           (1 EN)
+│
+├── 06 - Cloud, Infra/              (52 notes: 24 Spanish + 28 English)
+│   ├── 22 - Cloud Computing        (6)
+│   ├── 23 - Infra como Codigo      (6)
+│   ├── 24 - Backend para ML        (6)
+│   ├── 25 - BD y Message Queues    (6)
+│   ├── 26 - Databricks for ML      (5 EN)
+│   ├── 27 - Apache Spark           (6 EN)
+│   ├── 28 - BigQuery               (3 EN)
+│   ├── 29 - Distributed ML Infra   (7 EN)
+│   ├── 30 - WebSockets             (5 EN)
+│   ├── 31 - FastAPI for ML         (1 EN)
+│   └── 32 - System Design for ML   (1 EN)
+│   │   └── 33 - Bun Runtime             (1 EN)
+│
+├── 07 - Research/                  (33 notes: 24 Spanish + 9 English)
+│   ├── 26 - Metodologia            (6)
+│   ├── 27 - Visualizacion          (6)
+│   ├── 28 - ETL                    (6)
+│   ├── 29 - Estadistica Avanzada   (6)
+│   ├── 30 - Kaggle Competitions    (1 EN)
+│   ├── 31 - Paper Reproduction     (1 EN)
+│   └── 32 - Advanced ML Topics     (7 EN)
+│
+├── 08 - Producto y Negocio/        (18 notes, Spanish)
+│
+├── 09 - Advanced Python/           (62 notes, Spanish)
+├── 10 - Docker Profesional/        (7 notes, Spanish)
+├── 11 - Curso SQL con PostgreSQL/  (8 notes, Spanish)
+├── 12 - Curso Markdown/            (5 notes, Spanish)
+├── 13 - Go Engineering/            (73 notes, English)
+├── 14 - Rust Engineering/          (73 notes, English)
+├── 15 - Transversal Skills/        (4 notes, English)
+│
+├── Extra/                          # Non-enumerated, cross-cutting
+└── projects/                       (15+ guides)
 ```
 
 ---
 
-### 🦀 Rust Deep Content: Polars Internals
+## Language Policy
 
-**Polars Architecture:**
-```
-Polars Execution Model:
-├── DataFrame (Eager)          # Immediate execution
-├── LazyFrame (Lazy)           # Query planning + optimization
-│   ├── Logical Plan           # Abstract query tree
-│   ├── Optimizer              # Predicate pushdown, projection pushdown, common subexpression elimination
-│   └── Physical Plan          # Optimized execution plan
-├── ChunkedArray               # Columnar storage (Apache Arrow)
-├── Series                     # 1D typed array
-└── DataType                   # Int8-64, Float32/64, Utf8, Boolean, Date, Datetime, List, Struct
-```
-
-**Advanced Features to Cover:**
-
-1. **Lazy Evaluation Optimization:**
-```rust
-// Polars optimizes BEFORE execution
-let result = LazyCsvReader::new("data.csv")?
-    .filter(col("age").gt(lit(18)))           // Predicate pushdown: filter at read time
-    .select([col("name"), col("salary")])      // Projection pushdown: only read needed columns
-    .groupby([col("department")])
-    .agg([col("salary").mean()])
-    .collect()?;                                // Optimization happens here
-```
-
-2. **Memory Mapping for Large Files:**
-```rust
-// Memory-map a Parquet file (zero-copy read)
-let df = LazyParquetReader::new("huge_file.parquet")?
-    .with_memory_map(true)    // Memory-map instead of loading
-    .collect()?;
-```
-
-3. **Streaming for Out-of-Core Processing:**
-```rust
-// Process files larger than RAM
-let df = LazyCsvReader::new("100GB_file.csv")?
-    .with_streaming(true)     // Process in chunks
-    .collect()?;
-```
-
-**Performance Formulas:**
-```
-Polars_Speedup ≈ 10-100× vs Pandas (single-threaded)
-Polars_Memory ≈ 0.1× Pandas (Arrow format)
-Parallel_Speedup ≈ min(Cores, Chunks) for embarrassingly parallel ops
-```
-
----
-
-### 🦀 Rust Deep Content: Candle Advanced
-
-**Candle Architecture:**
-```
-Candle ML Framework:
-├── candle-core                 # Tensor operations, autodiff
-│   ├── CpuDevice              # CPU backend
-│   ├── CudaDevice             # NVIDIA GPU (via cudarc)
-│   ├── MetalDevice            # Apple Silicon GPU
-│   └── DType                  # F16, F32, F64, BF16
-├── candle-nn                   # Neural network layers
-│   ├── Linear, Conv2d, LSTM
-│   ├── BatchNorm, LayerNorm
-│   └── Activations (ReLU, GELU, SiLU)
-├── candle-transformers         # Pre-built model architectures
-│   ├── Llama, Mistral, Phi
-│   ├── Stable Diffusion
-│   ├── Whisper
-│   └── BERT
-└── candle-wasm                 # WebAssembly support
-```
-
-**Custom Model Example:**
-```rust
-use candle_core::{Tensor, DType, Device, Result};
-use candle_nn::{Linear, Module, VarBuilder, VarMap};
-
-struct MLP {
-    l1: Linear,
-    l2: Linear,
-}
-
-impl MLP {
-    fn new(vs: VarBuilder) -> Result<Self> {
-        Ok(Self {
-            l1: Linear::new(vs.get((128, 784), "l1.weight")?, Some(vs.get(128, "l1.bias")?)),
-            l2: Linear::new(vs.get((10, 128), "l2.weight")?, Some(vs.get(10, "l2.bias")?)),
-        })
-    }
-}
-
-impl Module for MLP {
-    fn forward(&self, xs: &Tensor) -> Result<Tensor> {
-        xs.apply(&self.l1)?.gelu()?.apply(&self.l2)
-    }
-}
-```
-
-**GPU Acceleration:**
-```rust
-// Candle automatically uses GPU if available
-let device = Device::cuda_if_available(0)?;
-let tensor = Tensor::randn(0f32, 1f32, (1024, 1024), &device)?;
-```
-
----
-
-### 🦀 Rust Deep Content: PyO3 Advanced Patterns
-
-**Complex Type Conversion:**
-```rust
-use pyo3::prelude::*;
-use pyo3::types::{PyDict, PyList};
-
-// Rust struct ↔ Python dict
-#[pyclass]
-#[derive(Clone)]
-struct MLConfig {
-    #[pyo3(get, set)]
-    learning_rate: f64,
-    #[pyo3(get, set)]
-    batch_size: usize,
-    #[pyo3(get, set)]
-    model_name: String,
-}
-
-#[pymethods]
-impl MLConfig {
-    #[new]
-    fn new(lr: f64, bs: usize, name: String) -> Self {
-        Self { learning_rate: lr, batch_size: bs, model_name: name }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<PyObject> {
-        let dict = PyDict::new(py);
-        dict.set_item("learning_rate", self.learning_rate)?;
-        dict.set_item("batch_size", self.batch_size)?;
-        dict.set_item("model_name", &self.model_name)?;
-        Ok(dict.into())
-    }
-}
-```
-
-**Async PyO3 with Tokio:**
-```rust
-use pyo3::prelude::*;
-use tokio::runtime::Runtime;
-
-#[pyfunction]
-fn async_predict(py: Python<'_>, input: Vec<f64>) -> PyResult<PyObject> {
-    let rt = Runtime::new()?;
-    py.allow_threads(|| {
-        rt.block_on(async {
-            // Async Rust inference
-            let result = model.predict_async(input).await?;
-            Ok(result)
-        })
-    })
-}
-```
-
----
-
-### 🦀 Rust Deep Content: Vector Search Algorithms
-
-**HNSW (Hierarchical Navigable Small World):**
-```
-HNSW Index Structure:
-├── Layer 0 (dense)           # All vectors connected
-├── Layer 1 (sparse)          # Subset of vectors
-├── Layer 2 (sparser)         # Fewer connections
-└── Layer M (top)             # 1-2 vectors
-
-Search Algorithm:
-1. Start at top layer entry point
-2. Greedy search: move to neighbor closest to query
-3. When no improvement, drop to next layer
-4. Repeat until layer 0
-5. Return k nearest neighbors
-
-Parameters:
-- M: max connections per node (16-64)
-- efConstruction: build-time search width (100-500)
-- efSearch: query-time search width (10-500)
-```
-
-**Formulas:**
-```
-Recall@k = |Relevant_in_top_k| / |Total_Relevant|
-Precision@k = |Relevant_in_top_k| / k
-MRR = (1/|Q|) × Σ(1/rank_i)  # Mean Reciprocal Rank
-HNSW_Query_Time = O(log(N))   # N = total vectors
-```
-
----
-
-### 🔗 Official Links for Deep Content
-
-| Resource | URL | Use For |
-|----------|-----|---------|
-| Gorgonia | https://gorgonia.org/ | Go deep learning |
-| LocalAI | https://localai.io/ | Local LLM server |
-| gonum | https://gonum.org/ | Go numerical computing |
-| gotch | https://github.com/sugarme/gotch | Go PyTorch bindings |
-| Polars Book | https://pola.rs/polars/book/ | Rust DataFrames |
-| Candle Docs | https://huggingface.co/docs/candle | Rust ML framework |
-| PyO3 Guide | https://pyo3.rs/ | Rust-Python bindings |
-| Qdrant Docs | https://qdrant.tech/documentation/ | Vector database |
+- **Modules 00-08, 09-12 (Advanced Python, Docker, SQL, Markdown):** Spanish. **Do NOT modify** unless requested.
+- **New courses integrated into 00-08 (English-labeled sub-modules), Go Engineering (13), Rust Engineering (14), Transversal Skills (15), and projects:** **English**.
+- **Welcome/indices:** May contain both languages to bridge old and new.
 
 ---
 
 ## Git Commands
 
-```powershell
-# Check git status
-git -C "C:\Users\Leito\Documents\Learning" status
+```bash
+# Linux paths (current environment)
+git -C /home/white/Learning status
+git -C /home/white/Learning add -A
+git -C /home/white/Learning commit -m "message"
+git -C /home/white/Learning push origin master
 
-# Stage, commit, push
-git -C "C:\Users\Leito\Documents\Learning" add -A
-git -C "C:\Users\Leito\Documents\Learning" commit -m "message"
-git -C "C:\Users\Leito\Documents\Learning" push origin master
-
-# Verify course files (USE ALWAYS after subagents)
-Get-ChildItem -Recurse -File "C:\Users\Leito\Documents\Learning\PATH\TO\COURSE" | ForEach-Object { $_.FullName }
-
-# Full structure view
-Get-ChildItem -Recurse "C:\Users\Leito\Documents\Learning\Software Engineering\Go Engineering"
+# Verify course files after subagents
+find /home/white/Learning/PATH/TO/COURSE -type f | sort
+wc -l /home/white/Learning/PATH/TO/COURSE/*.md
 ```
 
 ## Repository
-- **GitHub:** https://github.com/Leito2/Learning
+- **GitHub:** https://github.com/Leito2/Learning.git
 - **Branch:** master
 - **Linux path:** /home/white/Learning
-- **Actual path:** /home/white/Learning/SW-ML-AI Engineering/
+- **Actual vault path:** /home/white/Learning/SW-ML-AI Engineering/
 
 ---
 
-> **⚠️ MANDATORY for next session:** 
-> 1. Read the "CRITICAL: CONTEXT MANAGEMENT" section at the top of this file. 
-> 2. ALWAYS use subagents (`task` tool) for bulk content creation — max 2 in parallel, max 7 notes each. 
-> 3. Never write 5+ full course notes in the main thread. 
+## 🎯 High-Value Technologies for This Profile (2025-2026)
+
+Filtered from a broader tech scan — only technologies that directly complement the user's existing Go/LangGraph/Redis/RAG/Agentic/AWS/GCP profile. 🚨 = gap (no dedicated notes yet), ✅ = covered.
+
+### Production LLM Serving & Inference
+| Tech | Status | Why |
+|------|:------:|-----|
+| **vLLM** | ✅ (02/13) | PagedAttention, continuous batching. Standard for production LLM APIs. |
+| **SGLang** | 🚨 | RadixAttention for structured output. Faster than vLLM for LLM-as-a-Judge. |
+| **TensorRT-LLM** | 🚨 | NVIDIA's max-throughput engine for GPU-heavy deployments. |
+| **Unsloth** | ✅ (02/14) | Fine-tuning 2-5x faster, 80% less memory. Deep course covering QLoRA, SFT, DPO, deployment. |
+
+### Advanced RAG (partially created)
+| Tech | Status | Why |
+|------|:------:|-----|
+| **Hybrid Search (BM25 + Dense)** | ✅ (02/13) | Redis + vector search. Already used in LLM Gateway project. |
+| **Reranking (Cohere, bge-reranker)** | ✅ (02/13) | Second-stage precision. Critical for production RAG accuracy. |
+| **GraphRAG** | ✅ (02/13) | Microsoft. Multi-hop reasoning over knowledge graphs. |
+| **RAGAS / DeepEval** | ✅ (02/13) | RAG quality evaluation. Bridges to LLM Evaluation Suite project. |
+| **ColBERT (late interaction)** | 🚨 | Token-level retrieval. State-of-the-art for passage search. |
+| **Late Chunking (Jina)** | 🚨 | Context-aware chunking that keeps surrounding text in embeddings. |
+
+### Agentic AI & Protocols
+| Tech | Status | Why |
+|------|:------:|-----|
+| **MCP (Model Context Protocol)** | ✅ (03/15) | Anthropic standard for agent-to-tool communication. Deep course with LangGraph integration. |
+| **A2A (Agent-to-Agent)** | ✅ (03/15) | Google protocol. Multi-agent enterprise communication standard. |
+| **LangGraph Deep Patterns** | ✅ (03/15) | Subgraphs, dynamic routing, human-in-the-loop. MCP integration with LangGraph. |
+| **Computer Use / Browser Agents** | ✅ (03/15) | Claude Computer Use, Browser-use. Agent interacts with real UIs. |
+
+### MLOps & Infrastructure
+| Tech | Status | Why |
+|------|:------:|-----|
+| **Feast (Feature Store)** | ✅ (05/27) | Online/offline feature serving, point-in-time joins, Redis integration. Deep course covering AWS/GCP deployment. |
+| **Evidently AI / Phoenix** | 🚨 | Drift detection + LLM observability. Connects to Evaluation Suite project. |
+| **LLM Guard / Guardrails AI** | ✅ (02/15) | Prompt injection defense, PII redaction, content safety. Deep course covering NeMo, Guardrails AI, Presidio, Lakera. |
+| **Knative / KServe** | 🚨 | Serverless model serving on Kubernetes. Production deployment. |
+| **Temporal** | 🚨 | Durable execution for long-running ML pipelines with retries and state. |
+
+### Real-Time ML & Streaming
+| Tech | Status | Why |
+|------|:------:|-----|
+| **WebSockets for ML Serving** | ✅ (06/30) | Deep course: protocol internals, real-time inference, scaling, ML Gateway. Complements Go/Fiber/Sudoku Together. |
+| **Redis Pub/Sub + WebSocket scaling** | ✅ (06/30) | Horizontal scaling of WS connections. Natural extension of LLM Gateway. |
+| **Server-Sent Events (SSE)** | ✅ (Go Local AI) | Token streaming. Covered but could deepen. |
+
+### Data & Feature Engineering
+| Tech | Status | Why |
+|------|:------:|-----|
+| **DuckDB** | 🚨 | OLAP in-process. Fast analytics in Python/Go without Spark. |
+| **dbt** | ✅ (06/29) | Data transformations. Already covered. |
+
+> **Removed from original scan:** Rust-exclusive tech (already covered but not user's core focus), Spark/BigQuery (covered, not profile-aligned), GNN/RL (covered, niche), MoE/SSM/Jamba (too research-stage), Mojo/MAX (pre-release), Iceberg/Delta Lake (irrelevant to RAG/Agentic profile).
+
+---
+
+## Next Course Candidates (prioritized for this profile)
+
+| # | Course | Notes | Justification |
+|:--:|--------|:-----:|---------------|
+| ~~1~~ | ~~Unsloth and Efficient Fine-Tuning~~ | ~~5~~ | ✅ CREATED (02/14) |
+| ~~2~~ | ~~MCP, A2A and Agentic Protocols~~ | ~~6~~ | ✅ CREATED (03/15) |
+| ~~3~~ | ~~WebSockets and Real-Time ML Serving~~ | ~~5~~ | ✅ CREATED (06/30) |
+| ~~4~~ | ~~LLM Security and Guardrails~~ | ~~5~~ | ✅ CREATED (02/15) |
+| ~~5~~ | ~~Feast and Feature Stores for MLOps~~ | ~~5~~ | ✅ CREATED (05/27) |
+| 6 | **ColBERT, SGLang and Advanced Inference** | 6 | Cuts inference costs. Differentiates from generic ML engineers. |
+
+---
+
+> **⚠️ MANDATORY for next session:**
+> 1. Read the "CRITICAL: CONTEXT MANAGEMENT" section.
+> 2. ALWAYS use subagents (`task` tool) for bulk creation — max 2 parallel, max 7 notes each.
+> 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
-> 5. Gap-fill initiative is **COMPLETE**. Next work: portfolio redesign, content improvements, or new user requests.
+> 5. **Restructured:** All Extra courses dissolved into numbered modules (00-08). Unnumbered modules get 09-15. Extra/ is now non-enumerated cross-cutting topics.
+> 6. Next priority: **ColBERT, SGLang and Advanced Inference** (6 notes).
+> 7. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

@@ -30,24 +30,24 @@
 ### 🐍 Core Programming
 | Topic | Course | Status |
 |-------|--------|--------|
-| Python (Basic → Advanced) | [[Advanced Python]] (01-05) | ✅ |
-| Go (Fundamentals → ML Backend) | [[Go Engineering]] (01-06) | ✅ |
-| Rust (Fundamentals → Agentic AI) | [[Rust Engineering]] (01-06) | ✅ |
-| SQL (PostgreSQL Fundamentals → Advanced) | [[Curso SQL con PostgreSQL]] | ✅ |
+| Python (Basic → Advanced) | 09 - Advanced Python (01-05) | ✅ |
+| Go (Fundamentals → ML Backend) | 13 - Go Engineering (01-07) | ✅ |
+| Rust (Fundamentals → Agentic AI) | 14 - Rust Engineering (01-07) | ✅ |
+| SQL (PostgreSQL Fundamentals → Advanced) | 11 - Curso SQL con PostgreSQL | ✅ |
 | Git & Version Control | All courses (distributed) | ✅ |
-| Markdown & Technical Documentation | Curso Markdown | ✅ |
+| Markdown & Technical Documentation | 12 - Curso Markdown | ✅ |
 
 ### 🏗️ Software Engineering
 | Topic | Course | Status |
 |-------|--------|--------|
-| System Design for ML | [[SE extra]] > 02 - System Design for ML | ✅ |
-| Testing (unit, integration, property-based) | [[Rust Engineering/02]] > 05, [[SE extra]] > 03 | ✅ |
-| CI/CD Pipelines | 06 > 23, [[SE extra]] > 04, [[Go Engineering/04]] | ✅ |
-| Docker & Containerization | [[01 - Docker Profesional]], 05 > 20 | ✅ |
-| FastAPI (Python backends) | 06 > 24 > 01, [[SE extra]] > 01 | ✅ |
-| gRPC & Protocol Buffers | 06 > 24 > 02, [[Go Engineering/03]] > 03 | ✅ |
+| System Design for ML | 06 > 32, [[SE extra]] > 02 | ✅ |
+| Testing (unit, integration, property-based) | 14 > 02 > 05, 05 > 28, [[SE extra]] > 03 | ✅ |
+| CI/CD Pipelines | 06 > 23, 05 > 29, [[SE extra]] > 04, 13 > 04 | ✅ |
+| Docker & Containerization | 10 - Docker Profesional, 05 > 20 | ✅ |
+| FastAPI (Python backends) | 06 > 24 > 01, 06 > 31, [[SE extra]] > 01 | ✅ |
+| gRPC & Protocol Buffers | 06 > 24 > 02, 13 > 03 > 03 | ✅ |
 | Message Queues & Streaming | 06 > 25 > 04 | ✅ |
-| Design Patterns (builder, factory, observer) | [[Go Engineering/04]], [[Rust Engineering/02]] > 03 | ✅ |
+| Design Patterns (builder, factory, observer) | 13 > 04, 14 > 02 > 03 | ✅ |
 
 ---
 
@@ -68,8 +68,11 @@
 | Segmentation (UNet, DeepLab, SAM) | 01 > 04 > 02 | ✅ |
 | Multimodal Models (CLIP, LLaVA, ImageBind) | 01 > 05 | ✅ |
 | OCR & Document Understanding | 01 > 04 > 04 | ✅ |
-| Gorgonia (Deep Learning in Go) | [[Go Engineering/07 - Gorgonia]] | ✅ |
-| Candle (ML in Rust — HuggingFace) | [[Rust Engineering/04]] > 02 | ✅ |
+| CV Pipeline (preprocessing, augmentation, deployment) | 01 > 06 | ✅ |
+| Reinforcement Learning (Q-Learning, PPO, DQN) | 01 > 07 | ✅ |
+| Graph Neural Networks (GCN, GAT, Message Passing) | 01 > 08 | ✅ |
+| Gorgonia (Deep Learning in Go) | 13 > 07 - Gorgonia | ✅ |
+| Candle (ML in Rust — HuggingFace) | 14 > 04 > 02 | ✅ |
 
 ### 🧠 Large Language Models
 | Topic | Course | Status |
@@ -83,7 +86,7 @@
 | Encoder-Decoder (T5, BART) | 04 > 16 > 03 | ✅ |
 | Mixture of Experts (MoE — Mixtral, DeepSeek) | 02 > 10 > 01 | ✅ |
 | State Space Models (Mamba, S4) | 02 > 10 > 02 | ✅ |
-| Model Quantization (INT8, GPTQ, GGUF) | 02 > 09 > 02, [[Rust Engineering/04]] > 06 | ✅ |
+| Model Quantization (INT8, GPTQ, GGUF) | 02 > 09 > 02, 14 > 04 > 06 | ✅ |
 | Model Distillation | 02 > 09 > 02 | ✅ |
 | LLM Evaluation (MMLU, HumanEval, HELM) | 02 > 06 > 05 | ✅ |
 
@@ -91,12 +94,15 @@
 | Topic | Course | Status |
 |-------|--------|--------|
 | Prompt Engineering (few-shot, CoT, ReAct) | 02 > 07 > 03 | ✅ |
-| Fine-Tuning: SFT, LoRA, QLoRA, PEFT | 02 > 07, 09 extra > 03 | ✅ |
-| RAG (Retrieval-Augmented Generation) | 02 > 07 > 04, 09 extra > 04 | ✅ |
+| Fine-Tuning: SFT, LoRA, QLoRA, PEFT | 02 > 07, 02 > 11 | ✅ |
+| RAG (Retrieval-Augmented Generation) | 02 > 07 > 04, 02 > 12 | ✅ |
 | Decoding (beam search, nucleus, contrastive) | 02 > 08 > 01 | ✅ |
 | Hallucination Mitigation | 02 > 08 > 03 | ✅ |
-| LLM Security & Alignment (RLHF, DPO) | 02 > 09 > 04 | ✅ |
-| Scalable LLM Serving (vLLM, continuous batching) | 02 > 09 > 03 | ✅ |
+| LLM Security & Alignment (RLHF, DPO, jailbreaking) | 02 > 09 > 04, 02 > 15 | ✅ |
+| Scalable LLM Serving (vLLM, continuous batching) | 02 > 09 > 03, 02 > 13 | ✅ |
+| Unsloth (accelerated fine-tuning, quantization-aware) | 02 > 14 | ✅ |
+| GraphRAG (Knowledge Graph + RAG for LLMs) | 02 > 13, 04 > 17 > 03 | ✅ |
+| RAGAS (RAG evaluation framework) | 02 > 12 | ✅ |
 | Semantic Search & Hybrid Retrieval | 04 > 17 > 04 | ✅ |
 | Knowledge Graphs for LLMs | 04 > 17 > 03 | ✅ |
 | Multilingual LLMs | 04 > 17 > 01 | ✅ |
@@ -123,12 +129,14 @@
 | 🌿 | Multi-Agent Architectures | 03 > 13 |
 | 🌿 | Autonomous Agents (AutoGPT-style) | 03 > 14 |
 | 🌿 | Agent Reflection & Self-Improvement | 03 > 14 > 02 |
-| 🌿 | MCP — Model Context Protocol (Anthropic) | [[Rust Engineering/06]] > 01 |
-| 🌿 | Goose Agent (Block) | [[Rust Engineering/06]] > 02 |
-| 🌿 | Autonomous OS Interaction | [[Rust Engineering/06]] > 03 |
-| 🌿 | Agent Orchestration & Reasoning Loops | [[Rust Engineering/06]] > 04 |
-| 🌿 | Agent Security & Sandboxing | [[Rust Engineering/06]] > 05 |
-| 🌿 | Production AI Agents in Rust | [[Rust Engineering/06]] > 06 |
+| 🌿 | MCP — Model Context Protocol (Anthropic) | 03 > 15, 14 > 06 > 01 |
+| 🌿 | LangGraph + MCP Integration | 03 > 15 |
+| 🌿 | Computer Use (agent GUI interaction) | 03 > 15 |
+| 🌿 | Goose Agent (Block) | 14 > 06 > 02 |
+| 🌿 | Autonomous OS Interaction | 14 > 06 > 03 |
+| 🌿 | Agent Orchestration & Reasoning Loops | 14 > 06 > 04 |
+| 🌿 | Agent Security & Sandboxing | 14 > 06 > 05, 02 > 15 |
+| 🌿 | Production AI Agents in Rust | 14 > 06 > 06 |
 | 🌿 | Agentic AI Projects (MCP Agent, Goose) | [[Rust projects]] > 05 |
 | 🌿 | StayBot — Airbnb Agent (portfolio project) | Portfolio |
 | 🌿 | Multi-Agent Research System (portfolio project) | Portfolio |
@@ -139,11 +147,11 @@
 
 | Level | Skill | Course |
 |-------|-------|--------|
-| 🌿 | Experiment Tracking (MLflow, W&B) | 05 > 18 > 01 |
+| 🌿 | Experiment Tracking (MLflow, W&B) | 05 > 18 > 01, 05 > 24 |
 | 🌿 | Data Versioning (DVC) | 05 > 18 > 02 |
 | 🌿 | Model Registry & Lifecycle | 05 > 18 > 03 |
-| 🌿 | Feature Engineering & Feature Stores (Feast) | 05 > 19 |
-| 🌿 | Docker for ML (multi-stage, GPU images) | 05 > 20 > 01, [[01 - Docker Profesional]] |
+| 🌿 | Feature Engineering & Feature Stores (Feast) | 05 > 19, 05 > 27 |
+| 🌿 | Docker for ML (multi-stage, GPU images) | 05 > 20 > 01, 10 - Docker Profesional |
 | 🌿 | Model Serving Patterns | 05 > 20 > 02 |
 | 🌿 | Kubernetes for ML (K8s, KubeFlow) | 05 > 20 > 03 |
 | 🌿 | A/B Testing & Canary Deployments | 05 > 20 > 04 |
@@ -151,10 +159,16 @@
 | 🌿 | Model Monitoring & Alerting | 05 > 21 > 02 |
 | 🌿 | Auto-Retraining Pipelines | 05 > 21 > 03 |
 | 🌿 | Explainability (SHAP, LIME) & Fairness | 05 > 21 > 04 |
-| 🌿 | Testing ML Systems | [[SE extra]] > 03 |
-| 🌿 | CI/CD for ML | [[SE extra]] > 04 |
-| 🌿 | High-Throughput Inference (Go) | [[Go Engineering/06]] > 02, 04 |
-| 🌿 | High-Throughput Inference (Rust) | [[Rust Engineering/04]] > 04 |
+| 🌿 | End-to-End ML (data → deploy → monitor) | 05 > 22 |
+| 🌿 | Advanced MLOps (multi-cloud, GPUs, SLAs) | 05 > 23 |
+| 🌿 | Weights & Biases (advanced experiment tracking) | 05 > 24 |
+| 🌿 | MLOps Tooling Comparison (Kubeflow vs MLflow vs SageMaker) | 05 > 25 |
+| 🌿 | ML Platform Engineering | 05 > 26 |
+| 🌿 | Feast — Feature Store in Production | 05 > 27 |
+| 🌿 | Testing ML Systems (data validation, model validation) | 05 > 28, [[SE extra]] > 03 |
+| 🌿 | CI/CD for ML (GitHub Actions, Argo, model pipelines) | 05 > 29, [[SE extra]] > 04 |
+| 🌿 | High-Throughput Inference (Go) | 13 > 06 > 02, 04 |
+| 🌿 | High-Throughput Inference (Rust) | 14 > 04 > 04 |
 | 🌿 | Go ML Serving Gateway | [[Go projects]] > 05 |
 | 🌿 | Rust Inference Server (PyO3) | [[Rust projects]] > 02 |
 | 🌿 | LLM Edge Gateway (portfolio project) | Portfolio |
@@ -168,19 +182,26 @@
 |-------|-------|--------|
 | 🌿 | Cloud Computing (AWS, GCP) | 06 > 22 |
 | 🌿 | Infrastructure as Code (Terraform) | 06 > 23 > 01 |
-| 🌿 | IaC with Go (Pulumi) | [[Go Engineering/02]] > 05 |
+| 🌿 | IaC with Go (Pulumi) | 13 > 02 > 05 |
 | 🌿 | Configuration Management (Ansible) | 06 > 23 > 02 |
 | 🌿 | CI/CD & GitOps (ArgoCD, Flux) | 06 > 23 > 03 |
 | 🌿 | Observability (Prometheus, Grafana, OpenTelemetry) | 06 > 23 > 04 |
-| 🌿 | Go Cloud Native (Docker, K8s internals) | [[Go Engineering/02]] |
-| 🌿 | Service Discovery & Load Balancing | [[Go Engineering/02]] > 04 |
-| 🌿 | Distributed Tracing | [[Go Engineering/03]] > 06 |
+| 🌿 | Databricks — Unified Analytics Platform | 06 > 26 |
+| 🌿 | Apache Spark — Distributed Data Processing | 06 > 27 |
+| 🌿 | BigQuery — Serverless Data Warehouse | 06 > 28 |
+| 🌿 | Distributed ML Infrastructure (GPU clusters, scheduling) | 06 > 29 |
+| 🌿 | WebSockets (real-time ML serving, bidirectional streaming) | 06 > 30 |
+| 🌿 | FastAPI for ML (production serving patterns) | 06 > 31 |
+| 🌿 | System Design for ML (interviews + architecture) | 06 > 32 |
+| 🌿 | Go Cloud Native (Docker, K8s internals) | 13 > 02 |
+| 🌿 | Service Discovery & Load Balancing | 13 > 02 > 04 |
+| 🌿 | Distributed Tracing | 13 > 03 > 06 |
 | 🌿 | PostgreSQL & NoSQL Databases | 06 > 25 |
 | 🌿 | Redis & Caching Strategies | 06 > 25 > 03 |
 | 🌿 | Message Queues & Event Streaming | 06 > 25 > 04 |
-| 🌿 | WebAssembly & Edge AI | [[Rust Engineering/05]] |
-| 🌿 | WASI & Serverless Edge | [[Rust Engineering/05]] > 03 |
-| 🌿 | Edge AI Deployment | [[Rust Engineering/05]] > 06 |
+| 🌿 | WebAssembly & Edge AI | 14 > 05 |
+| 🌿 | WASI & Serverless Edge | 14 > 05 > 03 |
+| 🌿 | Edge AI Deployment | 14 > 05 > 06 |
 | 🌿 | Go and eBPF for Observability | [[Go extra]] > 06 |
 | 🌿 | Rust Cryptography & Security | [[Rust extra]] > 03 |
 | 🌿 | Rust in the Linux Kernel | [[Rust extra]] > 05 |
@@ -193,22 +214,22 @@
 | Level | Skill | Course |
 |-------|-------|--------|
 | 🌿 | ETL Pipeline Design | 07 > 28 > 01 |
-| 🌿 | Apache Spark (distributed processing) | 07 > 28 > 02 |
-| 🌿 | Data Warehousing (Snowflake, BigQuery) | 07 > 28 > 03 |
+| 🌿 | Apache Spark (distributed processing) | 07 > 28 > 02, 06 > 27 |
+| 🌿 | Data Warehousing (Snowflake, BigQuery) | 07 > 28 > 03, 06 > 28 |
 | 🌿 | Data Quality & Governance | 07 > 28 > 04 |
-| 🌿 | Polars — Rust DataFrame (10-100x Pandas) | [[Rust Engineering/03]] > 01 |
-| 🌿 | Apache Arrow & Zero-Copy Data | [[Rust Engineering/03]] > 02 |
-| 🌿 | High-Performance ETL in Rust | [[Rust Engineering/03]] > 03 |
+| 🌿 | Polars — Rust DataFrame (10-100x Pandas) | 14 > 03 > 01 |
+| 🌿 | Apache Arrow & Zero-Copy Data | 14 > 03 > 02 |
+| 🌿 | High-Performance ETL in Rust | 14 > 03 > 03 |
 | 🌿 | Polars Internals (lazy, streaming, Arrow) | [[07 - Polars Internals and Advanced]] |
-| 🌿 | DataFusion (Arrow query engine) | [[Rust Engineering/03]] > 03 |
-| 🌿 | uv — Python Package Manager (Rust) | [[Rust Engineering/03]] > 04 |
-| 🌿 | Ruff — Python Linter (Rust) | [[Rust Engineering/03]] > 05 |
-| 🌿 | Data Processing CLIs (clap, indicatif) | [[Rust Engineering/03]] > 06 |
+| 🌿 | DataFusion (Arrow query engine) | 14 > 03 > 03 |
+| 🌿 | uv — Python Package Manager (Rust) | 14 > 03 > 04 |
+| 🌿 | Ruff — Python Linter (Rust) | 14 > 03 > 05 |
+| 🌿 | Data Processing CLIs (clap, indicatif) | 14 > 03 > 06 |
 | 🌿 | Time Series Analysis | 07 > 29 > 04 |
 | 🌿 | Causal Inference | 07 > 29 > 02 |
 | 🌿 | Design of Experiments | 07 > 29 > 03 |
 | 🌿 | Data Visualization & Storytelling | 07 > 27 |
-| 🌿 | Vector Databases (Qdrant, pgvector) | [[Rust Engineering/04]] > 05 |
+| 🌿 | Vector Databases (Qdrant, pgvector) | 14 > 04 > 05 |
 | 🌿 | Polars Data Pipeline Project | [[Rust projects]] > 01 |
 | 🌿 | CLI Tool Projects (Go + Rust) | [[Go projects]] > 02, [[Rust projects]] |
 
@@ -220,19 +241,22 @@
 |-------|-------|--------|
 | 🌿 | How to Read ML Papers | 07 > 26 > 01 |
 | 🌿 | Reproducibility & Experiment Design | 07 > 26 > 02 |
-| 🌿 | Benchmarking & Competitions (Kaggle) | 07 > 26 > 03, 09 extra > 01 |
+| 🌿 | Benchmarking & Competitions (Kaggle) | 07 > 26 > 03, 07 > 30 |
 | 🌿 | Technical Writing & Papers | 07 > 26 > 04 |
-| 🌿 | ONNX Runtime (cross-framework inference) | [[Rust Engineering/04]] > 03 |
-| 🌿 | Model Quantization Research | [[Rust Engineering/04]] > 06 |
+| 🌿 | Kaggle Competitions (end-to-end, top-tier) | 07 > 30 |
+| 🌿 | Paper Reproduction (full implementation) | 07 > 31 |
+| 🌿 | Advanced ML Topics (SSL, GANs, Diffusion) | 07 > 32 |
+| 🌿 | ONNX Runtime (cross-framework inference) | 14 > 04 > 03 |
+| 🌿 | Model Quantization Research | 14 > 04 > 06 |
 | 🌿 | Custom Models with Candle (Rust) | [[07 - Candle Advanced Patterns]] |
-| 🌿 | Gorgonia — Computational Graphs & Autodiff | [[Go Engineering/07 - Gorgonia]] |
-| 🌿 | LocalAI — Local LLM Server Architecture | [[Go Engineering/07 - LocalAI]] |
-| 🌿 | WASM ML Pipelines (Browser + Edge) | [[Rust Engineering/05]] > 05 |
+| 🌿 | Gorgonia — Computational Graphs & Autodiff | 13 > 07 - Gorgonia |
+| 🌿 | LocalAI — Local LLM Server Architecture | 13 > 07 - LocalAI |
+| 🌿 | WASM ML Pipelines (Browser + Edge) | 14 > 05 > 05 |
 | 🌿 | Embedded ML (RTIC, TinyML, microcontrollers) | [[Rust extra]] > 04 |
 | 🌿 | Async Rust Internals (Tokio, custom runtimes) | [[Rust extra]] > 02 |
 | 🌿 | Rust Memory Model Deep Dive | [[Rust extra]] > 01 |
-| 🌿 | Paper Reproduction (end-to-end) | 09 extra > 07, [[ML projects]] > 07 |
-| 🌿 | End-to-End ML Project | 09 extra > 02, [[ML projects]] > 02 |
+| 🌿 | Paper Reproduction (end-to-end) | 07 > 31, [[ML projects]] > 07 |
+| 🌿 | End-to-End ML Project | 05 > 22, [[ML projects]] > 02 |
 
 ### 🏢 Branch F: Product & Business AI
 
@@ -260,16 +284,16 @@
 
 | Skill | Course | Why Universal |
 |-------|--------|---------------|
-| **Technical English** | [[Extra Skills/01]] | All papers, docs, and interviews are in English |
-| **Technical Communication & Storytelling** | [[Extra Skills/02]] | Explain complex ideas to non-technical stakeholders |
-| **Technical Leadership** | [[Extra Skills/03]] | Lead projects, mentor juniors, drive architecture |
-| **System Design for ML** | [[SE extra]] > 02 | Design interviews at FAANG+ companies |
-| **Testing in ML Systems** | [[SE extra]] > 03 | Production reliability |
-| **CI/CD for ML** | [[SE extra]] > 04 | Automate everything |
-| **FastAPI for ML** | [[SE extra]] > 01 | The standard Python ML serving framework |
-| **Rust for ML Infrastructure** | [[SE extra]] > 05 | When Python isn't fast enough |
-| **Go for ML Backend** | [[Go Engineering/06]] | High-concurrency serving and infrastructure |
-| **Wails — Desktop Apps with Go** | [[Go Engineering/07 - Wails]] | Ship ML tools as native apps |
+| **Technical English** | 15 > 01 | All papers, docs, and interviews are in English |
+| **Technical Communication & Storytelling** | 15 > 02 | Explain complex ideas to non-technical stakeholders |
+| **Technical Leadership** | 15 > 03 | Lead projects, mentor juniors, drive architecture |
+| **System Design for ML** | 06 > 32, [[SE extra]] > 02 | Design interviews at FAANG+ companies |
+| **Testing in ML Systems** | 05 > 28, [[SE extra]] > 03 | Production reliability |
+| **CI/CD for ML** | 05 > 29, [[SE extra]] > 04 | Automate everything |
+| **FastAPI for ML** | 06 > 31, [[SE extra]] > 01 | The standard Python ML serving framework |
+| **Rust for ML Infrastructure** | 14 > 04, [[SE extra]] > 05 | When Python isn't fast enough |
+| **Go for ML Backend** | 13 > 06 | High-concurrency serving and infrastructure |
+| **Wails — Desktop Apps with Go** | 13 > 07 - Wails | Ship ML tools as native apps |
 | **WASM ML in Browser** | [[Rust projects]] > 03 | Client-side ML, privacy-preserving inference |
 
 ---
@@ -327,11 +351,11 @@
 
 | Layer | Courses in Learning | Skills Count |
 |-------|-------------------|:-----------:|
-| 🌟 Senior Impact | 08 (Product/Negocio/OSS), Extra Skills, 07 (Research) | 18 |
-| 🧠 Research & Build | 01-04 (DL, CV, LLMs, NLP, Agents), 09 extra | 47 |
-| ⚙️ Production | 05 (MLOps), 06 (Cloud/Backend), Go 03-06, Rust 02-04 | 34 |
-| 🌐 Cloud + Infra | 06, Go 02, Rust 05, Go extra, Rust extra | 22 |
-| 📐 Engineering Foundations | 00, Advanced Python, Docker, SE extra, Go 01, Rust 01 | 28 |
+| 🌟 Senior Impact | 08 (Producto/Negocio/OSS), 15 (Transversal Skills), 07 (Research) | 18 |
+| 🧠 Research & Build | 01-04 (DL, CV, LLMs, NLP, Agents) | 47 |
+| ⚙️ Production | 05 (MLOps), 06 (Cloud/Backend), 13 > 03-06, 14 > 02-04 | 34 |
+| 🌐 Cloud + Infra | 06, 13 > 02, 14 > 05, Go extra, Rust extra | 22 |
+| 📐 Engineering Foundations | 00, 09 (Python), 10 (Docker), 11 (SQL), 12 (Markdown), 13 > 01, 14 > 01 | 28 |
 | **TOTAL** | **All courses in Learning vault** | **149** |
 
 ---
@@ -377,9 +401,9 @@ Key: Can read papers AND ship them
 
 | Add to Portfolio | Why It Gets You Hired | Learning Course |
 |------------------|----------------------|-----------------|
-| **ONNX Runtime** | Industry standard for cross-framework deployment. You have it in Go and Rust — extremely rare combo | [[06 - Go for ML Backend]], [[04 - Rust for ML and AI]] > 03 |
+| **ONNX Runtime** | Industry standard for cross-framework deployment. You have it in Go and Rust — extremely rare combo | 13 > 06, 14 > 04 > 03 |
 | **Transfer Learning & Fine-Tuning** | 90% of production ML is fine-tuning, not training from scratch | 01 > 03 > 05 |
-| **Model Quantization (INT8, GPTQ, GGUF)** | Reduces GPU costs 4-8x. Every company serving models needs this | 02 > 09 > 02, [[04 - Rust for ML and AI]] > 06 |
+| **Model Quantization (INT8, GPTQ, GGUF)** | Reduces GPU costs 4-8x. Every company serving models needs this | 02 > 09 > 02, 14 > 04 > 06 |
 | **Multimodal Models (CLIP, ImageBind)** | The frontier: text+image+audio. All new models are multimodal | 01 > 05 |
 | **Vision Transformers (ViT, DINOv2)** | Replaced CNNs. If you do CV in 2026, you use ViT | 01 > 04 > 03 |
 | **Object Detection (YOLO, DETR)** | Most common industrial CV use case | 01 > 04 > 01 |
@@ -392,11 +416,11 @@ Key: Can read papers AND ship them
 
 | Add to Portfolio | Why It Gets You Hired | Learning Course |
 |------------------|----------------------|-----------------|
-| **RAG — Retrieval-Augmented Generation** | The #1 enterprise LLM pattern. Every job posting mentions it | 02 > 07 > 04, 09 extra > 04 |
-| **Fine-Tuning: LoRA, QLoRA, PEFT** | Difference between "API user" and "ML Engineer" | 02 > 07, 09 extra > 03 |
+| **RAG — Retrieval-Augmented Generation** | The #1 enterprise LLM pattern. Every job posting mentions it | 02 > 07 > 04, 02 > 12 |
+| **Fine-Tuning: LoRA, QLoRA, PEFT** | Difference between "API user" and "ML Engineer" | 02 > 07, 02 > 11 |
 | **Prompt Engineering (CoT, ReAct, Few-shot)** | Foundation for agents and production LLM systems | 02 > 07 > 03 |
 | **LLM Evaluation (HELM, MMLU, LLM-as-Judge)** | Without evaluation there is no production. Companies desperate for this | 02 > 06 > 05 |
-| **High-Throughput LLM Serving (vLLM, continuous batching)** | Reduce inference costs 10x. Infrastructure skill with direct ROI | 02 > 09 > 03, [[04 - Rust for ML and AI]] > 04 |
+| **High-Throughput LLM Serving (vLLM, continuous batching)** | Reduce inference costs 10x. Infrastructure skill with direct ROI | 02 > 09 > 03, 02 > 13, 14 > 04 > 04 |
 | **Mixture of Experts (MoE)** | Architecture behind Mistral, DeepSeek, Mixtral. Dominant in 2026 | 02 > 10 > 01 |
 | **Hallucination Mitigation** | Problem #1 of LLMs in production. Mastering this differentiates you | 02 > 08 > 03 |
 
@@ -406,11 +430,11 @@ Key: Can read papers AND ship them
 
 | Add to Portfolio | Why It Gets You Hired | Learning Course |
 |------------------|----------------------|-----------------|
-| **MCP — Model Context Protocol** | Anthropic's open standard for agent-tool communication. Early adopter = competitive advantage | [[06 - Agentic AI with Rust]] > 01 |
-| **Multi-Agent Systems & Orchestration** | Companies are migrating from single-agent to swarms | 03 > 13, [[06 - Agentic AI with Rust]] > 04 |
+| **MCP — Model Context Protocol** | Anthropic's open standard for agent-tool communication. Early adopter = competitive advantage | 03 > 15, 14 > 06 > 01 |
+| **Multi-Agent Systems & Orchestration** | Companies are migrating from single-agent to swarms | 03 > 13, 14 > 06 > 04 |
 | **Agent Memory Architectures** | Memory is the difference between a useful agent and a dumb one | 03 > 11 > 03 |
 | **Function Calling / Tool Use** | 80% of agent value comes from integrating external APIs | 03 > 11 > 02 |
-| **Agent Security & Sandboxing** | Nobody mentions it. If you master it, you stand out immediately | [[06 - Agentic AI with Rust]] > 05 |
+| **Agent Security & Sandboxing** | Nobody mentions it. If you master it, you stand out immediately | 14 > 06 > 05, 02 > 15 |
 
 ---
 
@@ -418,12 +442,12 @@ Key: Can read papers AND ship them
 
 | Add to Portfolio | Why It Gets You Hired | Learning Course |
 |------------------|----------------------|-----------------|
-| **Rust** | "I build data pipelines 100x faster than Python" — that line lands jobs | [[Rust Engineering]] (complete 01-07) |
-| **Polars (Rust/Python)** | Successor to Pandas. Companies migrating seek people who already know it | [[03 - Rust for Data Engineering]] > 01, [[07 - Polars Internals]] |
-| **Apache Arrow** | Columnar format standard. Snowflake, Databricks, InfluxDB use it | [[03 - Rust for Data Engineering]] > 02 |
-| **Vector Databases (Qdrant, pgvector)** | No vectors = no RAG. Indispensable 2025-2026 skill | [[04 - Rust for ML and AI]] > 05 |
-| **PostgreSQL Advanced** | Window functions, recursive CTEs, indexes, pgvector — not just "I know SQL" | [[Curso SQL con PostgreSQL]], 06 > 25 > 01 |
-| **High-Performance ETL (Rust/Go)** | Spark is fine. Building ETL in Rust/Go is staff-engineer level | [[03 - Rust for Data Engineering]] > 03, 06 |
+| **Rust** | "I build data pipelines 100x faster than Python" — that line lands jobs | 14 - Rust Engineering (01-07) |
+| **Polars (Rust/Python)** | Successor to Pandas. Companies migrating seek people who already know it | 14 > 03 > 01, [[07 - Polars Internals]] |
+| **Apache Arrow** | Columnar format standard. Snowflake, Databricks, InfluxDB use it | 14 > 03 > 02 |
+| **Vector Databases (Qdrant, pgvector)** | No vectors = no RAG. Indispensable 2025-2026 skill | 14 > 04 > 05 |
+| **PostgreSQL Advanced** | Window functions, recursive CTEs, indexes, pgvector — not just "I know SQL" | 11 - Curso SQL con PostgreSQL, 06 > 25 > 01 |
+| **High-Performance ETL (Rust/Go)** | Spark is fine. Building ETL in Rust/Go is staff-engineer level | 14 > 03 > 03, 06 |
 
 ---
 
@@ -432,10 +456,10 @@ Key: Can read papers AND ship them
 | Add to Portfolio | Why It Gets You Hired | Learning Course |
 |------------------|----------------------|-----------------|
 | **Model Monitoring (Data Drift, Concept Drift)** | No monitoring = no real production. Every team needs this | 05 > 21 > 01-02 |
-| **gRPC & Protocol Buffers** | ML service communication. Faster than REST | 06 > 24 > 02, [[03 - Microservices with Go]] > 03 |
+| **gRPC & Protocol Buffers** | ML service communication. Faster than REST | 06 > 24 > 02, 13 > 03 > 03 |
 | **DVC — Data Versioning** | Git for datasets. Reproducibility = requirement in serious teams | 05 > 18 > 02 |
-| **Feature Stores (Feast, Tecton)** | Online/offline feature serving. Enterprise-scale teams need this | 05 > 19 > 02 |
-| **Docker Multi-stage (images < 20 MB)** | Container optimization. Senior detail, not junior | [[01 - Docker Profesional]], [[02 - Advanced Rust]] > 06 |
+| **Feature Stores (Feast, Tecton)** | Online/offline feature serving. Enterprise-scale teams need this | 05 > 27 |
+| **Docker Multi-stage (images < 20 MB)** | Container optimization. Senior detail, not junior | 10 - Docker Profesional, 14 > 02 > 06 |
 
 ---
 
@@ -443,10 +467,10 @@ Key: Can read papers AND ship them
 
 | Add to Portfolio | Why It Gets You Hired | Learning Course |
 |------------------|----------------------|-----------------|
-| **Terraform / Pulumi (IaC)** | Without IaC you don't scale. SRE skill the modern ML Engineer needs | 06 > 23 > 01, [[02 - Go for Cloud Native]] > 05 |
-| **WebAssembly & Edge Computing** | Inference at the edge, Cloudflare Workers, Fastly. Hot topic | [[05 - WebAssembly and Edge AI]] (complete) |
-| **Kubernetes for ML (GPU scheduling, tolerations)** | Generic K8s anyone can list. GPU workload K8s is valuable niche | [[02 - Go for Cloud Native]] > 02, 05 > 20 > 03 |
-| **Observability (Prometheus + Grafana + OpenTelemetry)** | Tracing distributed ML pipelines requires this | 06 > 23 > 04, [[03 - Microservices with Go]] > 06 |
+| **Terraform / Pulumi (IaC)** | Without IaC you don't scale. SRE skill the modern ML Engineer needs | 06 > 23 > 01, 13 > 02 > 05 |
+| **WebAssembly & Edge Computing** | Inference at the edge, Cloudflare Workers, Fastly. Hot topic | 14 > 05 (complete) |
+| **Kubernetes for ML (GPU scheduling, tolerations)** | Generic K8s anyone can list. GPU workload K8s is valuable niche | 13 > 02 > 02, 05 > 20 > 03 |
+| **Observability (Prometheus + Grafana + OpenTelemetry)** | Tracing distributed ML pipelines requires this | 06 > 23 > 04, 13 > 03 > 06 |
 
 ---
 
@@ -456,11 +480,11 @@ Key: Can read papers AND ship them
 
 | Skill | Why It Gets You Hired | Learning Course |
 |-------|----------------------|-----------------|
-| **System Design for ML** | Asked in EVERY ML Engineer interview (FAANG and startups) | [[SE extra]] > 02 |
-| **Testing — Unit, Integration, Property-Based** | ML code without tests = technical debt. Extremely rare in candidates | [[02 - Advanced Rust]] > 05, [[SE extra]] > 03 |
-| **CI/CD for ML Pipelines** | Automate training, evaluation, and deployment end-to-end | [[SE extra]] > 04, [[04 - DevSecOps and CLI Tools]] |
-| **Go for ML Backend** | Fiber, Gin, gRPC. High-concurrency serving without the Python GIL | [[Go Engineering/03]], [[Go Engineering/06]] |
-| **Rust for ML Infrastructure** | PyO3, Candle, ONNX. Critical performance without sacrificing safety | [[04 - Rust for ML and AI]], [[SE extra]] > 05 |
+| **System Design for ML** | Asked in EVERY ML Engineer interview (FAANG and startups) | 06 > 32, [[SE extra]] > 02 |
+| **Testing — Unit, Integration, Property-Based** | ML code without tests = technical debt. Extremely rare in candidates | 14 > 02 > 05, 05 > 28, [[SE extra]] > 03 |
+| **CI/CD for ML Pipelines** | Automate training, evaluation, and deployment end-to-end | 05 > 29, [[SE extra]] > 04, 14 > 04 |
+| **Go for ML Backend** | Fiber, Gin, gRPC. High-concurrency serving without the Python GIL | 13 > 03, 13 > 06 |
+| **Rust for ML Infrastructure** | PyO3, Candle, ONNX. Critical performance without sacrificing safety | 14 > 04, [[SE extra]] > 05 |
 
 ---
 
@@ -470,13 +494,11 @@ Key: Can read papers AND ship them
 
 | Skill | Why It Gets You Hired | Learning Course |
 |-------|----------------------|-----------------|
-| **Paper Reading & Reproduction** | Reading a NeurIPS paper and implementing it = signal of intellectual autonomy | 07 > 26, 09 extra > 07 |
-| **Technical Writing (Papers, ADRs, Design Docs)** | Documenting architecture = senior/staff skill. Scarce in ML | 07 > 26 > 04, [[Extra Skills/02]] |
+| **Paper Reading & Reproduction** | Reading a NeurIPS paper and implementing it = signal of intellectual autonomy | 07 > 26, 07 > 31 |
+| **Technical Writing (Papers, ADRs, Design Docs)** | Documenting architecture = senior/staff skill. Scarce in ML | 07 > 26 > 04, 15 > 02 |
 | **Data Storytelling & Visualization** | Explain models to non-technical stakeholders. Difference between approval and rejection | 07 > 27 |
 | **Open Source Contribution** | Commits to Ruff, Polars, Candle = immediate social proof | 08 > 32, [[Rust projects]] > 04 |
 | **AI Ethics, Fairness & EU AI Act** | Regulation is coming. Knowing compliance makes you "future-proof" | 08 > 30 > 03-04 |
-
----
 
 
 ## ⚡ Top 7 — If You Can Only Add These
