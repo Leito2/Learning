@@ -214,8 +214,8 @@ SW-ML-AI Engineering/
 │   ├── 30 - WebSockets             (5 EN)
 │   ├── 31 - FastAPI for ML         (1 EN)
 │   └── 32 - System Design for ML   (1 EN)
-│   │   └── 33 - Bun Runtime             (1 EN)
-│
+│   └── 33 - Bun Runtime             (7 EN)
+
 ├── 07 - Research/                  (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
 │   ├── 27 - Visualizacion          (6)
@@ -336,6 +336,8 @@ Filtered from a broader tech scan — only technologies that directly complement
 | ~~3~~ | ~~WebSockets and Real-Time ML Serving~~ | ~~5~~ | ✅ CREATED (06/30) |
 | ~~4~~ | ~~LLM Security and Guardrails~~ | ~~5~~ | ✅ CREATED (02/15) |
 | ~~5~~ | ~~Feast and Feature Stores for MLOps~~ | ~~5~~ | ✅ CREATED (05/27) |
+| ~~7~~ | ~~Bun Runtime~~ | ~~7~~ | ✅ CREATED (06/33) |
+| ~~8~~ | ~~ONNX Runtime Rust — Deepened + 2 New Notes~~ | ~~3~~ | ✅ DONE (14/04) |
 | 6 | **ColBERT, SGLang and Advanced Inference** | 6 | Cuts inference costs. Differentiates from generic ML engineers. |
 
 ---
@@ -347,4 +349,5 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Restructured:** All Extra courses dissolved into numbered modules (00-08). Unnumbered modules get 09-15. Extra/ is now non-enumerated cross-cutting topics.
 > 6. Next priority: **ColBERT, SGLang and Advanced Inference** (6 notes).
+> 7. **Completed this session:** Bun Runtime (7 notes, subagent), ONNX Rust deepened + 2 new notes (subagent), Deep Format Spec added to Continuity Prompt.
 > 7. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
