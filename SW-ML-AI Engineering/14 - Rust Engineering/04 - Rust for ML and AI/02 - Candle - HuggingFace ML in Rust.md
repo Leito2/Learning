@@ -8,6 +8,8 @@ The framework's philosophy centers around simplicity and performance: no automat
 
 Candle supports major model architectures including Llama, Stable Diffusion, Whisper, and BERT, with backends for CPU, CUDA, and Apple's Metal. This makes it a compelling alternative to [[03 - ONNX Runtime Rust|ONNX Runtime]] for scenarios where you want to stay within the Rust ecosystem. Companies like HuggingFace use Candle to deploy models in environments where Python is unavailable or too heavyweight.
 
+**Candle vs ONNX Runtime**: A critical architectural difference determines which runtime to use. Candle is **pure Rust** — every tensor operation, GPU kernel, and model architecture is implemented in Rust with zero C/C++ dependencies. This means Candle compiles trivially to WebAssembly via `wasm-pack`, enabling ML inference directly in the browser, on edge devices, and in serverless environments without any C++ toolchain. ONNX Runtime, by contrast, wraps a C++ library with heavy native dependencies (CUDA, cuDNN, TensorRT, pthreads) that cannot compile to WASM. However, ONNX Runtime's TensorRT backend delivers 1.5-3x faster GPU inference than Candle's CUDA kernels due to years of kernel autotuning. The choice is determined by your deployment target: browser/WASM requires Candle; peak GPU throughput favors ONNX Runtime; everything else is a trade-off between binary size, cold start, and dependency complexity. For a comprehensive comparison, see [[04 - ONNX vs Candle: Choosing the Right Runtime|ONNX vs Candle]].
+
 ## 1. Candle Architecture and Design
 
 Candle's architecture is built around several key abstractions:

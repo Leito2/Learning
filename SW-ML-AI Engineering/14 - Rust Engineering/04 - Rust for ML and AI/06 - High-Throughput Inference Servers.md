@@ -4,7 +4,7 @@
 
 High-throughput inference servers are specialized systems designed to serve machine learning models at scale with minimal latency and maximum efficiency. Rust's performance characteristics and safety guarantees make it an ideal language for building such servers, especially when combined with async frameworks like Actix-web, Axum, and tonic (gRPC). These servers handle thousands of concurrent inference requests while maintaining sub-second response times.
 
-The architecture of inference servers revolves around batching strategies, request coalescing, and backpressure mechanisms. Unlike traditional web servers, ML inference servers must manage GPU/CPU resources, model loading, and dynamic batching to optimize throughput. This complements [[03 - ONNX Runtime Rust|ONNX Runtime]] deployment and works well with [[02 - Candle - HuggingFace ML in Rust|Candle models]] or [[05 - Vector Databases in Rust (Qdrant, pgvector)|vector search systems]].
+The architecture of inference servers revolves around batching strategies, request coalescing, and backpressure mechanisms. Unlike traditional web servers, ML inference servers must manage GPU/CPU resources, model loading, and dynamic batching to optimize throughput. This complements [[03 - ONNX Runtime Rust|ONNX Runtime]] deployment and works well with [[02 - Candle - HuggingFace ML in Rust|Candle models]] or [[07 - Vector Databases in Rust (Qdrant, pgvector)|vector search systems]].
 
 Modern inference servers also integrate with message queues, feature stores, and monitoring systems to provide end-to-end ML serving pipelines. Rust's memory safety and lack of garbage collection make it particularly suitable for long-running, high-performance services where predictable latency is critical.
 

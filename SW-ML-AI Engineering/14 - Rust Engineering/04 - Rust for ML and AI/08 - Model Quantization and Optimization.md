@@ -4,7 +4,7 @@
 
 Model quantization and optimization are techniques to reduce model size, decrease inference latency, and improve energy efficiency while maintaining acceptable accuracy. Quantization reduces the precision of model weights and activations from 32-bit floating point to lower bit representations (INT8, INT4, mixed precision). This is crucial for deploying models on resource-constrained devices and for reducing cloud computing costs.
 
-The field encompasses several approaches: post-training quantization (PTQ), quantization-aware training (QAT), and advanced techniques like GPTQ and AWQ (Activation-aware Weight Quantization). These methods complement [[03 - ONNX Runtime Rust|ONNX Runtime's quantization capabilities]] and are essential for optimizing models before deployment via [[04 - High-Throughput Inference Servers|high-throughput inference servers]] or [[02 - Candle - HuggingFace ML in Rust|Candle inference]].
+The field encompasses several approaches: post-training quantization (PTQ), quantization-aware training (QAT), and advanced techniques like GPTQ and AWQ (Activation-aware Weight Quantization). These methods complement [[03 - ONNX Runtime Rust|ONNX Runtime's quantization capabilities]] and are essential for optimizing models before deployment via [[06 - High-Throughput Inference Servers|high-throughput inference servers]] or [[02 - Candle - HuggingFace ML in Rust|Candle inference]].
 
 Optimization extends beyond quantization to include graph optimizations, layer fusion, kernel auto-tuning, and hardware-specific optimizations. Understanding these techniques is key to achieving production-grade performance with [[01 - PyO3 - Binding Python to Rust|Python-Rust hybrid systems]] or pure Rust inference pipelines.
 
