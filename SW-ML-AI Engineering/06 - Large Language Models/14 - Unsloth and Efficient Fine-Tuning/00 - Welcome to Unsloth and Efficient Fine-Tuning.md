@@ -14,7 +14,7 @@
 
 Full fine-tuning of a 7B-parameter model demands approximately 56 GB of GPU memory with AdamW — prohibitive for most practitioners. QLoRA reduced this to ~16 GB, but still required the overhead of HuggingFace's standard attention kernels. Unsloth takes it further: by **rewriting the attention mechanism and feedforward layers** in optimized Triton/CUDA kernels, you fine-tune 2-5x faster while using 50-70% less VRAM than stock HuggingFace+QLoRA. The result is training runs that finished in 4 hours now completing in 45 minutes on the same hardware.
 
-This course directly connects to your existing projects. Your [[../../projects/03 - Fine-Tuning LLMs - Project Guide.md|Fine-Tuning LLMs project]] taught the PEFT fundamentals; here we go deeper into the kernel-level optimizations that make those techniques truly efficient. Your **LLM Edge Gateway** (Go/Fiber/Redis) will serve the Gemma 4 models you fine-tune here. Your **Automated LLM Evaluation Suite** (Python/AWS/GCP) will benchmark them. Your **Multi-Agent Research System** (LangGraph/Gemma 4) will consume them as specialized agent backbones. This is the course that closes the loop.
+This course directly connects to your existing projects. Your [[03 - Fine-Tuning LLMs - Project Guide|Fine-Tuning LLMs project]] taught the PEFT fundamentals; here we go deeper into the kernel-level optimizations that make those techniques truly efficient. Your **LLM Edge Gateway** (Go/Fiber/Redis) will serve the Gemma 4 models you fine-tune here. Your **Automated LLM Evaluation Suite** (Python/AWS/GCP) will benchmark them. Your **Multi-Agent Research System** (LangGraph/Gemma 4) will consume them as specialized agent backbones. This is the course that closes the loop.
 
 If you are preparing for AI/ML Engineer interviews, understanding Unsloth-level optimization — QLoRA, kernel fusion, hand-written backprop — separates you from candidates who only know `trainer.train()`. Companies like Anthropic, Cohere, and Together AI invest heavily in custom inference and training kernels. This knowledge is tested.
 
@@ -76,7 +76,7 @@ gemma4-unsloth-finetune/
 └── README.md
 ```
 
-This repository is **interview-ready**. Push it to GitHub, reference it when asked "How have you fine-tuned LLMs efficiently?", and connect it to your [[../../projects/00 - Project Planning Guide for ML\|ML Project Planning]] portfolio.
+This repository is **interview-ready**. Push it to GitHub, reference it when asked "How have you fine-tuned LLMs efficiently?", and connect it to your [[00 - Project Planning Guide for ML\|ML Project Planning]] portfolio.
 
 ---
 

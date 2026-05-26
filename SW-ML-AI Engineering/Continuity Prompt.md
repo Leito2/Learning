@@ -119,7 +119,7 @@ We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git rep
 
 **Gap-fill initiative:** ✅ COMPLETE — 22 original gaps filled (50 notes across 12 courses).
 
-**Current total: ~545 notes** — all redistributed into logical numbered modules (00-15).
+**Current total: ~567 notes** — all redistributed into logical numbered modules (00-16).
 
 ## User Profile (Leandro Cataño Cardeño)
 
@@ -147,7 +147,7 @@ We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git rep
 
 ## Vault Structure (Condensed)
 
-All courses distributed into logical numbered modules. `09 - Extra/` dissolved into 00-08. Unnumbered modules numbered 09-15.
+All courses distributed into logical numbered modules (00-16). Markdown, SQL, Docker moved before Advanced Python as tooling foundations. Bun Runtime relocated to `Extra/`. New module 16 added.
 
 ```
 SW-ML-AI Engineering/
@@ -155,12 +155,25 @@ SW-ML-AI Engineering/
 ├── 00 - Indice Maestro de Cursos.md
 ├── Skills Tree - AI-ML Engineer Growth Map.md
 │
-├── 00 - Fundamentos/               (23 notes, Spanish)
+├── 00 - Curso Markdown/                (5 notes, Spanish)
+│
+├── 01 - Curso SQL con PostgreSQL/      (8 notes, Spanish)
+│
+├── 02 - Docker Profesional/            (7 notes, Spanish)
+│
+├── 03 - Advanced Python/               (62 notes, Spanish)
+│   ├── 01 - Python Basico
+│   ├── 02 - Python Intermedio
+│   ├── 03 - Python Avanzado
+│   ├── 04 - Librerias Basicas de Python
+│   └── 05 - Librerias Especificas
+│
+├── 04 - Engineering Fundamentals/      (23 notes, Spanish)
 │   ├── 00 - Python Avanzado para ML
 │   ├── 01 - Matematicas para ML
 │   └── 02 - Estructuras de Datos
 │
-├── 01 - Deep Learning y CV/        (31 notes: 18 Spanish + 13 English)
+├── 05 - Deep Learning y CV/            (31 notes: 18 Spanish + 13 English)
 │   ├── 03 - DL con PyTorch         (7)
 │   ├── 04 - CV Avanzada            (6)
 │   ├── 05 - Multimodal AI          (5)
@@ -168,7 +181,7 @@ SW-ML-AI Engineering/
 │   ├── 07 - Reinforcement Learning (7 EN)
 │   └── 08 - Graph Neural Networks  (5 EN)
 │
-├── 02 - Large Language Models/     (46 notes: 30 Spanish + 16 English)
+├── 06 - Large Language Models/         (46 notes: 30 Spanish + 16 English)
 │   ├── 06 - Fundamentos de LLMs   (7)
 │   ├── 07 - Fine-Tuning            (6)
 │   ├── 08 - Gen de Texto           (6)
@@ -180,15 +193,16 @@ SW-ML-AI Engineering/
 │   ├── 14 - Unsloth                (5 EN)
 │   └── 15 - LLM Security           (5 EN)
 │
-├── 03 - AI Agents/                 (28 notes: 22 Spanish + 6 English)
+├── 07 - AI Agents/                     (28 notes: 22 Spanish + 6 English)
 │   ├── 11 - Fundamentos Agentes    (6)
 │   ├── 12 - Frameworks             (6)
 │   ├── 13 - Multi-Agente           (5)
 │   ├── 14 - Agentes Autonomos      (5)
 │   └── 15 - MCP and Agentic Prot   (6 EN)
 │
-├── 04 - NLP Avanzado/              (17 notes, Spanish)
-├── 05 - MLOps/                     (50 notes: 25 Spanish + 25 English)
+├── 08 - NLP Avanzado/                  (17 notes, Spanish)
+│
+├── 09 - MLOps/                         (50 notes: 25 Spanish + 25 English)
 │   ├── 18 - Experiment Tracking    (7)
 │   ├── 19 - Feature Engineering    (6)
 │   ├── 20 - Deployment             (6)
@@ -202,7 +216,7 @@ SW-ML-AI Engineering/
 │   ├── 28 - Testing in ML          (1 EN)
 │   └── 29 - CI-CD for ML           (1 EN)
 │
-├── 06 - Cloud, Infra/              (52 notes: 24 Spanish + 28 English)
+├── 10 - Cloud, Infra/                  (52 notes: 24 Spanish + 28 English)
 │   ├── 22 - Cloud Computing        (6)
 │   ├── 23 - Infra como Codigo      (6)
 │   ├── 24 - Backend para ML        (6)
@@ -212,11 +226,11 @@ SW-ML-AI Engineering/
 │   ├── 28 - BigQuery               (3 EN)
 │   ├── 29 - Distributed ML Infra   (7 EN)
 │   ├── 30 - WebSockets             (5 EN)
-│   ├── 31 - FastAPI for ML         (1 EN)
-│   └── 32 - System Design for ML   (1 EN)
-│   └── 33 - Bun Runtime             (7 EN)
-
-├── 07 - Research/                  (33 notes: 24 Spanish + 9 English)
+│   ├── 31 - FastAPI for ML         (6 EN)
+│   ├── 32 - System Design for ML   (1 EN)
+│   └── 33 - Bun Runtime            (7 EN)
+│
+├── 11 - Research/                      (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
 │   ├── 27 - Visualizacion          (6)
 │   ├── 28 - ETL                    (6)
@@ -225,26 +239,35 @@ SW-ML-AI Engineering/
 │   ├── 31 - Paper Reproduction     (1 EN)
 │   └── 32 - Advanced ML Topics     (7 EN)
 │
-├── 08 - Producto y Negocio/        (18 notes, Spanish)
+├── 12 - Producto y Negocio/            (18 notes, Spanish)
 │
-├── 09 - Advanced Python/           (62 notes, Spanish)
-├── 10 - Docker Profesional/        (7 notes, Spanish)
-├── 11 - Curso SQL con PostgreSQL/  (8 notes, Spanish)
-├── 12 - Curso Markdown/            (5 notes, Spanish)
-├── 13 - Go Engineering/            (73 notes, English)
-├── 14 - Rust Engineering/          (73 notes, English)
-├── 15 - Transversal Skills/        (4 notes, English)
+├── 13 - Go Engineering/                (73 notes, English)
+├── 14 - Rust Engineering/              (73 notes, English)
+├── 15 - Transversal Skills/            (4 notes, English)
 │
-├── Extra/                          # Non-enumerated, cross-cutting
-└── projects/                       (15+ guides)
+├── 16 - SDD and Harness Engineering/   (11 notes, English)
+│   ├── 00 - Welcome to SDD and Harness Engineering
+│   ├── 01 - Harness Engineering Fundamentals
+│   ├── 02 - SDD: The Specification-First Workflow
+│   ├── 03 - Agent Loop Architecture: Building the Core
+│   ├── 04 - Multi-Agent Orchestration and Roles
+│   ├── 05 - External Memory and Context Management
+│   ├── 06 - The 20 Harnesses: Phase Control and Contracts
+│   ├── 07 - Tools and Provider Abstraction
+│   ├── 08 - File Structures and Repository Harnesses
+│   ├── 09 - Verification and Quality Gates
+│   └── 10 - End-to-End Workflow and Technical Summary
+│
+├── Extra/                              # Bun Runtime + cross-cutting topics
+└── projects/                           (15+ guides)
 ```
 
 ---
 
 ## Language Policy
 
-- **Modules 00-08, 09-12 (Advanced Python, Docker, SQL, Markdown):** Spanish. **Do NOT modify** unless requested.
-- **New courses integrated into 00-08 (English-labeled sub-modules), Go Engineering (13), Rust Engineering (14), Transversal Skills (15), and projects:** **English**.
+- **Modules 00-02 (Markdown, SQL, Docker), 03 (Advanced Python), 04-12:** Spanish. **Do NOT modify** unless requested.
+- **New courses integrated into 05-12 (English-labeled sub-modules), Go Engineering (13), Rust Engineering (14), Transversal Skills (15), SDD and Harness Engineering (16), and projects:** **English**.
 - **Welcome/indices:** May contain both languages to bridge old and new.
 
 ---
@@ -278,50 +301,50 @@ Filtered from a broader tech scan — only technologies that directly complement
 ### Production LLM Serving & Inference
 | Tech | Status | Why |
 |------|:------:|-----|
-| **vLLM** | ✅ (02/13) | PagedAttention, continuous batching. Standard for production LLM APIs. |
+| **vLLM** | ✅ (06/13) | PagedAttention, continuous batching. Standard for production LLM APIs. |
 | **SGLang** | 🚨 | RadixAttention for structured output. Faster than vLLM for LLM-as-a-Judge. |
 | **TensorRT-LLM** | 🚨 | NVIDIA's max-throughput engine for GPU-heavy deployments. |
-| **Unsloth** | ✅ (02/14) | Fine-tuning 2-5x faster, 80% less memory. Deep course covering QLoRA, SFT, DPO, deployment. |
+| **Unsloth** | ✅ (06/14) | Fine-tuning 2-5x faster, 80% less memory. Deep course covering QLoRA, SFT, DPO, deployment. |
 
 ### Advanced RAG (partially created)
 | Tech | Status | Why |
 |------|:------:|-----|
-| **Hybrid Search (BM25 + Dense)** | ✅ (02/13) | Redis + vector search. Already used in LLM Gateway project. |
-| **Reranking (Cohere, bge-reranker)** | ✅ (02/13) | Second-stage precision. Critical for production RAG accuracy. |
-| **GraphRAG** | ✅ (02/13) | Microsoft. Multi-hop reasoning over knowledge graphs. |
-| **RAGAS / DeepEval** | ✅ (02/13) | RAG quality evaluation. Bridges to LLM Evaluation Suite project. |
+| **Hybrid Search (BM25 + Dense)** | ✅ (06/13) | Redis + vector search. Already used in LLM Gateway project. |
+| **Reranking (Cohere, bge-reranker)** | ✅ (06/13) | Second-stage precision. Critical for production RAG accuracy. |
+| **GraphRAG** | ✅ (06/13) | Microsoft. Multi-hop reasoning over knowledge graphs. |
+| **RAGAS / DeepEval** | ✅ (06/13) | RAG quality evaluation. Bridges to LLM Evaluation Suite project. |
 | **ColBERT (late interaction)** | 🚨 | Token-level retrieval. State-of-the-art for passage search. |
 | **Late Chunking (Jina)** | 🚨 | Context-aware chunking that keeps surrounding text in embeddings. |
 
 ### Agentic AI & Protocols
 | Tech | Status | Why |
 |------|:------:|-----|
-| **MCP (Model Context Protocol)** | ✅ (03/15) | Anthropic standard for agent-to-tool communication. Deep course with LangGraph integration. |
-| **A2A (Agent-to-Agent)** | ✅ (03/15) | Google protocol. Multi-agent enterprise communication standard. |
-| **LangGraph Deep Patterns** | ✅ (03/15) | Subgraphs, dynamic routing, human-in-the-loop. MCP integration with LangGraph. |
-| **Computer Use / Browser Agents** | ✅ (03/15) | Claude Computer Use, Browser-use. Agent interacts with real UIs. |
+| **MCP (Model Context Protocol)** | ✅ (07/15) | Anthropic standard for agent-to-tool communication. Deep course with LangGraph integration. |
+| **A2A (Agent-to-Agent)** | ✅ (07/15) | Google protocol. Multi-agent enterprise communication standard. |
+| **LangGraph Deep Patterns** | ✅ (07/15) | Subgraphs, dynamic routing, human-in-the-loop. MCP integration with LangGraph. |
+| **Computer Use / Browser Agents** | ✅ (07/15) | Claude Computer Use, Browser-use. Agent interacts with real UIs. |
 
 ### MLOps & Infrastructure
 | Tech | Status | Why |
 |------|:------:|-----|
-| **Feast (Feature Store)** | ✅ (05/27) | Online/offline feature serving, point-in-time joins, Redis integration. Deep course covering AWS/GCP deployment. |
+| **Feast (Feature Store)** | ✅ (09/27) | Online/offline feature serving, point-in-time joins, Redis integration. Deep course covering AWS/GCP deployment. |
 | **Evidently AI / Phoenix** | 🚨 | Drift detection + LLM observability. Connects to Evaluation Suite project. |
-| **LLM Guard / Guardrails AI** | ✅ (02/15) | Prompt injection defense, PII redaction, content safety. Deep course covering NeMo, Guardrails AI, Presidio, Lakera. |
+| **LLM Guard / Guardrails AI** | ✅ (06/15) | Prompt injection defense, PII redaction, content safety. Deep course covering NeMo, Guardrails AI, Presidio, Lakera. |
 | **Knative / KServe** | 🚨 | Serverless model serving on Kubernetes. Production deployment. |
 | **Temporal** | 🚨 | Durable execution for long-running ML pipelines with retries and state. |
 
 ### Real-Time ML & Streaming
 | Tech | Status | Why |
 |------|:------:|-----|
-| **WebSockets for ML Serving** | ✅ (06/30) | Deep course: protocol internals, real-time inference, scaling, ML Gateway. Complements Go/Fiber/Sudoku Together. |
-| **Redis Pub/Sub + WebSocket scaling** | ✅ (06/30) | Horizontal scaling of WS connections. Natural extension of LLM Gateway. |
+| **WebSockets for ML Serving** | ✅ (10/30) | Deep course: protocol internals, real-time inference, scaling, ML Gateway. Complements Go/Fiber/Sudoku Together. |
+| **Redis Pub/Sub + WebSocket scaling** | ✅ (10/30) | Horizontal scaling of WS connections. Natural extension of LLM Gateway. |
 | **Server-Sent Events (SSE)** | ✅ (Go Local AI) | Token streaming. Covered but could deepen. |
 
 ### Data & Feature Engineering
 | Tech | Status | Why |
 |------|:------:|-----|
 | **DuckDB** | 🚨 | OLAP in-process. Fast analytics in Python/Go without Spark. |
-| **dbt** | ✅ (06/29) | Data transformations. Already covered. |
+| **dbt** | ✅ (10/29) | Data transformations. Already covered. |
 
 > **Removed from original scan:** Rust-exclusive tech (already covered but not user's core focus), Spark/BigQuery (covered, not profile-aligned), GNN/RL (covered, niche), MoE/SSM/Jamba (too research-stage), Mojo/MAX (pre-release), Iceberg/Delta Lake (irrelevant to RAG/Agentic profile).
 
@@ -331,14 +354,15 @@ Filtered from a broader tech scan — only technologies that directly complement
 
 | # | Course | Notes | Justification |
 |:--:|--------|:-----:|---------------|
-| ~~1~~ | ~~Unsloth and Efficient Fine-Tuning~~ | ~~5~~ | ✅ CREATED (02/14) |
-| ~~2~~ | ~~MCP, A2A and Agentic Protocols~~ | ~~6~~ | ✅ CREATED (03/15) |
-| ~~3~~ | ~~WebSockets and Real-Time ML Serving~~ | ~~5~~ | ✅ CREATED (06/30) |
-| ~~4~~ | ~~LLM Security and Guardrails~~ | ~~5~~ | ✅ CREATED (02/15) |
-| ~~5~~ | ~~Feast and Feature Stores for MLOps~~ | ~~5~~ | ✅ CREATED (05/27) |
-| ~~7~~ | ~~Bun Runtime~~ | ~~7~~ | ✅ CREATED (06/33) |
+| ~~1~~ | ~~Unsloth and Efficient Fine-Tuning~~ | ~~5~~ | ✅ CREATED (06/14) |
+| ~~2~~ | ~~MCP, A2A and Agentic Protocols~~ | ~~6~~ | ✅ CREATED (07/15) |
+| ~~3~~ | ~~WebSockets and Real-Time ML Serving~~ | ~~5~~ | ✅ CREATED (10/30) |
+| ~~4~~ | ~~LLM Security and Guardrails~~ | ~~5~~ | ✅ CREATED (06/15) |
+| ~~5~~ | ~~Feast and Feature Stores for MLOps~~ | ~~5~~ | ✅ CREATED (09/27) |
+| ~~7~~ | ~~Bun Runtime~~ | ~~7~~ | ✅ CREATED (10/33) |
 | ~~8~~ | ~~ONNX Runtime Rust — Deepened + 2 New Notes~~ | ~~3~~ | ✅ DONE (14/04) |
 | 6 | **ColBERT, SGLang and Advanced Inference** | 6 | Cuts inference costs. Differentiates from generic ML engineers. |
+| ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ CREATED AS **SDD and Harness Engineering** (16/00-10). Harness Engineering + SDD workflow + 20 harnesses + 4 file structure alternatives.
 
 ---
 
@@ -347,7 +371,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 2. ALWAYS use subagents (`task` tool) for bulk creation — max 2 parallel, max 7 notes each.
 > 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
-> 5. **Restructured:** All Extra courses dissolved into numbered modules (00-08). Unnumbered modules get 09-15. Extra/ is now non-enumerated cross-cutting topics.
+> 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
 > 6. Next priority: **ColBERT, SGLang and Advanced Inference** (6 notes).
-> 7. **Completed this session:** Bun Runtime (7 notes, subagent), ONNX Rust deepened + 2 new notes (subagent), Deep Format Spec added to Continuity Prompt.
-> 7. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
+> 7. **Completed this session:** SDD and Harness Engineering course (11 notes, 4,632 lines, 2 subagents). Module reorganization v2. Continuity Prompt updated.
+> 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

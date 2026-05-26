@@ -11,14 +11,10 @@
             "id": "32797b2d3a8b02c6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "14 - Rust Engineering/04 - Rust for ML and AI/03 - ONNX Runtime Rust.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "03 - ONNX Runtime Rust"
+              "title": "New tab"
             }
           }
         ]
@@ -185,6 +181,13 @@
   },
   "active": "e00ee6632ca363b0",
   "lastOpenFiles": [
+    "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/01 - Inferencia Eficiente.md",
+    "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/02 - Quantization y Distilacion.md",
+    "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/03 - Serving y Batch Processing.md",
+    "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/04 - Seguridad y Alineacion.md",
+    "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/05 - Caso Practico - API de LLM Escalable.md",
+    "Continuity Prompt.md",
+    "14 - Rust Engineering/04 - Rust for ML and AI/03 - ONNX Runtime Rust.md",
     "14 - Rust Engineering/04 - Rust for ML and AI/08 - Model Quantization and Optimization.md",
     "14 - Rust Engineering/04 - Rust for ML and AI/07 - Vector Databases in Rust (Qdrant, pgvector).md",
     "14 - Rust Engineering/04 - Rust for ML and AI/06 - High-Throughput Inference Servers.md",
@@ -201,18 +204,11 @@
     "14 - Rust Engineering/04 - Rust for ML and AI/06 - Model Quantization and Optimization.md",
     "14 - Rust Engineering/04 - Rust for ML and AI/05 - Vector Databases in Rust (Qdrant, pgvector).md",
     "14 - Rust Engineering/04 - Rust for ML and AI/04 - High-Throughput Inference Servers.md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/03 - ONNX Runtime Rust.md",
     "09 - Extra/18 - Bun Runtime/02 - Runtimes and Backends.md",
     "09 - Extra/18 - Bun Runtime/01 - Bun Fundamentals.md",
     "09 - Extra/18 - Bun Runtime/06 - Bun for ML and Data Engineering.md",
-    "09 - Extra/18 - Bun Runtime/05 - Bun in Production.md",
-    "09 - Extra/18 - Bun Runtime/04 - Bun's Built-in Toolkit.md",
-    "09 - Extra/18 - Bun Runtime/03 - Bun for APIs and Web Servers.md",
-    "09 - Extra/18 - Bun Runtime/00 - Welcome to Bun Runtime.md",
-    "05 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps.md",
-    "06 - Cloud, Infra y Backend/32 - System Design for ML/02 - System Design for ML.md",
     "Extra",
-    "15 - Transversal Skills",
+    "Transversal Skills",
     "14 - Rust Engineering/07 - Polars Internals and Advanced/assets",
     "14 - Rust Engineering/07 - Candle Advanced Patterns/assets",
     "14 - Rust Engineering/projects",

@@ -281,9 +281,9 @@ Misceláneo
 
 | # | Curso | Notas | Estado | Idioma |
 |---|-------|:-----:|:------:|:------:|
-| 01 | [[15 - Transversal Skills/01 - Technical English\|Technical English]] | 1 | ✅ | 🇬🇧 |
-| 02 | [[15 - Transversal Skills/02 - Technical Communication and Storytelling\|Technical Communication and Storytelling]] | 1 | ✅ | 🇬🇧 |
-| 03 | [[15 - Transversal Skills/03 - Technical Leadership\|Technical Leadership]] | 1 | ✅ | 🇬🇧 |
+| 01 | [[01 - Technical English\|Technical English]] | 1 | ✅ | 🇬🇧 |
+| 02 | [[02 - Technical Communication and Storytelling\|Technical Communication and Storytelling]] | 1 | ✅ | 🇬🇧 |
+| 03 | [[03 - Technical Leadership\|Technical Leadership]] | 1 | ✅ | 🇬🇧 |
 
 ---
 
@@ -293,25 +293,25 @@ Misceláneo
 
 | # | Proyecto |
 |---|----------|
-| 00 | [[projects/00 - Project Planning Guide for ML\|Project Planning Guide for ML]] |
-| 01 | [[projects/01 - Kaggle Competitions - Project Guide\|Kaggle Competitions]] |
-| 02 | [[projects/02 - End-to-End ML Project - Project Guide\|End-to-End ML Project]] |
-| 03 | [[projects/03 - Fine-Tuning LLMs - Project Guide\|Fine-Tuning LLMs]] |
-| 04 | [[projects/04 - Production RAG System - Project Guide\|Production RAG System]] |
-| 05 | [[projects/05 - Computer Vision Pipeline - Project Guide\|Computer Vision Pipeline]] |
-| 06 | [[projects/06 - Advanced MLOps - Project Guide\|Advanced MLOps]] |
-| 07 | [[projects/07 - Paper Reproduction - Project Guide\|Paper Reproduction]] |
+| 00 | [[00 - Project Planning Guide for ML\|Project Planning Guide for ML]] |
+| 01 | [[01 - Kaggle Competitions - Project Guide\|Kaggle Competitions]] |
+| 02 | [[02 - End-to-End ML Project - Project Guide\|End-to-End ML Project]] |
+| 03 | [[03 - Fine-Tuning LLMs - Project Guide\|Fine-Tuning LLMs]] |
+| 04 | [[04 - Production RAG System - Project Guide\|Production RAG System]] |
+| 05 | [[05 - Computer Vision Pipeline - Project Guide\|Computer Vision Pipeline]] |
+| 06 | [[06 - Advanced MLOps - Project Guide\|Advanced MLOps]] |
+| 07 | [[07 - Paper Reproduction - Project Guide\|Paper Reproduction]] |
 
 ### Software Engineering Projects
 
 | # | Proyecto |
 |---|----------|
-| 00 | [[projects/00 - Project Planning Guide for SE\|Project Planning Guide for SE]] |
-| 01 | [[projects/01 - FastAPI for ML - Project Guide\|FastAPI for ML]] |
-| 02 | [[projects/02 - System Design for ML - Project Guide\|System Design for ML]] |
-| 03 | [[projects/03 - Testing in ML Systems - Project Guide\|Testing in ML Systems]] |
-| 04 | [[projects/04 - CI-CD for ML - Project Guide\|CI-CD for ML]] |
-| 05 | [[projects/05 - Rust for ML Infra - Project Guide\|Rust for ML Infra]] |
+| 00 | [[00 - Project Planning Guide for SE\|Project Planning Guide for SE]] |
+| 01 | [[01 - FastAPI for ML - Project Guide\|FastAPI for ML]] |
+| 02 | [[02 - System Design for ML - Project Guide\|System Design for ML]] |
+| 03 | [[03 - Testing in ML Systems - Project Guide\|Testing in ML Systems]] |
+| 04 | [[04 - CI-CD for ML - Project Guide\|CI-CD for ML]] |
+| 05 | [[05 - Rust for ML Infra - Project Guide\|Rust for ML Infra]] |
 
 ---
 

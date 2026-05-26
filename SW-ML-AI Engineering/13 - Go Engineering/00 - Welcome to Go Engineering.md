@@ -90,7 +90,7 @@ This project will be the **centerpiece of your portfolio** when applying for ML 
 
 - [[../../ML and IA Engineering/Welcome\|🧠 ML and IA Engineering]] — Deep learning, LLMs, MLOps
 - [[../extra/00 - Welcome to Software Engineering Extra\|⚡ Software Engineering Extra]] — FastAPI, System Design, Testing, CI/CD
-- [[../../Transversal Skills/00 - Welcome to Transversal Skills\|🌉 Transversal Skills]] — Technical English, Communication, Leadership
+- [[00 - Welcome to Transversal Skills\|🌉 Transversal Skills]] — Technical English, Communication, Leadership
 
 ---
 

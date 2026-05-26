@@ -549,7 +549,7 @@ flowchart TD
 
 **Real Case: Your Multi-Agent Research System Performance**
 
-Your [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] (LangGraph/Gemma 4) runs multiple model forward passes per user query: research agent → critic agent → synthesis agent. Without Unsloth, rapid prototyping of fine-tuned agent backbones is infeasible — each fine-tuning iteration costs hours. With Unsloth QLoRA on an RTX 4090, you can fine-tune a new agent backbone in under 2 hours, evaluate it with your [[../../projects/03 - Fine-Tuning LLMs - Project Guide.md|Automated LLM Evaluation Suite]], and deploy to your [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|LLM Edge Gateway]] — all in a single afternoon session.
+Your [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] (LangGraph/Gemma 4) runs multiple model forward passes per user query: research agent → critic agent → synthesis agent. Without Unsloth, rapid prototyping of fine-tuned agent backbones is infeasible — each fine-tuning iteration costs hours. With Unsloth QLoRA on an RTX 4090, you can fine-tune a new agent backbone in under 2 hours, evaluate it with your [[03 - Fine-Tuning LLMs - Project Guide|Automated LLM Evaluation Suite]], and deploy to your [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|LLM Edge Gateway]] — all in a single afternoon session.
 
 **Real Case: Together AI's Custom Fine-Tuning Service**
 
@@ -557,7 +557,7 @@ Together AI offers fine-tuning-as-a-service for open-source models (Llama, Mistr
 
 **Real Case: Your LLM Edge Gateway + Gemma 4**
 
-Your [[../../projects/03 - Fine-Tuning LLMs - Project Guide.md|LLM Edge Gateway]] currently serves general-purpose Gemma 4 through Go/Fiber/Redis. After this course, you can replace the base model with a domain-specialized fine-tune. For example: fine-tune Gemma 4 on your API documentation and system prompts from the Multi-Agent Research System. The fine-tuned model will produce better routing decisions and more accurate responses while maintaining the same inference latency — because LoRA adapters can be merged into base weights with zero overhead. Your **Automated LLM Evaluation Suite** can then benchmark the fine-tuned model against the base model on your custom evaluation set, quantifying the improvement.
+Your [[03 - Fine-Tuning LLMs - Project Guide|LLM Edge Gateway]] currently serves general-purpose Gemma 4 through Go/Fiber/Redis. After this course, you can replace the base model with a domain-specialized fine-tune. For example: fine-tune Gemma 4 on your API documentation and system prompts from the Multi-Agent Research System. The fine-tuned model will produce better routing decisions and more accurate responses while maintaining the same inference latency — because LoRA adapters can be merged into base weights with zero overhead. Your **Automated LLM Evaluation Suite** can then benchmark the fine-tuned model against the base model on your custom evaluation set, quantifying the improvement.
 
 ### 3.6 Common Pitfalls ⚠️ + 💡 Tips
 
