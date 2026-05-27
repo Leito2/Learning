@@ -229,7 +229,7 @@
 | 🌿 | Causal Inference | 07 > 29 > 02 |
 | 🌿 | Design of Experiments | 07 > 29 > 03 |
 | 🌿 | Data Visualization & Storytelling | 07 > 27 |
-| 🌿 | Vector Databases (Qdrant, pgvector) | 14 > 04 > 05 |
+| 🌿 | Vector Databases (Qdrant, pgvector, Milvus) | 10 > 33, 14 > 04 > 05 |
 | 🌿 | Polars Data Pipeline Project | [[Rust projects]] > 01 |
 | 🌿 | CLI Tool Projects (Go + Rust) | [[Go projects]] > 02, [[Rust projects]] |
 
@@ -445,7 +445,7 @@ Key: Can read papers AND ship them
 | **Rust** | "I build data pipelines 100x faster than Python" — that line lands jobs | 14 - Rust Engineering (01-07) |
 | **Polars (Rust/Python)** | Successor to Pandas. Companies migrating seek people who already know it | 14 > 03 > 01, [[07 - Polars Internals]] |
 | **Apache Arrow** | Columnar format standard. Snowflake, Databricks, InfluxDB use it | 14 > 03 > 02 |
-| **Vector Databases (Qdrant, pgvector)** | No vectors = no RAG. Indispensable 2025-2026 skill | 14 > 04 > 05 |
+| **Vector Databases (Qdrant, pgvector, Milvus)** | No vectors = no RAG. Indispensable 2025-2026 skill | 10 > 33, 14 > 04 > 05 |
 | **PostgreSQL Advanced** | Window functions, recursive CTEs, indexes, pgvector — not just "I know SQL" | 11 - Curso SQL con PostgreSQL, 06 > 25 > 01 |
 | **High-Performance ETL (Rust/Go)** | Spark is fine. Building ETL in Rust/Go is staff-engineer level | 14 > 03 > 03, 06 |
 

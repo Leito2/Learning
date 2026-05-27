@@ -119,7 +119,7 @@ We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git rep
 
 **Gap-fill initiative:** ✅ COMPLETE — 22 original gaps filled (50 notes across 12 courses).
 
-**Current total: ~567 notes** — all redistributed into logical numbered modules (00-16).
+**Current total: ~579 notes** — all redistributed into logical numbered modules (00-16).
 
 ## User Profile (Leandro Cataño Cardeño)
 
@@ -228,7 +228,7 @@ SW-ML-AI Engineering/
 │   ├── 30 - WebSockets             (5 EN)
 │   ├── 31 - FastAPI for ML         (6 EN)
 │   ├── 32 - System Design for ML   (1 EN)
-│   └── 33 - Bun Runtime            (7 EN)
+│   └── 33 - Vector Databases and Semantic Search (12 EN)
 │
 ├── 11 - Research/                      (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
@@ -315,6 +315,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | **RAGAS / DeepEval** | ✅ (06/13) | RAG quality evaluation. Bridges to LLM Evaluation Suite project. |
 | **ColBERT (late interaction)** | 🚨 | Token-level retrieval. State-of-the-art for passage search. |
 | **Late Chunking (Jina)** | 🚨 | Context-aware chunking that keeps surrounding text in embeddings. |
+| **Late Chunking (Jina)** | 🚨 | Context-aware chunking that keeps surrounding text in embeddings. |
 
 ### Agentic AI & Protocols
 | Tech | Status | Why |
@@ -346,6 +347,13 @@ Filtered from a broader tech scan — only technologies that directly complement
 | **DuckDB** | 🚨 | OLAP in-process. Fast analytics in Python/Go without Spark. |
 | **dbt** | ✅ (10/29) | Data transformations. Already covered. |
 
+### Vector Databases
+| Tech | Status | Why |
+|------|:------:|-----|
+| **pgvector** | ✅ (10/33) | PostgreSQL extension for vector search. Deep 2-note course: core ops, hybrid search, production tuning. |
+| **Qdrant** | ✅ (10/33) | Rust-based vector DB. Deep 2-note course: architecture, collections, distributed deployment, Go/Python clients. |
+| **Milvus** | ✅ (10/33) | Distributed GPU-accelerated vector DB. Deep 2-note course: architecture, Kubernetes, multi-tenancy, tiered storage. |
+
 > **Removed from original scan:** Rust-exclusive tech (already covered but not user's core focus), Spark/BigQuery (covered, not profile-aligned), GNN/RL (covered, niche), MoE/SSM/Jamba (too research-stage), Mojo/MAX (pre-release), Iceberg/Delta Lake (irrelevant to RAG/Agentic profile).
 
 ---
@@ -363,6 +371,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | ~~8~~ | ~~ONNX Runtime Rust — Deepened + 2 New Notes~~ | ~~3~~ | ✅ DONE (14/04) |
 | 6 | **ColBERT, SGLang and Advanced Inference** | 6 | Cuts inference costs. Differentiates from generic ML engineers. |
 | ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ CREATED AS **SDD and Harness Engineering** (16/00-10). Harness Engineering + SDD workflow + 20 harnesses + 4 file structure alternatives.
+| 10 | **Vector Databases and Semantic Search** | 12 | ✅ CREATED (10/33). pgvector, Qdrant, Milvus deep courses + comparison + capstone with Go and Python.
 
 ---
 
@@ -373,5 +382,5 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
 > 6. Next priority: **ColBERT, SGLang and Advanced Inference** (6 notes).
-> 7. **Completed this session:** SDD and Harness Engineering course (11 notes, 4,632 lines, 2 subagents). Module reorganization v2. Continuity Prompt updated.
+> 7. **Completed this session:** Vector Databases and Semantic Search course (12 notes, ~6,023 lines, 4 subagents total). Deep format applied. Module 10/33. Continuity Prompt and indices updated.
 > 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

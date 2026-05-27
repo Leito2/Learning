@@ -72,7 +72,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 30 - WebSockets and Real-Time ML (5 — English)
 ├── 31 - FastAPI for ML (1 — English)
 ├── 32 - System Design for ML (1 — English)
-├── 33 - Bun Runtime (1 — English)
+├── 33 - Vector Databases and Semantic Search (12 — English)
 
 07 - Research y Ciencia de Datos
 ├── 26 - Metodología de Investigación en ML (6)
@@ -192,7 +192,7 @@ Misceláneo
 | 30 | [[06 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML\|WebSockets and Real-Time ML]] | 5 | ✅ | 🇬🇧 |
 | 31 | [[06 - Cloud, Infra y Backend/31 - FastAPI for ML/01 - FastAPI for ML\|FastAPI for ML]] | 1 | ✅ | 🇬🇧 |
 | 32 | [[06 - Cloud, Infra y Backend/32 - System Design for ML/02 - System Design for ML\|System Design for ML]] | 1 | ✅ | 🇬🇧 |
-| 33 | [[09 - Extra/18 - Bun Runtime/00 - Welcome to Bun Runtime\|Bun Runtime]] | 1 | ✅ | 🇬🇧 |
+| 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 12 | ✅ NEW | 🇬🇧 |
 
 ### 07 — Research y Ciencia de Datos
 
@@ -342,13 +342,13 @@ Fase 7 (Contínuo):    Transversal Skills + Proyectos + Portfolio
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 56 |
+| Cursos totales | 57 |
 | Cursos en Español | 26 |
-| Cursos en English | 25 |
+| Cursos en English | 26 |
 | Módulos SE (Python, Docker, SQL, Markdown) | 4 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 350+ |
+| Notas totales | 580+ |
 | Guías de proyecto | 14 |
 
 ---

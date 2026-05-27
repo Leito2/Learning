@@ -11,10 +11,14 @@
             "id": "32797b2d3a8b02c6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "09 - MLOps y Produccion/29 - CI-CD for ML/04 - CI-CD for ML.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "04 - CI-CD for ML"
             }
           }
         ]
@@ -179,8 +183,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "e00ee6632ca363b0",
+  "active": "32797b2d3a8b02c6",
   "lastOpenFiles": [
+    "09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps.md",
+    "09 - MLOps y Produccion/22 - End-to-End ML Project/02 - End-to-End ML Project.md",
+    "10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/05 - Caso Practico - Pipeline de Datos en Tiempo Real.md",
+    "10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/04 - Message Queues y Streaming.md",
+    "10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/02 - Bases de Datos NoSQL.md",
+    "10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/03 - Redis y Caching.md",
+    "10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/01 - PostgreSQL Avanzado.md",
+    "10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/00 - Bienvenida.md",
     "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/01 - Inferencia Eficiente.md",
     "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/02 - Quantization y Distilacion.md",
     "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/03 - Serving y Batch Processing.md",
@@ -199,14 +211,6 @@
     "14 - Rust Engineering/extra/05 - Rust for ML Infra.md",
     "14 - Rust Engineering/extra/04 - Embedded Rust and IoT.md",
     "14 - Rust Engineering/extra/03 - Rust Cryptography and Security.md",
-    "14 - Rust Engineering/extra/00 - Welcome to Rust Extra.md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/01 - PyO3 - Binding Python to Rust.md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/06 - Model Quantization and Optimization.md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/05 - Vector Databases in Rust (Qdrant, pgvector).md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/04 - High-Throughput Inference Servers.md",
-    "09 - Extra/18 - Bun Runtime/02 - Runtimes and Backends.md",
-    "09 - Extra/18 - Bun Runtime/01 - Bun Fundamentals.md",
-    "09 - Extra/18 - Bun Runtime/06 - Bun for ML and Data Engineering.md",
     "Extra",
     "Transversal Skills",
     "14 - Rust Engineering/07 - Polars Internals and Advanced/assets",
