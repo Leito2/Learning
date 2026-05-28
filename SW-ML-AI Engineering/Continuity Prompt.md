@@ -119,7 +119,7 @@ We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git rep
 
 **Gap-fill initiative:** ✅ COMPLETE — 22 original gaps filled (50 notes across 12 courses).
 
-**Current total: ~596 notes** — all redistributed into logical numbered modules (00-16).
+**Current total: ~603 notes** — all redistributed into logical numbered modules (00-16).
 
 ## User Profile (Leandro Cataño Cardeño)
 
@@ -182,7 +182,7 @@ SW-ML-AI Engineering/
 │   ├── 08 - Graph Neural Networks  (5 EN)
 │   └── 09 - Deep Learning with TF  (7 EN)
 │
-├── 06 - Large Language Models/         (56 notes: 30 Spanish + 26 English)
+├── 06 - Large Language Models/         (63 notes: 30 Spanish + 33 English)
 │   ├── 06 - Fundamentos de LLMs   (7)
 │   ├── 07 - Fine-Tuning            (6)
 │   ├── 08 - Gen de Texto           (6)
@@ -193,7 +193,8 @@ SW-ML-AI Engineering/
 │   ├── 13 - vLLM and Advanced RAG  (6 EN)
 │   ├── 14 - Unsloth                (5 EN)
 │   ├── 15 - LLM Security           (5 EN)
-│   └── 16 - HuggingFace Transformers Deep Dive (10 EN)
+│   ├── 16 - HuggingFace Transformers Deep Dive (10 EN)
+│   └── 17 - ColBERT, SGLang and Advanced Inference (7 EN)
 │
 ├── 07 - AI Agents/                     (28 notes: 22 Spanish + 6 English)
 │   ├── 11 - Fundamentos Agentes    (6)
@@ -371,7 +372,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | ~~5~~ | ~~Feast and Feature Stores for MLOps~~ | ~~5~~ | ✅ CREATED (09/27) |
 | ~~7~~ | ~~Bun Runtime~~ | ~~7~~ | ✅ CREATED (10/33) |
 | ~~8~~ | ~~ONNX Runtime Rust — Deepened + 2 New Notes~~ | ~~3~~ | ✅ DONE (14/04) |
-| 6 | **ColBERT, SGLang and Advanced Inference** | 6 | Cuts inference costs. Differentiates from generic ML engineers. |
+| ~~6~~ | ~~ColBERT, SGLang and Advanced Inference~~ | ~~7~~ | ✅ CREATED (06/17). ColBERT late interaction, PLAID, SGLang RadixAttention, speculative decoding, quantization. Capstone: hybrid RAG with ColBERT reranking + SGLang judge.
 | ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ CREATED AS **SDD and Harness Engineering** (16/00-10). Harness Engineering + SDD workflow + 20 harnesses + 4 file structure alternatives.
 | 10 | **Vector Databases and Semantic Search** | 12 | ✅ CREATED (10/33). pgvector, Qdrant, Milvus deep courses + comparison + capstone with Go and Python.
 | 11 | **HuggingFace Transformers Deep Dive** | 10 | ✅ CREATED (06/16). from_pretrained, tokenizers, Trainer, generation, vision/audio/multimodal, optimum, Diffusers (2 notes), capstone.
@@ -385,6 +386,6 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
-> 6. Next priority: **ColBERT, SGLang and Advanced Inference** (6 notes).
-> 7. **Completed this session:** Deep Learning with TensorFlow course (7 notes, ~3,632 lines, 2 subagents). Deep format applied. Module 05/09. Covers tf.keras architectures, tf.data/TFRecord pipelines, distributed training (MirroredStrategy/TPUStrategy), TensorBoard/callbacks/KerasTuner, SavedModel/TF Serving/TFLite, and end-to-end CV capstone with EfficientNet transfer learning.
+> 6. Next priority: **JAX Deep Dive** (5-6 notes) OR **TorchServe** (3-4 notes) OR **Evidently AI / Phoenix** (drift detection).
+> 7. **Completed this session:** ColBERT, SGLang and Advanced Inference course (7 notes, ~3,373 lines, 2 subagents). Deep format applied. Module 06/17. Etymology explained (ColBERT = Contextualized Late Interaction over BERT; SGLang = Structured Generation Language). Covers token-level late interaction, PLAID indexing, RadixAttention, structured LLM programs, speculative decoding, quantization, and capstone hybrid RAG.
 > 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

@@ -103,6 +103,9 @@
 | Scalable LLM Serving (vLLM, continuous batching) | 02 > 09 > 03, 02 > 13 | ✅ |
 | Unsloth (accelerated fine-tuning, quantization-aware) | 02 > 14 | ✅ |
 | HuggingFace Transformers Deep Dive (library mastery) | 02 > 16 | ✅ |
+| ColBERT (late interaction retrieval) | 02 > 17 | ✅ |
+| SGLang (structured generation, RadixAttention) | 02 > 17 | ✅ |
+| Speculative Decoding & Inference Optimization | 02 > 17 | ✅ |
 | GraphRAG (Knowledge Graph + RAG for LLMs) | 02 > 13, 04 > 17 > 03 | ✅ |
 | RAGAS (RAG evaluation framework) | 02 > 12 | ✅ |
 | Semantic Search & Hybrid Retrieval | 04 > 17 > 04 | ✅ |
@@ -427,6 +430,8 @@ Key: Can read papers AND ship them
 | **HuggingFace Transformers Deep Dive** | The ecosystem behind 90% of open-source LLMs. Library literacy separates users from engineers | 02 > 16 |
 | **Mixture of Experts (MoE)** | Architecture behind Mistral, DeepSeek, Mixtral. Dominant in 2026 | 02 > 10 > 01 |
 | **Hallucination Mitigation** | Problem #1 of LLMs in production. Mastering this differentiates you | 02 > 08 > 03 |
+| **ColBERT (late interaction retrieval)** | Token-level retrieval outperforms dense embeddings. Only method with cross-encoder quality at bi-encoder speed | 02 > 17 |
+| **SGLang / Speculative Decoding** | Cut inference costs 2-5x with RadixAttention and draft-model verification. Directly reduces cloud GPU bills | 02 > 17 |
 
 ---
 

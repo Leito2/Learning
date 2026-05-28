@@ -35,6 +35,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 14 - Unsloth and Efficient Fine-Tuning (5 — English)
 ├── 15 - LLM Security and Guardrails (5 — English)
 ├── 16 - HuggingFace Transformers Deep Dive (10 — English)
+├── 17 - ColBERT, SGLang and Advanced Inference (7 — English)
 
 03 - AI Agents y Agentic Systems
 ├── 11 - Fundamentos de Agentes AI (6)
@@ -145,6 +146,7 @@ Misceláneo
 | 14 | [[02 - Large Language Models/14 - Unsloth and Efficient Fine-Tuning/00 - Welcome to Unsloth and Efficient Fine-Tuning\|Unsloth and Efficient Fine-Tuning]] | 5 | ✅ | 🇬🇧 |
 | 15 | [[02 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails\|LLM Security and Guardrails]] | 5 | ✅ | 🇬🇧 |
 | 16 | [[02 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive\|HuggingFace Transformers Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
+| 17 | [[02 - Large Language Models/17 - ColBERT, SGLang and Advanced Inference/00 - Welcome to ColBERT, SGLang and Advanced Inference\|ColBERT, SGLang and Advanced Inference]] | 7 | ✅ NEW | 🇬🇧 |
 
 ### 03 — AI Agents y Agentic Systems
 
@@ -346,13 +348,13 @@ Fase 7 (Contínuo):    Transversal Skills + Proyectos + Portfolio
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 59 |
+| Cursos totales | 60 |
 | Cursos en Español | 26 |
-| Cursos en English | 28 |
+| Cursos en English | 29 |
 | Módulos SE (Python, Docker, SQL, Markdown) | 4 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 600+ |
+| Notas totales | 603+ |
 | Guías de proyecto | 14 |
 
 ---
