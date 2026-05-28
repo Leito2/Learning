@@ -45,67 +45,58 @@ Connect to other vault modules via [[...]] links.)
 
 ---
 
-## Module X: <Concept Name>
+## 1. The Problem and Why This Solution Exists
+(Deep historical context. Competing approaches and their failures.
+Architecture diagrams from OFFICIAL sources or Wikimedia, NOT ASCII.
+No artificial paragraph limit — let the theory breathe.)
 
-### X.1 Theoretical Foundation 🧠
-(3-4 paragraphs: WHY the concept exists, historical context, design motivation.
-Show the problem BEFORE the solution.)
+## 2. Conceptual Deep Dive
+(Algorithms, data flow, mathematics. LaTeX for equations.
+Code integrated into explanation, not isolated.
+ONE Mermaid diagram ONLY IF it adds genuine architectural insight.)
 
-### X.2 Mental Model 📐
-(ASCII diagram using ┌─│└├┘┤┬┴┼ — at least 3 per note)
+## 3. Production Reality
+(Hardware requirements, tradeoffs, known failure modes.
+Real case: <Company X uses this for Y>.
+Comparison table ONLY when comparing multiple approaches.)
 
-### X.3 Syntax and Semantics 📝
-(Exact syntax with line-by-line WHY comments, not just WHAT)
-```go / rust / python
-// code with inline comments explaining WHY
-```
-
-### X.4 Visual Representation 🖼️
-(Mermaid diagram — at least 2 per note, varied types)
-```mermaid
-<diagram>
-```
-(Wikimedia image URL: ![Alt](https://upload.wikimedia.org/...))
-
-### X.5 Application in ML/AI Systems 🤖
-(Specific real-world case: "Real case: <company>" or usage table)
-
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-
-### X.6 Common Pitfalls ⚠️
-⚠️ <Warning with root cause explanation>
-💡 <Tip with mnemonic>
-
-### X.7 Knowledge Check ❓
-(2-3 questions or mini-exercises)
+## 4. Code in Practice
+(Minimal, focused, runnable code. Not a "compression code"
+that tries to cover everything — just the key pattern.)
 
 ---
-
-## 📦 Compression Code
-(Complete, production-ready script summarizing ALL concepts)
-
-## 🎯 Documented Project
-### Description, Functional Requirements, Main Components, Success Metrics
 
 ## 🎯 Key Takeaways
 (5-7 bullet points)
 
 ## References
+(Papers, docs, vault [[links]])
 ```
+
+### Visual Guidelines
+
+| Rule | Detail |
+|------|--------|
+| **ASCII art** | **BANNED.** No `┌─│└├┘┤┬┴┼` diagrams. |
+| **Real images** | Prefer Wikimedia Commons URLs: `![Alt](https://upload.wikimedia.org/...)` |
+| **Official diagrams** | Use arxiv figures, GitHub docs, NVIDIA/Apple docs for project-specific architecture |
+| **Mermaid** | Maximum 1-2 per note. Only for architecture/data flow that genuinely needs visualization. |
+| **LaTeX** | Use aggressively for mathematical concepts. |
+| **Tables** | Only when comparing approaches or listing tradeoffs — not as filler. |
 
 ### Line Targets
 
 | Note Type | Lines |
 |-----------|:-----:|
 | Course welcome (00) | 60-90 |
-| Core course note | 400-600 |
-| Quick-reference | 200-350 |
-| Tool comparison | 200-400 |
+| Core concept note | 300-450 |
+| Capstone note | 350-500 |
+| Quick-reference | 150-250 |
+| Tool comparison | 150-300 |
 
 ### Key Rules
 - **Theory BEFORE code** in every section. Conceptual and functional theory is the HIGHEST priority.
-- Every note must deliver COMPLETE technical and practical mastery: theoretical foundation → mental model → syntax/semantics → visual representation → real-world application → pitfalls → knowledge check → compression code → project.
+- Each note covers **ONE concept deeply** — do not cram multiple topics into a single note.
 - **English** for all new content; **Spanish** only for existing M00-M08 modules.
 - Code blocks MUST have language tag: ` ```python `, ` ```go `, ` ```rust `, ` ```sql `, ` ```bash `, ` ```yaml `, ` ```json `.
 - Tables MUST use aligned columns.
@@ -114,6 +105,29 @@ Show the problem BEFORE the solution.)
 - File names: `## - Descriptive Name.md`. **Never use `/`** (Windows restriction).
 - One H1 per note only.
 - **THIS DEEP FORMAT IS THE DEFAULT STANDARD.** All notes must follow it. All subagents must be instructed to follow it.
+
+---
+
+## ⚡ Cutting-Edge Technology Preference
+
+All new courses MUST prioritize the most modern, production-grade technologies.
+
+### Preferred Over Legacy
+
+| Prefer | Over | Because |
+|--------|------|---------|
+| **FP8 (E4M3/E5M2)** | INT8/INT4 quantization | Native H100/B200 support, hybrid precision |
+| **Multi-Head Latent Attention (MLA)** | GQA/MQA | 90% KV cache reduction via compressed latent vectors |
+| **Eagle / MTP speculative decoding** | Basic draft-model speculation | Feature-level speculation, no separate model needed |
+| **Disaggregated prefill/decode** | Monolithic serving | 2x throughput via hardware specialization |
+| **ExecuTorch / ONNX Runtime** | Raw PyTorch inference | NPU-ready, INT4/FP4 mapped to silicon |
+| **Self-Refinement / Self-Consistency** | Static greedy decoding | Dynamic compute allocation per token |
+| **SGLang RadixAttention** | vLLM PagedAttention (structured workloads) | Prefix sharing across program branches |
+
+### Research Divisions to Cover
+
+1. **Architecture-Level Optimizations**: MLA, MoE inference routing, SSM-based alternatives (Mamba-2), diffusion LLMs, mixture of depths.
+2. **Runtime/System-Level Optimizations**: Speculative decoding 2.0, disaggregated serving, KV cache eviction, hybrid precision, prompt compression.
 
 ---
 
@@ -188,7 +202,7 @@ SW-ML-AI Engineering/
 │   ├── 08 - Graph Neural Networks  (5 EN)
 │   └── 09 - Deep Learning with TF  (7 EN)
 │
-├── 06 - Large Language Models/         (63 notes: 30 Spanish + 33 English)
+├── 06 - Large Language Models/         (66+ notes: 30 Spanish + 36 English)
 │   ├── 06 - Fundamentos de LLMs   (7)
 │   ├── 07 - Fine-Tuning            (6)
 │   ├── 08 - Gen de Texto           (6)
@@ -200,7 +214,7 @@ SW-ML-AI Engineering/
 │   ├── 14 - Unsloth                (5 EN)
 │   ├── 15 - LLM Security           (5 EN)
 │   ├── 16 - HuggingFace Transformers Deep Dive (10 EN)
-│   └── 17 - ColBERT, SGLang and Advanced Inference (7 EN)
+│   └── 17 - ColBERT, SGLang and Next-Gen Inference (11 EN)
 │
 ├── 07 - AI Agents/                     (28 notes: 22 Spanish + 6 English)
 │   ├── 11 - Fundamentos Agentes    (6)
@@ -311,7 +325,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | Tech | Status | Why |
 |------|:------:|-----|
 | **vLLM** | ✅ (06/13) | PagedAttention, continuous batching. Standard for production LLM APIs. |
-| **SGLang** | ✅ (06/17) | RadixAttention for structured output. Faster than vLLM for LLM-as-a-Judge. Deep course with speculative decoding, quantization. |
+| **SGLang** | ✅ (06/17) | RadixAttention for structured output. Deep course: ColBERT, SGLang, Next-Gen Inference (FP8/MLA/Edge). |
 | **TensorRT-LLM** | 🚨 | NVIDIA's max-throughput engine for GPU-heavy deployments. |
 | **Unsloth** | ✅ (06/14) | Fine-tuning 2-5x faster, 80% less memory. Deep course covering QLoRA, SFT, DPO, deployment. |
 
@@ -377,7 +391,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | ~~5~~ | ~~Feast and Feature Stores for MLOps~~ | ~~5~~ | ✅ CREATED (09/27) |
 | ~~7~~ | ~~Bun Runtime~~ | ~~7~~ | ✅ CREATED (10/33) |
 | ~~8~~ | ~~ONNX Runtime Rust — Deepened + 2 New Notes~~ | ~~3~~ | ✅ DONE (14/04) |
-| ~~6~~ | ~~ColBERT, SGLang and Advanced Inference~~ | ~~7~~ | ✅ CREATED (06/17). ColBERT late interaction, PLAID, SGLang RadixAttention, speculative decoding, quantization. Capstone: hybrid RAG with ColBERT reranking + SGLang judge.
+| ~~6~~ | ~~ColBERT, SGLang and Next-Gen Inference~~ | ~~11~~ | ✅ REWRITTEN (06/17). 5 cutting-edge vectors: Inference-Time Scaling, Speculative Decoding 2.0, MLA + KV eviction, FP8 hybrid precision, Disaggregated serving + Edge inference. Plus ColBERT + SGLang deep dives. Capstone: hybrid RAG.
 | ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ CREATED AS **SDD and Harness Engineering** (16/00-10). Harness Engineering + SDD workflow + 20 harnesses + 4 file structure alternatives.
 | 10 | **Vector Databases and Semantic Search** | 12 | ✅ CREATED (10/33). pgvector, Qdrant, Milvus deep courses + comparison + capstone with Go and Python.
 | 11 | **HuggingFace Transformers Deep Dive** | 10 | ✅ CREATED (06/16). from_pretrained, tokenizers, Trainer, generation, vision/audio/multimodal, optimum, Diffusers (2 notes), capstone.
@@ -400,6 +414,6 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
-> 6. Next priority: **JAX Deep Dive** (5-6 notes) OR **TorchServe** (3-4 notes) OR **Evidently AI / Phoenix** (drift detection).
-> 7. **Completed this session:** ColBERT, SGLang and Advanced Inference course (7 notes, ~3,373 lines, 2 subagents). Deep format applied. Module 06/17. Etymology explained (ColBERT = Contextualized Late Interaction over BERT; SGLang = Structured Generation Language). Covers token-level late interaction, PLAID indexing, RadixAttention, structured LLM programs, speculative decoding, quantization, and capstone hybrid RAG.
+> 6. Next priority: **Complete rewrite of 06/17** (11 notes total: restructure 00-04 + 06, write 05-09 new notes with cutting-edge vectors) OR **JAX Deep Dive** (5-6 notes) OR **TorchServe** (3-4 notes).
+> 7. **Course 06/17 REWRITE IN PROGRESS:** ColBERT, SGLang and Next-Gen Inference — expanding from 7 to 11 notes. New format: no ASCII art, real images, LaTeX, organic structure. Cutting-edge vectors: Inference-Time Scaling, Speculative Decoding 2.0 (Eagle/MTP), MLA + H2O/StreamingLLM, FP8 (E4M3/E5M2) + Transformer Engines, Disaggregated serving + Edge (ExecuTorch/NPU).
 > 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
