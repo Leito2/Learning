@@ -105,7 +105,11 @@
 | HuggingFace Transformers Deep Dive (library mastery) | 02 > 16 | ✅ |
 | ColBERT (late interaction retrieval) | 02 > 17 | ✅ |
 | SGLang (structured generation, RadixAttention) | 02 > 17 | ✅ |
-| Speculative Decoding & Inference Optimization | 02 > 17 | ✅ |
+| Inference-Time Scaling (Self-Refinement, Self-Consistency) | 02 > 17 | ✅ |
+| Speculative Decoding 2.0 (Draft → Eagle → MTP) | 02 > 17 | ✅ |
+| KV Cache Compression (MLA, H2O, StreamingLLM, SnapKV) | 02 > 17 | ✅ |
+| FP8 Hybrid Precision (E4M3/E5M2, Transformer Engine) | 02 > 17 | ✅ |
+| Disaggregated Serving and Edge Inference (NPU, ExecuTorch) | 02 > 17 | ✅ |
 | GraphRAG (Knowledge Graph + RAG for LLMs) | 02 > 13, 04 > 17 > 03 | ✅ |
 | RAGAS (RAG evaluation framework) | 02 > 12 | ✅ |
 | Semantic Search & Hybrid Retrieval | 04 > 17 > 04 | ✅ |

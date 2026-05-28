@@ -35,7 +35,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 14 - Unsloth and Efficient Fine-Tuning (5 — English)
 ├── 15 - LLM Security and Guardrails (5 — English)
 ├── 16 - HuggingFace Transformers Deep Dive (10 — English)
-├── 17 - ColBERT, SGLang and Advanced Inference (7 — English)
+├── 17 - ColBERT, SGLang and Next-Gen Inference (11 — English)
 
 03 - AI Agents y Agentic Systems
 ├── 11 - Fundamentos de Agentes AI (6)
@@ -146,7 +146,7 @@ Misceláneo
 | 14 | [[02 - Large Language Models/14 - Unsloth and Efficient Fine-Tuning/00 - Welcome to Unsloth and Efficient Fine-Tuning\|Unsloth and Efficient Fine-Tuning]] | 5 | ✅ | 🇬🇧 |
 | 15 | [[02 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails\|LLM Security and Guardrails]] | 5 | ✅ | 🇬🇧 |
 | 16 | [[02 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive\|HuggingFace Transformers Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
-| 17 | [[02 - Large Language Models/17 - ColBERT, SGLang and Advanced Inference/00 - Welcome to ColBERT, SGLang and Advanced Inference\|ColBERT, SGLang and Advanced Inference]] | 7 | ✅ NEW | 🇬🇧 |
+| 17 | [[02 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | 11 | ✅ REWRITTEN | 🇬🇧 |
 
 ### 03 — AI Agents y Agentic Systems
 
