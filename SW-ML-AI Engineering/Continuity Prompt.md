@@ -23,7 +23,11 @@ This vault is **~600+ notes**. Bulk content creation in the **main thread** WILL
 
 ---
 
-## ⚠️ DEEP FORMAT SPECIFICATION — MANDATORY
+## ⚠️ DEEP FORMAT SPECIFICATION — DEFAULT STANDARD FOR ALL NOTES
+
+> **This is the DEFAULT and MANDATORY format for every note in the vault.** No exceptions.
+>
+> **Core philosophy:** What matters most is **deep conceptual and functional theory** — WHY something exists, HOW it works under the hood, and WHAT problems it solves. Every note must build complete technical and practical mastery of its topic. Theory always precedes code. Code demonstrates understanding, it does not replace it.
 
 Applies to **all new notes** and **all expansions**. No exceptions.
 
@@ -100,14 +104,16 @@ Show the problem BEFORE the solution.)
 | Tool comparison | 200-400 |
 
 ### Key Rules
-- **Theory BEFORE code** in every section.
+- **Theory BEFORE code** in every section. Conceptual and functional theory is the HIGHEST priority.
+- Every note must deliver COMPLETE technical and practical mastery: theoretical foundation → mental model → syntax/semantics → visual representation → real-world application → pitfalls → knowledge check → compression code → project.
 - **English** for all new content; **Spanish** only for existing M00-M08 modules.
-- Code blocks MUST have language tag: ` ```python `, ` ```go `, ` ```rust `.
+- Code blocks MUST have language tag: ` ```python `, ` ```go `, ` ```rust `, ` ```sql `, ` ```bash `, ` ```yaml `, ` ```json `.
 - Tables MUST use aligned columns.
 - Mermaid MUST use ` ```mermaid ` wrapper.
 - Use `[[...]]` for internal Obsidian links.
 - File names: `## - Descriptive Name.md`. **Never use `/`** (Windows restriction).
 - One H1 per note only.
+- **THIS DEEP FORMAT IS THE DEFAULT STANDARD.** All notes must follow it. All subagents must be instructed to follow it.
 
 ---
 
@@ -305,7 +311,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | Tech | Status | Why |
 |------|:------:|-----|
 | **vLLM** | ✅ (06/13) | PagedAttention, continuous batching. Standard for production LLM APIs. |
-| **SGLang** | 🚨 | RadixAttention for structured output. Faster than vLLM for LLM-as-a-Judge. |
+| **SGLang** | ✅ (06/17) | RadixAttention for structured output. Faster than vLLM for LLM-as-a-Judge. Deep course with speculative decoding, quantization. |
 | **TensorRT-LLM** | 🚨 | NVIDIA's max-throughput engine for GPU-heavy deployments. |
 | **Unsloth** | ✅ (06/14) | Fine-tuning 2-5x faster, 80% less memory. Deep course covering QLoRA, SFT, DPO, deployment. |
 
@@ -316,8 +322,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | **Reranking (Cohere, bge-reranker)** | ✅ (06/13) | Second-stage precision. Critical for production RAG accuracy. |
 | **GraphRAG** | ✅ (06/13) | Microsoft. Multi-hop reasoning over knowledge graphs. |
 | **RAGAS / DeepEval** | ✅ (06/13) | RAG quality evaluation. Bridges to LLM Evaluation Suite project. |
-| **ColBERT (late interaction)** | 🚨 | Token-level retrieval. State-of-the-art for passage search. |
-| **Late Chunking (Jina)** | 🚨 | Context-aware chunking that keeps surrounding text in embeddings. |
+| **ColBERT (late interaction)** | ✅ (06/17) | Token-level retrieval. State-of-the-art for passage search. Deep course with PLAID indexing, hybrid RAG capstone. |
 | **Late Chunking (Jina)** | 🚨 | Context-aware chunking that keeps surrounding text in embeddings. |
 
 ### Agentic AI & Protocols
@@ -377,6 +382,15 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 10 | **Vector Databases and Semantic Search** | 12 | ✅ CREATED (10/33). pgvector, Qdrant, Milvus deep courses + comparison + capstone with Go and Python.
 | 11 | **HuggingFace Transformers Deep Dive** | 10 | ✅ CREATED (06/16). from_pretrained, tokenizers, Trainer, generation, vision/audio/multimodal, optimum, Diffusers (2 notes), capstone.
 | 12 | **Deep Learning with TensorFlow** | 7 | ✅ CREATED (05/09). tf.keras architectures, tf.data/TFRecord, distributed training (TPU/GPU), TensorBoard/callbacks/tuning, SavedModel/TF Serving/TFLite, CV capstone with EfficientNet.
+
+### Remaining High-Priority Gaps (4 courses)
+
+| # | Course | Est. Notes | Justification |
+|:--:|--------|:-----:|---------------|
+| 13 | **JAX Deep Dive** | 5-6 | Google's high-performance ML framework. DeepMind uses it for AlphaFold, Gemini. XLA compilation, `pmap`/`vmap`, Flax `linen`, TPU training. Fills "Present but shallow" gap. |
+| 14 | **TorchServe** | 3-4 | PyTorch-native model serving. MAR files, custom handlers, model archiver, multi-model endpoints. Bridges PyTorch training (M05/03) to production (M09). |
+| 15 | **Evidently AI / Phoenix** | 4-5 | Drift detection + LLM observability. Connects directly to Evaluation Suite portfolio project. Critical for production ML monitoring. |
+| 16 | **DuckDB** | 3-4 | OLAP in-process analytics. Fast SQL analytics in Python/Go without Spark. Complements RAG preprocessing and data exploration workflows. |
 
 ---
 
