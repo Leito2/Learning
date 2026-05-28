@@ -21,6 +21,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 06 - Computer Vision Pipeline (1 — English)
 ├── 07 - Reinforcement Learning (7 — English)
 ├── 08 - Graph Neural Networks (5 — English)
+├── 09 - Deep Learning with TensorFlow (7 — English)
 
 02 - Large Language Models
 ├── 06 - Fundamentos de LLMs (7)
@@ -127,6 +128,7 @@ Misceláneo
 | 06 | [[01 - Deep Learning y Computer Vision/06 - Computer Vision Pipeline/05 - Computer Vision Pipeline\|Computer Vision Pipeline]] | 1 | ✅ | 🇬🇧 |
 | 07 | [[01 - Deep Learning y Computer Vision/07 - Reinforcement Learning/00 - Welcome to RL\|Reinforcement Learning]] | 7 | ✅ | 🇬🇧 |
 | 08 | [[01 - Deep Learning y Computer Vision/08 - Graph Neural Networks/00 - Welcome to GNN\|Graph Neural Networks]] | 5 | ✅ | 🇬🇧 |
+| 09 | [[01 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow\|Deep Learning with TensorFlow]] | 7 | ✅ NEW | 🇬🇧 |
 
 ### 02 — Large Language Models
 
@@ -344,13 +346,13 @@ Fase 7 (Contínuo):    Transversal Skills + Proyectos + Portfolio
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 58 |
+| Cursos totales | 59 |
 | Cursos en Español | 26 |
-| Cursos en English | 27 |
+| Cursos en English | 28 |
 | Módulos SE (Python, Docker, SQL, Markdown) | 4 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 590+ |
+| Notas totales | 600+ |
 | Guías de proyecto | 14 |
 
 ---

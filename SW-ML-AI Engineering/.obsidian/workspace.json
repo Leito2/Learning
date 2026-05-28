@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "09 - MLOps y Produccion/29 - CI-CD for ML/04 - CI-CD for ML.md",
+                "file": "Skills Tree - The AI-ML Engineer Growth Map.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04 - CI-CD for ML"
+              "title": "Skills Tree - The AI-ML Engineer Growth Map"
             }
           }
         ]
@@ -185,6 +185,12 @@
   },
   "active": "32797b2d3a8b02c6",
   "lastOpenFiles": [
+    "00 - Indice Maestro de Cursos.md",
+    "Continuity Prompt.md",
+    "Skills Tree - The AI-ML Engineer Growth Map.md",
+    "Skills Universe - Portfolio Aligned.md",
+    "05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/03 - Training at Scale.md",
+    "09 - MLOps y Produccion/29 - CI-CD for ML/04 - CI-CD for ML.md",
     "06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/08 - Diffusers II - Advanced Pipelines and ControlNet.md",
     "06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/07 - Diffusers I - Stable Diffusion Fundamentals.md",
     "06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/04 - Generation, Decoding, and Structured Output.md",
@@ -206,12 +212,6 @@
     "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/01 - Inferencia Eficiente.md",
     "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/02 - Quantization y Distilacion.md",
     "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/03 - Serving y Batch Processing.md",
-    "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/04 - Seguridad y Alineacion.md",
-    "03 - Large Language Models/09 - Sistemas de LLMs en Produccion/05 - Caso Practico - API de LLM Escalable.md",
-    "Continuity Prompt.md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/03 - ONNX Runtime Rust.md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/08 - Model Quantization and Optimization.md",
-    "14 - Rust Engineering/04 - Rust for ML and AI/07 - Vector Databases in Rust (Qdrant, pgvector).md",
     "Extra",
     "Transversal Skills",
     "14 - Rust Engineering/07 - Polars Internals and Advanced/assets",

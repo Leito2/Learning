@@ -73,6 +73,7 @@
 | Graph Neural Networks (GCN, GAT, Message Passing) | 01 > 08 | ✅ |
 | Gorgonia (Deep Learning in Go) | 13 > 07 - Gorgonia | ✅ |
 | Candle (ML in Rust — HuggingFace) | 14 > 04 > 02 | ✅ |
+| TensorFlow / Keras (tf.keras, tf.data, TPU training) | 01 > 09 | ✅ |
 
 ### 🧠 Large Language Models
 | Topic | Course | Status |
@@ -408,6 +409,7 @@ Key: Can read papers AND ship them
 | **Multimodal Models (CLIP, ImageBind)** | The frontier: text+image+audio. All new models are multimodal | 01 > 05 |
 | **Vision Transformers (ViT, DINOv2)** | Replaced CNNs. If you do CV in 2026, you use ViT | 01 > 04 > 03 |
 | **Object Detection (YOLO, DETR)** | Most common industrial CV use case | 01 > 04 > 01 |
+| **TensorFlow / Keras for Training** | Enterprise and Google Cloud teams still run on TF. Dual-framework literacy = staff engineer signal | 01 > 09 |
 
 ---
 

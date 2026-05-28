@@ -119,7 +119,7 @@ We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git rep
 
 **Gap-fill initiative:** ✅ COMPLETE — 22 original gaps filled (50 notes across 12 courses).
 
-**Current total: ~589 notes** — all redistributed into logical numbered modules (00-16).
+**Current total: ~596 notes** — all redistributed into logical numbered modules (00-16).
 
 ## User Profile (Leandro Cataño Cardeño)
 
@@ -173,13 +173,14 @@ SW-ML-AI Engineering/
 │   ├── 01 - Matematicas para ML
 │   └── 02 - Estructuras de Datos
 │
-├── 05 - Deep Learning y CV/            (31 notes: 18 Spanish + 13 English)
+├── 05 - Deep Learning y CV/            (38 notes: 18 Spanish + 20 English)
 │   ├── 03 - DL con PyTorch         (7)
 │   ├── 04 - CV Avanzada            (6)
 │   ├── 05 - Multimodal AI          (5)
 │   ├── 06 - CV Pipeline            (1 EN)
 │   ├── 07 - Reinforcement Learning (7 EN)
-│   └── 08 - Graph Neural Networks  (5 EN)
+│   ├── 08 - Graph Neural Networks  (5 EN)
+│   └── 09 - Deep Learning with TF  (7 EN)
 │
 ├── 06 - Large Language Models/         (56 notes: 30 Spanish + 26 English)
 │   ├── 06 - Fundamentos de LLMs   (7)
@@ -374,6 +375,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ CREATED AS **SDD and Harness Engineering** (16/00-10). Harness Engineering + SDD workflow + 20 harnesses + 4 file structure alternatives.
 | 10 | **Vector Databases and Semantic Search** | 12 | ✅ CREATED (10/33). pgvector, Qdrant, Milvus deep courses + comparison + capstone with Go and Python.
 | 11 | **HuggingFace Transformers Deep Dive** | 10 | ✅ CREATED (06/16). from_pretrained, tokenizers, Trainer, generation, vision/audio/multimodal, optimum, Diffusers (2 notes), capstone.
+| 12 | **Deep Learning with TensorFlow** | 7 | ✅ CREATED (05/09). tf.keras architectures, tf.data/TFRecord, distributed training (TPU/GPU), TensorBoard/callbacks/tuning, SavedModel/TF Serving/TFLite, CV capstone with EfficientNet.
 
 ---
 
@@ -384,5 +386,5 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
 > 6. Next priority: **ColBERT, SGLang and Advanced Inference** (6 notes).
-> 7. **Completed this session:** HuggingFace Transformers Deep Dive course (10 notes, ~4,463 lines, 2 subagents + 1 recovery). Deep format applied. Module 06/16. Covers from_pretrained ecosystem, tokenizers, Trainer, generation, vision/audio/multimodal, optimum export, Diffusers (Stable Diffusion + ControlNet/LoRA), and end-to-end capstone.
+> 7. **Completed this session:** Deep Learning with TensorFlow course (7 notes, ~3,632 lines, 2 subagents). Deep format applied. Module 05/09. Covers tf.keras architectures, tf.data/TFRecord pipelines, distributed training (MirroredStrategy/TPUStrategy), TensorBoard/callbacks/KerasTuner, SavedModel/TF Serving/TFLite, and end-to-end CV capstone with EfficientNet transfer learning.
 > 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
