@@ -119,7 +119,7 @@ We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git rep
 
 **Gap-fill initiative:** ✅ COMPLETE — 22 original gaps filled (50 notes across 12 courses).
 
-**Current total: ~579 notes** — all redistributed into logical numbered modules (00-16).
+**Current total: ~589 notes** — all redistributed into logical numbered modules (00-16).
 
 ## User Profile (Leandro Cataño Cardeño)
 
@@ -181,7 +181,7 @@ SW-ML-AI Engineering/
 │   ├── 07 - Reinforcement Learning (7 EN)
 │   └── 08 - Graph Neural Networks  (5 EN)
 │
-├── 06 - Large Language Models/         (46 notes: 30 Spanish + 16 English)
+├── 06 - Large Language Models/         (56 notes: 30 Spanish + 26 English)
 │   ├── 06 - Fundamentos de LLMs   (7)
 │   ├── 07 - Fine-Tuning            (6)
 │   ├── 08 - Gen de Texto           (6)
@@ -191,7 +191,8 @@ SW-ML-AI Engineering/
 │   ├── 12 - Production RAG         (1 EN)
 │   ├── 13 - vLLM and Advanced RAG  (6 EN)
 │   ├── 14 - Unsloth                (5 EN)
-│   └── 15 - LLM Security           (5 EN)
+│   ├── 15 - LLM Security           (5 EN)
+│   └── 16 - HuggingFace Transformers Deep Dive (10 EN)
 │
 ├── 07 - AI Agents/                     (28 notes: 22 Spanish + 6 English)
 │   ├── 11 - Fundamentos Agentes    (6)
@@ -372,6 +373,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 6 | **ColBERT, SGLang and Advanced Inference** | 6 | Cuts inference costs. Differentiates from generic ML engineers. |
 | ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ CREATED AS **SDD and Harness Engineering** (16/00-10). Harness Engineering + SDD workflow + 20 harnesses + 4 file structure alternatives.
 | 10 | **Vector Databases and Semantic Search** | 12 | ✅ CREATED (10/33). pgvector, Qdrant, Milvus deep courses + comparison + capstone with Go and Python.
+| 11 | **HuggingFace Transformers Deep Dive** | 10 | ✅ CREATED (06/16). from_pretrained, tokenizers, Trainer, generation, vision/audio/multimodal, optimum, Diffusers (2 notes), capstone.
 
 ---
 
@@ -382,5 +384,5 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
 > 6. Next priority: **ColBERT, SGLang and Advanced Inference** (6 notes).
-> 7. **Completed this session:** Vector Databases and Semantic Search course (12 notes, ~6,023 lines, 4 subagents total). Deep format applied. Module 10/33. Continuity Prompt and indices updated.
+> 7. **Completed this session:** HuggingFace Transformers Deep Dive course (10 notes, ~4,463 lines, 2 subagents + 1 recovery). Deep format applied. Module 06/16. Covers from_pretrained ecosystem, tokenizers, Trainer, generation, vision/audio/multimodal, optimum export, Diffusers (Stable Diffusion + ControlNet/LoRA), and end-to-end capstone.
 > 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

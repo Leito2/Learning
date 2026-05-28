@@ -101,6 +101,7 @@
 | LLM Security & Alignment (RLHF, DPO, jailbreaking) | 02 > 09 > 04, 02 > 15 | ✅ |
 | Scalable LLM Serving (vLLM, continuous batching) | 02 > 09 > 03, 02 > 13 | ✅ |
 | Unsloth (accelerated fine-tuning, quantization-aware) | 02 > 14 | ✅ |
+| HuggingFace Transformers Deep Dive (library mastery) | 02 > 16 | ✅ |
 | GraphRAG (Knowledge Graph + RAG for LLMs) | 02 > 13, 04 > 17 > 03 | ✅ |
 | RAGAS (RAG evaluation framework) | 02 > 12 | ✅ |
 | Semantic Search & Hybrid Retrieval | 04 > 17 > 04 | ✅ |
@@ -421,6 +422,7 @@ Key: Can read papers AND ship them
 | **Prompt Engineering (CoT, ReAct, Few-shot)** | Foundation for agents and production LLM systems | 02 > 07 > 03 |
 | **LLM Evaluation (HELM, MMLU, LLM-as-Judge)** | Without evaluation there is no production. Companies desperate for this | 02 > 06 > 05 |
 | **High-Throughput LLM Serving (vLLM, continuous batching)** | Reduce inference costs 10x. Infrastructure skill with direct ROI | 02 > 09 > 03, 02 > 13, 14 > 04 > 04 |
+| **HuggingFace Transformers Deep Dive** | The ecosystem behind 90% of open-source LLMs. Library literacy separates users from engineers | 02 > 16 |
 | **Mixture of Experts (MoE)** | Architecture behind Mistral, DeepSeek, Mixtral. Dominant in 2026 | 02 > 10 > 01 |
 | **Hallucination Mitigation** | Problem #1 of LLMs in production. Mastering this differentiates you | 02 > 08 > 03 |
 

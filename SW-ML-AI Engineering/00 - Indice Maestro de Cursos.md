@@ -33,6 +33,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 13 - vLLM and Advanced RAG (6 — English)
 ├── 14 - Unsloth and Efficient Fine-Tuning (5 — English)
 ├── 15 - LLM Security and Guardrails (5 — English)
+├── 16 - HuggingFace Transformers Deep Dive (10 — English)
 
 03 - AI Agents y Agentic Systems
 ├── 11 - Fundamentos de Agentes AI (6)
@@ -141,6 +142,7 @@ Misceláneo
 | 13 | [[02 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|vLLM and Advanced RAG]] | 6 | ✅ | 🇬🇧 |
 | 14 | [[02 - Large Language Models/14 - Unsloth and Efficient Fine-Tuning/00 - Welcome to Unsloth and Efficient Fine-Tuning\|Unsloth and Efficient Fine-Tuning]] | 5 | ✅ | 🇬🇧 |
 | 15 | [[02 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails\|LLM Security and Guardrails]] | 5 | ✅ | 🇬🇧 |
+| 16 | [[02 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive\|HuggingFace Transformers Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
 
 ### 03 — AI Agents y Agentic Systems
 
@@ -342,13 +344,13 @@ Fase 7 (Contínuo):    Transversal Skills + Proyectos + Portfolio
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 57 |
+| Cursos totales | 58 |
 | Cursos en Español | 26 |
-| Cursos en English | 26 |
+| Cursos en English | 27 |
 | Módulos SE (Python, Docker, SQL, Markdown) | 4 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 580+ |
+| Notas totales | 590+ |
 | Guías de proyecto | 14 |
 
 ---
