@@ -131,6 +131,162 @@ All new courses MUST prioritize the most modern, production-grade technologies.
 
 ---
 
+## 📐 Course Design Patterns — From Python Básico and Intermedio
+
+> These courses are the canonical reference for what great vault notes look like. All future courses MUST follow these patterns.
+
+### 1. One Concept Per Note (Granular Division)
+
+| What the Python courses do | What the old format did |
+|----------------------------|-------------------------|
+| Each built-in type gets its own note (strings, lists, dicts, tuples, sets) | 5 different techniques crammed into one "Advanced Inference Optimization" note |
+| OOP split across 3 notes (classes, inheritance, encapsulamiento) | One note per module with 5 mechanically repeated subsections |
+| The capstone/project is a **separate note** (note 12) | "Documented Project" forced into every note |
+
+**Rule**: If a topic has 3+ distinct sub-concepts, split it into separate notes. No exceptions.
+
+### 2. Code That Converses (Inline Annotations)
+
+Every code block must tell a mini-story. Use these patterns:
+
+**a) `¡Sorpresa!` moments** — non-obvious behavior that creates an "aha" moment:
+```python
+print(agregar_medicion(22.5))  # [22.5]
+print(agregar_medicion(23.1))  # [22.5, 23.1] ¡Sorpresa!
+# El valor por defecto es el MISMO objeto lista en cada invocación.
+```
+
+**b) ❌/✅ antipattern pattern** — show the wrong way, then the right way:
+```python
+# ❌ Anidamiento profundo (arrow anti-pattern)
+if usuario:
+    if usuario.activo:
+        if usuario.rol == "admin": ...
+
+# ✅ Mejor: guard clauses u operadores lógicos
+if usuario and usuario.activo and usuario.rol == "admin": ...
+```
+
+**c) Inline explanations** — each line gets a comment explaining what happened and why:
+```python
+a = [1, 2, 3]
+b = a
+b.append(4)
+print(a)  # [1, 2, 3, 4] — 'a' y 'b' referencian el mismo objeto
+```
+
+### 3. Inline Warnings and Tips (NOT Separate Sections)
+
+```markdown
+⚠️ **Advertencia:** Insertar (`insert`) o eliminar (`pop(0)`) al principio de una lista es O(n)...
+💡 **Tip:** Si encuentras `for i in range(len(lista))`, probablemente necesites `enumerate()`...
+```
+
+Warnings must appear **immediately after** the code block they refer to. Do NOT isolate them in a separate "Common Pitfalls" section.
+
+### 4. "Caso real" Mini-Stories (NOT Generic Tables)
+
+The old format used: `| ML Use Case | This Concept | Impact |` — cold, generic, filler.
+
+The Python courses use narrative mini-stories:
+```markdown
+Caso real: En un pipeline de ML, usamos `isinstance(datos, (list, tuple))` para
+aceptar secuencias sin importar su tipo concreto, permitiendo polimorfismo.
+```
+
+Every concept MUST have at least one "Caso real" that anchors it to a concrete ML/Backend scenario.
+
+### 5. Código de Compresión (End-of-Note Runnable Summary)
+
+Every note MUST end with a runnable script that exercises all key concepts in ~20-40 lines:
+
+```python
+# 📦 Código de compresión: Variables y Tipos de Datos
+# Cubre: tipos built-in, id/type/isinstance, casting, mutabilidad, hashability
+
+# 1. Variables como referencias
+a = [1, 2, 3]
+b = a
+print(f"Mismo objeto? {a is b}")  # True
+
+# 2. Introspección
+x = 256
+print(f"type={type(x).__name__}, id={id(x)}")
+
+# 3. Hashability
+print(f"hash((1, 'a')) = {hash((1, 'a'))}")
+try:
+    hash([1, 2])
+except TypeError as e:
+    print(f"Error esperado: {e}")
+```
+
+This is NOT a "Documented Project". It is a concise, executable reference card.
+
+### 6. Direct Opening Hook
+
+Every note opens with **1-2 sentences** connecting the topic to ML/AI/Backend reality:
+
+```markdown
+# 📦 01 - Variables y Tipos de Datos
+
+Python es un lenguaje de tipado dinámico, pero esto no significa que carezca de
+tipos. Comprender qué ocurre en memoria cuando escribes `x = 5` es fundamental
+para depurar errores de aliasing en pipelines de datos y para optimizar el
+consumo de memoria en servidores Backend.
+```
+
+No generic "What this concept is" paragraphs. Hook the reader immediately.
+
+### 7. Theory and Code Coexist
+
+The old format separated theory and code into distinct sections (`X.1 Theoretical Foundation` → `X.3 Syntax`).
+
+The Python courses interleave them naturally:
+```markdown
+## 2. Tipos Built-in Fundamentales
+
+| Tipo | Descripción | Mutable | Ejemplo |
+|------|-------------|---------|---------|
+| `int` | Enteros de precisión arbitraria | No | `42` |
+
+💡 **Tip:** `bool` es subclase de `int` en CPython. `True == 1`...
+
+```python
+x = 10
+print(type(x))          # <class 'int'>
+print(id(x))            # 140735... (dirección en memoria)
+print(isinstance(x, (int, float)))  # True
+```
+
+Caso real: En un pipeline de ML, usamos `isinstance(datos, (list, tuple))`...
+```
+
+Theory, table, tip, code, and case study appear in the SAME section. The section heading describes the concept, not the format of its content.
+
+### 8. Organic Section Flow (No Rigid Subsections)
+
+| Old format (bad) | Python format (good) |
+|------------------|----------------------|
+| `## Module X: Concept Name` followed by `X.1` through `X.7` mechanically | `## 1. Concepto A`, `## 2. Concepto B`, `## 3. Concepto C` — headings describe concepts, not template slots |
+| Every module gets the same 7 subsections | Each note decides its own structure based on what the concept needs |
+
+**Rule**: Section headings must describe the concept being covered (e.g., `## 3. Mutabilidad vs Inmutabilidad`), not the format slot (`X.2 Mental Model`).
+
+### 9. What We ELIMINATED from the Old Format
+
+| Eliminated | Why |
+|------------|-----|
+| `X.1-X.7` rigid subsections | Mechanical repetition destroys engagement |
+| ASCII art with box-drawing characters | Banned; use real images or Mermaid |
+| Mandatory "Documented Project" in every note | Project belongs in the capstone note only |
+| Mandatory "Knowledge Check ❓" per module | Verification is the compression code, not quizzes |
+| Mandatory `| ML Use Case | This Concept | Impact |` tables | Replaced by "Caso real" mini-stories |
+| "Compression Code" trying to cover ALL topics | End-of-note code exercises only THIS note's concepts |
+| 400-600 line targets | 300-450 is enough when each note is focused |
+
+---
+
 ## Project Context
 
 We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git repo** connected to `https://github.com/Leito2/Learning.git`. The vault contains compressed markdown courses for an **AI/ML Engineer** learning path (~600 notes).
