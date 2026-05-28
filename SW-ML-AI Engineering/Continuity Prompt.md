@@ -285,6 +285,87 @@ Theory, table, tip, code, and case study appear in the SAME section. The section
 | "Compression Code" trying to cover ALL topics | End-of-note code exercises only THIS note's concepts |
 | 400-600 line targets | 300-450 is enough when each note is focused |
 
+### 10. Adaptive Depth: Flexibility by Course Type
+
+> **The 9 patterns above are the UNIVERSAL baseline.** Every note, regardless of topic, applies them. What varies is the *depth profile* — how much theory, images, LaTeX, and code each course type needs.
+
+#### The Golden Rule
+
+> **No course should be LESS engaging than Python Básico, but some courses MUST be MORE theoretical, MORE visual, and MORE mathematical than Python Básico.** The topic dictates the depth, not the template.
+
+#### Flexibility Matrix
+
+| Course Type | Vault Examples | Theory | Images | LaTeX | Code | Line Target |
+|-------------|---------------|:------:|:------:|:-----:|:----:|:-----------:|
+| **Language / Framework** | Python, Go, Rust, SQL, Docker, Markdown | Medium | Low | Low | **HIGH** | 250-400 |
+| **ML Theory & Algorithms** | DL with PyTorch, CV, NLP, GNN, RL, TF | **HIGH** | Medium-High | **HIGH** | Medium-High | 350-500 |
+| **Production / Infrastructure** | ColBERT, SGLang, Inference Opt., MLOps, Cloud, K8s | **HIGH** | **HIGH** | **HIGH** | Low-Medium | 350-500 |
+| **Agents / Protocols** | MCP, A2A, LangGraph, CrewAI, Multi-Agent | High | Medium | Low-Medium | Medium-High | 300-450 |
+| **Transversal / Business** | Leadership, Communication, Product Strategy | Low-Medium | Low | None | None | 150-300 |
+
+#### Concrete Guidelines Per Type
+
+**Language / Framework** (Python, Go, Rust, SQL, Docker):
+- Code **IS** the primary teaching tool. Theory exists to explain WHY the code works.
+- 60% code, 40% theory. Minimal images (logos ok). Minimal LaTeX.
+- Example: `SW-ML-AI Engineering/03 - Advanced Python/01 - Python Basico/`
+
+**ML Theory & Algorithms** (DL, CV, NLP, GNN, RL):
+- Theory and math are **equal partners** with code. LaTeX for loss functions, gradients, attention.
+- 50% theory + LaTeX, 50% code. Images for architecture (CNN diagrams, attention maps).
+- Example: `SW-ML-AI Engineering/05 - Deep Learning y CV/03 - DL con PyTorch/`
+
+**Production / Infrastructure** (ColBERT, SGLang, Inference, MLOps):
+- Theory is the **protagonist**. Code demonstrates, not replaces.
+- 70% theory + LaTeX + images, 30% code. Images are ESSENTIAL: GPU memory hierarchy, KV cache structure, quantization error distributions, hardware diagrams.
+- LaTeX for compression ratios, throughput math, latency calculations.
+- Example: The new `06/17 - ColBERT, SGLang and Next-Gen Inference/`
+
+**Agents / Protocols** (MCP, LangGraph, CrewAI):
+- Conceptual architecture + protocol design. Diagrams for agent flows.
+- 50% theory, 50% code. Images for protocol sequences, agent graphs.
+
+**Transversal / Business**:
+- Pure conceptual writing. No code. Minimal images.
+
+#### When to Use Each Tool (Priority by Course Type)
+
+| Tool | Language | ML Theory | Production | Agents | Transversal |
+|------|:--------:|:---------:|:----------:|:------:|:-----------:|
+| `❌/✅` pattern | 🔴 Always | 🔴 Always | 🟡 Often | 🔴 Always | 🟢 Rarely |
+| `¡Sorpresa!` moments | 🔴 Always | 🟡 Often | 🔴 Always | 🟡 Often | 🟢 Rarely |
+| **LaTeX equations** | 🟢 Rarely | 🔴 Always | 🔴 Always | 🟡 Often | 🟢 Rarely |
+| **Real images** (Wikimedia) | 🟡 Often | 🔴 Always | 🔴 **Essential** | 🟡 Often | 🟢 Rarely |
+| **Official docs images** (NVIDIA, arxiv) | 🟢 Rarely | 🟡 Often | 🔴 **Essential** | 🟢 Rarely | 🟢 Never |
+| **Mermaid diagrams** | 🟡 Often | 🟡 Often | 🔴 Always | 🔴 Always | 🟡 Often |
+| **Comparison tables** | 🟡 Often | 🔴 Always | 🔴 Always | 🔴 Always | 🟡 Often |
+| **Caso real: Company X** | 🟡 Often | 🔴 Always | 🔴 Always | 🔴 Always | 🟡 Often |
+| **Código de compresión** | 🔴 Always | 🔴 Always | 🔴 Always | 🔴 Always | 🟢 Rarely |
+| **Long inline code blocks** | 🔴 Always | 🟡 Often | 🟡 Often | 🟡 Often | 🟢 Never |
+
+#### Specific Example: How 06/17 Differs from Python Básico
+
+| Aspect | Python Básico (01) | Next-Gen Inference (06/17) |
+|--------|-------------------|--------------------------|
+| **Primary tool** | Code blocks with inline annotations | Theory + LaTeX + architecture images |
+| **Opening hook** | "Por qué esto importa para ML/Backend" | "If you serve 70B models, FP8 halves your GPU bill" |
+| **Theory sections** | 1-2 short paragraphs before code | 3-5 deep paragraphs with LaTeX, hardware specifics |
+| **Code role** | Teaches syntax and patterns | Demonstrates the concept in a single runnable block |
+| **Images per note** | 0-1 (logos, Mermaid) | 2-4 (hardware diagrams, precision layouts, architecture figures) |
+| **LaTeX per note** | None | 3-10 equations (MaxSim, attention scores, compression ratios) |
+| **Compression Code** | 30-line exercises of all syntax | 15-20 line demonstration of the key algorithm |
+| **Warnings** | Language gotchas | Hardware constraints, accuracy tradeoffs, version requirements |
+
+#### The Safety Check: Ask Yourself Before Writing
+
+Before writing any note, answer these 3 questions:
+
+1. **"Can a reader explain WHY this works after reading?"** → If no, add more theoretical foundation.
+2. **"Can a reader spot the WRONG way to do this?"** → If no, add a ❌/✅ pair.
+3. **"Can a reader run ONE script and see the concept working?"** → If no, add a Código de Compresión.
+
+These 3 questions ensure every note hits the minimum quality bar, regardless of course type.
+
 ---
 
 ## Project Context
