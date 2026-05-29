@@ -163,6 +163,7 @@
 | 🌿 | Feature Engineering & Feature Stores (Feast) | 05 > 19, 05 > 27 |
 | 🌿 | Docker for ML (multi-stage, GPU images) | 05 > 20 > 01, 10 - Docker Profesional |
 | 🌿 | Model Serving Patterns | 05 > 20 > 02 |
+| 🌿 | TorchServe (PyTorch serving, MAR files, handlers, K8s) | 05 > 30 |
 | 🌿 | Kubernetes for ML (K8s, KubeFlow) | 05 > 20 > 03 |
 | 🌿 | A/B Testing & Canary Deployments | 05 > 20 > 04 |
 | 🌿 | Data Drift & Concept Drift Monitoring | 05 > 21 > 01 |
