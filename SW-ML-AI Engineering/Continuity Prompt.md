@@ -440,7 +440,7 @@ SW-ML-AI Engineering/
 │   ├── 09 - Deep Learning with TF  (7 EN)
 │   └── 10 - JAX Deep Dive          (6 EN)
 │
-├── 06 - Large Language Models/         (66+ notes: 30 Spanish + 36 English)
+├── 06 - Large Language Models/         (70 notes: 30 Spanish + 40 English)
 │   ├── 06 - Fundamentos de LLMs   (7)
 │   ├── 07 - Fine-Tuning            (6)
 │   ├── 08 - Gen de Texto           (6)
@@ -448,11 +448,12 @@ SW-ML-AI Engineering/
 │   ├── 10 - Arq Avanzadas/MoE      (5)
 │   ├── 11 - Fine-Tuning LLMs       (1 EN)
 │   ├── 12 - Production RAG         (1 EN)
-│   ├── 13 - vLLM and Advanced RAG  (6 EN)
+│   ├── 13 - vLLM and Advanced RAG  (7 EN)
 │   ├── 14 - Unsloth                (5 EN)
 │   ├── 15 - LLM Security           (5 EN)
-│   ├── 16 - HuggingFace Transformers Deep Dive (10 EN)
-│   └── 17 - ColBERT, SGLang and Next-Gen Inference (11 EN)
+│   ├── 16 - HuggingFace Transf Deep Dive (10 EN)
+│   ├── 17 - ColBERT, SGLang and Next-Gen Inference (11 EN)
+│   └── 18 - TensorRT-LLM           (3 EN)
 │
 ├── 07 - AI Agents/                     (28 notes: 22 Spanish + 6 English)
 │   ├── 11 - Fundamentos Agentes    (6)
@@ -463,7 +464,7 @@ SW-ML-AI Engineering/
 │
 ├── 08 - NLP Avanzado/                  (17 notes, Spanish)
 │
-├── 09 - MLOps/                         (54 notes: 25 Spanish + 29 English)
+├── 09 - MLOps/                         (59 notes: 25 Spanish + 34 English)
 │   ├── 18 - Experiment Tracking    (7)
 │   ├── 19 - Feature Engineering    (6)
 │   ├── 20 - Deployment             (6)
@@ -477,7 +478,9 @@ SW-ML-AI Engineering/
 │   ├── 28 - Testing in ML          (1 EN)
 │   ├── 29 - CI-CD for ML           (1 EN)
 │   ├── 30 - TorchServe             (4 EN)
-│   └── 31 - Evidently AI and Phoenix (4 EN)
+│   ├── 31 - Evidently AI and Phoenix (4 EN)
+│   ├── 32 - KServe and Knative     (3 EN)
+│   └── 33 - Temporal for ML Pipelines (3 EN)
 │
 ├── 10 - Cloud, Infra/                  (60 notes: 20 Spanish + 40 English)
 │   ├── 22 - Cloud Computing        (6)
@@ -567,7 +570,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 |------|:------:|-----|
 | **vLLM** | ✅ (06/13) | PagedAttention, continuous batching. Standard for production LLM APIs. |
 | **SGLang** | ✅ (06/17) | RadixAttention for structured output. Deep course: ColBERT, SGLang, Next-Gen Inference (FP8/MLA/Edge). |
-| **TensorRT-LLM** | 🚨 | NVIDIA's max-throughput engine for GPU-heavy deployments. |
+| **TensorRT-LLM** | ✅ (06/18) | NVIDIA's max-throughput engine. Model compilation, builder optimization, Triton integration, multi-GPU, benchmarking. Compare vLLM/SGLang. |
 | **Unsloth** | ✅ (06/14) | Fine-tuning 2-5x faster, 80% less memory. Deep course covering QLoRA, SFT, DPO, deployment. |
 
 ### Advanced RAG (partially created)
@@ -578,7 +581,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | **GraphRAG** | ✅ (06/13) | Microsoft. Multi-hop reasoning over knowledge graphs. |
 | **RAGAS / DeepEval** | ✅ (06/13) | RAG quality evaluation. Bridges to LLM Evaluation Suite project. |
 | **ColBERT (late interaction)** | ✅ (06/17) | Token-level retrieval. State-of-the-art for passage search. Deep course with PLAID indexing, hybrid RAG capstone. |
-| **Late Chunking (Jina)** | 🚨 | Context-aware chunking that keeps surrounding text in embeddings. |
+| **Late Chunking (Jina)** | ✅ (06/13/06) | Context-aware chunking. 1 note added to Advanced RAG course: late embed → segment vs chunk → embed. |
 
 ### Agentic AI & Protocols
 | Tech | Status | Why |
@@ -594,8 +597,8 @@ Filtered from a broader tech scan — only technologies that directly complement
 | **Feast (Feature Store)** | ✅ (09/27) | Online/offline feature serving, point-in-time joins, Redis integration. Deep course covering AWS/GCP deployment. |
 | **Evidently AI / Phoenix** | 🚨 | Drift detection + LLM observability. Connects to Evaluation Suite project. |
 | **LLM Guard / Guardrails AI** | ✅ (06/15) | Prompt injection defense, PII redaction, content safety. Deep course covering NeMo, Guardrails AI, Presidio, Lakera. |
-| **Knative / KServe** | 🚨 | Serverless model serving on Kubernetes. Production deployment. |
-| **Temporal** | 🚨 | Durable execution for long-running ML pipelines with retries and state. |
+| **Knative / KServe** | ✅ (09/32) | Serverless model serving on K8s. InferenceService CRD, canary, scale-to-zero, Knative Eventing, event-driven ML. |
+| **Temporal** | ✅ (09/33) | Durable execution for ML pipelines. Workflows, activities, human-in-the-loop approval, crash-survivable training orchestration. |
 
 ### Real-Time ML & Streaming
 | Tech | Status | Why |
@@ -655,10 +658,12 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
-> 6. Next priority: **ALL 4 REMAINING GAPS COMPLETE.** 🎉 Consider expanding existing 1-note quick references or adding new technologies: TensorRT-LLM, Knative/KServe, Temporal, Late Chunking (Jina).
-> 7. **Course 06/17 REWRITE COMPLETE:** ColBERT, SGLang and Next-Gen Inference — 11 notes, 4,735 lines. 5 cutting-edge vectors: Inference-Time Scaling, Speculative Decoding 2.0 (Eagle/MTP), MLA + H2O/StreamingLLM, FP8 (E4M3/E5M2) + Transformer Engines, Disaggregated serving + Edge (ExecuTorch/NPU).
-> 8. **JAX Deep Dive COMPLETE:** 6 notes, 2,363 lines in module 05/10. Covers jit/vmap/grad/pmap, XLA compilation, NumPy→JAX functional paradigm, autodiff (grad/vjp/jvp/Hessians), Flax/Linen, Optax training loops.
-> 9. **TorchServe COMPLETE:** 4 notes, 1,707 lines in module 09/30. Covers architecture, MAR files, model archiver, custom handlers, multi-model endpoints, Docker/K8s deployment, performance tuning, Prometheus monitoring.
-> 10. **Evidently AI and Phoenix COMPLETE:** 4 notes, 1,100 lines in module 09/31. Covers data/concept drift (KS, JS, Wasserstein, PSI), Evidently Reports/Test Suites/CI-CD integration, Phoenix LLM observability (traces, spans, embedding drift via UMAP, RAG evaluation).
-> 11. **DuckDB COMPLETE:** 4 notes, 1,342 lines in module 10/34. Covers in-process OLAP, SQL analytics, Python/pandas/Polars/Parquet integration, RAG preprocessing, ML feature engineering, Go bindings.
-> 12. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
+> 6. Next priority: **ALL GAPS COMPLETE.** 🎉 **Zero 🚨 remaining.** Entire High-Value Tech scan is ✅.
+> 7. **Course 06/17 REWRITTEN:** 11 notes, 4,735 lines. 5 next-gen vectors.
+> 8. **JAX Deep Dive:** 6 notes, 2,363 lines (05/10).
+> 9. **TorchServe:** 4 notes, 1,707 lines (09/30).
+> 10. **Evidently/Phoenix:** 4 notes, 1,100 lines (09/31).
+> 11. **DuckDB:** 4 notes, 1,342 lines (10/34).
+> 12. **IaC REWRITTEN:** 10 notes, 4,478 lines (10/23).
+> 13. **TensorRT-LLM:** 3 notes (06/18)  |  **KServe+Knative:** 3 notes (09/32)  |  **Temporal:** 3 notes (09/33)  |  **Late Chunking:** 1 note (06/13/06).
+> 14. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

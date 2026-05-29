@@ -37,6 +37,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 15 - LLM Security and Guardrails (5 — English)
 ├── 16 - HuggingFace Transformers Deep Dive (10 — English)
 ├── 17 - ColBERT, SGLang and Next-Gen Inference (11 — English)
+├── 18 - TensorRT-LLM (3 — English)
 
 03 - AI Agents y Agentic Systems
 ├── 11 - Fundamentos de Agentes AI (6)
@@ -65,6 +66,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 29 - CI-CD for ML (1 — English)
 ├── 30 - TorchServe (4 — English)
 ├── 31 - Evidently AI and Phoenix (4 — English)
+├── 32 - KServe and Knative (3 — English)
+├── 33 - Temporal for ML Pipelines (3 — English)
 
 06 - Cloud, Infra y Backend
 ├── 22 - Cloud Computing (6)
@@ -152,6 +155,7 @@ Misceláneo
 | 15 | [[02 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails\|LLM Security and Guardrails]] | 5 | ✅ | 🇬🇧 |
 | 16 | [[02 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive\|HuggingFace Transformers Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
 | 17 | [[02 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | 11 | ✅ REWRITTEN | 🇬🇧 |
+| 18 | [[02 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM\|TensorRT-LLM]] | 3 | ✅ NEW | 🇬🇧 |
 
 ### 03 — AI Agents y Agentic Systems
 
@@ -189,6 +193,8 @@ Misceláneo
 | 29 | [[05 - MLOps y Produccion/29 - CI-CD for ML/04 - CI-CD for ML\|CI-CD for ML]] | 1 | ✅ | 🇬🇧 |
 | 30 | [[09 - MLOps y Produccion/30 - TorchServe/00 - Welcome to TorchServe\|TorchServe]] | 4 | ✅ NEW | 🇬🇧 |
 | 31 | [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | 4 | ✅ NEW | 🇬🇧 |
+| 32 | [[05 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative\|KServe and Knative]] | 3 | ✅ NEW | 🇬🇧 |
+| 33 | [[05 - MLOps y Produccion/33 - Temporal for ML Pipelines/00 - Welcome to Temporal for ML Pipelines\|Temporal for ML Pipelines]] | 3 | ✅ NEW | 🇬🇧 |
 
 ### 06 — Cloud, Infra y Backend
 

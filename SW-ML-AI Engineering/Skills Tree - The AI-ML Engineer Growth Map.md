@@ -105,6 +105,7 @@
 | Unsloth (accelerated fine-tuning, quantization-aware) | 02 > 14 | ✅ |
 | HuggingFace Transformers Deep Dive (library mastery) | 02 > 16 | ✅ |
 | ColBERT (late interaction retrieval) | 02 > 17 | ✅ |
+| TensorRT-LLM (NVIDIA max-throughput inference) | 02 > 18 | ✅ |
 | SGLang (structured generation, RadixAttention) | 02 > 17 | ✅ |
 | Inference-Time Scaling (Self-Refinement, Self-Consistency) | 02 > 17 | ✅ |
 | Speculative Decoding 2.0 (Draft → Eagle → MTP) | 02 > 17 | ✅ |
@@ -164,6 +165,8 @@
 | 🌿 | Docker for ML (multi-stage, GPU images) | 05 > 20 > 01, 10 - Docker Profesional |
 | 🌿 | Model Serving Patterns | 05 > 20 > 02 |
 | 🌿 | TorchServe (PyTorch serving, MAR files, handlers, K8s) | 05 > 30 |
+| 🌿 | KServe + Knative (serverless K8s serving, scale-to-zero) | 05 > 32 |
+| 🌿 | Temporal (durable ML pipeline orchestration) | 05 > 33 |
 | 🌿 | Kubernetes for ML (K8s, KubeFlow) | 05 > 20 > 03 |
 | 🌿 | A/B Testing & Canary Deployments | 05 > 20 > 04 |
 | 🌿 | Data Drift & Concept Drift Monitoring | 05 > 21 > 01 |
