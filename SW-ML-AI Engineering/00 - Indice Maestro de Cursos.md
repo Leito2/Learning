@@ -195,7 +195,7 @@ Misceláneo
 | # | Curso | Notas | Estado | Idioma |
 |---|-------|:-----:|:------:|:------:|
 | 22 | [[06 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | 6 | ✅ | 🇪🇸 |
-| 23 | [[06 - Cloud, Infra y Backend/23 - Infraestructura como Codigo/00 - Bienvenida\|Infraestructura como Código]] | 6 | ✅ | 🇪🇸 |
+| 23 | [[06 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code\|Infrastructure as Code]] | 10 | ✅ REWRITTEN | 🇬🇧 |
 | 24 | [[06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida\|Backend para ML]] | 6 | ✅ | 🇪🇸 |
 | 25 | [[06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/00 - Bienvenida\|Bases de Datos y Message Queues]] | 6 | ✅ | 🇪🇸 |
 | 26 | [[06 - Cloud, Infra y Backend/26 - Databricks for ML/00 - Welcome to Databricks for ML\|Databricks for ML]] | 5 | ✅ | 🇬🇧 |

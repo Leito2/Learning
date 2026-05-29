@@ -479,9 +479,9 @@ SW-ML-AI Engineering/
 │   ├── 30 - TorchServe             (4 EN)
 │   └── 31 - Evidently AI and Phoenix (4 EN)
 │
-├── 10 - Cloud, Infra/                  (56 notes: 24 Spanish + 32 English)
+├── 10 - Cloud, Infra/                  (60 notes: 20 Spanish + 40 English)
 │   ├── 22 - Cloud Computing        (6)
-│   ├── 23 - Infra como Codigo      (6)
+│   ├── 23 - Infrastructure as Code (10 EN)
 │   ├── 24 - Backend para ML        (6)
 │   ├── 25 - BD y Message Queues    (6)
 │   ├── 26 - Databricks for ML      (5 EN)

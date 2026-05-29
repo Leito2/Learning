@@ -193,7 +193,7 @@
 | Level | Skill | Course |
 |-------|-------|--------|
 | 🌿 | Cloud Computing (AWS, GCP) | 06 > 22 |
-| 🌿 | Infrastructure as Code (Terraform) | 06 > 23 > 01 |
+| 🌿 | Infrastructure as Code (Terraform, Pulumi) | 06 > 23 | ✅ |
 | 🌿 | IaC with Go (Pulumi) | 13 > 02 > 05 |
 | 🌿 | Configuration Management (Ansible) | 06 > 23 > 02 |
 | 🌿 | CI/CD & GitOps (ArgoCD, Flux) | 06 > 23 > 03 |
