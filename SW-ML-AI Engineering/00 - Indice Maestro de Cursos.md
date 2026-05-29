@@ -30,8 +30,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 08 - Generación de Texto y Decodificación (6)
 ├── 09 - Sistemas de LLMs en Producción (6)
 ├── 10 - Arquitecturas Avanzadas y MoE (5)
-├── 11 - Fine-Tuning LLMs (1 — English)
-├── 12 - Production RAG (1 — English)
+├── 11 - Fine-Tuning LLMs (5 — English)
+├── 12 - Production RAG (6 — English)
 ├── 13 - vLLM and Advanced RAG (6 — English)
 ├── 14 - Unsloth and Efficient Fine-Tuning (5 — English)
 ├── 15 - LLM Security and Guardrails (5 — English)
@@ -56,14 +56,9 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 19 - Feature Engineering y Feature Stores (6)
 ├── 20 - Deployment y Serving (6)
 ├── 21 - Monitoreo y Mantenimiento (6)
-├── 22 - End-to-End ML Project (1 — English)
-├── 23 - Advanced MLOps (1 — English)
-├── 24 - Weights and Biases (5 — English)
-├── 25 - MLOps Tooling Comparison (1 — English)
-├── 26 - ML Platform Engineering (6 — English)
-├── 27 - Feast and Feature Stores (5 — English)
-├── 28 - Testing in ML Systems (1 — English)
-├── 29 - CI-CD for ML (1 — English)
+├── 22 - End-to-End ML Project (5 — English)
+├── 28 - Testing in ML Systems (4 — English)
+├── 29 - CI-CD for ML (4 — English)
 ├── 30 - TorchServe (4 — English)
 ├── 31 - Evidently AI and Phoenix (4 — English)
 ├── 32 - KServe and Knative (3 — English)
@@ -79,8 +74,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 28 - BigQuery for ML (3 — English)
 ├── 29 - Distributed ML Infrastructure (7 — English)
 ├── 30 - WebSockets and Real-Time ML (5 — English)
-├── 31 - FastAPI for ML (1 — English)
-├── 32 - System Design for ML (1 — English)
+├── 31 - FastAPI for ML (6 — English)
+├── 32 - System Design for ML (6 — English)
 ├── 33 - Vector Databases and Semantic Search (12 — English)
 ├── 34 - DuckDB (4 — English)
 
@@ -148,8 +143,8 @@ Misceláneo
 | 08 | [[02 - Large Language Models/08 - Generacion de Texto y Decodificacion/00 - Bienvenida\|Generación de Texto y Decodificación]] | 6 | ✅ | 🇪🇸 |
 | 09 | [[02 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida\|Sistemas de LLMs en Producción]] | 6 | ✅ | 🇪🇸 |
 | 10 | [[02 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida\|Arquitecturas Avanzadas y MoE]] | 5 | ✅ | 🇪🇸 |
-| 11 | [[02 - Large Language Models/11 - Fine-Tuning LLMs/03 - Fine-Tuning LLMs\|Fine-Tuning LLMs]] | 1 | ✅ | 🇬🇧 |
-| 12 | [[02 - Large Language Models/12 - Production RAG/04 - Production RAG System\|Production RAG]] | 1 | ✅ | 🇬🇧 |
+| 11 | [[02 - Large Language Models/11 - Fine-Tuning LLMs/00 - Welcome to Fine-Tuning LLMs\|Fine-Tuning LLMs]] | 5 | ✅ REWRITTEN | 🇬🇧 |
+| 12 | [[02 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG\|Production RAG]] | 6 | ✅ REWRITTEN | 🇬🇧 |
 | 13 | [[02 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|vLLM and Advanced RAG]] | 6 | ✅ | 🇬🇧 |
 | 14 | [[02 - Large Language Models/14 - Unsloth and Efficient Fine-Tuning/00 - Welcome to Unsloth and Efficient Fine-Tuning\|Unsloth and Efficient Fine-Tuning]] | 5 | ✅ | 🇬🇧 |
 | 15 | [[02 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails\|LLM Security and Guardrails]] | 5 | ✅ | 🇬🇧 |
@@ -183,14 +178,9 @@ Misceláneo
 | 19 | [[05 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida\|Feature Engineering y Feature Stores]] | 6 | ✅ | 🇪🇸 |
 | 20 | [[05 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida\|Deployment y Serving]] | 6 | ✅ | 🇪🇸 |
 | 21 | [[05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida\|Monitoreo y Mantenimiento]] | 6 | ✅ | 🇪🇸 |
-| 22 | [[05 - MLOps y Produccion/22 - End-to-End ML Project/02 - End-to-End ML Project\|End-to-End ML Project]] | 1 | ✅ | 🇬🇧 |
-| 23 | [[05 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps\|Advanced MLOps]] | 1 | ✅ | 🇬🇧 |
-| 24 | [[05 - MLOps y Produccion/24 - Weights and Biases/00 - Welcome to Weights and Biases\|Weights and Biases]] | 5 | ✅ | 🇬🇧 |
-| 25 | [[05 - MLOps y Produccion/25 - MLOps Tooling Comparison/10 - MLOps Tooling Comparison\|MLOps Tooling Comparison]] | 1 | ✅ | 🇬🇧 |
-| 26 | [[05 - MLOps y Produccion/26 - ML Platform Engineering/05 - ML Platform Engineering\|ML Platform Engineering]] | 6 | ✅ | 🇬🇧 |
-| 27 | [[05 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps\|Feast and Feature Stores]] | 5 | ✅ | 🇬🇧 |
-| 28 | [[05 - MLOps y Produccion/28 - Testing in ML Systems/03 - Testing in ML Systems\|Testing in ML Systems]] | 1 | ✅ | 🇬🇧 |
-| 29 | [[05 - MLOps y Produccion/29 - CI-CD for ML/04 - CI-CD for ML\|CI-CD for ML]] | 1 | ✅ | 🇬🇧 |
+| 22 | [[05 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project\|End-to-End ML Project]] | 5 | ✅ REWRITTEN | 🇬🇧 |
+| 28 | [[05 - MLOps y Produccion/28 - Testing in ML Systems/00 - Welcome to Testing in ML Systems\|Testing in ML Systems]] | 4 | ✅ REWRITTEN | 🇬🇧 |
+| 29 | [[05 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML\|CI-CD for ML]] | 4 | ✅ REWRITTEN | 🇬🇧 |
 | 30 | [[09 - MLOps y Produccion/30 - TorchServe/00 - Welcome to TorchServe\|TorchServe]] | 4 | ✅ NEW | 🇬🇧 |
 | 31 | [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | 4 | ✅ NEW | 🇬🇧 |
 | 32 | [[05 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative\|KServe and Knative]] | 3 | ✅ NEW | 🇬🇧 |
@@ -210,7 +200,7 @@ Misceláneo
 | 29 | [[06 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome\|Distributed ML Infrastructure]] | 7 | ✅ | 🇬🇧 |
 | 30 | [[06 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML\|WebSockets and Real-Time ML]] | 5 | ✅ | 🇬🇧 |
 | 31 | [[06 - Cloud, Infra y Backend/31 - FastAPI for ML/01 - FastAPI for ML\|FastAPI for ML]] | 1 | ✅ | 🇬🇧 |
-| 32 | [[06 - Cloud, Infra y Backend/32 - System Design for ML/02 - System Design for ML\|System Design for ML]] | 1 | ✅ | 🇬🇧 |
+| 32 | [[06 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML\|System Design for ML]] | 6 | ✅ REWRITTEN | 🇬🇧 |
 | 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 12 | ✅ NEW | 🇬🇧 |
 | 34 | [[10 - Cloud, Infra y Backend/34 - DuckDB/00 - Welcome to DuckDB\|DuckDB]] | 4 | ✅ NEW | 🇬🇧 |
 
