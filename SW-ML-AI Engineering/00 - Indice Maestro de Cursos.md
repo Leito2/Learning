@@ -64,6 +64,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 28 - Testing in ML Systems (1 — English)
 ├── 29 - CI-CD for ML (1 — English)
 ├── 30 - TorchServe (4 — English)
+├── 31 - Evidently AI and Phoenix (4 — English)
 
 06 - Cloud, Infra y Backend
 ├── 22 - Cloud Computing (6)
@@ -186,6 +187,7 @@ Misceláneo
 | 28 | [[05 - MLOps y Produccion/28 - Testing in ML Systems/03 - Testing in ML Systems\|Testing in ML Systems]] | 1 | ✅ | 🇬🇧 |
 | 29 | [[05 - MLOps y Produccion/29 - CI-CD for ML/04 - CI-CD for ML\|CI-CD for ML]] | 1 | ✅ | 🇬🇧 |
 | 30 | [[09 - MLOps y Produccion/30 - TorchServe/00 - Welcome to TorchServe\|TorchServe]] | 4 | ✅ NEW | 🇬🇧 |
+| 31 | [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | 4 | ✅ NEW | 🇬🇧 |
 
 ### 06 — Cloud, Infra y Backend
 

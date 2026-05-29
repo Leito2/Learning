@@ -167,6 +167,7 @@
 | 🌿 | Kubernetes for ML (K8s, KubeFlow) | 05 > 20 > 03 |
 | 🌿 | A/B Testing & Canary Deployments | 05 > 20 > 04 |
 | 🌿 | Data Drift & Concept Drift Monitoring | 05 > 21 > 01 |
+| 🌿 | Evidently AI + Phoenix (drift detection, LLM obs) | 05 > 31 |
 | 🌿 | Model Monitoring & Alerting | 05 > 21 > 02 |
 | 🌿 | Auto-Retraining Pipelines | 05 > 21 > 03 |
 | 🌿 | Explainability (SHAP, LIME) & Fairness | 05 > 21 > 04 |
