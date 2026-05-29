@@ -79,6 +79,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 31 - FastAPI for ML (1 — English)
 ├── 32 - System Design for ML (1 — English)
 ├── 33 - Vector Databases and Semantic Search (12 — English)
+├── 34 - DuckDB (4 — English)
 
 07 - Research y Ciencia de Datos
 ├── 26 - Metodología de Investigación en ML (6)
@@ -205,6 +206,7 @@ Misceláneo
 | 31 | [[06 - Cloud, Infra y Backend/31 - FastAPI for ML/01 - FastAPI for ML\|FastAPI for ML]] | 1 | ✅ | 🇬🇧 |
 | 32 | [[06 - Cloud, Infra y Backend/32 - System Design for ML/02 - System Design for ML\|System Design for ML]] | 1 | ✅ | 🇬🇧 |
 | 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 12 | ✅ NEW | 🇬🇧 |
+| 34 | [[10 - Cloud, Infra y Backend/34 - DuckDB/00 - Welcome to DuckDB\|DuckDB]] | 4 | ✅ NEW | 🇬🇧 |
 
 ### 07 — Research y Ciencia de Datos
 

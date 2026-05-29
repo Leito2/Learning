@@ -479,7 +479,7 @@ SW-ML-AI Engineering/
 │   ├── 30 - TorchServe             (4 EN)
 │   └── 31 - Evidently AI and Phoenix (4 EN)
 │
-├── 10 - Cloud, Infra/                  (52 notes: 24 Spanish + 28 English)
+├── 10 - Cloud, Infra/                  (56 notes: 24 Spanish + 32 English)
 │   ├── 22 - Cloud Computing        (6)
 │   ├── 23 - Infra como Codigo      (6)
 │   ├── 24 - Backend para ML        (6)
@@ -492,6 +492,7 @@ SW-ML-AI Engineering/
 │   ├── 31 - FastAPI for ML         (6 EN)
 │   ├── 32 - System Design for ML   (1 EN)
 │   └── 33 - Vector Databases and Semantic Search (12 EN)
+│   └── 34 - DuckDB            (4 EN)
 │
 ├── 11 - Research/                      (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
@@ -606,7 +607,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 ### Data & Feature Engineering
 | Tech | Status | Why |
 |------|:------:|-----|
-| **DuckDB** | 🚨 | OLAP in-process. Fast analytics in Python/Go without Spark. |
+| **DuckDB** | ✅ (10/34) | OLAP in-process. Fast analytics in Python/Go without Spark. Deep course covering SQL, Python/Polars integration, RAG preprocessing, ML pipelines. |
 | **dbt** | ✅ (10/29) | Data transformations. Already covered. |
 
 ### Vector Databases
@@ -644,7 +645,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 13 | **JAX Deep Dive** | 6 | ✅ CREATED (05/10). jit/vmap/grad/XLA fundamentals, NumPy→JAX functional paradigm, autodiff (grad/vjp/jvp/Hessians), Flax/Linen, Optax training loops. Fills "Present but shallow" gap. |
 | 14 | **TorchServe** | 4 | ✅ CREATED (09/30). Architecture, MAR files, model archiver, custom handlers, multi-model endpoints, Docker/K8s deployment, performance tuning, monitoring. Bridges PyTorch training to production. |
 | 15 | **Evidently AI / Phoenix** | 4 | ✅ CREATED (09/31). Data drift (KS, JS, Wasserstein, PSI), concept drift, Evidently Reports/Test Suites/CI-CD, Phoenix LLM observability, spans/traces, embedding drift (UMAP), RAG evaluation. Connects to LLM Evaluation Suite project. |
-| 16 | **DuckDB** | 3-4 | OLAP in-process analytics. Fast SQL analytics in Python/Go without Spark. Complements RAG preprocessing and data exploration workflows. |
+| 16 | **DuckDB** | 4 | ✅ CREATED (10/34). In-process OLAP, SQL analytics, Python/pandas/Polars/Parquet integration, RAG preprocessing, ML feature engineering, Go bindings for ML Gateway. |
 
 ---
 
@@ -654,9 +655,10 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
-> 6. Next priority: **DuckDB** (3-4 notes).
+> 6. Next priority: **ALL 4 REMAINING GAPS COMPLETE.** 🎉 Consider expanding existing 1-note quick references or adding new technologies: TensorRT-LLM, Knative/KServe, Temporal, Late Chunking (Jina).
 > 7. **Course 06/17 REWRITE COMPLETE:** ColBERT, SGLang and Next-Gen Inference — 11 notes, 4,735 lines. 5 cutting-edge vectors: Inference-Time Scaling, Speculative Decoding 2.0 (Eagle/MTP), MLA + H2O/StreamingLLM, FP8 (E4M3/E5M2) + Transformer Engines, Disaggregated serving + Edge (ExecuTorch/NPU).
 > 8. **JAX Deep Dive COMPLETE:** 6 notes, 2,363 lines in module 05/10. Covers jit/vmap/grad/pmap, XLA compilation, NumPy→JAX functional paradigm, autodiff (grad/vjp/jvp/Hessians), Flax/Linen, Optax training loops.
 > 9. **TorchServe COMPLETE:** 4 notes, 1,707 lines in module 09/30. Covers architecture, MAR files, model archiver, custom handlers, multi-model endpoints, Docker/K8s deployment, performance tuning, Prometheus monitoring.
 > 10. **Evidently AI and Phoenix COMPLETE:** 4 notes, 1,100 lines in module 09/31. Covers data/concept drift (KS, JS, Wasserstein, PSI), Evidently Reports/Test Suites/CI-CD integration, Phoenix LLM observability (traces, spans, embedding drift via UMAP, RAG evaluation).
-> 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
+> 11. **DuckDB COMPLETE:** 4 notes, 1,342 lines in module 10/34. Covers in-process OLAP, SQL analytics, Python/pandas/Polars/Parquet integration, RAG preprocessing, ML feature engineering, Go bindings.
+> 12. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

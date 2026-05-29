@@ -228,6 +228,7 @@
 | 🌿 | ETL Pipeline Design | 07 > 28 > 01 |
 | 🌿 | Apache Spark (distributed processing) | 07 > 28 > 02, 06 > 27 |
 | 🌿 | Data Warehousing (Snowflake, BigQuery) | 07 > 28 > 03, 06 > 28 |
+| 🌿 | DuckDB (in-process OLAP, Python/Go integration) | 06 > 34 |
 | 🌿 | Data Quality & Governance | 07 > 28 > 04 |
 | 🌿 | Polars — Rust DataFrame (10-100x Pandas) | 14 > 03 > 01 |
 | 🌿 | Apache Arrow & Zero-Copy Data | 14 > 03 > 02 |
