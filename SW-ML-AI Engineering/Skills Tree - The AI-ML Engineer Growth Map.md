@@ -74,6 +74,7 @@
 | Gorgonia (Deep Learning in Go) | 13 > 07 - Gorgonia | ✅ |
 | Candle (ML in Rust — HuggingFace) | 14 > 04 > 02 | ✅ |
 | TensorFlow / Keras (tf.keras, tf.data, TPU training) | 01 > 09 | ✅ |
+| JAX (jit, vmap, grad, pmap, XLA, Flax, Optax) | 01 > 10 | ✅ |
 
 ### 🧠 Large Language Models
 | Topic | Course | Status |

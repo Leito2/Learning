@@ -430,14 +430,15 @@ SW-ML-AI Engineering/
 │   ├── 01 - Matematicas para ML
 │   └── 02 - Estructuras de Datos
 │
-├── 05 - Deep Learning y CV/            (38 notes: 18 Spanish + 20 English)
+├── 05 - Deep Learning y CV/            (44 notes: 18 Spanish + 26 English)
 │   ├── 03 - DL con PyTorch         (7)
 │   ├── 04 - CV Avanzada            (6)
 │   ├── 05 - Multimodal AI          (5)
 │   ├── 06 - CV Pipeline            (1 EN)
 │   ├── 07 - Reinforcement Learning (7 EN)
 │   ├── 08 - Graph Neural Networks  (5 EN)
-│   └── 09 - Deep Learning with TF  (7 EN)
+│   ├── 09 - Deep Learning with TF  (7 EN)
+│   └── 10 - JAX Deep Dive          (6 EN)
 │
 ├── 06 - Large Language Models/         (66+ notes: 30 Spanish + 36 English)
 │   ├── 06 - Fundamentos de LLMs   (7)
@@ -638,7 +639,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 
 | # | Course | Est. Notes | Justification |
 |:--:|--------|:-----:|---------------|
-| 13 | **JAX Deep Dive** | 5-6 | Google's high-performance ML framework. DeepMind uses it for AlphaFold, Gemini. XLA compilation, `pmap`/`vmap`, Flax `linen`, TPU training. Fills "Present but shallow" gap. |
+| 13 | **JAX Deep Dive** | 6 | ✅ CREATED (05/10). jit/vmap/grad/XLA fundamentals, NumPy→JAX functional paradigm, autodiff (grad/vjp/jvp/Hessians), Flax/Linen, Optax training loops. Fills "Present but shallow" gap. |
 | 14 | **TorchServe** | 3-4 | PyTorch-native model serving. MAR files, custom handlers, model archiver, multi-model endpoints. Bridges PyTorch training (M05/03) to production (M09). |
 | 15 | **Evidently AI / Phoenix** | 4-5 | Drift detection + LLM observability. Connects directly to Evaluation Suite portfolio project. Critical for production ML monitoring. |
 | 16 | **DuckDB** | 3-4 | OLAP in-process analytics. Fast SQL analytics in Python/Go without Spark. Complements RAG preprocessing and data exploration workflows. |
@@ -651,6 +652,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
 > 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
-> 6. Next priority: **Complete rewrite of 06/17** (11 notes total: restructure 00-04 + 06, write 05-09 new notes with cutting-edge vectors) OR **JAX Deep Dive** (5-6 notes) OR **TorchServe** (3-4 notes).
-> 7. **Course 06/17 REWRITE IN PROGRESS:** ColBERT, SGLang and Next-Gen Inference — expanding from 7 to 11 notes. New format: no ASCII art, real images, LaTeX, organic structure. Cutting-edge vectors: Inference-Time Scaling, Speculative Decoding 2.0 (Eagle/MTP), MLA + H2O/StreamingLLM, FP8 (E4M3/E5M2) + Transformer Engines, Disaggregated serving + Edge (ExecuTorch/NPU).
+> 6. Next priority: **TorchServe** (3-4 notes) OR **Evidently AI / Phoenix** (drift detection) OR **DuckDB** (3-4 notes).
+> 7. **Course 06/17 REWRITE COMPLETE:** ColBERT, SGLang and Next-Gen Inference — 11 notes, 4,735 lines. 5 cutting-edge vectors: Inference-Time Scaling, Speculative Decoding 2.0 (Eagle/MTP), MLA + H2O/StreamingLLM, FP8 (E4M3/E5M2) + Transformer Engines, Disaggregated serving + Edge (ExecuTorch/NPU).
+> 8. **JAX Deep Dive COMPLETE:** 6 notes, 2,363 lines in module 05/10. Covers jit/vmap/grad/pmap, XLA compilation, NumPy→JAX functional paradigm, autodiff (grad/vjp/jvp/Hessians), Flax/Linen, Optax training loops.
 > 8. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

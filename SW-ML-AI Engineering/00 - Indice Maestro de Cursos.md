@@ -22,6 +22,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 07 - Reinforcement Learning (7 — English)
 ├── 08 - Graph Neural Networks (5 — English)
 ├── 09 - Deep Learning with TensorFlow (7 — English)
+├── 10 - JAX Deep Dive (6 — English)
 
 02 - Large Language Models
 ├── 06 - Fundamentos de LLMs (7)
@@ -129,7 +130,8 @@ Misceláneo
 | 06 | [[01 - Deep Learning y Computer Vision/06 - Computer Vision Pipeline/05 - Computer Vision Pipeline\|Computer Vision Pipeline]] | 1 | ✅ | 🇬🇧 |
 | 07 | [[01 - Deep Learning y Computer Vision/07 - Reinforcement Learning/00 - Welcome to RL\|Reinforcement Learning]] | 7 | ✅ | 🇬🇧 |
 | 08 | [[01 - Deep Learning y Computer Vision/08 - Graph Neural Networks/00 - Welcome to GNN\|Graph Neural Networks]] | 5 | ✅ | 🇬🇧 |
-| 09 | [[01 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow\|Deep Learning with TensorFlow]] | 7 | ✅ NEW | 🇬🇧 |
+| 09 | [[01 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow\|Deep Learning with TensorFlow]] | 7 | ✅ | 🇬🇧 |
+| 10 | [[05 - Deep Learning y Computer Vision/10 - JAX Deep Dive/00 - Welcome to JAX Deep Dive\|JAX Deep Dive]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 02 — Large Language Models
 
