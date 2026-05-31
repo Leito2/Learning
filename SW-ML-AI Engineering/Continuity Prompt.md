@@ -512,18 +512,17 @@ SW-ML-AI Engineering/
 ├── 14 - Rust Engineering/              (73 notes, English)
 ├── 15 - Transversal Skills/            (4 notes, English)
 │
-├── 16 - SDD and Harness Engineering/   (11 notes, English)
-│   ├── 00 - Welcome to SDD and Harness Engineering
-│   ├── 01 - Harness Engineering Fundamentals
-│   ├── 02 - SDD: The Specification-First Workflow
-│   ├── 03 - Agent Loop Architecture: Building the Core
-│   ├── 04 - Multi-Agent Orchestration and Roles
-│   ├── 05 - External Memory and Context Management
-│   ├── 06 - The 20 Harnesses: Phase Control and Contracts
-│   ├── 07 - Tools and Provider Abstraction
-│   ├── 08 - File Structures and Repository Harnesses
-│   ├── 09 - Verification and Quality Gates
-│   └── 10 - End-to-End Workflow and Technical Summary
+├── 16 - Harness Engineering/           (10 notes, English)
+│   ├── 00 - Welcome to Harness Engineering and SDD
+│   ├── 01 - The Context Crisis: Why AI Development Fails
+│   ├── 02 - The Three Pillars: Context, Harness, SDD
+│   ├── 03 - Harness Engineering: Architecture of Control
+│   ├── 04 - Specification-Driven Development: The Formal Method
+│   ├── 05 - File Architecture: The Structural Foundation
+│   ├── 06 - Multi-Agent Orchestration and Capstone
+│   ├── 07 - Complete Harness Taxonomy
+│   ├── 08 - Verification and Quality Gates
+│   └── 09 - Tools, Provider Abstraction, and Memory
 │
 ├── Extra/                              # Bun Runtime + cross-cutting topics
 └── projects/                           (15+ guides)
@@ -534,7 +533,7 @@ SW-ML-AI Engineering/
 ## Language Policy
 
 - **Modules 00-02 (Markdown, SQL, Docker), 03 (Advanced Python), 04-12:** Spanish. **Do NOT modify** unless requested.
-- **New courses integrated into 05-12 (English-labeled sub-modules), Go Engineering (13), Rust Engineering (14), Transversal Skills (15), SDD and Harness Engineering (16), and projects:** **English**.
+- **New courses integrated into 05-12 (English-labeled sub-modules), Go Engineering (13), Rust Engineering (14), Transversal Skills (15), Harness Engineering (16), and projects:** **English**.
 - **Welcome/indices:** May contain both languages to bridge old and new.
 
 ---
@@ -636,7 +635,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | ~~7~~ | ~~Bun Runtime~~ | ~~7~~ | ✅ CREATED (10/33) |
 | ~~8~~ | ~~ONNX Runtime Rust — Deepened + 2 New Notes~~ | ~~3~~ | ✅ DONE (14/04) |
 | ~~6~~ | ~~ColBERT, SGLang and Next-Gen Inference~~ | ~~11~~ | ✅ REWRITTEN (06/17). 5 cutting-edge vectors: Inference-Time Scaling, Speculative Decoding 2.0, MLA + KV eviction, FP8 hybrid precision, Disaggregated serving + Edge inference. Plus ColBERT + SGLang deep dives. Capstone: hybrid RAG.
-| ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ CREATED AS **SDD and Harness Engineering** (16/00-10). Harness Engineering + SDD workflow + 20 harnesses + 4 file structure alternatives.
+| ~~9~~ | ~~SDD: AI-Assisted Project Architecture~~ | ~~11~~ | ✅ REWRITTEN AS **Harness Engineering** (16/00-09, 10 notes, 4,132 lines). Deep theory rewrite from 6 video sources: Gentle Framework, agent loop, provider abstraction, SDD formal method, 20-harness taxonomy, verification gates, tool/memory integration. Removed 424 lines of Python compression code, zero Spanish.
 | 10 | **Vector Databases and Semantic Search** | 12 | ✅ CREATED (10/33). pgvector, Qdrant, Milvus deep courses + comparison + capstone with Go and Python.
 | 11 | **HuggingFace Transformers Deep Dive** | 10 | ✅ CREATED (06/16). from_pretrained, tokenizers, Trainer, generation, vision/audio/multimodal, optimum, Diffusers (2 notes), capstone.
 | 12 | **Deep Learning with TensorFlow** | 7 | ✅ CREATED (05/09). tf.keras architectures, tf.data/TFRecord, distributed training (TPU/GPU), TensorBoard/callbacks/tuning, SavedModel/TF Serving/TFLite, CV capstone with EfficientNet.
@@ -657,7 +656,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 2. ALWAYS use subagents (`task` tool) for bulk creation — max 2 parallel, max 7 notes each.
 > 3. Never write 5+ full course notes in the main thread.
 > 4. Verify filesystem state after every subagent batch.
-> 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=SDD and Harness Engineering, Extra/ at end.
+> 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=Harness Engineering, Extra/ at end.
 > 6. Next priority: **ALL GAPS COMPLETE.** 🎉 **Zero 🚨 remaining.** Entire High-Value Tech scan is ✅.
 > 7. **Course 06/17 REWRITTEN:** 11 notes, 4,735 lines. 5 next-gen vectors.
 > 8. **JAX Deep Dive:** 6 notes, 2,363 lines (05/10).
