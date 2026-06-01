@@ -315,36 +315,4 @@ tracker.exportar()
 
 ---
 
-## 🎯 Proyecto documentado: Decoradores para un Framework de Agentes AI
 
-### Descripción
-Diseña un conjunto de decoradores para un framework de agentes AI que permitan: registrar el flujo de pensamiento (chain-of-thought), medir latencia de cada herramienta invocada, reintentar en caso de error, y validar que las salidas cumplan un esquema JSON.
-
-### Requisitos funcionales
-1. `@agent(nombre, descripcion)`: registra la función como un agente con metadatos.
-2. `@tool(nombre)`: marca funciones como herramientas invocables por el agente; mide latencia.
-3. `@retry(max_attempts=3, backoff=2)`: reintenta la ejecución en caso de excepción con espera exponencial.
-4. `@validate_output(schema)`: valida que el resultado sea un dict que cumpla el esquema JSON.
-5. `@trace`: registra entradas, salidas y excepciones en un logger estructurado.
-
-### Ejemplo de uso esperado
-```python
-@agent(nombre="BuscadorWeb", descripcion="Busca información en internet")
-@trace
-class BuscadorAgent:
-    @tool("google_search")
-    @retry(max_attempts=3)
-    @validate_output({"results": list, "total": int})
-    def buscar(self, query):
-        ...
-```
-
-### Métricas de éxito
-- Los decoradores deben ser componibles (stacking) sin interferencias.
-- Overhead de latencia menor a 1ms por decorador.
-- Esquema de validación con mensajes de error claros.
-
-### Referencias
-- Patrón "decorator pattern" en Python (GOF)
-- LangChain `@tool` decorator implementation
-- Tenacity library (retry patterns)

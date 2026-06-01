@@ -228,39 +228,3 @@ impl Drop for CharDriver {
     }
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-
-A safe, high‑performance network packet filter kernel module using eBPF‑like functionality written in Rust.
-
-### Functional Requirements
-
-1. Hook into netfilter hooks (NF_INET_LOCAL_IN).
-2. Filter packets based on configurable rules (IP, port, protocol).
-3. Provide user‑space control via sysfs entries.
-4. Support dynamic rule addition/removal without module reload.
-5. Zero‑copy packet forwarding for allowed packets.
-
-### Main Components
-
-- **Netfilter Hook**: Safe wrapper for `nf_hook_ops`.
-- **Rule Engine**: Trie‑based matching with `RwLock` for concurrent updates.
-- **Sysfs Interface**: `kernel::sysfs` module for configuration.
-- **Packet Buffer**: Zero‑copy `SkBuff` wrapper.
-- **Statistics**: Atomic counters for dropped/allowed packets.
-
-### Success Metrics
-
-- Throughput > 10 Gbps (line rate).
-- Latency < 1 µs per packet (99th percentile).
-- Zero memory safety bugs (verified via KASAN and CFI).
-- No crashes during 72‑hour fuzzing.
-
-### References
-
-- Rust‑for‑Linux documentation: [[05 - Rust in the Linux Kernel|kernel abstractions]]
-- Linux kernel Rust coding guidelines
-- Android kernel Rust drivers
-- eBPF Rust implementations

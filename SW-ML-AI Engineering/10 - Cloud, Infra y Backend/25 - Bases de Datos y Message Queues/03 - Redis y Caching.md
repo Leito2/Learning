@@ -35,51 +35,31 @@ Cada comando de Redis es atómico — ningún otro comando se intercala durante 
 
 ## 2. 📐 Modelo Mental: Redis en la Arquitectura ML
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                    REDIS EN UN SISTEMA DE ML                      │
-│                                                                  │
-│  ┌──────────┐     ┌──────────┐     ┌──────────┐                 │
-│  │ Client   │────▶│ FastAPI  │────▶│ Redis    │                 │
-│  │ Request  │     │ Gateway  │     │ Cache    │                 │
-│  └──────────┘     └────┬─────┘     └────┬─────┘                 │
-│                        │ Miss          │ Hit (p99 < 1ms)         │
-│                        ▼               ▼                         │
-│                  ┌──────────┐    ┌──────────┐                   │
-│                  │PostgreSQL│    │ Response │                   │
-│                  │(Primary) │    │ to Client│                   │
-│                  └────┬─────┘    └──────────┘                   │
-│                       │                                         │
-│                       ▼                                         │
-│                  ┌──────────┐                                    │
-│                  │  Redis   │  ← Populate cache (SETEX + TTL)   │
-│                  │  Cache   │                                    │
-│                  └──────────┘                                    │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │ Feature Store Pattern (Online)                            │   │
-│  │ ┌────────────┐    ┌──────────────┐    ┌──────────────┐   │   │
-│  │ │ Offline    │───▶│Materialization│───▶│ Redis        │   │   │
-│  │ │ Store      │    │ Job (Spark)  │    │ (Online)     │   │   │
-│  │ │ (Delta)    │    │              │    │ Hash per user│   │   │
-│  │ └────────────┘    └──────────────┘    └──────┬───────┘   │   │
-│  │                                              │ Lookup    │   │
-│  │                                        ┌─────▼──────┐   │   │
-│  │                                        │  Model     │   │   │
-│  │                                        │  Serving   │   │   │
-│  │                                        └────────────┘   │   │
-│  └──────────────────────────────────────────────────────────┘   │
-└──────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "Redis en un Sistema de ML"
+        Client[Client Request] --> Fast[FastAPI Gateway]
+        Fast --> Redis[Redis Cache]
+        Redis -- "Hit (p99 < 1ms)" --> Resp[Response to Client]
+        Fast -- Miss --> PG[PostgreSQL Primary]
+        PG --> Redis2[Redis Cache<br/>← Populate cache SETEX + TTL]
+    end
+    subgraph "Feature Store Pattern (Online)"
+        OS[Offline Store Delta] --> MJ[Materialization Job Spark]
+        MJ --> RO[Redis Online<br/>Hash per user]
+        RO --> MS[Model Serving]
+    end
 ```
 
 ### El espectro Redis: de caché a base de datos primaria
 
-```
-Persistencia baja ◄──────────────────────────────► Persistencia alta
-Latencia mínima                                       Durabilidad máxima
-
-Cache-aside        Write-through    Write-behind    Redis AOF/RDB
-(TTL corto)        (consistente)    (asíncrono)     (como primaria)
+```mermaid
+graph LR
+    subgraph "Espectro Redis: Caché → Base de Datos Primaria"
+        A["Cache-aside<br/>TTL corto<br/>Persistencia baja"] --> B["Write-through<br/>Consistente"]
+        B --> C["Write-behind<br/>Asíncrono"]
+        C --> D["Redis AOF/RDB<br/>Como primaria<br/>Persistencia alta"]
+    end
 ```
 
 ---
@@ -285,24 +265,18 @@ with lock:
 
 Proporciona monitoreo, notificación, auto-failover y descubrimiento de nodos maestros.
 
-```
-┌────────────────────────────────────────────────────────┐
-│              REDIS SENTINEL ARCHITECTURE                │
-│                                                        │
-│  ┌─────────┐   ┌─────────┐   ┌─────────┐              │
-│  │Sentinel 1│   │Sentinel 2│   │Sentinel 3│   Quorum=2 │
-│  └────┬─────┘   └────┬─────┘   └────┬─────┘              │
-│       │              │              │                    │
-│       └──────────────┼──────────────┘                    │
-│                      │ Monitor                          │
-│                      ▼                                  │
-│  ┌──────────┐   ┌──────────┐   ┌──────────┐           │
-│  │ Master   │──▶│ Replica 1│   │ Replica 2│           │
-│  │ (R/W)    │   │ (R/O)    │   │ (R/O)    │           │
-│  └──────────┘   └──────────┘   └──────────┘           │
-│      │ Failover: si Master cae                          │
-│      ▼ Una Replica es promovida automáticamente         │
-└────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "Redis Sentinel Architecture"
+        S1[Sentinel 1] --- S2[Sentinel 2]
+        S2 --- S3[Sentinel 3]
+        S1 -- Monitor Quorum=2 --> M[Master R/W]
+        S2 -- Monitor --> M
+        S3 -- Monitor --> M
+        M --> R1[Replica 1 R/O]
+        M --> R2[Replica 2 R/O]
+        M -. "Failover: si Master cae<br/>Una Réplica es promovida" .-> R1
+    end
 ```
 
 **Caso real:** Feature store crítico utiliza Sentinel para failover automático. Si el master cae, un replica es promovido en segundos sin intervención manual, manteniendo el serving de features ininterrumpido.
@@ -470,18 +444,6 @@ def export_features(output_path: str):
         json.dump(data, f, ensure_ascii=False)
     print(f"✅ {len(data)} keys → {output_path}")
 ```
-
----
-
-## ✅ Verificación de Conocimiento
-
-1. **¿Por qué Redis puede ser single-threaded y aún así extremadamente rápido?** — Todas las operaciones son en RAM (sin latencia de disco), las estructuras de datos están implementadas en C con complejidad algorítmica óptima, y el I/O multiplexing (epoll/kqueue) maneja miles de conexiones concurrentes sin bloquear el hilo de ejecución.
-
-2. **¿Cuándo usarías Redis Streams en lugar de Pub/Sub?** — Streams cuando necesitas durabilidad (los mensajes persisten aunque no haya consumidores activos), consumer groups (procesamiento paralelo con ACK), o replay desde un punto histórico. Pub/Sub solo para notificaciones efímeras en tiempo real.
-
-3. **¿Qué diferencia hay entre Sentinel y Cluster?** — Sentinel proporciona alta disponibilidad con failover automático para una instancia master-replica (escala vertical). Cluster particiona datos automáticamente en múltiples nodos mediante hash slots (escala horizontal). Sentinel para <64GB; Cluster para >64GB o >100K ops/s.
-
-4. **¿Por qué `KEYS *` es peligroso en producción?** — Bloquea el hilo principal de Redis durante toda la iteración, congelando todas las demás operaciones. En un dataset de millones de keys, esto puede causar timeouts en cascada. Usa `SCAN` para iteración progresiva no bloqueante.
 
 ---
 

@@ -193,22 +193,20 @@ A continuación se describe la estructura completa del proyecto para que puedas 
 
 ### 5.1 Estructura de Carpetas
 
-```
-realtime-rec-pipeline/
-├── docker-compose.yml
-├── consumer/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── main.py
-├── init-scripts/
-│   ├── init_postgres.sql
-│   └── init_mongo.js
-├── api/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── app.py
-└── README.md
-```
+- `realtime-rec-pipeline/`
+  - `docker-compose.yml`
+  - `consumer/`
+    - `Dockerfile`
+    - `requirements.txt`
+    - `main.py`
+  - `init-scripts/`
+    - `init_postgres.sql`
+    - `init_mongo.js`
+  - `api/`
+    - `Dockerfile`
+    - `requirements.txt`
+    - `app.py`
+  - `README.md`
 
 ### 5.2 Docker Compose
 

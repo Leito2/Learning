@@ -188,38 +188,3 @@ fn main() {
     println!("After reset, allocated at {:?}", ptr3);
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-
-A high‑performance, lock‑free bounded queue for inter‑task communication in async runtimes, using atomic operations and a custom allocator to minimize overhead.
-
-### Functional Requirements
-
-1. Support multiple producers and multiple consumers (MPMC).
-2. Bounded capacity (configurable at compile‑time).
-3. Non‑blocking `push` and `pop` operations that return `Result`.
-4. No allocation after initialization (use a pre‑allocated buffer).
-5. Safe for concurrent use across threads (implement `Send + Sync`).
-
-### Main Components
-
-- **Buffer**: Array of `UnsafeCell<Option<T>>` with atomic indices.
-- **Producer/Consumer Handles**: `Arc`‑wrapped shared state with `AtomicUsize` head/tail.
-- **Allocator**: Optional custom allocator for the buffer (e.g., `BumpAllocator`).
-- **Ordering**: Careful use of `Acquire`/`Release` for index updates.
-
-### Success Metrics
-
-- Throughput > 10 million ops/sec on 8‑core machine (benchmark).
-- Zero dynamic allocation after queue creation.
-- No unsafe data races (verified via Miri and Loom).
-- Latency < 100 ns per operation (99th percentile).
-
-### References
-
-- Rustonomicon: [[02 - Unsafe Rust|Unsafe Rust]]
-- C++ Concurrency in Action (Rust equivalents)
-- Crossbeam‑channel design documents
-- Tokio’s MPMC channel implementation

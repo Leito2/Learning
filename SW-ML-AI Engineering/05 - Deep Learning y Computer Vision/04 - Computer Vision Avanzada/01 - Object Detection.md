@@ -284,35 +284,4 @@ if __name__ == "__main__":
     print("Modelo listo. Usa predict('imagen.jpg') y visualize().")
 ```
 
----
 
-## 🎯 Proyecto documentado: Sistema de Detección de Productos en Estantes
-
-### Descripción
-Sistema que analiza imágenes de estantes de supermercado para detectar y contar productos, identificar espacios vacíos y verificar planogramas.
-
-### Requisitos funcionales
-1. El sistema debe procesar imágenes de estantes en tiempo casi real (< 2 segundos por imagen).
-2. Debe detectar múltiples instancias de productos con clase y bounding box.
-3. Debe manejar oclusiones parciales (productos detrás de otros).
-4. Debe generar alertas cuando detecte espacios vacíos o productos fuera de lugar.
-5. Debe exponer una API REST para integración con sistemas de inventario.
-
-### Componentes principales
-- **Backbone**: YOLOv8 entrenado en dataset de productos retail.
-- **Preprocesamiento**: Normalización de iluminación y corrección de perspectiva.
-- **Postprocesamiento**: NMS + filtrado por confianza + tracking temporal.
-- **Backend**: FastAPI con cola de inferencia.
-- **Frontend**: Dashboard con visualización de boxes y métricas.
-
-### Métricas de éxito
-- mAP@0.5 > 0.88 en dataset de validación.
-- Recall de productos ocluidos parcialmente > 0.70.
-- Latencia p95 < 1500 ms por imagen en GPU T4.
-- Precisión de conteo ±5 % respecto a conteo manual.
-
-### Referencias
-- Girshick, R., et al. "Rich Feature Hierarchies for Accurate Object Detection." CVPR 2014.
-- Ren, S., et al. "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks." NeurIPS 2015.
-- Redmon, J., et al. "You Only Look Once: Unified, Real-Time Object Detection." CVPR 2016.
-- Lin, T.-Y., et al. "Focal Loss for Dense Object Detection." ICCV 2017.

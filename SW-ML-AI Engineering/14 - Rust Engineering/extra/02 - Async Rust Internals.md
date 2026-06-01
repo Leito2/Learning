@@ -287,38 +287,3 @@ fn main() {
     exec.run();
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-
-A custom async runtime for WebAssembly, designed to run in browser environments with JavaScript‑based event loop integration.
-
-### Functional Requirements
-
-1. Support `async fn` and manual `Future` implementations.
-2. Integrate with `setTimeout` and `Promise` via JavaScript bindings.
-3. Single‑threaded (WASM environment).
-4. Provide `spawn`, `sleep`, and `IO` primitives.
-5. Zero‑allocation after initialization (use pre‑allocated task slots).
-
-### Main Components
-
-- **Task Scheduler**: Round‑robin queue of pinned futures.
-- **Waker Bridge**: Translates Rust wakers to JavaScript callbacks.
-- **Timer Heap**: Min‑heap of pending timers.
-- **JavaScript FFI**: `extern "C"` functions to call `setTimeout`, `fetch`, etc.
-
-### Success Metrics
-
-- Latency < 16 ms per frame (60 FPS).
-- Memory usage < 10 MB for 1000 concurrent tasks.
-- No panics or undefined behavior (verified via `wasm‑bindgen` tests).
-- Compatibility with existing `async` crates (e.g., `futures‑util`).
-
-### References
-
-- Rust async book: [[02 - Async Rust Internals|async programming]]
-- Tokio internals: `tokio::runtime::Scheduler`
-- Smol runtime design
-- Wasm‑bindgen documentation

@@ -305,35 +305,4 @@ async def cliente_stress_test():
 
 ---
 
-## 🎯 Proyecto documentado: Servidor de Agentes AI Concurrente
 
-### Descripción
-Diseña un servidor async que reciba tareas de múltiples agentes AI, las encole, y las distribuya a workers que invocan diferentes LLMs (OpenAI, Anthropic, local vía Ollama) de forma concurrente. El servidor debe soportar backpressure (limitar requests pendientes) y cancelación de tareas largas.
-
-### Requisitos funcionales
-1. **Queue distribuida**: usa `asyncio.Queue` con límite máximo de 100 tareas.
-2. **Workers**: 5 workers async que consuman de la cola y llamen a diferentes providers de LLM.
-3. **Timeout**: cada invocación a LLM debe tener timeout de 30s.
-4. **Backpressure**: si la cola está llena, el endpoint HTTP retorna 503.
-5. **Cancelación**: el cliente puede enviar un `task_id` y cancelar la tarea si aún no se procesa.
-6. **Streaming**: soportar respuestas tipo Server-Sent Events (SSE) para mostrar progreso.
-
-### Arquitectura
-```
-Cliente HTTP → Endpoint /invoke → Queue → Worker 1 → OpenAI API
-                                    → Worker 2 → Anthropic API
-                                    → Worker 3 → Ollama local
-                                    → Worker 4 → OpenAI API
-                                    → Worker 5 → Ollama local
-```
-
-### Métricas de éxito
-- Throughput: mínimo 50 requests/segundo con 5 workers.
-- Latencia p95 menor a 5s para tareas simples.
-- Sin pérdida de tareas ante picos de tráfico.
-
-### Referencias
-- FastAPI async patterns
-- `asyncio.Queue` documentation
-- OpenAI async client (`openai.AsyncOpenAI`)
-- SSE (Server-Sent Events) protocol

@@ -147,18 +147,12 @@ sequenceDiagram
 
 ### Flujo de datos
 
+```mermaid
+graph LR
+    FS[Feature Store<br/>Delta Table: customer_features<br/>Online Store: DynamoDB/Cosmos] --> ML[MLflow Tracking<br/>log_run con feature_table info<br/>Modelo empaquetado con lookup fn]
+    ML --> MS[Model Serving<br/>Al recibir inference req:<br/>- Lookup autom. de features<br/>- Aplica modelo<br/>- Retorna pred]
 ```
-┌──────────────────┐    ┌───────────────────┐    ┌──────────────────┐
-│ Feature Store    │    │ MLflow Tracking   │    │ Model Serving    │
-│                  │    │                   │    │                  │
-│ Delta Table:     │───▶│ log_run con       │───▶│ Al recibir       │
-│ customer_features│    │ feature_table info │    │ inference req:   │
-│                  │    │                   │    │ ─ Lookup autom.  │
-│ Online Store:    │    │ Modelo empaquetado │    │   de features    │
-│ DynamoDB/Cosmos  │    │ con lookup fn      │    │ ─ Aplica modelo  │
-│                  │    │                   │    │ ─ Retorna pred   │
-└──────────────────┘    └───────────────────┘    └──────────────────┘
-```
+
 
 Esto elimina el problema clásico de training-serving skew: las features se computan exactamente igual en training (por el Feature Store) que en inference (por el Model Serving endpoint que usa el mismo Feature Store).
 
@@ -180,20 +174,16 @@ Databricks utiliza Delta Lake — un formato de datos ACID sobre Parquet — com
 
 ### Ventajas sobre S3 plano
 
+```mermaid
+graph LR
+    subgraph "S3 Plano"
+        S3["models/<br/>├─ v1/model.pkl<br/>├─ v2/model.pkl<br/>└─ v3/model.pkl<br/><br/>❌ Sin lineage<br/>❌ Sin schema enforcement<br/>❌ Sin time travel<br/>❌ Sin gobernanza"]
+    end
+    subgraph "Delta Lake en Databricks"
+        DL["catalog.schema.models<br/>├─ Version 3 (current)<br/>├─ Version 2 (staging)<br/>├─ Version 1 (archived)<br/>├─ Schema: enforced<br/>├─ Lineage: tracked<br/>└─ Permissions: RBAC<br/><br/>✅ Todo incluido"]
+    end
 ```
-S3 Plano:                      Delta Lake en Databricks:
-┌──────────────────┐            ┌──────────────────────────┐
-│ models/           │            │ catalog.schema.models    │
-│ ├─ v1/model.pkl   │            │ ├─ Version 3 (current)   │
-│ ├─ v2/model.pkl   │            │ ├─ Version 2 (staging)   │
-│ └─ v3/model.pkl   │            │ ├─ Version 1 (archived)  │
-└──────────────────┘            │ ├─ Schema: enforced       │
-                                │ ├─ Lineage: tracked       │
-  ❌ Sin lineage                │ └─ Permissions: RBAC      │
-  ❌ Sin schema enforcement                                   │
-  ❌ Sin time travel          └──────────────────────────────┘
-  ❌ Sin gobernanza              ✅ Todo incluido
-```
+
 
 ---
 
@@ -232,35 +222,12 @@ MLflow en Databricks no es un add-on, es el tejido conectivo de la plataforma: e
 
 La relación MLflow open source vs MLflow on Databricks sigue un patrón similar a otros proyectos:
 
+```mermaid
+graph TB
+    OS["MLflow Open Source<br/><br/>Tracking │ Registry │ Projects │ Pipelines<br/><br/>Tú administras:<br/>• Servidor (Docker/K8s)<br/>• Base de datos (PostgreSQL)<br/>• Object storage (S3)<br/>• Autenticación (NGINX + OAuth)<br/>• Orquestación (Airflow, GitHub Actions)"]
+    OS -->|Managed Upgrade| DB["MLflow on Databricks<br/><br/>Tracking │ Registry │ Projects │ Pipelines<br/><br/>+ Unity Catalog (gobernanza)<br/>+ Delta Lake (tiempo y versionado)<br/>+ Feature Store (consistencia train/serve)<br/>+ Workflows (orquestación nativa)<br/>+ Model Serving (serverless inference)<br/>+ Delta Sharing (colaboración cross-workspace)"]
 ```
-┌──────────────────────────────────────────────────┐
-│              MLflow Open Source                   │
-│  ┌──────────────────────────────────────────┐    │
-│  │ Tracking │ Registry │ Projects │ Pipelines│   │
-│  └──────────────────────────────────────────┘    │
-│  Tú administras:                                  │
-│  • Servidor (Docker/K8s)                         │
-│  • Base de datos (PostgreSQL)                    │
-│  • Object storage (S3)                           │
-│  • Autenticación (NGINX + OAuth)                 │
-│  • Orquestación (Airflow, GitHub Actions)        │
-└──────────────────────────────────────────────────┘
-                        │
-                        │ Managed Upgrade
-                        ▼
-┌──────────────────────────────────────────────────┐
-│           MLflow on Databricks                    │
-│  ┌──────────────────────────────────────────┐    │
-│  │ Tracking │ Registry │ Projects │ Pipelines│   │
-│  └──────────────────────────────────────────┘    │
-│  + Unity Catalog (gobernanza)                    │
-│  + Delta Lake (tiempo y versionado)              │
-│  + Feature Store (consistencia train/serve)      │
-│  + Workflows (orquestación nativa)               │
-│  + Model Serving (serverless inference)          │
-│  + Delta Sharing (colaboración cross-workspace)  │
-└──────────────────────────────────────────────────┘
-```
+
 
 ---
 
@@ -282,17 +249,6 @@ La relación MLflow open source vs MLflow on Databricks sigue un patrón similar
 
 ---
 
-## ✅ Verificación de Conocimiento
-
-1. **¿Qué componente de Databricks reemplaza PostgreSQL como backend store de MLflow?** — Unity Catalog (o Hive Metastore en workspaces legacy). Unity Catalog añade RBAC, lineage y descubrimiento.
-
-2. **¿Qué es Delta Lake y por qué es relevante para MLflow?** — Delta Lake es un storage layer ACID sobre Parquet que añade time travel, schema enforcement y gobernanza. Como artifact store de MLflow, permite auditar y versionar modelos con garantías transaccionales.
-
-3. **¿Cómo resuelve Databricks Feature Store el training-serving skew?** — El Feature Store registra las features usadas en training en el run de MLflow. Al hacer deploy del modelo para serving, el endpoint realiza feature lookup automático usando las mismas transformaciones definidas en el Feature Store.
-
-4. **¿Puedo migrar de MLflow open source a Databricks?** — Sí. El código `mlflow.log_metric()` es idéntico. Solo cambia el tracking URI y la infraestructura. Los runs existentes pueden migrarse exportando/importando la base de datos de metadatos.
-
----
 
 ## 🎯 Key Takeaways
 

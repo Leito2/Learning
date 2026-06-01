@@ -476,37 +476,3 @@ fn stream_process_large_file() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-Build a real-time analytics platform using Apache Arrow as the core data format. The system ingests IoT sensor data, stores it in Arrow format for zero-copy analytics, and serves queries with sub-millisecond latency using Arrow Flight for network transfer.
-
-### Functional Requirements
-1. **Ingest 100K+ sensor readings/second** from distributed IoT devices via MQTT
-2. **Store data in Arrow IPC format** with automatic compression (LZ4/ZSTD)
-3. **Enable zero-copy analytics** using Arrow's columnar operations
-4. **Serve queries via Arrow Flight** with SQL-like interface
-5. **Support cross-language access** from Python, Rust, and Java clients
-
-### Main Components
-- **Arrow Ingestion Service**: MQTT consumer writing directly to Arrow IPC files
-- **Columnar Storage Engine**: Memory-mapped Arrow files with dictionary encoding
-- **Query Processor**: Arrow Compute kernels for filtering and aggregation
-- **Flight Server**: gRPC server for zero-copy network transfer
-- **Schema Registry**: Manages Arrow schemas across distributed systems
-- **Compression Manager**: Adaptive compression based on data patterns
-
-### Success Metrics
-- **Ingestion Rate**: > 100,000 records/second sustained
-- **Query Latency**: < 1ms for aggregations on 1M rows
-- **Memory Efficiency**: < 100MB per million sensor readings
-- **Network Transfer**: > 1GB/s via Arrow Flight
-- **Compression Ratio**: > 5:1 for typical IoT sensor data
-
-### References
-- [Apache Arrow Specification](https://arrow.apache.org/docs/format/Columnar.html)
-- [Arrow Flight RPC Framework](https://arrow.apache.org/docs/format/Flight.html)
-- [Arrow Memory Layout Guide](https://arrow.apache.org/docs/cpp/html/md_vector.html)
-- [Zero-Copy Data Sharing in Arrow](https://arrow.apache.org/docs/cpp/html/zerocopy.html)
-- [Dremio Arrow-Based Architecture](https://www.dremio.com/resources/articles/apache-arrow/)

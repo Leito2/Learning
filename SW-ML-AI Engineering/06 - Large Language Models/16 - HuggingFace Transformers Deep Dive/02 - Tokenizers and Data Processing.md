@@ -1,4 +1,4 @@
-# 🏷️ Tokenizers and Data Processing
+# 🤗 Tokenizers and Data Processing
 
 ## 🎯 Learning Objectives
 
@@ -12,374 +12,302 @@
 
 Tokenization is the silent bottleneck of every NLP pipeline. A model cannot consume raw text; it needs fixed-vocabulary integer identifiers. The choice of tokenization algorithm directly impacts vocabulary size, out-of-vocabulary rate, sequence length, and even model bias. While early systems used whitespace or character splitting, modern LLMs rely on subword algorithms that balance vocabulary coverage and sequence efficiency.
 
-This note goes beyond `tokenizer.encode()`. We dissect the Rust-backed `tokenizers` library, compare subword algorithms, and build production data pipelines using the `datasets` library. These skills are prerequisites for efficient training (see [[03 - Trainer, TrainingArguments, and Distributed Training|Trainer note]]) and for understanding why generation behaves differently across model families (see [[04 - Generation, Decoding, and Structured Output|Generation note]]). If you are coming from computer vision, think of tokenization as the analog of image normalization and patch extraction.
+This note goes beyond `tokenizer.encode()`. We dissect the Rust-backed `tokenizers` library, compare subword algorithms mathematically, and build production data pipelines using the `datasets` library. These skills are prerequisites for efficient training (see [[03 - Trainer, TrainingArguments, and Distributed Training|Trainer note]]) and for understanding why generation behaves differently across model families (see [[04 - Generation, Decoding, and Structured Output|Generation note]]). If you are coming from computer vision, think of tokenization as the analog of image normalization and patch extraction.
 
 ---
 
-## Module 1: Tokenization Algorithms and the tokenizers Library
-
-### 1.1 Theoretical Foundation 🧠
+## 1. Subword Tokenization Algorithms
 
 Subword tokenization emerged because pure word-level vocabularies explode in size (English alone has >1M words) while character-level sequences become too long for transformers to model effectively. The core idea is to represent rare words as concatenations of frequent subword units, keeping the vocabulary compact while maintaining semantic granularity.
 
-**Byte-Pair Encoding (BPE)** starts with a character vocabulary and iteratively merges the most frequent adjacent pairs in a training corpus. It was popularized by GPT-2 and is greedy: once a merge rule is learned, it is applied deterministically. **WordPiece** (used by BERT) is similar but selects merges based on maximizing training data likelihood rather than raw frequency. **Unigram Language Model** (used by T5, XLNet) starts with a large seed vocabulary and prunes tokens that least hurt the corpus likelihood, enabling multiple segmentation paths and subword sampling. **Byte-level BPE (BBPE)** operates on UTF-8 bytes rather than Unicode characters, guaranteeing that no input is truly out-of-vocabulary—every string is representable. This is the backbone of GPT-2, RoBERTa, and modern LLaMA models.
+### Byte-Pair Encoding (BPE)
 
-The `tokenizers` library implements these algorithms in Rust with Python bindings, achieving 10-100x speedups over pure Python tokenizers. It handles normalization (NFD, lowercasing), pre-tokenization (splitting on whitespace/punctuation), the core model (BPE/Unigram), and post-processing (adding special tokens like `[CLS]`).
+BPE starts with a character vocabulary and iteratively merges the most frequent adjacent pair in the training corpus. At each iteration, the algorithm finds the pair $(a, b)$ with maximum frequency and adds a new symbol $ab$ to the vocabulary:
 
-A subtle but important distinction exists between the Hugging Face `tokenizers` library and Google's SentencePiece. SentencePiece treats the input as a raw stream of characters and learns subwords directly from that stream, including whitespace as a token. This makes it inherently language-agnostic and reversible. The Hugging Face library, by contrast, separates pre-tokenization (which splits on whitespace) from the subword model. This design is faster and more interpretable for English-centric models but requires careful configuration when handling languages without explicit word boundaries, such as Japanese or Chinese.
+$$\text{merge}^{(t)} = \arg\max_{(x,y) \in \mathcal{P}^{(t)}} \text{freq}(x, y)$$
 
-### 1.2 Mental Model 📐
+where $\mathcal{P}^{(t)}$ is the set of all adjacent symbol pairs at iteration $t$. This greedy process continues until a target vocabulary size is reached. BPE was popularized by GPT-2 and is deterministic at inference time.
 
-```text
-Raw Text: "Tokenization is cool!"
-          │
-          ▼
-┌─────────────────────────────┐
-│    Normalization            │  → lowercase, strip accents, NFD
-│  "tokenization is cool!"    │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│   Pre-tokenization          │  → split on whitespace/punctuation
-│  ["tokenization", "is", "cool", "!"] │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│   Tokenizer Model           │  → BPE/WordPiece/Unigram merges
-│  ["token", "ization", "is", "cool", "!"] │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│   Post-processing           │  → add [CLS], [SEP], pad
-│  [101, 19204, 3989, 2003, ...] │
-└─────────────────────────────┘
-```
+### WordPiece
 
-### 1.3 Syntax and Semantics 📝
+WordPiece (used by BERT) is similar but selects merges based on **likelihood gain** rather than raw frequency:
+
+$$\text{merge}^{(t)} = \arg\max_{(x,y)} \frac{\text{freq}(xy)}{\text{freq}(x)\text{freq}(y)}$$
+
+This ratio measures how much adding the merged token $xy$ increases the corpus likelihood. It tends to produce more linguistically meaningful subwords than pure frequency-based BPE.
+
+### Unigram Language Model
+
+Unigram (used by T5, XLNet) takes the opposite approach: start with a large seed vocabulary and **prune** tokens that least reduce corpus likelihood. The training objective is to find a vocabulary $\mathcal{V}$ that maximizes:
+
+$$\mathcal{L}(\mathcal{V}) = \sum_{s \in \mathcal{D}} \log \sum_{\mathbf{x} \in \mathcal{S}(s)} \prod_{i=1}^{|\mathbf{x}|} P(x_i)$$
+
+where $\mathcal{S}(s)$ is the set of all segmentations of sequence $s$. This probabilistic formulation enables **subword regularization** (randomly sampling different segmentations during training), which improves robustness.
+
+### Byte-Level BPE (BBPE)
+
+BBPE operates on UTF-8 bytes rather than Unicode characters, guaranteeing that **every** input string is representable. This is the backbone of GPT-2, RoBERTa, and LLaMA models. The trade-off is a slightly larger vocabulary (256 byte tokens + merge tokens) and less interpretable subword units, but zero out-of-vocabulary tokens.
+
+### The tokenizers Library
+
+The `tokenizers` library implements these algorithms in Rust with Python bindings, achieving 10-100x speedups over pure Python tokenizers. The processing pipeline has four stages:
 
 ```python
 from transformers import AutoTokenizer
 from tokenizers import Tokenizer, models, pre_tokenizers, decoders, trainers
 
-# WHY: AutoTokenizer selects the correct fast Rust-backed tokenizer.
-# For BERT, this loads a WordPiece model; for GPT-2, a BPE model.
-tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+# Fast Rust-backed tokenizer (always prefer use_fast=True)
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased", use_fast=True)
+print(f"Fast: {tokenizer.is_fast}")  # True
+print(f"Vocab size: {tokenizer.vocab_size}")
 
-# WHY: encode_plus returns input_ids, attention_mask, and token_type_ids
-# in one dict. This is the canonical format for model.forward().
+# Encode a single string
 encoded = tokenizer.encode_plus(
     "HuggingFace is great!",
-    add_special_tokens=True,      # WHY: [CLS] and [SEP] are required for BERT downstream tasks
+    add_special_tokens=True,
     max_length=12,
-    padding="max_length",         # WHY: Ensures fixed-shape tensors for batching
-    truncation=True,              # WHY: Prevents index errors on long sequences
-    return_tensors="pt"           # WHY: Returns PyTorch tensors directly
-)
-print(encoded["input_ids"])       # tensor([[101, 17662, ...]])
-
-# WHY: batch_encode_plus handles multiple sequences and aligns padding.
-batch = tokenizer.batch_encode_plus(
-    ["Short.", "A much longer sentence here."],
-    padding="longest",            # WHY: Pad to the longest sequence in the batch, not a global max
+    padding="max_length",
     truncation=True,
     return_tensors="pt"
 )
+print(encoded["input_ids"])       # tensor([[101, 17662, ..., 102]])
+print(encoded["attention_mask"])  # tensor([[1, 1, ..., 0]])
 
-# WHY: Training a custom BPE tokenizer from scratch.
-# This is essential when working with domain-specific text (e.g., genomic sequences, code).
+# Batch encoding with dynamic padding
+batch = tokenizer.batch_encode_plus(
+    ["Short.", "A much longer sentence here for testing."],
+    padding="longest",
+    truncation=True,
+    return_tensors="pt"
+)
+print(batch["input_ids"].shape)  # (2, 9) — padded to longest in batch
+```
+
+### Training a Custom Tokenizer
+
+Essential for domain-specific text (genomic sequences, source code, legal documents):
+
+```python
+from tokenizers import Tokenizer, models, pre_tokenizers, decoders, trainers
+
 tokenizer_new = Tokenizer(models.BPE())
 tokenizer_new.pre_tokenizer = pre_tokenizers.Whitespace()
-trainer = trainers.BpeTrainer(vocab_size=10000, special_tokens=["<pad>", "<s>", "</s>"])
-files = ["train.txt"]
+
+trainer = trainers.BpeTrainer(
+    vocab_size=10000,
+    special_tokens=["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]"],
+    min_frequency=2
+)
+
+files = ["corpus.txt"]
 tokenizer_new.train(files, trainer)
 tokenizer_new.save("custom_tokenizer.json")
+
+# Load and use
+from tokenizers import Tokenizer
+t = Tokenizer.from_file("custom_tokenizer.json")
+output = t.encode("Hello world")
+print(output.ids)
 ```
 
-### 1.4 Visual Representation 🖼️
+✅ **Antipattern: Ignoring the fast tokenizer**
+```python
+# ❌ Might load slow Python tokenizer depending on model
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
 
-```mermaid
-graph TD
-    A[Raw String] --> B[Normalizer]
-    B --> C[PreTokenizer]
-    C --> D[Model: BPE / WordPiece / Unigram]
-    D --> E[PostProcessor]
-    E --> F[Integer IDs]
-    style D fill:#f9f,stroke:#333,stroke-width:2px
+# ✅ Explicitly request fast Rust-backed version
+tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
 ```
 
-```mermaid
-pie title Subword Algorithm Usage in Popular Models
-    "BPE / BBPE" : 45
-    "WordPiece" : 25
-    "Unigram" : 20
-    "Char/Word" : 10
-```
+> **Caso real: GitHub Copilot** uses a Byte-level BPE tokenizer trained on source code. Because code contains rare identifiers (variable names, library paths, Unicode string literals), BBPE guarantees zero `<unk>` tokens. The Rust tokenizer achieves <10ms per request in high-concurrency serving.
 
-![Byte Pair Encoding Example](https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/BPE_example.svg/400px-BPE_example.svg.png)
+⚠️ **Left-side vs right-side truncation**: BERT truncates from the right by default (`truncation_side="right"`). For tasks where conclusions appear at the end of a document, this silently drops the most important tokens. Set `truncation_side="left"` when the end is critical.
 
-### 1.5 Application in ML/AI Systems 🤖
-
-**Real case: GitHub Copilot** uses a Byte-level BPE tokenizer trained on source code. Because code contains rare identifiers (variable names, library paths), a subword approach is mandatory. BBPE guarantees that even Unicode characters in comments or string literals are never `<unk>`.
-
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Multilingual LLMs | BBPE on UTF-8 bytes | No `<unk>` for low-resource scripts. |
-| Genomic NLP | Custom BPE on DNA bases | Vocabulary of k-mers instead of English words. |
-| Legal document search | WordPiece truncation strategies | Long documents chunked with sliding windows. |
-| Real-time chatbots | Fast Rust tokenizer | <10ms latency per request in high-concurrency serving. |
-
-### 1.6 Common Pitfalls ⚠️
-
-⚠️ **Left-side versus right-side truncation**: BERT truncates from the right by default (`truncation_side="right"`). For tasks where the end of a document contains crucial information (e.g., conclusion sentences), this silently drops the most important tokens.
-
-💡 **Mnemonic**: "**RIGHT** truncation drops the **TAIL**; check if your **HEAD** is all you need."
-
-⚠️ **Mismatched tokenizer and model**: Loading `"gpt2"` weights with a `"bert-base-uncased"` tokenizer produces gibberish because the embedding tables are indexed by incompatible vocabularies. This is a silent logic error, not a runtime exception.
-
-💡 **Tip**: Always verify `tokenizer.vocab_size == model.config.vocab_size` in your initialization smoke tests.
-
-### 1.7 Knowledge Check ❓
-
-1. Why does Byte-level BPE guarantee zero out-of-vocabulary tokens? What is the trade-off?
-2. You have a batch of sequences with lengths `[5, 128, 12, 400]`. Explain the memory and semantic implications of `padding="max_length"` versus `padding="longest"` with `max_length=256`.
-3. Write a snippet that trains a minimal BPE tokenizer on a list of strings without writing to disk.
+💡 **Smoke test**: Always verify `tokenizer.vocab_size == model.config.vocab_size` to catch mismatched tokenizer/model pairs that produce silent gibberish.
 
 ---
 
-## Module 2: Datasets and DataCollators
+## 2. The datasets Library and Arrow Backend
 
-### 2.1 Theoretical Foundation 🧠
+Modern NLP datasets exceed RAM capacity. The `datasets` library, built on Apache Arrow, provides memory-mapped, columnar storage that enables terabyte-scale data processing without exhausting system memory. Arrow's zero-copy semantics mean slicing and batching do not duplicate data.
 
-Modern NLP datasets are too large to fit in RAM as a single Python list. The `datasets` library, built on Apache Arrow, provides a memory-mapped, columnar storage format that allows you to load terabyte-scale corpora without exhausting system memory. Arrow's zero-copy semantics mean that slicing and batching operations do not duplicate data in RAM.
-
-The `Dataset` abstraction is lazy and functional. Operations like `map`, `filter`, and `interleave_datasets` build a transformation graph rather than executing immediately. This enables efficient preprocessing pipelines that run on-the-fly during training. For multi-epoch training, you can materialize the transformed dataset with `save_to_disk` to avoid recomputing expensive tokenization on every epoch.
-
-Streaming datasets (`streaming=True`) take laziness further: rows are fetched from the Hub or local storage only when requested by the dataloader. This is essential for web-scale corpora (e.g., C4, The Pile) that exceed local disk capacity. However, streaming disables random access shuffling, requiring approximate shuffling via sharded buffers.
-
-`DataCollator` objects bridge the gap between variable-length tokenized examples and fixed-shape tensors required by PyTorch. Because sequences differ in length, the collator pads them to the batch maximum (or a preset maximum) and constructs attention masks so the model ignores padding positions during self-attention.
-
-For reproducibility and collaboration, the `datasets` library supports versioning via the Hub and local `save_to_disk` / `load_from_disk` workflows. When you materialize a transformed dataset to disk, Apache Arrow writes a self-contained directory that can be loaded on another machine without re-executing the `map` transforms. This is critical for large teams where preprocessing pipelines are owned by data engineers and training scripts are owned by researchers. The separation of concerns prevents accidental data leakage and ensures that every training run starts from the exact same tokenized inputs.
-
-### 2.2 Mental Model 📐
-
-```text
-Raw Dataset (Arrow-backed)
-          │
-          ▼
-┌─────────────────────────────────────────┐
-│  .map(tokenize, batched=True,           │
-│        num_proc=8)                      │
-│  WHY: Vectorized over batches,          │
-│  parallelized over CPU cores            │
-└─────────────────┬───────────────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────┐
-│  .filter(lambda x: len(x) < 512)        │
-│  WHY: Remove outliers before collation  │
-└─────────────────┬───────────────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────┐
-│  DataLoader + DataCollatorWithPadding   │
-│  WHY: Dynamically pad each batch to     │
-│  its longest sequence for efficiency    │
-└─────────────────────────────────────────┘
-```
-
-### 2.3 Syntax and Semantics 📝
+### Core Operations
 
 ```python
 from datasets import load_dataset, interleave_datasets, concatenate_datasets
-from transformers import DataCollatorWithPadding, DataCollatorForLanguageModeling
-from torch.utils.data import DataLoader
+from transformers import AutoTokenizer
 
-# WHY: load_dataset supports Hub, local files, CSV, JSON, and Python scripts.
-# streaming=True is critical for web-scale data that does not fit on disk.
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+# Load from Hub or local files (CSV, JSON, Parquet)
 dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="train")
-stream = load_dataset("oscar", "unshuffled_deduplicated_en", split="train", streaming=True)
 
-# WHY: map applies a transformation lazily (or eagerly if batched and cached).
-# batched=True is 10x+ faster because the tokenizer processes lists of strings.
+# Streaming for web-scale data (no full download)
+stream = load_dataset(
+    "oscar", "unsharded_deduplicated_en",
+    split="train",
+    streaming=True
+)
+
+# Transform: map applies a function lazily or eagerly
 def tokenize_function(examples):
-    return tokenizer(examples["text"], truncation=True, max_length=512)
+    return tokenizer(
+        examples["text"],
+        truncation=True,
+        max_length=512
+    )
 
 tokenized = dataset.map(
     tokenize_function,
-    batched=True,
-    num_proc=4,               # WHY: Parallelize across 4 CPU cores
-    remove_columns=["text"]   # WHY: Drop raw text to save memory; only keep IDs
+    batched=True,          # 10x+ faster than single examples
+    num_proc=4,            # Parallelize across CPU cores
+    remove_columns=["text"]  # Drop raw text to save memory
 )
 
-# WHY: interleave_datasets balances multiple sources (e.g., code + natural language).
-mixed = interleave_datasets([dataset_a, dataset_b], probabilities=[0.7, 0.3])
+# Filter to remove outliers
+tokenized = tokenized.filter(lambda x: len(x["input_ids"]) > 10)
 
-# WHY: DataCollatorWithPadding pads to the longest sequence IN THE BATCH.
-# This is more efficient than global max_length padding for variable-length data.
-collator = DataCollatorWithPadding(tokenizer=tokenizer)
-loader = DataLoader(tokenized, batch_size=8, collate_fn=collator)
-
-# WHY: DataCollatorForLanguageModeling handles masked language modeling (MLM).
-# It randomly masks tokens and constructs labels for BERT-style training.
-mlm_collator = DataCollatorForLanguageModeling(
-    tokenizer=tokenizer,
-    mlm=True,
-    mlm_probability=0.15      # WHY: BERT paper uses 15% masking
+# Mix multiple data sources
+mixed = interleave_datasets(
+    [dataset_a, dataset_b],
+    probabilities=[0.7, 0.3]
 )
 
-# WHY: Streaming requires iterative consumption; no len() or random access.
-for batch in stream:
-    pass  # Process batch
+# Materialize to disk for reuse across training runs
+tokenized.save_to_disk("./tokenized_wikitext")
+# Later: from datasets import load_from_disk
 ```
 
-### 2.4 Visual Representation 🖼️
+### Streaming Considerations
 
-```mermaid
-flowchart LR
-    subgraph Sources
-        A[Hub Dataset]
-        B[Local CSV]
-        C[JSON Lines]
-    end
-    D[load_dataset] --> E[Arrow Dataset]
-    A --> D
-    B --> D
-    C --> D
-    E --> F[map / filter]
-    F --> G[Cache to Disk?]
-    G -->|Yes| H[save_to_disk]
-    G -->|No| I[DataLoader]
-    H --> I
-    I --> J[DataCollator]
-    J --> K[Fixed-shape Tensors]
+Streaming datasets (`streaming=True`) fetch rows on demand, enabling training on corpora larger than local disk. However, streaming disables random-access shuffling. Instead, `dataset.shuffle()` uses a fixed-size buffer:
+
+```python
+# Approximate shuffle with buffer
+shuffled = stream.shuffle(buffer_size=100_000)
+
+# No len(), no indexing, no repeat()
+for batch in shuffled:
+    pass
 ```
 
-```mermaid
-graph TD
-    A[Sequence 1: len=23] --> D[DataCollator]
-    B[Sequence 2: len=128] --> D
-    C[Sequence 3: len=45] --> D
-    D --> E[Batch Tensor: 3 x 128]
-    D --> F[Attention Mask: 3 x 128]
-    style D fill:#bbf,stroke:#333,stroke-width:2px
+If your data has strong ordering bias (all Wikipedia before all code), a small buffer cannot global-shuffle, which can hurt convergence.
+
+✅ **Antipattern: Memory explosion with map**
+```python
+# ❌ batched=False + no remove_columns = materialize all columns + Python objects
+dataset.map(tokenize_function, batched=False)
+
+# ✅ batched=True + remove_columns = lean Arrow pipeline
+dataset.map(tokenize_function, batched=True, remove_columns=["text"])
 ```
 
-![Apache Arrow Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Apache_Arrow_logo.svg/256px-Apache_Arrow_logo.svg.png)
+> **Caso real: MosaicML** uses `streaming=True` with `interleave_datasets` to compose training mixtures for MPT models. Their data platform streams sharded Arrow files from object storage, applies on-the-fly tokenization, and feeds directly into `Trainer` without ever materializing the full dataset on local NVMe.
 
-### 2.5 Application in ML/AI Systems 🤖
-
-**Real case: MosaicML** uses `streaming=True` with `interleave_datasets` to compose training mixtures for MPT models. Their data platform streams sharded Arrow files from object storage, applies on-the-fly tokenization, and feeds directly into `Trainer` without ever materializing the full dataset on local NVMe.
-
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Trillion-token pretraining | `streaming=True` + `interleave_datasets` | Train on data larger than local disk. |
-| Low-latency fine-tuning | `map(..., num_proc=8)` | Preprocess millions of examples in minutes. |
-| Multi-task instruction tuning | `concatenate_datasets` | Merge NLP, code, and math corpora. |
-| Production inference batching | `DataCollatorWithPadding` | Minimize wasted compute on padded tokens. |
-
-### 2.6 Common Pitfalls ⚠️
-
-⚠️ **Memory explosion with map**: Calling `map` without `remove_columns` or `batched=True` can materialize redundant columns and crash the process. Arrow datasets share memory, but Python objects created inside `map` do not.
-
-💡 **Mnemonic**: "**BATCH** it, **DROP** it, **CACHE** it, **STREAM** it."
-
-⚠️ **Streaming shuffle limitations**: `dataset.shuffle()` on a streaming dataset uses a fixed-size buffer. If your data has strong ordering bias (e.g., all Wikipedia before all code), a small buffer fails to global-shuffle, destroying convergence.
-
-💡 **Tip**: Set a large `buffer_size` (e.g., 100_000) for streaming shuffle, or pre-shuffle shards at the file level.
-
-### 2.7 Knowledge Check ❓
-
-1. Explain why `num_proc` in `dataset.map()` speeds up tokenization but `num_proc` in a PyTorch `DataLoader` is a different concept (worker processes for loading).
-2. You are training on a 2TB corpus. Write the `load_dataset` call and explain why `streaming=True` is necessary and what functionality you lose.
-3. Design a `DataCollatorForSeq2Seq` scenario: given source and target sequences of varying lengths, what two tensors must the collator produce, and why is decoder input shifting required?
+⚠️ **num_proc concurrency**: `dataset.map(num_proc=8)` speeds tokenization via multiprocessing, but PyTorch `DataLoader(num_workers=4)` is a different concern (parallel batch loading). Higher `num_proc` does not always help if the tokenizer is already I/O bound.
 
 ---
 
-## 📦 Compression Code
+## 3. DataCollators and Padding Strategies
+
+`DataCollator` objects bridge variable-length tokenized examples and fixed-shape tensors required by PyTorch. Sequences within a batch differ in length, so the collator pads them to a common size and constructs an attention mask so the model ignores padding positions.
+
+### Padding Efficiency
+
+Given a batch of $N$ sequences with lengths $\ell_1, \ell_2, \dots, \ell_N$, the padding waste for a global max length $L$ is:
+
+$$W_{\text{global}} = \sum_{i=1}^N (L - \ell_i)$$
+
+With dynamic padding to the batch maximum $\hat{\ell} = \max(\ell_1, \dots, \ell_N)$:
+
+$$W_{\text{dynamic}} = \sum_{i=1}^N (\hat{\ell} - \ell_i)$$
+
+Dynamic padding is always at least as efficient as global padding, and typically much more so for variable-length data.
 
 ```python
-"""
-End-to-end data pipeline: load, tokenize, filter, collate, and stream.
-"""
-from datasets import load_dataset, interleave_datasets
-from transformers import AutoTokenizer, DataCollatorWithPadding
+from transformers import (
+    DataCollatorWithPadding,
+    DataCollatorForLanguageModeling,
+    DataCollatorForSeq2Seq
+)
 from torch.utils.data import DataLoader
 
-TOKENIZER_NAME = "bert-base-uncased"
-MAX_LENGTH = 512
-BATCH_SIZE = 16
-
-# 1. Load and mix two sources
-wiki = load_dataset("wikitext", "wikitext-2-raw-v1", split="train")
-book = load_dataset("bookcorpus", split="train")
-mixed = interleave_datasets([wiki, book], probabilities=[0.5, 0.5])
-
-# 2. Tokenize with parallel preprocessing
-tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_NAME)
-def preprocess(batch):
-    return tokenizer(
-        batch["text"],
-        truncation=True,
-        max_length=MAX_LENGTH,
-        padding=False           # WHY: Defer padding to collator for efficiency
-    )
-
-tokenized = mixed.map(
-    preprocess,
-    batched=True,
-    num_proc=4,
-    remove_columns=mixed.column_names
+# Dynamic padding to longest in each batch
+collator = DataCollatorWithPadding(
+    tokenizer=tokenizer,
+    padding=True,
+    return_tensors="pt"
 )
 
-# 3. Filter extremely short sequences
-tokenized = tokenized.filter(lambda x: len(x["input_ids"]) > 10)
+loader = DataLoader(
+    tokenized,
+    batch_size=16,
+    collate_fn=collator,
+    shuffle=True,
+    num_workers=4
+)
 
-# 4. Collate and batch
-collator = DataCollatorWithPadding(tokenizer=tokenizer)
-loader = DataLoader(tokenized, batch_size=BATCH_SIZE, collate_fn=collator)
-
-# 5. Iterate
 for batch in loader:
-    print(batch["input_ids"].shape)
+    # batch["input_ids"].shape = (16, max_len_in_batch)
+    # batch["attention_mask"].shape = (16, max_len_in_batch)
     break
 ```
 
-## 🎯 Documented Project
+### Task-Specific Collators
 
-**Description**: Build a "Data Foundry" CLI that ingests raw text corpora (CSV, JSONL, TXT folders), trains a domain-specific BPE tokenizer, produces an Arrow dataset with configurable filtering, and exports shards ready for `Trainer` or external frameworks.
+```python
+# Masked Language Modeling (BERT-style)
+mlm_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=True,
+    mlm_probability=0.15
+)
 
-**Functional Requirements**:
-- Accept a directory of raw files and a YAML config specifying tokenizer type, vocab size, and normalization rules.
-- Train the tokenizer and save it as `tokenizer.json`.
-- Convert raw files into a `datasets.Dataset`, apply length and quality filters (e.g., deduplication, language detection).
-- Support both eager (`save_to_disk`) and streaming output modes.
-- Emit statistics: token count, sequence length distribution, and filtering rejection rate.
+# Causal Language Modeling (GPT-style)
+clm_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=False
+)
 
-**Main Components**:
-- `TokenizerTrainer`: Wraps `tokenizers` trainers with config-driven normalization.
-- `ArrowConverter`: Maps file types to `load_dataset` calls.
-- `QualityFilter`: Pluggable filters for length, language, and dedup.
-- `ShardExporter`: Writes `dataset` to `00001-of-00010.parquet` shards.
+# Seq2Seq (T5, BART) — requires shifted decoder inputs
+# seq2seq_collator = DataCollatorForSeq2Seq(
+#     tokenizer=tokenizer,
+#     model=model
+# )
+```
 
-**Success Metrics**:
-- Process 100GB of text in < 30 minutes on a 16-core machine.
-- Tokenizer compression ratio (text bytes / token count) within 10% of a reference tokenizer.
-- Zero data loss due to encoding errors (use BBPE or UTF-8 fallback).
+### The Attention Mask
+
+The attention mask is a binary tensor where $M_{ij} = 1$ for real tokens and $M_{ij} = 0$ for padding. Self-attention computes:
+
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + (1 - M) \cdot (-\infty)\right) V$$
+
+Setting attention to $-\infty$ for padding positions ensures they contribute zero to the weighted sum. This is why the mask is mandatory for batched inference with variable-length sequences.
+
+✅ **Antipattern: Manual padding without masks**
+```python
+# ❌ Naive padding breaks self-attention
+# Manually pad to 512 without attention mask
+
+# ✅ DataCollator handles padding and masks automatically
+collator = DataCollatorWithPadding(tokenizer=tokenizer)
+```
+
+⚠️ **remove_unused_columns=True (default)**: If your dataset has extra columns needed in `compute_metrics`, `Trainer` silently drops them. Set `remove_unused_columns=False` for custom evaluation.
+
+💡 **Materialization**: Use `dataset.save_to_disk()` after tokenization to avoid recomputing transforms across training restarts. This eliminates non-determinism and saves time for large teams.
 
 ## 🎯 Key Takeaways
 
-- Subword tokenization (BPE, WordPiece, Unigram, BBPE) is the bridge between infinite text and finite vocabulary.
+- Subword tokenization (BPE, WordPiece, Unigram, BBPE) bridges infinite text and finite vocabulary; BBPE guarantees zero `<unk>` tokens.
 - The `tokenizers` library provides Rust-backed speed; always prefer `AutoTokenizer` with `use_fast=True`.
-- Padding strategies matter: `longest` saves memory per batch, while `max_length` simplifies tensor shapes.
+- Padding strategy matters: `padding="longest"` saves memory per batch, `padding="max_length"` simplifies shape logic.
 - The `datasets` library uses Apache Arrow for memory-efficient, lazy, and parallelizable data processing.
-- `DataCollator` objects dynamically align variable-length sequences into fixed-shape tensors for the model.
+- `DataCollator` objects dynamically align variable-length sequences into fixed-shape tensors with correct attention masks.
 - Streaming datasets enable training on web-scale corpora but sacrifice random access and exact shuffling.
-- `DataCollatorForSeq2Seq` requires special handling because decoder inputs are shifted right by one position relative to labels during teacher forcing.
-- Always verify `tokenizer.is_fast` is `True` in production; the pure Python fallback is orders of magnitude slower and lacks batch alignment guarantees.
-- Materializing preprocessed datasets with `save_to_disk` eliminates non-determinism across training restarts and team members.
+- `DataCollatorForLanguageModeling` handles both MLM and CLM with automatic label construction.
+- Materializing preprocessed datasets with `save_to_disk` eliminates recomputation and non-determinism.
+- Always verify `tokenizer.is_fast` is `True` in production; the Python fallback is orders of magnitude slower.
 
 ## References
 
@@ -389,3 +317,49 @@ for batch in loader:
 - Kudo & Richardson, "SentencePiece: A simple and language independent subword tokenizer and detokenizer", EMNLP 2018.
 - Related Vault: [[01 - The from_pretrained Ecosystem]]
 - Related Vault: [[03 - Trainer, TrainingArguments, and Distributed Training]]
+
+## Código de compresión
+
+```python
+"""
+End-to-end data pipeline: load, tokenize, filter, collate, and iterate.
+"""
+from datasets import load_dataset, interleave_datasets
+from transformers import AutoTokenizer, DataCollatorWithPadding
+from torch.utils.data import DataLoader
+
+TOKENIZER = "bert-base-uncased"
+MAX_LENGTH = 512
+BATCH_SIZE = 16
+
+tokenizer = AutoTokenizer.from_pretrained(TOKENIZER, use_fast=True)
+
+wiki = load_dataset("wikitext", "wikitext-2-raw-v1", split="train")
+book = load_dataset("bookcorpus", split="train")
+mixed = interleave_datasets([wiki, book], probabilities=[0.5, 0.5])
+
+def preprocess(batch):
+    return tokenizer(
+        batch["text"],
+        truncation=True,
+        max_length=MAX_LENGTH,
+        padding=False
+    )
+
+tokenized = mixed.map(
+    preprocess,
+    batched=True,
+    num_proc=4,
+    remove_columns=mixed.column_names
+)
+
+tokenized = tokenized.filter(lambda x: len(x["input_ids"]) > 10)
+
+collator = DataCollatorWithPadding(tokenizer=tokenizer)
+loader = DataLoader(tokenized, batch_size=BATCH_SIZE, collate_fn=collator)
+
+for batch in loader:
+    print(f"Batch shape: {batch['input_ids'].shape}, "
+          f"Mask shape: {batch['attention_mask'].shape}")
+    break
+```

@@ -272,35 +272,4 @@ if __name__ == "__main__":
     print("Input:", x.shape, "Logits:", logits.shape)
 ```
 
----
 
-## 🎯 Proyecto documentado: Clasificación de Enfermedades en Cultivos con Vision Transformer
-
-### Descripción
-Sistema que clasifica imágenes de hojas de cultivos para detectar enfermedades, usando un Vision Transformer fine-tuned en un dataset especializado de agricultura de precisión.
-
-### Requisitos funcionales
-1. Recibir imágenes de hojas tomadas con cámaras de smartphone o drones agrícolas.
-2. Clasificar en 38 categorías de enfermedades + clase sana.
-3. Proporcionar mapas de atención que muestren qué regiones de la hoja justifican el diagnóstico.
-4. Funcionar offline en dispositivos de borde (edge) mediante distilación a un modelo ligero.
-5. Registrar predicciones y confianza para auditoría agronómica.
-
-### Componentes principales
-- **Modelo base**: ViT-Base preentrenado en ImageNet-21k, fine-tuned en PlantVillage.
-- **Distilación**: Teacher ViT-Base → Student DeiT-Tiny para despliegue móvil.
-- **Explicabilidad**: Extracción de attention weights del [CLS] token sobre patches.
-- **Backend**: ONNX Runtime para inferencia optimizada en CPU/edge.
-- **Frontend**: App móvil React Native con cámara integrada.
-
-### Métricas de éxito
-- Accuracy top-1 > 97 % en PlantVillage.
-- Latencia de inferencia < 300 ms en smartphone de gama media (con modelo student).
-- Precisión de attention maps validada por agrónomos (correlación visual > 0.85).
-- Tasa de falsos negativos en enfermedades graves < 2 %.
-
-### Referencias
-- Dosovitskiy, A., et al. "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale." ICLR 2021.
-- Touvron, H., et al. "Training Data-Efficient Image Transformers & Distillation Through Attention." ICML 2021.
-- Liu, Z., et al. "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows." ICCV 2021.
-- Vaswani, A., et al. "Attention Is All You Need." NeurIPS 2017.

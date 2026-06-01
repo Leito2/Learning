@@ -121,38 +121,4 @@ def extract_candidate_terms(text: str, known: set[str]) -> list[tuple[str, int]]
 #     print(f"- {term} ({count})")
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Build a personal "Technical English Companion" — a local web app or Obsidian vault that tracks papers read, vocabulary learned, and speaking practice sessions.
-
-### Functional Requirements
-
-1. Import a paper (PDF or text) and automatically extract candidate vocabulary.
-2. Allow the user to mark terms as "known," "learning," or "mastered."
-3. Schedule daily review sessions using a spaced repetition algorithm.
-4. Log listening practice sessions with podcast/lecture metadata and a 1-paragraph summary.
-5. Export weekly progress reports showing vocabulary growth and papers completed.
-
-### Main Components
-
-- PDF text extraction module (`PyPDF2` or `pdfplumber`)
-- Vocabulary state manager (JSON or SQLite)
-- Spaced repetition scheduler (SM-2 algorithm)
-- CLI or Obsidian plugin frontend
-- Progress reporter (Markdown export)
-
-### Success Metrics
-
-- Extract 20+ candidate terms per paper with >70% relevance
-- Retain 80% of marked "learning" terms after one week of review
-- Complete 5 listening summaries per week
-- Generate a weekly report in under 1 second
-
-### References
-
-- [How to Read a Paper](https://web.stanford.edu/class/cs224n/readings/HowtoReadPaper.pdf) — S. Keshav
-- [English for Academic Study](https://www.amazon.com/English-Academic-Study-Extended-Writing/dp/1782600701) — Colin Campbell
-- [Anki Spaced Repetition](https://apps.ankiweb.net/)
-- Stanford CS229 and CS224N course websites

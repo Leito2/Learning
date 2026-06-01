@@ -305,26 +305,4 @@ accuracy = np.mean(preds == y_test)
 print(f"Accuracy Naive Bayes: {accuracy:.2%}")
 ```
 
----
 
-## 🎯 Proyecto documentado: Bayesian Optimization para Hiperparámetros
-
-### Descripción
-Implementa un sistema de optimización bayesiana para ajustar hiperparámetros de un modelo de ML. En lugar de grid search o random search, usa un modelo probabilístico (Gaussian Process) para modelar la función objetivo y seleccionar inteligentemente los próximos puntos a evaluar.
-
-### Requisitos funcionales
-1. Definir un espacio de búsqueda para hiperparámetros (ej. `learning_rate`, `batch_size`, `dropout`).
-2. Implementar un Gaussian Process surrogate model para aproximar la función de validación.
-3. Usar Expected Improvement (EI) como función de adquisición.
-4. Iterar: entrenar modelo → evaluar → actualizar GP → seleccionar siguiente punto → repetir.
-5. Visualizar la superficie del GP y los puntos evaluados.
-
-### Métricas de éxito
-- Encontrar configuración con accuracy dentro del 5% del óptimo global en < 20 evaluaciones.
-- Visualización de incertidumbre del GP (dónde es seguro explorar vs explotar).
-- Comparar vs random search: Bayesian optimization debe converger más rápido.
-
-### Referencias
-- Gaussian Processes for Machine Learning (Rasmussen & Williams)
-- scikit-optimize library
-- Acquisition functions: EI, PI, UCB

@@ -287,27 +287,4 @@ plt.tight_layout()
 plt.show()
 ```
 
----
 
-## 🎯 Proyecto documentado: Optimizador Newton-Raphson para Regresión Logística
-
-### Descripción
-Implementa un optimizador de segundo orden (Newton-Raphson) para entrenar una regresión logística binaria. En lugar de solo usar el gradiente (dirección), usa la Hessiana (curvatura) para dar pasos más inteligentes.
-
-### Requisitos funcionales
-- Implementar la función sigmoide y su derivada.
-- Calcular el gradiente del log-likelihood negativo.
-- Calcular la Hessiana analítica para regresión logística.
-- Implementar la regla de actualización: `θ_new = θ - H⁻¹ · ∇L`.
-- Comparar convergencia vs gradient descent estándar.
-- Visualizar la frontera de decisión en 2D.
-
-### Métricas de éxito
-- Convergencia en < 10 iteraciones (vs > 1000 para GD).
-- Accuracy > 90% en dataset sintético separable.
-- Visualización del camino de optimización en el espacio de parámetros.
-
-### Referencias
-- Método de Newton en optimización
-- Regresión logística (Statistical Learning)
-- scipy.optimize.minimize con método 'Newton-CG'

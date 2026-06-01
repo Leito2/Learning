@@ -260,26 +260,3 @@ for token in corpus:
 
 ---
 
-## 🎯 Proyecto documentado: Embedding Store con Hash Table y Colisiones Controladas
-
-### Descripción
-Diseña un sistema de almacenamiento de embeddings que use una hash table custom con probing lineal para manejar colisiones de forma determinista. El sistema debe soportar millones de embeddings (cada uno de 768 dimensiones float32) con búsqueda en `O(1)` y una tasa de colisión controlada (< 1%).
-
-### Requisitos funcionales
-1. `EmbeddingStore(capacity)`: inicializa la tabla hash con una capacidad dada.
-2. `insert(key, embedding)`: inserta un embedding asociado a una clave string.
-3. `get(key) → embedding`: recupera el embedding en `O(1)` promedio.
-4. `delete(key)`: elimina la entrada.
-5. `load_factor() → float`: retorna el factor de carga actual.
-6. `resize()`: duplica la capacidad y rehashea cuando load_factor > 0.7.
-7. Soportar persistencia a disco (guardar/cargar la tabla completa).
-
-### Métricas de éxito
-- Búsqueda promedio < 1 microsegundo para 1M embeddings en memoria.
-- Colisiones < 1% con load_factor <= 0.7.
-- Persistencia: guardar/cargar 1M embeddings en < 5 segundos.
-
-### Referencias
-- FAISS (Facebook AI Similarity Search)
-- Annoy (Approximate Nearest Neighbors)
-- Hash tables en Redis y Memcached

@@ -272,34 +272,4 @@ if __name__ == "__main__":
     print("IoU:", iou(preds, target).item())
 ```
 
----
 
-## 🎯 Proyecto documentado: Segmentación de Tejido Tumoral en Histopatología
-
-### Descripción
-Sistema que analiza láminas de histopatología digitalizada (WSI) para segmentar regiones de tejido tumoral, estroma y región normal, asistiendo a patólogos en diagnóstico de cáncer.
-
-### Requisitos funcionales
-1. Procesar parches de $512 \times 512$ píxeles extraídos de WSI a 20x de magnificación.
-2. Segmentar múltiples clases de tejido: tumor, estroma, núcleos, fondo.
-3. Manejar variaciones de tinción (H&E) mediante augmentación o normalización.
-4. Reconstruir la máscara completa del WSI a partir de las predicciones por parche.
-5. Exportar máscaras en formato compatible con visores de patología digital (DICOM/GeoJSON).
-
-### Componentes principales
-- **Backbone**: U-Net con ResNet-34 preentrenado en ImageNet como encoder.
-- **Preprocesamiento**: Normalización Macenko o Reinhard para estandarizar tinción H&E.
-- **Postprocesamiento**: Reconstrucción de mosaico con suavizado de bordes (blending).
-- **Infraestructura**: Pipeline en Dask para procesamiento distribuido de WSI grandes (>100k x 100k píxeles).
-
-### Métricas de éxito
-- mIoU > 0.80 en conjunto de validación de múltiples hospitales.
-- Dice por clase tumor > 0.85.
-- Concordancia inter-observador (patólogo vs modelo) > 0.90 en índice Kappa.
-- Procesamiento de un WSI completo < 5 minutos en GPU.
-
-### Referencias
-- Long, J., Shelhamer, E., & Darrell, T. "Fully Convolutional Networks for Semantic Segmentation." CVPR 2015.
-- Ronneberger, O., Fischer, P., & Brox, T. "U-Net: Convolutional Networks for Biomedical Image Segmentation." MICCAI 2015.
-- Chen, L.-C., et al. "Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation." ECCV 2018.
-- He, K., et al. "Mask R-CNN." ICCV 2017.

@@ -269,28 +269,4 @@ print(f"VAE Loss: {loss_value:.4f}")
 # Si logvar es cercano a 0, KL es grande → regularización fuerte
 ```
 
----
 
-## 🎯 Proyecto documentado: Compresión de Modelos con Quantización
-
-### Descripción
-Diseña un sistema que comprima los pesos de una red neuronal entrenada cuantizándolos a menor precisión (de float32 a int8) y mida la pérdida de información usando teoría de la información. El sistema debe usar clustering (k-means) para encontrar los centroides de quantización y codificar cada peso como el índice de su centroide más cercano.
-
-### Requisitos funcionales
-1. Entrenar una red neuronal simple (ej. MNIST classifier).
-2. Extraer los pesos de todas las capas como vectores.
-3. Aplicar k-means con `k=256` (8-bit) para encontrar centroides.
-4. Reemplazar cada peso por el índice de su centroide (compresión ~4x).
-5. Medir la divergencia KL entre las distribuciones de activaciones de la red original y la cuantizada.
-6. Medir la degradación de accuracy post-cuantización.
-7. Implementar fine-tuning con "straight-through estimator" para recuperar accuracy.
-
-### Métricas de éxito
-- Ratio de compresión ≥ 4x (pesos).
-- Degradación de accuracy < 2% en MNIST.
-- Tiempo de inferencia reducido en CPU (int8 es más rápido).
-
-### Referencias
-- Quantization Aware Training (QAT) de TensorFlow/PyTorch
-- Deep Compression (Han et al., 2016)
-- Straight-Through Estimator (Bengio et al., 2013)

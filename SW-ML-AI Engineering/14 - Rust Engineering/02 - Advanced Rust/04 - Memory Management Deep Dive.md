@@ -171,36 +171,4 @@ fn main() {
 }
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Implement a thread-safe in-memory graph database with nodes that can have multiple parents and children. Nodes must support concurrent reads and exclusive writes, and the system must detect reference cycles to prevent memory leaks.
-
-### Functional Requirements
-
-1. Create nodes with a unique ID and a JSON-like payload.
-2. Link nodes bidirectionally (parent-child) without creating strong reference cycles.
-3. Query a node's immediate children and parent concurrently from multiple threads.
-4. Update a node's payload atomically, blocking concurrent writers but allowing concurrent readers.
-5. Provide a `collect_cycles()` function that detects and breaks unreachable cycles using `Weak` references.
-
-### Main Components
-
-- `node.rs`: `Node` struct using `Arc<RwLock<Payload>>` for data and `Weak<Node>` for parents.
-- `graph.rs`: `Graph` struct managing node allocation and cycle detection.
-- `query.rs`: Read-only traversal algorithms using `RwLockReadGuard`.
-- `mutation.rs`: Write operations with deadlock prevention via lock ordering.
-
-### Success Metrics
-
-- Graph supports 100,000 nodes with random connections without leaking memory (verified via `dhat`).
-- Concurrent read throughput scales linearly up to 8 CPU cores.
-- Write operations never deadlock under randomized contention tests.
-- Cycle detection correctly identifies and breaks 100% of artificial cycles.
-
-### References
-
-- [Rust Standard Library: Smart Pointers](https://doc.rust-lang.org/std/index.html)
-- [Rustonomicon: Ownership and Lifetimes](https://doc.rust-lang.org/nomicon/)
-- [Servo Architecture Documentation](https://github.com/servo/servo/blob/main/docs/components/script.md)

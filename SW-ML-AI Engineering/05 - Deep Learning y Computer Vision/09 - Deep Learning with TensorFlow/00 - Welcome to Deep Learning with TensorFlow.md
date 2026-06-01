@@ -1,73 +1,55 @@
 # 🧠 Deep Learning with TensorFlow
 
-Welcome to the TensorFlow track of the Deep Learning module. This course teaches production-grade deep learning using TensorFlow 2.x, from model architectures to distributed training.
+Welcome to the TensorFlow track. This course teaches production-grade deep learning using TensorFlow 2.x, from model architectures to distributed training and deployment. The focus is on patterns that scale in real ML systems: `tf.data` pipelines, `tf.distribute` for multi-GPU/TPU training, TensorBoard for observability, SavedModel for deployment, and TFLite for edge inference.
 
-## 📚 Course Roadmap
+## 📚 Course Map
 
-| Note | Title | Description |
-|------|-------|-------------|
+| Note | Title | What You'll Master |
+|------|-------|-------------------|
 | `00` | **Welcome** | Course overview and ecosystem map |
-| `01` | **tf.keras Architectures** | Building models with Sequential, Functional, and subclassing APIs |
-| `02` | **tf.data and TFRecord Pipelines** | High-performance input pipelines and serialization |
-| `03` | **Training at Scale** | Distribution strategies, graph mode, and TPU training |
-| `04` | **Model Optimization & Deployment** | Quantization, pruning, TF Serving, and TFLite *(planned)* |
-| `05` | **TensorFlow Extended (TFX)** | End-to-end MLOps pipelines *(planned)* |
-| `06` | **Advanced Topics** | AutoGraph, custom op kernels, and TF-Agents *(planned)* |
+| `01` | **tf.keras Architectures** | Sequential, Functional, Subclassing APIs; custom layers/losses/metrics; `train_step` override |
+| `02` | **tf.data and TFRecord Pipelines** | Dataset construction, performance optimization, TFRecord serialization, graph-augmented pipelines |
+| `03` | **Training at Scale** | `tf.distribute` strategies, `tf.function`/AutoGraph, XLA compilation, distributed checkpointing |
+| `04` | **TensorBoard, Callbacks, and Tuning** | Callback lifecycle, built-in and custom callbacks, TensorBoard profiling, KerasTuner |
+| `05` | **TensorFlow Production Ecosystem** | SavedModel format, TF Serving (REST/gRPC), TFLite, TF.js, TFX overview |
+| `06` | **Capstone — End-to-End CV Pipeline** | Full stack: TFRecord → EfficientNet → MirroredStrategy → Tuning → Serving → Docker Compose |
 
 ## ✅ Prerequisites
 
-- Solid Python (3.8+) and NumPy proficiency
-- Understanding of backpropagation, activation functions, and CNN/RNN basics
-- Familiarity with PyTorch is helpful: see [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida]]
-- Basic Linux/CLI comfort for distributed training sections
+- Solid Python (3.8+) and NumPy
+- Backpropagation, activation functions, CNN/RNN basics
+- Familiarity with PyTorch helps, see [[03 - Deep Learning con PyTorch/00 - Bienvenida]]
+- Basic CLI comfort for distributed training sections
 
-## 🔄 TensorFlow 2 vs TensorFlow 1
+## 🔄 TF 2 vs TF 1
 
-TF 1.x used static graphs and `Session.run()`. TF 2.x adopted **eager execution by default** and elevated Keras to the official high-level API. This eliminated the boilerplate of `tf.placeholder` and manual graph construction, making TF feel more like PyTorch while retaining graph-mode performance via `tf.function`.
+TF 1.x used static graphs and `Session.run()`. TF 2.x adopted **eager execution by default** and elevated Keras to the official high-level API, eliminating `tf.placeholder` and manual graph construction while retaining graph-mode performance via `tf.function`.
 
-## 🗺️ Ecosystem Map
+## 🗺️ Ecosystem
 
-```
-┌─────────────────────────────────────────┐
-│           TensorFlow Ecosystem          │
-├─────────────┬─────────────┬─────────────┤
-│   tf.keras  │   tf.data   │ tf.distribute│
-│  (Models)   │ (Pipelines) │   (Scale)   │
-├─────────────┴─────────────┴─────────────┤
-│      TF Serving  │  TFX  │  TFLite      │
-│    (Deployment)  │(MLOps)│ (Mobile/Edge)│
-└─────────────────────────────────────────┘
-```
-
-- **Keras**: High-level API for rapid prototyping and production models.
-- **tf.data**: Scalable, deterministic input pipelines with prefetching and caching.
-- **tf.distribute**: Train across GPUs, TPUs, and multiple machines with minimal code changes.
-- **TF Serving**: Production-grade REST/gRPC model serving.
-- **TFX**: MLOps orchestration for data validation, transformation, training, and monitoring.
-- **TFLite**: Optimized inference for mobile, embedded, and edge devices.
+- **Keras** — High-level API for rapid prototyping and production models
+- **tf.data** — Scalable, deterministic input pipelines with prefetching/caching
+- **tf.distribute** — Train across GPUs, TPUs, and multiple machines with minimal code changes
+- **TF Serving** — Production-grade REST/gRPC model serving
+- **TFX** — MLOps orchestration: data validation, transformation, training, monitoring
+- **TFLite** — Optimized inference for mobile, embedded, and edge devices
 
 ## 🤔 When to Choose TensorFlow
 
-| Scenario | Recommendation |
-|----------|----------------|
-| Google Cloud / TPU workloads | ✅ TensorFlow has first-class TPU support |
-| Legacy enterprise codebases | ✅ TF 1→2 migration tools exist; many enterprises standardized on TF |
-| Production pipelines requiring SavedModel | ✅ Stable format with TF Serving, TFX, and TFLite |
+| Scenario | Verdict |
+|----------|---------|
+| Google Cloud / TPU workloads | ✅ First-class TPU support |
+| Legacy enterprise codebases | ✅ TF 1→2 migration tools; many enterprises standardized on TF |
+| Production pipelines requiring SavedModel | ✅ Stable format with TF Serving, TFX, TFLite |
 | Research flexibility / HuggingFace | ✅ PyTorch ecosystem is dominant here |
 
-For deployment patterns, see [[09 - MLOps y Produccion]] and [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome]]. For LLM training, see [[06 - Large Language Models]].
+For deployment context see [[09 - MLOps y Produccion]] and [[32 - System Design for ML]]. For LLM training see [[06 - Large Language Models]].
 
-## 🛠️ Environment Setup
+## 🛠️ Environment
 
 ```bash
-# Recommended: use a virtual environment
-python -m venv tf-env
-source tf-env/bin/activate
-
-# Install TensorFlow (GPU variant if CUDA is available)
+python -m venv tf-env && source tf-env/bin/activate
 pip install tensorflow==2.15.0
-
-# Verify installation
 python -c "import tensorflow as tf; print(tf.__version__)"
 ```
 

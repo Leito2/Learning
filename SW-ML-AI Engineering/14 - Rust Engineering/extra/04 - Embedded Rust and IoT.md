@@ -182,39 +182,3 @@ fn format_float(value: f32, buf: &mut [u8]) -> &str {
     core::str::from_utf8(&buf[..s.len()]).unwrap()
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-
-A battery‑powered environmental monitor that logs temperature, humidity, and air quality to an SD card, with Bluetooth Low Energy (BLE) reporting.
-
-### Functional Requirements
-
-1. Read data from I²C sensors (SHT30, SGP30).
-2. Log to SD card every 5 minutes (FAT32 filesystem).
-3. Broadcast data via BLE every 30 seconds.
-4. Deep sleep between measurements to conserve battery.
-5. Configurable thresholds with LED alerts.
-
-### Main Components
-
-- **Sensor Driver**: `embedded‑hal`‑based I²C drivers.
-- **SD Card**: SPI with `embedded‑sdmmc` crate.
-- **BLE**: `embassy`‑BLE stack on nRF52832.
-- **Power Management**: `nrf‑power` driver for deep sleep.
-- **RTC**: Real‑time clock for timestamping.
-
-### Success Metrics
-
-- Battery life > 6 months on CR2032.
-- Data loss < 0.1% after 30‑day test.
-- BLE range > 10 meters line‑of‑sight.
-- Cold start boot time < 2 seconds.
-
-### References
-
-- Embedded Rust book: [[04 - Embedded Rust and IoT|embedded‑hal]]
-- RTIC framework documentation
-- probe‑rs debugging guide
-- STM32F4 reference manual

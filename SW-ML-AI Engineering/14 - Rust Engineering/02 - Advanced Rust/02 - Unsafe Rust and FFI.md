@@ -159,36 +159,4 @@ fn main() {
 }
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Create a safe Rust wrapper around a hypothetical C image processing library. The library exposes functions to load, blur, and save PNG images. Your wrapper must prevent memory leaks, null pointer dereferences, and data races while providing an idiomatic Rust API.
-
-### Functional Requirements
-
-1. Load a PNG from a file path and validate the image dimensions.
-2. Apply a Gaussian blur with a configurable radius (safe clamped to 1-50).
-3. Save the processed image to a new file path, returning an error if the path is invalid.
-4. Ensure that the underlying C `image_t` pointer is always freed, even on panic.
-5. Expose a `#[no_mangle]` C-compatible entry point so the library can also be called from C programs.
-
-### Main Components
-
-- `lib.rs`: Safe `Image` struct with `Drop` implementation for automatic cleanup.
-- `ffi.rs`: `extern "C"` blocks and raw pointer handling.
-- `blur.rs`: Blur algorithm wrapper with parameter validation.
-- `c_api.rs`: Re-export functions for C consumers with panic boundaries.
-
-### Success Metrics
-
-- Valgrind reports zero memory leaks after 1,000 load/blur/save cycles.
-- `cargo miri` passes on all safe Rust code.
-- Fuzz testing with arbitrary file paths and radii never triggers undefined behavior.
-- C consumers can link against the produced shared library without header modifications.
-
-### References
-
-- [The Rustonomicon: Unsafe Rust](https://doc.rust-lang.org/nomicon/)
-- [PyO3 Documentation](https://pyo3.rs/)
-- [FFI Omnibus](https://jakegoulding.com/rust-ffi-omnibus/)

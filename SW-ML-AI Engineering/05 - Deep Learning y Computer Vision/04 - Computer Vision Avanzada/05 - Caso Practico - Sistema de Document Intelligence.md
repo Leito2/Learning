@@ -262,42 +262,4 @@ if __name__ == "__main__":
     print("Sistema de Document Intelligence listo para inferencia.")
 ```
 
----
 
-## 🎯 Proyecto documentado: Sistema de Document Intelligence para Facturación Electrónica
-
-### Descripción
-Sistema enterprise que recibe facturas físicas escaneadas y PDFs no estructurados, los procesa mediante visión por computadora y NLP, y emite un JSON estandarizado compatible con sistemas de contabilidad (SAP, QuickBooks, local).
-
-### Requisitos funcionales
-1. Ingesta masiva vía API, email monitorizado o upload web.
-2. Clasificación automática de documentos en 10+ categorías fiscales.
-3. OCR con CER < 3 % en facturas limpias y < 10 % en escaneos de baja resolución.
-4. Extracción de 15+ campos por factura con F1 > 0.92.
-5. Reconstrucción de tablas de ítems con preservación de filas/columnas.
-6. Validación de identificadores fiscales (RUC, CUIT) mediante algoritmos de checksum locales.
-7. Reconciliación automática: cruce de facturas con órdenes de compra previas.
-8. Dashboard de operador para revisión de extracciones de baja confianza.
-9. Retención de imágenes y resultados por 7 años según normativa fiscal.
-10. SLA de disponibilidad 99.9 % con latencia p95 < 5 segundos por página.
-
-### Componentes principales
-- **Ingesta**: API Gateway (Kong) + buckets S3.
-- **Pipeline ML**: Celery + GPU workers con modelos LayoutLMv3, TrOCR, YOLOv8 para layout.
-- **Base de datos**: PostgreSQL para metadatos, Elasticsearch para búsqueda full-text.
-- **Frontend**: React + PDF.js para visualización y anotación.
-- **Monitoreo**: Prometheus + Grafana para métricas de negocio y técnicas.
-
-### Métricas de éxito
-- **STP (Straight-Through Processing)**: > 85 % de facturas sin intervención humana.
-- **Field-level F1**: > 0.93 en total, fecha, emisor, receptor.
-- **CER promedio**: < 5 % en corpus de validación heterogéneo.
-- **Costo operativo**: reducción del 70 % respecto a entrada manual de datos.
-- **Tiempo de procesamiento end-to-end**: p95 < 4 segundos por página.
-
-### Referencias
-- Xu, Y., et al. "LayoutLM: Pre-training of Text and Layout for Document Image Understanding." KDD 2020.
-- Xu, Y., et al. "LayoutLMv3: Pre-training for Document AI with Unified Text and Image Masking." ACM MM 2022.
-- Kim, G., et al. "OCR-Free Document Understanding Transformer." ECCV 2022 (Donut).
-- Li, M., et al. "TrOCR: Transformer-based Optical Character Recognition with Pre-trained Models." AAAI 2023.
-- Papermill project (AWS): mejores prácticas de pipelines de ML documentales.

@@ -303,26 +303,3 @@ print(f"Subarray: {subarray}")
 
 ---
 
-## 🎯 Proyecto documentado: Alineación de Secuencias para BioNLP
-
-### Descripción
-Implementa el algoritmo Needleman-Wunsch para alineación global de secuencias de ADN/proteínas usando programación dinámica. Extiende el algoritmo básico para soportar: gap penalties afines (abrir gap vs extender gap), matrices de scoring (BLOSUM para proteínas), y traceback para reconstruir la alineación óptima.
-
-### Requisitos funcionales
-1. `needleman_wunsch(seq1, seq2, match, mismatch, gap)`: alineación global básica.
-2. Extensión con gap penalty afín: `gap_open` (penalización alta) y `gap_extend` (penalización baja).
-3. Soporte para matrices de scoring externas (PAM, BLOSUM).
-4. Reconstrucción de la alineación óptima via traceback.
-5. Visualización de la matriz DP con el camino óptimo resaltado.
-6. Cálculo de identidad y similitud entre secuencias alineadas.
-
-### Métricas de éxito
-- Alineación correcta para secuencias de hasta 5000 caracteres en < 2 segundos.
-- Identidad calculada correctamente vs implementaciones de referencia (Biopython).
-- Penalización afín produce gaps más largos y continuos (biológicamente realista).
-
-### Referencias
-- Needleman-Wunsch algorithm
-- Smith-Waterman (alineación local)
-- Biopython `PairwiseAligner`
-- BLOSUM62 matrix

@@ -784,37 +784,3 @@ async fn monitor_pipeline() -> Result<(), Box<dyn std::error::Error + Send + Syn
     Ok(())
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-Build a real-time fraud detection ETL pipeline that processes millions of financial transactions per day, applies machine learning models for anomaly detection, and triggers alerts for suspicious activity. The system uses Rust's async capabilities for high throughput and Polars for vectorized analytics.
-
-### Functional Requirements
-1. **Process 10M+ transactions/day** with sub-second latency per transaction
-2. **Apply real-time ML scoring** using pre-trained XGBoost models
-3. **Detect anomalies** using statistical methods (Z-score, IQR) and ML predictions
-4. **Generate alerts** within 100ms of suspicious transaction detection
-5. **Maintain exactly-once processing** with checkpointing and idempotent writes
-
-### Main Components
-- **Transaction Ingestor**: Kafka consumer with async message processing
-- **Feature Engineer**: Real-time computation of transaction features (velocity, amount patterns)
-- **ML Scorer**: ONNX runtime integration for model inference
-- **Anomaly Detector**: Statistical and ML-based anomaly detection
-- **Alert Generator**: Priority queue for alert management and notification
-- **Checkpoint Manager**: State management for exactly-once processing
-
-### Success Metrics
-- **Throughput**: > 10,000 transactions/second sustained
-- **Latency**: < 100ms P99 from ingestion to alert generation
-- **Accuracy**: > 95% precision, > 90% recall on fraud detection
-- **Availability**: 99.9% uptime with automatic failover
-- **Cost**: < $0.01 per 1000 transactions processed
-
-### References
-- [Tokio Documentation](https://tokio.rs/)
-- [Async Book](https://rust-lang.github.io/async-book/)
-- [DataFusion Query Engine](https://arrow.apache.org/datafusion/)
-- [Polars User Guide](https://pola.rs/polars/py-lazy/polars.html)
-- [Rust ETL Patterns](https://www.shuttle.rs/blog/2023/09/27/rust-etl-pipelines)

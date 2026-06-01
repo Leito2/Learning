@@ -321,27 +321,4 @@ plt.legend()
 plt.title('Optimización en Rosenbrock')
 ```
 
----
 
-## 🎯 Proyecto documentado: Entrenamiento Distribuido con Parallel SGD
-
-### Descripción
-Diseña un sistema de entrenamiento distribuido donde múltiples workers entrenan un modelo en paralelo sobre shards de datos, y un servidor central agrega los gradientes. Implementa y compara tres estrategias de agregación: SGD síncrono (todos esperan), SGD asíncrono (sin esperar), y SGD con gradient compression (quantización de gradientes para reducir tráfico de red).
-
-### Requisitos funcionales
-1. **Data parallelism**: dividir el dataset en `N` shards, asignar uno a cada worker.
-2. **Parameter Server**: servidor central que mantiene los pesos globales.
-3. **Synchronous SGD**: todos los workers computan gradientes, el servidor hace promedio y actualiza.
-4. **Asynchronous SGD**: cada worker envía gradientes cuando termina; el servidor actualiza inmediatamente (posible stale gradients).
-5. **Gradient compression**: cuantizar gradientes a 8-bit antes de enviarlos por la red.
-6. Medir throughput (ejemplos/segundo) y convergencia final para cada estrategia.
-
-### Métricas de éxito
-- Speedup lineal (o cercano) con 2-4 workers en Synchronous SGD.
-- Asynchronous SGD converge más rápido en términos de wall-clock time.
-- Gradient compression reduce tráfico de red en > 4x sin pérdida significativa de accuracy.
-
-### Referencias
-- Hogwild! (asynchronous SGD)
-- Distributed deep learning (TensorFlow, PyTorch DDP)
-- 1-bit SGD y QSGD (gradient compression)

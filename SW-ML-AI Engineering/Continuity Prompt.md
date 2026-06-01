@@ -378,6 +378,8 @@ We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git rep
 
 **Current total: ~603 notes** — all redistributed into logical numbered modules (00-16).
 
+**Format update initiative:** ✅ COMPLETE — All 4 courses with full old-format (X.1-X.7 template) rewritten to Deep Format: 05/09 TF (7 notes), 06/16 HuggingFace (10 notes), 10/32 System Design (6 notes), 10/33 Vector DBs (12 notes). Plus 14 Rust Engineering: 01 Fundamentals (6), 07 Candle (5), 07 Polars (6) full rewrites. Remaining 70+ notes cleaned of minor old elements (Documented Project, Knowledge Check, ASCII art). Only 03 Advanced Python remains as the canonical new-format reference; all other courses ~600+ notes now consistently follow the new format.
+
 ## User Profile (Leandro Cataño Cardeño)
 
 | Field | Detail |
@@ -665,4 +667,5 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 11. **DuckDB:** 4 notes, 1,342 lines (10/34).
 > 12. **IaC REWRITTEN:** 10 notes, 4,478 lines (10/23).
 > 13. **TensorRT-LLM:** 3 notes (06/18)  |  **KServe+Knative:** 3 notes (09/32)  |  **Temporal:** 3 notes (09/33)  |  **Late Chunking:** 1 note (06/13/06).
-> 14. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
+> 14. **Format Update — Full Rewrites:** 05/09 TF (7→2,188 lines), 06/16 HF (10→3,370), 10/32 System Design (6→1,913), 10/33 Vector DBs (12→3,834), 14/01 Rust Fundamentals (6→1,716), 14/07 Candle (5→1,585), 14/07 Polars (6→1,684). **Minor cleanups:** 04 Eng Fund (23 notes), 05/04 CV (6), 09/18 Exp Track (7), 10/25 BD (6), 14 Rust (45 notes), 15 Transversal (3) — removed Documented Project, Knowledge Check, ASCII art.
+> 15. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/

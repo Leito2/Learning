@@ -175,38 +175,4 @@ mod tests {
 }
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Develop a high-performance JSON parser with comprehensive test coverage and performance regression detection. The parser must handle nested objects, arrays, and strings with escape sequences. It should be faster than `serde_json` for a specific subset of JSON (flat objects with numeric values).
-
-### Functional Requirements
-
-1. Parse a JSON string into a tree of owned values (`JsonValue` enum).
-2. Reject malformed JSON with descriptive error messages including line and column numbers.
-3. Support escaping in strings: `\n`, `\t`, `\\`, `\"`, and `\uXXXX`.
-4. Include property-based tests using `proptest` that verify round-trip serialization.
-5. Maintain a Criterion benchmark suite that fails CI if parsing throughput regresses by more than 5%.
-
-### Main Components
-
-- `parser.rs`: Recursive descent parser with error recovery.
-- `value.rs`: `JsonValue` enum and `Display` implementation.
-- `tests/parser_tests.rs`: Integration tests for RFC 8259 compliance.
-- `benches/parse.rs`: Criterion benchmarks against `serde_json` baseline.
-- `.github/workflows/ci.yml`: CI pipeline running tests, coverage, and benchmarks.
-
-### Success Metrics
-
-- 100% line coverage reported by `tarpaulin`.
-- Zero `cargo clippy` warnings.
-- Benchmark throughput exceeds 500 MB/s for flat numeric JSON on a standard laptop.
-- Property-based tests run 10,000 cases without failure.
-- Flamegraph analysis shows >80% of time spent in parsing logic (not allocation).
-
-### References
-
-- [Rust Book: Testing](https://doc.rust-lang.org/book/ch11-00-testing.html)
-- [Criterion.rs Documentation](https://bheisler.github.io/criterion.rs/book/)
-- [cargo-flamegraph](https://github.com/flamegraph-rs/flamegraph)

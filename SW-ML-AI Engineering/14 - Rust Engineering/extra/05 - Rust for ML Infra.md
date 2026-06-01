@@ -159,38 +159,3 @@ async fn main() {
 }
 ```
 
-## 🎯 Documented Project
-
-### Description
-
-Develop a high-performance embedding retrieval microservice in Rust. The service accepts text queries, computes embeddings via a PyO3-wrapped Rust tokenizer, searches a nearest-neighbor index, and returns results with sub-millisecond P99 latency under load.
-
-### Functional Requirements
-
-1. Expose a `POST /search` JSON endpoint accepting a query string and top-K parameter.
-2. Tokenize input using a Rust tokenizer exposed via PyO3 (or pure Rust if using Candle).
-3. Perform approximate nearest-neighbor search against a pre-built HNSW index in memory.
-4. Return ranked results with document IDs and similarity scores within 5 ms P99.
-5. Provide a health endpoint and emit Prometheus metrics for request latency and index size.
-
-### Main Components
-
-- Axum async HTTP server with structured logging (tracing)
-- PyO3 module for tokenizer inference or Candle native model
-- HNSW index (hnsw_rs or instant-distance) for vector search
-- Shared-nothing architecture with read replicas for horizontal scaling
-- Prometheus metrics endpoint for observability integration
-
-### Success Metrics
-
-- P99 latency < 5 ms for top-10 queries on 1M vectors
-- Throughput ≥ 50,000 QPS on a single 16-vCPU instance
-- Memory footprint < 8 GB for 1M 384-dimensional float32 vectors
-- Zero memory leaks over 7-day continuous load test
-
-### References
-
-- [The Rust Programming Language](https://doc.rust-lang.org/book/)
-- [PyO3 User Guide](https://pyo3.rs/)
-- [Candle: ML Framework in Rust](https://github.com/huggingface/candle)
-- [Polars User Guide](https://docs.pola.rs/)

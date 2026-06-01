@@ -174,36 +174,4 @@ async fn main() {
 }
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Build an async HTTP echo server that counts total requests and supports graceful shutdown. The server must handle at least 10,000 concurrent connections without crashing or leaking memory.
-
-### Functional Requirements
-
-1. Accept TCP connections on a configurable port and echo back received data.
-2. Maintain a global atomic request counter visible to all worker tasks.
-3. Implement a `/stats` endpoint that returns the current request count as JSON.
-4. Support graceful shutdown on SIGINT, waiting up to 5 seconds for open connections to close.
-5. Log every connection with a unique task ID and timestamp.
-
-### Main Components
-
-- `main.rs`: Entry point, signal handling, and server lifecycle management.
-- `server.rs`: TCP accept loop and connection dispatch using `tokio::spawn`.
-- `handler.rs`: Per-connection read/write loop with request counting.
-- `state.rs`: Shared `AppState` using `Arc<AtomicU64>` for lock-free counters.
-
-### Success Metrics
-
-- Server handles 10,000 concurrent connections verified via `wrk` or `oha`.
-- Memory usage remains stable under load for 5 minutes (no leaks detected via `valgrind` or `dhat`).
-- Graceful shutdown completes within 5 seconds with zero dropped requests.
-- 100% of code paths covered by unit and integration tests.
-
-### References
-
-- [Tokio Documentation](https://tokio.rs/)
-- [Rust Async Book](https://rust-lang.github.io/async-book/)
-- [Discord Engineering Blog: Rust at Discord](https://discord.com/blog/why-discord-is-switching-from-go-to-rust)

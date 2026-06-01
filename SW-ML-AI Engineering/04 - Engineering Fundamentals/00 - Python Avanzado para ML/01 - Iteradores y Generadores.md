@@ -309,30 +309,4 @@ for batch in pipeline:
 
 ---
 
-## 🎯 Proyecto documentado: Generador de Dataset para LLM Fine-tuning
 
-### Descripción
-Diseña un pipeline de datos que lea documentos de texto desde un directorio, los tokenice con un tokenizer de Hugging Face, y produzca batches de secuencias de longitud fija para entrenar un LLM, todo usando generadores para mantener el uso de RAM constante.
-
-### Requisitos funcionales
-- Leer archivos `.txt` de forma lazy desde un directorio con miles de archivos.
-- Tokenizar cada documento usando `AutoTokenizer`.
-- Concatenar tokens y dividirlos en chunks de longitud fija (ej. 512 tokens).
-- Agrupar chunks en batches con padding y attention masks.
-- Soportar shuffling con un buffer de memoria limitado.
-
-### Componentes principales
-1. `file_iterator(directorio)`: genera rutas de archivos `.txt`.
-2. `tokenize_iterator(file_iterator, tokenizer)`: lee contenido y produce tokens.
-3. `chunk_iterator(token_iterator, block_size=512)`: agrupa tokens en chunks.
-4. `batch_iterator(chunk_iterator, batch_size=8)`: produce batches con padding.
-
-### Métricas de éxito
-- RAM máxima utilizada menor a 500 MB independientemente del tamaño del dataset.
-- Throughput mayor a 1000 secuencias/segundo en CPU.
-- Compatible con `torch.utils.data.IterableDataset`.
-
-### Referencias de implementación
-- PyTorch `IterableDataset`: [docs](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset)
-- Hugging Face `DataCollatorForLanguageModeling`
-- Patrón "streaming dataset" de `datasets` library

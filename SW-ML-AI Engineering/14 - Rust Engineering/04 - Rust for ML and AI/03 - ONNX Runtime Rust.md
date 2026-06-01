@@ -699,64 +699,7 @@ lto = true
 codegen-units = 1
 ```
 
-## 🎯 Documented Project
 
-### Description
-Build a multi-model ONNX Runtime inference server that supports dynamic model loading, GPU acceleration, and production-grade monitoring with Rust.
-
-### Functional Requirements
-1. Support loading multiple ONNX models simultaneously
-2. Provide REST API for model inference with JSON input/output
-3. Implement model caching to avoid reloading frequently used models
-4. Support both CPU and CUDA execution providers
-5. Include dynamic batching for improved throughput
-6. Provide health checks and model status endpoints
-7. Support model optimization and quantization at runtime
-8. Include comprehensive logging and metrics collection
-
-### Main Components
-- **Model Manager**: Handles model registration, loading, and caching
-- **Session Pool**: Manages ONNX Runtime sessions for concurrent inference
-- **Inference Engine**: Core inference logic with error handling
-- **API Server**: Axum-based HTTP server with middleware
-- **Metrics Collector**: Prometheus-compatible metrics export
-- **Model Validator**: Validates inputs/outputs against model metadata
-- **GPU Manager**: Manages CUDA device allocation and memory
-
-### Success Metrics
-- >1000 inferences/second for simple models (ResNet)
-- <50ms P95 latency for batch inference
-- Support 10+ concurrent models in memory
-- 99.9% API uptime with graceful degradation
-- <1GB memory overhead for server + 5 models
-- GPU utilization >80% when using CUDA EP
-
-## ✅ Knowledge Check
-
-1. **Why does ONNX exist as a model format?** What problem does it solve that a PyTorch `.pt` file alone cannot?
-   <details><summary>Answer</summary>
-   ONNX decouples model architecture from the training framework. A `.pt` file is tied to PyTorch's Python runtime. ONNX is a framework-agnostic protobuf serialization of the computational graph that any compliant runtime can execute, enabling inference in C++, Rust, Java, or on specialized hardware without Python.
-   </details>
-
-2. **What is the difference between an Execution Provider and a graph optimization in ONNX Runtime?**
-   <details><summary>Answer</summary>
-   An Execution Provider (EP) is a hardware backend that provides kernel implementations for operators (CPU EP uses MKL-DNN, CUDA EP uses cuDNN, TensorRT EP generates optimized GPU engines). Graph optimizations are structural transformations applied *before* execution (constant folding, layer fusion, dead-code elimination). EPs determine *where* ops run; graph optimizations determine *which* ops run.
-   </details>
-
-3. **Why must dynamic axes be explicitly declared when exporting a PyTorch model to ONNX?**
-   <details><summary>Answer</summary>
-   PyTorch's ONNX exporter uses tracing by default, which records operations on concrete tensor shapes. Without declaring dynamic axes (e.g., `dynamic_axes={'input': {0: 'batch_size'}}`), the traced graph bakes in the exact batch size used during export, making the resulting ONNX model only work with that specific batch size.
-   </details>
-
-4. **A teammate is creating a new `ort::Session` per inference request. Why is this a problem?**
-   <details><summary>Answer</summary>
-   Session creation is expensive — it parses the protobuf file, runs graph optimizations, initializes hardware providers, and allocates memory. Doing this per request adds hundreds of milliseconds of overhead per inference. Sessions should be created once at startup and reused (shared via `Arc<Session>`), with concurrency managed through multiple inference threads.
-   </details>
-
-5. **When would you choose TensorRT EP over CUDA EP, despite TensorRT's limited operator support?**
-   <details><summary>Answer</summary>
-   Choose TensorRT EP when latency is critical and the model uses only well-supported ops (e.g., standard vision models like ResNet, EfficientNet). TensorRT performs kernel auto-tuning, INT8/FP16 precision calibration, and aggressive layer fusion that can deliver 2-5x speedup over CUDA EP. For models with custom or unsupported ops, CUDA EP is the safer fallback.
-   </details>
 
 ## 🎯 Key Takeaways
 

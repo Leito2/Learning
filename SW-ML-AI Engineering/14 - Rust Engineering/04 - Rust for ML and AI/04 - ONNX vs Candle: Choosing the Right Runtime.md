@@ -225,32 +225,7 @@ flowchart TD
 - For ONNX Runtime, always benchmark with `GraphOptimizationLevel::All` and save the optimized model — the first-run optimization cost is amortized across all future session loads.
 - When comparing performance, measure *end-to-end latency* including data transfer (CPU↔GPU memcpy), not just kernel execution time. Candle's zero-copy tensor design can sometimes close the gap with ONNX Runtime in real workloads.
 
-## ✅ Knowledge Check
 
-1. **Why can Candle compile to WebAssembly but ONNX Runtime cannot?**
-   <details><summary>Answer</summary>
-   Candle is pure Rust with no C/C++ dependencies — every tensor operation and GPU kernel is implemented in Rust. It compiles to WASM trivially via `cargo build --target wasm32-unknown-unknown`. ONNX Runtime's core is written in C++ and depends on OS-level primitives (pthreads, GPU drivers, shared memory) that cannot exist inside a WASM sandbox. The C++ → WASM compilation chain (Emscripten) is technically possible but cannot provide GPU access or threading, making it useless for ML inference.
-   </details>
-
-2. **A startup is building a real-time video processing pipeline on NVIDIA A100 GPUs with a 10ms P99 latency SLA. Which runtime should they use and why?**
-   <details><summary>Answer</summary>
-   ONNX Runtime with TensorRT EP. TensorRT performs kernel auto-tuning specific to the A100 architecture, layer fusion, and INT8/FP16 calibration that delivers predictable sub-10ms latency. Candle's CUDA backend uses generic kernels that cannot match TensorRT's hardware-specific optimizations for this demanding SLA.
-   </details>
-
-3. **Your team wants to run a Llama-3B model in the browser for a privacy-first chatbot demo. Can ONNX Runtime help?**
-   <details><summary>Answer</summary>
-   No. ONNX Runtime cannot run in a browser. Use Candle compiled to WASM via `wasm-pack`. The model weights can be loaded from an ArrayBuffer (downloaded or user-provided), and inference runs entirely in the browser with no server round-trips, preserving privacy.
-   </details>
-
-4. **What is the binary size difference between a minimal ONNX Runtime deployment and a minimal Candle deployment?**
-   <details><summary>Answer</summary>
-   A Candle binary (CPU only, one model) is typically 5-50 MB, all statically linked Rust. An ONNX Runtime deployment requires the application binary (~15 MB) plus the `libonnxruntime.so` shared library (100-500 MB depending on included EPs). The total is typically 10-50x larger. For GPU, both need CUDA libraries, but ONNX Runtime additionally needs TensorRT/cuDNN shared libraries.
-   </details>
-
-5. **When would you choose Candle even when you have access to NVIDIA GPUs?**
-   <details><summary>Answer</summary>
-   Choose Candle on GPU when: (1) you're deploying to ephemeral containers where cold-start time matters more than peak throughput; (2) you need a single static binary with no CUDA toolkit installation on the host; (3) you're iterating rapidly and can't afford the C++ build dependency chain; (4) you're using HuggingFace model formats directly and want to avoid the PyTorch → ONNX export step; (5) you need to deploy the same binary to both CPU and GPU environments with runtime device selection.
-   </details>
 
 ## 🎯 Key Takeaways
 

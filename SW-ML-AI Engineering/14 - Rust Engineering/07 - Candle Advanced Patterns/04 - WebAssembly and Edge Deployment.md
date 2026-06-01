@@ -1,227 +1,243 @@
-# 🌐 WebAssembly and Edge Deployment
+# 🦀 4 - WebAssembly and Edge Deployment
 
 ## 🎯 Learning Objectives
-- Understand why WebAssembly (Wasm) is the optimal runtime for ML inference at the edge.
-- Master the `candle-wasm` crate and its browser embedding patterns.
-- Learn how to bridge Rust tensor operations with JavaScript APIs for interactive web apps.
-- Build a mental model for comparing edge inference stacks: Wasm vs. ONNX Runtime Web vs. TensorFlow.js.
-
----
+- Understand why WebAssembly is the optimal runtime for ML inference at the edge.
+- Master the `candle-wasm` crate and its browser embedding patterns via `wasm-bindgen`.
+- Bridge Rust tensor operations with JavaScript APIs for interactive web apps.
+- Build a mental model for comparing edge stacks: Wasm vs. ONNX Runtime Web vs. TensorFlow.js.
 
 ## Introduction
 
-Deploying machine learning models to the browser has historically been a trade-off between performance and portability. TensorFlow.js runs in JavaScript, which means it cannot escape the V8 engine's garbage collection pauses or its lack of SIMD vectorization control. ONNX Runtime Web offers better performance but drags a multi-megabyte WASM blob and requires complex build pipelines. For ML engineers who need sub-second cold starts, deterministic memory usage, and a single toolchain from training to deployment, these options feel like compromises.
+Deploying ML models to the browser has historically been a trade-off between performance and portability. TensorFlow.js runs in JavaScript but cannot escape V8's garbage collection pauses. ONNX Runtime Web offers better performance but drags a multi-megabyte WASM blob. For engineers who need sub-second cold starts, deterministic memory usage, and a single toolchain from training to deployment, these options feel like compromises.
 
-Candle's `candle-wasm` crate takes a different approach. Because Candle is written in Rust, and Rust compiles directly to WebAssembly via `wasm32-unknown-unknown`, the entire inference pipeline—from tensor creation to model forward pass—becomes a portable, sandboxed module. There is no JavaScript glue layer interpreting opcodes; the model *is* a Wasm module. This note explores the architecture, build process, and runtime integration of Candle on the edge. We connect these ideas to [[05 - MLOps y Produccion]] for deployment strategy and to [[04 - Rust for ML and AI]] for foundational Rust-ML patterns.
+Candle's `candle-wasm` crate takes a different approach. Because Candle is written in Rust, and Rust compiles directly to WebAssembly via `wasm32-unknown-unknown`, the entire inference pipeline—from tensor creation to model forward pass—becomes a portable, sandboxed module. There is no JavaScript glue layer interpreting opcodes; the model *is* a Wasm module. This note connects these ideas to [[05 - MLOps y Produccion]] and [[04 - Rust for ML and AI]].
 
 ---
 
-## Module 4: WebAssembly Edge Runtime
+## 1. Why Wasm for ML Inference
 
-### 4.1 Theoretical Foundation 🧠
+### The Edge Deployment Landscape
 
-WebAssembly was originally designed as a safe, portable compilation target for the web. Its core design principles—linear memory, stack-based virtual machine, and module-based sandboxing—make it an ideal runtime for ML inference where predictability matters more than raw throughput. Unlike JavaScript, Wasm modules have a fixed memory layout, no garbage collector, and near-native execution speed once JIT-compiled by the browser.
+WebAssembly was originally designed as a safe, portable compilation target for the web. Its core design principles—linear memory, stack-based virtual machine, module-based sandboxing—make it an ideal runtime for ML inference where predictability matters more than raw throughput. Unlike JavaScript, Wasm modules have a fixed memory layout, no garbage collector, and near-native execution speed once JIT-compiled by the browser.
 
-The challenge for ML on Wasm has always been the lack of a GPU. Browsers do not expose CUDA or Metal directly; the best available acceleration is WebGPU, a cross-platform graphics API that exposes compute shaders. Candle addresses this by providing a CPU-only Wasm backend that is aggressively optimized with SIMD and by keeping model sizes small enough that CPU inference remains interactive. The philosophical trade-off is explicit: Candle on Wasm prioritizes portability and binary size over peak FLOPS. For many edge use cases—text classification, embedding generation, small LLM inference—this is the correct optimization target.
+❌ **TensorFlow.js approach:** Running ops in JavaScript with JIT-compiled kernels. GC pauses spike P99 latency unpredictably.
+✅ **Candle-Wasm approach:** Model is a Wasm module with linear memory, no GC, and deterministic execution.
 
-Why does this matter for production? Because "edge" is not just the browser. It is also the CDN worker (Cloudflare Workers, Fastly Compute@Edge), the IoT device, and the embedded controller. All of these runtimes support Wasm but not Python. A Rust-native framework that compiles to Wasm with a single `cargo build` command collapses the deployment pipeline from three languages (Python training, C++ serving, JavaScript frontend) to one.
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│           Why Wasm for ML: The Latency Stack                │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Traditional Pipeline (3 languages, 3 runtimes):            │
-│                                                             │
-│  Python Model ──► ONNX Export ──► JS Runtime ──► Browser    │
-│      │               │               │                      │
-│      ▼               ▼               ▼                      │
-│  PyTorch/TF      Conversion     TensorFlow.js               │
-│  (Training)      Overhead       (Inference)                 │
-│                                                             │
-│  Candle Pipeline (1 language, 1 runtime):                   │
-│                                                             │
-│  Rust Model ─────────────────────► Wasm Module ──► Browser  │
-│      │                               │                      │
-│      ▼                               ▼                      │
-│  candle-core                     No conversion              │
-│  (Training + Inference)          Zero glue code             │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Traditional["Traditional (3 languages, 3 runtimes)"]
+        A[Python Model] --> B[ONNX Export] --> C[JS Runtime] --> D[Browser]
+    end
+    subgraph CandleWay["Candle (1 language, 1 runtime)"]
+        E[Rust Model] --> F[Wasm Module] --> D
+    end
 ```
 
-### 4.2 Mental Model 📐
+### Comparison of Edge ML Runtimes
 
-The browser runtime for Candle is not a black box. It is a Rust crate (`candle-wasm`) that exposes a minimal API surface to JavaScript through `wasm-bindgen`. Understanding this boundary is critical for debugging performance and memory issues.
+| Feature | Candle-Wasm | TensorFlow.js | ONNX Runtime Web |
+|---------|------------|---------------|------------------|
+| Language | Rust → Wasm | JavaScript | C++ → Wasm |
+| GC pauses | None | Yes (V8) | None |
+| Binary size | ~300 KB + weights | ~2 MB + weights | ~5 MB + weights |
+| GPU access | No (Wasm) | WebGL backend | WebGL backend |
+| Custom ops | Native Rust | JS or TF ops | C++ custom ops |
+| Cold start | < 100 ms | ~500 ms | ~1 s |
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│              Candle-Wasm Browser Architecture               │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │                   Browser Tab                       │   │
-│  │  ┌─────────────┐    ┌───────────────────────────┐  │   │
-│  │  │   JavaScript│    │      Wasm Linear Memory   │  │   │
-│  │  │   Frontend  │◄──►│  ┌─────────────────────┐  │  │   │
-│  │  │  (React,    │    │  │  candle-core ops    │  │  │   │
-│  │  │   Svelte)   │    │  │  (matmul, softmax)  │  │  │   │
-│  │  └──────┬──────┘    │  └─────────────────────┘  │  │   │
-│  │         │           │  ┌─────────────────────┐  │  │   │
-│  │         │ wasm-bindgen│  │  Model Weights      │  │  │   │
-│  │         │  (JS API)   │  │  (f32 arrays)       │  │  │   │
-│  │         ▼           │  └─────────────────────┘  │  │   │
-│  │  ┌─────────────────────────────────────────────┐ │   │
-│  │  │  wasm-bindgen generated JS bindings         │ │   │
-│  │  └─────────────────────────────────────────────┘ │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-│  Key insight: JS and Wasm share ONE linear memory buffer.   │
-│  There is NO serialization cost for tensor data.            │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+Candle-Wasm wins on binary size and cold-start time but currently lacks GPU acceleration. For models under 100M parameters running on modern CPUs, CPU inference is fast enough for interactive applications (50-200 ms per forward pass).
 
-### 4.3 Syntax and Semantics 📝
+**Caso real:** A legal-tech startup needed PII redaction in contracts before sending data to cloud LLMs. They trained a 2M-parameter BERT classifier in Candle, compiled it to a 4.2 MB Wasm module, and ran it entirely in the browser. Tokens classified in under 50 ms per paragraph. Zero data egress, SOC-2 and GDPR compliance without a review cycle.
 
-Building a Candle Wasm project requires three crates working together: `candle-core` with the wasm feature, `candle-nn` for layers, and `wasm-bindgen` for JS interoperability. The `wee_alloc` allocator is often used to reduce binary size.
+### Limitations of Wasm for ML
 
-```rust
-// Cargo.toml dependencies for a Candle Wasm project
-// WHY: candle-core with default-features=false removes CUDA/Metal
-// backends that cannot compile to wasm32-unknown-unknown.
+⚠️ **No GPU access in standard Wasm.** Browsers do not expose CUDA or Metal to Wasm. WebGPU compute shaders are emerging but not yet supported by `candle-wasm`. Always profile on CPU and size models accordingly.
+
+⚠️ **4 GB linear memory limit.** Wasm32 has a hard 4 GB address space. Large models (7B+ parameters) cannot fit. Use INT8 quantization or model distillation before targeting Wasm.
+
+> 💡 **Sizing rule:** "If it does not fit in a smartphone photo (4 MB), it does not fit in Wasm comfortably." Target models under 100M parameters for interactive edge use.
+
+## 2. Building a Candle-Wasm Project
+
+### Project Setup
+
+Three crates working together:
+
+```toml
 [dependencies]
 candle-core = { version = "0.5", default-features = false, features = ["wasm"] }
 candle-nn = { version = "0.5", default-features = false }
 wasm-bindgen = "0.2"
-wee_alloc = "0.4"  // Smaller allocator than std for wasm binaries
+wee_alloc = "0.4"    # Smaller allocator, reduces binary from ~1MB to ~300KB
+```
 
-// lib.rs — a minimal inference module exposed to JavaScript
+`default-features = false` is critical — it disables CUDA and Metal backends that cannot compile to `wasm32-unknown-unknown`.
+
+### Exposing a Model to JavaScript
+
+```rust
 use candle_core::{Device, Tensor, Result};
 use candle_nn::{Linear, Module, VarBuilder};
 use wasm_bindgen::prelude::*;
 
-// WHY: wee_alloc reduces binary size from ~1MB to ~300KB for small models.
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
 pub struct TextClassifier {
-    model: Linear,
+    linear: Linear,
     device: Device,
 }
 
 #[wasm_bindgen]
 impl TextClassifier {
-    // WHY: The constructor receives raw JS Uint8Array bytes for weights.
-    // This avoids base64 encoding overhead and copies data directly
-    // into Wasm linear memory.
     #[wasm_bindgen(constructor)]
     pub fn new(weight_bytes: &[u8], bias_bytes: &[u8]) -> Result<TextClassifier> {
-        // Device::Cpu is the ONLY available device in standard Wasm.
-        // WHY: Browsers do not expose CUDA or Metal to Wasm yet.
-        let device = Device::Cpu;
-        
-        // VarBuilder::from_buffered_safetensors loads weights from memory.
-        // WHY: SafeTensors is a secure, zero-copy format with no arbitrary code execution.
-        let vb = VarBuilder::from_buffered_safetensors(weight_bytes, candle_core::DType::F32, &device)?;
+        let device = Device::Cpu; // Only CPU in standard Wasm
+        let vb = VarBuilder::from_buffered_safetensors(
+            weight_bytes, candle_core::DType::F32, &device
+        )?;
         let weight = vb.get((2, 768), "weight")?;
         let bias = vb.get(2, "bias")?;
-        let model = Linear::new(weight, Some(bias));
-        
-        Ok(TextClassifier { model, device })
+        Ok(TextClassifier { linear: Linear::new(weight, Some(bias)), device })
     }
 
-    // WHY: The input is a flattened Vec<f32> because wasm-bindgen
-    // does not support multidimensional arrays natively.
     #[wasm_bindgen]
     pub fn predict(&self, input: Vec<f32>) -> Result<Vec<f32>> {
-        let input_tensor = Tensor::new(input, &self.device)?.reshape((1, 768))?;
-        let logits = self.model.forward(&input_tensor)?;
-        let probs = candle_nn::ops::softmax(&logits, 1)?;
-        
-        // WHY: to_vec1 converts the tensor back to a JS-compatible Vec<f32>.
-        probs.to_vec1::<f32>()
+        let tensor = Tensor::new(input, &self.device)?.reshape((1, 768))?;
+        let logits = self.linear.forward(&tensor)?;
+        candle_nn::ops::softmax(&logits, 1)?.to_vec1::<f32>()
     }
 }
 ```
 
-### 4.4 Visual Representation 🖼️
+❌ **Anti-pattern:** Passing serialized JSON strings across the JS-Rust boundary. String serialization is slow and memory-intensive.
+✅ **Correct pattern:** Pass raw `Vec<f32>` or `&[u8]` buffers. Wasm linear memory is shared with JS — there is zero copy overhead for typed arrays.
 
-The build pipeline for a Candle Wasm project is a multi-stage process that must be orchestrated carefully. The `wasm-pack` tool automates most of this, but understanding the stages helps debug size and performance issues.
+> 💡 JS and Wasm share **one linear memory buffer**. When you pass a `Float32Array` from JS to Rust, `wasm-bindgen` passes a pointer — no serialization cost.
 
-```mermaid
-flowchart LR
-    subgraph Build["Build Stage (Local)"]
-        A[cargo build --target wasm32-unknown-unknown] --> B[wasm-bindgen CLI]
-        B --> C[wasm-opt -O3]
-        C --> D[.wasm binary + .js glue]
-    end
-    
-    subgraph Runtime["Runtime Stage (Browser)"]
-        E[HTML/JS Loader] --> F[Fetch .wasm]
-        F --> G[Instantiate WebAssembly.Module]
-        G --> H[Allocate Linear Memory]
-        H --> I[Run candle-core ops]
-    end
-    
-    D --> E
+### Build Pipeline
+
+```bash
+cargo build --target wasm32-unknown-unknown --release
+wasm-bindgen target/wasm32-unknown-unknown/release/my_model.wasm --out-dir pkg
+wasm-opt -O3 pkg/my_model_bg.wasm -o pkg/my_model_opt.wasm
 ```
 
-![WebAssembly logo](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/WebAssembly_Logo.svg/240px-WebAssembly_Logo.svg.png)
+`wasm-opt -O3` typically reduces binary size by 30-40%.
 
-The memory layout inside the Wasm linear memory is critical for performance. Candle tensors are contiguous blocks of f32/f16 values, which means they map directly to JavaScript `Float32Array` views without copy.
+### Debugging Wasm Modules
+
+Debugging Candle code running in Wasm requires a different approach than native:
+
+- **Console logging:** Use `web_sys::console::log_1` to print from Rust into the browser console.
+- **Panic messages:** Compile with `debug = true` in `Cargo.toml` profile to get `file!()` and `line!()` in panic traces.
+- **Memory profiling:** Chrome DevTools > Performance > Memory shows Wasm linear memory usage.
+- **Binary size analysis:** `twiggy top -n 20 pkg/my_model_bg.wasm` shows the largest symbols in the binary.
+
+```rust
+// Logging from Wasm Rust code
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+}
+
+// In your model code:
+log(&format!("Input shape: {:?}", input.shape()));
+```
+
+### Binary Size Optimization Strategies
+
+For edge deployment, binary size matters as much as inference speed. Every kilobyte adds to page load time:
+
+- **Use `wee_alloc`:** Replaces the standard allocator with a smaller one (~300 KB vs ~1 MB).
+- **Strip debug symbols:** `wasm-opt -O3` also strips DWARF debug info.
+- **Link-time optimization:** `cargo build --release` with `lto = "fat"` in `Cargo.toml`.
+- **Remove unused features:** `default-features = false` on `candle-core` strips CUDA/Metal code paths.
+- **Gzip/Brotli compression:** Wasm binaries compress extremely well—a 2 MB binary typically gzips to ~600 KB.
+
+A well-optimized Candle-Wasm pipeline for a small classifier (2M parameters, INT8 quantized):
+
+| Artifact | Size |
+|----------|------|
+| `.wasm` binary | 1.8 MB |
+| After `wasm-opt -O3` | 1.1 MB |
+| After gzip | 380 KB |
+| Model weights (INT8) | 2.1 MB |
+| Total over the wire | ~2.5 MB |
+
+## 3. Data Flow: JavaScript ↔ Rust ↔ Candle
 
 ```mermaid
 flowchart TD
-    subgraph Memory["Wasm Linear Memory (32-bit address space)"]
-        A[Stack: ~64 KB] --> B[Heap: Tensor data, model weights]
-        B --> C[Static data: string literals, constants]
+    subgraph JS["JavaScript"]
+        A[Float32Array] -->|zero-copy pointer| B[wasm-bindgen stub]
+        E[Float32Array] <--|zero-copy| B
     end
-    
-    subgraph JSView["JavaScript TypedArray View"]
-        D[Float32Array] --> E[Direct pointer into Heap]
+    subgraph Wasm["Wasm Linear Memory"]
+        B --> C[Rust fn predict]
+        C --> D[candle-core ops]
+        D --> C
     end
-    
-    B -.shared memory.-> D
 ```
 
-![Diagram of memory layout](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Computer_memory_diagram.svg/640px-Computer_memory_diagram.svg.png)
+1. JS creates a `Float32Array` and passes it to the Wasm function.
+2. `wasm-bindgen` passes a raw pointer into Wasm linear memory.
+3. Rust wraps it in a `Tensor` on `Device::Cpu`.
+4. Candle performs operations in-place within that memory.
+5. The result is returned as a `Vec<f32>`, which JS views as a new `Float32Array`.
 
-### 4.5 Application in ML/AI Systems 🤖
+**Caso real:** A CDN worker (Cloudflare Workers) runs a spam classifier as a Wasm module compiled from Candle. The worker receives HTTP POST bodies, extracts text features, runs a linear + embedding model in under 10 ms, and returns a spam score — all in the edge runtime, never reaching an origin server.
 
-Real-world deployment of Candle on Wasm is already happening in privacy-conscious and low-latency domains. The most compelling use case is client-side inference where data must never leave the browser.
+### JavaScript Integration Example
 
-**Real case: Browser-based PII redaction engine.**
-A legal-tech startup needed to redact personally identifiable information (PII) from contracts before sending them to cloud LLMs. They trained a small BERT-style classifier (2M parameters) using Candle in Rust, then compiled it to Wasm. The result: a 4.2 MB Wasm module that runs entirely in the user's browser, classifying tokens as PII or not in under 50ms per paragraph. Because the model never leaves the client, the product satisfies SOC-2 and GDPR requirements without a compliance review cycle.
+On the JavaScript side, the integration is straightforward:
 
-| ML Use Case | Candle-Wasm Pattern | Impact |
-|-------------|---------------------|--------|
-| Browser PII detection | Small transformer compiled to Wasm | Zero data egress, GDPR compliant |
-| Real-time spam filtering | Linear + embedding model in CDN worker | <10ms inference at the edge |
-| Offline medical triage | Tiny LLM (Phi-2) in Wasm + localStorage | Works without internet, HIPAA safe |
-| Embedded IoT dashboard | Wasm runtime on ESP32-class device | Rust safety + ML in 2MB flash |
+```javascript
+// Load the Wasm module
+import init, { WasmClassifier } from './pkg/my_model.js';
 
-### 4.6 Common Pitfalls ⚠️
+async function main() {
+    await init(); // Instantiate the Wasm module
 
-⚠️ **Assuming GPU acceleration in Wasm:** Standard Wasm in browsers has NO CUDA or Metal access. WebGPU compute shaders are emerging but not yet supported by `candle-wasm`. Always profile on CPU and size models accordingly.
+    // Load weights (fetched as raw bytes)
+    const weightResp = await fetch('/weights/linear_weight.bin');
+    const biasResp = await fetch('/weights/linear_bias.bin');
+    const weights = new Float32Array(await weightResp.arrayBuffer());
+    const bias = new Float32Array(await biasResp.arrayBuffer());
 
-⚠️ **Ignoring the 4GB linear memory limit:** Wasm32 has a hard 4GB address space. Large models (7B+ parameters) cannot fit. Use quantization (INT8, INT4) or model distillation before targeting Wasm.
+    // Create classifier — constructor called in Wasm linear memory
+    const classifier = new WasmClassifier(weights, bias);
 
-💡 **Mnemonic for sizing:** "If it does not fit in a smartphone photo (4MB), it does not fit in Wasm comfortably." Target models under 100M parameters for interactive edge use.
+    // Run inference — Float32Array passed by pointer, zero copy
+    const input = new Float32Array([0.1, 0.2, 0.3, 0.4]);
+    const output = classifier.forward(input);
 
-### 4.7 Knowledge Check ❓
+    console.log('Prediction:', output); // Float32Array result
+}
+```
 
-1. Why does `default-features = false` matter when depending on `candle-core` for Wasm? What would happen if you left it enabled?
-2. Describe the data flow when a JavaScript `Float32Array` is passed into a `#[wasm_bindgen]` Rust function. How many memory copies occur?
-3. A 1.5B parameter model in f32 requires ~6GB of memory. Why can this never run in a standard Wasm32 browser runtime, and what are two strategies to reduce its size?
+The key detail: `Float32Array` is **not** serialized. `wasm-bindgen` passes a raw pointer into Wasm linear memory, where Candle wraps it as a `Tensor` with zero data copying.
 
 ---
 
-## 📦 Compression Code
+## 🎯 Key Takeaways
+- Wasm gives **deterministic memory** (no GC) and **near-native speed** for CPU inference.
+- JavaScript and Wasm share linear memory — pass `Vec<f32>` / `Float32Array` for zero-copy tensor data.
+- `default-features = false` on `candle-core` is essential for Wasm compilation.
+- Target models under 100M parameters for interactive edge use.
+
+## References
+- Candle Wasm guide: https://huggingface.github.io/candle/guide-wasm.html
+- `wasm-bindgen` docs: https://rustwasm.github.io/wasm-bindgen/
+- WebGPU status: https://github.com/gpuweb/gpuweb
+- [[05 - MLOps y Produccion]]
+
+## 📦 Código de compresión
 
 ```rust
-// Minimal Candle-Wasm classifier: build with wasm-pack
 use candle_core::{Device, Tensor, Result};
 use candle_nn::{Linear, Module, VarBuilder};
 use wasm_bindgen::prelude::*;
@@ -230,9 +246,7 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-pub struct WasmClassifier {
-    linear: Linear,
-}
+pub struct WasmClassifier { linear: Linear }
 
 #[wasm_bindgen]
 impl WasmClassifier {
@@ -246,44 +260,8 @@ impl WasmClassifier {
 
     #[wasm_bindgen]
     pub fn forward(&self, x: Vec<f32>) -> Result<Vec<f32>> {
-        let dev = Device::Cpu;
-        let input = Tensor::new(x, &dev)?.reshape((1, 4))?;
-        let out = self.linear.forward(&input)?;
-        out.to_vec1::<f32>()
+        let input = Tensor::new(x, &Device::Cpu)?.reshape((1, 4))?;
+        self.linear.forward(&input)?.to_vec1::<f32>()
     }
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-
-Build a browser-based sentiment analysis widget that loads a pre-trained DistilBERT model compiled to Wasm via Candle. The widget runs entirely client-side, accepts user text input, and returns positive/negative sentiment scores without any network requests. This project demonstrates end-to-end Wasm deployment for NLP at the edge.
-
-### Functional Requirements
-
-1. Load a 66M parameter DistilBERT model (quantized to INT8) from a static URL on page load.
-2. Accept free-form text input via a `<textarea>` and tokenize it with a Wasm-exposed tokenizer.
-3. Run inference in under 200ms for 128-token sequences on a mid-range laptop CPU.
-4. Display confidence scores and highlight words with high attention weights.
-5. Gracefully handle model load failures with a fallback to a 2-class logistic regression baseline.
-
-### Main Components
-
-- `bert_wasm.rs`: Rust module defining `BertClassifier` with `#[wasm_bindgen]` exports.
-- `tokenizer.rs`: WordPiece tokenizer implementation in Rust, compiled to the same Wasm module.
-- `index.html`: Vanilla JS loader that fetches the `.wasm` blob, instantiates it, and wires DOM events.
-- `model_server/`: Static file host serving `model.safetensors` (quantized weights, ~25MB).
-
-### Success Metrics
-
-- Wasm binary size under 2MB after `wasm-opt` and gzip.
-- Time-to-first-prediction under 3 seconds on a 4G connection.
-- Inference latency P95 under 150ms for 128-token inputs on an M1 MacBook Air.
-- Zero external API calls during inference (fully offline capable).
-
-### References
-
-- Official docs: https://huggingface.github.io/candle/
-- wasm-bindgen guide: https://rustwasm.github.io/wasm-bindgen/
-- WebGPU compute status: https://github.com/gpuweb/gpuweb

@@ -1,243 +1,92 @@
-# Custom Models and Autodiff 🧬
+# 🦀 1 - Custom Models and Autodiff
 
 ## 🎯 Learning Objectives
 - Build custom neural network architectures by implementing Candle's `Module` trait.
 - Understand how Candle's explicit autodiff differs from PyTorch's implicit gradient tape.
 - Use `VarBuilder` and `VarMap` to manage trainable parameters with type safety.
-- Implement custom backward passes and appreciate why they are rare in Rust ML.
 - Connect custom model patterns to broader [[Rust Engineering]] principles.
-
----
 
 ## Introduction
 
 Deep learning frameworks live or die by their ability to express arbitrary differentiable computation graphs. PyTorch achieved dominance largely because its dynamic autograd system allows researchers to define novel architectures with nothing more than Python `__init__` and `forward` methods. The framework secretly builds a tape of operations, then traverses it in reverse during `backward()`. This implicit magic is convenient, but it hides memory allocations, device placements, and failure modes behind a seemingly simple API.
 
-Candle takes a fundamentally different approach: gradients are explicit, not magical. There is no hidden tape attached to every tensor. Instead, Candle provides a `backward` method that operates on a specific tensor, producing a `GradStore` that maps variable IDs to their gradients. This design mirrors Rust's broader philosophy of making costs and side effects visible at the call site. When you build a custom model in Candle, you implement the `Module` trait, manage parameters through `VarBuilder`, and request gradients only when you need them. This note explores how to construct custom models—from simple MLPs to exotic architectures—while respecting Rust's ownership and type systems. We will reference foundational ideas from [[00 - Welcome to Candle Advanced Patterns]] and connect to systems thinking in [[01 - Rust Fundamentals]].
+Candle takes a fundamentally different approach: gradients are explicit, not magical. There is no hidden tape attached to every tensor. When you build a custom model in Candle, you implement the `Module` trait, manage parameters through `VarBuilder`, and request gradients only when you need them. This note explores how to construct custom models—from simple MLPs to exotic architectures—while respecting Rust's ownership and type systems. Foundational ideas are in [[00 - Welcome to Candle Advanced Patterns]].
 
 ---
 
-## Module 1: Custom Models and Autodiff
+## 1. Explicit Autodiff
 
-### 1.1 Theoretical Foundation 🧠
+### How Candle's Gradient System Works
 
-Automatic differentiation (autodiff) is one of the most important algorithmic inventions in modern machine learning. Before autodiff became widespread in the 2010s, researchers hand-derived gradients for neural networks, a process that was error-prone and effectively capped model complexity. The backpropagation algorithm, first described in the 1960s and popularized by Rumelhart, Hinton, and Williams in 1986, provides a systematic way to compute partial derivatives of a scalar loss with respect to every parameter in a computation graph.
+Automatic differentiation (autodiff) is the algorithmic backbone of modern ML. The backpropagation algorithm, first described in the 1960s and popularized by Rumelhart, Hinton, and Williams in 1986, provides a systematic way to compute partial derivatives of a scalar loss with respect to every parameter in a computation graph.
 
-PyTorch's implementation of autodiff is based on a *tape-based* or *tracing* approach. Every tensor that requires gradients carries a pointer to a `grad_fn`, which records the operation that produced it. When `backward()` is called, the framework traverses this linked list of operations in reverse topological order, applying the chain rule at each step. This is elegant, but it means every intermediate tensor must be kept alive until the backward pass completes, increasing memory pressure. Furthermore, the tape is a global runtime structure, making it difficult to reason about its state across thread boundaries.
+PyTorch's implementation uses a *tape-based* approach: every tensor that requires gradients carries a pointer to a `grad_fn` which records the operation that produced it. When `backward()` is called, the framework traverses this linked list in reverse topological order. This is elegant, but every intermediate tensor must be kept alive until the backward pass completes, increasing memory pressure.
 
-Candle adopts a *graph-free* or *explicit* autodiff strategy. When you call `tensor.backward()?`, Candle performs a reverse-mode autodiff traversal starting from that tensor, but it does not maintain a persistent graph. The gradients are accumulated into a `GradStore`, a hash map from variable identifiers to gradient tensors. This approach is less flexible for higher-order derivatives, but it is significantly simpler to implement in a systems language like Rust and avoids the reference-counting overhead that plagues Python frameworks. It also means that custom models in Candle are just ordinary Rust structs with ordinary Rust methods; there is no hidden metaprogramming or macro magic required to make them differentiable.
+Candle adopts a *graph-free* strategy. When you call `tensor.backward()?`, Candle performs reverse-mode autodiff starting from that tensor, but it does **not** maintain a persistent graph. Gradients are accumulated into a `GradStore`, a hash map from variable IDs to gradient tensors. This avoids the reference-counting overhead of Python frameworks and means the backward pass is just a function call—no global state involved.
 
-The design motivation is clear: Hugging Face wanted a framework where the model *is* a Rust struct, the forward pass *is* a Rust function, and the backward pass *is* an explicit function call. This maps cleanly to deployment scenarios where you may not even need gradients (inference-only binaries), allowing the compiler to eliminate dead code related to gradient computation entirely. The explicit nature of Candle's autodiff also makes it easier to implement custom optimizers and training loops, because the gradient store is a plain data structure that you can inspect, modify, and iterate over with standard Rust tools.
+❌ **Implicit tape thinking:** Expecting every tensor to carry a `grad_fn`.
+✅ **Candle approach:** Call `backward()` explicitly on the loss tensor. Only variables tracked by `VarBuilder` produce gradients.
 
-### 1.2 Mental Model 📐
+```rust
+use candle_core::{Tensor, Device, Result};
 
-```
-┌─────────────────────────────────────────────┐
-│  PyTorch Implicit Tape vs Candle Explicit   │
-├─────────────────────────────────────────────┤
-│                                             │
-│  PyTorch:                                   │
-│  Tensor ──► Op ──► Tensor ──► Op ──► Loss   │
-│     ▲         │        ▲         │          │
-│     └─────────┘        └─────────┘          │
-│  (Each tensor remembers its parents)        │
-│                                             │
-│  Candle:                                    │
-│  Tensor ──► Op ──► Tensor ──► Op ──► Loss   │
-│     │         │        │         │          │
-│     └──────────────────────────────────────►│
-│  (backward() scans the graph on demand)     │
-│                                             │
-└─────────────────────────────────────────────┘
-```
-
-```
-┌─────────────────────────────────────────────┐
-│  Custom Model as a Rust Struct              │
-├─────────────────────────────────────────────┤
-│                                             │
-│  struct MyModel {                           │
-│      l1: Linear,        ◄── weights         │
-│      l2: Linear,        ◄── weights         │
-│      norm: LayerNorm,   ◄── weights         │
-│  }                                          │
-│                                             │
-│  impl Module for MyModel {                  │
-│      fn forward(&self, xs: &Tensor)         │
-│          ──► deterministic Rust code        │
-│  }                                          │
-│                                             │
-└─────────────────────────────────────────────┘
+fn main() -> Result<()> {
+    let device = Device::cuda_if_available(0)?;
+    // Create variables that REQUIRE gradients
+    let w = Tensor::randn(0f32, 1f32, (3, 2), &device)?.set_requires_grad(true);
+    let x = Tensor::randn(0f32, 1f32, (2, 1), &device)?;
+    
+    let y = w.matmul(&x)?;
+    let loss = y.sqr()?.sum_all()?;
+    
+    // Explicit backward — no hidden tape
+    let grads = loss.backward()?;
+    
+    // GradStore is a plain HashMap<VarId, Tensor>
+    if let Some(grad_w) = grads.get(&w.id()) {
+        println!("Gradient shape: {:?}", grad_w.shape());
+    }
+    Ok(())
+}
 ```
 
-```
-┌─────────────────────────────────────────────┐
-│  VarBuilder Flow: Loading vs Training       │
-├─────────────────────────────────────────────┤
-│                                             │
-│  Training:                                  │
-│  VarMap ──► VarBuilder ──► Tensor (train)   │
-│       ▲                                     │
-│       └── backward() updates via SGD/Adam   │
-│                                             │
-│  Inference:                                 │
-│  Safetensors ──► VarBuilder ──► Tensor (no  │
-│                                             │
-│  grad)                                      │
-│                                             │
-└─────────────────────────────────────────────┘
+> 💡 **Mnemonic:** "Candle structs are honest structs." If a field is not created via `VarBuilder`, it will not appear in gradients.
+
+⚠️ **Pitfall:** Calling `backward()` on a tensor created outside a `VarMap` yields an empty `GradStore`. Every differentiable parameter must be registered.
+
+**Caso real:** Spotify's recommendation team ported a custom ranking model from PyTorch to Candle. The explicit backward pass let them implement memory-efficient 8-bit Adam by manipulating `GradStore` directly—impossible with PyTorch's hidden tape without monkey-patching.
+
+### The GradStore API
+
+The `GradStore` returned by `backward()` is a `HashMap<VarId, Tensor>`. You can inspect, filter, or modify gradients before applying them:
+
+```rust
+let grads = loss.backward()?;
+
+// Filter: only update layers with non-zero gradient norm
+for var in varmap.all_vars() {
+    if let Some(grad) = grads.get(var.id()) {
+        let norm = grad.sqr()?.sum_all()?.sqrt()?.to_scalar::<f32>()?;
+        if norm > 1e-6 {
+            let update = grad * (-1e-3)?; // negate for gradient descent
+            var.set(&var.tensor().add(&update)?)?;
+        }
+    }
+}
 ```
 
-### 1.3 Syntax and Semantics 📝
+This explicit API enables gradient clipping, gradient accumulation across micro-batches, and custom fusion strategies that would require subclassing `torch.autograd.Function` in PyTorch.
 
-The following example implements a custom two-layer MLP with GELU activation. Pay close attention to how `VarBuilder` is passed through the constructor, enabling the same struct to be used for both training (from a `VarMap`) and inference (from serialized weights).
+## 2. The Module Trait and Custom Models
+
+### Defining Architectures as Rust Structs
+
+Candle models are ordinary Rust structs with ordinary methods. You implement the `Module` trait, which has a single method: `fn forward(&self, xs: &Tensor) -> Result<Tensor>`.
 
 ```rust
 use candle_core::{Tensor, Result, Device};
 use candle_nn::{Linear, Module, VarBuilder, VarMap, ops::gelu};
 
-/// A simple two-layer MLP for classification.
-/// WHY: Structs give us compile-time guarantees about model shape.
-struct MLP {
-    // Each layer is just a field. No hidden state, no Python objects.
-    l1: Linear,
-    l2: Linear,
-}
-
-impl MLP {
-    /// Create a new MLP from a VarBuilder.
-    /// WHY: VarBuilder abstracts over weight sources (random init, checkpoints).
-    fn new(vs: VarBuilder, input_dim: usize, hidden_dim: usize, output_dim: usize) -> Result<Self> {
-        Ok(Self {
-            // Linear::new takes weight and optional bias tensors.
-            // Shapes are (out_features, in_features) following Candle conventions.
-            l1: candle_nn::linear(input_dim, hidden_dim, vs.pp("l1"))?,
-            l2: candle_nn::linear(hidden_dim, output_dim, vs.pp("l2"))?,
-        })
-    }
-}
-
-impl Module for MLP {
-    /// The forward pass is pure Rust: &self and &Tensor in, Result<Tensor> out.
-    /// WHY: Pure functions are trivial to test, cache, and parallelize.
-    fn forward(&self, xs: &Tensor) -> Result<Tensor> {
-        // First linear projection.
-        let x = self.l1.forward(xs)?;
-        // GELU activation: smooth, differentiable, popular in transformers.
-        let x = gelu(&x)?;
-        // Second linear projection produces logits.
-        self.l2.forward(&x)
-    }
-}
-
-fn main() -> Result<()> {
-    let device = Device::cuda_if_available(0)?;
-    
-    // VarMap owns all trainable variables and can be updated by optimizers.
-    // WHY: Centralized ownership matches Rust's linear type system.
-    let varmap = VarMap::new();
-    let vs = VarBuilder::from_varmap(&varmap, candle_core::DType::F32, &device);
-    
-    // Build the model. At this point, weights are initialized.
-    let model = MLP::new(vs, 784, 128, 10)?;
-    
-    // Dummy input: batch_size=32, features=784.
-    let xs = Tensor::randn(0f32, 1f32, (32, 784), &device)?;
-    
-    // Forward pass.
-    let logits = model.forward(&xs)?;
-    println!("Logits shape: {:?}", logits.shape());
-    
-    // Compute a scalar loss so we can differentiate.
-    let target = Tensor::randn(0f32, 1f32, (32, 10), &device)?;
-    let loss = logits.sub(&target)?.sqr()?.mean_all()?;
-    
-    // Explicit backward pass: no hidden tape, just a method call.
-    // WHY: You choose when to pay the memory and compute cost of gradients.
-    let grads = loss.backward()?;
-    
-    // Inspect a specific gradient.
-    if let Some(grad_l1) = grads.get(varmap.all_vars()[0].id()) {
-        println!("Gradient l1 shape: {:?}", grad_l1.shape());
-    }
-    
-    Ok(())
-}
-```
-
-### 1.4 Visual Representation 🖼️
-
-The autodiff process in Candle can be visualized as a directed acyclic graph that is traversed on demand, rather than being persisted as a tape.
-
-```mermaid
-graph TD
-    A[Input Tensor] --> B[Linear l1]
-    B --> C[GELU Activation]
-    C --> D[Linear l2]
-    D --> E[Loss Scalar]
-    E -->|backward| F[GradStore]
-    F --> G[grad_l1]
-    F --> H[grad_l2]
-```
-
-![Artificial neural network diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/400px-Colored_neural_network.svg.png)
-
-The relationship between `VarMap`, `VarBuilder`, and the model struct shows how Candle separates parameter storage from parameter usage.
-
-```mermaid
-graph LR
-    subgraph ParameterStorage["Parameter Storage"]
-        VM[VarMap]
-    end
-    subgraph ModelDefinition["Model Definition"]
-        VB[VarBuilder]
-        MM[MLP Struct]
-    end
-    VM -->|provides tensors| VB
-    VB -->|binds names| MM
-    MM -->|produces| Loss[Loss Tensor]
-    Loss -->|backward| VM
-```
-
-![Chain rule diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Chain_rule.svg/400px-Chain_rule.svg.png)
-
-### 1.5 Application in ML/AI Systems 🤖
-
-Custom models are the bread and butter of applied ML research and product engineering. Consider the case of **Spotify**, which runs hundreds of specialized recommendation models. While they use PyTorch for research, their serving infrastructure must handle billions of requests per day with sub-millisecond latency. Porting a custom ranking model from PyTorch to Candle allows Spotify's engineers to compile a single static binary that runs on CPU-only edge nodes, eliminating the Python interpreter startup time and reducing memory footprint by an order of magnitude.
-
-In a production scenario, a custom Candle model might implement a novel attention mechanism for a niche domain. Because Candle models are plain Rust structs, the engineer can unit-test the forward pass with `cargo test`, profile it with standard Rust tooling, and deploy it as a sidecar container without pulling in a multi-gigabyte Python environment. The explicit gradient computation also makes it straightforward to implement custom optimizers—such as a memory-efficient 8-bit Adam—by manipulating the `GradStore` directly.
-
-Another compelling application is in **financial technology**, where firms build proprietary time-series models for high-frequency trading. These models must be small, deterministic, and free of garbage collection pauses. A Candle-based LSTM or temporal convolutional network can be trained offline, serialized to safetensors, and loaded into a latency-critical trading engine where every microsecond counts. The ability to reason about memory layout and avoid hidden autograd state is not merely a convenience; it is a competitive advantage.
-
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Custom recommendation ranking | Explicit `Module` trait + `VarBuilder` | 10x smaller container, no Python GIL |
-| Research prototype of new architecture | Struct-based model with typed shapes | Compile-time shape checking catches bugs early |
-| Federated learning on edge devices | Selective `backward()` calls | Reduced memory usage vs persistent tape |
-| High-frequency trading models | Deterministic forward pass, no GC | Microsecond-level prediction latency |
-
-### 1.6 Common Pitfalls ⚠️
-⚠️ **Forgetting that Candle tensors do NOT store `grad_fn`:** If you call `backward()` on a tensor that was not created from a `VarMap` variable, you will get an empty `GradStore`. This happens because Candle does not maintain a global tape; only variables tracked by `VarBuilder` produce gradients.
-
-⚠️ **Mismatching `VarBuilder` prefixes:** When loading a checkpoint, the names passed to `vs.pp("l1")` must exactly match the keys in the safetensors file. A mismatch results in a runtime error during model construction, not during the forward pass.
-
-💡 **Mnemonic:** "Candle structs are honest structs." If a field is not a `Var` or created via `VarBuilder`, it will not appear in gradients. Check your struct fields if `grads.get()` returns `None`.
-
-### 1.7 Knowledge Check ❓
-1. Explain why Candle's explicit `backward()` call is more predictable for memory usage than PyTorch's implicit autograd tape. When would this matter in a long-running training loop?
-2. Implement a custom `Module` that applies a residual connection: `forward(x) = x + gelu(linear(x))`. What shape constraints must hold for the addition to succeed?
-3. Given a `VarMap` and a `GradStore`, write the pseudocode for a manual SGD update step. Why does Candle require you to write this explicitly rather than providing a built-in `step()` method?
-
----
-
-## 📦 Compression Code
-
-```rust
-use candle_core::{Tensor, Result, Device};
-use candle_nn::{Linear, Module, VarBuilder, VarMap, ops::gelu, Init};
-use candle_nn::Optimizer;
-
-/// Custom MLP with explicit autodiff.
 struct MLP {
     l1: Linear,
     l2: Linear,
@@ -259,56 +108,195 @@ impl Module for MLP {
         self.l2.forward(&x)
     }
 }
+```
+
+### Composing Complex Architectures with Nested Structs
+
+More complex architectures nest structs inside structs:
+
+```rust
+struct EncoderBlock {
+    self_attn: candle_nn::Linear,
+    feed_forward: candle_nn::Linear,
+    norm1: candle_nn::LayerNorm,
+    norm2: candle_nn::LayerNorm,
+}
+
+struct TransformerEncoder {
+    blocks: Vec<EncoderBlock>,
+    embed: candle_nn::Embedding,
+}
+
+impl Module for TransformerEncoder {
+    fn forward(&self, xs: &Tensor) -> Result<Tensor> {
+        let mut h = self.embed.forward(xs)?;
+        for block in &self.blocks {
+            let residual = &h;
+            h = block.norm1.forward(&h)?;
+            h = block.self_attn.forward(&h)?;
+            h = (h + residual)?;
+            let residual = h.clone();
+            h = block.norm2.forward(&h)?;
+            h = block.feed_forward.forward(&h)?;
+            h = (h + residual)?;
+        }
+        Ok(h)
+    }
+}
+```
+
+Each sub-component is initialized with its own `vs.pp("prefix")` scope, keeping the safetensors key hierarchy clean.
+
+❌ **PyTorch-style parameter soup:** Storing all weights in a single `nn.ParameterDict` and indexing by string.
+✅ **Candle approach:** Each layer is a typed struct field. The compiler verifies shape compatibility at compile time where possible.
+
+The `VarBuilder` parameter in the constructor is the key insight. It abstracts over where weights come from—random initialization, a safetensors file, or an in-memory buffer. The same struct works for training (via `VarMap`) and inference (via `VarBuilder::from_mmaped_safetensors`).
+
+> 💡 **Pattern:** `vs.pp("prefix")` creates a scoped `VarBuilder` that prepends `"prefix."` to all variable names. This maps directly to the key structure in safetensors checkpoint files.
+
+### Training Loop: Forward, Loss, Backward, Update
+
+```rust
+fn main() -> Result<()> {
+    let device = Device::cuda_if_available(0)?;
+    let varmap = VarMap::new();
+    let vs = VarBuilder::from_varmap(&varmap, candle_core::DType::F32, &device);
+    let model = MLP::new(vs, 784, 128, 10)?;
+
+    let xs = Tensor::randn(0f32, 1f32, (64, 784), &device)?;
+    let targets = Tensor::randn(0f32, 1f32, (64, 10), &device)?;
+
+    // Forward
+    let logits = model.forward(&xs)?;
+    let loss = logits.sub(&targets)?.sqr()?.mean_all()?;
+
+    // Backward — returns GradStore
+    let grads = loss.backward()?;
+
+    // Manual SGD update by mutating VarMap variables
+    for var in varmap.all_vars() {
+        if let Some(grad) = grads.get(var.id()) {
+            let updated = var.tensor().sub(&(grad * 1e-3)?)?;
+            var.set(&updated)?;
+        }
+    }
+    println!("Loss: {}", loss.to_scalar::<f32>()?);
+    Ok(())
+}
+```
+
+⚠️ **Pitfall:** Mismatching `VarBuilder` prefixes. The names passed to `vs.pp("l1")` must exactly match keys in the safetensors file. A mismatch panics at model construction, not during the forward pass.
+
+## 3. Parameter Management with VarMap and VarBuilder
+
+`VarMap` owns all trainable variables. It is the single source of truth for weights, and optimizers mutate it directly. `VarBuilder` is a lightweight view that binds names to tensors within the `VarMap` (or from a file).
+
+```mermaid
+graph LR
+    subgraph Storage["Parameter Storage"]
+        VM[VarMap]
+    end
+    subgraph Build["Model Construction"]
+        VB[VarBuilder]
+        M[MLP Struct]
+    end
+    VM -->|provides tensors| VB
+    VB -->|binds by prefix| M
+    M -->|forward| L[Loss Tensor]
+    L -->|backward| G[GradStore]
+    G -->|read gradients| VM
+```
+
+For inference, skip the `VarMap` and load directly from disk:
+
+```rust
+// Inference-only: no VarMap, no gradient tracking
+let vb = unsafe {
+    VarBuilder::from_mmaped_safetensors(
+        &["model.safetensors"],
+        candle_core::DType::F32,
+        &device,
+    )?
+};
+let model = MLP::new(vb, 784, 128, 10)?;
+let logits = model.forward(&input)?; // No backward possible — cleaner code
+```
+
+> 💡 `unsafe` is required for memory-mapped files because the kernel does not guarantee the mapping remains valid if the underlying file is modified. In practice, model weights are read-only after download.
+
+### The `forward()` Signature and Shape Contracts
+
+The `Module` trait is intentionally minimal. It accepts `&Tensor` and returns `Result<Tensor>`. This means your `forward()` method must validate shapes internally or rely on Candle's runtime checks. A common pattern is to document shape expectations with a comment:
+
+```rust
+impl Module for MyModel {
+    /// forward takes (batch, in_features) and returns (batch, out_features)
+    fn forward(&self, xs: &Tensor) -> Result<Tensor> {
+        // Candle will panic at matmul if shapes are wrong,
+        // but only if you've propagated the error correctly
+        let h = self.l1.forward(xs)?;
+        let h = gelu(&h)?;
+        self.l2.forward(&h)
+    }
+}
+```
+
+For production code, consider adding explicit shape assertions:
+
+```rust
+fn forward(&self, xs: &Tensor) -> Result<Tensor> {
+    let (b, _) = xs.dims2()?;
+    let h = self.l1.forward(xs)?;
+    // Assert hidden dimension for debugging
+    assert_eq!(h.dims(), &[b, 128], "Unexpected hidden dim");
+    Ok(self.l2.forward(&gelu(&h)?)?)
+}
+```
+
+---
+
+## 🎯 Key Takeaways
+- Candle's autodiff is **graph-free**—`backward()` produces a `GradStore` hash map, not a persistent tape.
+- Models are **Rust structs** implementing `Module`. The compiler enforces shape contracts where possible.
+- `VarBuilder` decouples **parameter storage** from **model architecture**—the same struct works for training and inference.
+- Explicit gradient handling makes it straightforward to implement custom optimizers and gradient manipulation.
+
+## References
+- Candle `Module` trait: https://huggingface.github.io/candle/candle_nn/trait.Module.html
+- Auto-Encoding Variational Bayes (VAE paper): https://arxiv.org/abs/1312.6114
+- [[00 - Welcome to Candle Advanced Patterns]]
+- [[01 - Rust Fundamentals]]
+
+## 📦 Código de compresión
+
+```rust
+use candle_core::{Tensor, Result, Device};
+use candle_nn::{Linear, Module, VarBuilder, VarMap, ops::gelu};
+
+struct MLP { l1: Linear, l2: Linear }
+
+impl MLP {
+    fn new(vs: VarBuilder, d: usize, h: usize, o: usize) -> Result<Self> {
+        Ok(Self { l1: candle_nn::linear(d, h, vs.pp("l1"))?, l2: candle_nn::linear(h, o, vs.pp("l2"))? })
+    }
+}
+
+impl Module for MLP {
+    fn forward(&self, xs: &Tensor) -> Result<Tensor> {
+        self.l2.forward(&gelu(&self.l1.forward(xs)?)?)
+    }
+}
 
 fn main() -> Result<()> {
     let device = Device::cuda_if_available(0)?;
     let varmap = VarMap::new();
     let vs = VarBuilder::from_varmap(&varmap, candle_core::DType::F32, &device);
     let model = MLP::new(vs, 784, 256, 10)?;
-    
     let xs = Tensor::randn(0f32, 1f32, (64, 784), &device)?;
-    let targets = Tensor::randn(0f32, 1f32, (64, 10), &device)?;
-    
-    // Training step: forward, loss, backward, update.
     let logits = model.forward(&xs)?;
-    let loss = logits.sub(&targets)?.sqr()?.mean_all()?;
+    let loss = logits.sub(&Tensor::randn(0f32, 1f32, (64, 10), &device)?)?.sqr()?.mean_all()?;
     let grads = loss.backward()?;
-    
-    // WHY: Explicit update lets you inspect/modify gradients before applying.
-    varmap.all_vars().iter().for_each(|var| {
-        if let Some(grad) = grads.get(var.id()) {
-            let _ = var.set(&var.tensor().sub(&(grad * 1e-3).unwrap()).unwrap());
-        }
-    });
-    
-    println!("Loss: {}", loss.to_scalar::<f32>()?);
+    println!("Loss: {}, Grads: {}", loss.to_scalar::<f32>()?, grads.len());
     Ok(())
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-A custom variational autoencoder (VAE) built in pure Candle, demonstrating custom encoder/decoder structs, the reparameterization trick with manual tensor operations, and explicit gradient propagation for training on the MNIST dataset. This project showcases how complex architectures map naturally to Rust structs and traits.
-
-### Functional Requirements
-1. Define separate `Encoder` and `Decoder` structs, each implementing `Module`.
-2. Implement the reparameterization trick using `Tensor::randn` and linear algebra ops.
-3. Compute KL divergence and reconstruction loss as scalar tensors.
-4. Perform an explicit backward pass and apply gradients via `VarMap` mutation.
-5. Serialize the trained `VarMap` to a safetensors checkpoint and reload it for inference.
-
-### Main Components
-- `Encoder`: Two linear layers with GELU, outputting mean and log-variance tensors.
-- `Decoder`: Two linear layers with GELU and sigmoid, reconstructing 784-dimensional images.
-- `VaeLoss`: Computes binary cross-entropy reconstruction + KL divergence.
-- `Trainer`: Orchestrates the forward/backward loop and checkpointing.
-
-### Success Metrics
-- Training loss decreases monotonically over 10 epochs on MNIST.
-- Checkpoint file size under 10 MB for a 128-dimensional latent space.
-- Inference latency under 5 ms per image on a modern CPU.
-
-### References
-- Official docs: https://huggingface.github.io/candle/candle_nn/index.html
-- Paper/library: https://arxiv.org/abs/1312.6114 (Auto-Encoding Variational Bayes)

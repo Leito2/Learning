@@ -141,36 +141,4 @@ fn main() {
 }
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Implement a `Builder` derive macro that automatically generates a builder pattern for any struct. The macro should support optional fields, mandatory fields, and custom validation attributes.
-
-### Functional Requirements
-
-1. Derive `Builder` for a struct to generate a `StructNameBuilder` with setter methods.
-2. Support `#[builder(default = "expr")]` for fields with default values.
-3. Support `#[builder(validate = "path")]` to run a custom validation function before building.
-4. Generate a `.build()` method that returns `Result<StructName, String>`.
-5. Produce clear compile-time errors if mandatory fields are missing when `.build()` is called.
-
-### Main Components
-
-- `builder-derive/`: The proc-macro crate containing `derive(Builder)`.
-- `builder-core/`: Shared parsing logic for attributes and field inspection.
-- `example/`: A demonstration crate using the macro on complex structs.
-- `tests/`: Compile-time tests using `trybuild` to verify error messages.
-
-### Success Metrics
-
-- The macro successfully derives builders for structs with up to 50 fields.
-- Generated code compiles without warnings (`#![deny(warnings)]`).
-- `cargo expand` shows clean, readable builder implementations.
-- Error messages for missing mandatory fields appear at the call site, not inside generated code.
-
-### References
-
-- [The Little Book of Rust Macros](https://danielkeep.github.io/tlborm/book/)
-- [syn crate documentation](https://docs.rs/syn/)
-- [quote crate documentation](https://docs.rs/quote/)

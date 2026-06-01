@@ -1,240 +1,125 @@
-# 🔬 Indexing Algorithms Deep Dive
+# 🔍 2 - Indexing Algorithms Deep Dive
 
 ## 🎯 Learning Objectives
-
 - Understand the design rationale behind Flat, IVF, HNSW, PQ, OPQ, DiskANN, and ScaNN indices
 - Build a decision framework for selecting an index based on build time, query time, memory, and recall
-- Explain how HNSW navigable graphs achieve polylogarithmic search complexity
+- Explain how HNSW navigable graphs achieve polylogarithmic search complexity $O(\log N)$
 - Compare quantization methods (PQ, OPQ) and their impact on memory vs accuracy
 - Evaluate DiskANN and ScaNN as solutions for billion-scale and GPU-accelerated search
+- Tune index parameters like `nlist`, `nprobe`, $M$, $\text{efConstruction}$, and $\text{efSearch}$ with confidence
+- Quantify memory budgets for each index type using formulas, not guesswork
 
 ## Introduction
 
-If vector search is the engine of modern AI retrieval, indexing algorithms are its transmission. Without them, every query would trigger a brute-force scan, making real-time semantic search, recommendation, and RAG impossible at scale. This note dissects the major algorithmic families — space partitioning, graph navigation, vector quantization, and hardware-aware compression — that transform the O(N) KNN problem into sublinear or near-constant time lookups.
+If vector search is the engine of modern AI retrieval, indexing algorithms are its transmission. Without them, every query would trigger a brute-force scan, making real-time semantic search, recommendation, and RAG impossible at scale. A naive linear scan over 100M 768D vectors takes seconds on modern hardware; a well-tuned HNSW index on the same data answers queries in milliseconds. This is not a marginal improvement — it is the difference between a product that ships and one that times out.
 
-This module follows [[01 - Vector Search Fundamentals]] (where we defined the KNN/ANN problem) and precedes [[03 - pgvector I - Core Operations and Indexing]] and [[05 - Qdrant I - Architecture and Collections]] (where these algorithms are packaged into production database engines). Understanding the algorithms *independently* of any database is critical: it allows you to tune parameters like `ef_construction`, `nlist`, and `M` with confidence rather than guesswork.
+This note dissects the major algorithmic families — space partitioning (IVF), graph navigation (HNSW), vector quantization (PQ/OPQ), and hardware-aware compression (DiskANN, ScaNN) — that transform the $O(Nd)$ KNN problem into sublinear or near-constant time lookups. We analyze each algorithm through the same lens: **build cost, query cost, memory footprint, and recall**. Every production vector database (pgvector, Qdrant, Weaviate, Pinecone, Milvus) implements one or more of these algorithms under the hood.
+
+This module follows [[01 - Vector Search Fundamentals]] (where we defined the KNN/ANN problem and distance metrics) and precedes [[03 - pgvector I - Core Operations and Indexing]] and [[05 - Qdrant I - Architecture and Collections]] (where these algorithms are packaged into production database engines). Understanding the algorithms *independently* of any database is critical: it allows you to tune parameters like `ef_construction`, `nlist`, and $M$ with confidence rather than guesswork. The same tuning logic applies whether you are using Faiss, pgvector, Qdrant, or Weaviate.
+
+The core trade-off every index makes is between four resources: **build time** (how long to create the index), **query time** (latency per search), **memory** (RAM consumed), and **recall** (fraction of true nearest neighbors returned). No index optimizes all four simultaneously — your job is to pick the right trade-off for your workload. A batch deduplication pipeline may tolerate 1-second queries and high memory, while a real-time recommendation API needs sub-10ms latency and moderate recall. Understanding these trade-offs mathematically (not just intuitively) is what separates a tuned production deployment from a default-configuration prototype that breaks under load.
+
+Throughout this note, we will use Faiss (Facebook AI Similarity Search) for code examples because it is the reference implementation for most indexing algorithms. However, every concept applies directly to pgvector's `ivfflat` and `hnsw`, Qdrant's built-in HNSW, and managed services like Pinecone. The parameter names differ slightly (`nlist` vs `lists`, `efConstruction` vs `ef_construct`), but the underlying mathematics is identical.
 
 ---
 
-## Module 1: Flat Index and Inverted File Index (IVF)
+## 1. Flat Index and Inverted File Index (IVF)
 
-### 1.1 Theoretical Foundation 🧠
+### Theory
 
-The **Flat index** is the brute-force baseline. It stores vectors in raw form and computes exact distances at query time. It is unbeatable in recall (always 1.0) and requires zero build time, but query latency is linear in N. Flat indices are useful as gold-standard benchmarks and for small collections (<50k vectors) where simplicity outweighs speed.
+The **Flat index** is the brute-force baseline. It stores vectors in raw float32 format and computes exact distances at query time. Query latency is $O(Nd)$ with no build time and perfect recall (1.0). Flat indices are useful as gold-standard benchmarks for recall measurement and for small collections (<50k vectors) where simplicity trumps speed. In production, Flat is rarely used as the primary index but is indispensable as a validation tool.
 
-The **Inverted File Index (IVF)** addresses scalability by partitioning the vector space into `nlist` clusters using k-means. At build time, a k-means clustering learns `nlist` centroids; each vector is assigned to its nearest centroid. At query time, the system identifies the `nprobe` closest centroids to the query and searches only the vectors in those clusters. This reduces the candidate set from N to roughly (N / nlist) × nprobe.
+The **Inverted File Index (IVF)** addresses scalability by partitioning the vector space into `nlist` clusters using k-means. At build time, the algorithm learns `nlist` centroids $\{c_1, c_2, \ldots, c_{\text{nlist}}\} \subset \mathbb{R}^d$ via k-means clustering on the training data. Each vector $v_i$ is assigned to its nearest centroid, creating inverted lists $L_j = \{v_i : \arg\min_k \|v_i - c_k\| = j\}$. At query time, the system computes distances from query $q$ to all centroids, selects the `nprobe` nearest centroids, and searches only the vectors in those lists. This reduces the candidate set from $N$ to approximately $(N / \text{nlist}) \times \text{nprobe}$ vectors.
 
-IVF is a space-partitioning strategy. Its fundamental trade-off is between `nlist` (more clusters = smaller per-cluster scans but higher centroid lookup cost) and `nprobe` (more probes = higher recall but slower queries). IVF is memory-efficient because it stores raw vectors without additional graph structures.
-
-### 1.2 Mental Model 📐
-
-```
-┌─────────────────────────────────────────────┐
-│  Flat Index (Brute Force)                   │
-│                                             │
-│  Query ● ──► [v1] [v2] [v3] ... [vN]      │
-│              Compare with EVERY vector      │
-│              Sort, return top K             │
-│                                             │
-│  Memory: N × d × 4 bytes (float32)          │
-│  Query: O(N)                                │
-└─────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────┐
-│  IVF: Cluster-based Pruning                 │
-│                                             │
-│      C1 ●      C2 ●      C3 ●               │
-│     / | \    / | \    / | \                 │
-│    v1 v2 v3 v4 v5 v6 v7 v8 v9               │
-│                                             │
-│  Query ● ──► nearest centroids: C1, C3      │
-│              Search ONLY vectors in C1+C3   │
-│                                             │
-│  nlist = 3  |  nprobe = 2                   │
-└─────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────┐
-│  IVF Parameter Trade-off                    │
-│                                             │
-│  nlist ↑  ──►  smaller clusters             │
-│              ──►  faster per-query scan     │
-│              ──►  but more centroid overhead│
-│                                             │
-│  nprobe ↑ ──►  higher recall                │
-│              ──►  but slower (more clusters)│
-└─────────────────────────────────────────────┘
-```
-
-### 1.3 Syntax and Semantics 📝
+The cost breakdown is: centroid lookup is $O(\text{nlist} \cdot d)$, per-probe list scanning is $O((N/\text{nlist}) \cdot d \cdot \text{nprobe})$, so total query cost is approximately $O(d \cdot (\text{nlist} + N \cdot \text{nprobe} / \text{nlist}))$. This is minimized when $\text{nlist} \approx \sqrt{N \cdot \text{nprobe}}$. The heuristic $\text{nlist} = \sqrt{N}$ is a common starting point.
 
 ```python
 import faiss
 import numpy as np
 
-# WHY: Faiss is the canonical library for IVF and other indices.
-#      We use float32 because GPU and SIMD instructions expect it.
 dim = 768
-nlist = 100          # number of Voronoi cells (clusters)
-nprobe = 10          # how many cells to visit per query
+nlist = 100
+nprobe = 10
 N = 1_000_000
 
-# Generate synthetic data. In production, this is your embedding matrix.
 xb = np.random.randn(N, dim).astype('float32')
 xb /= np.linalg.norm(xb, axis=1, keepdims=True)
 
-# Flat index: exact search, no build time, baseline for recall.
-flat_index = faiss.IndexFlatIP(dim)  # Inner Product = Cosine on normalized data
+flat_index = faiss.IndexFlatIP(dim)
 flat_index.add(xb)
 
-# IVF index: needs training on representative data.
-# WHY: k-means centroids must see the distribution; use a sample if N is huge.
-quantizer = faiss.IndexFlatIP(dim)   # coarse quantizer (finds nearest centroids)
+quantizer = faiss.IndexFlatIP(dim)
 ivf_index = faiss.IndexIVFFlat(quantizer, dim, nlist, faiss.METRIC_INNER_PRODUCT)
-ivf_index.train(xb)                  # learns the nlist centroids
+ivf_index.train(xb)
 ivf_index.add(xb)
-ivf_index.nprobe = nprobe            # runtime tunable: recall vs speed
+ivf_index.nprobe = nprobe
 
-# Query
 xq = np.random.randn(1, dim).astype('float32')
 xq /= np.linalg.norm(xq)
 
 D_flat, I_flat = flat_index.search(xq, k=10)
 D_ivf, I_ivf = ivf_index.search(xq, k=10)
-
-# Measure recall: overlap between exact and IVF results.
 recall = len(set(I_flat[0]) & set(I_ivf[0])) / 10.0
 print(f"IVF recall@10 with nprobe={nprobe}: {recall:.2f}")
+
+# Systematic nprobe tuning.
+for probe in [1, 5, 10, 20, 50, 100]:
+    ivf_index.nprobe = probe
+    _, I = ivf_index.search(xq, k=10)
+    r = len(set(I_flat[0]) & set(I[0])) / 10.0
+    print(f"  nprobe={probe:3d}  recall={r:.2f}")
 ```
 
-### 1.4 Visual Representation 🖼️
+⚠️ **Train IVF on a representative sample — never on empty or tiny datasets.** k-means centroids learned on skewed data create imbalanced inverted lists where one cluster holds 10× more vectors than others, effectively nullifying the pruning benefit. Use at least $30 \times \text{nlist}$ training vectors.
 
-```mermaid
-flowchart TD
-    A[Dataset of N vectors] --> B[K-Means Clustering]
-    B --> C[nlist Centroids]
-    C --> D[Assign each vector to nearest centroid]
-    D --> E[Inverted Lists]
-    F[Query Vector] --> G[Find nprobe nearest centroids]
-    G --> H[Scan only vectors in selected lists]
-    H --> I[Return top K]
-```
+💡 **IVF is static; Flat is dynamic.** Adding vectors after IVF is built does not update centroids — new vectors are assigned to the nearest existing centroid, which may be a poor fit. For dynamic datasets, prefer HNSW or rebuild IVF periodically.
 
-```mermaid
-graph LR
-    subgraph Flat["Flat Index"]
-        F1[Memory: High] --> F2[Speed: Slow]
-        F2 --> F3[Recall: 1.0]
-    end
-    subgraph IVF["IVF Index"]
-        I1[Memory: Medium] --> I2[Speed: Medium]
-        I2 --> I3[Recall: <1.0 tunable]
-    end
-```
+**Caso real — Meta (Facebook) photo search:** Early versions of Meta's photo search used IVF-based indices over visual feature vectors extracted from CNN classifiers. IVF was chosen because it offered a simple memory-to-recall trade-off and integrated well with their existing k-means clustering infrastructure. Their engineering team tuned `nprobe` per workload: *exploratory search* (user browsing photos) used `nprobe=20` for higher recall, while *batch deduplication* (finding near-duplicate uploads) used `nprobe=5` for speed. They monitored inverted list size distribution as a quality metric — a coefficient of variation >1.0 triggered index rebuild. A critical lesson from their deployment: IVF with imbalanced clusters (one list holding 40% of data) performed worse than a brute-force scan because the centroid lookup overhead plus the skewed list scan was slower than linear scan on their hardware.
 
-![Voronoi diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Euclidean_Voronoi_diagram.svg/500px-Euclidean_Voronoi_diagram.svg.png)
+**Memory accounting for IVF:**
+- Raw vectors: $N \times d \times 4$ bytes (float32)
+- Centroids: $\text{nlist} \times d \times 4$ bytes
+- Inverted list pointers: $N \times 4$ bytes (int32 per vector-to-list assignment)
+- Total for 1M vectors, 768D, nlist=100: ~3.07 GB + negligible overhead
+- No extra graph edges (unlike HNSW), which makes IVF attractive for memory-constrained deployments
 
-### 1.5 Application in ML/AI Systems 🤖
+❌ **Antipattern: Assuming `nlist = sqrt(N)` is optimal for all datasets.** This heuristic assumes uniform data distribution. For clustered data (e.g., embeddings grouped by language or category), fewer centroids may suffice because each cluster is already dense. For uniformly distributed data, more centroids help. Benchmark 3–4 `nlist` values (e.g., `sqrt(N)/2`, `sqrt(N)`, `sqrt(N)*2`) before choosing.
 
-Real case: **Meta (Facebook)** uses IVF-based indices in early versions of their photo search infrastructure. IVF was chosen because it offered a simple memory-to-recall trade-off and integrated well with their existing k-means pipelines for visual feature clustering.
+✅ **Validate IVF with a train-test split.** Hold out 10% of your data as a query set, build IVF on 90%, and measure recall@k against exact Flat results on the full dataset. This gives you an unbiased estimate of production recall before you commit to index parameters.
 
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Medium-scale semantic search | IVF with nprobe tuning | Serve 1M–10M docs with ~90% recall and low memory |
-| Embedding deduplication | Flat index on small clusters | Exact nearest-neighbor checks within each shard |
-| Batch recommendation | IVF pre-filtered by centroid | Reduce candidate space before heavy ranking model |
-
-### 1.6 Common Pitfalls ⚠️
-
-⚠️ **Pitfall: Training IVF on a non-representative sample.** Root cause: k-means centroids learned on skewed data create imbalanced inverted lists. Some lists become massive, defeating the purpose of pruning. Always train on a random sample of ≥30× nlist vectors that matches the production distribution.
-
-💡 **Mnemonic: "IVF trains; Flat does not."** — If your data distribution drifts (e.g., seasonal products), retrain the IVF index or use an online-adaptive variant.
-
-### 1.7 Knowledge Check ❓
-
-1. If your collection has 5 million vectors and you set `nlist = 100`, approximately how many vectors are scanned per query when `nprobe = 5`? What happens to this number if one cluster is 10× larger than the others?
-2. Why does Faiss require a `quantizer` (itself a Flat index) inside `IndexIVFFlat`? What role does it play at query time?
-3. You need exact recall on 200k vectors but want to practice the IVF API. What parameter combination achieves this behavior without changing the code structure?
+✅ **Always keep a Flat index as your recall baseline.** Run a weekly comparison of IVF recall@k against the Flat exact results. A drop >0.05 indicates data drift and should trigger retraining.
 
 ---
 
-## Module 2: Hierarchical Navigable Small World (HNSW)
+## 2. Hierarchical Navigable Small World (HNSW)
 
-### 2.1 Theoretical Foundation 🧠
+### Theory
 
-HNSW is a graph-based ANN algorithm introduced by Malkov and Yashunin in 2016. It builds a **multi-layer navigable small-world graph** where each layer is a sparse subgraph of the one below. The bottom layer contains every vector and its local neighborhood edges; higher layers contain exponentially fewer nodes and act as "highways" for long-distance jumps.
+HNSW is a graph-based ANN algorithm introduced by Malkov and Yashunin in 2016. It builds a **multi-layer navigable small-world graph** where each layer $L_i$ is a sparse subgraph of the layer below. Layer 0 contains every vector and its local neighborhood edges (degree $M$); higher layers contain exponentially fewer nodes — a node appears in layer $L_i$ with probability $p^i$ where $p$ is typically 0.5 (inverse of $M_L$ parameter). This creates a hierarchy where the top layer has only a handful of nodes acting as "highways" for long-distance jumps.
 
-The key insight is that **small-world networks** (where most nodes are not neighbors but can be reached in a small number of hops) allow greedy navigation to succeed. Starting from a random entry point in the top layer, the algorithm greedily moves to the nearest neighbor within the current layer until a local minimum is reached. It then drops to the next layer, using that node as the new entry point, and repeats until the bottom layer, where it performs a local search to refine the result.
+The search algorithm is elegant: starting at a random entry point in the top layer, it greedily traverses to the nearest neighbor within the current layer by evaluating all neighbors at each step. When a local minimum is reached, it drops to the next layer using the current node as the entry point, repeating until Layer 0. At Layer 0, a beam search (controlled by $\text{efSearch}$) refines the result by maintaining a dynamic list of candidates and exploring their neighbors. The greedy descent ensures logarithmic scaling: in expectation, each layer reduces the distance to the query by a constant factor, yielding $O(\log N \cdot M \cdot \text{efSearch})$ complexity.
 
-HNSW parameters `M` (maximum edges per node), `efConstruction` (search width during build), and `ef` (search width during query) control the recall/speed/memory trade-off. HNSW dominates modern vector databases because it achieves high recall with low query latency and supports incremental inserts without full retraining.
-
-### 2.2 Mental Model 📐
-
-```
-┌─────────────────────────────────────────────┐
-│  HNSW Layer Hierarchy                       │
-│                                             │
-│  Layer 2:     ●───●                         │
-│              /     \    (sparse highway)    │
-│  Layer 1:   ●─●───●─●                       │
-│            / │ \ / │ \  (mid-density)       │
-│  Layer 0:  ●─●─●─●─●─●─●─●                 │
-│            (dense: every node + neighbors)  │
-│                                             │
-│  Query ● enters at Layer 2, greedily        │
-│  descends to Layer 0 for final refinement   │
-└─────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────┐
-│  Greedy Navigation in One Layer             │
-│                                             │
-│  Entry ● ──► nearest neighbor ●             │
-│               │                             │
-│               ▼                             │
-│            next nearest ●                   │
-│               │                             │
-│               ▼                             │
-│            local minimum ● ──► drop layer   │
-└─────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────┐
-│  HNSW Parameters Explained                  │
-│                                             │
-│  M = max edges per node                     │
-│     ↑ M  →  more connectivity → better      │
-│              recall but more memory           │
-│                                             │
-│  efConstruction = beam width at INSERT time │
-│     ↑ efC →  better graph quality → slower  │
-│              index build                      │
-│                                             │
-│  ef = beam width at QUERY time              │
-│     ↑ ef  →  higher recall → slower query   │
-└─────────────────────────────────────────────┘
-```
-
-### 2.3 Syntax and Semantics 📝
+Three parameters control the trade-off:
+- **$M$**: Maximum edges per node (bidirectional). Range: 8–64. Higher $M$ = better recall, more memory (~$M \times 8$ bytes per node for edge storage), slower build.
+- **$\text{efConstruction}$**: Beam width during insertion. Range: 100–500. Higher = better graph quality, slower build. This is the single most important parameter for production quality.
+- **$\text{efSearch}$**: Beam width at query time. Range: 64–512. Higher = better recall, slower query.
 
 ```python
 import faiss
 import numpy as np
 
 dim = 768
-M = 16                          # max connections per node
-efConstruction = 200            # build-time search width
-efSearch = 128                  # query-time search width
+M = 16
+efConstruction = 200
+efSearch = 128
 N = 500_000
 
 xb = np.random.randn(N, dim).astype('float32')
 xb /= np.linalg.norm(xb, axis=1, keepdims=True)
 
-# HNSW index in Faiss uses IndexHNSWFlat.
-# WHY: "Flat" means it stores raw vectors (not quantized).
-#      The graph is built on top of exact vector comparisons.
 index = faiss.IndexHNSWFlat(dim, M)
 index.hnsw.efConstruction = efConstruction
-index.add(xb)                   # incremental; no separate train step needed
-
-# WHY: efSearch is set AFTER build; it controls recall vs latency at runtime.
+index.add(xb)
 index.hnsw.efSearch = efSearch
 
 xq = np.random.randn(1, dim).astype('float32')
@@ -242,133 +127,56 @@ xq /= np.linalg.norm(xq)
 D, I = index.search(xq, k=10)
 print(f"HNSW top-10 neighbors: {I[0]}")
 
-# Memory inspection: HNSW stores vectors + graph edges.
-# WHY: Each edge is a 4-byte integer (neighbor id) + overhead.
-print(f"Vectors memory (MB): {index.ntotal * dim * 4 / 1e6:.1f}")
+# Memory accounting.
+vec_mb = index.ntotal * dim * 4 / 1e6
+graph_mb = index.ntotal * M * 2 * 4 / 1e6
+print(f"Vectors: {vec_mb:.1f} MB | Graph edges: {graph_mb:.1f} MB")
+
+# efSearch sweep.
+for ef in [16, 32, 64, 128, 256, 512]:
+    index.hnsw.efSearch = ef
+    _, I = index.search(xq, k=10)
+    r = len(set(I_flat[0]) & set(I[0])) / 10.0
+    print(f"  efSearch={ef:3d}  recall={r:.2f}")
 ```
 
-### 2.4 Visual Representation 🖼️
+⚠️ **Default `efConstruction` (40-64) is too low for production.** It produces a low-quality graph with poor connectivity. Increasing `efConstruction` from 40 to 200 may double build time but dramatically improves the recall-vs-latency Pareto frontier for all subsequent queries. You cannot fix a bad graph at query time. A poorly built HNSW graph may require `efSearch=512` to achieve the same recall that a well-built graph achieves at `efSearch=128` — a 4× latency penalty for a one-time build-time optimization that costs seconds.
 
-```mermaid
-graph TB
-    subgraph L2["Layer 2 (Top)"]
-        A2[A] --- B2[B]
-        B2 --- C2[C]
-    end
-    subgraph L1["Layer 1"]
-        A1[A] --- B1[B]
-        B1 --- C1[C]
-        A1 --- D1[D]
-        D1 --- E1[E]
-    end
-    subgraph L0["Layer 0 (Base)"]
-        A0[A] --- B0[B]
-        B0 --- C0[C]
-        A0 --- D0[D]
-        D0 --- E0[E]
-        B0 --- F0[F]
-        E0 --- G0[G]
-    end
-    A2 --> A1
-    A1 --> A0
-    B2 --> B1
-    B1 --> B0
-    C2 --> C1
-    C1 --> C0
-```
+**Caso real — Yandex search infrastructure:** The creators of HNSW originally deployed it at Yandex for image similarity search across hundreds of millions of web images. Their production configuration uses `M=32` and `efConstruction=400`, tolerating a build time of several hours for a 200M-point index. This investment pays off: the index serves 10,000+ queries per second with p99 latency under 15ms at 99% recall. Yandex's key insight was that HNSW build time is a one-time cost amortized over millions of queries — spending extra hours during construction saved milliseconds on every query forever.
 
-```mermaid
-flowchart LR
-    Q[Query] --> E2[Entry Layer 2]
-    E2 --> G2[Greedy nearest]
-    G2 --> D2[Drop to Layer 1]
-    D2 --> G1[Greedy nearest]
-    G1 --> D1[Drop to Layer 0]
-    D1 --> G0[Greedy nearest + beam search]
-    G0 --> R[Results]
-```
+💡 **"Build wide, search wide."** — `efConstruction` is a one-time investment amortized over millions of queries. Spend the build time.
 
-![Graph structure](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Small_world_network_example.png/500px-Small_world_network_example.png)
+**Caso real — Pinecone and Qdrant:** Every major vector database uses HNSW as their default index. Pinecone, Weaviate, Qdrant, and pgvector all implement variants. Spotify uses HNSW with `M=32` and `efSearch=200` for music recommendation, achieving sub-10ms latency at 95%+ recall on 50M+ track embeddings. HNSW's incremental insertion (no retraining needed for new data) was the deciding factor over IVF — Spotify ingests 20,000+ new tracks daily, and IVF would require periodic k-means retraining to avoid centroid drift.
 
-### 2.5 Application in ML/AI Systems 🤖
+❌ **Antipattern: Setting `efSearch` too high for interactive workloads.** At `efSearch=500`, recall may hit 99%, but p99 latency can spike to 150ms+. For user-facing search, set `efSearch` to achieve the latency SLA first, then measure recall. You can always increase `efSearch` for offline batch queries.
 
-Real case: **Pinecone**, **Weaviate**, **Qdrant**, and **pgvector** all offer HNSW as their default or recommended index type. Spotify uses HNSW for real-time music recommendation because it supports online inserts (new tracks arrive constantly) without requiring expensive index rebuilds, and sub-10ms query latency is achievable with tuned `efSearch`.
-
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Real-time recommendation | HNSW incremental insert | Add new user/item embeddings without retraining |
-| RAG document retrieval | HNSW high recall@10 | Retrieve context chunks with >95% accuracy |
-| Dynamic content search | HNSW delete + update support | Remove outdated vectors and insert replacements |
-
-### 2.6 Common Pitfalls ⚠️
-
-⚠️ **Pitfall: Using default `efConstruction` for billion-scale indices.** Root cause: Default `efConstruction` (often 40–64) produces a low-quality graph for very large datasets, leading to poor recall regardless of `efSearch`. For production, use `efConstruction ≥ 200` and accept the longer build time.
-
-💡 **Mnemonic: "Build wide, search wide."** — `efConstruction` determines graph quality forever; `efSearch` only determines how hard you look. You cannot fix a bad graph at query time.
-
-### 2.7 Knowledge Check ❓
-
-1. Draw the asymptotic query complexity of HNSW in terms of N. How does this compare to Flat and IVF?
-2. Why is HNSW generally preferred over IVF for applications with frequent insertions and deletions?
-3. You have 10M vectors and 64GB RAM. HNSW with M=32 exceeds memory. What two levers can you pull to fit the index in RAM without switching algorithms?
+✅ **Per-query `efSearch` tuning is a superpower.** Your exploratory UI can use `efSearch=64` (fast, ~90% recall), while your RAG pipeline uses `efSearch=256` (slower, ~97% recall). Databases like Qdrant and pgvector support setting this per request.
 
 ---
 
-## Module 3: Product Quantization (PQ), OPQ, DiskANN, and ScaNN
+## 3. Product Quantization (PQ), OPQ, DiskANN, and ScaNN
 
-### 3.1 Theoretical Foundation 🧠
+### Theory
 
-**Product Quantization (PQ)** attacks the memory problem. Instead of storing full float32 vectors, PQ splits each vector into `m` sub-vectors and quantizes each sub-vector independently using a small codebook learned via k-means. The vector is then represented by `m` integers (one per sub-quantizer), reducing memory by 10–30×. Distance computation uses asymmetric distance computation (ADC): the query is kept full-precision, but database vectors are decompressed only via their codebook entries.
+**Product Quantization (PQ)** attacks the memory bottleneck of storing full float32 vectors. The core idea: split each $d$-dimensional vector into $m$ sub-vectors of size $d/m$, and quantize each sub-vector independently using a small codebook of $k^*$ centroids learned via k-means on that subspace:
 
-**Optimized Product Quantization (OPQ)** adds a rotation matrix before PQ to align the data with the quantization grid, reducing reconstruction error. OPQ is almost always better than raw PQ and is the default in production Faiss pipelines.
+$$\text{PQ}(v) = [q_1(v^{(1)}), q_2(v^{(2)}), \ldots, q_m(v^{(m)})]$$
 
-**DiskANN** solves the billion-scale problem when RAM is insufficient. It keeps the full-precision graph in RAM but stores compressed vectors on SSD. During search, it uses the graph to navigate and fetches only the necessary compressed vectors from disk, decompressing them on the fly. This achieves SSD-scale capacity with near-RAM latency.
+Each $q_i(v^{(i)})$ returns a centroid index (1 byte if $k^*=256$). The full vector is represented by $m$ bytes — for $d=768$ and $m=96$, compression is $768 \times 4 / 96 = 32\times$. Distance computation uses *asymmetric distance computation* (ADC): the query $q$ remains in full precision, and for each database vector $v$, the distance is computed as:
 
-**ScaNN** (Google Research) takes a hardware-aware approach. It uses anisotropic vector quantization and coarse clustering with asymmetric hashing, optimized for AVX2/AVX-512 SIMD instructions. ScaNN is designed for massively parallel batch queries on TPUs/GPUs and dominates leaderboard benchmarks for batch throughput.
+$$D(q, v) \approx \sum_{j=1}^{m} \|q^{(j)} - c_j^{\text{idx}_j}\|^2$$
 
-### 3.2 Mental Model 📐
+where $c_j^{\text{idx}_j}$ is the centroid for the $j$-th sub-vector. This is computed via table lookup rather than full vector operations, making it extremely fast.
 
-```
-┌─────────────────────────────────────────────┐
-│  Product Quantization Memory Savings        │
-│                                             │
-│  Original:  768 dims × 4 bytes = 3072 B     │
-│                                             │
-│  PQ(m=8, k*=256):                           │
-│    8 sub-vectors × 1 byte = 8 bytes/vec     │
-│    Compression ratio: 3072 / 8 = 384×       │
-│    (plus small codebook overhead)           │
-└─────────────────────────────────────────────┘
+**Optimized Product Quantization (OPQ)** adds a learned rotation matrix $R \in \mathbb{R}^{d \times d}$ before PQ:
 
-┌─────────────────────────────────────────────┐
-│  DiskANN: RAM Graph + SSD Vectors           │
-│                                             │
-│  RAM:  HNSW graph edges (lightweight)       │
-│        ┌───┐                                │
-│        │ ● │───► node id, neighbor ids     │
-│        └───┘                                │
-│                                             │
-│  SSD:  Compressed vectors (heavyweight)     │
-│        ┌────────┐                           │
-│        │ PQ code│  fetched on-demand         │
-│        └────────┘                           │
-│                                             │
-│  Query: navigate graph in RAM ──► fetch     │
-│         candidate vectors from SSD          │
-└─────────────────────────────────────────────┘
+$$\text{OPQ}(v) = \text{PQ}(Rv)$$
 
-┌─────────────────────────────────────────────┐
-│  Algorithm Selection Decision Tree          │
-│                                             │
-│  Collection <100k? ──► Flat                 │
-│  RAM tight, batch queries? ──► IVF + PQ     │
-│  Real-time, frequent updates? ──► HNSW      │
-│  Billions, SSD available? ──► DiskANN       │
-│  TPU/GPU batch throughput? ──► ScaNN        │
-└─────────────────────────────────────────────┘
-```
+The rotation aligns the data distribution with the quantization grid, making the subspaces more independent and reducing quantization error. OPQ consistently outperforms raw PQ and is the default in Faiss production pipelines.
 
-### 3.3 Syntax and Semantics 📝
+**DiskANN** (Microsoft Research) solves billion-scale search when RAM is insufficient. It uses a **Vamana graph** (a variant of HNSW with a robust pruning algorithm) kept in RAM, while PQ-compressed vectors reside on SSD. Search navigates the graph in RAM and fetches compressed vectors from SSD on demand, decompressing them for distance computation. The key numbers: a billion 768D vectors in PQ format take ~96GB (vs 3TB raw), the Vamana graph needs ~16GB of RAM, and a single NVMe SSD can store the vectors for ~$100.
+
+**ScaNN** (Google Research) takes a hardware-aware approach using *anisotropic vector quantization* (different quantization error tolerance per dimension) and coarse clustering with asymmetric hashing, heavily optimized for AVX2/AVX-512 SIMD instructions. ScaNN dominates the ANN benchmarks leaderboard for batch query throughput on modern CPUs.
 
 ```python
 import faiss
@@ -378,96 +186,114 @@ dim = 768
 N = 1_000_000
 xb = np.random.randn(N, dim).astype('float32')
 
-# OPQ + PQ index: highly compressed, good for memory-constrained serving.
-# WHY: OPQ rotates data to make subspaces more independent before PQ.
-M = 16                          # number of sub-quantizers (must divide dim)
-nbits = 8                       # bits per sub-quantizer (256 centroids each)
+M = 16
+nbits = 8
 coarse_nlist = 1024
 
-# Coarse quantizer (IVF) + OPQ/PQ
 quantizer = faiss.IndexFlatL2(dim)
 ivf_pq = faiss.IndexIVFPQ(quantizer, dim, coarse_nlist, M, nbits)
-
-# WHY: OPQ requires training; we wrap the index in an OPQ preprocessor.
 opq = faiss.OPQMatrix(dim, M)
 index = faiss.IndexPreTransform(opq, ivf_pq)
 
-# Train on a representative subset (or full data).
 index.train(xb)
 index.add(xb)
-
-# Query
 index.nprobe = 50
+
 xq = np.random.randn(1, dim).astype('float32')
 D, I = index.search(xq, k=10)
-print(f"IVF+OPQ+PQ recall may be lower than HNSW but memory is tiny.")
+print(f"IVF+OPQ+PQ top-10: {I[0]}")
 
-# DiskANN is not in Faiss; it is a separate Microsoft library.
-# WHY: DiskANN uses a custom Vamana graph and PQ-compressed SSD storage.
-#      It is the state-of-the-art for billion-scale on single machine.
+flat_bytes = N * dim * 4
+pq_bytes = N * M
+print(f"Flat: {flat_bytes/1e6:.0f} MB | PQ: {pq_bytes/1e6:.0f} MB | Ratio: {flat_bytes/pq_bytes:.0f}x")
+
+# Reconstruction error check.
+reconstructed = np.zeros((10, dim), dtype=np.float32)
+for i in range(10):
+    codes = ivf_pq.sa_decode(ivf_pq.sa_encode(xb[i:i+1]))
+    reconstructed[i] = codes[0]
+mse = np.mean((xb[:10] - reconstructed) ** 2)
+print(f"PQ reconstruction MSE: {mse:.6f}")
 ```
 
-### 3.4 Visual Representation 🖼️
+⚠️ **PQ needs room to breathe per subspace.** If $M$ is too large (e.g., 64 for 768D), each subspace is only 12D and k-means finds unstable centroids. If `nbits` is too small (e.g., 4), the codebook has only 16 entries and quantization error is severe. Aim for subspace dimension $\geq 24$ and `nbits=8` (256 centroids).
 
-```mermaid
-flowchart TD
-    A[Vector 768D] --> B[OPQ Rotation]
-    B --> C[Split into m=8 subvectors 96D each]
-    C --> D[K-Means per subspace]
-    D --> E[Codebook: 256 centroids each]
-    E --> F[Store 8 bytes per vector]
-```
+💡 **Always benchmark reconstruction MSE before accepting a PQ config.** A rule of thumb: MSE should be <0.01 for normalized unit vectors. Monitor MSE on a held-out validation set; degradation indicates the quantization is destroying ranking fidelity. A more direct validation: measure recall@10 of PQ-approximate distances vs exact distances on a query set. If recall drops below 0.90, reduce $m$ (fewer sub-quantizers, higher memory, better fidelity).
 
-```mermaid
-graph LR
-    subgraph RAM["RAM"]
-        R1[Graph Index]
-    end
-    subgraph SSD["SSD"]
-        S1[PQ-Compressed Vectors]
-    end
-    Q[Query] --> RAM
-    RAM -->|fetch candidates| SSD
-    SSD -->|decompress| R2[Exact Distance]
-    R2 --> TopK[Top K]
-```
+**Caso real — Microsoft Bing's DiskANN:** Bing uses DiskANN to power vector search over billions of web document embeddings on single commodity servers. By keeping only the Vamana graph (~8GB for 1B points) in RAM and PQ-compressed vectors (~96GB) on NVMe SSD, they achieve sub-5ms median latency. The cost savings vs all-in-RAM are dramatic: 3TB of DRAM would cost ~$30,000/server; DiskANN's approach uses ~$100 of NVMe storage. This cost structure made billion-scale semantic search economically viable for production rather than a research curiosity.
 
-![Quantization](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Quantization_error.svg/500px-Quantization_error.svg.png)
+**Caso real — Google's ScaNN deployment in Search:** Google uses ScaNN internally for batch re-ranking pipelines where thousands of queries are scored simultaneously against billions of documents. ScaNN's anisotropic quantization is specifically designed for this batch setting: it allocates more bits to dimensions that are more important for ranking, improving recall at the same memory budget. In Google's production benchmarks, ScaNN achieves 2-3x higher QPS than IVF+OPQ at equivalent recall on TPU-hosted serving infrastructure.
 
-### 3.5 Application in ML/AI Systems 🤖
+❌ **Antipattern: Using raw PQ without OPQ.** Raw PQ assumes data distribution aligns with Cartesian axes, which is rarely true for real embeddings (the semantic manifold is not axis-aligned). OPQ's learned rotation always reduces quantization error with negligible overhead — always use OPQ over raw PQ.
 
-Real case: **Microsoft Bing** uses DiskANN to power vector search over billions of web document embeddings on a single commodity server. By keeping the graph in RAM and vectors on NVMe SSD, they achieve sub-5ms latency without the cost of terabytes of DRAM.
+✅ **Algorithm selection decision tree:**
+- $N < 100k$? → **Flat** (simple, exact, no build time)
+- RAM tight, static data, batch queries? → **IVF + PQ/OPQ** (train once, query efficiently)
+- Real-time, frequent inserts/updates, high recall? → **HNSW** (incremental, graph-based)
+- $N > 10^9$, SSD available? → **DiskANN** (RAM-efficient, SSD-scalable)
+- TPU/GPU cluster for batch inference? → **ScaNN** (SIMD-optimized, batch throughput)
 
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Billion-scale semantic search | DiskANN (RAM graph + SSD vectors) | Search 1B+ vectors on one machine |
-| Mobile/edge embedding search | PQ-only index | Fit millions of vectors in <100MB |
-| Batch embedding scoring | ScaNN anisotropic quantization | Maximize throughput on TPU/GPU clusters |
-| Real-time similarity join | OPQ + IVF | Pre-filter large collections before deep model scoring |
+### Additional Considerations
 
-### 3.6 Common Pitfalls ⚠️
+**Memory budget sizing:** A Flat index on 100M vectors of 768D requires $100M \times 768 \times 4 = 307$ GB of RAM — more than most production servers carry. IVF with the same vectors uses identical memory (raw float32 storage). HNSW adds ~$N \times M \times 16$ bytes for graph edges: with $M=16$, that is ~25 GB of additional overhead. PQ with $m=96$ reduces vector storage to $100M \times 96 = 9.6$ GB plus negligible codebook storage. This is why PQ-based indices dominate billion-scale deployments.
 
-⚠️ **Pitfall: Using PQ with too few bits or too many subspaces on high-dimensional data.** Root cause: Each sub-quantizer has limited representational power. If `M` is too large (e.g., 64 for 768D), each subspace is only 12D and k-means centroids become sparse and poorly fitted. If `nbits` is too small (e.g., 4), the codebook has only 16 entries and quantization error explodes.
+| Index | Memory Formula (N vectors, d dimensions) | Example: 100M × 768D |
+|---|---|---|
+| Flat | $N \cdot d \cdot 4$ | 307 GB |
+| IVF-Flat | $N \cdot d \cdot 4 + \text{nlist} \cdot d \cdot 4$ | ~307 GB |
+| HNSW | $N \cdot d \cdot 4 + N \cdot M \cdot 16$ | ~332 GB (M=16) |
+| IVF+PQ (m) | $N \cdot m + \text{codebooks}$ | ~9.6 GB (m=96) |
+| DiskANN (graph+PQ) | $N \cdot M \cdot 8 + N \cdot m$ | ~17.6 GB (M=32, m=96) |
 
-💡 **Mnemonic: "PQ needs room to breathe."** — Aim for subspace dimensions ≥ 24 and `nbits = 8` as a safe default. Benchmark reconstruction error (MSE) before accepting a PQ configuration.
+**Build time comparison:** Flat = instant (zero build). IVF = $O(N \cdot \text{nlist} \cdot d \cdot \text{iterations})$ for k-means plus $O(N \cdot d)$ for assignment. HNSW = $O(N \cdot (M \cdot \text{efConstruction} + \log N))$ for graph construction — at $M=16, \text{efConstruction}=200$, this is roughly 2–5× slower than IVF for the same dataset. PQ/OPQ adds codebook learning: $O(N \cdot d \cdot m \cdot k^*)$ for k-means in $m$ subspaces. DiskANN's Vamana build is similar to HNSW but with an additional robust pruning step that can double build time.
 
-### 3.7 Knowledge Check ❓
+### Index Selection Decision Matrix
 
-1. You have 100M vectors of 768D. How much RAM does a Flat index require? How much does PQ with `M=16, nbits=8` require (ignoring codebook overhead)?
-2. Why does OPQ improve over raw PQ? What property of the rotation matrix helps quantization?
-3. Compare ScaNN and DiskANN: which is better for (a) a Google-scale batch re-ranking pipeline, and (b) a single-server real-time search API? Justify your answer.
+| Workload Profile | Best Index | Why |
+|---|---|---|
+| <50k vectors, prototyping | Flat | Zero build time, 100% recall, simple |
+| 50k–10M, static data, memory tight | IVF + PQ/OPQ | Good compression, trained once, balanced speed |
+| 50k–100M, dynamic inserts, high recall | HNSW | Incremental updates, best recall-vs-latency Pareto |
+| 100M+, SSD available, single node | DiskANN | RAM-efficient graph + SSD vectors, billion-scale |
+| Batch re-ranking, TPU/GPU cluster | ScaNN | SIMD-optimized, best batch throughput |
+| Need exact recall at any scale | Flat subset + tiered search | Search small candidate set exactly, prune with ANN
 
 ---
 
-## 📦 Compression Code
+## 🎯 Key Takeaways
+
+- **Flat** is the exact baseline; use it for small datasets and recall validation — never for production at scale beyond 100k vectors
+- **IVF** partitions space via k-means into `nlist` clusters; tune `nlist` (~$\sqrt{N}$) and `nprobe` for your latency/recall target; requires periodic retraining for dynamic data because centroids become stale as distribution shifts
+- **HNSW** is the production gold standard — graph-based navigation with $O(\log N)$ search complexity and incremental (online) inserts; invest in `efConstruction` at build time (≥200); you cannot fix a bad graph at query time
+- **PQ/OPQ** compress vectors by 10–50× via sub-vector quantization; always use OPQ's learned rotation; benchmark reconstruction MSE before accepting a configuration
+- **DiskANN** extends graph search to SSD with the Vamana algorithm, enabling billion-vector search on a single machine without terabytes of RAM — the defining innovation for cost-effective large-scale deployment
+- **ScaNN** is purpose-built for batch throughput on SIMD/GPU hardware; ideal for cloud-scale reranking and offline scoring pipelines
+- Memory budget is often the binding constraint in production; use the formulas in this note to estimate before selecting hardware
+- No index is universally optimal — benchmark recall, latency, and memory on your specific data distribution before committing to a decision
+- Document index parameters alongside your schema with reasoning comments (e.g., why you chose $M=32$ over $M=16$, or why PQ $m=96$ was selected given your 64GB RAM budget)
+
+## References
+
+- Y. Malkov, D. Yashunin. "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs." IEEE TPAMI, 2018
+- H. Jégou et al. "Product Quantization for Nearest Neighbor Search." IEEE TPAMI, 2011
+- S. Subramanya et al. "DiskANN: Fast Accurate Billion-point Nearest Neighbor Search on a Single Node." NeurIPS, 2019
+- Google Research. "ScaNN: Accelerating Large-Scale Inference with Anisotropic Vector Quantization." ICML, 2020
+- Faiss documentation: https://github.com/facebookresearch/faiss/wiki
+- Microsoft Research. "DiskANN: Graph-based Indices on SSD." https://github.com/microsoft/DiskANN
+- [[01 - Vector Search Fundamentals]] — ANN motivation and distance metrics
+- [[03 - pgvector I - Core Operations and Indexing]] — pgvector's ivfflat and hnsw implementation
+- [[05 - Qdrant I - Architecture and Collections]] — HNSW in Qdrant's production engine
+
+## 📦 Código de compresión
 
 ```python
 """
 Indexing Algorithms Deep Dive — Compression Script
-Summarizes: Flat, IVF, HNSW, PQ, OPQ, DiskANN, ScaNN trade-offs.
+Summarizes: Flat, IVF, HNSW, PQ, OPQ trade-offs with recall benchmarking.
 """
 import faiss
 import numpy as np
+import time
 
 class VectorIndexBenchmark:
     def __init__(self, dim: int = 768):
@@ -475,32 +301,33 @@ class VectorIndexBenchmark:
         self.indices = {}
 
     def build_flat(self, vectors: np.ndarray):
+        t0 = time.time()
         idx = faiss.IndexFlatIP(self.dim)
         idx.add(vectors)
         self.indices["flat"] = idx
-        return idx
+        return time.time() - t0
 
     def build_ivf(self, vectors: np.ndarray, nlist: int = 100, nprobe: int = 10):
-        quantizer = faiss.IndexFlatIP(self.dim)
-        idx = faiss.IndexIVFFlat(quantizer, self.dim, nlist, faiss.METRIC_INNER_PRODUCT)
+        t0 = time.time()
+        q = faiss.IndexFlatIP(self.dim)
+        idx = faiss.IndexIVFFlat(q, self.dim, nlist, faiss.METRIC_INNER_PRODUCT)
         idx.train(vectors)
         idx.add(vectors)
         idx.nprobe = nprobe
         self.indices["ivf"] = idx
-        return idx
+        return time.time() - t0
 
     def build_hnsw(self, vectors: np.ndarray, M: int = 16, efConstruction: int = 200):
+        t0 = time.time()
         idx = faiss.IndexHNSWFlat(self.dim, M)
         idx.hnsw.efConstruction = efConstruction
         idx.add(vectors)
+        idx.hnsw.efSearch = 128
         self.indices["hnsw"] = idx
-        return idx
+        return time.time() - t0
 
     def recall_vs_exact(self, query: np.ndarray, k: int = 10):
-        exact_idx = self.indices.get("flat")
-        if exact_idx is None:
-            raise ValueError("Build flat index first as baseline.")
-        _, exact_I = exact_idx.search(query, k)
+        _, exact_I = self.indices["flat"].search(query, k)
         results = {}
         for name, idx in self.indices.items():
             if name == "flat":
@@ -515,46 +342,10 @@ if __name__ == "__main__":
     vecs = np.random.randn(N, dim).astype("float32")
     vecs /= np.linalg.norm(vecs, axis=1, keepdims=True)
     bench = VectorIndexBenchmark(dim)
-    bench.build_flat(vecs)
-    bench.build_ivf(vecs, nlist=100, nprobe=10)
-    bench.build_hnsw(vecs, M=16, efConstruction=200)
+    print(f"Flat build: {bench.build_flat(vecs):.2f}s")
+    print(f"IVF build:  {bench.build_ivf(vecs):.2f}s")
+    print(f"HNSW build: {bench.build_hnsw(vecs):.2f}s")
     q = np.random.randn(1, dim).astype("float32")
     q /= np.linalg.norm(q)
-    print(bench.recall_vs_exact(q, k=10))
+    print("Recall vs Flat:", bench.recall_vs_exact(q, k=10))
 ```
-
-## 🎯 Documented Project
-
-**Project: Index Benchmarking Suite**
-
-- **Description**: A reproducible benchmarking harness that builds Flat, IVF, HNSW, and OPQ+PQ indices on the same dataset and reports latency, memory, and recall@k.
-- **Functional Requirements**:
-  - Accept a NumPy matrix of embeddings and a set of query vectors.
-  - Build each index type with configurable parameters.
-  - Measure query latency (p50, p99) and peak RSS memory via `psutil`.
-  - Compute recall@k against the Flat exact baseline for every approximate index.
-- **Main Components**:
-  - `IndexBuilder`: factory for Faiss indices with validated parameters.
-  - `BenchmarkRunner`: warms up caches, times searches, and aggregates stats.
-  - `ReportGenerator`: outputs Markdown tables comparing index configurations.
-- **Success Metrics**:
-  - HNSW achieves ≥95% recall@10 with p99 latency <20ms on 1M vectors.
-  - PQ index uses ≤5% of Flat memory with ≥85% recall@10.
-
-## 🎯 Key Takeaways
-
-- **Flat** is the exact baseline; use it for small datasets and recall validation.
-- **IVF** partitions space via k-means; tune `nlist` and `nprobe` for your latency/recall target.
-- **HNSW** is the gold standard for dynamic, real-time vector search due to its graph-based navigation and incremental update support.
-- **PQ/OPQ** compress vectors by 10–30×, making billion-scale search feasible in limited RAM.
-- **DiskANN** extends HNSW ideas to SSD-backed storage, enabling single-machine billion-vector search.
-- **ScaNN** is optimized for batch throughput on modern SIMD/GPU hardware and excels in cloud-scale reranking.
-- No index is universally best; always benchmark recall, latency, and memory on your data before choosing.
-
-## References
-
-- Y. Malkov, D. Yashunin. "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs." IEEE TPAMI, 2018.
-- H. Jégou et al. "Product Quantization for Nearest Neighbor Search." IEEE TPAMI, 2011.
-- S. Subramanya et al. "DiskANN: Fast Accurate Billion-point Nearest Neighbor Search on a Single Node." NeurIPS, 2019.
-- Google Research. "ScaNN: Accelerating Large-Scale Inference with Anisotropic Vector Quantization." ICML, 2020.
-- Faiss documentation: https://github.com/facebookresearch/faiss/wiki

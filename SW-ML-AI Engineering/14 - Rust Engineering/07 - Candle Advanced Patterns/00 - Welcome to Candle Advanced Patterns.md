@@ -1,217 +1,253 @@
-# 🕯️ Welcome to Candle Advanced Patterns
+# 🦀 0 - Welcome to Candle Advanced Patterns
 
 ## 🎯 Learning Objectives
-- Understand why Candle exists as a Rust-native ML framework and how it differs from Python-centric stacks.
-- Map the architecture of Candle (`candle-core`, `candle-nn`, `candle-transformers`, `candle-wasm`) to your mental model.
-- Identify the prerequisites and learning path required to build production-grade ML systems in Rust.
+- Understand why Candle exists as a Rust-native ML framework and how it differs from Python stacks.
+- Map the architecture of Candle across its crates: `candle-core`, `candle-nn`, `candle-transformers`, `candle-wasm`.
+- Identify prerequisites and the learning path for production-grade ML systems in Rust.
 - Connect advanced Candle patterns to broader [[Rust Engineering]] principles and deep learning fundamentals.
-
----
 
 ## Introduction
 
-The modern machine learning landscape is dominated by Python frameworks like PyTorch and TensorFlow. While these tools excel at research velocity, they often hit a wall when engineers try to deploy models into latency-sensitive, resource-constrained, or safety-critical production environments. Python's Global Interpreter Lock (GIL), dynamic typing, and heavy runtime dependencies make it difficult to achieve the memory safety and predictable performance that systems like autonomous vehicles, real-time recommendation engines, and edge devices demand.
+The modern ML landscape is dominated by Python frameworks like PyTorch and TensorFlow. While these excel at research velocity, they hit a wall when engineers try to deploy models into latency-sensitive, resource-constrained, or safety-critical production environments. Python's GIL, dynamic typing, and heavy runtime dependencies make it difficult to achieve the memory safety and predictable performance that systems like autonomous vehicles, real-time recommendation engines, and edge devices demand.
 
-Candle, developed by Hugging Face, is a Rust-native machine learning framework designed to bridge this gap. It offers a PyTorch-like API while leveraging Rust's ownership model, zero-cost abstractions, and cross-compilation capabilities. This course explores advanced Candle patterns—from custom autodiff and GPU abstraction to WebAssembly edge deployment. You will learn not just how to write Candle code, but *why* each pattern exists and how it maps to production ML engineering. Throughout these notes, we will reference foundational concepts from [[01 - Rust Fundamentals]] and [[04 - Rust for ML and AI]], as well as deep learning theory from [[01 - Deep Learning y Computer Vision]].
+Candle, developed by Hugging Face, is a Rust-native ML framework designed to bridge this gap. It offers a PyTorch-like API while leveraging Rust's ownership model, zero-cost abstractions, and cross-compilation capabilities. This course explores advanced Candle patterns—from custom autodiff and GPU abstraction to WebAssembly edge deployment. You will learn not just *how* to write Candle code, but *why* each pattern exists and how it maps to production ML engineering. These notes build on [[01 - Rust Fundamentals]] and [[04 - Rust for ML and AI]], as well as deep learning theory from [[01 - Deep Learning y Computer Vision]].
 
 ---
 
-## Module 0: Course Overview
+## 1. Core Philosophy: The Program is the Graph
 
-### 0.1 Theoretical Foundation 🧠
+### Why Explicit Beats Implicit in Production
 
-Most ML frameworks are built around two core ideas: a dynamic computation graph and an interpreted host language. PyTorch's eager mode creates a graph on-the-fly as Python executes operations. This flexibility is powerful for research, but it introduces significant overhead: Python object boxing, reference counting, and lack of compile-time optimizations. When Hugging Face began shipping inference endpoints at scale, they encountered a recurring problem—Python's runtime was often the bottleneck, not the GPU kernel.
+Most ML frameworks build on two ideas: a dynamic computation graph and an interpreted host language. PyTorch's eager mode creates a graph on-the-fly as Python executes operations. This is powerful for research but introduces overhead: Python object boxing, reference counting, and a lack of compile-time optimizations. When Hugging Face began shipping inference endpoints at scale, they found Python's runtime was often the bottleneck, not the GPU kernel.
 
-Rust solves this by enforcing memory safety without a garbage collector and by enabling aggressive monomorphization and inlining at compile time. Candle takes advantage of this by representing tensors as strongly-typed structs and computation graphs as explicit Rust control flow. There is no hidden graph tape; the program *is* the graph. This design decision means that Candle models compile down to efficient native code with predictable memory layouts, making them ideal for deployment in containers, WebAssembly sandboxes, and embedded systems. Understanding this philosophy—trading some dynamic flexibility for static performance—is the key to mastering advanced Candle patterns.
+Candle takes a different approach: tensors are strongly-typed structs and computation graphs are explicit Rust control flow. There is no hidden graph tape—the program *is* the graph. This design means Candle models compile down to efficient native code with predictable memory layouts, making them ideal for containers, WebAssembly sandboxes, and embedded systems.
 
-The difference in execution models is not academic; it directly impacts cold-start latency, memory footprint, and binary size.
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│           Python Eager vs Rust Compiled Execution           │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  PyTorch                                                    │
-│  Python Op ──► C++ ATen ──► CUDA Kernel                     │
-│     ▲            │                                          │
-│     └────────────┘ (GIL, dynamic dispatch)                  │
-│                                                             │
-│  Candle                                                     │
-│  Rust Op ──► Compiled LLVM IR ──► CUDA Kernel               │
-│     │                                                       │
-│     └──────────────────────────── (static dispatch, no GIL) │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### 0.2 Mental Model 📐
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│              Candle Ecosystem Architecture                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  User Code (Your Model)                                     │
-│       │                                                     │
-│       ▼                                                     │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────────┐ │
-│  │ candle-core │◄──►│  candle-nn  │◄──►│candle-transformers│
-│  │  Tensors    │    │   Layers    │    │  Pre-built Models │
-│  │  Autodiff   │    │ Linear, Conv│    │  Llama, Mistral   │
-│  │  Devices    │    │  Norm, Activ│    │  Whisper, BERT    │
-│  └──────┬──────┘    └─────────────┘    └─────────────────┘ │
-│         │                                                   │
-│         ▼                                                   │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │           Hardware Abstraction Layer                │   │
-│  │   CpuDevice  │  CudaDevice  │  MetalDevice         │   │
-│  └─────────────────────────────────────────────────────┘   │
-│         │                                                   │
-│         ▼                                                   │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              candle-wasm (Edge Runtime)              │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### 0.3 Syntax and Semantics 📝
-
-The following snippet demonstrates the "Hello World" of Candle: creating a tensor and performing a simple operation. Notice how the `Device` is explicitly threaded through the computation, unlike the implicit global device state in PyTorch.
+❌ **PyTorch thinking:** Expecting an implicit `grad_fn` on every tensor and a hidden autograd tape.
+✅ **Candle approach:** Gradients are opt-in, requested only when you explicitly call `backward()`. Resources are deterministic.
 
 ```rust
 use candle_core::{Tensor, Device, Result};
 
 fn main() -> Result<()> {
-    // Explicitly choose the device; this makes deployments portable.
-    // WHY: In production, you want deterministic device selection,
-    // not a hidden fallback that silently runs on CPU.
+    // Explicit device selection — no implicit fallback.
     let device = Device::cuda_if_available(0)?;
-    
-    // Create a tensor directly on the target device.
-    // WHY: Avoids a costly CPU-to-GPU transfer later.
     let a = Tensor::new(&[[2f32, 3.0], [4.0, 5.0]], &device)?;
     let b = Tensor::new(&[[1f32, 2.0], [3.0, 4.0]], &device)?;
-    
-    // Operations return a Result, forcing the caller to handle errors.
-    // WHY: ML systems fail at scale; Rust's Result type makes failure
-    // modes explicit rather than hidden in a Python traceback.
-    let c = a.matmul(&b)?;
-    
+    let c = a.matmul(&b)?;  // Returns Result — errors are explicit
     println!("{:?}", c.to_vec2::<f32>()?);
     Ok(())
 }
 ```
 
-### 0.4 Visual Representation 🖼️
+> 💡 **Mnemonic:** "Compile-Time PyTorch." If you cannot explain where a tensor lives at compile time, refactor.
 
-The learning path through this course follows a progression from low-level tensor mechanics to high-level deployment patterns.
+⚠️ **Pitfall:** Every tensor operation returns `Result`. Using `.unwrap()` everywhere will crash production services. Always propagate errors with `?`.
+
+The difference between Candle and PyTorch can be summarized as a trade-off between **dynamic flexibility** and **static determinism**. PyTorch gives you the ability to change the computation graph on every iteration—useful for research but costly in production. Candle locks the graph at compile time, enabling the Rust compiler and LLVM to optimize aggressively.
 
 ```mermaid
 flowchart LR
-    A[Custom Models & Autodiff] --> B[GPU Acceleration]
-    B --> C[Pre-built Transformers]
-    C --> D[WebAssembly Edge]
-    D --> E[Production Tuning]
+    subgraph PyTorch["PyTorch Eager Mode"]
+        P1[Python Op] --> P2[C++ ATen] --> P3[CUDA Kernel]
+        P2 -.->|GIL + dynamic dispatch| P1
+    end
+    subgraph Candle["Candle Compiled Mode"]
+        C1[Rust Op] --> C2[Compiled LLVM IR] --> C3[CUDA Kernel]
+        C1 -.->|static dispatch, no GIL| C2
+    end
 ```
 
-![Rust programming language logo](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Rust_programming_language_black_logo.svg/240px-Rust_programming_language_black_logo.svg.png)
+**Caso real:** Hugging Face Inference Endpoints use Candle to ship self-contained inference binaries. A 7B-parameter LLM container goes from ~4 GB (Python + PyTorch + CUDA + Conda) to ~50 MB (static binary + weights). Cold-start time drops from minutes to under 3 seconds, and the same binary runs on NVIDIA GPUs, Apple Silicon, and CPU-only instances without modification.
 
-Candle sits at the intersection of systems programming and modern AI. The diagram below shows how it fits into the broader ML inference stack compared to traditional Python frameworks.
+### Tensor Ownership and the Result Type
+
+Every tensor operation in Candle returns `candle_core::Result<Tensor>`. This is not an accident—it is a deliberate design choice that forces explicit error handling at every call site. ML systems fail at scale: out-of-memory, shape mismatches, device disconnects. By returning `Result`, Candle ensures these failure modes are visible in the type system rather than hidden in a Python traceback that only surfaces in production.
+
+```rust
+// PyTorch: silent NaN propagation
+// x = torch.matmul(a, b)  # Could be inf or NaN, you won't know
+
+// Candle: explicit error handling
+let x = a.matmul(&b)?;  // Compiler forces you to handle failure
+```
+
+## 2. Ecosystem Architecture
+
+Candle is organized into layered crates, each building on the one below:
+
+| Crate | Purpose | Key Types |
+|-------|---------|-----------|
+| `candle-core` | Tensors, devices, autodiff | `Tensor`, `Device`, `Var`, `GradStore` |
+| `candle-nn` | Common neural network layers | `Linear`, `Conv2d`, `Module` trait, `VarBuilder` |
+| `candle-transformers` | Pre-built model architectures | `BertModel`, `LlamaModel`, `Whisper`, `Config` |
+| `candle-wasm` | WebAssembly browser runtime | `wasm-bindgen` bindings, CPU-only backend |
+
+The user model code sits at the top, calling into whatever crate it needs. The hardware abstraction layer (`CpuDevice`, `CudaDevice`, `MetalDevice`) lives in `candle-core` and is transparent to the user.
 
 ```mermaid
 flowchart TD
-    subgraph Python_Stack["Python Stack (PyTorch)"]
-        PyApp[Python Application] --> PyTorch[PyTorch Eager]
-        PyTorch --> CudaPy[CUDA Kernels via Python GIL]
+    subgraph User[User Code]
+        A[Your Model]
     end
-    
-    subgraph Rust_Stack["Rust Stack (Candle)"]
-        RustApp[Rust Application] --> Candle[Candle Core]
-        Candle --> CudaRs[CUDA Kernels via cudarc]
-        Candle --> Metal[Metal Kernels]
-        Candle --> Wasm[Wasm Runtime]
+    subgraph Crates[Candle Crates]
+        B[candle-core]
+        C[candle-nn]
+        D[candle-transformers]
     end
+    subgraph HW[Hardware Backends]
+        E[CpuDevice]
+        F[CudaDevice]
+        G[MetalDevice]
+    end
+    subgraph Edge[Edge Runtime]
+        H[candle-wasm]
+    end
+    A --> B
+    A --> C
+    A --> D
+    B --> E
+    B --> F
+    B --> G
+    B --> H
 ```
 
-![Machine learning workflow diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Machine_learning_workflow.png/640px-Machine_learning_workflow.png)
+Each backend is a separate compilation target. When compiling for `wasm32-unknown-unknown`, only the CPU backend is included—CUDA and Metal code are stripped at compile time.
 
-### 0.5 Application in ML/AI Systems 🤖
+### Crate Deep Dive: candle-core
 
-Candle is not merely an academic exercise; it powers production systems where latency and binary size matter. Hugging Face uses Candle to ship small, self-contained inference binaries that can run LLMs on laptops without installing Python, CUDA toolkits, or Conda environments. This drastically reduces the "time-to-first-inference" for developers.
+`candle-core` is the foundation. It defines the `Tensor` struct, the `Device` enum, and the autodiff primitives. The `Tensor` is a contiguous multi-dimensional array stored either in CPU RAM or GPU VRAM, with metadata for shape, stride, dtype, and device location.
 
+```rust
+use candle_core::{Tensor, Device, DType, Result};
+
+fn tensor_lifecycle() -> Result<()> {
+    // Creation: always specify device and dtype explicitly
+    let cpu = Device::Cpu;
+    let t = Tensor::zeros((3, 4), DType::F32, &cpu)?;
+    println!("Shape: {:?}, Dtype: {:?}, Device: {:?}",
+             t.shape(), t.dtype(), t.device());
+
+    // Conversion between dtypes
+    let t_f16 = t.to_dtype(DType::F16)?;
+
+    // Transfer between devices (expensive)
+    let gpu = Device::new_cuda(0)?;
+    let t_gpu = t.to_device(&gpu)?;
+
+    Ok(())
+}
 ```
-┌─────────────────────────────────────────────────────────────┐
-│         Deployment Footprint Comparison                     │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  PyTorch Serving:                                           │
-│  Python + PyTorch + CUDA + Conda = ~4 GB container          │
-│                                                             │
-│  Candle Serving:                                            │
-│  Single static binary + model weights = ~50 MB binary       │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+
+Key `Tensor` methods every Candle developer should know:
+
+| Method | Purpose | Returns |
+|--------|---------|---------|
+| `t.matmul(&u)` | Matrix multiplication | `Result<Tensor>` |
+| `t.broadcast_mul(&u)` | Element-wise with broadcasting | `Result<Tensor>` |
+| `t.sum_all()` | Reduce all elements to scalar | `Result<Tensor>` |
+| `t.reshape(shape)` | Change shape (view) | `Result<Tensor>` |
+| `t.to_vec2::<f32>()` | Copy data to host as 2D Vec | `Result<Vec<Vec<f32>>>` |
+| `t.to_dtype(dt)` | Change numeric precision | `Result<Tensor>` |
+
+## 3. Learning Path
+
+This course progresses from low-level tensor mechanics to high-level deployment:
+
+```mermaid
+flowchart LR
+    A[1. Custom Models & Autodiff] --> B[2. GPU Acceleration]
+    B --> C[3. Pre-built Transformers]
+    C --> D[4. WebAssembly Edge]
+    D --> E[5. Production Tuning]
 ```
 
-| ML Use Case | Candle Advantage | Impact |
-|-------------|------------------|--------|
-| Serverless GPU inference | Single static binary, no Python env | 50% faster cold starts |
-| Edge/browser ML | `candle-wasm` compiles to Wasm | Runs on any modern browser |
-| Embedded/IoT | No GC pauses, tiny memory footprint | Real-time sensor processing |
+| Module | Core Skill | Production Relevance |
+|--------|-----------|---------------------|
+| 1 | Implement `Module` trait, manage parameters with `VarBuilder` | Custom architectures for niche domains |
+| 2 | Write device-agnostic code, profile GPU transfers | Single binary for multi-cloud deployment |
+| 3 | Load BERT/Llama/Whisper from safetensors | RAG pipelines, on-device LLM inference |
+| 4 | Compile to Wasm, bridge JS ↔ Rust | Privacy-preserving browser inference |
+| 5 | Dynamic batching, memory pools, `Arc<Model>` sharing | High-throughput serving with P99 SLOs |
 
-### 0.6 Common Pitfalls ⚠️
-⚠️ **Assuming PyTorch mental models transfer directly:** Candle does not have an implicit autograd tape. Tensors do not "remember" their history unless you explicitly use the backward API. This happens because Candle prioritizes explicit resource management over implicit magic.
+**Prerequisites:** Comfort with Rust ownership and traits ([[01 - Rust Fundamentals]]), basic deep learning terminology (activation functions, loss functions, backpropagation from [[01 - Deep Learning y Computer Vision]]).
 
-⚠️ **Ignoring the `Result` type:** Every tensor operation can fail (OOM, shape mismatch). Unwrapping everywhere will crash production services. Always propagate errors.
+### Setting Up a Candle Project
 
-💡 **Mnemonic:** Think of Candle as "Compile-Time PyTorch." If you can't explain where a tensor lives in memory at compile time, you probably need to refactor.
+Starting a new Candle project requires adding the core crates to `Cargo.toml`:
 
-### 0.7 Knowledge Check ❓
-1. Name three hardware backends Candle supports and explain why explicit device selection is safer than implicit defaults.
-2. Compare the memory management strategy of Candle (Rust + no GC) with PyTorch (Python + reference counting). When does the difference matter most?
-3. Look at the ecosystem architecture diagram. If you were building a text-summarization API, which crates would you likely use?
+```toml
+[dependencies]
+candle-core = "0.5"
+candle-nn = "0.5"
+# Optional: for pre-built models
+candle-transformers = "0.5"
+# Optional: for loading Hugging Face weights
+hf-hub = "0.3"
+# Optional: for tokenization
+tokenizers = "0.15"
+```
+
+Candle follows semantic versioning. The 0.x versions indicate the API is still evolving, but the core tensor operations and `Module` trait have been stable since 0.4. Always check the [changelog](https://github.com/huggingface/candle/releases) when upgrading.
+
+```bash
+# Create a new Rust project
+cargo new my_candle_model
+cd my_candle_model
+# Add dependencies manually, or use cargo add
+cargo add candle-core
+cargo add candle-nn
+```
+
+The first `cargo build` will compile Candle's native dependencies (`cublas`, `cudart` for CUDA, `Metal` for Apple). On a machine without CUDA, Candle automatically falls back to the CPU backend—no special build flags required.
 
 ---
 
-## 📦 Compression Code
+### Connection to the Broader Rust ML Ecosystem
+
+Candle does not exist in isolation. It is part of the Rust ML stack alongside:
+
+- **`dfdx`** – A different Rust ML framework that uses compile-time shape checking via const generics. Less mature but offers stronger type safety.
+- **`burn`** – Another Rust deep learning framework with its own autodiff system and a more PyTorch-like API. Larger ecosystem but heavier binary.
+- **`ort`** – Rust bindings for ONNX Runtime. Good for running pre-trained ONNX models but lacks native model definition capabilities.
+
+Candle's niche is **small, portable inference binaries** with first-class Wasm support. It prioritizes compilation speed, binary size, and runtime simplicity over the broadest possible operator coverage.
+
+### When NOT to Use Candle
+
+Candle is not a universal replacement for Python ML frameworks. Consider alternatives when:
+
+- **You are doing active research requiring dynamic architectures.** PyTorch's eager mode and Python's interactive development loop are superior for rapid prototyping.
+- **You need the full Hugging Face ecosystem** (PEFT, LoRA, DeepSpeed, distributed training). Candle supports only a subset of these.
+- **You are training large models from scratch.** Candle's autodiff works but lacks the distributed training infrastructure of PyTorch DDP/FSDP.
+- **You need the broadest operator coverage.** If your model uses exotic CUDA kernels (e.g., FlashAttention v2 custom implementations), PyTorch's ecosystem is more mature.
+
+---
+
+## 🎯 Key Takeaways
+- Candle prioritizes **explicit resource management** over implicit magic—no hidden autograd tape, no global device state.
+- The `Device` enum provides **zero-cost abstraction** over CPU, CUDA, and Metal—the compiler monomorphizes the backend.
+- Models are **plain Rust structs** implementing `Module`; the forward pass is a plain Rust function returning `Result<Tensor>`.
+- Static compilation eliminates Python's cold-start overhead, making Candle ideal for serverless, edge, and embedded deployment.
+
+## References
+- Official docs: https://huggingface.github.io/candle/
+- Repository: https://github.com/huggingface/candle
+- [[01 - Rust Fundamentals]]
+- [[04 - Rust for ML and AI]]
+- [[01 - Deep Learning y Computer Vision]]
+
+## 📦 Código de compresión
 
 ```rust
 use candle_core::{Tensor, Device, Result};
 
 fn main() -> Result<()> {
-    // Course overview: device abstraction, tensor ops, explicit error handling.
     let device = Device::cuda_if_available(0)?;
     let x = Tensor::randn(0f32, 1f32, (2, 3), &device)?;
     let w = Tensor::randn(0f32, 1f32, (3, 2), &device)?;
     let y = x.matmul(&w)?;
     println!("Output shape: {:?}", y.shape());
+    println!("Selected device: {:?}", device);
     Ok(())
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-A minimal CLI tool that loads a random tensor, performs a matrix multiplication on the best available hardware device, and prints the result. This project demonstrates the foundational patterns of device abstraction and explicit error handling that underpin every advanced Candle system.
-
-### Functional Requirements
-1. Accept a `--device` flag (`cpu`, `cuda`, `metal`) with sensible defaults.
-2. Initialize two random tensors of compatible shapes on the selected device.
-3. Perform matrix multiplication and verify the output shape.
-4. Handle device unavailability gracefully with a user-friendly error message.
-5. Log the selected device and compute time to stderr.
-
-### Main Components
-- `DeviceSelector`: Encapsulates logic for parsing CLI flags and falling back to CPU.
-- `TensorGenerator`: Creates random tensors with fixed seeds for reproducibility.
-- `MatMulEngine`: Performs the operation and returns a `Result<Tensor, candle_core::Error>`.
-
-### Success Metrics
-- Binary size under 5 MB when compiled with `--release`.
-- Cold-start execution time under 100 ms on CPU.
-- Zero `unwrap()` calls in the production code path.
-
-### References
-- Official docs: https://huggingface.github.io/candle/
-- Paper/library: https://github.com/huggingface/candle

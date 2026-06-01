@@ -148,38 +148,4 @@ fn main() {
 }
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Build a cross-platform CLI tool that prints system information. Package it for Linux (x86_64, aarch64, musl), Windows, and macOS using GitHub Actions. Provide both standalone binaries and Docker images for each platform.
-
-### Functional Requirements
-
-1. Detect and display CPU architecture, OS, and memory usage.
-2. Compile to `x86_64-unknown-linux-musl` and `aarch64-unknown-linux-musl` with static linking.
-3. Produce Windows `.exe` and macOS universal binaries via GitHub Actions matrix builds.
-4. Build and push Docker images for both Linux architectures to a registry.
-5. Include a `install.sh` script that detects the platform and downloads the correct binary from GitHub Releases.
-
-### Main Components
-
-- `src/main.rs`: CLI entry point using `clap` for argument parsing.
-- `.github/workflows/release.yml`: Matrix builds for all targets.
-- `Dockerfile`: Multi-stage build producing a scratch-based image.
-- `install.sh`: Platform detection and binary download script.
-- `Cross.toml`: Configuration for the `cross` tool.
-
-### Success Metrics
-
-- All 5 target platforms produce green CI builds on every tag.
-- Linux binary runs on Alpine Linux without installing any dependencies.
-- Docker image size is under 15 MB for all architectures.
-- `install.sh` correctly installs the binary on Ubuntu, macOS, and WSL2.
-- Release artifacts are uploaded to GitHub Releases within 10 minutes of tagging.
-
-### References
-
-- [Rust Platform Support](https://doc.rust-lang.org/nightly/rustc/platform-support.html)
-- [Cross Compilation Tool: `cross`](https://github.com/cross-rs/cross)
-- [Cloudflare Workers Rust SDK](https://github.com/cloudflare/workers-rs)

@@ -366,39 +366,4 @@ print(config)  # EntrenamientoConfig(epochs=20, ...)
 
 ---
 
-## 🎯 Proyecto documentado: Schema de Datos para un Feature Store
 
-### Descripción
-Diseña un sistema de schemas tipados para un feature store que defina features con tipos, restricciones, versiones y linaje. Debe usar `TypedDict`, `Protocol`, y `dataclasses` para garantizar que los datos que entran a los modelos cumplan el contrato esperado.
-
-### Requisitos funcionales
-1. `FeatureSchema`: define nombre, tipo (`int`, `float`, `str`, `timestamp`), restricciones (`min`, `max`, `regex`), y si permite nulos.
-2. `FeatureSet`: agrupa múltiples `FeatureSchema` en una entidad (ej. `Usuario`, `Producto`).
-3. `FeatureStoreClient`: protocolo que define `get_features(entity_id, feature_set) -> TypedDict`.
-4. Validación runtime: al obtener features, verificar tipos y restricciones; lanzar `FeatureValidationError` si falla.
-5. Versionado: cada `FeatureSet` tiene versión; al cargar un modelo, validar que el feature set coincida.
-
-### Ejemplo de uso esperado
-```python
-user_schema = FeatureSet(
-    name="user_v2",
-    features=[
-        FeatureSchema("edad", int, min=0, max=120, nullable=False),
-        FeatureSchema("ingreso_mensual", float, min=0, nullable=True),
-    ]
-)
-
-client = FeatureStoreClient()
-datos = client.get_features("user_123", user_schema)
-# datos: {"edad": 30, "ingreso_mensual": 2500.0}
-```
-
-### Métricas de éxito
-- Validación de 1000 features en menos de 10ms.
-- Mensajes de error que indican exactamente qué feature falló y por qué.
-- Compatibilidad con `pandas.DataFrame` para batch validation.
-
-### Referencias
-- Feast (Feature Store)
-- Pydantic (data validation)
-- Great Expectations (data quality)

@@ -323,37 +323,3 @@ fn stream_compress_large_file(input_path: &str, output_path: &str) -> Result<(),
     Ok(())
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-Build a high-performance financial data aggregation system that processes millions of stock market transactions in real-time using Polars. The system will ingest raw tick data, perform complex aggregations (OHLCV, VWAP, technical indicators), and serve results with sub-second latency.
-
-### Functional Requirements
-1. **Ingest real-time tick data** from multiple stock exchanges (NYSE, NASDAQ, LSE) via WebSocket connections
-2. **Process 1M+ messages/second** with Polars streaming API and lazy evaluation
-3. **Calculate technical indicators** including moving averages, RSI, Bollinger Bands, and MACD
-4. **Aggregate to multiple timeframes** (1min, 5min, 15min, 1hour, 1day) simultaneously
-5. **Export results** to Parquet format with Snappy compression for downstream analytics
-
-### Main Components
-- **Data Ingestion Layer**: WebSocket clients with async message queuing (tokio)
-- **Polars Processing Engine**: Streaming DataFrame operations with query optimization
-- **Indicator Calculator**: Custom Polars expressions for technical analysis
-- **Timeframe Aggregator**: Window functions with sliding and tumbling windows
-- **Storage Writer**: Batched Parquet writer with columnar compression
-- **API Server**: Rocket-based REST API for query results
-
-### Success Metrics
-- **Throughput**: > 5 million ticks/second aggregated
-- **Latency**: < 100ms from tick arrival to indicator calculation
-- **Memory Usage**: < 4GB for 100,000 concurrent symbols
-- **Compression Ratio**: 10:1 on historical data
-- **CPU Utilization**: > 80% across all cores during peak load
-
-### References
-- [Polars Official Documentation](https://pola.rs/)
-- [Apache Arrow Columnar Format](https://arrow.apache.org/docs/format/Columnar.html)
-- [Polars vs Pandas Performance Benchmarks](https://www.pola.rs/posts/benchmarks/)
-- [Rust for Data Science Book](https://rust-data-science.github.io/)
-- [HFT Systems in Rust](https://www.youtube.com/watch?v=9-GsFeBExjM)

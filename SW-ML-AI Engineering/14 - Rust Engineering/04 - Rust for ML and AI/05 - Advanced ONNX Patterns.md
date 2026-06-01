@@ -808,32 +808,7 @@ impl AsyncInferenceEngine {
 - Use `GraphOptimizationLevel::Level2` in production for maximum safety. Reserve Level 3 and All for models that have been validated on representative inputs.
 - Pre-compute and cache optimized+quantized models in CI/CD. Session creation with `Level::All` can take 10-60 seconds for large models — this cost should never be paid at runtime.
 
-## ✅ Knowledge Check
 
-1. **What does Level 3 graph optimization do that Level 2 does not?**
-   <details><summary>Answer</summary>
-   Level 3 adds layout optimization, which can convert tensor memory layouts (e.g., NCHW → NHWC for CPU EP) and extended operator fusion (Conv+BN+ReLU into a single kernel, Conv+Clip fusion). These transformations change the in-memory layout of intermediate tensors, which can break custom ops or models with unusual shape patterns that weren't validated against layout optimization.
-   </details>
-
-2. **Why does static INT8 quantization require calibration data while dynamic does not?**
-   <details><summary>Answer</summary>
-   Static quantization pre-computes scale and zero-point values for each tensor from a calibration dataset *before* deployment. This requires running representative samples through the model to observe activation ranges. Dynamic quantization computes these values on-the-fly during inference from the actual input batch, requiring no calibration but introducing runtime overhead and using less optimal quantization parameters.
-   </details>
-
-3. **When using Tokio with ONNX Runtime, why is `spawn_blocking` essential?**
-   <details><summary>Answer</summary>
-   ONNX Runtime inference is a blocking (synchronous) operation that can take milliseconds to seconds. If run directly on a Tokio async worker thread, it blocks that thread from handling other async tasks, potentially starving the reactor. `spawn_blocking` moves the inference to a dedicated blocking thread pool, keeping the async runtime responsive for I/O tasks.
-   </details>
-
-4. **What risks exist when upgrading the `ort` crate version with custom operators registered?**
-   <details><summary>Answer</summary>
-   Custom operators link against ONNX Runtime's internal C++ ABI, which may change between major versions. The `ComputeContext`, `Kernel` trait, and tensor accessor APIs can have breaking changes. Always test custom ops thoroughly after upgrading and pin the `ort` version if stability is critical.
-   </details>
-
-5. **How should you configure intra_op and inter_op threads for a model with 8 independent encoder branches on a 16-core CPU?**
-   <details><summary>Answer</summary>
-   Set `inter_op_threads = 8` (one per independent branch) and `intra_op_threads = 2` (total 16 cores / 8 branches = 2 cores per branch for internal matrix operations). This maximizes utilization by running all branches simultaneously while giving each branch enough compute for internal ops.
-   </details>
 
 ## 🎯 Key Takeaways
 

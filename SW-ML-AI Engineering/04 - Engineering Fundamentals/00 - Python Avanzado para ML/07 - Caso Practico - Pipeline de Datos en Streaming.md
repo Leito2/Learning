@@ -72,21 +72,16 @@ flowchart LR
     G --> H[Logger / Metrics]
 ```
 
-```
-┌─────────────┐     ┌──────────────┐     ┌──────────────┐     ┌─────────────┐
-│  Kafka /    │────▶│  Ingestor    │────▶│  Enriquecer  │────▶│   Modelo    │
-│  WebSocket  │     │  (async)     │     │  (async DB)  │     │  (CPU/GPU)  │
-└─────────────┘     └──────────────┘     └──────────────┘     └──────┬──────┘
-                                                                     │
-                              ┌──────────────┐     ┌──────────────┐ │
-                              │   Alertador  │◀────│   Decisor    │◀┘
-                              │  (async)     │     │  (sync rule) │
-                              └──────────────┘     └──────────────┘
-                                                                     │
-                              ┌──────────────┐     ┌──────────────┐ │
-                              │  Logger/     │◀────│  Tracker     │◀┘
-                              │  Metrics     │     │  (decorator) │
-                              └──────────────┘     └──────────────┘
+
+```mermaid
+flowchart LR
+    A["Kafka / WebSocket"] --> B["Ingestor (async)"]
+    B --> C["Enriquecer (async DB)"]
+    C --> D["Modelo (CPU/GPU)"]
+    D --> E["Decisor (sync rule)"]
+    E --> F["Alertador (async)"]
+    E --> G["Tracker (decorator)"]
+    G --> H["Logger / Metrics"]
 ```
 
 ---

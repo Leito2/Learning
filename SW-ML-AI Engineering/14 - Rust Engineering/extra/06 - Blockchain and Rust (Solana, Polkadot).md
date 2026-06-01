@@ -226,39 +226,3 @@ fn process_airdrop(
     Ok(())
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-
-A decentralized automated market maker (AMM) on Solana with concentrated liquidity and multi‑hop routing.
-
-### Functional Requirements
-
-1. Create liquidity pools with custom fee tiers (0.05%, 0.3%, 1%).
-2. Support concentrated liquidity (tick‑based ranges).
-3. Multi‑hop swaps across multiple pools.
-4. Yield farming with reward token distribution.
-5. Governance voting via token‑weighted proposals.
-
-### Main Components
-
-- **Pool Manager**: PDA‑derived pool accounts with `RwLock` for concurrent swaps.
-- **Swap Router**: Graph‑based routing with Dijkstra's algorithm.
-- **Liquidity Calculator**: Tick math library for concentrated liquidity.
-- **Staking Program**: Reward distribution with `SPL‑Stake‑Pool`.
-- **Governance**: Time‑locked proposals with `SPL‑Governance`.
-
-### Success Metrics
-
-- Swap latency < 500 ms (end‑to‑end).
-- Capital efficiency > 10x over constant product AMMs.
-- TVL > $100M within 6 months.
-- Zero critical bugs after third‑party audit.
-
-### References
-
-- Solana documentation: [[06 - Blockchain and Rust (Solana, Polkadot)|programs]]
-- Substrate developer hub
-- ink! examples
-- SPL token program

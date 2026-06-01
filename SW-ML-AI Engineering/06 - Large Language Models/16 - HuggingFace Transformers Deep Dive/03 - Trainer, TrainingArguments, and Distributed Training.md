@@ -1,4 +1,4 @@
-# 🏷️ Trainer, TrainingArguments, and Distributed Training
+# 🤗 Trainer, TrainingArguments, and Distributed Training
 
 ## 🎯 Learning Objectives
 
@@ -11,49 +11,36 @@
 
 Training a transformer at scale is not merely a matter of calling `.fit()`. It requires orchestrating optimizers, schedulers, checkpointing, logging, distributed synchronization, and memory management across heterogeneous hardware. The `Trainer` class in Hugging Face `transformers` abstracts this complexity into a single, extensible loop, while `TrainingArguments` exposes every knob an ML engineer needs to tune.
 
-This note deconstructs that loop. We examine why `Trainer` exists (to prevent every research team from rewriting the same boilerplate), how `TrainingArguments` maps to deep learning theory, and how to scale beyond a single GPU using `accelerate`, DeepSpeed, and FSDP. These topics are the bridge between data preparation ([[02 - Tokenizers and Data Processing]]) and model deployment ([[09 - MLOps y Produccion|MLOps]]). If you have worked with PyTorch Lightning, think of `Trainer` as its more opinionated, Hub-integrated cousin.
+This note deconstructs that loop. We examine why `Trainer` exists (to prevent every research team from rewriting the same boilerplate), how `TrainingArguments` maps to deep learning theory, and how to scale beyond a single GPU using `accelerate`, DeepSpeed, and FSDP. These topics bridge data preparation ([[02 - Tokenizers and Data Processing]]) and model deployment ([[09 - MLOps y Produccion|MLOps]]). If you have worked with PyTorch Lightning, think of `Trainer` as its more opinionated, Hub-integrated cousin.
 
 ---
 
-## Module 1: Trainer Lifecycle and TrainingArguments
+## 1. The Trainer Lifecycle and TrainingArguments
 
-### 1.1 Theoretical Foundation 🧠
+The standard PyTorch training loop—forward, `loss.backward()`, `optimizer.step()`, `scheduler.step()`—is deceptively simple. In production, you must also handle gradient clipping, mixed-precision scaling, checkpoint saving every $N$ steps, evaluation every epoch, metric computation, logging to W&B or MLflow, and artifact pushing to the Hub. Reimplementing this correctly for every experiment wastes engineering time and introduces subtle bugs.
 
-The standard PyTorch training loop—forward, loss.backward(), optimizer.step(), scheduler.step()—is deceptively simple. In production, you must also handle: gradient clipping, mixed-precision scaling, checkpoint saving every N steps, evaluation every N epochs, metric computation, logging to W&B or MLflow, and pushing artifacts to the Hub. Reimplementing this correctly for every experiment is error-prone and wastes engineering time.
+`Trainer` encapsulates this lifecycle as a **state machine with hooks**. The key insight is that the training loop has well-defined transition points that can be intercepted:
 
-`Trainer` encapsulates this lifecycle into a state machine with hooks: `on_init`, `on_train_begin`, `on_step_begin`, `on_step_end`, `on_epoch_end`, `on_evaluate`, `on_save`, and `on_train_end`. Each hook can be intercepted by `TrainerCallback` subclasses, enabling arbitrary customization without subclassing `Trainer` itself. This design follows the **Observer pattern**, keeping the core loop clean while allowing orthogonal concerns (logging, checkpointing) to attach declaratively.
+$$T = \{ \text{init}, \text{train\_begin}, \text{step\_begin}, \text{step\_end}, \text{epoch\_end}, \text{evaluate}, \text{save}, \text{train\_end} \}$$
 
-`TrainingArguments` is the configuration object that drives this loop. It is deliberately exhaustive: learning rate, batch size, gradient accumulation, warmup steps, weight decay, label smoothing, mixed precision, dataloader workers, and Hub integration are all explicit fields. This verbosity is a feature, not a bug. It makes training runs reproducible because every hyperparameter is serialized alongside the model checkpoint.
+Each $t \in T$ maps to a `TrainerCallback` method (e.g., `on_step_end`). This **Observer pattern** keeps the core loop clean while letting orthogonal concerns attach declaratively. You compose callbacks rather than subclassing `Trainer`.
 
-### 1.2 Mental Model 📐
+### TrainingArguments: The Single Source of Truth
 
-```text
-┌─────────────────────────────────────────────┐
-│           TrainingArguments                 │
-│  (immutable config: lr, batch_size, etc.)   │
-└─────────────────────┬───────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────┐
-│              Trainer                        │
-│  ┌─────────────────────────────────────┐    │
-│  │  on_train_begin                     │    │
-│  │    ├─> Callback: init W&B run       │    │
-│  │  loop over epochs                   │    │
-│  │    ├─> loop over batches            │    │
-│  │    │   ├─> forward + loss          │    │
-│  │    │   ├─> backward                │    │
-│  │    │   ├─> gradient accumulation?  │    │
-│  │    │   └─> optimizer.step()        │    │
-│  │    ├─> on_epoch_end                │    │
-│  │    │   ├─> evaluate()             │    │
-│  │    │   └─> save_checkpoint()      │    │
-│  │  on_train_end                      │    │
-│  └─────────────────────────────────────┘    │
-└─────────────────────────────────────────────┘
-```
+`TrainingArguments` is deliberately exhaustive. Every hyperparameter is an explicit field — learning rate, batch size, gradient accumulation, warmup steps, weight decay, label smoothing, mixed precision — all serialized alongside the checkpoint. This verbosity is a feature: a training run is reproducible from a single JSON file.
 
-### 1.3 Syntax and Semantics 📝
+The effective batch size combines three factors:
+
+$$B_{\text{eff}} = B_{\text{device}} \times N_{\text{GPUs}} \times G_{\text{accum}}$$
+
+where $G_{\text{accum}}$ is the number of gradient accumulation steps. For example, with $B_{\text{device}} = 8$, $N_{\text{GPUs}} = 4$, and $G_{\text{accum}} = 2$, the effective batch is 64. Accumulation simulates a larger batch without exceeding per-device memory.
+
+The learning rate schedule combines warmup and decay. A common choice is linear warmup followed by cosine decay:
+
+$$\eta(t) = \begin{cases}
+\eta_{\text{max}} \cdot \frac{t}{T_{\text{warmup}}} & 0 \leq t < T_{\text{warmup}} \\[4pt]
+\eta_{\text{max}} \cdot \frac{1}{2} \left(1 + \cos\left(\pi \frac{t - T_{\text{warmup}}}{T_{\text{total}} - T_{\text{warmup}}}\right)\right) & T_{\text{warmup}} \leq t \leq T_{\text{total}}
+\end{cases}$$
 
 ```python
 from transformers import (
@@ -65,56 +52,54 @@ from transformers import (
 import numpy as np
 import evaluate
 
-# WHY: TrainingArguments is the single source of truth for the training run.
-# Every field is serialized, making the run reproducible from a JSON file.
 args = TrainingArguments(
     output_dir="./results",
     num_train_epochs=3,
     per_device_train_batch_size=8,
     per_device_eval_batch_size=16,
-    gradient_accumulation_steps=4,   # WHY: Effective batch = 8 * 4 = 32 without OOM
+    gradient_accumulation_steps=4,    # Effective batch = 8 * 4 = 32 (single GPU)
     learning_rate=2e-5,
-    warmup_steps=500,                # WHY: Linear warmup stabilizes early training
-    weight_decay=0.01,               # WHY: L2 regularization on all non-bias/norm params
-    max_grad_norm=1.0,               # WHY: Gradient clipping prevents explosion
+    warmup_steps=500,
+    weight_decay=0.01,
+    max_grad_norm=1.0,
     logging_steps=50,
-    eval_strategy="epoch",           # WHY: Evaluate after every full pass
+    eval_strategy="epoch",
     save_strategy="epoch",
-    load_best_model_at_end=True,     # WHY: Rollback to checkpoint with best eval metric
+    load_best_model_at_end=True,
     metric_for_best_model="accuracy",
     greater_is_better=True,
-    fp16=True,                       # WHY: Mixed precision halves memory, speeds up on Tensor Cores
-    dataloader_num_workers=4,        # WHY: Preload batches in parallel CPU workers
-    remove_unused_columns=False,     # WHY: Keep extra columns for custom compute_metrics
-    push_to_hub=False,
-    report_to="wandb"                # WHY: Auto-logs hyperparameters and curves
+    fp16=True,                        # Mixed precision halves memory
+    dataloader_num_workers=4,
+    remove_unused_columns=False,
+    report_to="wandb"
 )
 
-# WHY: compute_metrics decouples metric computation from the core loop.
 metric = evaluate.load("accuracy")
+
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
-    preds = np.argmax(logits, axis=-1)
-    return metric.compute(predictions=preds, references=labels)
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
 
-model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=2)
+model = AutoModelForSequenceClassification.from_pretrained(
+    "bert-base-uncased", num_labels=2
+)
 
 trainer = Trainer(
     model=model,
     args=args,
-    train_dataset=train_ds,
-    eval_dataset=eval_ds,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
     compute_metrics=compute_metrics,
-    callbacks=[EarlyStoppingCallback(early_stopping_patience=3)]  # WHY: Stop if no improvement
+    callbacks=[EarlyStoppingCallback(early_stopping_patience=3)]
 )
 
-# WHY: trainer.train() handles the full lifecycle.
 trainer.train()
 trainer.save_model("./best_model")
 trainer.push_to_hub("my-org/bert-finetuned")
 ```
 
-### 1.4 Visual Representation 🖼️
+### State Machine Transitions
 
 ```mermaid
 stateDiagram-v2
@@ -128,106 +113,100 @@ stateDiagram-v2
     Evaluating --> [*]: EarlyStoppingCallback trigger
 ```
 
-```mermaid
-graph LR
-    A[TrainingArguments JSON] --> B[Trainer]
-    C[train_dataset] --> B
-    D[eval_dataset] --> B
-    E[compute_metrics] --> B
-    F[Callbacks] --> B
-    B --> G[Checkpoints]
-    B --> H[Logs: W&B / MLflow]
-    B --> I[Hub Push]
+### Custom Callbacks
+
+```python
+from transformers import TrainerCallback, TrainerState, TrainerControl
+
+class ThroughputCallback(TrainerCallback):
+    """Logs tokens per second per GPU for cost tracking."""
+    def on_step_begin(self, args, state, control, **kwargs):
+        if state.global_step == 0:
+            state.log_history.append({"step": 0, "tokens_per_sec": 0.0})
+
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        if logs and "loss" in logs:
+            tokens = args.per_device_train_batch_size * args.max_seq_length
+            logs["tokens_per_sec_per_gpu"] = tokens / (state.global_step + 1)
+
+class UploadCheckpointCallback(TrainerCallback):
+    """Uploads checkpoints to S3 in parallel with local save."""
+    def on_save(self, args, state, control, **kwargs):
+        import subprocess
+        subprocess.Popen(["aws", "s3", "sync", args.output_dir,
+                         f"s3://my-bucket/checkpoints/{state.global_step}"])
+
+trainer.add_callback(ThroughputCallback())
+trainer.add_callback(UploadCheckpointCallback())
 ```
 
-![PyTorch Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Pytorch_logo.png/256px-Pytorch_logo.png)
+✅ **Antipattern: Subclassing Trainer for every modification**
+```python
+# ❌ Forking core loop for logging
+class MyTrainer(Trainer):
+    def log(self, logs):
+        super().log(logs)
+        wandb.log(logs)
 
-### 1.5 Application in ML/AI Systems 🤖
+# ✅ Declarative: attach callbacks instead
+trainer.add_callback(WandbCallback())
+```
 
-**Real case: AI2 (Allen Institute for AI)** uses `Trainer` with custom callbacks to train OLMo, a fully open-source LLM. Their callbacks synchronize checkpointing to S3, emit custom token-throughput metrics, and enforce evaluation-only on specific data slices for scientific reproducibility.
+> **Caso real: AI2 (Allen Institute for AI)** uses `Trainer` with custom callbacks to train OLMo, a fully open-source LLM. Their callbacks synchronize checkpoints to S3, emit custom token-throughput metrics, and enforce evaluation on specific data slices. The callback pattern lets them add infrastructure capabilities without forking the core `Trainer` class.
 
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Reproducible research | `TrainingArguments` serialization | Every run is re-runnable from a single JSON. |
-| Production fine-tuning | `Trainer` + `push_to_hub` | Automated artifact promotion from training to staging. |
-| Cost optimization | `fp16` + gradient accumulation | Train larger models on fewer GPUs. |
-| Experiment tracking | `report_to` + callbacks | Centralized comparison of 100+ hyperparameter sweeps. |
+⚠️ **Gradient accumulation without loss normalization**: When accumulating gradients over $N$ steps, the loss must be divided by $N$ before `backward()`, or the effective learning rate scales by $N$. `Trainer` handles this automatically, but custom loops often forget.
 
-### 1.6 Common Pitfalls ⚠️
-
-⚠️ **Gradient accumulation without loss scaling**: When accumulating gradients over `N` steps, you must divide the loss by `N` or the effective learning rate explodes. `Trainer` handles this automatically, but custom loops often forget.
-
-💡 **Mnemonic**: "**ACCUMULATE** the gradient; **AVERAGE** the loss."
-
-⚠️ **`remove_unused_columns=True` (default)**: If your dataset contains columns that are not direct `forward()` arguments but are needed in `compute_metrics`, `Trainer` silently drops them. This causes cryptic KeyErrors during evaluation.
-
-💡 **Tip**: Always set `remove_unused_columns=False` when using custom `compute_metrics` or multi-input tasks.
-
-### 1.7 Knowledge Check ❓
-
-1. If `per_device_train_batch_size=2` and `gradient_accumulation_steps=8`, what is the effective global batch size on 4 GPUs? Show your work.
-2. Explain the difference between `max_steps` and `num_train_epochs`. When would you prefer one over the other?
-3. Your validation loss plateaus but `EarlyStoppingCallback` never triggers. What two `TrainingArguments` fields could be misconfigured?
+💡 **Always set `remove_unused_columns=False`** when using custom `compute_metrics` or multi-input tasks. The default `True` silently drops extra columns, causing KeyErrors during evaluation.
 
 ---
 
-## Module 2: Distributed Training and Customization
+## 2. Distributed Training and Memory Optimization
 
-### 2.1 Theoretical Foundation 🧠
+Single-GPU training hits a memory wall long before a compute wall. A 7B parameter model in FP32 requires 28 GB just for weights — exceeding consumer GPU memory. Distributed training solves this through two orthogonal strategies: **data parallelism** (split the batch across GPUs) and **model parallelism** (split the layers across GPUs). Modern training uses **sharded data parallelism** hybrids like DeepSpeed ZeRO and FSDP, which partition optimizer states, gradients, and parameters across workers.
 
-Single-GPU training hits a memory wall long before you hit a compute wall. A 7B parameter model in FP32 requires 28GB just for weights—exceeding consumer GPU memory. Distributed training solves this through two orthogonal strategies: **data parallelism** (split the batch across GPUs) and **model parallelism** (split the layers across GPUs). In practice, modern training uses **sharded data parallelism** hybrids like DeepSpeed ZeRO and FSDP, which partition optimizer states, gradients, and even parameters across workers.
+### The Memory Scaling Problem
 
-`accelerate` is Hugging Face's abstraction over PyTorch distributed backends. It handles device placement, mixed-precision autocasting, gradient synchronization, and DeepSpeed/FSDP configuration without changing your model definition. The key insight is that distributed training should be a configuration concern, not a code concern. You write standard PyTorch; `accelerate` adapts it.
+Let $\Psi$ be the number of parameters. In standard data parallelism, every GPU holds a full copy of:
+- FP16 model parameters: $2\Psi$ bytes
+- FP32 master weights (for Adam): $4\Psi$ bytes
+- Adam momentum: $4\Psi$ bytes
+- Adam variance: $4\Psi$ bytes
+- Gradients (FP16): $2\Psi$ bytes
 
-DeepSpeed ZeRO (Zero Redundancy Optimizer) eliminates redundant replication of optimizer states across GPUs. ZeRO-1 shards optimizer states, ZeRO-2 shards gradients, and ZeRO-3 shards model parameters. FSDP (Fully Sharded Data Parallel), PyTorch's native equivalent, wraps modules and all-gather parameters on-demand during the forward pass, then discards them to save memory. Both integrate with `Trainer` via `TrainingArguments` or `accelerate` config files.
+Total per GPU: $16\Psi$ bytes. For $\Psi = 7 \times 10^9$, that is 112 GB per GPU — impossible even on an A100 (80 GB).
 
-### 2.2 Mental Model 📐
+### DeepSpeed ZeRO Stages
 
-```text
-Single GPU                    Multi-GPU Data Parallel
-┌─────────────┐              ┌─────────┐ ┌─────────┐
-│  Model      │              │ Model   │ │ Model   │
-│  Optimizer  │              │ Optim   │ │ Optim   │
-│  Gradients  │              │ Grad    │ │ Grad    │
-└─────────────┘              └────┬────┘ └────┬────┘
-                                  │  AllReduce  │
-                                  └──────┬──────┘
-                                         ▼
-                                  Averaged Gradients
+ZeRO eliminates redundant copies by sharding across $N$ GPUs:
 
-DeepSpeed ZeRO-3
-┌─────────┐ ┌─────────┐ ┌─────────┐
-│ Param   │ │ Param   │ │ Param   │  ← Each GPU holds 1/N of params
-│ Shard 1 │ │ Shard 2 │ │ Shard 3 │
-└────┬────┘ └────┬────┘ └────┬────┘
-     │  AllGather │           │        ← On demand during forward
-     └─────┬──────┘           │
-           ▼                  │
-     Full Model (temp)        │
-```
+| Stage | Sharded | Replicated | Per-GPU Memory |
+|-------|---------|------------|----------------|
+| ZeRO-1 | Optimizer states | Params, grads | $\frac{12\Psi}{N} + 4\Psi$ |
+| ZeRO-2 | Optimizer states, grads | Params | $\frac{14\Psi}{N} + 2\Psi$ |
+| ZeRO-3 | Optimizer states, grads, params | Nothing | $\frac{16\Psi}{N}$ |
 
-### 2.3 Syntax and Semantics 📝
+With ZeRO-3 and $N = 8$, a 7B model requires $16 \times 7 / 8 = 14$ GB per GPU — fitting comfortably on consumer hardware.
+
+### accelerate: One Abstraction for All Backends
+
+`accelerate` is Hugging Face's abstraction over PyTorch distributed backends. You write standard PyTorch; `accelerate` adapts it to single-GPU, multi-GPU DDP, DeepSpeed, or FSDP based on a configuration file:
 
 ```python
 from accelerate import Accelerator
 from torch.optim import AdamW
 from torch.utils.data import DataLoader
 
-# WHY: Accelerator abstracts device placement, mixed precision, and distributed setup.
-# You write plain PyTorch; Accelerator adapts it behind the scenes.
 accelerator = Accelerator(
-    mixed_precision="fp16",       # WHY: Enables autocast + GradScaler automatically
+    mixed_precision="fp16",
     gradient_accumulation_steps=4,
-    deepspeed_plugin=None,        # WHY: Can inject DeepSpeed config here or via CLI
-    fsdp_plugin=None              # WHY: Similarly for PyTorch FSDP
+    deepspeed_plugin=None,
+    fsdp_plugin=None
 )
 
 model = AutoModelForCausalLM.from_pretrained("gpt2")
 optimizer = AdamW(model.parameters(), lr=3e-5)
 loader = DataLoader(dataset, batch_size=8)
 
-# WHY: prepare() wraps model, optimizer, and dataloader for distributed.
-# On multi-GPU, this inserts DistributedDataParallel and shuffles the sampler.
 model, optimizer, loader = accelerator.prepare(model, optimizer, loader)
 
 model.train()
@@ -235,84 +214,101 @@ for step, batch in enumerate(loader):
     with accelerator.accumulate(model):
         outputs = model(**batch)
         loss = outputs.loss
-        # WHY: backward() handles scaled gradients and DeepSpeed/FSDP hooks.
         accelerator.backward(loss)
         optimizer.step()
         optimizer.zero_grad()
+```
 
-# WHY: TrainingArguments can also inject DeepSpeed via a JSON config path.
+### DeepSpeed and FSDP Integration
+
+Both integrate with `Trainer` through `TrainingArguments` fields, requiring zero code changes:
+
+```python
+# DeepSpeed config via JSON path
 args = TrainingArguments(
     output_dir="./ds_output",
-    deepspeed="ds_config_zero3.json",  # WHY: Offload optimizer states to CPU/NVMe
     per_device_train_batch_size=1,
     gradient_accumulation_steps=8,
-    fp16=True
+    fp16=True,
+    deepspeed="ds_config_zero3.json"
+)
+
+# FSDP config
+args_fsdp = TrainingArguments(
+    output_dir="./fsdp_output",
+    per_device_train_batch_size=2,
+    fsdp="full_shard auto_wrap",
+    fsdp_config={
+        "cpu_ram_efficient_loading": True,
+        "limit_all_gathers": True
+    }
 )
 ```
 
-### 2.4 Visual Representation 🖼️
-
-```mermaid
-flowchart TD
-    A[accelerate config] --> B[accelerate launch]
-    B --> C{Backend}
-    C -->|Single GPU| D[Standard PyTorch]
-    C -->|Multi-GPU| E[DistributedDataParallel]
-    C -->|DeepSpeed| F[ZeRO-1/2/3]
-    C -->|FSDP| G[Fully Sharded Data Parallel]
-    D --> H[Trainer.train]
-    E --> H
-    F --> H
-    G --> H
+```json
+{
+  "zero_optimization": {
+    "stage": 3,
+    "offload_optimizer": {"device": "cpu"},
+    "offload_param": {"device": "cpu"},
+    "overlap_comm": true,
+    "contiguous_gradients": true
+  },
+  "fp16": {"enabled": true},
+  "gradient_accumulation_steps": 8,
+  "train_batch_size": 64
+}
 ```
 
-```mermaid
-graph LR
-    subgraph "ZeRO-3 Memory Breakdown"
-        A[Params] --> B[GPU 0]
-        A --> C[GPU 1]
-        A --> D[GPU 2]
-        E[Gradients] --> B
-        E --> C
-        E --> D
-        F[Optimizer States] --> B
-        F --> C
-        F --> D
-    end
+```bash
+# Launch with accelerate
+accelerate launch --num_processes 8 train.py
+
+# Or with deepspeed directly
+deepspeed --num_gpus 8 train.py
 ```
 
-![NVIDIA CUDA Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Nvidia_CUDA_Logo.jpg/256px-Nvidia_CUDA_Logo.jpg)
+✅ **Antipattern: Double wrapping with accelerate and Trainer**
+```python
+# ❌ Accelerator.prepare() then Trainer = DDP nesting
+model = accelerator.prepare(model)
+trainer = Trainer(model=model, args=args, ...)
+# Trainer wraps again → error
 
-### 2.5 Application in ML/AI Systems 🤖
+# ✅ Let Trainer handle distribution internally
+trainer = Trainer(model=model, args=args, ...)
+trainer.train()
+```
 
-**Real case: Stability AI** trains Stable Diffusion XL using DeepSpeed ZeRO-2 and gradient checkpointing across hundreds of A100 GPUs. The `Trainer` integration allows their researchers to switch between DDP, DeepSpeed, and FSDP by changing a single JSON file and relaunching with `accelerate launch`.
+> **Caso real: Stability AI** trains Stable Diffusion XL using DeepSpeed ZeRO-2 and gradient checkpointing across hundreds of A100 GPUs. The `Trainer` integration lets their researchers switch between DDP, DeepSpeed, and FSDP by changing a single JSON file and relaunching with `accelerate launch`. No Python code changes required.
 
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| 70B+ model pretraining | DeepSpeed ZeRO-3 + FSDP | Fit trillion-parameter models on commodity clusters. |
-| Low-latency fine-tuning | `accelerate` + `device_map="auto"` | Single script runs on 1 GPU or 8 GPUs unchanged. |
-| Cloud cost reduction | `fp16` + gradient checkpointing | 2x throughput on spot instances. |
-| On-premise clusters | FSDP with `limit_all_gathers` | Maximize bandwidth on InfiniBand links. |
+⚠️ **DeepSpeed CPU offload I/O bottleneck**: ZeRO-3 with CPU/NVMe offload saves VRAM but can saturate PCIe bandwidth. If `param_swap` exceeds 30% of step time, reduce offload levels or switch to NVMe offload.
 
-### 2.6 Common Pitfalls ⚠️
+💡 **Profile**: Run `deepspeed --num_gpus 8 train.py` and inspect the `param_swap` timer in the logs. If it dominates, reduce offload or use `stage=2` instead.
 
-⚠️ **`Accelerator` with `Trainer` double-wrapping**: If you manually wrap a model with `Accelerator.prepare()` and then pass it to `Trainer`, `Trainer` may attempt to wrap it again, causing DDP nesting errors. Let `Trainer` handle distribution unless you are writing a custom loop.
+## 🎯 Key Takeaways
 
-💡 **Mnemonic**: "**ONE** wrapper to rule them all—**TRAINER** or **ACCELERATOR**, never both."
+- `Trainer` is a state machine with hook-based callbacks; prefer composing callbacks over subclassing `Trainer` for orthogonal concerns.
+- `TrainingArguments` serializes every hyperparameter, making each run auditable and reproducible from a single JSON.
+- Gradient accumulation increases effective batch size without increasing per-device memory; `Trainer` handles loss normalization automatically.
+- `accelerate` unifies single-GPU, multi-GPU DDP, DeepSpeed, and FSDP under one abstraction with zero code changes.
+- DeepSpeed ZeRO shards optimizer states (ZeRO-1), gradients (ZeRO-2), and parameters (ZeRO-3) across GPUs to fit larger models.
+- FSDP is PyTorch's native sharded data parallelism that integrates cleanly with `Trainer` via `fsdp` config fields.
+- Mixed precision (`fp16`/`bf16`) is almost always a free performance and memory win on modern NVIDIA hardware with Tensor Cores.
+- Never wrap a model with both `Accelerator.prepare()` and `Trainer`; choose one abstraction per training script.
 
-⚠️ **DeepSpeed CPU offload I/O bottleneck**: ZeRO-3 with CPU/NVMe offload saves VRAM but can saturate PCIe bandwidth. If your step time is dominated by parameter swapping rather than compute, offload is hurting you.
+## References
 
-💡 **Tip**: Profile with `deepspeed --num_gpus 8 train.py` and watch the `param_swap` timer. If it exceeds 30% of step time, reduce offload levels or use NVMe offload instead of CPU.
+- Hugging Face Trainer Docs: [https://huggingface.co/docs/transformers/main_classes/trainer](https://huggingface.co/docs/transformers/main_classes/trainer)
+- Accelerate Docs: [https://huggingface.co/docs/accelerate](https://huggingface.co/docs/accelerate)
+- DeepSpeed: [https://www.deepspeed.ai/](https://www.deepspeed.ai/)
+- PyTorch FSDP: [https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html](https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html)
+- Rajbhandari et al., "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models", SC 2020.
+- Related Vault: [[02 - Tokenizers and Data Processing]]
+- Related Vault: [[04 - Generation, Decoding, and Structured Output]]
+- Related Vault: [[09 - MLOps y Produccion]]
 
-### 2.7 Knowledge Check ❓
-
-1. Compare ZeRO-1, ZeRO-2, and ZeRO-3 in terms of what is sharded and what remains replicated per GPU.
-2. You have a script that runs fine on 1 GPU but hangs on 2 GPUs at the first `loss.backward()`. What is the most likely missing call in a custom loop versus a `Trainer` loop?
-3. Write a minimal `accelerate` launch command that enables DeepSpeed ZeRO-2 and mixed precision without modifying the Python source.
-
----
-
-## 📦 Compression Code
+## Código de compresión
 
 ```python
 """
@@ -326,13 +322,12 @@ from transformers import (
     DataCollatorForLanguageModeling
 )
 from datasets import load_dataset
-import wandb
 
 MODEL = "gpt2"
 DATA = "wikitext"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL)
-tokenizer.pad_token = tokenizer.eos_token  # WHY: GPT-2 has no pad token by default
+tokenizer.pad_token = tokenizer.eos_token
 
 def tokenize(batch):
     return tokenizer(batch["text"], truncation=True, max_length=512)
@@ -352,7 +347,7 @@ args = TrainingArguments(
     logging_steps=10,
     save_steps=500,
     fp16=True,
-    deepspeed="ds_config.json",   # WHY: ZeRO-2 config file
+    deepspeed="ds_config.json",
     report_to="wandb",
     run_name="gpt2-wikitext-demo"
 )
@@ -368,47 +363,5 @@ trainer = Trainer(
 
 trainer.train()
 trainer.save_model("./gpt2-finetuned-final")
+print("Training complete. Model saved to ./gpt2-finetuned-final")
 ```
-
-## 🎯 Documented Project
-
-**Description**: Build a "Universal Fine-Tuning Launcher" that accepts a model ID, dataset ID, and a YAML config defining training, evaluation, and distributed strategies. It produces a reproducible training run with automatic Hub push and experiment tracking.
-
-**Functional Requirements**:
-- Parse YAML config defining `TrainingArguments`, DeepSpeed/FSDP flags, and callback list.
-- Support task types: `causal_lm`, `seq2seq`, `sequence_classification`.
-- Auto-select `DataCollator` and `compute_metrics` based on task type.
-- Integrate W&B or MLflow via `report_to`; emit custom throughput metrics (tokens/sec/GPU).
-- On completion, push the best checkpoint to the Hub with a generated model card.
-- Support resumption from the latest checkpoint via `resume_from_checkpoint`.
-
-**Main Components**:
-- `LauncherConfig`: Pydantic model validating YAML against `TrainingArguments` schema.
-- `TaskRegistry`: Maps task strings to model classes, collators, and metric functions.
-- `CustomCheckpointCallback`: Uploads checkpoints to S3 in parallel with local save.
-- `ThroughputMonitorCallback`: Computes tokens processed per second per GPU.
-
-**Success Metrics**:
-- Single command launch for any Hub model + dataset pair.
-- Reproducible runs: identical YAML produces bit-identical loss curves (deterministic).
-- Distributed scaling efficiency > 85% from 1 to 8 GPUs (measured by throughput).
-
-## 🎯 Key Takeaways
-
-- `Trainer` is a state machine with hook-based callbacks; prefer callbacks over subclassing for orthogonal concerns.
-- `TrainingArguments` serializes every hyperparameter, making runs auditable and reproducible.
-- Gradient accumulation increases effective batch size without increasing memory; divide loss by accumulation steps.
-- `accelerate` unifies single-GPU, multi-GPU, DeepSpeed, and FSDP under one abstraction.
-- DeepSpeed ZeRO shards optimizer states, gradients, and parameters across GPUs to train models that exceed single-GPU memory.
-- FSDP is PyTorch's native sharded data parallelism and integrates cleanly with `Trainer` via `fsdp` config fields.
-- Mixed precision (`fp16`/`bf16`) is almost always a free performance and memory win on modern NVIDIA hardware.
-
-## References
-
-- Hugging Face Trainer Docs: [https://huggingface.co/docs/transformers/main_classes/trainer](https://huggingface.co/docs/transformers/main_classes/trainer)
-- Accelerate Docs: [https://huggingface.co/docs/accelerate](https://huggingface.co/docs/accelerate)
-- DeepSpeed: [https://www.deepspeed.ai/](https://www.deepspeed.ai/)
-- PyTorch FSDP: [https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html](https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html)
-- Related Vault: [[02 - Tokenizers and Data Processing]]
-- Related Vault: [[04 - Generation, Decoding, and Structured Output]]
-- Related Vault: [[09 - MLOps y Produccion]]

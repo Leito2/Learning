@@ -1,113 +1,107 @@
-# ⚡ Lazy Evaluation and Query Optimization
+# 🦀 01 - Lazy Evaluation and Query Optimization
+
+**Course type: Language/Framework (Rust)**
 
 ## 🎯 Learning Objectives
-- Master the difference between eager and lazy execution in Polars.
-- Understand how the query optimizer rewrites logical plans into efficient physical plans.
-- Implement predicate pushdown, projection pushdown, and common subexpression elimination.
-- Diagnose performance bottlenecks by reading optimized query plans.
-
----
+- Master the difference between eager and lazy execution in Polars
+- Understand how the query optimizer rewrites logical plans into efficient physical plans
+- Implement predicate pushdown, projection pushdown, and common subexpression elimination
+- Diagnose performance bottlenecks by reading optimized query plans
 
 ## Introduction
 
-In the world of data engineering, the most expensive resource is not CPU cycles or memory—it is the data movement itself. Every time a system reads an unused column from disk, shuffles an intermediate result across memory boundaries, or recomputes the same expression twice, it pays a tax that compounds across billions of rows. Lazy evaluation is the compiler-inspired technique of building a computation graph before execution, which allows an optimizer to eliminate these taxes. For ML engineers, this means feature engineering pipelines that scale from prototype to production without rewriting code. This module connects directly to [[00 - Welcome to Polars Internals]] and prepares you for [[02 - Memory Mapping and Zero-Copy Reads]] by showing how to minimize the amount of data touched in the first place.
+In data engineering, the most expensive resource is not CPU cycles or memory—it is data movement. Every time a system reads an unused column from disk, shuffles an intermediate result across memory boundaries, or recomputes the same expression twice, it pays a tax that compounds across billions of rows. Lazy evaluation is the compiler-inspired technique of building a computation graph before execution, allowing an optimizer to eliminate these taxes. For ML engineers, this means feature engineering pipelines that scale from prototype to production without rewriting code.
 
-The Polars lazy API is not merely a convenience; it is a performance necessity. When you chain `.filter()`, `.select()`, and `.groupby()` on a `LazyFrame`, you are constructing a declarative program that the optimizer can analyze holistically. This stands in stark contrast to the imperative style of Pandas, where each line executes immediately and optimization opportunities are lost between statements. In production ML systems at companies like Uber and Lyft, lazy query planners are the difference between a pipeline that finishes in minutes and one that times out after hours.
+The theoretical roots of lazy evaluation trace to lambda calculus and functional programming: an expression is not evaluated when defined, but when its value is actually needed ("call by need"). For DataFrame libraries, this decouples intent from execution strategy. When you write `df.filter(...).select(...)`, an eager engine materializes the entire filtered DataFrame before selecting columns. A lazy engine observes the whole sequence and reads only the selected columns while applying the filter simultaneously.
+
+This decoupling enables optimizations impossible in imperative APIs. Database optimizers have exploited this for decades—the Volcano/Cascades framework (Graefe, 1990s) showed how to enumerate equivalent query plans and cost them. DataFrame operations are relational algebra: selection (σ), projection (π), join (⋈), aggregation (γ)—and relational algebra obeys algebraic laws. Selection distributes over join: σ(A ⋈ B) = σ(A) ⋈ B if the predicate only references A. This is the mathematical justification for predicate pushdown. This module connects to [[00 - Welcome to Polars Internals]] and prepares for [[02 - Memory Mapping and Zero-Copy Reads]].
 
 ---
 
-## Module 1: Lazy Evaluation
+## 1. Lazy Execution
 
-### 1.1 Theoretical Foundation 🧠
-
-The theoretical roots of lazy evaluation trace back to lambda calculus and functional programming languages like Haskell. In these systems, an expression is not evaluated when it is defined, but when its value is actually needed—a principle called "call by need." For DataFrame libraries, this principle is revolutionary because it decouples the user's intent from the execution strategy. When you write `df.filter(...).select(...)`, an eager engine must materialize the entire filtered DataFrame in memory before selecting columns. A lazy engine, by contrast, can observe the entire sequence and realize that it only needs to read the selected columns and apply the filter simultaneously.
-
-This decoupling enables a class of optimizations that are impossible in imperative APIs. Database query optimizers have exploited this for decades: the Volcano/Cascades framework, developed by Goetz Graefe in the 1990s, showed how to systematically enumerate equivalent query plans and cost them based on cardinality estimates. Polars adapts these ideas to the DataFrame context. The key insight is that DataFrame operations are relational algebra—selection (σ), projection (π), join (⋈), and aggregation (γ)—and relational algebra obeys algebraic laws that an optimizer can exploit. For example, selection distributes over join: σ(A ⋈ B) = σ(A) ⋈ B if the predicate only references A. This law is the mathematical justification for predicate pushdown.
-
-### 1.2 Mental Model 📐
-
-Think of a lazy query as a recipe that a chef reads in its entirety before cooking, rather than executing each instruction as it is read.
-
-```
-┌─────────────────────────────────────────────┐
-│  Eager Execution (Pandas)                   │
-├─────────────────────────────────────────────┤
-│  Step 1: Read CSV ──────► 10GB in RAM       │
-│  Step 2: Filter ────────► 2GB copied        │
-│  Step 3: Select ────────► 500MB copied      │
-│  Step 4: GroupBy ───────► 50MB result       │
-│                                             │
-│  Total moved: 12.55GB                       │
-└─────────────────────────────────────────────┘
-```
-
-```
-┌─────────────────────────────────────────────┐
-│  Lazy Execution (Polars)                    │
-├─────────────────────────────────────────────┤
-│  Step 1: Build recipe                       │
-│  Step 2: Optimizer rewrites recipe          │
-│  Step 3: Execute fused ops                  │
-│                                             │
-│  Data touched: 500MB (projected columns)    │
-│  Filter applied at scan                     │
-└─────────────────────────────────────────────┘
-```
-
-The query graph itself is a directed acyclic graph (DAG) where nodes are operations and edges are data dependencies.
-
-```
-┌─────────────────────────────────────────────┐
-│  Lazy Query DAG                             │
-├─────────────────────────────────────────────┤
-│                                             │
-│  [Scan CSV] ──► [Filter age>30] ──► [Sel] │
-│       │                                     │
-│       └─────────────────────────────► [Agg] │
-│                                             │
-│  The optimizer sees the entire DAG before   │
-│  any data is read.                          │
-└─────────────────────────────────────────────┘
-```
-
-### 1.3 Syntax and Semantics 📝
-
-The `LazyFrame` API is designed to mirror the `DataFrame` API while deferring execution. Understanding the semantic boundary between graph construction and execution is critical.
+The `LazyFrame` API mirrors `DataFrame` while deferring execution. Every method before `.collect()` is pure graph manipulation; `.collect()` is the effectful boundary where computation occurs and memory is allocated.
 
 ```rust
 use polars::prelude::*;
 
-fn optimize_query(path: &str) -> Result<DataFrame, PolarsError> {
-    // WHY: LazyCsvReader starts building the graph at the source
+fn lazy_vs_eager(path: &str) -> Result<DataFrame, PolarsError> {
+    // LazyCsvReader starts building the graph at the source—no data touched yet
     let lazy_df = LazyCsvReader::new(path)
         .has_header(true)
         .finish()?;
 
-    // WHY: Each method call returns a NEW LazyFrame, not data
+    // Each method returns a NEW LazyFrame, not data
     let optimized = lazy_df
         .filter(col("timestamp").gt(lit("2023-01-01")))
         .select([
             col("user_id"),
             col("event_type"),
-            col("value")
+            col("value"),
         ])
         .with_column(
-            col("value").cast(DataType::Float64) // WHY: Cast early to avoid repeated conversions
+            col("value").cast(DataType::Float64)
         );
 
-    // WHY: explain() prints the logical/optimized plan without running
+    // explain() prints the logical/optimized plan without running
     println!("{}", optimized.explain(true)?);
 
-    // WHY: collect() is the ONLY point where memory is allocated for results
+    // collect() is the ONLY point where memory is allocated for results
     optimized.collect()
 }
 ```
 
-The semantics are: every method before `collect()` is pure graph manipulation; `collect()` is the effectful boundary where computation occurs.
+Eager execution moves data through multiple intermediate buffers—reading, filtering, selecting, and aggregating all create separate copies. Lazy execution fuses these steps:
 
-### 1.4 Visual Representation 🖼️
+```text
+Eager (Pandas):
+  Step 1: Read CSV        --→ 10GB in RAM
+  Step 2: Filter          --→ 2GB copied
+  Step 3: Select          --→ 500MB copied
+  Step 4: GroupBy         --→ 50MB result
+  Total moved: 12.55GB
 
-The transformation from user-written code to optimized plan can be modeled as a sequence diagram showing the optimizer's passes.
+Lazy (Polars):
+  Step 1: Build recipe
+  Step 2: Optimizer rewrites recipe
+  Step 3: Execute fused ops
+  Data touched: 500MB (projected columns), filter applied at scan
+```
+
+The query graph is a directed acyclic graph (DAG) where nodes are operations and edges are data dependencies. The optimizer sees the entire DAG before any data is read.
+
+```rust
+use polars::prelude::*;
+
+fn streaming_lazy_example() -> Result<DataFrame, PolarsError> {
+    let df = df!(
+        "city" => &["NY", "LA", "NY", "SF", "LA"],
+        "sales" => &[100.0, 200.0, 150.0, 300.0, 250.0],
+        "region" => &["East", "West", "East", "West", "West"]
+    )?;
+
+    let result = df.lazy()
+        .filter(col("sales").gt(lit(120.0)))
+        .groupby([col("city")])
+        .agg([col("sales").mean().alias("avg_sales")])
+        .collect()?;
+
+    println!("{:?}", result);
+    Ok(())
+}
+```
+
+❌ **Antipattern**: Collecting inside a loop. Materializing intermediate results in a multi-step pipeline defeats lazy optimization. ✅ Build the entire graph, then collect once—treat `.collect()` like a database COMMIT.
+
+❌ **Antipattern**: Side effects in lambdas. Using `.apply()` with closures or UDFs forces materialization and disables vectorization. ✅ Prefer native expressions that compose into the logical plan.
+
+> **Caso real**: Spotify's daily feature engineering pipeline joins billions of user listening events with millions of track metadata records. Their legacy Pandas pipeline required intermediate CSV dumps and manual chunking. A single Polars lazy graph with predicate pushdown skipped 70% of Parquet row groups, and projection pushdown eliminated 30 unused metadata columns. Runtime dropped from 45 to 4 minutes on the same hardware.
+
+⚠️ **Collecting too early**: Each `.collect()` is a full execution cycle. If you collect, transform, and collect again, you lose the opportunity to fuse operations. 💡 "Collect once, collect wisely."
+
+⚠️ **Ignoring `.explain()`**: The single best debugging tool for lazy performance is `.explain(true)`. It shows exactly what the optimizer did. Make it a habit to inspect it for every non-trivial query.
+
+The transformation from user code to optimized plan follows this sequence:
 
 ```mermaid
 sequenceDiagram
@@ -125,150 +119,127 @@ sequenceDiagram
     PhysicalPlan->>User: Return result on collect()
 ```
 
-![Query Optimization Diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Relational_algebra_tree.svg/640px-Relational_algebra_tree.svg.png)
-
-The physical plan itself is a tree of operators that execute in a pipelined fashion.
-
-```mermaid
-flowchart TD
-    A[Scan Parquet] -->|Pushdown| B[Read Row Groups]
-    B --> C[Filter Predicate]
-    C --> D[Project Columns]
-    D --> E[Hash Aggregate]
-    E --> F[Materialize DataFrame]
-```
-
-![Database Query Plan](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Query_plan.svg/640px-Query_plan.svg.png)
-
-### 1.5 Application in ML/AI Systems 🤖
-
-Real case: **Spotify** runs daily feature engineering jobs that join billions of user listening events with millions of track metadata records. Their legacy Pandas pipeline required intermediate CSV dumps and manual chunking to fit into memory. By migrating to Polars lazy queries, they were able to express the entire pipeline—filtering to the last 90 days, projecting only acoustic features, and aggregating mean energy per user—as a single lazy graph. The optimizer pushed the 90-day filter into the Parquet scan, skipping 70% of row groups. The projection pushdown eliminated 30 unused metadata columns. The result: a 45-minute pipeline dropped to 4 minutes on the same hardware.
-
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Feature store backfills | Lazy join + filter | 10× faster, no manual chunking |
-| Model validation datasets | Predicate pushdown on time ranges | Read 80% less data |
-| Hyperparameter search data prep | Common subexpression elimination | Reuse shared feature transforms |
-
-### 1.6 Common Pitfalls ⚠️
-⚠️ **Collecting too early**: Materializing intermediate results in a multi-step pipeline defeats lazy optimization. Build the entire graph, then collect once.
-
-⚠️ **Side effects in lambdas**: Using `.apply()` with Python UDFs forces materialization and disables vectorization. Prefer native expressions.
-
-💡 **Mnemonic**: "Collect once, collect wisely"—treat `.collect()` like a database COMMIT.
-
-### 1.7 Knowledge Check ❓
-1. Write a lazy query that reads a CSV, filters by `country == "US"`, selects `user_id` and `purchase_amount`, and groups by `user_id` to sum purchases. Where does the filter physically execute?
-2. Explain why `df.filter(...).select(...)` in Pandas is fundamentally less optimizable than the equivalent Polars lazy chain.
-3. Inspect the optimized plan of a complex query. Can you identify which predicates were pushed down?
-
 ---
 
-## Module 2: Query Optimization
+## 2. Query Optimization
 
-### 2.1 Theoretical Foundation 🧠
+Query optimization bridges declarative intent and efficient execution. The optimizer's job is to find the cheapest equivalent expression according to a cost model. In Polars, the cost model is simplified compared to full SQL planners—no indexes, no disk-vs-memory tradeoffs for intermediates, no distributed network costs—but the algebraic laws are identical.
 
-Query optimization is the bridge between declarative intent and efficient execution. The theoretical underpinning is relational algebra equivalence: two query expressions are semantically equivalent if they produce the same result for all possible inputs. An optimizer's job is to find the cheapest equivalent expression according to a cost model. In Polars, the cost model is simplified compared to a full SQL planner—there are no indexes to choose from, no disk-vs-memory tradeoffs for intermediate results, and no distributed network costs—but the algebraic laws are identical.
+**Predicate pushdown** is the most impactful optimization. Formally, if R is a relation and p is a predicate, then σ_p(R) can be pushed below a join if p only references attributes of R: σ_p(R ⋈ S) = σ_p(R) ⋈ S. Joins are expensive (O(n log n) or O(n²)), so reducing input size before a join multiplicatively reduces cost. **Projection pushdown** works similarly: π_A(R) means only attributes in A are needed, so upstream operations producing other attributes can be eliminated. **Common subexpression elimination** builds a DAG of expressions rather than a tree—if two branches compute `col("x") * 2`, the result is stored once.
 
-Predicate pushdown is perhaps the most impactful optimization. Formally, if R is a relation and p is a predicate, then σ_p(R) can be pushed below a join if p only references attributes of R: σ_p(R ⋈ S) = σ_p(R) ⋈ S. This matters because joins are expensive (often O(n log n) or O(n²)), and reducing the input size of R before the join multiplicatively reduces cost. Projection pushdown operates similarly: π_A(R) means only attributes in set A are needed, so any operation that produces attributes not in A can be eliminated early. Common subexpression elimination avoids redundant computation by building a DAG of expressions rather than a tree—if two branches compute `col("x") * 2`, the optimizer stores the result once and reuses it.
+Join reordering is another powerful transformation. In multi-way joins, order affects intermediate result sizes dramatically. A greedy optimizer estimates cardinalities using row counts and distinct value counts, then selects the order minimizing total intermediate size. This matters in ML feature pipelines where dimension tables join against large fact tables.
 
-Join reordering is another powerful algebraic transformation. In a multi-way join, the order of evaluation drastically affects intermediate result sizes. A greedy optimizer estimates cardinalities using metadata such as row counts and distinct value counts, then selects the join order that minimizes the total size of intermediate tables. This is especially important in ML feature pipelines where dimension tables are joined against large fact tables.
-
-Polars also performs expression simplification during optimization. Constant folding replaces expressions like `lit(2) + lit(3)` with `lit(5)` at plan time. Boolean simplification applies De Morgan's laws to rewrite negations into cheaper forms. These micro-optimizations accumulate across millions of rows, turning what would be per-row branching into pre-computed constants. In ML pipelines with complex feature crosses, expression simplification can eliminate 20-30% of arithmetic operations before the first row is read.
-
-### 2.2 Mental Model 📐
-
-Picture the optimizer as a pipeline of rewriting passes, each making the plan cheaper.
-
-```
-┌─────────────────────────────────────────────┐
-│  Optimization Pipeline                      │
-├─────────────────────────────────────────────┤
-│  Input: User's Logical Plan                 │
-│       │                                     │
-│       ▼                                     │
-│  ┌─────────────┐                            │
-│  │ Pass 1:     │──► Push filters to scans   │
-│  │ Predicate   │                            │
-│  │ Pushdown    │                            │
-│  └─────────────┘                            │
-│       │                                     │
-│       ▼                                     │
-│  ┌─────────────┐                            │
-│  │ Pass 2:     │──► Remove unused columns   │
-│  │ Projection  │                            │
-│  │ Pushdown    │                            │
-│  └─────────────┘                            │
-│       │                                     │
-│       ▼                                     │
-│  ┌─────────────┐                            │
-│  │ Pass 3:     │──► Reorder joins by size  │
-│  │ Join        │                            │
-│  │ Reordering  │                            │
-│  └─────────────┘                            │
-│       │                                     │
-│       ▼                                     │
-│  Output: Physical Plan                      │
-└─────────────────────────────────────────────┘
-```
-
-The effect on data movement is dramatic:
-
-```
-┌─────────────────────────────────────────────┐
-│  Without Optimization                       │
-├─────────────────────────────────────────────┤
-│  Read 100 cols ──► Filter ──► Select 2 cols │
-│  100GB read            100GB processed       │
-└─────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────┐
-│  With Optimization                          │
-├─────────────────────────────────────────────┤
-│  Read 2 cols + Filter ──► Aggregate         │
-│  2GB read            2GB processed           │
-└─────────────────────────────────────────────┘
-```
-
-### 2.3 Syntax and Semantics 📝
-
-Polars exposes optimization settings through the `LazyFrame` configuration. Understanding these toggles lets you control the tradeoff between optimization time and execution time.
+Constant folding replaces `lit(2) + lit(3)` with `lit(5)` at plan time. Boolean simplification applies De Morgan's laws. These micro-optimizations accumulate across millions of rows, turning per-row branching into pre-computed constants. In ML pipelines with complex feature crosses, expression simplification can eliminate 20-30% of arithmetic operations before the first row is read.
 
 ```rust
 use polars::prelude::*;
 
-fn run_optimized(path: &str) -> Result<DataFrame, PolarsError> {
-    let df = LazyCsvReader::new(path)
-        .has_header(true)
-        .finish()?
-        .filter(
-            col("category").eq(lit("electronics"))
-            .and(col("price").gt(lit(100)))
+fn optimized_join_demo() -> Result<DataFrame, PolarsError> {
+    let events = df!(
+        "user_id" => &[1, 2, 3, 1, 2],
+        "event_date" => &["2024-01-01", "2024-01-02", "2024-01-03", "2024-01-04", "2024-01-05"],
+        "value" => &[10.0, 20.0, 30.0, 40.0, 50.0]
+    )?;
+
+    let users = df!(
+        "user_id" => &[1, 2, 3],
+        "name" => &["Alice", "Bob", "Charlie"],
+        "signup_date" => &["2023-01-01", "2023-06-15", "2023-12-01"]
+    )?;
+
+    let result = events.lazy()
+        .join(
+            users.lazy(),
+            [col("user_id")],
+            [col("user_id")],
+            JoinType::Inner,
         )
+        .filter(col("event_date").gt(lit("2024-01-02")))
         .select([
-            col("product_id"),
-            col("price"),
-            col("quantity")
+            col("name"),
+            col("value"),
+            col("event_date"),
         ])
-        .groupby([col("product_id")])
-        .agg([
-            col("price").mean().alias("avg_price"),
-            (col("price") * col("quantity"))
-                .sum()
-                .alias("total_revenue")
-        ])
-        .with_streaming(false)  // WHY: Disable streaming to let optimizer fuse ops in memory
+        .groupby([col("name")])
+        .agg([col("value").sum().alias("total_value")])
+        .with_streaming(false)
         .collect()?;
 
-    Ok(df)
+    println!("{:?}", result);
+    Ok(())
 }
 ```
 
-Notice that the filter contains two predicates joined by `and`. The optimizer can split these and push each to the most efficient point in the plan.
+The filter contains two predicates joined by `and`. The optimizer splits these and pushes each to the most efficient point—one to the events scan, another to the join output.
 
-### 2.4 Visual Representation 🖼️
+❌ **Antipattern**: Over-joining without filtering. Joining two large tables before filtering prevents the optimizer from reducing input sizes. ✅ Filter each table independently before the join.
 
-A state diagram shows how the query transitions from logical to optimized to executed.
+❌ **Antipattern**: Assuming all optimizations are automatic. If you use `.apply()` or Python UDFs, the optimizer cannot see inside the black box and disables pushdown. ✅ Stay in expression land.
+
+> **Caso real**: Zillow's Zestimate model joins property listings with tax records, school ratings, and geographic features. Their Spark pipeline suffered shuffle storms. Polars automatically reordered joins to process the smallest table first (county tax records) and pushed the county filter into every scan. Prototype iteration cycles dropped from 20 minutes to 90 seconds.
+
+The optimization pipeline can be visualized as a series of rewriting passes:
+
+```text
+Input: User's Logical Plan
+    |
+    ▼
+ --------------------- 
+| Pass 1: Predicate   |--→ Push filters to scans
+| Pushdown            |
+ --------------------- 
+    |
+    ▼
+ --------------------- 
+| Pass 2: Projection  |--→ Remove unused columns
+| Pushdown            |
+ --------------------- 
+    |
+    ▼
+ --------------------- 
+| Pass 3: Join        |--→ Reorder joins by size
+| Reordering          |
+ --------------------- 
+    |
+    ▼
+Output: Physical Plan
+```
+
+The effect on data movement is dramatic:
+
+```text
+Without Optimization:
+  Read 100 cols --→ Filter --→ Select 2 cols
+  100GB read        100GB processed
+
+With Optimization:
+  Read 2 cols + Filter --→ Aggregate
+  2GB read               2GB processed
+```
+
+```rust
+use polars::prelude::*;
+
+fn inspect_plan(path: &str) -> Result<(), PolarsError> {
+    let q = LazyCsvReader::new(path)
+        .has_header(true)
+        .finish()?
+        .filter(col("category").eq(lit("electronics")))
+        .select([col("product_id"), col("price")])
+        .groupby([col("product_id")])
+        .agg([col("price").mean()]);
+
+    // Print the optimized plan without executing
+    println!("Optimized plan:\n{}", q.explain(true)?);
+    Ok(())
+}
+```
+
+⚠️ **Not using `.explain(true)` in CI**: Add a step to your CI pipeline that validates that the optimized plan contains pushed-down filters. Catch optimization regressions automatically.
+
+⚠️ **Micro-batching defeats optimization**: If you split a large file into tiny chunks and process each independently, the optimizer never sees the full picture. Let Polars handle chunking.
+
+💡 **Mental shortcut**: Read your query bottom-up from `.collect()`. If you see a large scan after an expensive operation like a join, the optimizer missed a pushdown opportunity.
 
 ```mermaid
 stateDiagram-v2
@@ -280,112 +251,44 @@ stateDiagram-v2
     Materialized --> [*]
 ```
 
-![Compiler Optimization](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Compiler_design.svg/640px-Compiler_design.svg.png)
-
-The join reordering optimization follows a greedy algorithm to minimize intermediate row counts.
-
-```mermaid
-flowchart LR
-    A[Small Table<br/>1M rows] -->|Hash Build| C[Hash Join]
-    B[Large Table<br/>1B rows] -->|Probe| C
-    C --> D[Result]
-```
-
-![Hash Join Illustration](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Hash_join.svg/640px-Hash_join.svg.png)
-
-### 2.5 Application in ML/AI Systems 🤖
-
-Real case: **Zillow**'s home valuation model (Zestimate) requires joining property listings with tax records, school ratings, and geographic features. Their original Spark pipeline suffered from "shuffle storms" because the query planner could not push filters past distributed joins. By switching to Polars for their single-machine exploratory analysis and model prototyping, they found that the optimizer automatically reordered joins to process the smallest table first (the tax records subset for a single county) and pushed the county filter into every scan. This reduced the prototype iteration cycle from 20 minutes to 90 seconds, allowing data scientists to test 10× more feature ideas per day.
-
-| ML Use Case | This Concept | Impact |
-|-------------|-------------|--------|
-| Multi-table feature joins | Join reordering + pushdown | Avoid explosive intermediate tables |
-| Temporal feature slicing | Predicate pushdown on partitions | Skip irrelevant time partitions |
-| Nested feature expressions | Common subexpression elimination | Halve computation for complex features |
-
-### 2.6 Common Pitfalls ⚠️
-⚠️ **Assuming all optimizations are automatic**: If you use `.apply()` or Python UDFs, the optimizer cannot see inside the black box and will disable pushdown for safety. Stay in expression land.
-
-⚠️ **Over-joining without filtering**: Joining two large tables before filtering prevents the optimizer from reducing input sizes. Always filter first, join second.
-
-💡 **Mental shortcut**: Read your query bottom-up (from `.collect()`). If you see a large scan after an expensive operation, the optimizer missed something.
-
-### 2.7 Knowledge Check ❓
-1. Given a query that joins `users` (1M rows) with `events` (1B rows) and filters `events.event_date > '2024-01-01'`, show the optimized plan structure.
-2. Why does common subexpression elimination matter when computing both `x * x` and `x * x * x` in the same query?
-3. Profile a query with and without predicate pushdown enabled. What is the difference in `explain()` output?
-
 ---
 
-## 📦 Compression Code
+## 🎯 Key Takeaways
+- Lazy evaluation builds a DAG of operations; `.collect()` is the single execution boundary
+- Predicate pushdown filters at the scan level, skipping irrelevant data before it is read
+- Projection pushdown eliminates unused columns, reducing I/O by up to 97%
+- Common subexpression elimination deduplicates repeated computations in the plan
+- `.explain(true)` reveals exactly what optimizations were applied—always use it
 
-This production-ready example demonstrates lazy evaluation with all major optimizations active.
+## References
+- [[00 - Welcome to Polars Internals]]
+- [[02 - Memory Mapping and Zero-Copy Reads]]
+- [Polars lazy API docs](https://docs.pola.rs/user-guide/lazy/)
+- [Materialization strategies in DBMS (VLDB)](https://www.vldb.org/pvldb/vol13/p2937-kersten.pdf)
+
+## 📦 Código de compresión
 
 ```rust
 use polars::prelude::*;
 
-fn production_pipeline(
-    events_path: &str,
-    users_path: &str
-) -> Result<DataFrame, PolarsError> {
-    // WHY: Start lazy at the source—no data touched yet
-    let events = LazyCsvReader::new(events_path)
+fn main() -> Result<(), PolarsError> {
+    let events = LazyCsvReader::new("events.csv")
         .has_header(true)
         .finish()?;
 
-    let users = LazyCsvReader::new(users_path)
+    let users = LazyCsvReader::new("users.csv")
         .has_header(true)
         .finish()?;
 
-    // WHY: The optimizer sees the ENTIRE graph before execution
     let result = events
-        .join(
-            users,
-            [col("user_id")],
-            [col("user_id")],
-            JoinType::Inner,
-        )
+        .join(users, [col("user_id")], [col("user_id")], JoinType::Inner)
         .filter(col("event_date").gt(lit("2024-01-01")))
-        .select([
-            col("user_id"),
-            col("event_type"),
-            col("value"),
-        ])
+        .select([col("user_id"), col("event_type"), col("value")])
         .groupby([col("event_type")])
-        .agg([
-            col("value").sum().alias("total_value"),
-            col("user_id").n_unique().alias("unique_users"),
-        ])
-        .collect()?; // WHY: Single collect point—optimizer works across all ops
+        .agg([col("value").sum().alias("total_value")])
+        .collect()?;
 
-    Ok(result)
+    println!("{:?}", result);
+    Ok(())
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-Develop a declarative feature engineering DSL for a real-time fraud detection system. The system must join transaction streams with merchant profiles, apply time-windowed filters, and aggregate risk signals—all within a single lazy graph that the optimizer can aggressively rewrite for sub-second batch latencies.
-
-### Functional Requirements
-1. Express a 5-step feature pipeline (filter, join, project, aggregate, rank) as one lazy query.
-2. Enable predicate pushdown on transaction time and merchant category columns.
-3. Ensure projection pushdown removes personally identifiable information (PII) columns at the scan level.
-4. Log the optimized physical plan for every execution to a monitoring sink.
-5. Support parameterized queries (e.g., dynamic date thresholds) without breaking optimization.
-
-### Main Components
-- `LazyFrame` builder with parameterized literals.
-- `explain()` logger for plan auditing.
-- Join optimizer for star-schema transaction/merchant tables.
-- Aggregation engine for risk score computation.
-- Monitoring bridge that captures physical plan metrics.
-
-### Success Metrics
-- 95% of queries show pushed-down filters in the physical plan.
-- Feature pipeline latency under 500ms for 10M row batches.
-- Zero intermediate DataFrame materializations between scan and final collect.
-
-### References
-- Official docs: https://docs.pola.rs/user-guide/lazy/
-- Paper/library: https://www.vldb.org/pvldb/vol13/p2937-kersten.pdf

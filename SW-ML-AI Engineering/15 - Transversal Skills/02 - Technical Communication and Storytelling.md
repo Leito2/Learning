@@ -106,38 +106,4 @@ A Markdown template for any technical communication:
 2. ...
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Create a "Communication Playbook" repository that contains templates, checklists, and example documents for every communication scenario an ML engineer faces.
-
-### Functional Requirements
-
-1. Provide a Markdown template for RFCs, post-mortems, and experiment reports.
-2. Include an audience checklist that auto-suggests format and depth based on 3 tags (recruiter, peer, executive).
-3. Host 3 annotated examples of great technical communication (blog post, slide deck, thread).
-4. Offer a visualization decision tree as an interactive HTML page.
-5. Contain a style guide for code-heavy writing (syntax highlighting, line numbers, output blocks).
-
-### Main Components
-
-- `templates/` folder with RFC, post-mortem, and report Markdown files
-- `audience_matrix.json` mapping audience to format constraints
-- `examples/` folder with annotated breakdowns of real-world documents
-- `viz-decision-tree.html` interactive flowchart
-- `STYLE_GUIDE.md` for code presentation
-
-### Success Metrics
-
-- Any new document can be drafted in <10 minutes using a template
-- 100% of documents pass a 5-point clarity checklist before review
-- Visualization decision tree reduces chart revision requests by 50%
-- Style guide achieves consistent formatting across all authors
-
-### References
-
-- [The Pyramid Principle](https://www.amazon.com/Pyramid-Principle-Logic-Writing-Thinking/dp/0273710516) — Barbara Minto
-- [Storytelling with Data](https://www.storytellingwithdata.com/) — Cole Nussbaumer Knaflic
-- [Andrej Karpathy's Blog](https://karpathy.ai/)
-- [Chip Huyen's Newsletter](https://chiphuyen.substack.com/)

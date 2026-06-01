@@ -302,24 +302,3 @@ print(f"Threshold óptimo: {thresh:.3f}, F1: {f1:.3f}")
 
 ---
 
-## 🎯 Proyecto documentado: Sistema de Búsqueda Semántica con FAISS-like Index
-
-### Descripción
-Diseña un sistema de búsqueda semántica que indexe millones de documentos usando sus embeddings y permita recuperar los k más similares en tiempo sub-lineal. Implementa un índice Inverted File (IVF) que agrupe embeddings en celdas usando k-means y solo busque en las celdas más cercanas a la query.
-
-### Requisitos funcionales
-1. `build_index(embeddings, n_clusters)`: agrupa embeddings con k-means, crea lista invertida por cluster.
-2. `search(query_embedding, k)`: encuentra los clusters más cercanos, busca solo en esos clusters, retorna top-k global.
-3. `add(new_embedding, doc_id)`: añade nuevo documento al índice.
-4. Comparar recall@10 vs búsqueda lineal exacta.
-5. Medir tiempo de búsqueda para 1M documentos.
-
-### Métricas de éxito
-- Búsqueda de top-10 en < 10ms para 1M documentos de 384D.
-- Recall@10 > 90% comparado con búsqueda exacta.
-- Tiempo de construcción del índice < 5 minutos.
-
-### Referencias
-- FAISS IVF (Inverted File Index)
-- Product Quantization
-- HNSW (Hierarchical Navigable Small World)

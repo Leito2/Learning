@@ -204,39 +204,3 @@ fn main() {
     println!("Decrypted: {:?}", String::from_utf8_lossy(&decrypted));
 }
 ```
-
-## 🎯 Documented Project
-
-### Description
-
-A secure, zero‑copy chat server using TLS 1.3 for transport encryption and Ed25519 for message authentication.
-
-### Functional Requirements
-
-1. TLS 1.3 with perfect forward secrecy.
-2. Mutual authentication using client certificates.
-3. Message signing with Ed25519 to prevent tampering.
-4. Zero‑copy parsing of binary protocol messages.
-5. Support for 10,000 concurrent connections.
-
-### Main Components
-
-- **TLS Layer**: `rustls` with custom certificate verifier.
-- **Auth Module**: `ed25519‑dalek` for key generation and signing.
-- **Protocol**: Binary format with length‑prefixed fields.
-- **Connection Pool**: `tokio::sync::Semaphore` for backpressure.
-- **Metrics**: Prometheus exporter for handshake latency.
-
-### Success Metrics
-
-- TLS handshake < 5 ms (99th percentile).
-- Message throughput > 100,000 msgs/sec.
-- Zero memory safety bugs (verified via Miri and fuzzing).
-- No data corruption after 24‑hour soak test.
-
-### References
-
-- RustCrypto project: [[03 - Rust Cryptography and Security|crypto crates]]
-- TLS 1.3 RFC 8446
-- Ed25519 RFC 8032
-- Cloudflare's rustls adoption blog post

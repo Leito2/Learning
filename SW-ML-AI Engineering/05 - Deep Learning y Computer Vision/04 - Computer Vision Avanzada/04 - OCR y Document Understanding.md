@@ -237,39 +237,4 @@ if __name__ == "__main__":
     print("Pipeline OCR + Document Understanding listo.")
 ```
 
----
 
-## 🎯 Proyecto documentado: Extractor Inteligente de Facturas
-
-### Descripción
-Sistema que recibe imágenes o PDFs de facturas, extrae texto mediante OCR, entiende el layout y devuelve un JSON estructurado con campos clave: emisor, receptor, fecha, número, ítems, subtotal, impuestos, total.
-
-### Requisitos funcionales
-1. Ingesta de documentos en múltiples formatos (PDF, PNG, JPG, TIFF).
-2. Preprocesamiento automático: deskewing, denoising, binarización adaptativa.
-3. OCR robusto que maneje texto impreso y manuscrito (firmas, anotaciones).
-4. Clasificación de tipo de documento (factura, recibo, contrato).
-5. Extracción de entidades nombradas y pares key-value con LayoutLM.
-6. Validación de campos numéricos (checksums, rangos esperados).
-7. Exportación a JSON y webhook para integración ERP.
-
-### Componentes principales
-- **OCR Engine**: TrOCR para texto impreso; Tesseract como fallback.
-- **Layout Detector**: LayoutLMv3 fine-tuned en dataset propio de facturas latinoamericanas.
-- **NER/Extraction**: Modelo sequence-labeling sobre LayoutLMv3 con etiquetas BIO.
-- **Postprocesamiento**: Regex de validación, corrección de montos por contexto.
-- **API**: FastAPI con cola de procesamiento Celery + Redis.
-- **Frontend**: React con previsualización de documentos y corrección manual.
-
-### Métricas de éxito
-- F1-score por campo: > 0.93 en campos clave (total, fecha, emisor).
-- Precisión de OCR (Character Error Rate) < 3 % en facturas limpias, < 8 % en escaneos de baja calidad.
-- Latencia end-to-end < 4 segundos por página.
-- Tasa de campos que requieren corrección manual < 5 %.
-
-### Referencias
-- Shi, B., et al. "An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition." TPAMI 2016.
-- Zhou, X., et al. "EAST: An Efficient and Accurate Scene Text Detector." CVPR 2017.
-- Li, M., et al. "TrOCR: Transformer-based Optical Character Recognition with Pre-trained Models." AAAI 2023.
-- Xu, Y., et al. "LayoutLMv3: Pre-training for Document AI with Unified Text and Image Masking." ACM MM 2022.
-- Kim, G., et al. "OCR-Free Document Understanding Transformer." ECCV 2022 (Donut).

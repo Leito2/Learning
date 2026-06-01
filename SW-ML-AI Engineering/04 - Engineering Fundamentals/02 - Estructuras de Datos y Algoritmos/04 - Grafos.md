@@ -308,27 +308,3 @@ print(f"Orden de ejecución: {orden}")
 
 ---
 
-## 🎯 Proyecto documentado: Graph Neural Network desde Cero
-
-### Descripción
-Implementa una Graph Convolutional Network (GCN) simple desde cero usando solo NumPy. El modelo debe aprender embeddings de nodos para clasificación en un grafo de citas (dataset Cora-like).
-
-### Requisitos funcionales
-1. Representar el grafo como matriz de adyacencia `A` y matriz de features `X`.
-2. Implementar la capa GCN: `H^(l+1) = σ(D̃^(-1/2) Ã D̃^(-1/2) H^(l) W^(l))`.
-   - `Ã = A + I` (self-loops).
-   - `D̃` = matriz diagonal de grados.
-3. Forward pass con 2 capas GCN.
-4. Cross-entropy loss para clasificación de nodos.
-5. Backpropagation manual para actualizar `W`.
-6. Evaluar accuracy en nodos de test.
-
-### Métricas de éxito
-- Accuracy > 80% en dataset sintético de 1000 nodos, 7 clases.
-- Tiempo de entrenamiento < 30 segundos en CPU.
-- Visualización de embeddings con t-SNE coloreados por clase.
-
-### Referencias
-- GCN paper (Kipf & Welling, 2016)
-- PyTorch Geometric
-- Deep Graph Library (DGL)

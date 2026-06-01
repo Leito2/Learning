@@ -293,36 +293,4 @@ print(f"Resultado final: {resultado}")
 
 ---
 
-## 🎯 Proyecto documentado: Context Manager para Experimentos Reproducibles
 
-### Descripción
-Diseña un context manager `experiment()` que, al entrar, fije semillas aleatorias (numpy, torch, random), capture la configuración del entorno (versión de paquetes, hash de git), y al salir guarde métricas, gráficos y logs en un directorio estructurado. Si ocurre una excepción, debe marcar el experimento como `FAILED` y guardar el traceback.
-
-### Requisitos funcionales
-- Fijar `random.seed`, `np.random.seed`, `torch.manual_seed` al entrar.
-- Capturar `pip freeze`, hash del commit de git, y variables de entorno relevantes.
-- Crear estructura de carpetas: `experiments/YYYY-MM-DD_nombre_experimento/`.
-- Al salir con éxito: guardar `metrics.json`, `config.yaml`, y gráficos.
-- Al salir con error: guardar `error.txt` con traceback completo.
-- Soportar anidamiento: un experimento puede contener sub-experimentos.
-
-### Estructura de salida esperada
-```
-experiments/
-└── 2025-05-03_resnet50_baseline/
-    ├── config.yaml
-    ├── metrics.json
-    ├── plots/
-    │   └── loss_curve.png
-    └── environment.lock
-```
-
-### Métricas de éxito
-- Reproducibilidad: mismo seed → mismos resultados numéricos.
-- Sin fugas de memoria: archivos y recursos siempre cerrados.
-- Overhead menor a 100ms por experimento.
-
-### Referencias
-- MLflow Tracking API
-- Hydra framework (configuration management)
-- Python `atexit` module

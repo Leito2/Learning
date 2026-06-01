@@ -312,25 +312,3 @@ print(top_k_frecuentes(palabras, k=2))  # ['ml', 'ai']
 
 ---
 
-## 🎯 Proyecto documentado: Índice ANN con Ball Tree
-
-### Descripción
-Diseña un Ball Tree para búsqueda aproximada de vecinos más cercanos (ANN) en un espacio de embeddings de alta dimensión. El Ball Tree divide el espacio en hiperesferas (balls) anidadas, permitiendo descartar regiones enteras durante la búsqueda.
-
-### Requisitos funcionales
-1. `BallTree.construct(points)`: construye el árbol recursivamente dividiendo por la dimensión de mayor varianza.
-2. `BallTree.query(point, k)`: encuentra los k vecinos más cercanos usando pruning (si la distancia mínima a una bola es mayor que la distancia al k-ésimo vecino actual, descartar toda la bola).
-3. `BallTree.radius_query(point, r)`: encuentra todos los puntos dentro de radio `r`.
-4. Medir speedup vs búsqueda lineal (`O(n·d)`).
-5. Soportar distancias Euclidiana y coseno.
-
-### Métricas de éxito
-- Construcción en `O(n log n)`.
-- Búsqueda de 1-NN en `O(log n)` para datos bien estructurados.
-- Speedup > 10x vs búsqueda lineal en 100k puntos de 128D.
-- Recall > 95% en búsqueda aproximada (epsilon-ANN).
-
-### Referencias
-- scikit-learn `BallTree` y `KDTree`
-- FAISS (ANN optimizado para GPU)
-- HNSW (Hierarchical Navigable Small World) - SOTA en ANN

@@ -114,38 +114,4 @@ A one-page self-assessment rubric for aspiring Tech Leads:
 **Score**: 0-2 = Solid IC. 3-4 = Emerging Lead. 5-6 = Operating at Staff level.
 ```
 
-## 🎯 Documented Project
 
-### Description
-
-Design a "Leadership Growth Tracker" — a personal dashboard (Obsidian, Notion, or Streamlit app) that maps your weekly activities to the career ladder rubric and highlights gaps.
-
-### Functional Requirements
-
-1. Import or define a company's engineering ladder rubric (JSON or Markdown table).
-2. Log weekly activities tagged by skill area: Coding, System Design, Communication, Mentoring, Glue Work.
-3. Auto-score each week against the rubric for your target level.
-4. Visualize trends over time with a radar chart.
-5. Generate a quarterly "growth report" with gap analysis and recommended actions.
-
-### Main Components
-
-- `rubric.json`: Standardized ladder definition (Junior to Distinguished)
-- `activity_logger.py`: CLI to tag and timestamp activities
-- `scoring_engine.py`: Maps activities to rubric criteria
-- `dashboard.py`: Streamlit or Plotly radar chart visualization
-- `report_generator.py`: Markdown export for quarterly reviews
-
-### Success Metrics
-
-- Activity logging takes <30 seconds per entry
-- Dashboard updates in real-time
-- Quarterly report accurately identifies the top 2 skill gaps
-- Rubric covers at least 5 levels and 4 skill dimensions
-
-### References
-
-- [Software Engineering at Google](https://abseil.io/resources/swe-book) — Titus Winters et al.
-- [The Staff Engineer's Path](https://www.oreilly.com/library/view/the-staff-engineers/9781098118723/) — Tanya Reilly
-- [No Rules Rules](https://www.netflix.com/tudum/articles/no-rules-rules-book) — Reed Hastings & Erin Meyer
-- [Engineering Ladders](https://www.engineeringladders.com/) — Open-source ladder templates

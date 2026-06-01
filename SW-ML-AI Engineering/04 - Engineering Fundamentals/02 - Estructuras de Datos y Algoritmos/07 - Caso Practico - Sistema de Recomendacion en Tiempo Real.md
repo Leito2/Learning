@@ -42,36 +42,22 @@ flowchart TD
     RR --> BR[Business rules]
     RR --> Res[Top-10 Results]
 ```
-
-```
-Usuario Request
-      │
-      ▼
-┌─────────────┐
-│   API GW    │
-└──────┬──────┘
-       │
-       ├──▶ [Cold Start Handler] ──▶ Popular/Hybrid items
-       │
-       └──▶ [Personalized Engine]
-                │
-                ├──▶ User Profile (Hash Table)
-                │         └──▶ Recent interactions, preferences
-                │
-                ├──▶ Candidate Generation
-                │         ├──▶ Collaborative Filtering (ANN Index)
-                │         └──▶ Content-Based (Tag matching)
-                │
-                ├──▶ Ranking Model
-                │         └──▶ Score candidates with ML model
-                │
-                └──▶ Re-Ranking
-                          ├──▶ Diversity filter (Graph algorithms)
-                          ├──▶ Freshness boost (Recency heap)
-                          └──▶ Business rules
-                          
-              Top-10 Results
-```
+- Usuario Request
+  - API GW
+    - Cold Start Handler → Popular / Hybrid items
+    - Personalized Engine
+      - User Profile (Hash Table)
+        - Recent interactions, preferences
+      - Candidate Generation
+        - Collaborative Filtering (ANN Index)
+        - Content-Based (Tag matching)
+      - Ranking Model
+        - Score candidates with ML model
+      - Re-Ranking
+        - Diversity filter (Graph algorithms)
+        - Freshness boost (Recency heap)
+        - Business rules
+    - Top-10 Results
 
 ---
 

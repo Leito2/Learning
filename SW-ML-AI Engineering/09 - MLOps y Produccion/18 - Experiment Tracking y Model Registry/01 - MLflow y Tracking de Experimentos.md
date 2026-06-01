@@ -41,27 +41,30 @@ El resultado es lo que Sculley et al. llaman "CACE: Changing Anything Changes Ev
 
 ## 2. 📐 Modelo Mental
 
+```mermaid
+graph TB
+    EXPERIMENTO[EXPERIMENTO]
+    EXPERIMENTO --> RA
+    EXPERIMENTO --> RB
+    EXPERIMENTO --> RC
+    EXPERIMENTO --> RN[...Run N]
+
+    RA[Run A] --> RA1[Params: lr=0.01, epochs=50]
+    RA --> RA2[Metrics: acc=0.82, f1=0.79]
+    RA --> RA3[Artifacts: model, plot.png]
+    RA --> RA4[Tags: git=abc]
+
+    RB[Run B] --> RB1[Params: lr=0.001, epochs=100]
+    RB --> RB2[Metrics: acc=0.87, f1=0.85]
+    RB --> RB3[Artifacts: model, cm.png]
+    RB --> RB4[Tags: git=def]
+
+    RC[Run C] --> RC1[Params: lr=0.1, epochs=200]
+    RC --> RC2[Metrics: acc=0.78, f1=0.74]
+    RC --> RC3[Artifacts: model, plot.png]
+    RC --> RC4[Tags: git=ghi]
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        EXPERIMENTO                              │
-│  ┌────────────┐  ┌────────────┐  ┌────────────┐               │
-│  │  Run A     │  │  Run B     │  │  Run C     │  ... Run N    │
-│  │  ────────  │  │  ────────  │  │  ────────  │               │
-│  │  Params:   │  │  Params:   │  │  Params:   │               │
-│  │  ├─lr=0.01 │  │  ├─lr=0.001│  │  ├─lr=0.1  │               │
-│  │  ├─epochs= │  │  ├─epochs= │  │  ├─epochs= │               │
-│  │  │  50     │  │  │  100    │  │  │  200    │               │
-│  │  Metrics:  │  │  Metrics:  │  │  Metrics:  │               │
-│  │  ├─acc=0.82│  │  ├─acc=0.87│  │  ├─acc=0.78│               │
-│  │  ├─f1=0.79 │  │  ├─f1=0.85 │  │  ├─f1=0.74 │               │
-│  │  Artifacts:│  │  Artifacts:│  │  Artifacts:│               │
-│  │  ├─model   │  │  ├─model   │  │  ├─model   │               │
-│  │  ├─plot.png│  │  ├─cm.png  │  │  ├─plot.png│               │
-│  │  Tags:     │  │  Tags:     │  │  Tags:     │               │
-│  │  ├─git:abc │  │  ├─git:def │  │  ├─git:ghi │               │
-│  └────────────┘  └────────────┘  └────────────┘               │
-└─────────────────────────────────────────────────────────────────┘
-```
+
 
 Cada run es una tupla inmutable `R = (params, metrics, artifacts, tags)`. El scheduler de HPO o el científico de datos crea runs, y la UI permite compararlos, filtrarlos y seleccionar el mejor para promoción al Model Registry.
 
@@ -387,13 +390,13 @@ Estrategias recomendadas para equipos:
 
 ### Taxonomía de Runs
 
-```
-runs/
-├── {project}/
-│   ├── {model}_{yyyy-mm-dd}_{git_hash}/
-│   │   ├── baseline/
-│   │   ├── lr_tune/
-│   │   └── final/
+```mermaid
+graph LR
+    runs --> project["{project}"]
+    project --> model["{model}_{yyyy-mm-dd}_{git_hash}"]
+    model --> baseline[baseline]
+    model --> lr_tune[lr_tune]
+    model --> final[final]
 ```
 
 Convención de tags:
@@ -450,19 +453,14 @@ services:
 
 ### Despliegue en Kubernetes
 
-```
-┌─────────────────────────────────────────────────────┐
-│ K8s Cluster                                         │
-│  ┌──────────┐  ┌─────────────┐  ┌───────────────┐ │
-│  │ MLflow   │  │ PostgreSQL  │  │  S3 (MinIO/   │ │
-│  │ Pod      │  │ StatefulSet │  │  AWS/GCS)     │ │
-│  │ :5000    │  │ :5432       │  │               │ │
-│  └──────────┘  └─────────────┘  └───────────────┘ │
-│  ┌──────────────────────────────────────────────┐  │
-│  │ Ingress: mlflow.company.com                 │  │
-│  │ Auth: OAuth2 Proxy / NGINX basic auth       │  │
-│  └──────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph "K8s Cluster"
+        ML[MLflow Pod<br/>:5000]
+        PG[PostgreSQL StatefulSet<br/>:5432]
+        S3[S3 / MinIO / AWS / GCS]
+        ING[Ingress: mlflow.company.com<br/>Auth: OAuth2 Proxy / NGINX basic auth]
+    end
 ```
 
 Puntos clave para producción:
@@ -543,19 +541,7 @@ with mlflow.start_run(run_name="rf_baseline"):
 
 ---
 
-## ✅ Verificación de Conocimiento
 
-1. **¿Qué diferencia hay entre un `log_param()` y un `set_tag()`?** — Un param es variable de configuración del modelo, un tag es metadata inmutable (commit, versión de datos). Los params son numéricos/string comparables en UI; los tags son solo strings para filtrado.
-
-2. **¿Por qué SQLite no escala para equipos?** — SQLite usa bloqueos de escritura exclusivos. Dos usuarios creando runs simultáneamente causan timeouts. PostgreSQL permite escritura concurrente con MVCC.
-
-3. **¿Cuál es la diferencia entre Backend Store y Artifact Store?** — El backend store guarda metadatos ligeros (params, metrics, tags) en base de datos relacional. El artifact store guarda blobs binarios (modelos, gráficos) en object storage.
-
-4. **¿Qué ventaja tiene MLflow sobre Sacred?** — MLflow incluye UI integrada, Model Registry, autologging, y Pipelines. Sacred requiere Omniboard para UI y no tiene Model Registry nativo.
-
-5. **¿Cuándo usar autologging vs logging manual?** — Autologging para exploración rápida y desarrollo. Logging manual para producción donde necesitas control granular sobre qué se registra y cómo.
-
----
 
 ## 🎯 Key Takeaways
 

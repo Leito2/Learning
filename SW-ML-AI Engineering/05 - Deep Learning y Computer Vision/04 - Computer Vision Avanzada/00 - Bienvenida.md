@@ -111,33 +111,4 @@ else:
     print("\n✅ Todo listo. ¡Bienvenido al curso!")
 ```
 
----
 
-## 🎯 Proyecto documentado: Preparación para Document Intelligence
-
-### Descripción
-Proyecto guía que se construirá a lo largo del curso y se consolidará en la nota 05.
-
-### Requisitos funcionales
-1. El sistema debe recibir imágenes de documentos en formatos JPG, PNG o PDF.
-2. Debe detectar regiones de interés (texto, tablas, sellos) mediante detección de objetos.
-3. Debe segmentar áreas semánticamente (título, párrafo, tabla, firma).
-4. Debe extraer texto mediante OCR y entender relaciones espaciales.
-5. Debe exportar resultados estructurados en JSON.
-
-### Componentes principales
-- **Ingesta**: Conversión y preprocesamiento de documentos.
-- **Detección**: Modelo tipo LayoutLMv3 / YOLO para regiones.
-- **OCR**: TrOCR o Tesseract como base.
-- **Extracción**: NER y key-value pairing.
-- **Exportación**: API REST con respuesta JSON.
-
-### Métricas de éxito
-- F1-score por campo extraído > 0.90 en facturas.
-- Latencia de inferencia < 3 segundos por página.
-- Precisión de OCR > 95 % en documentos limpios.
-
-### Referencias
-- Redmon, J., et al. "You Only Look Once." CVPR 2016.
-- Vaswani, A., et al. "Attention Is All You Need." NeurIPS 2017.
-- Xu, Y., et al. "LayoutLM: Pre-training of Text and Layout." KDD 2020.

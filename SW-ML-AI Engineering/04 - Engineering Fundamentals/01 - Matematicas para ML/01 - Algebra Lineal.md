@@ -255,27 +255,4 @@ print(f"  PC1: {pca.valores[0] / pca.valores.sum():.2%}")
 print(f"  PC2: {pca.valores[1] / pca.valores.sum():.2%}")
 ```
 
----
 
-## 🎯 Proyecto documentado: Sistema de Recomendación con SVD
-
-### Descripción
-Diseña un sistema de filtrado colaborativo que use SVD para descomponer una matriz usuario-item (ratings de películas) en factores latentes. Predice ratings faltantes reconstruyendo la matriz con un subconjunto de valores singulares.
-
-### Requisitos funcionales
-- Construir matriz usuario-item a partir de datos de ratings.
-- Aplicar SVD: `R = U · Σ · Vᵀ`.
-- Reducir dimensionalidad manteniendo los `k` valores singulares más grandes.
-- Reconstruir la matriz aproximada: `R̂ = Uₖ · Σₖ · Vₖᵀ`.
-- Predecir ratings faltantes como los valores de `R̂` en posiciones vacías.
-- Evaluar con RMSE sobre un conjunto de test.
-
-### Métricas de éxito
-- RMSE < 1.0 sobre dataset MovieLens 100k.
-- Tiempo de entrenamiento < 5 segundos en CPU.
-- Capacidad de explicar por qué se recomienda un ítem (factores latentes).
-
-### Referencias
-- Netflix Prize y factorización de matrices
-- Surprise library (scikit-surprise)
-- Latent Semantic Analysis (LSA) para NLP
