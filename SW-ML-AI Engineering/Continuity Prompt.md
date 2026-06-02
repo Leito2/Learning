@@ -4,22 +4,64 @@ Copy and paste this entire file into a new session to continue the project witho
 
 ---
 
-## ⚠️ CRITICAL: CONTEXT MANAGEMENT
+## ⚠️ CRITICAL: CONTEXT & COST MANAGEMENT
 
-This vault is **~600+ notes**. Bulk content creation in the **main thread** WILL saturate context.
+> **Last revised:** June 2026. The vault now has **~628+ notes** (4 new courses added). The previous "always-subagent-for-3+-notes" rule was redesigned around **AI subscription cost**, not just context saturation. Subagents reload the entire Deep Format spec, vault structure, and writing rules in their own context — that duplication is **expensive**. The new default inverts the priority.
 
-### Mandatory Subagent Workflow
+### Core Philosophy
 
-| Task Type | Rule |
-|-----------|------|
-| Writing courses (3+ notes) | `task` tool, **max 2 subagents parallel**, **max 7 notes each** |
-| Research / exploring codebase | `task` tool with `subagent_type: explore` |
-| Single-note edit | Main thread (Write/Edit) — OK for 1-2 files |
-| Post-subagent verification | `bash` — check file counts and line counts |
+> **Main agent writes courses. Subagents exist for two specific reasons only: (1) cheap research, and (2) parallel bulk tasks that justify the context reload cost.**
 
-**Never:** write 5+ notes in main thread, launch >2 subagents, skip verification.
+### Decision Matrix — When to Use What
 
-**Filesystem is the single source of truth.** Subagents may silently complete. Verify with `ls`/`wc -l` immediately after launch.
+| Task | Tool | Why |
+|------|------|-----|
+| **1-3 notes** (single course, small course, or 1-3 note patch) | **Main thread** (Write/Edit) | Cheapest path. The Deep Format spec is already in context. 1 note ≈ 400 lines, well within main budget. |
+| **4-6 notes** (typical course) | **Main thread, 1 note at a time** | Each Write call commits a complete, verified note. Pause for verification after each. Total: 4-6 sequential Writes, not parallel. |
+| **7+ notes** (long course like 06/17 with 11 notes) | **Main thread, 1 note at a time** OR **2 subagents parallel (3-4 each)** | Main thread is still cheaper. Use subagents only if user wants speed and accepts the cost. Default to main. |
+| **Research / codebase exploration** (find files, search, read structure) | `task` tool with `subagent_type: explore` | Cheap because `explore` is a fast, low-token agent. Worth it for any multi-step lookup. |
+| **Bulk simple parallel tasks** (e.g., 4+ SVGs, 4+ identical file structures, batch file generation with no shared context) | **`task` tool, 2-4 subagents parallel** | Each task is self-contained, no shared spec needed. The context reload is justified by the parallelism. **This is the primary cost-justified subagent use case.** |
+| **Single-note edit** (typo fix, banner embed, small content patch) | **Main thread** (Edit tool) | Trivial, no subagent needed. |
+| **Index / metadata update** (Master Index, Continuity Prompt, Skills Tree) | **Main thread** (Edit tool) | Trivial, no subagent needed. |
+
+### Hard Rules
+
+- **Default to main thread** for all content creation. Subagents are exceptions, not the rule.
+- **Never write more than 1 note in a single main-thread turn.** Write one, verify, then write the next. This keeps each turn focused and reversible.
+- **Subagent context reload is expensive.** Estimate: a subagent task prompt ≈ 2-5× the cost of an equivalent main-thread action because the subagent re-loads rules, examples, and vault structure. Only use subagents when **the parallelism savings beat the reload cost**.
+- **Max 2 subagents parallel** when subagents are used (the previous hard cap holds for token-bill reasons).
+- **Filesystem is the single source of truth.** Whether you used a subagent or the main thread, verify with `ls`/`wc -l` after every batch.
+
+### Subagent Prompt Design (Cost Minimization)
+
+When you DO use a subagent, design the prompt to **minimize reloaded context**:
+
+| DO | DON'T |
+|----|-------|
+| Reference existing notes by exact path (`[[../15 - MCP/...]]`) | Re-explain the whole Deep Format spec in the prompt |
+| Include only the **target file path + 1-2 line content scope** | Re-paste the 700+ line Continuity Prompt |
+| Give 1 inline example of the desired output style | Re-paste multiple full course notes as reference |
+| Specify the file naming, line target, and "do not modify siblings" | Re-explain vault structure, language policy, etc. |
+| Reference `CONTEXT MANAGEMENT` section in the Continuity Prompt if the subagent can read it | Duplicate the rules verbatim |
+
+**Rule of thumb:** if the subagent prompt is > 2,000 words, you've reloaded too much. The Deep Format spec, vault structure, and language policy are all already in `Continuity Prompt.md` and `00 - Indice Maestro de Cursos.md` — the subagent can read those files itself.
+
+### Verification (After Every Subagent Batch)
+
+```bash
+ls -la "/path/to/course/"              # confirm file count
+wc -l "/path/to/course/"*.md           # confirm line counts in target range
+head -5 "/path/to/course/00 - ...md"   # confirm H1 + format correct
+```
+
+### Anti-Patterns to Avoid
+
+| Anti-pattern | Why it's bad | Replacement |
+|--------------|--------------|-------------|
+| "Use 2 subagents to write 3 notes each" for a 6-note course | 6 subagent context reloads + 6 main-thread verifications = 12× the cost of just doing it in main | Write 6 notes in main, 1 at a time, verifying after each |
+| One subagent that writes a full course with full Deep Format spec re-pasted | Subagent consumes more tokens than main would have | Main thread, with Continuity Prompt as the live reference |
+| Subagent for a single 400-line note | Zero parallelism benefit, full context reload | Main thread, one Write call |
+| Subagent for research that's "let me check if file X exists" | Just `ls` or `glob` in main | Main thread, direct tool call |
 
 ---
 
@@ -661,12 +703,12 @@ Filtered from a broader tech scan — only technologies that directly complement
 ---
 
 > **⚠️ MANDATORY for next session:**
-> 1. Read the "CRITICAL: CONTEXT MANAGEMENT" section.
-> 2. ALWAYS use subagents (`task` tool) for bulk creation — max 2 parallel, max 7 notes each.
-> 3. Never write 5+ full course notes in the main thread.
-> 4. Verify filesystem state after every subagent batch.
-> 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=Harness Engineering, Extra/ at end.
-> 6. Next priority: **ALL GAPS COMPLETE.** 🎉 **Zero 🚨 remaining.** Entire High-Value Tech scan is ✅.
+> 1. Read the "⚠️ CRITICAL: CONTEXT & COST MANAGEMENT" section (rewritten June 2026 — main-agent default).
+> 2. **Default to main thread for course creation.** Write 1 note at a time, verify, then write the next. Subagents are reserved for cheap research (`explore`) and bulk parallel simple tasks (e.g., 4+ SVGs).
+> 3. Never write 5+ full course notes in a single main-thread turn.
+> 4. Verify filesystem state after every subagent batch AND after every main-thread note (`ls`/`wc -l`).
+> 5. **Reorganized:** 00=Markdown, 01=SQL, 02=Docker, 03=Advanced Python, 04=Engineering Fundamentals, 05-12=ML core, 13=Go, 14=Rust, 15=Transversal, 16=Harness Engineering, 17=OpenShell, Extra/ at end.
+> 6. **ALL GAPS COMPLETE.** 🎉 **Zero 🚨 remaining.** Entire High-Value Tech scan is ✅.
 > 7. **Course 06/17 REWRITTEN:** 11 notes, 4,735 lines. 5 next-gen vectors.
 > 8. **JAX Deep Dive:** 6 notes, 2,363 lines (05/10).
 > 9. **TorchServe:** 4 notes, 1,707 lines (09/30).
@@ -699,25 +741,28 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 6 | Actualizar Continuity Prompt | Vault structure + course list + mandatory list + este tracking | Este archivo |
 | 7 | **Crear curso OpenShell and Agent Sandboxes (07/16)** | 6 notes, 2,301 lines. Welcome + Agent Security Crisis + Architecture + YAML Policies + Agent Integrations + Production Deployment & Capstone. Cross-links a MCP/A2A, LLM Security, Harness Engineering, KServe, Rust, LLM Edge Gateway. | `07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/` (6 files) |
 | 8 | **Actualizar Master Index con OpenShell** | Tree map + course table | `00 - Indice Maestro de Cursos.md` |
+| 9 | **Generar 4 banners SVG en paralelo (subagents)** | 06/19 LLM Gateway + 10/35 Vector Quantization + 10/36 PostgreSQL AI/ML + 07/16 OpenShell | 4 SVG files, 5.8-7.3 KB each |
+| 10 | **Embed de banners en 4 Welcome notes** | Añadir `![Banner del Curso X](<slug>-course-banner.svg)` como primera línea de cada Welcome | 4 markdown files |
+| 11 | **Commit masivo** | 25 notes nuevos + 7 SVGs + 6 metadata updates (commit `0fae30e`) | `0fae30e` |
+| 12 | **Reescribir reglas de subagentes en este archivo** | Filosofía: main agent por defecto, subagentes solo para investigación barata o tareas paralelas masivas. Reglas de prompt-design para minimizar context reload | Este archivo (líneas 7-69) |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 
 | # | Tarea | Contexto | Bloqueante |
 |---|-------|----------|------------|
-| P1 | **Banners para los otros cursos principales** | Usuario preguntó si los quería para Python, Go, Rust, FastAPI, etc. tras crear los 3 primeros | Esperando `sí` o `no` |
-| P2 | **Banners para los nuevos cursos 2026 (06/19, 10/35, 10/36)** | Los 3 cursos recién creados también tienen Welcome notes sin banner | Esperando `sí` o `no` |
-| P3 | **Commit de los cambios** | 19 notes nuevos + 3 SVGs + 2 index updates sin commitear | Esperando `commit -m "..."` |
-| P4 | **Decisión sobre 06/19 capstone (659 líneas)** | Subagent reportó 159 líneas sobre el target. Contenido justificado (7 módulos de código) pero excede guideline | Esperando `aceptar` o `recortar` |
+| P5 | **Banners para los cursos grandes principales** (Python Básico/Intermedio, Go Fundamentals, Rust Fundamentals, FastAPI, etc.) | Tras crear los 7 banners existentes, los cursos "anchor" del vault aún no tienen banner | Esperando `sí` o `no` (P1 resuelto a 4 banners, no a los grandes) |
+| P6 | **Push del commit a origin** | `0fae30e` está commiteado localmente, sin push | Esperando `git push` |
 
 ### 🔵 Sugerencias para futuras sesiones
 
 | # | Idea | Justificación |
 |---|------|---------------|
-| S1 | **Banners para los 3 cursos nuevos 06/19, 10/35, 10/36** | Mantener consistencia visual con SQL/Docker/Markdown |
+| S1 | **Banners para los cursos grandes principales** (Python Básico/Intermedio, Go Fundamentals, Rust Fundamentals, FastAPI, etc.) | Mantener consistencia visual en los cursos "anchor" del vault |
 | S2 | **Crear templates de banner SVG** | Para cursos futuros: 3 paletas (cyan/azul, verde, naranja) reutilizables |
 | S3 | **Auditoría visual del vault** | Revisar 17 módulos, identificar cuáles merecen banner (welcome notes) |
 | S4 | **Próximos cursos candidatos** (ver tier 2/3 del scan original) | OpenTelemetry, LangSmith, DSPy, Mamba-2, WebGPU |
 | S5 | **Traducir 06/19 a español selectivamente** | Si audiencia en Colombia lee inglés, mantener EN; si no, traducir |
+| S6 | **Probar el nuevo flujo main-agent-first** | La próxima vez que crees un curso nuevo (1-6 notas), escribe 1 nota a la vez en main thread y mide el coste. Las reglas reescritas de subagentes asumen que main thread es más barato — vale la pena validarlo. |
 
 ### 📐 Plantilla reusable de banner SVG (paletas)
 
