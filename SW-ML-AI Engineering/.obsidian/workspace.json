@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "aac2aa641f5c65ca",
+        "id": "782ea7ecc8322fbf",
         "type": "tabs",
         "children": [
           {
-            "id": "32797b2d3a8b02c6",
+            "id": "e8f56d707a9d8bec",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "16 - Harness Engineering/02 - The Three Pillars.md",
-                "mode": "source",
+                "file": "02 - Docker Profesional/00 - Bienvenida.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02 - The Three Pillars"
+              "title": "00 - Bienvenida"
             }
           }
         ]
@@ -183,34 +183,34 @@
       "bases:Create new base": false
     }
   },
-  "active": "32797b2d3a8b02c6",
+  "active": "e8f56d707a9d8bec",
   "lastOpenFiles": [
-    "16 - Harness Engineering/06 - Multi-Agent Orchestration and Capstone.md",
-    "16 - Harness Engineering/05 - File Architecture.md",
-    "16 - Harness Engineering/02 - The Three Pillars.md",
-    "16 - Harness Engineering/09 - Tools, Provider Abstraction, and Memory.md",
+    "00 - Curso Markdown/00 - Bienvenida al Curso Markdown.md",
+    "01 - Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL.md",
+    "04 - Engineering Fundamentals/01 - Matematicas para ML/01 - Algebra Lineal.md",
+    "01 - Curso SQL con PostgreSQL/01 - Introduccion y Configuracion.md",
+    "06 - Large Language Models/12 - Production RAG/01 - Document Chunking Strategies - Fixed, Semantic, Hierarchical and Late.md",
+    "02 - Docker Profesional/03 - Docker Compose y Multi-Contenedores.md",
+    "02 - Docker Profesional/04 - Volumenes Redes y Persistencia.md",
+    "02 - Docker Profesional/02 - Dockerfile y Buenas Practicas.md",
+    "03 - Advanced Python/01 - Python Basico/08 - Listas.md",
+    "03 - Advanced Python/01 - Python Basico/09 - Tuplas.md",
+    "03 - Advanced Python/01 - Python Basico/07 - Strings y Metodos de Cadenas.md",
+    "03 - Advanced Python/01 - Python Basico/04 - Operadores Relacionales y Logicos.md",
+    "03 - Advanced Python/01 - Python Basico/02 - Operadores Aritmeticos y Asignacion.md",
+    "03 - Advanced Python/01 - Python Basico/00 - Bienvenida.md",
+    "01 - Curso SQL con PostgreSQL/04 - Consultas Avanzadas.md",
+    "00 - Curso Markdown/04 - Buenas Practicas.md",
+    "00 - Curso Markdown/03 - Markdown en Obsidian.md",
+    "00 - Curso Markdown/02 - Tablas y Bloques Avanzados.md",
+    "00 - Curso Markdown/01 - Sintaxis Basica.md",
     "16 - Harness Engineering/08 - Verification and Quality Gates.md",
     "16 - Harness Engineering/07 - Complete Harness Taxonomy.md",
+    "16 - Harness Engineering/09 - Tools, Provider Abstraction, and Memory.md",
+    "16 - Harness Engineering/02 - The Three Pillars.md",
+    "16 - Harness Engineering/06 - Multi-Agent Orchestration and Capstone.md",
+    "16 - Harness Engineering/05 - File Architecture.md",
     "16 - Harness Engineering/04 - Specification-Driven Development.md",
-    "16 - Harness Engineering/03 - Harness Engineering - Architecture of Control.md",
-    "16 - Harness Engineering/01 - The Context Crisis.md",
-    "16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD.md",
-    "16 - Harness Engineering/03 - Specification-Driven Development - The Workflow Inside the Harness.md",
-    "16 - Harness Engineering/01 - Context Engineering - The Physics of AI Attention.md",
-    "16 - Harness Engineering/02 - Harness Engineering - Directing AI Force.md",
-    "16 - Harness Engineering/04 - File Architecture - Organizing Harness Infrastructure.md",
-    "16 - Harness Engineering/05 - Multi-Agent Orchestration and End-to-End Workflow.md",
-    "16 - SDD and Harness Engineering/02 - SDD: The Specification-First Workflow.md",
-    "16 - SDD and Harness Engineering/01 - Harness Engineering Fundamentals.md",
-    "16 - SDD and Harness Engineering/06 - The 20 Harnesses: Phase Control and Contracts.md",
-    "16 - SDD and Harness Engineering/09 - Verification and Quality Gates.md",
-    "16 - SDD and Harness Engineering/08 - File Structures and Repository Harnesses.md",
-    "16 - SDD and Harness Engineering/07 - Tools and Provider Abstraction.md",
-    "16 - SDD and Harness Engineering/00 - Welcome to SDD and Harness Engineering.md",
-    "10 - Cloud, Infra y Backend/23 - Infrastructure as Code/04 - Pulumi - Infrastructure as Code with Go and Python.md",
-    "10 - Cloud, Infra y Backend/23 - Infrastructure as Code/05 - Ansible - Configuration Management at Scale.md",
-    "10 - Cloud, Infra y Backend/23 - Infrastructure as Code/06 - CI-CD and GitOps for ML Infrastructure.md",
-    "10 - Cloud, Infra y Backend/23 - Infrastructure as Code/09 - Capstone - Production ML Infrastructure from Scratch.md",
     "06 - Large Language Models/16 - HuggingFace Transformers Deep Dive",
     "Extra",
     "Transversal Skills",

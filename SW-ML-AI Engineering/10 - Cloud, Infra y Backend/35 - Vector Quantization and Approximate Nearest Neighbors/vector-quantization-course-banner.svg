@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="Vector Quantization and Approximate Nearest Neighbors">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1426"/>
+      <stop offset="55%" stop-color="#1a1033"/>
+      <stop offset="100%" stop-color="#0a0a1a"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="50%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+
+    <linearGradient id="codeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <radialGradient id="glow" cx="0.85" cy="0.25" r="0.55">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="360" fill="url(#bg)"/>
+  <g stroke="#1e3a5f" stroke-width="0.5" opacity="0.35">
+    <line x1="0" y1="60"  x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+  </g>
+  <rect width="1200" height="360" fill="url(#glow)"/>
+
+  <g transform="translate(60, 60)">
+    <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="600" fill="#94a3b8" letter-spacing="3">CURSO COMPRIMIDO</text>
+
+    <text x="0" y="70" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="64" font-weight="800" fill="#f8fafc">Vector Quantization &amp; ANN</text>
+
+    <rect x="0" y="92" width="140" height="6" fill="url(#accent)" rx="3"/>
+
+    <text x="0" y="140" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="500" fill="#cbd5e1">From PQ/OPQ to BQ, RaBitQ and FAISS at Billion Scale</text>
+
+    <text x="0" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#64748b">// PQ · OPQ · BQ · RaBitQ · ScaNN · FAISS · GPU</text>
+  </g>
+
+  <g transform="translate(60, 200)">
+    <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="600">
+      <g transform="translate(0,0)">
+        <rect x="0" y="0" width="78" height="30" rx="15" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-opacity="0.5"/>
+        <text x="39" y="20" text-anchor="middle" fill="#7dd3fc">6 notas</text>
+      </g>
+      <g transform="translate(88,0)">
+        <rect x="0" y="0" width="84" height="30" rx="15" fill="#a78bfa" fill-opacity="0.15" stroke="#a78bfa" stroke-opacity="0.5"/>
+        <text x="42" y="20" text-anchor="middle" fill="#c4b5fd">English</text>
+      </g>
+      <g transform="translate(182,0)">
+        <rect x="0" y="0" width="106" height="30" rx="15" fill="#34d399" fill-opacity="0.15" stroke="#34d399" stroke-opacity="0.5"/>
+        <text x="53" y="20" text-anchor="middle" fill="#6ee7b7">SOTA 2024</text>
+      </g>
+      <g transform="translate(298,0)">
+        <rect x="0" y="0" width="120" height="30" rx="15" fill="#fbbf24" fill-opacity="0.15" stroke="#fbbf24" stroke-opacity="0.5"/>
+        <text x="60" y="20" text-anchor="middle" fill="#fcd34d">Billion-Scale</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(60, 260)">
+    <rect x="0" y="0" width="1080" height="64" rx="10" fill="url(#codeBg)" stroke="#1e3a5f" stroke-width="1"/>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+      <text x="20" y="28" fill="#a78bfa">faiss</text><text fill="#e2e8f0">.</text><text fill="#34d399">index_factory</text><text fill="#e2e8f0">(</text><text fill="#fbbf24">d, PQ32x8</text><text fill="#e2e8f0">)</text>
+      <text x="20" y="52" fill="#64748b"># 768d → 32 bytes, ~24x compression</text>
+    </g>
+  </g>
+
+  <g transform="translate(940, 70)">
+    <g transform="translate(0, 30)">
+      <g fill="#a78bfa" fill-opacity="0.85">
+        <circle cx="0"  cy="0"  r="4"/><circle cx="16" cy="0"  r="4"/><circle cx="32" cy="0"  r="4"/><circle cx="48" cy="0"  r="4"/>
+        <circle cx="0"  cy="16" r="4"/><circle cx="16" cy="16" r="4"/><circle cx="32" cy="16" r="4"/><circle cx="48" cy="16" r="4"/>
+        <circle cx="0"  cy="32" r="4"/><circle cx="16" cy="32" r="4"/><circle cx="32" cy="32" r="4"/><circle cx="48" cy="32" r="4"/>
+        <circle cx="0"  cy="48" r="4"/><circle cx="16" cy="48" r="4"/><circle cx="32" cy="48" r="4"/><circle cx="48" cy="48" r="4"/>
+      </g>
+      <rect x="-6" y="-6" width="60" height="60" rx="6" fill="none" stroke="#a78bfa" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="2,2"/>
+    </g>
+
+    <g stroke="url(#accent)" stroke-width="1.5" fill="none" opacity="0.85">
+      <path d="M 60 54 L 88 54" marker-end="url(#arrow)"/>
+      <path d="M 60 78 L 88 78" marker-end="url(#arrow)"/>
+      <path d="M 60 102 L 88 54" marker-end="url(#arrow)"/>
+      <path d="M 60 126 L 88 102" marker-end="url(#arrow)"/>
+    </g>
+
+    <g transform="translate(95, 30)">
+      <g transform="translate(0,0)">
+        <circle cx="0" cy="0" r="18" fill="#a78bfa" fill-opacity="0.25" stroke="#a78bfa" stroke-opacity="0.6" stroke-width="1"/>
+        <circle cx="-6" cy="-4" r="2.5" fill="#a78bfa"/><circle cx="5" cy="-6" r="2.5" fill="#a78bfa"/><circle cx="3" cy="5" r="2.5" fill="#a78bfa"/><circle cx="-4" cy="6" r="2.5" fill="#a78bfa"/>
+      </g>
+      <g transform="translate(60,0)">
+        <circle cx="0" cy="0" r="18" fill="#7c3aed" fill-opacity="0.25" stroke="#7c3aed" stroke-opacity="0.6" stroke-width="1"/>
+        <circle cx="-5" cy="-5" r="2.5" fill="#7c3aed"/><circle cx="6" cy="-3" r="2.5" fill="#7c3aed"/><circle cx="2" cy="6" r="2.5" fill="#7c3aed"/><circle cx="-6" cy="4" r="2.5" fill="#7c3aed"/>
+      </g>
+      <g transform="translate(0,60)">
+        <circle cx="0" cy="0" r="18" fill="#ec4899" fill-opacity="0.25" stroke="#ec4899" stroke-opacity="0.6" stroke-width="1"/>
+        <circle cx="-6" cy="-3" r="2.5" fill="#ec4899"/><circle cx="4" cy="-6" r="2.5" fill="#ec4899"/><circle cx="6" cy="5" r="2.5" fill="#ec4899"/><circle cx="-3" cy="6" r="2.5" fill="#ec4899"/>
+      </g>
+      <g transform="translate(60,60)">
+        <circle cx="0" cy="0" r="18" fill="#38bdf8" fill-opacity="0.25" stroke="#38bdf8" stroke-opacity="0.6" stroke-width="1"/>
+        <circle cx="-5" cy="-6" r="2.5" fill="#38bdf8"/><circle cx="6" cy="-4" r="2.5" fill="#38bdf8"/><circle cx="4" cy="6" r="2.5" fill="#38bdf8"/><circle cx="-6" cy="3" r="2.5" fill="#38bdf8"/>
+      </g>
+    </g>
+
+    <text x="75" y="160" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="700" fill="#c4b5fd" letter-spacing="2">VQ</text>
+  </g>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ec4899"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="356" width="1200" height="4" fill="url(#accent)"/>
+</svg>

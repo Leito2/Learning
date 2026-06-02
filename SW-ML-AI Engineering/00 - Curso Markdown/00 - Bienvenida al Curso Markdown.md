@@ -1,5 +1,7 @@
 # 📘 Bienvenida al Curso Markdown
 
+![Banner del Curso Markdown](markdown-course-banner.svg)
+
 Bienvenido al curso comprimido de **Markdown**. Aquí aprenderás todo lo necesario para escribir documentos limpios, estructurados y compatibles con cualquier plataforma.
 
 ---

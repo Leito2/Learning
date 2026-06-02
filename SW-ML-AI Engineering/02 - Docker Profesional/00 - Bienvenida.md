@@ -1,5 +1,7 @@
 # 🐳 00 - Bienvenida al Curso Docker Profesional
 
+![Banner del Curso Docker Profesional](docker-course-banner.svg)
+
 Bienvenido al curso **"Docker Profesional: De los Fundamentos al Despliegue en Producción"**. Este programa está diseñado para llevarte desde los conceptos básicos de la containerización hasta la construcción de pipelines robustos de CI/CD y arquitecturas multi-contenedor listas para producción.
 
 En el contexto actual del **Backend Engineering** y el **ML/AI Engineering**, Docker ya no es una herramienta opcional: es el estándar de facto para empaquetar, distribuir y escalar servicios. Desplegar modelos de machine learning requiere reproducibilidad absoluta: dependencias de Python exactas, versiones de CUDA consistentes, y entornos de entrenamiento idénticos al de inferencia. Docker resuelve este problema eliminando la frase "en mi máquina funciona".

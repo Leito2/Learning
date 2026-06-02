@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="PostgreSQL for AI-ML Workloads Course">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1426"/>
+      <stop offset="55%" stop-color="#0e1b3a"/>
+      <stop offset="100%" stop-color="#080f1f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#336791"/>
+      <stop offset="50%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="elephant" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#336791"/>
+    </linearGradient>
+    <linearGradient id="codeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0.1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.3" r="0.55">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="360" fill="url(#bg)"/>
+  <g stroke="#1e3a5f" stroke-width="0.5" opacity="0.4">
+    <line x1="0" y1="60"  x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+  </g>
+  <rect width="1200" height="360" fill="url(#glow)"/>
+  <g transform="translate(60, 60)">
+    <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="600" fill="#94a3b8" letter-spacing="3">CURSO COMPRIMIDO</text>
+    <text x="0" y="70" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="56" font-weight="800" fill="#f8fafc">PostgreSQL for AI/ML Workloads</text>
+    <rect x="0" y="92" width="120" height="6" fill="url(#accent)" rx="3"/>
+    <text x="0" y="140" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="22" font-weight="500" fill="#cbd5e1">pgvector, pgvectorscale, CDC, and AI-Native Patterns</text>
+    <text x="0" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#64748b">// pgvector · halfvec · bit · DiskANN · LISTEN/NOTIFY</text>
+  </g>
+  <g transform="translate(60, 200)">
+    <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="600">
+      <g transform="translate(0,0)">
+        <rect x="0" y="0" width="80" height="30" rx="15" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-opacity="0.5"/>
+        <text x="40" y="20" text-anchor="middle" fill="#7dd3fc">6 notas</text>
+      </g>
+      <g transform="translate(90,0)">
+        <rect x="0" y="0" width="80" height="30" rx="15" fill="#a78bfa" fill-opacity="0.15" stroke="#a78bfa" stroke-opacity="0.5"/>
+        <text x="40" y="20" text-anchor="middle" fill="#c4b5fd">English</text>
+      </g>
+      <g transform="translate(180,0)">
+        <rect x="0" y="0" width="100" height="30" rx="15" fill="#34d399" fill-opacity="0.15" stroke="#34d399" stroke-opacity="0.5"/>
+        <text x="50" y="20" text-anchor="middle" fill="#6ee7b7">AI-Native</text>
+      </g>
+      <g transform="translate(290,0)">
+        <rect x="0" y="0" width="106" height="30" rx="15" fill="#fbbf24" fill-opacity="0.15" stroke="#fbbf24" stroke-opacity="0.5"/>
+        <text x="53" y="20" text-anchor="middle" fill="#fcd34d">Production</text>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(60, 260)">
+    <rect x="0" y="0" width="1080" height="64" rx="10" fill="url(#codeBg)" stroke="#1e3a5f" stroke-width="1"/>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e2e8f0">
+      <text x="20" y="20"><tspan fill="#f472b6">SELECT</tspan> <tspan fill="#7dd3fc">id</tspan> <tspan fill="#f472b6">FROM</tspan> <tspan fill="#7dd3fc">embeddings</tspan></text>
+      <text x="20" y="40"><tspan fill="#f472b6">ORDER BY</tspan> <tspan fill="#7dd3fc">vec</tspan> <tspan fill="#94a3b8">&lt;=&gt;</tspan> <tspan fill="#7dd3fc">$1</tspan></text>
+      <text x="20" y="60"><tspan fill="#f472b6">LIMIT</tspan> 10;  <tspan fill="#64748b">-- pgvector ANN</tspan></text>
+    </g>
+  </g>
+  <g transform="translate(1050, 80)">
+    <g transform="rotate(-6)">
+      <ellipse cx="0" cy="40" rx="55" ry="42" fill="url(#elephant)"/>
+      <ellipse cx="-25" cy="20" rx="22" ry="20" fill="url(#elephant)"/>
+      <path d="M -42 25 Q -55 30 -52 50 Q -50 60 -45 55" fill="url(#elephant)"/>
+      <ellipse cx="20" cy="15" rx="10" ry="12" fill="#0c1426"/>
+      <circle cx="22" cy="13" r="3" fill="#f8fafc"/>
+      <path d="M -35 78 L -40 95 L -30 95 Z" fill="url(#elephant)"/>
+      <path d="M -15 80 L -20 97 L -10 97 Z" fill="url(#elephant)"/>
+      <path d="M 15 80 L 10 97 L 20 97 Z" fill="url(#elephant)"/>
+      <path d="M 35 78 L 30 95 L 40 95 Z" fill="url(#elephant)"/>
+      <g stroke="#38bdf8" stroke-width="1.4" fill="#f8fafc">
+        <line x1="8" y1="32" x2="32" y2="28" opacity="0.9"/>
+        <line x1="8" y1="32" x2="38" y2="58" opacity="0.9"/>
+        <line x1="12" y1="58" x2="32" y2="28" opacity="0.9"/>
+        <line x1="12" y1="58" x2="38" y2="58" opacity="0.9"/>
+        <circle cx="8" cy="32" r="4"/>
+        <circle cx="32" cy="28" r="4"/>
+        <circle cx="12" cy="58" r="4"/>
+        <circle cx="38" cy="58" r="4"/>
+      </g>
+      <text x="0" y="125" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="700" fill="#7dd3fc" letter-spacing="2">PG + AI</text>
+    </g>
+  </g>
+  <rect x="0" y="356" width="1200" height="4" fill="url(#accent)"/>
+</svg>

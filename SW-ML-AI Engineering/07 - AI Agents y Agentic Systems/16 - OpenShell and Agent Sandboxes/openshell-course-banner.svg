@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="NVIDIA OpenShell and Agent Sandboxes Course">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1426"/>
+      <stop offset="55%" stop-color="#0a1f1a"/>
+      <stop offset="100%" stop-color="#080f0f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#76B900"/>
+      <stop offset="50%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="shieldFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2818"/>
+      <stop offset="100%" stop-color="#070f0c"/>
+    </linearGradient>
+    <linearGradient id="shieldStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#76B900"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="codeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1f1a" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0a1f1a" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.25" r="0.5">
+      <stop offset="0%" stop-color="#76B900" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#34d399" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#76B900" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="360" fill="url(#bg)"/>
+  <g stroke="#1a3a2a" stroke-width="0.5" opacity="0.35">
+    <line x1="0" y1="60"  x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+  </g>
+  <rect width="1200" height="360" fill="url(#glow)"/>
+
+  <g transform="translate(60, 60)">
+    <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="18" font-weight="600" fill="#86efac" letter-spacing="3">CURSO COMPRIMIDO</text>
+
+    <text x="0" y="58" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="50" font-weight="800" fill="#f8fafc">NVIDIA OpenShell &amp; Agent Sandboxes</text>
+
+    <rect x="0" y="78" width="140" height="5" fill="url(#accent)" rx="2.5"/>
+
+    <text x="0" y="118" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="500" fill="#cbd5e1">Safe Runtime for Autonomous AI Agents</text>
+
+    <text x="0" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#64748b">// Gateway · Sandbox · YAML Policy · Privacy Router</text>
+  </g>
+
+  <g transform="translate(60, 232)">
+    <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" font-weight="600">
+      <g transform="translate(0,0)">
+        <rect x="0" y="0" width="74" height="28" rx="14" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-opacity="0.55"/>
+        <text x="37" y="19" text-anchor="middle" fill="#7dd3fc">6 notas</text>
+      </g>
+      <g transform="translate(84,0)">
+        <rect x="0" y="0" width="80" height="28" rx="14" fill="#a78bfa" fill-opacity="0.15" stroke="#a78bfa" stroke-opacity="0.55"/>
+        <text x="40" y="19" text-anchor="middle" fill="#c4b5fd">English</text>
+      </g>
+      <g transform="translate(174,0)">
+        <rect x="0" y="0" width="108" height="28" rx="14" fill="#76B900" fill-opacity="0.18" stroke="#76B900" stroke-opacity="0.6"/>
+        <text x="54" y="19" text-anchor="middle" fill="#bef264">NVIDIA 2026</text>
+      </g>
+      <g transform="translate(292,0)">
+        <rect x="0" y="0" width="100" height="28" rx="14" fill="#fbbf24" fill-opacity="0.15" stroke="#fbbf24" stroke-opacity="0.55"/>
+        <text x="50" y="19" text-anchor="middle" fill="#fcd34d">Agent-First</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(60, 282)">
+    <rect x="0" y="0" width="860" height="54" rx="9" fill="url(#codeBg)" stroke="#1a3a2a" stroke-width="1"/>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#e2e8f0">
+      <text x="18" y="24"><tspan fill="#76B900">openshell</tspan> <tspan fill="#38bdf8">sandbox</tspan> create <tspan fill="#fbbf24">--claude</tspan></text>
+      <text x="18" y="44"><tspan fill="#76B900">openshell</tspan> <tspan fill="#38bdf8">policy</tspan> set --wait <tspan fill="#a78bfa">policy.yaml</tspan></text>
+    </g>
+  </g>
+
+  <g transform="translate(1010, 80)">
+    <path d="M 0 0 L 140 0 L 140 90 Q 140 150 70 180 Q 0 150 0 90 Z" fill="url(#shieldFill)" stroke="url(#shieldStroke)" stroke-width="2.5"/>
+    <g stroke="#1a4a2e" stroke-width="1" opacity="0.5">
+      <line x1="14" y1="20" x2="126" y2="20"/>
+      <line x1="14" y1="40" x2="126" y2="40"/>
+      <line x1="14" y1="60" x2="126" y2="60"/>
+    </g>
+    <g opacity="0.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#34d399">
+      <text x="22" y="36">//</text>
+      <text x="92" y="36">{}</text>
+    </g>
+    <g transform="translate(38, 92)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-weight="700">
+      <text x="0" y="0" font-size="34" fill="#76B900">&gt;</text>
+      <rect x="26" y="-22" width="22" height="6" fill="#38bdf8" rx="1"/>
+      <text x="56" y="0" font-size="34" fill="#bef264" opacity="0.85">_</text>
+    </g>
+    <circle cx="120" cy="14" r="4" fill="#76B900"/>
+    <circle cx="120" cy="14" r="7" fill="none" stroke="#76B900" stroke-width="1" opacity="0.5"/>
+    <text x="70" y="208" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="700" fill="#86efac" letter-spacing="2">SHELL · SECURE</text>
+  </g>
+
+  <rect x="0" y="356" width="1200" height="4" fill="url(#accent)"/>
+</svg>

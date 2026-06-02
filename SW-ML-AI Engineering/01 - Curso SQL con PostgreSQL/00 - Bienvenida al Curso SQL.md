@@ -1,5 +1,7 @@
 # 🐘 Bienvenida al Curso SQL con PostgreSQL
 
+![Banner del Curso SQL con PostgreSQL](sql-postgres-course-banner.svg)
+
 Bienvenido al curso comprimido de **SQL con PostgreSQL**. Aquí aprenderás desde cero cómo diseñar, crear, consultar y optimizar bases de datos usando uno de los motores más potentes del mundo.
 
 ---

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="Bienvenida al Curso SQL con PostgreSQL">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1f3d"/>
+      <stop offset="55%" stop-color="#103155"/>
+      <stop offset="100%" stop-color="#0a1a30"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#336791"/>
+      <stop offset="50%" stop-color="#4a90c4"/>
+      <stop offset="100%" stop-color="#7dd3fc"/>
+    </linearGradient>
+
+    <linearGradient id="elephant" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#336791"/>
+    </linearGradient>
+
+    <linearGradient id="codeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <radialGradient id="glow" cx="0.85" cy="0.25" r="0.55">
+      <stop offset="0%" stop-color="#4a90c4" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#4a90c4" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e3a5f" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="360" fill="url(#bg)"/>
+  <rect width="1200" height="360" fill="url(#grid)"/>
+  <rect width="1200" height="360" fill="url(#glow)"/>
+
+  <g transform="translate(60, 60)">
+    <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="600" fill="#94a3b8" letter-spacing="3">CURSO COMPRIMIDO</text>
+
+    <text x="0" y="70" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="76" font-weight="800" fill="#f8fafc">SQL &amp; PostgreSQL</text>
+
+    <rect x="0" y="92" width="120" height="6" fill="url(#accent)" rx="3"/>
+
+    <text x="0" y="140" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="22" font-weight="500" fill="#cbd5e1">El lenguaje universal de los datos relacionales</text>
+
+    <text x="0" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#64748b">// DDL · DML · Joins · Índices · Vistas · Supabase</text>
+  </g>
+
+  <g transform="translate(60, 260)">
+    <rect x="0" y="0" width="1080" height="64" rx="10" fill="url(#codeBg)" stroke="#1e3a5f" stroke-width="1"/>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#e2e8f0">
+      <text x="20" y="28"><tspan fill="#c084fc">SELECT</tspan> <tspan fill="#7dd3fc">u.name</tspan><tspan fill="#94a3b8">,</tspan> <tspan fill="#7dd3fc">COUNT</tspan><tspan>(</tspan><tspan fill="#fbbf24">*</tspan><tspan>)</tspan> <tspan fill="#c084fc">AS</tspan> <tspan fill="#7dd3fc">orders</tspan></text>
+      <text x="20" y="52"><tspan fill="#c084fc">FROM</tspan> <tspan fill="#7dd3fc">users</tspan> <tspan fill="#c084fc">u</tspan> <tspan fill="#c084fc">JOIN</tspan> <tspan fill="#7dd3fc">orders</tspan> <tspan fill="#c084fc">o</tspan> <tspan fill="#c084fc">ON</tspan> <tspan fill="#7dd3fc">u.id</tspan> <tspan fill="#94a3b8">=</tspan> <tspan fill="#7dd3fc">o.user_id</tspan></text>
+    </g>
+  </g>
+
+  <g transform="translate(60, 200)">
+    <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="600">
+      <g transform="translate(0,0)">
+        <rect x="0" y="0" width="80" height="30" rx="15" fill="#336791" fill-opacity="0.2" stroke="#4a90c4" stroke-opacity="0.6"/>
+        <text x="40" y="20" text-anchor="middle" fill="#7dd3fc">8 notas</text>
+      </g>
+      <g transform="translate(90,0)">
+        <rect x="0" y="0" width="86" height="30" rx="15" fill="#a78bfa" fill-opacity="0.15" stroke="#a78bfa" stroke-opacity="0.5"/>
+        <text x="43" y="20" text-anchor="middle" fill="#c4b5fd">Español</text>
+      </g>
+      <g transform="translate(186,0)">
+        <rect x="0" y="0" width="126" height="30" rx="15" fill="#34d399" fill-opacity="0.15" stroke="#34d399" stroke-opacity="0.5"/>
+        <text x="63" y="20" text-anchor="middle" fill="#6ee7b7">+ Supabase incluido</text>
+      </g>
+      <g transform="translate(322,0)">
+        <rect x="0" y="0" width="106" height="30" rx="15" fill="#fbbf24" fill-opacity="0.15" stroke="#fbbf24" stroke-opacity="0.5"/>
+        <text x="53" y="20" text-anchor="middle" fill="#fcd34d">Production-ready</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(1080, 90)">
+    <g transform="rotate(-6)">
+      <ellipse cx="0" cy="40" rx="55" ry="42" fill="url(#elephant)"/>
+      <ellipse cx="-25" cy="20" rx="22" ry="20" fill="url(#elephant)"/>
+      <path d="M -42 25 Q -55 30 -52 50 Q -50 60 -45 55" fill="url(#elephant)"/>
+      <ellipse cx="20" cy="15" rx="10" ry="12" fill="#0c1f3d"/>
+      <circle cx="22" cy="13" r="3" fill="#f8fafc"/>
+      <path d="M -35 78 L -40 95 L -30 95 Z" fill="url(#elephant)"/>
+      <path d="M -15 80 L -20 97 L -10 97 Z" fill="url(#elephant)"/>
+      <path d="M 15 80 L 10 97 L 20 97 Z" fill="url(#elephant)"/>
+      <path d="M 35 78 L 30 95 L 40 95 Z" fill="url(#elephant)"/>
+      <text x="0" y="105" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="700" fill="#7dd3fc" letter-spacing="2">POSTGRES</text>
+    </g>
+  </g>
+
+  <rect x="0" y="356" width="1200" height="4" fill="url(#accent)"/>
+</svg>

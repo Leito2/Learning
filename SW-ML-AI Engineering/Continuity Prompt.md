@@ -455,14 +455,16 @@ SW-ML-AI Engineering/
 │   ├── 15 - LLM Security           (5 EN)
 │   ├── 16 - HuggingFace Transf Deep Dive (10 EN)
 │   ├── 17 - ColBERT, SGLang and Next-Gen Inference (11 EN)
-│   └── 18 - TensorRT-LLM           (3 EN)
+│   ├── 18 - TensorRT-LLM           (3 EN)
+│   └── 19 - LLM Gateway Patterns and LiteLLM (7 EN)
 │
-├── 07 - AI Agents/                     (28 notes: 22 Spanish + 6 English)
+├── 07 - AI Agents/                     (34 notes: 22 Spanish + 12 English)
 │   ├── 11 - Fundamentos Agentes    (6)
 │   ├── 12 - Frameworks             (6)
 │   ├── 13 - Multi-Agente           (5)
 │   ├── 14 - Agentes Autonomos      (5)
-│   └── 15 - MCP and Agentic Prot   (6 EN)
+│   ├── 15 - MCP and Agentic Prot   (6 EN)
+│   └── 16 - OpenShell and Agent Sandboxes (6 EN)
 │
 ├── 08 - NLP Avanzado/                  (17 notes, Spanish)
 │
@@ -498,6 +500,8 @@ SW-ML-AI Engineering/
 │   ├── 32 - System Design for ML   (6 EN)
 │   └── 33 - Vector Databases and Semantic Search (12 EN)
 │   └── 34 - DuckDB            (4 EN)
+│   └── 35 - Vector Quantization and Approximate Nearest Neighbors (6 EN)
+│   └── 36 - PostgreSQL for AI-ML Workloads (6 EN)
 │
 ├── 11 - Research/                      (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
@@ -650,6 +654,9 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 14 | **TorchServe** | 4 | ✅ CREATED (09/30). Architecture, MAR files, model archiver, custom handlers, multi-model endpoints, Docker/K8s deployment, performance tuning, monitoring. Bridges PyTorch training to production. |
 | 15 | **Evidently AI / Phoenix** | 4 | ✅ CREATED (09/31). Data drift (KS, JS, Wasserstein, PSI), concept drift, Evidently Reports/Test Suites/CI-CD, Phoenix LLM observability, spans/traces, embedding drift (UMAP), RAG evaluation. Connects to LLM Evaluation Suite project. |
 | 16 | **DuckDB** | 4 | ✅ CREATED (10/34). In-process OLAP, SQL analytics, Python/pandas/Polars/Parquet integration, RAG preprocessing, ML feature engineering, Go bindings for ML Gateway. |
+| 17 | **LLM Gateway Patterns and LiteLLM** | 7 | ✅ CREATED (06/19). Multi-provider abstraction, LiteLLM unified interface, Router with cost/latency/quality routing, fallback chains, observability + cost tracking, self-hosted proxy with SSO/spend limits, capstone multi-provider RAG gateway. |
+| 18 | **Vector Quantization and ANN** | 6 | ✅ CREATED (10/35). PQ/OPQ deep dive, anisotropic VQ + ScaNN, BQ + RaBitQ (2024 frontier), production FAISS engineering (index factories, sharding, GPU), capstone billion-vector search. |
+| 19 | **PostgreSQL for AI-ML Workloads** | 6 | ✅ CREATED (10/36). pgvector production tuning (halfvec/bit/iterative scan), pgvector vs Qdrant/Milvus cost equation, pgvectorscale + DiskANN, LISTEN/NOTIFY + pg_stat_statements + CDC, capstone feature store. |
 
 ---
 
@@ -665,7 +672,84 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 9. **TorchServe:** 4 notes, 1,707 lines (09/30).
 > 10. **Evidently/Phoenix:** 4 notes, 1,100 lines (09/31).
 > 11. **DuckDB:** 4 notes, 1,342 lines (10/34).
+> 11b. **LLM Gateway Patterns (06/19):** 7 notes, 2,848 lines. LiteLLM as Python multi-provider standard. Cross-links: 13/06/06 (Go gateway), 06/17/10 (ColBERT capstone), 10/30 (WebSockets).
+> 11c. **Vector Quantization (10/35):** 6 notes, 2,500 lines. Deepens 10/33/02 (PQ/OPQ/DiskANN/ScaNN intro). Adds RaBitQ, BQ, SQ, FAISS engineering.
+> 11d. **PostgreSQL for AI/ML (10/36):** 6 notes, 1,972 lines. English counterpart to 10/25/01 (Spanish general). Deepens 10/33/03-04 (pgvector basics). Adds pgvectorscale/DiskANN, halfvec/bit, CDC.
 > 12. **IaC REWRITTEN:** 10 notes, 4,478 lines (10/23).
 > 13. **TensorRT-LLM:** 3 notes (06/18)  |  **KServe+Knative:** 3 notes (09/32)  |  **Temporal:** 3 notes (09/33)  |  **Late Chunking:** 1 note (06/13/06).
 > 14. **Format Update — Full Rewrites:** 05/09 TF (7→2,188 lines), 06/16 HF (10→3,370), 10/32 System Design (6→1,913), 10/33 Vector DBs (12→3,834), 14/01 Rust Fundamentals (6→1,716), 14/07 Candle (5→1,585), 14/07 Polars (6→1,684). **Minor cleanups:** 04 Eng Fund (23 notes), 05/04 CV (6), 09/18 Exp Track (7), 10/25 BD (6), 14 Rust (45 notes), 15 Transversal (3) — removed Documented Project, Knowledge Check, ASCII art.
 > 15. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
+> 16. **OpenShell and Agent Sandboxes (07/16):** 6 notes, 2,301 lines, English. NVIDIA OpenShell = safe runtime for autonomous agents. 4-layer defense (FS/Network/Process/Inference), Rust 88.9%, gateway+sandbox+policy_engine+privacy_router. Agents integrated: Claude Code, OpenCode, Codex, Copilot, Deep Agents (LangChain), Hermes, OpenClaw, Ollama, Pi. Cross-links: 07/15 MCP, 06/15 LLM Security, 06/17 ColBERT/SGLang, 16 Harness Engineering, 14 Rust, 09/32 KServe, 13/06 LLM Edge Gateway.
+
+---
+
+## 📋 Pendientes y Próximas Acciones
+
+> Tracking de tareas recurrentes. Las ✅ están completadas, las 🟡 están abiertas para decisión del usuario, las 🔵 son sugerencias para sesiones futuras.
+
+### ✅ Completadas en la sesión actual
+
+| # | Tarea | Detalle | Archivos creados |
+|---|-------|---------|------------------|
+| 1 | Crear 3 cursos nuevos 2026 | LLM Gateway Patterns, Vector Quantization, PostgreSQL for AI-ML | 19 notes, 7,320 lines |
+| 2 | Banner SVG para Markdown | Welcome banner con sintaxis coloreada, logo M, badges | `00 - Curso Markdown/markdown-course-banner.svg` (5.4 KB) |
+| 3 | Banner SVG para SQL/PostgreSQL | Welcome banner con elefante estilizado, query SQL | `01 - Curso SQL con PostgreSQL/sql-postgres-course-banner.svg` (5.7 KB) |
+| 4 | Banner SVG para Docker | Welcome banner con 3 containers apilados, FROM/CMD | `02 - Docker Profesional/docker-course-banner.svg` (6.4 KB) |
+| 5 | Actualizar Master Index | 3 entradas añadidas a tree map + course tables | `00 - Indice Maestro de Cursos.md` |
+| 6 | Actualizar Continuity Prompt | Vault structure + course list + mandatory list + este tracking | Este archivo |
+| 7 | **Crear curso OpenShell and Agent Sandboxes (07/16)** | 6 notes, 2,301 lines. Welcome + Agent Security Crisis + Architecture + YAML Policies + Agent Integrations + Production Deployment & Capstone. Cross-links a MCP/A2A, LLM Security, Harness Engineering, KServe, Rust, LLM Edge Gateway. | `07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/` (6 files) |
+| 8 | **Actualizar Master Index con OpenShell** | Tree map + course table | `00 - Indice Maestro de Cursos.md` |
+
+### 🟡 Pendientes (esperando decisión del usuario)
+
+| # | Tarea | Contexto | Bloqueante |
+|---|-------|----------|------------|
+| P1 | **Banners para los otros cursos principales** | Usuario preguntó si los quería para Python, Go, Rust, FastAPI, etc. tras crear los 3 primeros | Esperando `sí` o `no` |
+| P2 | **Banners para los nuevos cursos 2026 (06/19, 10/35, 10/36)** | Los 3 cursos recién creados también tienen Welcome notes sin banner | Esperando `sí` o `no` |
+| P3 | **Commit de los cambios** | 19 notes nuevos + 3 SVGs + 2 index updates sin commitear | Esperando `commit -m "..."` |
+| P4 | **Decisión sobre 06/19 capstone (659 líneas)** | Subagent reportó 159 líneas sobre el target. Contenido justificado (7 módulos de código) pero excede guideline | Esperando `aceptar` o `recortar` |
+
+### 🔵 Sugerencias para futuras sesiones
+
+| # | Idea | Justificación |
+|---|------|---------------|
+| S1 | **Banners para los 3 cursos nuevos 06/19, 10/35, 10/36** | Mantener consistencia visual con SQL/Docker/Markdown |
+| S2 | **Crear templates de banner SVG** | Para cursos futuros: 3 paletas (cyan/azul, verde, naranja) reutilizables |
+| S3 | **Auditoría visual del vault** | Revisar 17 módulos, identificar cuáles merecen banner (welcome notes) |
+| S4 | **Próximos cursos candidatos** (ver tier 2/3 del scan original) | OpenTelemetry, LangSmith, DSPy, Mamba-2, WebGPU |
+| S5 | **Traducir 06/19 a español selectivamente** | Si audiencia en Colombia lee inglés, mantener EN; si no, traducir |
+
+### 📐 Plantilla reusable de banner SVG (paletas)
+
+Si en sesión futura se piden más banners, usar este patrón:
+
+```
+Template: 1200×360 SVG self-contained
+- Gradiente azul oscuro + glow radial
+- Tag "CURSO COMPRIMIDO" → título grande → underline gradiente
+- Tagline + subtítulo monoespaciado
+- Bloque de código coloreado (sintaxis del tema)
+- 4 badges (X notas · Idioma · Característica 1 · Característica 2)
+- Ícono temático (lado derecho)
+- Barra gradiente inferior (4px)
+
+Paletas disponibles:
+- Cyan/Indigo: #38bdf8 → #818cf8 (Markdown, Genérico)
+- Azul Postgres: #336791 → #7dd3fc (SQL, Data)
+- Azul Docker: #0db7ed → #1d4ed8 (DevOps, Infra)
+- Verde: #34d399 → #10b981 (ML, AI)
+- Naranja: #fb923c → #f97316 (Frameworks, Tools)
+- Púrpura: #a78bfa → #7c3aed (Agents, Protocolos)
+- Rojo: #f87171 → #dc2626 (Security, Performance)
+```
+
+### 📦 Convenciones de archivos para banners
+
+| Regla | Detalle |
+|-------|---------|
+| **Ubicación** | Mismo directorio que el Welcome note (sibling) |
+| **Naming** | `<course-slug>-course-banner.svg` (kebab-case, sufijo `-banner`) |
+| **Embed syntax** | `![Banner del Curso X](<slug>-course-banner.svg)` (relative path) |
+| **Tamaño objetivo** | 4-7 KB (self-contained, sin assets externos) |
+| **Self-contained** | Solo system fonts (ui-sans-serif, ui-monospace) — sin Google Fonts, sin imágenes linkeadas |
+| **Mermaid en vez de SVG** | Solo si el contenido es arquitectura/flujo (no bienvenida estática) |

@@ -38,6 +38,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 16 - HuggingFace Transformers Deep Dive (10 — English)
 ├── 17 - ColBERT, SGLang and Next-Gen Inference (11 — English)
 ├── 18 - TensorRT-LLM (3 — English)
+├── 19 - LLM Gateway Patterns and LiteLLM (7 — English)
 
 03 - AI Agents y Agentic Systems
 ├── 11 - Fundamentos de Agentes AI (6)
@@ -45,6 +46,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 13 - Sistemas Multi-Agente (5)
 ├── 14 - Agentes Autónomos y Auto-Mejora (5)
 ├── 15 - MCP and Agentic Protocols (6 — English)
+├── 16 - OpenShell and Agent Sandboxes (6 — English)
 
 04 - NLP Avanzado
 ├── 15 - NLP Tradicional y Representaciones (6)
@@ -78,6 +80,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 32 - System Design for ML (6 — English)
 ├── 33 - Vector Databases and Semantic Search (12 — English)
 ├── 34 - DuckDB (4 — English)
+├── 35 - Vector Quantization and Approximate Nearest Neighbors (6 — English)
+├── 36 - PostgreSQL for AI-ML Workloads (6 — English)
 
 07 - Research y Ciencia de Datos
 ├── 26 - Metodología de Investigación en ML (6)
@@ -151,9 +155,9 @@ Misceláneo
 | 16 | [[02 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive\|HuggingFace Transformers Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
 | 17 | [[02 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | 11 | ✅ REWRITTEN | 🇬🇧 |
 | 18 | [[02 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM\|TensorRT-LLM]] | 3 | ✅ NEW | 🇬🇧 |
+| 19 | [[02 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 7 | ✅ NEW | 🇬🇧 |
 
 ### 03 — AI Agents y Agentic Systems
-
 | # | Curso | Notas | Estado | Idioma |
 |---|-------|:-----:|:------:|:------:|
 | 11 | [[03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida\|Fundamentos de Agentes AI]] | 6 | ✅ | 🇪🇸 |
@@ -161,6 +165,7 @@ Misceláneo
 | 13 | [[03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida\|Sistemas Multi-Agente]] | 5 | ✅ | 🇪🇸 |
 | 14 | [[03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/00 - Bienvenida\|Agentes Autónomos y Auto-Mejora]] | 5 | ✅ | 🇪🇸 |
 | 15 | [[03 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols\|MCP and Agentic Protocols]] | 6 | ✅ | 🇬🇧 |
+| 16 | [[03 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/00 - Welcome to OpenShell and Agent Sandboxes\|OpenShell and Agent Sandboxes]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 04 — NLP Avanzado
 
@@ -203,6 +208,8 @@ Misceláneo
 | 32 | [[06 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML\|System Design for ML]] | 6 | ✅ REWRITTEN | 🇬🇧 |
 | 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 12 | ✅ NEW | 🇬🇧 |
 | 34 | [[10 - Cloud, Infra y Backend/34 - DuckDB/00 - Welcome to DuckDB\|DuckDB]] | 4 | ✅ NEW | 🇬🇧 |
+| 35 | [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/00 - Welcome to Vector Quantization and Approximate Nearest Neighbors\|Vector Quantization and ANN]] | 6 | ✅ NEW | 🇬🇧 |
+| 36 | [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads\|PostgreSQL for AI-ML Workloads]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 07 — Research y Ciencia de Datos
 
