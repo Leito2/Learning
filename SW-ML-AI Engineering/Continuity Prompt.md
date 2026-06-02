@@ -722,6 +722,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 14. **Format Update — Full Rewrites:** 05/09 TF (7→2,188 lines), 06/16 HF (10→3,370), 10/32 System Design (6→1,913), 10/33 Vector DBs (12→3,834), 14/01 Rust Fundamentals (6→1,716), 14/07 Candle (5→1,585), 14/07 Polars (6→1,684). **Minor cleanups:** 04 Eng Fund (23 notes), 05/04 CV (6), 09/18 Exp Track (7), 10/25 BD (6), 14 Rust (45 notes), 15 Transversal (3) — removed Documented Project, Knowledge Check, ASCII art.
 > 15. Portfolio URL: https://white-portfolio-ia-ml-engineer.netlify.app/
 > 16. **OpenShell and Agent Sandboxes (07/16):** 6 notes, 2,301 lines, English. NVIDIA OpenShell = safe runtime for autonomous agents. 4-layer defense (FS/Network/Process/Inference), Rust 88.9%, gateway+sandbox+policy_engine+privacy_router. Agents integrated: Claude Code, OpenCode, Codex, Copilot, Deep Agents (LangChain), Hermes, OpenClaw, Ollama, Pi. Cross-links: 07/15 MCP, 06/15 LLM Security, 06/17 ColBERT/SGLang, 16 Harness Engineering, 14 Rust, 09/32 KServe, 13/06 LLM Edge Gateway.
+> 17. **FSDP Deep Dive (06/16/10):** 1 note, 412 lines, English. Fills the FSDP coverage gap (previously mentioned only as a 1-paragraph peer of ZeRO in note 03). Covers: 4 `ShardingStrategy` modes with per-GPU memory math, all-gather/reduce-scatter communication pattern, Mermaid sequence diagram, `auto_wrap_policy` (transformer vs size-based), `MixedPrecision`, `cpu_ram_efficient_loading`, **`use_orig_params=True` (mandatory for LoRA/PEFT)**, FSDP2 (`fully_shard` + DTensor, PyTorch 2.4+), YAML config file deployment path (`fsdp_config="fsdp_config.yaml"`), Llama 3 70B on 16xH100 recipe, full Compression Code with Mermaid + YAML + Python. Cross-links: 06/16/03, 06/11, 06/14 Unsloth, 06/13 vLLM.
 
 ---
 
@@ -746,6 +747,9 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 11 | **Commit masivo** | 25 notes nuevos + 7 SVGs + 6 metadata updates (commit `0fae30e`) | `0fae30e` |
 | 12 | **Reescribir reglas de subagentes en este archivo** | Filosofía: main agent por defecto, subagentes solo para investigación barata o tareas paralelas masivas. Reglas de prompt-design para minimizar context reload | Este archivo (líneas 7-65) |
 | 13 | **Push a origin** | `git push origin master` — 3 commits ahead → 0 ahead | `8724a83` en origin |
+| 14 | **FSDP coverage audit** | Hallazgo: FSDP solo mencionado (13 veces en 06/16/03 como peer de ZeRO, 0 profundidad). Plan: 1 nota deep en 06/16/10. | Ver respuesta del chat |
+| 15 | **Escribir 10 - FSDP Deep Dive (main thread, 1 Write call)** | 412 líneas, sigue Deep Format. Teoría: memoria + comunicación. Integración: Trainer + `fsdp_config` YAML. FSDP2 + LoRA/PEFT. Llama 3 70B recipe. Compression Code completo. | `06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/10 - FSDP Deep Dive - PyTorch Native Sharded Data Parallel.md` (412 líneas) |
+| 16 | **Actualizar 06/16 Welcome note** | Course map añade nota 10 con descripción | `00 - Welcome to HuggingFace Transformers Deep Dive.md` |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 

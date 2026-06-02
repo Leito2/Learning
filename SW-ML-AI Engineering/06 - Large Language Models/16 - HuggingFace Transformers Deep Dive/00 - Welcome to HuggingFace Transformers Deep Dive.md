@@ -20,6 +20,7 @@
 | `07` | **Diffusers I — Stable Diffusion Fundamentals** | Diffusion core, pipelines, schedulers, memory optimization |
 | `08` | **Diffusers II — Advanced Pipelines and ControlNet** | Image-to-image, ControlNet, LoRA, custom pipelines |
 | `09` | **Capstone — End-to-End HF Pipeline** | Full stack: training → export → serving → monitoring |
+| `10` | **FSDP Deep Dive** *(advanced extension)* | PyTorch-native sharded data parallelism: memory math, `ShardingStrategy` enum, `auto_wrap_policy`, YAML config, FSDP2 (`fully_shard`), FSDP + LoRA / PEFT integration |
 
 ## 🛠️ Prerequisites
 

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02 - Docker Profesional/00 - Bienvenida.md",
+                "file": "14 - Rust Engineering/07 - Candle Advanced Patterns/00 - Welcome to Candle Advanced Patterns.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00 - Bienvenida"
+              "title": "00 - Welcome to Candle Advanced Patterns"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "FSDP",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -185,6 +186,16 @@
   },
   "active": "e8f56d707a9d8bec",
   "lastOpenFiles": [
+    "06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/03 - Trainer, TrainingArguments, and Distributed Training.md",
+    "06 - Large Language Models/11 - Fine-Tuning LLMs/04 - Alignment - RLHF, DPO and Preference Optimization.md",
+    "06 - Large Language Models/07 - Fine-Tuning y Adaptacion de LLMs/02 - LoRA y PEFT.md",
+    "07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/04 - Agent Integrations - Claude, OpenCode, Codex, Copilot, Deep Agents, Hermes, OpenClaw.md",
+    "07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/03 - Declarative YAML Policies - Filesystem, Network, Process, Inference.md",
+    "07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/02 - Architecture - Gateway, Sandbox, Policy Engine, Privacy Router.md",
+    "07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/01 - The Agent Security Crisis and OpenShell's Defense Layers.md",
+    "07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/00 - Welcome to OpenShell and Agent Sandboxes.md",
+    "07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols.md",
+    "02 - Docker Profesional/00 - Bienvenida.md",
     "00 - Curso Markdown/00 - Bienvenida al Curso Markdown.md",
     "01 - Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL.md",
     "04 - Engineering Fundamentals/01 - Matematicas para ML/01 - Algebra Lineal.md",
@@ -201,16 +212,6 @@
     "03 - Advanced Python/01 - Python Basico/00 - Bienvenida.md",
     "01 - Curso SQL con PostgreSQL/04 - Consultas Avanzadas.md",
     "00 - Curso Markdown/04 - Buenas Practicas.md",
-    "00 - Curso Markdown/03 - Markdown en Obsidian.md",
-    "00 - Curso Markdown/02 - Tablas y Bloques Avanzados.md",
-    "00 - Curso Markdown/01 - Sintaxis Basica.md",
-    "16 - Harness Engineering/08 - Verification and Quality Gates.md",
-    "16 - Harness Engineering/07 - Complete Harness Taxonomy.md",
-    "16 - Harness Engineering/09 - Tools, Provider Abstraction, and Memory.md",
-    "16 - Harness Engineering/02 - The Three Pillars.md",
-    "16 - Harness Engineering/06 - Multi-Agent Orchestration and Capstone.md",
-    "16 - Harness Engineering/05 - File Architecture.md",
-    "16 - Harness Engineering/04 - Specification-Driven Development.md",
     "06 - Large Language Models/16 - HuggingFace Transformers Deep Dive",
     "Extra",
     "Transversal Skills",
