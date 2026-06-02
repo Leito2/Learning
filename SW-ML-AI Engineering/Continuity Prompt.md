@@ -744,14 +744,14 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 9 | **Generar 4 banners SVG en paralelo (subagents)** | 06/19 LLM Gateway + 10/35 Vector Quantization + 10/36 PostgreSQL AI/ML + 07/16 OpenShell | 4 SVG files, 5.8-7.3 KB each |
 | 10 | **Embed de banners en 4 Welcome notes** | Añadir `![Banner del Curso X](<slug>-course-banner.svg)` como primera línea de cada Welcome | 4 markdown files |
 | 11 | **Commit masivo** | 25 notes nuevos + 7 SVGs + 6 metadata updates (commit `0fae30e`) | `0fae30e` |
-| 12 | **Reescribir reglas de subagentes en este archivo** | Filosofía: main agent por defecto, subagentes solo para investigación barata o tareas paralelas masivas. Reglas de prompt-design para minimizar context reload | Este archivo (líneas 7-69) |
+| 12 | **Reescribir reglas de subagentes en este archivo** | Filosofía: main agent por defecto, subagentes solo para investigación barata o tareas paralelas masivas. Reglas de prompt-design para minimizar context reload | Este archivo (líneas 7-65) |
+| 13 | **Push a origin** | `git push origin master` — 3 commits ahead → 0 ahead | `8724a83` en origin |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 
 | # | Tarea | Contexto | Bloqueante |
 |---|-------|----------|------------|
 | P5 | **Banners para los cursos grandes principales** (Python Básico/Intermedio, Go Fundamentals, Rust Fundamentals, FastAPI, etc.) | Tras crear los 7 banners existentes, los cursos "anchor" del vault aún no tienen banner | Esperando `sí` o `no` (P1 resuelto a 4 banners, no a los grandes) |
-| P6 | **Push del commit a origin** | `0fae30e` está commiteado localmente, sin push | Esperando `git push` |
 
 ### 🔵 Sugerencias para futuras sesiones
 
