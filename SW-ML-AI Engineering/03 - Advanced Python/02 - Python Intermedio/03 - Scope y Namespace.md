@@ -107,7 +107,7 @@ funciones = []
 for i in range(5):
     funciones.append(lambda x: x + i)
 
-print(funciones[0](10))  # 14, no 10
+print(funciones[0])  # 14, no 10
 ```
 
 Esto sucede porque las lambdas capturan la **referencia** a `i`, no su valor en el momento de la creación. Al momento de ejecutarse, `i` vale `4`.
@@ -119,7 +119,7 @@ funciones = []
 for i in range(5):
     funciones.append(lambda x, i=i: x + i)
 
-print(funciones[0](10))  # 10
+print(funciones[0])  # 10
 ```
 
 ⚠️ **Advertencia**: este bug de "late binding" es extremadamente común en callbacks de frameworks web (Flask, Django) y en la configuración de capas neuronales dinámicas.

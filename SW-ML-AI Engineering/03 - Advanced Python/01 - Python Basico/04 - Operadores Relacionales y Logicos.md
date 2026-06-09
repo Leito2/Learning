@@ -164,7 +164,8 @@ default = 100
 valor = opcion or default
 print(f"or con 0: {valor}")  # 100 (0 es falsy)
 
-nombre = "Ana"esultado = nombre and len(nombre)
+nombre = "Ana"
+esultado = nombre and len(nombre)
 print(f"and con str: {resultado}")  # 3
 
 # 4. Truthiness

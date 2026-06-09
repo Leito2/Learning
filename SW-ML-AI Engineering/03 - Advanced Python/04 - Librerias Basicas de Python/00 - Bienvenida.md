@@ -19,6 +19,8 @@ A continuación se presenta el mapa de ruta de este curso. Cada nota está dise�
 | 05 | Json y Pickle | [[05 - Json y Pickle]] | Serialización y persistencia de objetos |
 | 06 | Re y String | [[06 - Re y String]] | Procesamiento de texto con expresiones regulares |
 | 07 | Caso Práctico | [[07 - Caso Practico - Utilidades de Sistema]] | Integración en un proyecto CLI real |
+| 08 | NumPy para Análisis de Datos | [[08 - NumPy para Analisis de Datos]] | Arrays, shape, axis, broadcasting, vectorización, random |
+| 09 | Pandas para Análisis de Datos | [[09 - Pandas para Analisis de Datos]] | DataFrames, read_csv, groupby, merge, fillna, value_counts |
 
 
 ## 2. Glosario de Librerías del Módulo
@@ -45,6 +47,8 @@ El siguiente glosario resume la función de cada biblioteca cubierta. Es común 
 | `difflib` | Texto | Comparación de secuencias de texto | Detección de drift en datos textuales | Diff de configuraciones, logs |
 | `getpass` | Seguridad | Lectura segura de contraseñas | - | Autenticación CLI, scripts de despliegue |
 | `subprocess` | Sistema | Ejecución de procesos externos | Llamadas a scripts de entrenamiento | Comandos del sistema, pipelines |
+| `numpy` | Cómputo numérico | Arrays multidimensionales, vectorización | Pre/post-procesamiento de features, álgebra lineal | Aceleración numérica en pipelines |
+| `pandas` | Datos tabulares | DataFrames, lectura/escritura CSV, groupby, merge | ETL, EDA, feature engineering | Reportes, agregaciones SQL-like |
 
 
 ## 3. Diagrama Conceptual del Módulo
