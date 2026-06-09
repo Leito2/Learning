@@ -18,6 +18,7 @@ Welcome to the **Vector Databases and Semantic Search** course. This course cove
 | `09` | **Vector Database Comparison Matrix** | Feature-by-feature comparison: pgvector vs Qdrant vs Milvus |
 | `10` | **Advanced Patterns and Observability** | Hybrid search, late interaction, RAG patterns, monitoring |
 | `11` | **Capstone — Multi-DB Semantic Search Platform** | Full stack search platform with Go API and Python integration |
+| `12` | **Qdrant Python Client Deep Dive** | Advanced Python client APIs, async patterns, production RAG capstone with LiteLLM + Phoenix |
 
 ## 🎯 Prerequisites
 
