@@ -206,7 +206,8 @@ Misceláneo
 | 30 | [[06 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML\|WebSockets and Real-Time ML]] | 5 | ✅ | 🇬🇧 |
 | 31 | [[06 - Cloud, Infra y Backend/31 - FastAPI for ML/01 - FastAPI for ML\|FastAPI for ML]] | 1 | ✅ | 🇬🇧 |
 | 32 | [[06 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML\|System Design for ML]] | 6 | ✅ REWRITTEN | 🇬🇧 |
-| 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 16 | ✅ +4 Qdrant Python Deep Dive | 🇬🇧 |
+| 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 17 | ✅ +Pinecone + Qdrant Python Deep Dive | 🇬🇧 |
+| 37 | [[10 - Cloud, Infra y Backend/37 - Vector Search on Google Cloud/00 - Welcome to Vector Search on Google Cloud\|Vector Search on Google Cloud]] | 3 | ✅ NEW | 🇬🇧 |
 | 34 | [[10 - Cloud, Infra y Backend/34 - DuckDB/00 - Welcome to DuckDB\|DuckDB]] | 4 | ✅ NEW | 🇬🇧 |
 | 35 | [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/00 - Welcome to Vector Quantization and Approximate Nearest Neighbors\|Vector Quantization and ANN]] | 6 | ✅ NEW | 🇬🇧 |
 | 36 | [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads\|PostgreSQL for AI-ML Workloads]] | 6 | ✅ NEW | 🇬🇧 |

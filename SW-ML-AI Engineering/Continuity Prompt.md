@@ -528,7 +528,7 @@ SW-ML-AI Engineering/
 │   ├── 32 - KServe and Knative     (3 EN)
 │   └── 33 - Temporal for ML Pipelines (3 EN)
 │
-├── 10 - Cloud, Infra/                  (60 notes: 20 Spanish + 40 English)
+├── 10 - Cloud, Infra/                  (64 notes: 20 Spanish + 44 English)
 │   ├── 22 - Cloud Computing        (6)
 │   ├── 23 - Infrastructure as Code (10 EN)
 │   ├── 24 - Backend para ML        (6)
@@ -540,10 +540,11 @@ SW-ML-AI Engineering/
 │   ├── 30 - WebSockets             (5 EN)
 │   ├── 31 - FastAPI for ML         (6 EN)
 │   ├── 32 - System Design for ML   (6 EN)
-│   └── 33 - Vector Databases and Semantic Search (12 EN)
+│   └── 33 - Vector Databases and Semantic Search (17 EN)
 │   └── 34 - DuckDB            (4 EN)
 │   └── 35 - Vector Quantization and Approximate Nearest Neighbors (6 EN)
 │   └── 36 - PostgreSQL for AI-ML Workloads (6 EN)
+│   └── 37 - Vector Search on Google Cloud (3 EN)
 │
 ├── 11 - Research/                      (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
@@ -725,6 +726,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 > 17. **FSDP Deep Dive (06/16/10):** 1 note, 412 lines, English. Fills the FSDP coverage gap (previously mentioned only as a 1-paragraph peer of ZeRO in note 03). Covers: 4 `ShardingStrategy` modes with per-GPU memory math, all-gather/reduce-scatter communication pattern, Mermaid sequence diagram, `auto_wrap_policy` (transformer vs size-based), `MixedPrecision`, `cpu_ram_efficient_loading`, **`use_orig_params=True` (mandatory for LoRA/PEFT)**, FSDP2 (`fully_shard` + DTensor, PyTorch 2.4+), YAML config file deployment path (`fsdp_config="fsdp_config.yaml"`), Llama 3 70B on 16xH100 recipe, full Compression Code with Mermaid + YAML + Python. Cross-links: 06/16/03, 06/11, 06/14 Unsloth, 06/13 vLLM.
 > 18. **NumPy + Pandas (03/04/08-09):** 2 notes, 707 lines, Spanish. Fills the test-prep gap (vault had 0 dedicated notes for NumPy/Pandas; only scattered 1-line mentions in 04/00, 05/06, projects/01). Note 08 NumPy: array/shape/ndim/dtype, axis=0/1 explained, broadcasting rules with 3 examples, `np.random.seed/randn/randint`, boolean indexing, `np.dot/@`, performance comparison list vs array (16-100×), compression code with synthetic 3-group dataset. Note 09 Pandas: `read_csv`, `head/info/describe`, boolean indexing with `&`/`|`/`~`, **`groupby().agg()`** with named aggregation, `fillna` with median (the 80% rule), `merge` (how=inner/left/right/outer), `concat`, `value_counts`, `sort_values`, `apply` vs vectorized (100-1000× speedup), `to_numpy()` bridge to ML. Both notes are test-prep level (Anyone AI / ML engineer admission). Cross-links: 03/04/01 Math, 03/04/05 Json, 05/06 CV Pipeline, projects/01 Kaggle, 04/00/07 Streaming Pipeline. First real validation of the new "main-agent-default" subagent rules (2 main-thread notes, 0 subagents).
 > 19. **Qdrant Python Client Deep Dive (10/33/12):** 4 notes, 1,892 lines, English. New sub-module `12 - Qdrant Python Client Deep Dive`. Closes the gap identified in audit: vault had strong fundamentals (10/33/05 + 10/33/06, 1,477 lines) but **zero coverage of advanced client APIs** (local mode, named vectors, quantization config, scroll, batch, count, facet, recommend) and **zero production async patterns** (FastAPI lifecycle, retry with backoff, batching, OpenTelemetry, graceful shutdown). Note 00 Welcome (97 lines) — course map + why it exists. Note 01 Advanced Client APIs (511 lines) — `QdrantClient(path=...)` local mode for tests, named vectors (dense + ColBERT + BM25 in one point), `ScalarQuantization(int8, always_ram=True)` with `rescore=True` for 4× memory reduction, `scroll` pagination, `query_batch_points`, `count`, `facet`, `recommend` vs `query_points` API migration, `MultiVectorConfig(MAX_SIM)` for ColBERT. Note 02 Production Async Patterns (637 lines) — `AsyncQdrantClient` for FastAPI (sync kills concurrency), module-level singleton via `lifespan`, `prefer_grpc=True` + `pool_size=10`, full-jitter backoff with circuit breaker, `upload_points(parallel=4)` for 10K-50K pts/sec, `openinference-instrumentation-qdrant` for Phoenix traces, liveness vs readiness (liveness independent of Qdrant), background-writer pattern for graceful SIGTERM. Note 03 Capstone (647 lines) — full production RAG stack: FastAPI + AsyncQdrantClient + LiteLLM streaming + Phoenix traces; multi-tenant via `team_id` payload filter (not separate collections), query rewriting with RAG-Fusion, hybrid search + Reciprocal Rank Fusion, cross-encoder reranking, SSE streaming, full Docker Compose stack, in-memory test fixture, end-to-end latency budget table. Cross-links: 10/33/05, 10/33/06, 10/33/10, 10/33/11, 10/35/01, 06/19/06, 09/31/03. **3rd validation of the new main-agent-default subagent rules: 4 main-thread notes, 0 subagents, ~1,900 lines.**
+> 20. **Pinecone + Vertex AI Vector Search (10/33/12 + 10/37/00-02):** 4 notes, 1,349 lines, English. Closes the two critical gaps identified in the audit: **Pinecone** (0 dedicated notes, only comparison tables) and **Vertex AI Vector Search** (0 dedicated notes, only 1-2 line mentions). Pinecone note 10/33/12 (428 lines) — pod types (p1/p2/s1/p3) + Serverless pricing, namespaces for multi-tenancy, metadata filters ($eq/$gte/$in), hybrid search with alpha, Pinecone Inference (server-side embedding + reranking), 10K-vector demo. Vertex AI note 10/37/00-02 (921 lines) — 3-note mini-course: Welcome + decision tree (105 lines), Vertex AI Vector Search note 01 (391 lines) — Index/IndexEndpoint/DeployedIndex 3-level model, TREE_AH (ScaNN) vs BRUTE_FORCE, streaming vs batch update, hybrid search (2024), public vs private endpoint, IAM/VPC-SC/CMEK, 5-15 min cold start, AlloyDB AI + BigQuery VECTOR_SEARCH() + decision framework (425 lines). All in main thread, 0 subagents. Cross-links: 10/33/05, 10/33/09, 10/36, 10/28 BigQuery, 09/27 Feast, 06/19 LLM Gateway.
 
 ---
 
@@ -759,6 +761,8 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 21 | **Audit de vector DB coverage** | Qdrant: 1,477 líneas en fundamentals, mejor cubierto. Pinecone: 0 dedicated notes, solo comparison tables. Vertex AI Vector Search: 0 dedicated notes, critical gap. Plan: 2 dedicated notes (Pinecone + Vertex AI) | — |
 | 22 | **Escribir 4 notas del sub-módulo 12 - Qdrant Python Client Deep Dive (10/33)** | 1,892 líneas, 4 main-thread writes, 0 subagents. Welcome + Advanced Client APIs + Production Async Patterns + Capstone RAG. Cierra el gap identificado en el audit (advanced APIs + production async patterns). 3ª validación de las reglas main-agent-default. | `10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/` (4 files) |
 | 23 | **Actualizar 10/33 Welcome note + Master Index** | 10/33 Welcome: añadir nota 12. Master Index: 10/33 → 16 notas (+4). | `00 - Welcome to Vector Databases and Semantic Search.md`, `00 - Indice Maestro de Cursos.md` |
+| 24 | **Ejecutar plan de Pinecone + Vertex AI (4 notas pendientes)** | Pinecone 10/33/12 (428 lines) + Vertex AI 10/37/00-02 (921 lines) = 1,349 lines, 4 main-thread writes, 0 subagents. Cierra los 2 gaps críticos del audit. | `10/33/12 - Pinecone Architecture and Python Client.md`, `10/37/00, 01, 02` (3 archivos) |
+| 25 | **Actualizar Master Index + Continuity Prompt + Vault structure** | Master Index: 10/33 → 17 notas (+Pinecone), nuevo curso 10/37 (3 notas). Continuity Prompt: MANDATORY item 20 + Completadas items 24-25. | `00 - Indice Maestro de Cursos.md`, `Continuity Prompt.md` |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 
