@@ -774,7 +774,8 @@ Filtered from a broader tech scan — only technologies that directly complement
 | P6 | **Plan A — Production Agent Frameworks 2026 (07/17)** | ✅ COMPLETE (Julio 2026). 8 notas, 3,697 líneas. 6 frameworks + capstone RAG. | ✅ Done |
 | P7 | **Plan B — ML System Design Interviews (06/33)** | ✅ COMPLETE (Julio 2026). 11 notas, 2,948 líneas. 8 problemas canónicos + CLEAR framework + Capstone. | ✅ Done |
 | P8 | **Plan C — Pydantic Deep Dive (03/06)** | ✅ COMPLETE (Julio 2026). 10 notas, 1,580 líneas. Core Pydantic v2 + SQLModel + Settings + Performance. | ✅ Done |
-| P9 | **Next: ???** | Esperando decisión del usuario. | ⏳ Esperando |
+| P9 | **Plan D — Python Production Flow for MLOps (04/03)** | ✅ COMPLETE (Julio 2026). 7 notas, 1,064 líneas. Profiling + Ray + Async + Packaging + Capstone. Cierra 4 gaps críticos. | ✅ Done |
+| P10 | **Next: ???** | Esperando decisión del usuario. Opciones: (1) Banners cursos anchor, (2) Expandir curso existente, (3) Nuevo Plan E. | ⏳ Esperando |
 
 ### 🟡 Pendientes Nuevos — Plan B (ML System Design Interviews)
 
@@ -832,6 +833,29 @@ Filtered from a broader tech scan — only technologies that directly complement
 **Pre-requisites:** Python 3.10+ typing (03/01-03), FastAPI for ML (10/31) recommended but not required.
 
 **Variance note:** Total 1,580 lines vs 1,100 target (+44%). Las notas combinan 20 topics de Pydantic v2 que antes tenían cobertura cero. Cada nota incluye código ejecutable y tablas de referencia. Para expandir: nota 02 (Validators) y 09 (Production) tienen los mayores potenciales de expansión.
+
+### 🟡 Pendientes Nuevos — Plan D (Python Production Flow for MLOps)
+
+**Status:** ✅ COMPLETE (July 2026)
+**Code:** `04 - Engineering Fundamentals / 03 - Python Production Flow for MLOps`
+**Language:** English
+**Methodology:** Main thread, 1 note at a time, 7 sequential Write calls. **0 subagents**.
+
+| # | Note | Target | Actual | Status |
+|---|------|:------:|:------:|:------:|
+| 00 | Welcome — The 4 Gaps in Python ML Engineering | 50 | 36 | ✅ |
+| 01 | Python Profiling: cProfile, py-spy, memory, flame graphs, GPU | 180 | 151 | ✅ |
+| 02 | Ray: Core, Serve, Train, Data, Cluster | 180 | 189 | ✅ |
+| 03 | Async Patterns: batch inference, SSE streaming, graceful shutdown | 150 | 171 | ✅ |
+| 04 | Python Packaging: poetry dep groups, monorepo, packaging models | 150 | 167 | ✅ |
+| 05 | Production Pipeline: profiling → async → packaging → Ray | 150 | 155 | ✅ |
+| 06 | Capstone: Profile → Optimize → Package → Deploy on Ray | 200 | 195 | ✅ |
+| **Total** | | **~1,060** | **1,064** | ✅ |
+
+**Gaps closed:** Python profiling (🔴 → ✅ zero to full coverage), Ray for ML (🟡 → ✅ 1 note to 1 module), Async for MLOps (🟡 → ✅ fragmented to unified), Packaging for ML (🟡 → ✅ scattered to systematic).
+**Pre-requisites:** Python Avanzado para ML (04/00), FastAPI for ML (10/31), Docker (02).
+
+**Variance note:** Total 1,064 lines vs 1,060 target (on target). Las notas cierran 4 gaps críticos que antes tenían cobertura cero o mínima. Nota 02 (Ray) y 06 (Capstone) son las más largas (189-195 líneas) por la amplitud de Ray APIs y el ciclo completo de optimización. Para expandir: nota 02 (Ray Data + Ray Train) tiene mayor potencial de expansión.
 
 ### 🟡 Pendientes Nuevos — Plan A (Production Agent Frameworks 2026)
 
