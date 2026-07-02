@@ -22,11 +22,12 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 05 - Librerias Especificas (7)
 └── 06 - Pydantic Deep Dive (10 — English, NEW)
 
-04 - Engineering Fundamentals (30+, 4 módulos)
+04 - Engineering Fundamentals (37+, 5 módulos)
 ├── 00 - Python Avanzado para ML (8)
 ├── 01 - Matematicas para ML (7)
 ├── 02 - Estructuras de Datos y Algoritmos (8)
-└── 03 - Python Production Flow for MLOps (7 — English, NEW)
+├── 03 - Python Production Flow for MLOps (7 — English)
+└── 04 - Kubernetes for ML and LLM (7 — English, NEW)
 
 05 - Deep Learning y Computer Vision (44)
 ├── 03 - Deep Learning con PyTorch (7)
@@ -181,7 +182,8 @@ Misceláneo
 | 00 | [[04 - Engineering Fundamentals/00 - Python Avanzado para ML/00 - Bienvenida\|Python Avanzado para ML]] | 8 | ✅ | 🇪🇸 |
 | 01 | [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida\|Matemáticas para ML]] | 7 | ✅ | 🇪🇸 |
 | 02 | [[04 - Engineering Fundamentals/02 - Estructuras de Datos y Algoritmos/00 - Bienvenida\|Estructuras de Datos y Algoritmos]] | 8 | ✅ | 🇪🇸 |
-| 03 | [[04 - Engineering Fundamentals/03 - Python Production Flow for MLOps/00 - Welcome to Python Production Flow for MLOps\|Python Production Flow for MLOps]] | 7 | ✅ NEW | 🇬🇧 |
+| 03 | [[04 - Engineering Fundamentals/03 - Python Production Flow for MLOps/00 - Welcome to Python Production Flow for MLOps\|Python Production Flow for MLOps]] | 7 | ✅ | 🇬🇧 |
+| 04 | [[04 - Engineering Fundamentals/04 - Kubernetes for ML and LLM/00 - Welcome to Kubernetes for ML and LLM\|Kubernetes for ML and LLM]] | 7 | ✅ NEW | 🇬🇧 |
 
 ### 05 — Deep Learning y Computer Vision (44 notas)
 
@@ -413,13 +415,13 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 64 |
+| Cursos totales | 65 |
 | Cursos en Español | 26 |
-| Cursos en English | 33 |
+| Cursos en English | 34 |
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 647+ |
+| Notas totales | 654+ |
 | Guías de proyecto | 14 |
 
 ---

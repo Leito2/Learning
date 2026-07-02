@@ -775,7 +775,8 @@ Filtered from a broader tech scan — only technologies that directly complement
 | P7 | **Plan B — ML System Design Interviews (06/33)** | ✅ COMPLETE (Julio 2026). 11 notas, 2,948 líneas. 8 problemas canónicos + CLEAR framework + Capstone. | ✅ Done |
 | P8 | **Plan C — Pydantic Deep Dive (03/06)** | ✅ COMPLETE (Julio 2026). 10 notas, 1,580 líneas. Core Pydantic v2 + SQLModel + Settings + Performance. | ✅ Done |
 | P9 | **Plan D — Python Production Flow for MLOps (04/03)** | ✅ COMPLETE (Julio 2026). 7 notas, 1,064 líneas. Profiling + Ray + Async + Packaging + Capstone. Cierra 4 gaps críticos. | ✅ Done |
-| P10 | **Next: ???** | Esperando decisión del usuario. Opciones: (1) Banners cursos anchor, (2) Expandir curso existente, (3) Nuevo Plan E. | ⏳ Esperando |
+| P10 | **Plan E — K8s for ML/LLM (04/04)** | ✅ COMPLETE (Julio 2026). 7 notas, 1,191 líneas. GPU scheduling + KServe + Autoscaling + Cluster Ops + Capstone. Unifica contenido disperso en 5 cursos. | ✅ Done |
+| P11 | **Next: ???** | Esperando decisión del usuario. | ⏳ Esperando |
 
 ### 🟡 Pendientes Nuevos — Plan B (ML System Design Interviews)
 
@@ -856,6 +857,29 @@ Filtered from a broader tech scan — only technologies that directly complement
 **Pre-requisites:** Python Avanzado para ML (04/00), FastAPI for ML (10/31), Docker (02).
 
 **Variance note:** Total 1,064 lines vs 1,060 target (on target). Las notas cierran 4 gaps críticos que antes tenían cobertura cero o mínima. Nota 02 (Ray) y 06 (Capstone) son las más largas (189-195 líneas) por la amplitud de Ray APIs y el ciclo completo de optimización. Para expandir: nota 02 (Ray Data + Ray Train) tiene mayor potencial de expansión.
+
+### 🟡 Pendientes Nuevos — Plan E (Kubernetes for ML and LLM)
+
+**Status:** ✅ COMPLETE (July 2026)
+**Code:** `04 - Engineering Fundamentals / 04 - Kubernetes for ML and LLM`
+**Language:** English
+**Methodology:** Main thread, 1 note at a time, 7 sequential Write calls. **0 subagents**.
+
+| # | Note | Target | Actual | Status |
+|---|------|:------:|:------:|:------:|
+| 00 | Welcome — Why K8s for ML | 60 | 35 | ✅ |
+| 01 | K8s Fundamentals for ML Engineers | 150 | 177 | ✅ |
+| 02 | GPU Scheduling: NVIDIA Operator, MIG, sharing | 150 | 160 | ✅ |
+| 03 | KServe: Model Serving on K8s | 180 | 197 | ✅ |
+| 04 | Autoscaling: HPA, VPA, KEDA for Inference | 150 | 184 | ✅ |
+| 05 | Cluster Ops: Node pools, taints, tolerations | 120 | 193 | ✅ |
+| 06 | Capstone: Multi-Model Inference Platform | 200 | 245 | ✅ |
+| **Total** | | **~1,010** | **1,191** | ✅ |
+
+**Gaps closed:** K8s for ML (disperso en 5 cursos → unificado). GPU scheduling (🔴 scattered → ✅ systematic). KServe deployment patterns. Autoscaling strategies (HPA + KEDA + Knative). Cluster operations for GPU workloads.
+**Pre-requisites:** Docker (02), Python Production Flow for MLOps (04/03).
+
+**Variance note:** Total 1,191 lines vs 1,010 target (+18%). Nota 06 (Capstone) es la más larga (245 líneas) por la integración completa: KServe + KEDA + GPU pool + canary + monitoring. Notas 04 (Autoscaling) y 05 (Cluster Ops) también sobre target por la cobertura de KEDA + Knative y las guías de producción. Para expandir: nota 06 (modelos adicionales en el capstone, e.g. vLLM + KServe) tiene mayor potencial.
 
 ### 🟡 Pendientes Nuevos — Plan A (Production Agent Frameworks 2026)
 
