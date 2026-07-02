@@ -763,12 +763,47 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 23 | **Actualizar 10/33 Welcome note + Master Index** | 10/33 Welcome: añadir nota 12. Master Index: 10/33 → 16 notas (+4). | `00 - Welcome to Vector Databases and Semantic Search.md`, `00 - Indice Maestro de Cursos.md` |
 | 24 | **Ejecutar plan de Pinecone + Vertex AI (4 notas pendientes)** | Pinecone 10/33/12 (428 lines) + Vertex AI 10/37/00-02 (921 lines) = 1,349 lines, 4 main-thread writes, 0 subagents. Cierra los 2 gaps críticos del audit. | `10/33/12 - Pinecone Architecture and Python Client.md`, `10/37/00, 01, 02` (3 archivos) |
 | 25 | **Actualizar Master Index + Continuity Prompt + Vault structure** | Master Index: 10/33 → 17 notas (+Pinecone), nuevo curso 10/37 (3 notas). Continuity Prompt: MANDATORY item 20 + Completadas items 24-25. | `00 - Indice Maestro de Cursos.md`, `Continuity Prompt.md` |
+| 26 | **Crear curso Production Agent Frameworks 2026 (07/17) — Plan A** | 8 notas, 3,697 líneas, English. Welcome + 6 frameworks (smolagents, PydanticAI, transformers.agents, OpenAI Agents SDK, Google ADK, CrewAI 1.0) + Capstone RAG. Main thread, 8 sequential Writes, 0 subagents. Notas 04-07 vinieron sobre target (554-638 vs 380) por la profundidad de los Flow APIs y el capstone integration. | `07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/` (8 files) |
+| 27 | **Actualizar Master Index + Continuity Prompt** | Master Index: nuevo curso 17 (8 notas). Vault stats: 61 cursos, 619+ notas. Continuity Prompt: status Plan A → ✅ COMPLETE con variance note. | `00 - Indice Maestro de Cursos.md`, `Continuity Prompt.md` |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 
 | # | Tarea | Contexto | Bloqueante |
 |---|-------|----------|------------|
 | P5 | **Banners para los cursos grandes principales** (Python Básico/Intermedio, Go Fundamentals, Rust Fundamentals, FastAPI, etc.) | Tras crear los 7 banners existentes, los cursos "anchor" del vault aún no tienen banner | Esperando `sí` o `no` (P1 resuelto a 4 banners, no a los grandes) |
+| P6 | **Plan A — Curso: Production Agent Frameworks 2026 (07/17)** | 8 notas, ~3,200 líneas, English. Welcome + 6 frameworks (smolagents, PydanticAI, transformers.agents, OpenAI Agents SDK, Google ADK, CrewAI 1.0) + Capstone RAG. Main thread, 8 sequential Writes. | Planificado, listo para ejecutar |
+| P7 | **Plan B — Curso: ML System Design Interviews (06/33)** | 11 notas, ~4,400 líneas, English. Welcome + CLEAR framework + 8 problemas canónicos (Airbnb, DoorDash, Twitter, Uber, Netflix, YouTube, TikTok, Spotify) + Capstone. Main thread, 11 sequential Writes. | Planificado, listo para ejecutar tras P6 |
+| P8 | **Plan C — Portfolio Project 5: Second Brain RAG** | 8-week project, RAG system que indexa las 628+ notas del Learning vault. Stack: Qdrant + BGE + bge-reranker + LiteLLM + smolagents + FastAPI + SSE + Phoenix + OpenShell + Docker. KPIs: RAGAS Recall@5 ≥0.85, p95 <3s. | Planificado, decisión sobre Streamlit vs Next.js pendiente |
+
+### 🟡 Pendientes Nuevos — Plan A (Production Agent Frameworks 2026)
+
+**Status:** ✅ COMPLETE (June 2026)  
+**Code:** `07 - AI Agents y Agentic Systems / 17 - Production Agent Frameworks`  
+**Language:** English  
+**Methodology:** Main thread, 1 note at a time, 8 sequential Write calls. **0 subagents** (justified: Deep Format spec is already in main context; subagent context reload is ~2-5× costlier per the June 2026 subagent rules).
+
+| # | Note | Target lines | Actual | Status |
+|---|------|:------------:|:------:|:------:|
+| 00 | Welcome + Agent Framework Landscape 2026 | 90 | 90 | ✅ |
+| 01 | smolagents (HuggingFace) | 380 | 420 | ✅ |
+| 02 | PydanticAI | 380 | 428 | ✅ |
+| 03 | transformers.agents (HuggingFace) | 350 | 400 | ✅ |
+| 04 | OpenAI Agents SDK | 380 | 554 | ✅ |
+| 05 | Google ADK (Agent Development Kit) | 380 | 554 | ✅ |
+| 06 | CrewAI 1.0 (production) | 380 | 613 | ✅ |
+| 07 | Capstone: Multi-Framework RAG Agent | 480 | 638 | ✅ |
+| **Total** | | **~3,200** | **3,697** | ✅ |
+
+**Mandatory cross-links per note:** 07/15 (MCP), 07/16 (OpenShell), 06/19 (LLM Gateway / LiteLLM), 16 (Harness Engineering), 06/12 (Production RAG).
+
+**Framework decision rationale:**
+- ✅ Included: smolagents, PydanticAI, transformers.agents, OpenAI Agents SDK, Google ADK, CrewAI 1.0
+- ❌ Excluded (already in 07/12-07/14): LangGraph, LangChain, LlamaIndex, AutoGen, CrewAI legacy
+- ❌ Excluded (niche for later): DSPy
+
+**Capstone integration:** Uses smolagents (note 01) as the runtime, LiteLLM (06/19) as the model provider, Phoenix (09/31) for observability, OpenShell (07/16) for sandbox. Connects to Plan C (Second Brain RAG) as the real-world demo.
+
+**Variance note:** Notes 04-07 came in over the 380-line target (554, 554, 613, 638) because the OpenAI Agents SDK, Google ADK, CrewAI 1.0 Flow API, and the capstone integration all warranted deeper treatment than originally scoped. The Deep Format spec is more important than the line target — better to over-deliver on completeness than to artificially truncate.
 
 ### 🔵 Sugerencias para futuras sesiones
 
