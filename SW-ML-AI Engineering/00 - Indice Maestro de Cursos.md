@@ -14,12 +14,13 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 00 - Curso Markdown (5)
 01 - Curso SQL con PostgreSQL (8)
 02 - Docker Profesional (7)
-03 - Advanced Python (62, 5 módulos)
+03 - Advanced Python (72+, 6 módulos)
 ├── 01 - Python Basico (13)
 ├── 02 - Python Intermedio (13)
 ├── 03 - Python Avanzado (13)
 ├── 04 - Librerias Basicas de Python (8)
-└── 05 - Librerias Especificas (7)
+├── 05 - Librerias Especificas (7)
+└── 06 - Pydantic Deep Dive (10 — English, NEW)
 
 04 - Engineering Fundamentals (23)
 ├── 00 - Python Avanzado para ML (8)
@@ -170,6 +171,7 @@ Misceláneo
 | 03 | [[03 - Advanced Python/03 - Python Avanzado/00 - Bienvenida\|Python Avanzado]] | 13 | ✅ | 🇪🇸 |
 | 04 | [[03 - Advanced Python/04 - Librerias Basicas de Python/00 - Bienvenida\|Librerías Básicas]] | 8 | ✅ | 🇪🇸 |
 | 05 | [[03 - Advanced Python/05 - Librerias Especificas/00 - Bienvenida\|Librerías Específicas]] | 7 | ✅ | 🇪🇸 |
+| 06 | [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive\|Pydantic Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
 
 ### 04 — Engineering Fundamentals (23 notas)
 
@@ -409,13 +411,13 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 62 |
+| Cursos totales | 63 |
 | Cursos en Español | 26 |
-| Cursos en English | 31 |
+| Cursos en English | 32 |
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 630+ |
+| Notas totales | 640+ |
 | Guías de proyecto | 14 |
 
 ---

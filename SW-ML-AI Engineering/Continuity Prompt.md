@@ -773,7 +773,8 @@ Filtered from a broader tech scan — only technologies that directly complement
 | P5 | **Banners para los cursos grandes principales** (Python Básico/Intermedio, Go Fundamentals, Rust Fundamentals, FastAPI, etc.) | Tras crear los 7 banners existentes, los cursos "anchor" del vault aún no tienen banner | Esperando `sí` o `no` (P1 resuelto a 4 banners, no a los grandes) |
 | P6 | **Plan A — Production Agent Frameworks 2026 (07/17)** | ✅ COMPLETE (Julio 2026). 8 notas, 3,697 líneas. 6 frameworks + capstone RAG. | ✅ Done |
 | P7 | **Plan B — ML System Design Interviews (06/33)** | ✅ COMPLETE (Julio 2026). 11 notas, 2,948 líneas. 8 problemas canónicos + CLEAR framework + Capstone. | ✅ Done |
-| P8 | **Next: ???** | Esperando decisión del usuario. Opciones: (1) Retomar Pendientes (NumPy/Pandas audit, Pinecone/Vertex AI gaps), (2) Nuevo Plan C, (3) Repaso/estudio de notas existentes. | ⏳ Esperando |
+| P8 | **Plan C — Pydantic Deep Dive (03/06)** | ✅ COMPLETE (Julio 2026). 10 notas, 1,580 líneas. Core Pydantic v2 + SQLModel + Settings + Performance. | ✅ Done |
+| P9 | **Next: ???** | Esperando decisión del usuario. | ⏳ Esperando |
 
 ### 🟡 Pendientes Nuevos — Plan B (ML System Design Interviews)
 
@@ -805,7 +806,32 @@ Filtered from a broader tech scan — only technologies that directly complement
 **Per-problem template (Deep Format):** Problem Statement → Clarifying Questions → Back-of-Envelope → Architecture (Mermaid) → ML Component → System Component → Tradeoffs → Production Reality → Compression Code.
 **Mandatory cross-links:** 06/32 System Design, 09/21 Monitoreo, 09/27 Feast, 10/30 WebSockets, 10/33 Vector DBs, 10/23 IaC.
 **Why 8 problems:** Cited en libros de referencia (Acing the System Design Interview, ML System Design interviews en YouTube), cubren familias distintas (search, dispatch, ranking, prediction, recs, feed), dan amplitud técnica (CF, deep learning, gradient boosting, multi-modal).
-| P8 | **Plan C — Portfolio Project 5: Second Brain RAG** | 8-week project, RAG system que indexa las 628+ notas del Learning vault. Stack: Qdrant + BGE + bge-reranker + LiteLLM + smolagents + FastAPI + SSE + Phoenix + OpenShell + Docker. KPIs: RAGAS Recall@5 ≥0.85, p95 <3s. | Planificado, decisión sobre Streamlit vs Next.js pendiente |
+
+### 🟡 Pendientes Nuevos — Plan C (Pydantic Deep Dive)
+
+**Status:** ✅ COMPLETE (July 2026)
+**Code:** `03 - Advanced Python / 06 - Pydantic Deep Dive`
+**Language:** English
+**Methodology:** Main thread, 1 note at a time, 10 sequential Write calls. **0 subagents**.
+
+| # | Note | Target | Actual | Status |
+|---|------|:------:|:------:|:------:|
+| 00 | Welcome — Why Pydantic v2 | 80 | 50 | ✅ |
+| 01 | BaseModel, Field and Type System | 120 | 184 | ✅ |
+| 02 | Validators Deep Dive | 120 | 218 | ✅ |
+| 03 | model_config Systematic Tour | 100 | 142 | ✅ |
+| 04 | Serialization Mastery | 100 | 155 | ✅ |
+| 05 | Advanced Model Patterns | 120 | 161 | ✅ |
+| 06 | Pydantic Settings | 100 | 164 | ✅ |
+| 07 | SQLModel Bridge | 100 | 146 | ✅ |
+| 08 | JSON Schema and OpenAPI | 80 | 157 | ✅ |
+| 09 | Performance & Production + Capstone | 180 | 203 | ✅ |
+| **Total** | | **~1,100** | **1,580** | ✅ |
+
+**Gaps closed:** `@computed_field`, `WrapValidator`/`PlainValidator`, Pydantic+SQLModel, `create_model`, generics, serialization deep-dive, strict mode, `model_config` systematic, `ValidationError` structure, pydantic-settings patterns, JSON Schema customization, `cached_property`, custom types, v1→v2 migration.
+**Pre-requisites:** Python 3.10+ typing (03/01-03), FastAPI for ML (10/31) recommended but not required.
+
+**Variance note:** Total 1,580 lines vs 1,100 target (+44%). Las notas combinan 20 topics de Pydantic v2 que antes tenían cobertura cero. Cada nota incluye código ejecutable y tablas de referencia. Para expandir: nota 02 (Validators) y 09 (Production) tienen los mayores potenciales de expansión.
 
 ### 🟡 Pendientes Nuevos — Plan A (Production Agent Frameworks 2026)
 
