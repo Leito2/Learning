@@ -1,32 +1,30 @@
-# 🎯 Caso Práctico: Plataforma de Serving de Modelos
+# 🎯 Capstone: Model Serving Platform
 
-Este proyecto integra todos los conceptos del módulo para construir una plataforma completa de serving de modelos de ML. El objetivo es servir múltiples modelos vía API REST de forma escalable, segura y observable, utilizando arquitectura de microservicios y comunicación basada en eventos.
+This project integrates all the concepts of the module to build a complete model serving platform. The objective is to serve multiple models via REST API in a scalable, secure, and observable way, using a microservices architecture and event-based communication.
 
-La plataforma demuestra cómo un equipo de ML Engineering puede pasar de un notebook de predicción a un sistema productivo que atiende miles de solicitudes concurrentes con latencia garantizada.
+The platform demonstrates how an ML Engineering team can move from a prediction notebook to a production system that handles thousands of concurrent requests with guaranteed latency.
 
+## 1. System Requirements
 
-## 1. Requisitos del Sistema
-
-| ID | Requisito | Categoría |
-|----|-----------|-----------|
-| R1 | Servir predicciones de múltiples modelos | Funcional |
-| R2 | Carga dinámica de modelos sin reinicio | Funcional |
-| R3 | Autenticación y autorización por endpoint | Seguridad |
-| R4 | Rate limiting adaptativo por cliente | Seguridad |
-| R5 | Latencia p95 < 100ms para modelos ligeros | Performance |
+| ID | Requirement | Category |
+|----|-------------|----------|
+| R1 | Serve predictions from multiple models | Functional |
+| R2 | Dynamic model loading without restart | Functional |
+| R3 | Authentication and authorization per endpoint | Security |
+| R4 | Adaptive rate limiting per client | Security |
+| R5 | p95 latency < 100ms for lightweight models | Performance |
 | R6 | Throughput > 5000 RPS | Performance |
-| R7 | Métricas de latencia, throughput y errores | Observabilidad |
-| R8 | Cola de jobs para batch inference | Escalabilidad |
-| R9 | Disponibilidad 99.9% | Confiabilidad |
+| R7 | Latency, throughput, and error metrics | Observability |
+| R8 | Job queue for batch inference | Scalability |
+| R9 | 99.9% availability | Reliability |
 
-Caso real: Uber Michelangelo, la plataforma de ML de Uber, soporta más de 1000 modelos en producción, desde predicciones en tiempo real (tiempo de llegada de viajes) hasta pipelines batch de detección de fraude. Su arquitectura de serving desacopla el almacenamiento de modelos de la inferencia mediante un model registry centralizado.
+Real case: Uber Michelangelo, Uber's ML platform, supports more than 1000 models in production, from real-time predictions (ride arrival time) to batch fraud detection pipelines. Its serving architecture decouples model storage from inference through a centralized model registry.
 
-
-## 2. Arquitectura de Microservicios
+## 2. Microservices Architecture
 
 ```mermaid
 graph TB
-    subgraph Clientes
+    subgraph Clients
         WEB[Web App]
         MOB[Mobile App]
         BATCH[Batch Jobs]
@@ -36,14 +34,14 @@ graph TB
         GW[API Gateway<br/>FastAPI + JWT]
     end
     
-    subgraph Servicios
+    subgraph Services
         AUTH[Auth Service]
         PRED[Prediction Service<br/>Dynamic Model Loading]
         LOG[Logging & Metrics Service]
         BATCH_SVC[Batch Inference Worker]
     end
     
-    subgraph Infraestructura
+    subgraph Infrastructure
         K[Kafka / Redis Streams]
         MR[(Model Registry<br/>S3/MinIO)]
         MET[(Prometheus + Grafana)]
@@ -62,12 +60,11 @@ graph TB
     LOG --> MET
 ```
 
-
-## 3. Componentes Detallados
+## 3. Detailed Components
 
 ### 3.1. API Gateway (FastAPI)
 
-Punto de entrada único que enruta solicitudes, valida JWT, aplica rate limiting y centraliza logging.
+Single entry point that routes requests, validates JWT, applies rate limiting, and centralizes logging.
 
 ```python
 # gateway.py
@@ -87,7 +84,7 @@ async def metrics(request: Request, call_next):
     start = time.time()
     response = await call_next(request)
     latency = (time.time() - start) * 1000
-    # Enviar métricas a Prometheus pushgateway o StatsD
+    # Send metrics to Prometheus pushgateway or StatsD
     print(f"method={request.method} path={request.url.path} latency={latency:.2f}ms")
     return response
 
@@ -98,7 +95,7 @@ async def verify_token(credentials=Depends(security)):
             headers={"Authorization": f"Bearer {credentials.credentials}"}
         )
     if resp.status_code != 200:
-        raise HTTPException(status_code=401, detail="Token inválido")
+        raise HTTPException(status_code=401, detail="Invalid token")
     return resp.json()
 
 @app.post("/predict/{model_name}")
@@ -112,9 +109,9 @@ async def predict(model_name: str, payload: dict, user=Depends(verify_token)):
     return resp.json()
 ```
 
-### 3.2. Servicio de Autenticación
+### 3.2. Authentication Service
 
-Emite y verifica JWT. Soporta múltiples roles: `admin`, `data_scientist`, `end_user`.
+Issues and verifies JWT. Supports multiple roles: `admin`, `data_scientist`, `end_user`.
 
 ```python
 # auth_service.py
@@ -127,7 +124,7 @@ SECRET = "platform-secret"
 
 @app.post("/login")
 def login(username: str, password: str):
-    # Verificación simplificada
+    # Simplified verification
     users = {
         "admin": {"password": "admin123", "role": "admin"},
         "ds": {"password": "ds123", "role": "data_scientist"},
@@ -151,9 +148,9 @@ def verify(token: str):
         return {"error": "Invalid token"}
 ```
 
-### 3.3. Servicio de Predicción (Carga Dinámica de Modelos)
+### 3.3. Prediction Service (Dynamic Model Loading)
 
-Carga modelos bajo demanda desde un registro centralizado (S3, GCS, MinIO). Implementa cacheo LRU para evitar I/O repetido.
+Loads models on demand from a centralized registry (S3, GCS, MinIO). Implements LRU caching to avoid repeated I/O.
 
 ```python
 # prediction_service.py
@@ -189,7 +186,7 @@ def predict(model_name: str, payload: dict):
     try:
         model = cache.get(model_name, version)
     except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Modelo no encontrado: {e}")
+        raise HTTPException(status_code=404, detail=f"Model not found: {e}")
     
     features = payload.get("features", [])
     prediction = model.predict([features]).tolist()
@@ -200,11 +197,11 @@ def predict(model_name: str, payload: dict):
     }
 ```
 
-⚠️ **Advertencia:** El cacheo en memoria de modelos grandes puede causar OOM (Out Of Memory). Monitorea el uso de RAM y establece límites estrictos. Considera usar `weakref` o almacenamiento en disco (mmap) para modelos masivos.
+⚠️ **Warning:** In-memory caching of large models can cause OOM (Out Of Memory). Monitor RAM usage and set strict limits. Consider using `weakref` or disk storage (mmap) for massive models.
 
-### 3.4. Servicio de Logging y Métricas
+### 3.4. Logging and Metrics Service
 
-Consume eventos de Kafka para calcular métricas agregadas y persistir logs de auditoría.
+Consumes events from Kafka to compute aggregate metrics and persist audit logs.
 
 ```python
 # metrics_service.py
@@ -230,34 +227,32 @@ for msg in consumer:
     print(f"[METRICS] total={len(latencies)} p50={p50}ms p95={p95}ms")
 ```
 
+## 4. Key Platform Metrics
 
-## 4. Métricas Clave de la Plataforma
-
-| Métrica | Fórmula | Objetivo |
-|---------|---------|----------|
-| **Latencia p50/p95/p99** | Percentiles de tiempo de respuesta | p95 < 100ms |
-| **Throughput** | $\frac{\text{requests}}{\text{segundo}}$ | > 5000 RPS |
+| Metric | Formula | Target |
+|---------|---------|--------|
+| **Latency p50/p95/p99** | Response time percentiles | p95 < 100ms |
+| **Throughput** | $\frac{\text{requests}}{\text{second}}$ | > 5000 RPS |
 | **Availability** | $\frac{\text{uptime}}{\text{uptime} + \text{downtime}} \times 100$ | 99.9% |
 | **Error Rate** | $\frac{\text{errors}}{\text{total requests}} \times 100$ | < 0.1% |
-| **Model Load Time** | Tiempo desde solicitud hasta ready | < 5s |
+| **Model Load Time** | Time from request to ready | < 5s |
 | **Cache Hit Rate** | $\frac{\text{cache hits}}{\text{total lookups}} \times 100$ | > 80% |
 
-La latencia de inferencia total puede descomponerse como:
+The total inference latency can be decomposed as:
 
 $$
 L_{total} = L_{network} + L_{gateway} + L_{auth} + L_{model\_load} + L_{inference} + L_{serialization}
 $$
 
-Optimizar cada término es responsabilidad de un componente diferente, lo que justifica la arquitectura desacoplada.
+Optimizing each term is the responsibility of a different component, which justifies the decoupled architecture.
 
+## 5. Job Queue for Batch Inference
 
-## 5. Cola de Jobs para Batch Inference
-
-No todas las predicciones son en tiempo real. Los jobs batch (retraining datasets, predicciones sobre millones de registros) se encolan y procesan por workers independientes.
+Not all predictions are real-time. Batch jobs (retraining datasets, predictions on millions of records) are queued and processed by independent workers.
 
 ```mermaid
 sequenceDiagram
-    participant C as Cliente
+    participant C as Client
     participant G as API Gateway
     participant Q as Kafka Topic: batch-jobs
     participant W as Batch Worker
@@ -267,8 +262,8 @@ sequenceDiagram
     G->>Q: Publish job
     G-->>C: job_id
     W->>Q: Consume job
-    W->>W: Procesar batch
-    W->>S: Guardar resultados
+    W->>W: Process batch
+    W->>S: Save results
     W->>Q: Publish completion event
 ```
 
@@ -290,10 +285,10 @@ consumer = KafkaConsumer(
 
 for msg in consumer:
     job = msg.value
-    print(f"Procesando job {job['job_id']}")
-    # Cargar dataset desde job['dataset_url']
-    # Ejecutar predicciones batch
-    # Subir resultados a S3
+    print(f"Processing job {job['job_id']}")
+    # Load dataset from job['dataset_url']
+    # Run batch predictions
+    # Upload results to S3
     producer.send("batch-completed", {
         "job_id": job["job_id"],
         "status": "completed",
@@ -301,10 +296,9 @@ for msg in consumer:
     })
 ```
 
-💡 **Tip:** Usa patrones de backpressure en los workers. Si la cola crece más allá de un umbral, escala horizontalmente agregando más workers o reduce la frecuencia de ingestión desde el gateway.
+💡 **Tip:** Use backpressure patterns in workers. If the queue grows beyond a threshold, scale horizontally by adding more workers or reduce the ingestion frequency at the gateway.
 
-
-## 6. Diagrama de Despliegue
+## 6. Deployment Diagram
 
 ```mermaid
 graph TB
@@ -338,37 +332,34 @@ graph TB
     PROM --> GRAF
 ```
 
+## 7. Reference Images
 
-## 7. Imágenes de Referencia
+![Microservices architecture](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Microservices.svg/640px-Microservices.svg.png)
 
-![Arquitectura de microservicios](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Microservices.svg/640px-Microservices.svg.png)
+![Monitoring with Grafana](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Grafana_logo.svg/480px-Grafana_logo.svg.png)
 
-![Monitoreo con Grafana](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Grafana_logo.svg/480px-Grafana_logo.svg.png)
-
-![Kafka streams](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Apache_kafka.svg/480px-Apache_kafka.svg.png)
-
+![Kafka streams](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Apache_kafka.svg/480px-Apache_kafka_logo.svg)
 
 ---
 
-⚠️ **Advertencia:** Una plataforma de serving sin estrategia de rollback es peligrosa. Si un modelo nuevo degrada las métricas, el sistema debe poder revertir automáticamente a la versión anterior (canary deployment + shadow traffic).
+⚠️ **Warning:** A serving platform without a rollback strategy is dangerous. If a new model degrades metrics, the system must be able to automatically revert to the previous version (canary deployment + shadow traffic).
 
-💡 **Tip:** Implementa shadow mode para nuevos modelos: envía tráfico real al nuevo modelo pero no sirvas sus predicciones al cliente. Compara métricas offline antes de promocionar el modelo a producción.
+💡 **Tip:** Implement shadow mode for new models: send real traffic to the new model but do not serve its predictions to the client. Compare offline metrics before promoting the model to production.
 
+## 🎯 Documented Project
 
-## 🎯 Proyecto Documentado
+### Name: ML Serving Platform v1.0
 
-### Nombre: ML Serving Platform v1.0
-
-**Stack Tecnológico:**
+**Technology Stack:**
 - **Gateway:** FastAPI + Uvicorn
-- **Comunicación interna:** HTTP/REST (hacia gRPC en v2.0)
+- **Internal Communication:** HTTP/REST (toward gRPC in v2.0)
 - **Message Broker:** Apache Kafka
-- **Model Registry:** S3 con versionado
-- **Observabilidad:** Prometheus + Grafana + Logs centralizados (ELK/Loki)
-- **Auth:** JWT (HS256), migración a OAuth 2.0 Client Credentials
-- **Deployment:** Kubernetes con HPA y KEDA
+- **Model Registry:** S3 with versioning
+- **Observability:** Prometheus + Grafana + Centralized Logs (ELK/Loki)
+- **Auth:** JWT (HS256), migration to OAuth 2.0 Client Credentials
+- **Deployment:** Kubernetes with HPA and KEDA
 
-**Estructura de Repositorio:**
+**Repository Structure:**
 
 ```
 ml-platform/
@@ -394,26 +385,25 @@ ml-platform/
 ```
 
 **Roadmap:**
-1. MVP con monolito modular (semana 1-2)
-2. Extracción de auth service (semana 3)
-3. Introducción de Kafka para eventos (semana 4)
-4. Carga dinámica de modelos desde S3 (semana 5)
-5. Batch workers con KEDA (semana 6)
-6. Migración interna a gRPC (semana 7-8)
-7. Service mesh con Istio (semana 9-10)
+1. MVP with modular monolith (week 1-2)
+2. Extraction of auth service (week 3)
+3. Introduction of Kafka for events (week 4)
+4. Dynamic model loading from S3 (week 5)
+5. Batch workers with KEDA (week 6)
+6. Internal migration to gRPC (week 7-8)
+7. Service mesh with Istio (week 9-10)
 
-**Criterios de éxito:**
-- Latencia p95 < 100ms en modelo de referencia (sklearn RandomForest, 100 features).
-- Despliegue de nuevo modelo sin downtime.
-- 99.9% de requests autenticadas responden en < 200ms.
-- Recuperación automática ante fallo de un pod de predicción (< 30s).
+**Success Criteria:**
+- p95 latency < 100ms on a reference model (sklearn RandomForest, 100 features).
+- New model deployment without downtime.
+- 99.9% of authenticated requests respond in < 200ms.
+- Automatic recovery from prediction pod failure (< 30s).
 
-
-## 📦 Código de Compresión
+## 📦 Compression Code
 
 ```python
 # platform_serving.py
-# Código integrador de la plataforma de serving de modelos ML
+# Integrated code for the ML model serving platform
 
 from fastapi import FastAPI, Depends, HTTPException
 from jose import jwt
@@ -439,9 +429,9 @@ def verify_token(token: str) -> dict:
     try:
         return jwt.decode(token, SECRET, algorithms=["HS256"])
     except jwt.JWTError:
-        raise HTTPException(status_code=401, detail="Token invalido")
+        raise HTTPException(status_code=401, detail="Invalid token")
 
-# --- Model Registry simulado ---
+# --- Simulated Model Registry ---
 class SimpleModel:
     def predict(self, features: list) -> float:
         return sum(features) / max(len(features), 1)
@@ -455,7 +445,6 @@ def load_model(name: str, version: str) -> Any:
 # --- Endpoints ---
 @app.post("/auth/login")
 def login(username: str, password: str):
-    # Hash simple para demo
     if username == "ml" and hashlib.sha256(password.encode()).hexdigest() == hashlib.sha256(b"safe").hexdigest():
         return {"access_token": create_token("ml", "engineer")}
     raise HTTPException(status_code=401)
@@ -473,8 +462,8 @@ def predict(model_name: str, payload: dict, token: str):
     }
 
 @app.get("/health")
-def health():
+async def health():
     return {"status": "ok", "models_loaded": len(MODEL_REGISTRY)}
 
-# Ejecutar: uvicorn platform_serving:app --host 0.0.0.0 --port 8000
+# Run: uvicorn platform_serving:app --host 0.0.0.0 --port 8000
 ```
