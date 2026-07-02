@@ -52,7 +52,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 17 - ColBERT, SGLang and Next-Gen Inference (11 — English)
 ├── 18 - TensorRT-LLM (3 — English)
 ├── 19 - LLM Gateway Patterns and LiteLLM (7 — English)
-└── 20 - vLLM Production Serving (9)
+├── 20 - vLLM Production Serving (9)
+└── 33 - ML System Design Interviews (11 — English, NEW)
 
 07 - AI Agents y Agentic Systems (40)
 ├── 11 - Fundamentos de Agentes AI (6)
@@ -211,6 +212,7 @@ Misceláneo
 | 18 | [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM\|TensorRT-LLM]] | 3 | ✅ NEW | 🇬🇧 |
 | 19 | [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 7 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida\|vLLM Production Serving]] | 9 | ✅ NEW | 🇪🇸 |
+| 33 | [[06 - Large Language Models/33 - ML System Design Interviews/00 - Welcome to ML System Design Interviews\|ML System Design Interviews]] | 11 | ✅ NEW | 🇬🇧 |
 
 ### 07 — AI Agents y Agentic Systems (40 notas)
 
@@ -407,13 +409,13 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 61 |
+| Cursos totales | 62 |
 | Cursos en Español | 26 |
-| Cursos en English | 30 |
+| Cursos en English | 31 |
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 619+ |
+| Notas totales | 630+ |
 | Guías de proyecto | 14 |
 
 ---

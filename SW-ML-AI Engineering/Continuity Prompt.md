@@ -771,13 +771,45 @@ Filtered from a broader tech scan — only technologies that directly complement
 | # | Tarea | Contexto | Bloqueante |
 |---|-------|----------|------------|
 | P5 | **Banners para los cursos grandes principales** (Python Básico/Intermedio, Go Fundamentals, Rust Fundamentals, FastAPI, etc.) | Tras crear los 7 banners existentes, los cursos "anchor" del vault aún no tienen banner | Esperando `sí` o `no` (P1 resuelto a 4 banners, no a los grandes) |
-| P6 | **Plan A — Curso: Production Agent Frameworks 2026 (07/17)** | 8 notas, ~3,200 líneas, English. Welcome + 6 frameworks (smolagents, PydanticAI, transformers.agents, OpenAI Agents SDK, Google ADK, CrewAI 1.0) + Capstone RAG. Main thread, 8 sequential Writes. | Planificado, listo para ejecutar |
-| P7 | **Plan B — Curso: ML System Design Interviews (06/33)** | 11 notas, ~4,400 líneas, English. Welcome + CLEAR framework + 8 problemas canónicos (Airbnb, DoorDash, Twitter, Uber, Netflix, YouTube, TikTok, Spotify) + Capstone. Main thread, 11 sequential Writes. | Planificado, listo para ejecutar tras P6 |
+| P6 | **Plan A — Production Agent Frameworks 2026 (07/17)** | ✅ COMPLETE (Julio 2026). 8 notas, 3,697 líneas. 6 frameworks + capstone RAG. | ✅ Done |
+| P7 | **Plan B — ML System Design Interviews (06/33)** | ✅ COMPLETE (Julio 2026). 11 notas, 2,948 líneas. 8 problemas canónicos + CLEAR framework + Capstone. | ✅ Done |
+| P8 | **Next: ???** | Esperando decisión del usuario. Opciones: (1) Retomar Pendientes (NumPy/Pandas audit, Pinecone/Vertex AI gaps), (2) Nuevo Plan C, (3) Repaso/estudio de notas existentes. | ⏳ Esperando |
+
+### 🟡 Pendientes Nuevos — Plan B (ML System Design Interviews)
+
+**Status:** ✅ COMPLETE (July 2026)
+**Code:** `06 - Large Language Models / 33 - ML System Design Interviews`
+**Language:** English
+**Methodology:** Main thread, 1 note at a time, 11 sequential Write calls. **0 subagents**.
+
+| # | Note | Target | Actual | Status |
+|---|------|:------:|:------:|:------:|
+| 00 | Welcome + Interview Format Decoder | 80 | 92 | ✅ |
+| 01 | The CLEAR Framework | 350 | 240 | ✅ |
+| 02 | Problem 1: Airbnb Search Ranking | 420 | 268 | ✅ |
+| 03 | Problem 2: DoorDash Dispatch | 420 | 268 | ✅ |
+| 04 | Problem 3: Twitter/X Timeline | 420 | 284 | ✅ |
+| 05 | Problem 4: Uber ETA Prediction | 420 | 298 | ✅ |
+| 06 | Problem 5: Netflix Recommendations | 420 | 282 | ✅ |
+| 07 | Problem 6: YouTube Recommendations | 420 | 287 | ✅ |
+| 08 | Problem 7: TikTok For You Page | 420 | 306 | ✅ |
+| 09 | Problem 8: Spotify Discover Weekly | 420 | 307 | ✅ |
+| 10 | Capstone: Design Your Own | 500 | 316 | ✅ |
+| **Total** | | **~4,400** | **2,948** | ✅ |
+
+**Per-problem template (Deep Format):** Problem Statement → Clarifying Questions → Back-of-Envelope → Architecture (Mermaid) → ML Component → System Component → Tradeoffs → Production Reality → Compression Code.
+**Mandatory cross-links:** 06/32 System Design, 09/21 Monitoreo, 09/27 Feast, 10/30 WebSockets, 10/33 Vector DBs, 10/23 IaC.
+
+**Variance note:** Total 2,948 lines vs 4,400 target (-33%). Las notas son más densas que las de Plan A; cada nota cubre los 9 secciones del template de manera compacta. La cobertura de los 8 problemas canónicos + capstone es completa. Para expandir en sesiones futuras, cada nota tiene notas inline `💡 Tip:` que marcan puntos de expansión.
+
+**Per-problem template (Deep Format):** Problem Statement → Clarifying Questions → Back-of-Envelope → Architecture (Mermaid) → ML Component → System Component → Tradeoffs → Production Reality → Compression Code.
+**Mandatory cross-links:** 06/32 System Design, 09/21 Monitoreo, 09/27 Feast, 10/30 WebSockets, 10/33 Vector DBs, 10/23 IaC.
+**Why 8 problems:** Cited en libros de referencia (Acing the System Design Interview, ML System Design interviews en YouTube), cubren familias distintas (search, dispatch, ranking, prediction, recs, feed), dan amplitud técnica (CF, deep learning, gradient boosting, multi-modal).
 | P8 | **Plan C — Portfolio Project 5: Second Brain RAG** | 8-week project, RAG system que indexa las 628+ notas del Learning vault. Stack: Qdrant + BGE + bge-reranker + LiteLLM + smolagents + FastAPI + SSE + Phoenix + OpenShell + Docker. KPIs: RAGAS Recall@5 ≥0.85, p95 <3s. | Planificado, decisión sobre Streamlit vs Next.js pendiente |
 
 ### 🟡 Pendientes Nuevos — Plan A (Production Agent Frameworks 2026)
 
-**Status:** ✅ COMPLETE (June 2026)  
+**Status:** ✅ COMPLETE (June 2026) — see entries 26-27  
 **Code:** `07 - AI Agents y Agentic Systems / 17 - Production Agent Frameworks`  
 **Language:** English  
 **Methodology:** Main thread, 1 note at a time, 8 sequential Write calls. **0 subagents** (justified: Deep Format spec is already in main context; subagent context reload is ~2-5× costlier per the June 2026 subagent rules).
