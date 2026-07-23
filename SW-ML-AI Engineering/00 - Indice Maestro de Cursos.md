@@ -14,13 +14,14 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 00 - Curso Markdown (5)
 01 - Curso SQL con PostgreSQL (8)
 02 - Docker Profesional (7)
-03 - Advanced Python (72+, 6 módulos)
+03 - Advanced Python (80+, 7 módulos)
 ├── 01 - Python Basico (13)
 ├── 02 - Python Intermedio (13)
 ├── 03 - Python Avanzado (13)
 ├── 04 - Librerias Basicas de Python (8)
 ├── 05 - Librerias Especificas (7)
-└── 06 - Pydantic Deep Dive (10 — English, NEW)
+├── 06 - Pydantic Deep Dive (10 — English, NEW)
+└── 07 - Modern Python Typing (8 — English, NEW — Plan G)
 
 04 - Engineering Fundamentals (37+, 5 módulos)
 ├── 00 - Python Avanzado para ML (8)
@@ -58,14 +59,15 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 20 - vLLM Production Serving (9)
 └── 33 - ML System Design Interviews (11 — English, NEW)
 
-07 - AI Agents y Agentic Systems (40)
+07 - AI Agents y Agentic Systems (50)
 ├── 11 - Fundamentos de Agentes AI (6)
 ├── 12 - Frameworks y Orquestación (6)
 ├── 13 - Sistemas Multi-Agente (5)
 ├── 14 - Agentes Autónomos y Auto-Mejora (5)
 ├── 15 - MCP and Agentic Protocols (6 — English)
 ├── 16 - OpenShell and Agent Sandboxes (6 — English)
-└── 17 - Production Agent Frameworks (8 — English, NEW)
+├── 17 - Production Agent Frameworks (8 — English)
+└── 18 - LangGraph Deep Patterns (10 — English, NEW — Plan F)
 
 08 - NLP Avanzado (17)
 ├── 15 - NLP Tradicional y Representaciones (6)
@@ -102,7 +104,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 30 - WebSockets and Real-Time ML (5 — English)
 ├── 31 - FastAPI for ML (11 — English, merged with 24)
 ├── 32 - System Design for ML (6 — English)
-├── 33 - Vector Databases and Semantic Search (17 — English)
+├── 33 - Vector Databases and Semantic Search (23 — English, +ChromaDB — Plan H)
 ├── 34 - DuckDB (4 — English)
 ├── 35 - Vector Quantization and Approximate Nearest Neighbors (6 — English)
 ├── 36 - PostgreSQL for AI-ML Workloads (6 — English)
@@ -174,6 +176,7 @@ Misceláneo
 | 04 | [[03 - Advanced Python/04 - Librerias Basicas de Python/00 - Bienvenida\|Librerías Básicas]] | 8 | ✅ | 🇪🇸 |
 | 05 | [[03 - Advanced Python/05 - Librerias Especificas/00 - Bienvenida\|Librerías Específicas]] | 7 | ✅ | 🇪🇸 |
 | 06 | [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive\|Pydantic Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
+| 07 | [[03 - Advanced Python/07 - Modern Python Typing/00 - Welcome to Modern Python Typing\|Modern Python Typing]] | 8 | ✅ NEW | 🇬🇧 |
 
 ### 04 — Engineering Fundamentals (23 notas)
 
@@ -231,6 +234,7 @@ Misceláneo
 | 15 | [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols\|MCP and Agentic Protocols]] | 6 | ✅ | 🇬🇧 |
 | 16 | [[07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/00 - Welcome to OpenShell and Agent Sandboxes\|OpenShell and Agent Sandboxes]] | 6 | ✅ NEW | 🇬🇧 |
 | 17 | [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks\|Production Agent Frameworks]] | 8 | ✅ NEW | 🇬🇧 |
+| 18 | [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns\|LangGraph Deep Patterns]] | 10 | ✅ NEW | 🇬🇧 |
 
 ### 08 — NLP Avanzado (17 notas)
 
@@ -271,7 +275,7 @@ Misceláneo
 | 30 | [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML\|WebSockets and Real-Time ML]] | 5 | ✅ | 🇬🇧 |
 | 31 | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | 11 | ✅ MERGED (24→31) | 🇬🇧 |
 | 32 | [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML\|System Design for ML]] | 6 | ✅ REWRITTEN | 🇬🇧 |
-| 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 17 | ✅ +Pinecone + Qdrant Python | 🇬🇧 |
+| 33 | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases and Semantic Search]] | 23 | ✅ +Pinecone + Qdrant Python + ChromaDB | 🇬🇧 |
 | 34 | [[10 - Cloud, Infra y Backend/34 - DuckDB/00 - Welcome to DuckDB\|DuckDB]] | 4 | ✅ NEW | 🇬🇧 |
 | 35 | [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/00 - Welcome to Vector Quantization and Approximate Nearest Neighbors\|Vector Quantization and ANN]] | 6 | ✅ NEW | 🇬🇧 |
 | 36 | [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads\|PostgreSQL for AI-ML Workloads]] | 6 | ✅ NEW | 🇬🇧 |

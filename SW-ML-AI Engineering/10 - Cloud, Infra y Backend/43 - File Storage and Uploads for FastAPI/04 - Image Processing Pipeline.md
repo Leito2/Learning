@@ -12,7 +12,7 @@
 
 Once a file is in S3, the work is often not done. An uploaded avatar needs a 256x256 thumbnail. A user photo needs EXIF stripping (privacy: GPS coordinates, camera model). A document upload needs virus scanning. A product image needs format conversion (WebP for web, AVIF for modern browsers). All of this is **background work** that should not block the upload response.
 
-The pattern is well-established: the upload confirms the file is in S3, the response is sent, and a job (via [[../40 - Background Jobs and Workers for FastAPI/00 - Welcome|ARQ]] or Celery) processes the file. The job generates thumbnails, runs the virus scan, strips EXIF, and writes the results back to S3. The user sees the upload as instant; the processing happens in the background.
+The pattern is well-established: the upload confirms the file is in S3, the response is sent, and a job (via [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/00 - Welcome|ARQ]] or Celery) processes the file. The job generates thumbnails, runs the virus scan, strips EXIF, and writes the results back to S3. The user sees the upload as instant; the processing happens in the background.
 
 This note covers the image processing patterns: Pillow basics, thumbnail generation, EXIF stripping, virus scanning, and the ARQ integration. The patterns apply to any file type that needs post-processing (video transcoding, document OCR, etc.).
 

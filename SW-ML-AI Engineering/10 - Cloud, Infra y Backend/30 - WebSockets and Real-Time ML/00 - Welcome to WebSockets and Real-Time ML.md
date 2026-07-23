@@ -39,12 +39,12 @@ flowchart LR
 
 ## 📋 Prerequisites
 
-| Required | Why |
-|----------|-----|
-| Go or Python proficiency | We write Fiber WebSocket handlers in Go; Python for client/inference examples |
-| HTTP protocol knowledge | You need to contrast request-response with full-duplex streaming |
-| Basic ML serving concepts | Familiarity with model inference endpoints, token streaming, batch vs online |
-| Redis fundamentals | Pub/sub backplane for horizontal scaling (Module 3 of Note 03) |
+| Required                  | Why                                                                           |
+| ------------------------- | ----------------------------------------------------------------------------- |
+| Go or Python proficiency  | We write Fiber WebSocket handlers in Go; Python for client/inference examples |
+| HTTP protocol knowledge   | You need to contrast request-response with full-duplex streaming              |
+| Basic ML serving concepts | Familiarity with model inference endpoints, token streaming, batch vs online  |
+| Redis fundamentals        | Pub/sub backplane for horizontal scaling (Module 3 of Note 03)                |
 
 | Helpful but optional | Why |
 |----------------------|-----|

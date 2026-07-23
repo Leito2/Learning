@@ -765,6 +765,9 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 25 | **Actualizar Master Index + Continuity Prompt + Vault structure** | Master Index: 10/33 → 17 notas (+Pinecone), nuevo curso 10/37 (3 notas). Continuity Prompt: MANDATORY item 20 + Completadas items 24-25. | `00 - Indice Maestro de Cursos.md`, `Continuity Prompt.md` |
 | 26 | **Crear curso Production Agent Frameworks 2026 (07/17) — Plan A** | 8 notas, 3,697 líneas, English. Welcome + 6 frameworks (smolagents, PydanticAI, transformers.agents, OpenAI Agents SDK, Google ADK, CrewAI 1.0) + Capstone RAG. Main thread, 8 sequential Writes, 0 subagents. Notas 04-07 vinieron sobre target (554-638 vs 380) por la profundidad de los Flow APIs y el capstone integration. | `07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/` (8 files) |
 | 27 | **Actualizar Master Index + Continuity Prompt** | Master Index: nuevo curso 17 (8 notas). Vault stats: 61 cursos, 619+ notas. Continuity Prompt: status Plan A → ✅ COMPLETE con variance note. | `00 - Indice Maestro de Cursos.md`, `Continuity Prompt.md` |
+| 28 | **Crear curso LangGraph Deep Patterns (07/18) — Plan F** | 10 notas, 3,915 líneas, English. Welcome + StateGraph Fundamentals + Conditional Routing + Persistence (PostgresSaver) + Subgraphs/Send API + Human-in-the-Loop + Streaming Modes + Advanced Patterns + Production Deployment + Capstone. Cierra el gap CRÍTICO: vault solo tenía 1 nota dedicada a LangGraph (07/15/03). Main thread, 10 sequential Writes, 0 subagents. | `07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/` (10 files) |
+| 29 | **Crear curso Modern Python Typing (03/07) — Plan G** | 8 notas, 3,191 líneas, English. Welcome + PEP 695 Type Parameters + Type Narrowing (TypeGuard) + Protocols + Self/ParamSpec/Concatenate + Mypy Strict + Runtime Checkers (Pydantic/Beartype/Cattrs) + Capstone. Cierra el gap de tipado moderno (PEP 695, mypy strict, runtime checkers). Main thread, 8 sequential Writes, 0 subagents. | `03 - Advanced Python/07 - Modern Python Typing/` (8 files) |
+| 30 | **Crear curso ChromaDB Deep Dive (10/33/13) — Plan H** | 6 notas, 2,485 líneas, English. Welcome + Fundamentals + Server Mode + Custom Embeddings + Metadata Filtering + Migration Path. Cierra el gap: vault tenía 0 dedicated notes para Chroma (solo comparaciones). Main thread, 6 sequential Writes, 0 subagents. | `10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/13 - ChromaDB Deep Dive/` (6 files) |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 
@@ -884,6 +887,13 @@ Filtered from a broader tech scan — only technologies that directly complement
 ### 🟡 Pendientes Nuevos — Plan A (Production Agent Frameworks 2026)
 
 **Status:** ✅ COMPLETE (June 2026) — see entries 26-27  
+**Code:** `07 - AI Agents y Agentic Systems / 17 - Production Agent Frameworks`  
+**Language:** English  
+**Methodology:** Main thread, 1 note at a time, 8 sequential Write calls. **0 subagents**.
+
+| # | Note | Target | Actual | Status |
+|---|------|:------:|:------:|:------:|
+| 00 | Welcome + Agent Framework Landscape 2026 | 90 | 90 | ✅ |
 **Code:** `07 - AI Agents y Agentic Systems / 17 - Production Agent Frameworks`  
 **Language:** English  
 **Methodology:** Main thread, 1 note at a time, 8 sequential Write calls. **0 subagents** (justified: Deep Format spec is already in main context; subagent context reload is ~2-5× costlier per the June 2026 subagent rules).

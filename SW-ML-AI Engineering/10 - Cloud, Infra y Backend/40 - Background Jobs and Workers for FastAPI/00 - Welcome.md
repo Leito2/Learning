@@ -76,7 +76,7 @@ By the end of this course you will have a production-grade job system that:
 - **[[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]** — the HTTP layer
 - **[[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]** — the data layer for job state, audit logs
 - **[[../41 - API Design Patterns for FastAPI/00 - Welcome|API Design Patterns]]** — when to use webhooks vs polling, RFC 7807 error patterns
-- **[[../43 - File Storage and Uploads for FastAPI/00 - Welcome|File Storage and Uploads]]** — file processing as a job
+- **[[10 - Cloud, Infra y Backend/43 - File Storage and Uploads for FastAPI/00 - Welcome|File Storage and Uploads]]** — file processing as a job
 - **[[../45 - Webhooks In/Out for FastAPI/00 - Welcome|Webhooks In/Out]]** — webhook delivery as a job
 - **[[../44 - Email and Notifications for FastAPI/00 - Welcome|Email and Notifications]]** — email send as a job
 

@@ -15,9 +15,9 @@ By completing this course, you will master:
 
 Every non-trivial web service eventually handles files: user avatars, document uploads, video processing, image transformation, report generation, backup archives. The naïve approach — store everything on the local filesystem of the FastAPI server — works in development and breaks in production (the server is stateless; the disk is ephemeral). The right approach is **object storage** (S3, GCS, Azure Blob) with a fast, secure upload path.
 
-This course covers the patterns: local handling for development, S3 / GCS for production, presigned URLs for direct upload, multipart for large files, and image processing as a job (via [[../40 - Background Jobs and Workers for FastAPI/00 - Welcome|ARQ]] or Celery). The patterns apply to any FastAPI service that handles user-uploaded or system-generated files.
+This course covers the patterns: local handling for development, S3 / GCS for production, presigned URLs for direct upload, multipart for large files, and image processing as a job (via [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/00 - Welcome|ARQ]] or Celery). The patterns apply to any FastAPI service that handles user-uploaded or system-generated files.
 
-The course assumes you have a working FastAPI + SQLAlchemy stack ([[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|the SQLAlchemy course]]) and AWS or GCP credentials.
+The course assumes you have a working FastAPI + SQLAlchemy stack ([[10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|the SQLAlchemy course]]) and AWS or GCP credentials.
 
 ```mermaid
 flowchart LR
@@ -51,9 +51,9 @@ flowchart LR
 
 | Topic | Required Proficiency | Vault Note |
 |-------|---------------------|------------|
-| FastAPI basics | Confident — handlers, DI, request bodies | [[../31 - FastAPI for ML/01 - ASGI Architecture and Async Python for ML]] |
-| SQLAlchemy 2.0 async | Familiar — sessions, UoW | [[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome]] |
-| Background jobs | Familiar — ARQ or Celery | [[../40 - Background Jobs and Workers for FastAPI/00 - Welcome]] |
+| FastAPI basics | Confident — handlers, DI, request bodies | [[01 - ASGI Architecture and Async Python for ML]] |
+| SQLAlchemy 2.0 async | Familiar — sessions, UoW | [[10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome]] |
+| Background jobs | Familiar — ARQ or Celery | [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/00 - Welcome]] |
 | AWS S3 / GCP GCS basics | Familiar — buckets, objects, IAM | External resource |
 
 ---
@@ -74,9 +74,9 @@ By the end of this course you will have a production-grade file handling system 
 ## 🔗 Vault Connections
 
 - **[[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]** — the HTTP framework
-- **[[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]** — the data layer for file metadata
-- **[[../40 - Background Jobs and Workers for FastAPI/00 - Welcome|Background Jobs and Workers]]** — image processing as a job
-- **[[../42 - Caching Strategies for FastAPI/00 - Welcome|Caching Strategies]]** — caching generated thumbnails
+- **[[10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]** — the data layer for file metadata
+- **[[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/00 - Welcome|Background Jobs and Workers]]** — image processing as a job
+- **[[10 - Cloud, Infra y Backend/42 - Caching Strategies for FastAPI/00 - Welcome|Caching Strategies]]** — caching generated thumbnails
 
 ## References
 

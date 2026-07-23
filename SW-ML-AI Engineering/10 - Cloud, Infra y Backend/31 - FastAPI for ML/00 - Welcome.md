@@ -18,7 +18,7 @@ By the end of this course, you will be able to:
 
 | # | Note | Description |
 |---|------|-------------|
-| 00 | [[00 - Welcome]] | Index, glossary, and learning objectives |
+| 00 | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome]] | Index, glossary, and learning objectives |
 | 01 | [[01 - FastAPI and REST APIs]] | Building RESTful APIs with FastAPI |
 | 02 | [[02 - gRPC and Inter-Service Communication]] | High-performance communication with gRPC |
 | 03 | [[03 - Microservices and Event Architecture]] | Microservices, events, and resilience |

@@ -1,0 +1,6 @@
+bun.lock
+node_modules/
+.commandcode/
+*.pyc
+__pycache__/
+.DS_Store

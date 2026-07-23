@@ -66,7 +66,7 @@ By the end of this course you will have a production-grade webhook system that:
 - **[[../40 - Background Jobs and Workers for FastAPI/00 - Welcome|Background Jobs and Workers]]** — webhooks are sent as jobs
 - **[[../44 - Email and Notifications for FastAPI/00 - Welcome|Email and Notifications]]** — bounce and complaint webhooks are incoming webhooks
 - **[[../41 - API Design Patterns for FastAPI/00 - Welcome|API Design Patterns]]** — RFC 7807 error responses for the webhook receiver
-- **[[../43 - File Storage and Uploads for FastAPI/00 - Welcome|File Storage and Uploads]]** — S3 event notifications are incoming webhooks
+- **[[10 - Cloud, Infra y Backend/43 - File Storage and Uploads for FastAPI/00 - Welcome|File Storage and Uploads]]** — S3 event notifications are incoming webhooks
 
 ## References
 
