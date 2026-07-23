@@ -267,6 +267,7 @@ Misceláneo
 | 33 | [[09 - MLOps y Produccion/33 - Temporal for ML Pipelines/00 - Welcome to Temporal for ML Pipelines\|Temporal for ML Pipelines]] | 3 | ✅ NEW | 🇬🇧 |
 | 34 | [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry for AI Engineers]] | 8 | ✅ NEW | 🇬🇧 |
 | 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
+| 36 | [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 10 — Cloud, Infra y Backend (64 notas)
 
@@ -434,7 +435,7 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 660+ |
+| Notas totales | 666+ |
 | Guías de proyecto | 14 |
 
 ---
