@@ -1,3 +1,5 @@
+![Banner del Curso LangFuse Deep Dive](langfuse-course-banner.svg)
+
 # 🏷️ Welcome — LangFuse: Open-Source LLM Observability
 
 ## 🎯 Learning Objectives

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="FastAPI for ML Course Banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="55%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#080f1f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="iconGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="360" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="360" fill="url(#glow)"/>
+
+  <rect x="60" y="44" width="180" height="30" rx="15" fill="rgba(255,255,255,0.06)" stroke="#10b981" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="78" y="64" font-family="ui-sans-serif, system-ui" font-size="13" font-weight="700" letter-spacing="2" fill="#10b981">CURSO COMPRIMIDO</text>
+
+  <text x="60" y="130" font-family="ui-sans-serif, system-ui" font-size="48" font-weight="800" fill="#fff">FastAPI for ML</text>
+
+  <rect x="60" y="148" width="240" height="4" rx="2" fill="url(#accent)"/>
+
+  <text x="60" y="162" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="500" fill="#cbd5e1">Async · Pydantic · dependency injection · streaming</text>
+
+  <text x="60" y="186" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8"># El framework Python estándar para serving ML en producción</text>
+
+  <text x="60" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#fbbf24">from </text>
+    <text x="95" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#e2e8f0">fastapi </text>
+    <text x="151" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#fbbf24">import </text>
+    <text x="200" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">FastAPI</text>
+    <text x="60" y="242" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">app = </text>
+    <text x="102" y="242" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">FastAPI()</text>
+    <text x="60" y="264" font-family="ui-monospace, monospace" font-size="13" fill="#f472b6">@app.</text>
+    <text x="95" y="264" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">post</text>
+    <text x="123" y="264" font-family="ui-monospace, monospace" font-size="13" fill="#34d399">(&quot;/predict&quot;)</text>
+    <text x="60" y="286" font-family="ui-monospace, monospace" font-size="13" fill="#fbbf24">async def </text>
+    <text x="130" y="286" font-family="ui-monospace, monospace" font-size="13" fill="#e2e8f0">predict(req: Request):</text>
+    <text x="60" y="308" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">    return </text>
+    <text x="137" y="308" font-family="ui-monospace, monospace" font-size="13" fill="#34d399">{&quot;result&quot;: ...}</text>
+
+  <g transform="translate(1020,170)"><circle cx="60" cy="60" r="58" fill="url(#iconGrad)" stroke="rgba(255,255,255,0.18)"/><text x="60" y="78" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="28" font-weight="700" fill="#fff">FAPI</text></g>
+
+  <g><rect x="60" y="304" width="78" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="71" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">11 notas</text></g>
+    <g><rect x="148" y="304" width="71" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="159" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">English</text></g>
+    <g><rect x="229" y="304" width="99" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="240" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">Async-first</text></g>
+    <g><rect x="338" y="304" width="134" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="349" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">Production-grade</text></g>
+
+  <rect x="0" y="356" width="1200" height="4" fill="url(#accent)"/>
+</svg>

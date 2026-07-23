@@ -1,3 +1,5 @@
+![Banner del Curso LangGraph Deep Patterns](langgraph-course-banner.svg)
+
 # 🕸️ Welcome to LangGraph Deep Patterns
 
 LangGraph is the framework your portfolio already runs on — your **Multi-Agent Research System** and **StayBot** Airbnb agent are both `StateGraph` cyclic agents — but until now the vault has only one dedicated note ([[../15 - MCP and Agentic Protocols/03 - LangGraph + MCP Integration.md|LangGraph + MCP Integration]]), and that note treats LangGraph as a vehicle for MCP tool discovery, not as the orchestration primitive it actually is. This course fixes that gap.

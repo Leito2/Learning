@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="LangGraph Deep Patterns Course Banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="55%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#080f1f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="iconGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="360" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="360" fill="url(#glow)"/>
+
+  <rect x="60" y="44" width="180" height="30" rx="15" fill="rgba(255,255,255,0.06)" stroke="#818cf8" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="78" y="64" font-family="ui-sans-serif, system-ui" font-size="13" font-weight="700" letter-spacing="2" fill="#818cf8">CURSO COMPRIMIDO</text>
+
+  <text x="60" y="130" font-family="ui-sans-serif, system-ui" font-size="48" font-weight="800" fill="#fff">LangGraph Deep Patterns</text>
+
+  <rect x="60" y="148" width="240" height="4" rx="2" fill="url(#accent)"/>
+
+  <text x="60" y="162" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="500" fill="#cbd5e1">StateGraph · subgraphs · persistence · streaming</text>
+
+  <text x="60" y="186" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8"># El framework canónico para stateful agent graphs</text>
+
+  <text x="60" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#fbbf24">from </text>
+    <text x="95" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#e2e8f0">langgraph.graph </text>
+    <text x="207" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#fbbf24">import </text>
+    <text x="256" y="220" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">StateGraph</text>
+    <text x="60" y="242" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">workflow = </text>
+    <text x="137" y="242" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">StateGraph(AgentState)</text>
+    <text x="60" y="264" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">workflow.</text>
+    <text x="123" y="264" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">add_node</text>
+    <text x="179" y="264" font-family="ui-monospace, monospace" font-size="13" fill="#34d399">(&quot;researcher&quot;, node_fn)</text>
+    <text x="60" y="286" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">workflow.</text>
+    <text x="123" y="286" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">add_edge</text>
+    <text x="179" y="286" font-family="ui-monospace, monospace" font-size="13" fill="#34d399">(&quot;researcher&quot;, &quot;critic&quot;)</text>
+    <text x="60" y="308" font-family="ui-monospace, monospace" font-size="13" fill="#94a3b8">app = </text>
+    <text x="102" y="308" font-family="ui-monospace, monospace" font-size="13" fill="#a78bfa">workflow.compile()</text>
+
+  <g transform="translate(1020,170)"><circle cx="60" cy="60" r="58" fill="url(#iconGrad)" stroke="rgba(255,255,255,0.18)"/><g stroke="#fff" stroke-width="3" fill="none"><circle cx="38" cy="60" r="8" fill="#fff"/><circle cx="82" cy="38" r="8" fill="#fff"/><circle cx="82" cy="82" r="8" fill="#fff"/><line x1="38" y1="60" x2="82" y2="38"/><line x1="38" y1="60" x2="82" y2="82"/></g></g>
+
+  <g><rect x="60" y="304" width="78" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="71" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">10 notas</text></g>
+    <g><rect x="148" y="304" width="71" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="159" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">English</text></g>
+    <g><rect x="229" y="304" width="120" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="240" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">State machines</text></g>
+    <g><rect x="359" y="304" width="64" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="370" y="321" font-family="ui-sans-serif, system-ui" font-size="12" font-weight="600" fill="#e2e8f0">Agents</text></g>
+
+  <rect x="0" y="356" width="1200" height="4" fill="url(#accent)"/>
+</svg>

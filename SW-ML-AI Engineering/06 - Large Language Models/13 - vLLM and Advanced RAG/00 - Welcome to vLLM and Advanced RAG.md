@@ -1,3 +1,5 @@
+![Banner del Curso vLLM and Advanced RAG](vllm-rag-course-banner.svg)
+
 # 🏷️ Welcome to vLLM and Advanced RAG
 
 ## 🎯 Learning Objectives

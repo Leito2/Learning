@@ -1,3 +1,5 @@
+![Banner del Curso Go Fundamentals](go-fundamentals-course-banner.svg)
+
 # 👋 Welcome to Go Fundamentals
 
 ## 🎯 Learning Objectives

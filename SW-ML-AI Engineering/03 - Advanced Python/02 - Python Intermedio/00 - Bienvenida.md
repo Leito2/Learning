@@ -1,3 +1,5 @@
+![Banner del Curso Python Intermedio](python-intermedio-course-banner.svg)
+
 # 🐍 Bienvenida a Python Intermedio
 
 Bienvenido al segundo módulo del curso completo de Python. En esta etapa dejamos atrás la sintaxis elemental para adentrarnos en mecanismos que hacen que el código sea modular, eficiente y profesional. Para un **ML/AI Engineer**, dominar iteraciones avanzadas y comprensiones acelera la preparación de datasets y la construcción de pipelines de transformación. Para un **Backend Developer**, el manejo de excepciones, módulos y programación orientada a objetos es la base para construir APIs robustas y escalables.

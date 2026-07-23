@@ -1,3 +1,5 @@
+![Banner del Curso Rust Fundamentals](rust-fundamentals-course-banner.svg)
+
 # 👋 Welcome to Rust Fundamentals
 
 ## 🎯 Learning Objectives

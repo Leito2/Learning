@@ -1,3 +1,5 @@
+![Banner del Curso FastAPI for ML](fastapi-ml-course-banner.svg)
+
 # 🚀 Welcome: Backend for ML
 
 Welcome to module 24 of the Machine Learning and AI Engineering program. This unit explores how to build robust, scalable, secure backend infrastructure for serving machine learning models in production.

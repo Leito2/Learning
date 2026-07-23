@@ -1,3 +1,5 @@
+![Banner del Curso Python Básico](python-basico-course-banner.svg)
+
 # 🐍 00 - Bienvenida al Curso de Python Básico
 
 ¡Bienvenido al módulo **01 - Python Básico** del Curso Python Completo! Este curso está diseñado para construir una base sólida en Python, el lenguaje predominante en Machine Learning, Inteligencia Artificial y Backend moderno. Dominar estos fundamentos no es opcional: frameworks como TensorFlow, PyTorch, FastAPI y Django se apoyan directamente en estas estructuras.
