@@ -57,6 +57,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 18 - TensorRT-LLM (3 — English)
 ├── 19 - LLM Gateway Patterns and LiteLLM (7 — English)
 ├── 20 - vLLM Production Serving (9)
+├── 20 - RAG Evaluation Deep Dive (8 — English, NEW — Plan I)
 └── 33 - ML System Design Interviews (11 — English, NEW)
 
 07 - AI Agents y Agentic Systems (50)
@@ -220,6 +221,7 @@ Misceláneo
 | 17 | [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | 11 | ✅ REWRITTEN | 🇬🇧 |
 | 18 | [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM\|TensorRT-LLM]] | 3 | ✅ NEW | 🇬🇧 |
 | 19 | [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 7 | ✅ NEW | 🇬🇧 |
+| 20 | [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida\|vLLM Production Serving]] | 9 | ✅ NEW | 🇪🇸 |
 | 33 | [[06 - Large Language Models/33 - ML System Design Interviews/00 - Welcome to ML System Design Interviews\|ML System Design Interviews]] | 11 | ✅ NEW | 🇬🇧 |
 
