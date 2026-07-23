@@ -241,6 +241,7 @@ Misceláneo
 | 16 | [[07 - AI Agents y Agentic Systems/16 - OpenShell and Agent Sandboxes/00 - Welcome to OpenShell and Agent Sandboxes\|OpenShell and Agent Sandboxes]] | 6 | ✅ NEW | 🇬🇧 |
 | 17 | [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks\|Production Agent Frameworks]] | 8 | ✅ NEW | 🇬🇧 |
 | 18 | [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns\|LangGraph Deep Patterns]] | 10 | ✅ NEW | 🇬🇧 |
+| 19 | [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/00 - Welcome - Why Microsoft Agentic Stack\|Semantic Kernel + AutoGen]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 08 — NLP Avanzado (17 notas)
 
@@ -435,7 +436,7 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 666+ |
+| Notas totales | 672+ |
 | Guías de proyecto | 14 |
 
 ---
