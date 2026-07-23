@@ -225,6 +225,7 @@ Misceláneo
 | 19 | [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 7 | ✅ NEW | 🇬🇧 |
 | 22 | [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor and Structured Generation]] | 6 | ✅ NEW | 🇬🇧 |
 | 23 | [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/00 - Welcome - Serverless LLM Platforms Landscape\|Serverless LLM Platforms]] | 6 | ✅ NEW | 🇬🇧 |
+| 24 | [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks\|Production RAG: Haystack + txtai]] | 6 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 | 21 | [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation\|DSPy and Prompt Compilation]] | 8 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida\|vLLM Production Serving]] | 9 | ✅ NEW | 🇪🇸 |
@@ -437,7 +438,7 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 678+ |
+| Notas totales | 684+ |
 | Guías de proyecto | 14 |
 
 ---
