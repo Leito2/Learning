@@ -59,6 +59,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 20 - vLLM Production Serving (9)
 ├── 20 - RAG Evaluation Deep Dive (8 — English, NEW — Plan I)
 ├── 21 - DSPy and Prompt Compilation (8 — English, NEW — Plan K)
+├── 22 - Instructor and Structured Generation (6 — English, NEW)
 └── 33 - ML System Design Interviews (11 — English, NEW)
 
 07 - AI Agents y Agentic Systems (50)
@@ -222,6 +223,7 @@ Misceláneo
 | 17 | [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | 11 | ✅ REWRITTEN | 🇬🇧 |
 | 18 | [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM\|TensorRT-LLM]] | 3 | ✅ NEW | 🇬🇧 |
 | 19 | [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 7 | ✅ NEW | 🇬🇧 |
+| 22 | [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor and Structured Generation]] | 6 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 | 21 | [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation\|DSPy and Prompt Compilation]] | 8 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida\|vLLM Production Serving]] | 9 | ✅ NEW | 🇪🇸 |
@@ -432,7 +434,7 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 654+ |
+| Notas totales | 660+ |
 | Guías de proyecto | 14 |
 
 ---
