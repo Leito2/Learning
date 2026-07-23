@@ -76,7 +76,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 16 - NLP con Transformers (6)
 └── 17 - NLP Aplicado e Industria (5)
 
-09 - MLOps y Produccion (67+, +OTel)
+09 - MLOps y Produccion (75+, +LangSmith)
 ├── 18 - Experiment Tracking y Model Registry (7)
 ├── 19 - Feature Engineering y Feature Stores (6)
 ├── 20 - Deployment y Serving (6)
@@ -136,7 +136,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 
 13 - Go Engineering (73+, 9 cursos + extra + projects)
 14 - Rust Engineering (73+, 8 cursos + extra + projects)
-15 - Transversal Skills (4 — English)
+15 - Transversal Skills (10 — English, +WebGPU)
 16 - Harness Engineering (10 — English)
 
 Proyectos
@@ -264,6 +264,7 @@ Misceláneo
 | 32 | [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative\|KServe and Knative]] | 3 | ✅ NEW | 🇬🇧 |
 | 33 | [[09 - MLOps y Produccion/33 - Temporal for ML Pipelines/00 - Welcome to Temporal for ML Pipelines\|Temporal for ML Pipelines]] | 3 | ✅ NEW | 🇬🇧 |
 | 34 | [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry for AI Engineers]] | 8 | ✅ NEW | 🇬🇧 |
+| 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 
 ### 10 — Cloud, Infra y Backend (64 notas)
 
@@ -352,6 +353,7 @@ Misceláneo
 | 01 | [[15 - Transversal Skills/01 - Technical English\|Technical English]] | 1 | ✅ | 🇬🇧 |
 | 02 | [[15 - Transversal Skills/02 - Technical Communication and Storytelling\|Technical Communication and Storytelling]] | 1 | ✅ | 🇬🇧 |
 | 03 | [[15 - Transversal Skills/03 - Technical Leadership\|Technical Leadership]] | 1 | ✅ | 🇬🇧 |
+| 04 | [[15 - Transversal Skills/04 - WebGPU and On-Device ML/00 - Welcome to WebGPU and On-Device ML\|WebGPU and On-Device ML]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 16 — Harness Engineering (10 notas)
 
