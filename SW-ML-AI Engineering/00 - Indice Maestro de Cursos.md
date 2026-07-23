@@ -58,6 +58,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 19 - LLM Gateway Patterns and LiteLLM (7 — English)
 ├── 20 - vLLM Production Serving (9)
 ├── 20 - RAG Evaluation Deep Dive (8 — English, NEW — Plan I)
+├── 21 - DSPy and Prompt Compilation (8 — English, NEW — Plan K)
 └── 33 - ML System Design Interviews (11 — English, NEW)
 
 07 - AI Agents y Agentic Systems (50)
@@ -75,7 +76,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 16 - NLP con Transformers (6)
 └── 17 - NLP Aplicado e Industria (5)
 
-09 - MLOps y Produccion (59)
+09 - MLOps y Produccion (67+, +OTel)
 ├── 18 - Experiment Tracking y Model Registry (7)
 ├── 19 - Feature Engineering y Feature Stores (6)
 ├── 20 - Deployment y Serving (6)
@@ -222,6 +223,7 @@ Misceláneo
 | 18 | [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM\|TensorRT-LLM]] | 3 | ✅ NEW | 🇬🇧 |
 | 19 | [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 7 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
+| 21 | [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation\|DSPy and Prompt Compilation]] | 8 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida\|vLLM Production Serving]] | 9 | ✅ NEW | 🇪🇸 |
 | 33 | [[06 - Large Language Models/33 - ML System Design Interviews/00 - Welcome to ML System Design Interviews\|ML System Design Interviews]] | 11 | ✅ NEW | 🇬🇧 |
 
@@ -261,6 +263,7 @@ Misceláneo
 | 31 | [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | 4 | ✅ NEW | 🇬🇧 |
 | 32 | [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative\|KServe and Knative]] | 3 | ✅ NEW | 🇬🇧 |
 | 33 | [[09 - MLOps y Produccion/33 - Temporal for ML Pipelines/00 - Welcome to Temporal for ML Pipelines\|Temporal for ML Pipelines]] | 3 | ✅ NEW | 🇬🇧 |
+| 34 | [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry for AI Engineers]] | 8 | ✅ NEW | 🇬🇧 |
 
 ### 10 — Cloud, Infra y Backend (64 notas)
 
