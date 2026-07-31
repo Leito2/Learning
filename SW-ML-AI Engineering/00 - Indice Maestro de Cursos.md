@@ -274,6 +274,7 @@ Misceláneo
 | 34 | [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry for AI Engineers]] | 8 | ✅ NEW | 🇬🇧 |
 | 39 | [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems\|Incident Response for AI]] | 6 | ✅ NEW | 🇬🇧 |
 | 40 | [[09 - MLOps y Produccion/40 - Real-time ML Systems/00 - Welcome - Why Real-time ML Systems\|Real-time ML Systems]] | 6 | ✅ NEW | 🇬🇧 |
+| 41 | [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/00 - Welcome - Why Cost Engineering Matters\|Cost Engineering / FinOps for ML]] | 6 | ✅ NEW | 🇬🇧 |
 | 11 | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing\|Advanced Async Patterns (FastAPI 11)]] | 1 | ✅ NEW | 🇬🇧 |
 | 06 | [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/06 - Async Debugging in Production - Common Pitfalls and Detection\|Async Debugging in Production (Background 06)]] | 1 | ✅ NEW | 🇬🇧 |
 | 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
@@ -445,7 +446,7 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 716+ |
+| Notas totales | 722+ |
 | Guías de proyecto | 14 |
 
 ---
