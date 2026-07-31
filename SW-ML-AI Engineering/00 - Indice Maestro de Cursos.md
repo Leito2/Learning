@@ -180,6 +180,7 @@ Misceláneo
 | 05 | [[03 - Advanced Python/05 - Librerias Especificas/00 - Bienvenida\|Librerías Específicas]] | 7 | ✅ | 🇪🇸 |
 | 06 | [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive\|Pydantic Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
 | 07 | [[03 - Advanced Python/07 - Modern Python Typing/00 - Welcome to Modern Python Typing\|Modern Python Typing]] | 8 | ✅ NEW | 🇬🇧 |
+| 08 | [[03 - Advanced Python/08 - Async Python Patterns Reference/00 - Welcome - Why Async Python Patterns Reference\|Async Python Patterns Reference]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 04 — Engineering Fundamentals (23 notas)
 
@@ -270,6 +271,8 @@ Misceláneo
 | 33 | [[09 - MLOps y Produccion/33 - Temporal for ML Pipelines/00 - Welcome to Temporal for ML Pipelines\|Temporal for ML Pipelines]] | 3 | ✅ NEW | 🇬🇧 |
 | 34 | [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry for AI Engineers]] | 8 | ✅ NEW | 🇬🇧 |
 | 39 | [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems\|Incident Response for AI]] | 6 | ✅ NEW | 🇬🇧 |
+| 11 | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing\|Advanced Async Patterns (FastAPI 11)]] | 1 | ✅ NEW | 🇬🇧 |
+| 06 | [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/06 - Async Debugging in Production - Common Pitfalls and Detection\|Async Debugging in Production (Background 06)]] | 1 | ✅ NEW | 🇬🇧 |
 | 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 | 36 | [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | 6 | ✅ NEW | 🇬🇧 |
 
@@ -439,7 +442,7 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 | Módulos numerados (00-16) | 17 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 690+ |
+| Notas totales | 698+ |
 | Guías de proyecto | 14 |
 
 ---
