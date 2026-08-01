@@ -41,7 +41,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 10 - JAX Deep Dive (6 — English)
 └── 11 - OpenCV (7)
 
-06 - Large Language Models (70)
+06 - Large Language Models (76, +Portkey)
 ├── 06 - Fundamentos de LLMs (7)
 ├── 07 - Fine-Tuning y Adaptación de LLMs (6)
 ├── 08 - Generación de Texto y Decodificación (6)
@@ -60,6 +60,11 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 20 - RAG Evaluation Deep Dive (8 — English, NEW — Plan I)
 ├── 21 - DSPy and Prompt Compilation (8 — English, NEW — Plan K)
 ├── 22 - Instructor and Structured Generation (6 — English, NEW)
+├── 23 - Serverless LLM Platforms and Cost Optimization (6 — NEW — Plan S/T)
+├── 24 - Production RAG Frameworks - Haystack and txtai (6 — NEW — Tier-1 #5)
+├── 25 - AI Compliance and Governance (6 — NEW — Tier-2 #3)
+├── 26 - Multimodal Production RAG (6 — NEW — Tier-2 #5)
+├── 27 - Portkey AI Gateway and Observability (6 — NEW — Plan X)
 └── 33 - ML System Design Interviews (11 — English, NEW)
 
 07 - AI Agents y Agentic Systems (50)
@@ -77,7 +82,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 16 - NLP con Transformers (6)
 └── 17 - NLP Aplicado e Industria (5)
 
-09 - MLOps y Produccion (75+, +LangSmith)
+09 - MLOps y Produccion (75+, +LangSmith, +BentoML)
 ├── 18 - Experiment Tracking y Model Registry (7)
 ├── 19 - Feature Engineering y Feature Stores (6)
 ├── 20 - Deployment y Serving (6)
@@ -139,6 +144,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 14 - Rust Engineering (73+, 8 cursos + extra + projects)
 15 - Transversal Skills (10 — English, +WebGPU)
 16 - Harness Engineering (10 — English)
+17 - TypeScript Engineering (6 — English, NEW — Plan Z)
 
 Proyectos
 └── projects/ (14 guías: ML + SE)
@@ -229,6 +235,7 @@ Misceláneo
 | 24 | [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks\|Production RAG: Haystack + txtai]] | 6 | ✅ NEW | 🇬🇧 |
 | 25 | [[06 - Large Language Models/25 - AI Compliance and Governance/00 - Welcome - Why AI Compliance is the New Enterprise Blocker\|AI Compliance and Governance]] | 6 | ✅ NEW | 🇬🇧 |
 | 26 | [[06 - Large Language Models/26 - Multimodal Production RAG/00 - Welcome - Multimodal Production RAG\|Multimodal Production RAG]] | 6 | ✅ NEW | 🇬🇧 |
+| 27 | [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/00 - Welcome - Portkey AI Gateway and Observability\|Portkey AI Gateway and Observability]] | 6 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 | 21 | [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation\|DSPy and Prompt Compilation]] | 8 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida\|vLLM Production Serving]] | 9 | ✅ NEW | 🇪🇸 |
@@ -275,6 +282,7 @@ Misceláneo
 | 39 | [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems\|Incident Response for AI]] | 6 | ✅ NEW | 🇬🇧 |
 | 40 | [[09 - MLOps y Produccion/40 - Real-time ML Systems/00 - Welcome - Why Real-time ML Systems\|Real-time ML Systems]] | 6 | ✅ NEW | 🇬🇧 |
 | 41 | [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/00 - Welcome - Why Cost Engineering Matters\|Cost Engineering / FinOps for ML]] | 6 | ✅ NEW | 🇬🇧 |
+| 42 | [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/00 - Welcome - BentoML Production Model Serving\|BentoML Production Model Serving]] | 6 | ✅ NEW | 🇬🇧 |
 | 11 | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing\|Advanced Async Patterns (FastAPI 11)]] | 1 | ✅ NEW | 🇬🇧 |
 | 06 | [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/06 - Async Debugging in Production - Common Pitfalls and Detection\|Async Debugging in Production (Background 06)]] | 1 | ✅ NEW | 🇬🇧 |
 | 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
@@ -384,6 +392,12 @@ Misceláneo
 | 08 | [[16 - Harness Engineering/08 - Verification and Quality Gates\|Verification and Quality Gates]] | 1 | ✅ | 🇬🇧 |
 | 09 | [[16 - Harness Engineering/09 - Tools, Provider Abstraction, and Memory\|Tools, Provider Abstraction, and Memory]] | 1 | ✅ | 🇬🇧 |
 
+### 17 — TypeScript Engineering (6 notas, NEW)
+
+| # | Curso | Notas | Estado | Idioma |
+|---|-------|:-----:|:------:|:------:|
+| 01 | [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/00 - Welcome - Why TypeScript for AI Engineers\|TypeScript for AI Engineers]] | 6 | ✅ NEW | 🇬🇧 |
+
 ---
 
 ## 🎯 Proyectos (14 guías)
@@ -440,13 +454,14 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 65 |
+| Cursos totales | 68 |
 | Cursos en Español | 26 |
-| Cursos en English | 34 |
-| Módulos numerados (00-16) | 17 |
+| Cursos en English | 42 |
+| Módulos numerados (00-17) | 18 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
-| Notas totales | 722+ |
+| Cursos TypeScript | 1 |
+| Notas totales | 740+ |
 | Guías de proyecto | 14 |
 
 ---
