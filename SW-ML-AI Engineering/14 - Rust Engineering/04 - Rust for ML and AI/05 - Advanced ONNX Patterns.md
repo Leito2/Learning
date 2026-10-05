@@ -11,7 +11,7 @@
 
 Basic ONNX Runtime usage — loading a model, running inference, extracting outputs — is straightforward. But production ML systems require deeper understanding: graph optimization levels that can silently break your model, custom operators for unsupported architectures, quantization pipelines that balance accuracy and speed, and thread-level parallelism configuration that can make or break your P99 latency. This note covers the advanced patterns that separate prototype code from production-grade ONNX Runtime deployments in Rust.
 
-These patterns build directly on [[03 - ONNX Runtime Rust|the core ONNX Runtime concepts]] and complement [[04 - ONNX vs Candle: Choosing the Right Runtime|the runtime decision framework]]. They are essential when you've chosen ONNX Runtime for its GPU performance and need to squeeze every millisecond of latency from your inference pipeline.
+These patterns build directly on [[03 - ONNX Runtime Rust|the core ONNX Runtime concepts]] and complement [[04 - ONNX vs Candle - Choosing the Right Runtime|the runtime decision framework]]. They are essential when you've chosen ONNX Runtime for its GPU performance and need to squeeze every millisecond of latency from your inference pipeline.
 
 ## 1. 🧠 Graph Optimization Levels — Theory and Practice
 
@@ -821,7 +821,7 @@ impl AsyncInferenceEngine {
 
 ## References
 - [[03 - ONNX Runtime Rust|ONNX Runtime Rust]]
-- [[04 - ONNX vs Candle: Choosing the Right Runtime|ONNX vs Candle]]
+- [[04 - ONNX vs Candle - Choosing the Right Runtime|ONNX vs Candle]]
 - [[08 - Model Quantization and Optimization|Model Quantization and Optimization]]
 - [ONNX Runtime Graph Optimizations](https://onnxruntime.ai/docs/performance/graph-optimizations.html)
 - [ONNX Custom Operators](https://onnxruntime.ai/docs/reference/operators/add-custom-op.html)

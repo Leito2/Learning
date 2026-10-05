@@ -16,7 +16,7 @@
 - [[01 - PyO3 - Binding Python to Rust|🔗 01 - PyO3 — Binding Python to Rust]]
 - [[02 - Candle - HuggingFace ML in Rust|🕯️ 02 - Candle — HuggingFace ML in Rust]]
 - [[03 - ONNX Runtime Rust|🔢 03 - ONNX Runtime Rust]]
-- [[04 - ONNX vs Candle: Choosing the Right Runtime|⚖️ 04 - ONNX vs Candle]]
+- [[04 - ONNX vs Candle - Choosing the Right Runtime|⚖️ 04 - ONNX vs Candle]]
 - [[05 - Advanced ONNX Patterns|🔬 05 - Advanced ONNX Patterns]]
 - [[06 - High-Throughput Inference Servers|🚀 06 - High-Throughput Inference Servers]]
 - [[07 - Vector Databases in Rust (Qdrant, pgvector)|🔍 07 — Vector Databases in Rust]]

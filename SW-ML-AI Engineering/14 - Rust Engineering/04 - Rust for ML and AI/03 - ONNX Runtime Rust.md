@@ -709,7 +709,7 @@ codegen-units = 1
 - Caching and reusing sessions is critical — session creation is expensive; never create per-request.
 - TensorRT EP provides the fastest GPU inference (2-5x over CUDA EP) but has limited operator support; CUDA EP is the universal fallback.
 - Dynamic batching and IO binding improve throughput by amortizing kernel launch overhead and enabling zero-copy memory access.
-- ONNX Runtime Rust is the go-to choice for production GPU inference, while pure-Rust alternatives like Candle excel in WASM/browser and zero-dependency environments (see [[04 - ONNX vs Candle: Choosing the Right Runtime|ONNX vs Candle]]).
+- ONNX Runtime Rust is the go-to choice for production GPU inference, while pure-Rust alternatives like Candle excel in WASM/browser and zero-dependency environments (see [[04 - ONNX vs Candle - Choosing the Right Runtime|ONNX vs Candle]]).
 
 ## References
 - [ONNX Runtime Documentation](https://onnxruntime.ai)
