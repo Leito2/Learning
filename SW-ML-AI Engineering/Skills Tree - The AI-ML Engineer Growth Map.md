@@ -180,6 +180,9 @@
 | 🌿 | MLOps Tooling Comparison (Kubeflow vs MLflow vs SageMaker) | 05 > 25 |
 | 🌿 | ML Platform Engineering | 05 > 26 |
 | 🌿 | Feast — Feature Store in Production | 05 > 27 |
+| 🌿 | Real-time Feature Serving with Redis (online store, skew, latency budgets) | 09 > 43 |
+| 🌿 | High-Performance Serving (ONNX Runtime, Triton, shadow/champion-challenger) | 09 > 44 |
+| 🌿 | Grafana, SLOs & Latency Engineering (burn rates, load testing, LLM dashboards) | 09 > 45 |
 | 🌿 | Testing ML Systems (data validation, model validation) | 05 > 28, [[SE extra]] > 03 |
 | 🌿 | CI/CD for ML (GitHub Actions, Argo, model pipelines) | 05 > 29, [[SE extra]] > 04 |
 | 🌿 | High-Throughput Inference (Go) | 13 > 06 > 02, 04 |

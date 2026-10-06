@@ -82,7 +82,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 16 - NLP con Transformers (6)
 └── 17 - NLP Aplicado e Industria (5)
 
-09 - MLOps y Produccion (75+, +LangSmith, +BentoML)
+09 - MLOps y Produccion (75+, +LangSmith, +BentoML, +Redis Feature Serving, +Triton/ONNX, +Grafana/Latency)
 ├── 18 - Experiment Tracking y Model Registry (7)
 ├── 19 - Feature Engineering y Feature Stores (6)
 ├── 20 - Deployment y Serving (6)
@@ -265,7 +265,7 @@ Misceláneo
 | 16 | [[08 - NLP Avanzado/16 - NLP con Transformers/00 - Bienvenida\|NLP con Transformers]] | 6 | ✅ | 🇪🇸 |
 | 17 | [[08 - NLP Avanzado/17 - NLP Aplicado e Industria/00 - Bienvenida\|NLP Aplicado e Industria]] | 5 | ✅ | 🇪🇸 |
 
-### 09 — MLOps y Producción (59 notas)
+### 09 — MLOps y Producción (76 notas)
 
 | # | Curso | Notas | Estado | Idioma |
 |---|-------|:-----:|:------:|:------:|
@@ -285,6 +285,9 @@ Misceláneo
 | 40 | [[09 - MLOps y Produccion/40 - Real-time ML Systems/00 - Welcome - Why Real-time ML Systems\|Real-time ML Systems]] | 6 | ✅ NEW | 🇬🇧 |
 | 41 | [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/00 - Welcome - Why Cost Engineering Matters\|Cost Engineering / FinOps for ML]] | 6 | ✅ NEW | 🇬🇧 |
 | 42 | [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/00 - Welcome - BentoML Production Model Serving\|BentoML Production Model Serving]] | 6 | ✅ NEW | 🇬🇧 |
+| 43 | [[09 - MLOps y Produccion/43 - Real-time Feature Serving with Redis/00 - Welcome to Real-time Feature Serving with Redis\|Real-time Feature Serving with Redis]] | 5 | ✅ NEW | 🇬🇧 |
+| 44 | [[09 - MLOps y Produccion/44 - High-Performance Model Serving - Triton and ONNX Runtime/00 - Welcome to High-Performance Model Serving\|High-Performance Model Serving — Triton and ONNX Runtime]] | 6 | ✅ NEW | 🇬🇧 |
+| 45 | [[09 - MLOps y Produccion/45 - Grafana and Latency Engineering for ML Systems/00 - Welcome to Grafana and Latency Engineering\|Grafana and Latency Engineering]] | 6 | ✅ NEW | 🇬🇧 |
 | 11 | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing\|Advanced Async Patterns (FastAPI 11)]] | 1 | ✅ NEW | 🇬🇧 |
 | 06 | [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/06 - Async Debugging in Production - Common Pitfalls and Detection\|Async Debugging in Production (Background 06)]] | 1 | ✅ NEW | 🇬🇧 |
 | 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
@@ -458,14 +461,14 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 70 |
+| Cursos totales | 73 |
 | Cursos en Español | 26 |
-| Cursos en English | 44 |
+| Cursos en English | 47 |
 | Módulos numerados (00-17) | 18 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
 | Cursos TypeScript | 1 |
-| Notas totales | 754+ |
+| Notas totales | 771+ |
 | Guías de proyecto | 14 |
 
 ---

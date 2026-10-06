@@ -527,6 +527,9 @@ SW-ML-AI Engineering/
 │   ├── 31 - Evidently AI and Phoenix (4 EN)
 │   ├── 32 - KServe and Knative     (3 EN)
 │   └── 33 - Temporal for ML Pipelines (3 EN)
+│   └── 43 - Real-time Feature Serving with Redis (5 EN)
+│   └── 44 - High-Performance Model Serving - Triton and ONNX Runtime (6 EN)
+│   └── 45 - Grafana and Latency Engineering for ML Systems (6 EN)
 │
 ├── 10 - Cloud, Infra/                  (64 notes: 20 Spanish + 44 English)
 │   ├── 22 - Cloud Computing        (6)
@@ -793,6 +796,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 50 | **Banners SVG para los 3 cursos nuevos** | 3 banners SVG generados en paralelo (subagents `general`): Portkey (7.1 KB, red gradient), BentoML (6.9 KB, orange gradient), TypeScript (7.05 KB, cyan-blue gradient). Todos 4-7 KB, self-contained, system fonts only, replican estructura del LLM Gateway banner. | 3 SVG files |
 | 51 | **Embed de banners en 3 Welcome notes** | Añadir `![Banner del Curso X](<slug>-course-banner.svg)` como línea 2 (después del H1) en cada Welcome note. | 3 markdown files |
 | 52 | **Crear cursos Apache Flink for Real-time ML (10/46) + Stream Processing Engines Compared (10/47) — Gap-closing F1** | 14 notas, 3,506 líneas, English. Flink: architecture, time/watermarks, state/exactly-once, SQL features, PyFlink, laptop ops, capstone Kafka→Flink→Redis. Engines: execution models, Spark SS for ML ingestion, Python-native (Bytewax/Quix/Faust/Kafka Streams — Bytewax sin release desde nov-2024), lab 3 motores, decision framework. Main thread, 0 subagents; todos los códigos de compresión ejecutados. Ver `PLAN - Cierre de Gaps y Proyectos.md` (raíz). | `10 - Cloud, Infra y Backend/46 - Apache Flink for Real-time ML/`, `.../47 - Stream Processing Engines Compared/` |
+| 53 | **Crear cursos Redis Feature Serving (09/43) + Triton/ONNX Runtime (09/44) + Grafana & Latency Engineering (09/45) — Gap-closing F2** | 17 notas, ~3,570 líneas, English. Redis: data modeling (listpack, hash tags, pipelining, Lua monotonic writes), Streams vs Kafka, point-in-time/skew, latency budgets. Serving: ONNX Runtime (benchmark real en i5-10300H: ~17× vs XGBoost nativo a batch 1, se invierte a batch 500), Triton (FIL, dynamic batching), ensembles/perf_analyzer, shadow/champion-challenger (McNemar, sample size), choosing a stack (**TorchServe archivado ago-2025**). Grafana: metrics design, dashboards as code, SLOs/burn rates (cap 1/(1-s)), load-testing methodology, LLM dashboards. Todos los códigos de compresión ejecutados. | `09 - MLOps y Produccion/43…`, `/44…`, `/45…` |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 
