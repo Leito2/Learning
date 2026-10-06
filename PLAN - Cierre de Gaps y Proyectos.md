@@ -29,7 +29,7 @@ Además, respaldar el CV con **5 proyectos medibles** (P0 gateway compartido + P
 |---|---|
 | 💻 Hardware | **i5-10300H (4C/8T), 8 GB de RAM y 4 GB de VRAM.** La CPU será probablemente el límite de throughput. Todo debe funcionar así. Lo que necesite más queda marcado como `⏳ 16GB` |
 | 🐳 Ejecución | **Local con Docker Compose** como camino principal. Servicios cloud gratis (Langfuse Cloud, Qdrant Cloud free) se pueden usar |
-| ☁️ Cloud | **Solo P3 en GCP**, con Terraform para crear y destruir, alerta de presupuesto antes del primer deploy y nada que cobre en reposo |
+| ☁️ Cloud | **Solo P3 en GCP**, con Terraform para crear y destruir, alerta de presupuesto antes del primer deploy y nada que cobre en reposo. **BigQuery** (P3) dentro del free tier: 10 GB, 1 TB de consultas/mes, load jobs gratis. **GKE** solo documentado (cobra por nodos o pods) |
 | 💸 Gasto | **$0 hasta el testeo final.** El LLM se llama vía mock o local (Ollama) durante el desarrollo. Haiku se usa **solo en P3** y **solo en la prueba final** |
 | 📏 Honestidad | Las metas (20k ev/s, p95 de 80 ms) son objetivos, no resultados garantizados. Al CV va la cifra medida, con su hardware declarado |
 | 🌐 Idioma | Cursos nuevos del vault en **inglés** (Language Policy del Continuity Prompt). Planes en español. READMEs de proyectos en inglés (portafolio) |
@@ -164,8 +164,8 @@ Neo4j y Cypher · modelado de grafos de conocimiento (incluido el grafo de un va
 |---|---|---|---|---|
 | Modelo | **XGBoost** (ONNX) + challenger PyTorch en shadow | **Laya** + agente LangGraph para casos de baja confianza | **Haiku** (solo en el test final) + Qdrant/pgvector | **Gemma 4 31B** (texto y visión, free tier) vía P0 sobre el **vault de Obsidian** |
 | Motor / núcleo | **Flink** (SQL) | **Quix Streams** | **Spark Structured Streaming** | **Neo4j + LangGraph** (GraphRAG) |
-| Transporte | Kafka (KRaft) | Redpanda (API Kafka) + FastAPI | Redpanda + outbox CDC + **SSE** | MCP + SSE |
-| Cloud | Local | Local | **GCP** (Cloud Run + Qdrant Cloud free + Vertex AI Pipelines) | Local |
+| Transporte | Kafka (KRaft) + **gRPC** (scoring síncrono) | Redpanda (API Kafka) + FastAPI | Redpanda + outbox CDC + **SSE** | MCP + SSE |
+| Cloud | Local | Local | **GCP** (Cloud Run + Qdrant Cloud free + Vertex AI Pipelines + **BigQuery** free tier) | Local |
 | Gasto | $0 | $0 | $0 hasta el test final | $0 |
 | Absorbe del CV | Evidently, backtesting en contenedor sobre MinIO, auditoría de explicaciones | `judgekit` (Evaluation Suite completa) + Langfuse | Auditoría de alucinaciones, Vertex AI Pipelines, caché invalidada por CDC | Multi-Agent Research System completo + GraphRAG sobre las notas de estudio |
 | Frase del CV | "Kafka + Flink, X ev/s, p95 de Y ms" | "Router System 1/2: X% resuelto en Y ms, Z% menos costo de LLM" | "RAG con índice en vivo: N s de frescura, TTFT de X ms, faithfulness de Y" | "Agentes de investigación de estudio sobre ~1.000 notas de Obsidian: X% en multi-hop, +Y pp sobre RAG vectorial, Z notas desactualizadas detectadas" |
@@ -260,6 +260,7 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | 2026-10-06 | Los 4 repos quedan **públicos** con CI en verde; commit `edbf348` de Learning subido. Se mantienen 4 repos + P4 (el gateway no se fusiona) |
 | 2026-10-06 | **v2 de los planes:** los 3 proyectos del CV quedan aparte y se absorben en P0–P4 (§8). P0 v2 (todo el gateway en Go + caché semántica y breaker obligatorios, Groq, Gemma 4, hedging, guardrails, UI). `judgekit` nace en P2 (Evaluation Suite + Langfuse). P1 suma Evidently, SageMaker Processing local y el grafo para P4. P3 suma auditoría de alucinaciones, Vertex AI Pipelines y caché invalidada por CDC. **P4 `graphrag-research-agents`** creado (plan + M0 + repo público). Nuevo curso pendiente C8 GraphRAG |
 | 2026-10-06 | **v3:** (1) **sin SageMaker**: la evaluación batch corre en contenedores propios con KFP local sobre MinIO; (2) **P4 se re-enfoca** en investigación de estudio sobre el **vault de Obsidian** (`Learning/SW-ML-AI Engineering`, ~1.000 notas, ~4.700 wikilinks): grafo determinista desde wikilinks y tags, detección de notas desactualizadas, notas de investigación escritas en una carpeta propia del vault; (3) **Tavily reemplazado** por SearXNG self-hosted + Crawl4AI + arXiv/OpenAlex (Exa opcional); (4) se elimina la integración P1 → P4 (`entity-edges`) |
+| 2026-10-06 | **v4:** `VAULT_CLOUD_CONSENT=true` en P4 (decisión del usuario). **gRPC** en P1 (`scoring.proto`: unario, streaming bidireccional, `GetDecision`; deadlines, health, reflection, `buf`; experimento E11 REST vs gRPC; hito M7c). **BigQuery** en P3 (free tier: load jobs + Storage Write API, tablas particionadas, Terraform, Looker Studio; el mismo SQL corre en DuckDB vía sqlglot en la CI; hito M6b). SSE ya está en P0, P3 y P4; GKE queda documentado como alternativa (no es $0) |
 
 
 ---
