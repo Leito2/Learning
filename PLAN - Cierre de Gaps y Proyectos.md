@@ -14,7 +14,7 @@ Cerrar los gaps del stack de **ML en tiempo real + LLMOps** que aparecen en el r
 | Capa | Tecnologías objetivo |
 |---|---|
 | Ingesta / mensajería | Kafka |
-| Procesamiento de streams | Apache Flink (+ Spark Structured Streaming, Bytewax como contraste) |
+| Procesamiento de streams | Apache Flink (+ Spark Structured Streaming, Quix Streams como contraste) |
 | Feature store en tiempo real | Redis |
 | Serving de modelos | Triton, TorchServe, vLLM (+ ONNX Runtime) |
 | Transporte de baja latencia | gRPC, WebSockets, SSE (streaming de tokens) |
@@ -87,7 +87,7 @@ Va **justo después de C1** para no perder el hilo.
 | 01 | Execution Models | Por evento (Flink) vs micro-lotes (Spark) vs continuous/Real-Time Mode de Spark (verificar estado actual) vs Python nativo |
 | 02 | Spark Structured Streaming for ML Ingestion | `foreachBatch`, lotes de embeddings, triggers y estado. Complementa `10/27/04` sin duplicarlo |
 | 03 | Python-Native Streaming: Bytewax, Faust, Quix + Kafka Streams | Dataflows en Python, costo operativo, cuándo bastan |
-| 04 | Lab — Same Pipeline, Three Engines | Kafka → features en ventana → Redis en Flink, Spark y Bytewax, midiendo el p95 de cada uno |
+| 04 | Lab — Same Pipeline, Three Engines | Kafka → features en ventana → Redis en Flink, Spark y Quix Streams, midiendo el p95 de cada uno |
 | 05 | Decision Framework and Interview Playbook | Árbol de decisión, trade-offs y cómo justificar la elección en system design |
 
 ### C3 · `09/43 - Real-time Feature Serving with Redis` 🟠 Prioridad 2 → P1, P2
@@ -159,7 +159,7 @@ Va **justo después de C1** para no perder el hilo.
 | | P1 · Fraude en tiempo real | P2 · Router inteligente | P3 · RAG en vivo |
 |---|---|---|---|
 | Modelo | **XGBoost** (ONNX) + challenger PyTorch en shadow | **Laya** + agente LangGraph para casos de baja confianza | **Haiku** (solo en el test final) + Qdrant/pgvector |
-| Motor de stream | **Flink** (SQL) | **Bytewax** | **Spark Structured Streaming** |
+| Motor de stream | **Flink** (SQL) | **Quix Streams** | **Spark Structured Streaming** |
 | Transporte | Kafka (KRaft) | Redpanda (API Kafka) + FastAPI | Redpanda + outbox CDC + **SSE** |
 | Cloud | Local | Local | **GCP** (Cloud Run + Qdrant Cloud free) |
 | Gasto | $0 | $0 | $0 hasta el test final |
@@ -257,3 +257,4 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | 2026-10-05 | Cada proyecto tiene un README progresivo: teoría y visión macro primero, detalle técnico al final de cada componente |
 | 2026-10-05 | F1 completada. Hallazgo: Bytewax sin release desde nov-2024 (v0.21.1); Quix Streams activo (v3.27.0, sep-2026) → **propuesto** cambiar el motor de P2 a Quix Streams (pendiente de confirmación del usuario) |
 | 2026-10-06 | F2 completada. Hallazgo: **TorchServe archivado** (ago-2025) → el curso `09/30` necesita aviso de deprecación (pendiente de confirmación); P1 sigue sin depender de él |
+| 2026-10-06 | **Confirmado por el usuario:** P2 usa **Quix Streams** en lugar de Bytewax (plan de P2 actualizado). Aviso de deprecación agregado a `09/30 - TorchServe` |

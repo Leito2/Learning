@@ -1,5 +1,7 @@
 # 🏷️ Welcome to TorchServe
 
+> ⚠️ **Deprecation notice (Oct 2026):** the `pytorch/serve` repository was **archived in August 2025** (last release v0.12.0, Sep 2024) — no fixes or security patches. Keep this course to understand handler-based serving and to maintain legacy deployments. For new PyTorch serving, export to ONNX/TensorRT and use Triton, BentoML, or in-process ONNX Runtime; for LLMs, use vLLM/SGLang. See [[../44 - High-Performance Model Serving - Triton and ONNX Runtime/05 - Choosing a Serving Stack|Choosing a Serving Stack]].
+
 ## 🎯 Learning Objectives
 - Explain why a dedicated model serving framework is necessary beyond FastAPI/Flask wrappers
 - Identify the three core components of the TorchServe ecosystem: server, model archiver, and handlers
