@@ -9,7 +9,7 @@
 
 ## Introduction
 
-[[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]] showed that pgvector with `halfvec` and tuned HNSW comfortably handles ~50M vectors on a single node. But what happens at 100M, 500M, or a billion? The classic HNSW graph requires the **entire index** to fit in RAM to maintain low latency — each query random-walks through tens of thousands of pointers, and any of those pointers hitting disk turns a 10 ms query into a 500 ms query. RAM scaling stops being economical past ~256 GB on commodity servers, which puts a hard ceiling around 50–80M `halfvec(1536)` vectors per node.
+[[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]] showed that pgvector with `halfvec` and tuned HNSW comfortably handles ~50M vectors on a single node. But what happens at 100M, 500M, or a billion? The classic HNSW graph requires the **entire index** to fit in RAM to maintain low latency — each query random-walks through tens of thousands of pointers, and any of those pointers hitting disk turns a 10 ms query into a 500 ms query. RAM scaling stops being economical past ~256 GB on commodity servers, which puts a hard ceiling around 50–80M `halfvec(1536)` vectors per node.
 
 **pgvectorscale**, released by Timescale in 2024 and open-sourced under the PostgreSQL license, solves this. It ships a Postgres extension built on Rust that implements **StreamingDiskANN**, a variant of Microsoft Research's DiskANN algorithm purpose-built for streaming inserts and Postgres's storage model. The headline claim — backed by their public benchmark — is **2–3× faster queries than Pinecone Pod-based Standard, at 75% lower cost, for 100M-vector workloads**. Whether you trust the marketing or not, the underlying algorithm is real and the open-source extension delivers measurable wins on disk-resident workloads.
 
@@ -85,7 +85,7 @@ The single most-tuned parameter in production is `query_rescore`. It controls th
 
 ### 2.3 The Migration Path: HNSW → DiskANN
 
-A common scaling story: a team starts with `vector` + HNSW at 1M vectors. Grows to 10M and migrates to `halfvec` + HNSW per [[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]]. At ~30M vectors, RAM pressure becomes uncomfortable and queries get slower. **At that point, pgvectorscale DiskANN is the natural next step.** The migration is straightforward because both extensions coexist:
+A common scaling story: a team starts with `vector` + HNSW at 1M vectors. Grows to 10M and migrates to `halfvec` + HNSW per [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]]. At ~30M vectors, RAM pressure becomes uncomfortable and queries get slower. **At that point, pgvectorscale DiskANN is the natural next step.** The migration is straightforward because both extensions coexist:
 
 ```sql
 -- Already have: HNSW index on the halfvec column
@@ -181,7 +181,7 @@ Compare to Pinecone Standard for 100M vectors: ~\$3,200/month.
 
 **Failure mode 1: Slow random-read storage.** Symptom: p99 latency spikes to 100+ ms randomly. Cause: storage is the bottleneck — usually EBS gp3 with insufficient IOPS, or a noisy-neighbor problem on shared infrastructure. Fix: use instance-local NVMe (`i4i`, `r6id`), or provision higher gp3 IOPS.
 
-**Failure mode 2: Cold cache after restart.** Symptom: first 10 minutes after Postgres restart, queries are 5–10× slower. Cause: the compressed graph isn't in OS buffer cache yet. Fix: use `pg_prewarm` (see [[36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]]) to pre-load the index pages on startup.
+**Failure mode 2: Cold cache after restart.** Symptom: first 10 minutes after Postgres restart, queries are 5–10× slower. Cause: the compressed graph isn't in OS buffer cache yet. Fix: use `pg_prewarm` (see [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]]) to pre-load the index pages on startup.
 
 **Failure mode 3: Slow index builds.** Symptom: `CREATE INDEX` on 100M vectors takes 24+ hours. Cause: insufficient `maintenance_work_mem` or single-threaded build. Fix: pgvectorscale supports parallel builds — set `max_parallel_maintenance_workers` and ensure `maintenance_work_mem` ≥ 4× the compressed index size.
 
@@ -317,9 +317,9 @@ The combination of TimescaleDB's chunk pruning and pgvectorscale's disk-resident
 
 ## References
 
-- [[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — HNSW tuning baseline
-- [[36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation]] — cost framing referenced here
-- [[36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication]] — pg_prewarm for cold-start mitigation
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — HNSW tuning baseline
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation|02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation]] — cost framing referenced here
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication]] — pg_prewarm for cold-start mitigation
 - [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/03 - Binary Quantization, Scalar Quantization and RaBitQ]] — binary quantization theory
 - [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/04 - Production FAISS Engineering - Index Factories, Sharding and GPU]] — DiskANN in FAISS context
 - [[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/01 - PostgreSQL Avanzado]] — Postgres fundamentals for hypertables

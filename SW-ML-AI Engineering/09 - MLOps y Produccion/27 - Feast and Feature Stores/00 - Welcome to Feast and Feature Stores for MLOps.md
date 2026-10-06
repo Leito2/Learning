@@ -13,7 +13,7 @@
 
 Feature stores are the **missing bridge** between data engineering and model serving. Data engineers build ETL pipelines that compute features offline — yet data scientists train models with point-in-time correct snapshots, and ML engineers serve those same features online at sub-10ms latency. Without a feature store, these three worlds operate in silos, causing the notorious **training-serving skew**: features used at inference differ from those used at training. This silent killer of ML models costs companies millions in degraded predictions and undetected data leakage.
 
-You already operate Redis at the heart of your LLM Edge Gateway for semantic caching. Feature stores represent the **logical extension** of that infrastructure: Redis becomes the online serving layer, while Feast provides the abstraction — defining features once, retrieving them consistently whether training or serving. If you have completed [[../../05 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/...]], you understand feature engineering principles; Feast operationalizes them at scale. Combined with [[../../05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/...]] (MLflow model registry), [[../17 - ML Platform Engineering/...]] (platform engineering patterns), and [[../../06 - Cloud, Infra y Backend/...]] (infrastructure), you assemble a complete MLOps platform — the end-to-end thinking that distinguishes senior ML Engineers in technical interviews.
+You already operate Redis at the heart of your LLM Edge Gateway for semantic caching. Feature stores represent the **logical extension** of that infrastructure: Redis becomes the online serving layer, while Feast provides the abstraction — defining features once, retrieving them consistently whether training or serving. If you have completed [[09 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida|...]], you understand feature engineering principles; Feast operationalizes them at scale. Combined with [[09 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|...]] (MLflow model registry), [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|...]] (platform engineering patterns), and [[00 - Indice Maestro de Cursos|...]] (infrastructure), you assemble a complete MLOps platform — the end-to-end thinking that distinguishes senior ML Engineers in technical interviews.
 
 Feature stores are **interview gold**. Airbnb, Uber, Spotify, Stripe, and DoorDash all built internal feature stores, and candidates who discuss point-in-time correctness, online/offline consistency, and feature registry governance stand out dramatically. This course bridges your Redis expertise into the MLOps feature store domain, completing the stack you partially cover in your portfolio projects. By the end, you will design, deploy, and govern a production feature store integrated with your existing LLM systems.
 
@@ -33,11 +33,11 @@ Feature stores are **interview gold**. Airbnb, Uber, Spotify, Stripe, and DoorDa
 
 | Skill | Required Level | Where to Refresh |
 |---|---|---|
-| Python | Intermediate (classes, decorators, type hints) | [[../../01 - Python/]] |
+| Python | Intermediate (classes, decorators, type hints) | [[04 - Engineering Fundamentals/03 - Python Production Flow for MLOps/01 - Python Profiling for ML Inference\|01 - Python]] |
 | Redis | Basic (SET/GET, sorted sets, streams) | Your LLM Edge Gateway project |
 | ML Model Serving | Concepts (online/batch inference, latency budgets) | [[../../05 - MLOps y Produccion/17 - Model Serving/]] |
-| Docker & Kubernetes | Basic (Dockerfile, pods, services) | [[../../06 - Cloud, Infra y Backend/]] |
-| Feature Engineering | Concepts (aggregations, embeddings, time windows) | [[../../05 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/]] |
+| Docker & Kubernetes | Basic (Dockerfile, pods, services) | [[00 - Indice Maestro de Cursos\|06 - Cloud, Infra y Backend]] |
+| Feature Engineering | Concepts (aggregations, embeddings, time windows) | [[09 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida\|19 - Feature Engineering y Feature Stores]] |
 
 ## 🔧 Tools You Will Use
 

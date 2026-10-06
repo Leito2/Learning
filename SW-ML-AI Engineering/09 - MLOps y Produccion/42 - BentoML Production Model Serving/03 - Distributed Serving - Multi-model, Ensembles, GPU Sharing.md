@@ -459,7 +459,7 @@ class Service2:
 - BentoML Runners — [docs.bentoml.com/en/latest/concepts/runner](https://docs.bentoml.com/en/latest/concepts/runner.html)
 - BentoML distributed — [docs.bentoml.com/en/latest/guides/distributed](https://docs.bentoml.com/en/latest/guides/distributed.html)
 - BentoML examples — [github.com/bentoml/BentoML/tree/main/examples](https://github.com/bentoml/BentoML/tree/main/examples)
-- [[09 - MLOps y Produccion/32 - KServe and Knative|KServe]] — K8s-native serving alternative
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — multi-cloud deploy
+- [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative|KServe]] — K8s-native serving alternative
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — multi-cloud deploy
 - [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/04 - Deployment Targets - Kubernetes, Lambda, SageMaker, Cloud Run|Note 04 — Deployment Targets]]
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM]] — LLM serving comparison
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM]] — LLM serving comparison

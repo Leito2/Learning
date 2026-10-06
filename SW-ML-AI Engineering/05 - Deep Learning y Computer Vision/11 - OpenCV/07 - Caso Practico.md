@@ -528,9 +528,9 @@ Has recorrido el camino completo: desde la manipulación de píxeles hasta un si
 ## 📚 Próximos pasos recomendados
 
 1. **Integra con OCR**: usa Tesseract (`pytesseract`) sobre el output binarizado para extraer texto.
-2. **Despliega como microservicio**: dockeriza y sirve con FastAPI (ver [[../10 - Cloud, Infra y Backend/31 - FastAPI for ML/03 - Streaming, Background Tasks, and Real-Time Endpoints|FastAPI para ML]]).
+2. **Despliega como microservicio**: dockeriza y sirve con FastAPI (ver [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/03 - Streaming, Background Tasks, and Real-Time Endpoints|FastAPI para ML]]).
 3. **Evalúa con métricas**: implementa tests visuales con Playwright o un dashboard de revisión humana.
-4. **Avanza a deep learning**: el curso [[../05 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/00 - Bienvenida|Computer Vision Avanzada]] cubre detección y segmentación con CNNs.
-5. **Multimodal**: si los documentos contienen imágenes + texto, el curso [[../05 - Deep Learning y Computer Vision/05 - Multimodal AI/00 - Bienvenida|Multimodal AI]] te enseña a procesarlos.
+4. **Avanza a deep learning**: el curso [[05 - Deep Learning y Computer Vision/04 - Computer Vision Avanzada/00 - Bienvenida|Computer Vision Avanzada]] cubre detección y segmentación con CNNs.
+5. **Multimodal**: si los documentos contienen imágenes + texto, el curso [[05 - Deep Learning y Computer Vision/05 - Multimodal AI/00 - Bienvenida|Multimodal AI]] te enseña a procesarlos.
 
 ¡Felicitaciones por completar el curso de OpenCV!

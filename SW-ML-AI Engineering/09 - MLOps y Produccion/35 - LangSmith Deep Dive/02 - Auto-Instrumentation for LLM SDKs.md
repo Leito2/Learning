@@ -360,7 +360,7 @@ def my_step(query):
 ## References
 
 - [[00 - Welcome to LangSmith|Welcome]] — course map.
-- [[01 - LangSmith Core|Core primitives]] — traces, runs, projects.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/01 - LangSmith Core - Traces Runs Projects|Core primitives]] — traces, runs, projects.
 - [[03 - Datasets and Evaluations|Datasets]] — versioned test sets.
-- [[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|LangGraph]] — native integration.
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph]] — native integration.
 - LangSmith auto-instrumentation: https://docs.smith.langchain.com/observability/how_to_guides/annotate_code

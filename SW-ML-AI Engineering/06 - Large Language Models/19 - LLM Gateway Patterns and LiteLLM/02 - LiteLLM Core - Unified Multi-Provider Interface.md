@@ -182,7 +182,7 @@ response = litellm.embedding(
 vectors = [item["embedding"] for item in response.data]
 ```
 
-Local embedding models are accessible as `openai/<model>` with an `api_base` pointed at a vLLM or SGLang server. This is the integration point with the Qdrant/pgvector material in [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search]].
+Local embedding models are accessible as `openai/<model>` with an `api_base` pointed at a vLLM or SGLang server. This is the integration point with the Qdrant/pgvector material in [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases and Semantic Search]].
 
 ### 4.2 Image Generation
 
@@ -371,7 +371,7 @@ A few operational notes that matter at scale:
 - `litellm.completion_cost()` returns USD cost for any completed call, using a per-model dictionary that is user-extensible
 - The 4-provider demo in 30 lines demonstrates provider parity: GPT-4o, Claude 3.5, Gemini 2.0, and Llama 3.3 70B all callable from one `acompletion()` call
 - BerriAI's open-source deployment processes 100M+ requests/day; the library is the de facto Python gateway standard
-- The pattern generalizes: any OpenAI-compatible endpoint (vLLM, SGLang, Ollama) becomes a first-class provider via `api_base` — see [[06 - Large Language Models/13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference]]
+- The pattern generalizes: any OpenAI-compatible endpoint (vLLM, SGLang, Ollama) becomes a first-class provider via `api_base` — see [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT, SGLang and Next-Gen Inference]]
 
 ## References
 

@@ -9,9 +9,9 @@
 
 ## Introduction
 
-A single Go server can comfortably handle 10,000-50,000 idle WebSocket connections. But when each connection runs a goroutine reading frames, writing tokens, and holding a 256KB buffer, that number drops dramatically. Add GPU inference into the mix—where a single LLM generation can saturate a goroutine for seconds—and the single-server model collapses under real-world load. This is precisely the scaling challenge you'll face when evolving the [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] from a single-instance prototype to a multi-instance production service.
+A single Go server can comfortably handle 10,000-50,000 idle WebSocket connections. But when each connection runs a goroutine reading frames, writing tokens, and holding a 256KB buffer, that number drops dramatically. Add GPU inference into the mix—where a single LLM generation can saturate a goroutine for seconds—and the single-server model collapses under real-world load. This is precisely the scaling challenge you'll face when evolving the [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] from a single-instance prototype to a multi-instance production service.
 
-This note connects your existing Redis knowledge from the [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway's caching layer]] to WebSocket backplane patterns, and builds on Kubernetes experience from [[../../06 - Cloud, Infra y Backend/22 - Cloud Computing/02 - Computo en la Nube|cloud infrastructure]] for deployment. The scaling patterns here apply equally to the [[../18 - vLLM and Advanced RAG/01 - vLLM and Production-Grade LLM Serving|vLLM serving infrastructure]] where connection management is the bottleneck between model throughput and user experience.
+This note connects your existing Redis knowledge from the [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway's caching layer]] to WebSocket backplane patterns, and builds on Kubernetes experience from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/02 - Computo en la Nube|cloud infrastructure]] for deployment. The scaling patterns here apply equally to the [[../18 - vLLM and Advanced RAG/01 - vLLM and Production-Grade LLM Serving|vLLM serving infrastructure]] where connection management is the bottleneck between model throughput and user experience.
 
 ---
 
@@ -462,7 +462,7 @@ flowchart TD
 
 ### 2.5 Application in ML/AI Systems 🤖
 
-- **[[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]**: Add Redis Pub/Sub alongside the existing Redis cache. Each WS server subscribes to `ws:session:*`. With 3 WS servers behind the load balancer, a client connected to any server can participate in any session—the load balancer's sticky session guarantees the same client reaches the same server, but Redis ensures cross-server sessions work.
+- **[[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]**: Add Redis Pub/Sub alongside the existing Redis cache. Each WS server subscribes to `ws:session:*`. With 3 WS servers behind the load balancer, a client connected to any server can participate in any session—the load balancer's sticky session guarantees the same client reaches the same server, but Redis ensures cross-server sessions work.
 - **Sudoku Together reference**: Your existing project already uses Redis for game state synchronization. The WebSocket message routing through pub/sub follows the exact same pattern—just with WS frame payloads instead of game state objects.
 
 ### 2.6 Common Pitfalls ⚠️ + Tips
@@ -1040,6 +1040,6 @@ Scale the LLM Edge Gateway from a single Fiber instance to a 3-node cluster. Imp
 
 - nginx WebSocket proxying — https://nginx.org/en/docs/http/websocket.html
 - Redis Pub/Sub — https://redis.io/docs/latest/develop/interact/pubsub/
-- [[../../../Go Engineering/03 - Microservices with Go/04 - Testing Microservices in Go|Testing Microservices in Go]] — load test your WS endpoints
-- [[../../../Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Rate Limiting and Circuit Breakers]]
-- [[../../06 - Cloud, Infra y Backend/22 - Cloud Computing/05 - Caso Practico - Arquitectura Cloud para ML|Cloud Architecture for ML]]
+- [[13 - Go Engineering/03 - Microservices with Go/04 - Testing Microservices in Go|Testing Microservices in Go]] — load test your WS endpoints
+- [[13 - Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Rate Limiting and Circuit Breakers]]
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/05 - Caso Practico - Arquitectura Cloud para ML|Cloud Architecture for ML]]

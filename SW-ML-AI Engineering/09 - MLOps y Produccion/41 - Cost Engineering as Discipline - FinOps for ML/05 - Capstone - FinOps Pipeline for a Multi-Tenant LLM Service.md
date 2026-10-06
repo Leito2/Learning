@@ -677,13 +677,13 @@ sequenceDiagram
 
 ## References
 
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals|Note 01 — Cost Fundamentals]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals - Token Economics and Pricing Models|Note 01 — Cost Fundamentals]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility - Per-Tenant Attribution, Chargeback, and Showback|Note 02 — Cost Visibility]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/03 - Cost Optimization Patterns|Note 03 — Cost Optimization]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/04 - Forecasting and Budget Management|Note 04 — Forecasting]]
 - Prophet — [facebook.github.io/prophet](https://facebook.github.io/prophet/)
 - LangFuse Cost Tracking — [langfuse.com/docs/observability/features/scores](https://langfuse.com/docs/observability/features/scores)
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]]
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]]
-- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems|Incident Response]] — cost anomaly runbook
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — reserved capacity planning
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]]
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]]
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems|Incident Response]] — cost anomaly runbook
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — reserved capacity planning

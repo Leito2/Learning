@@ -13,7 +13,7 @@ Temporal is a durable execution platform: you write workflows as regular code in
 
 For ML pipelines, this distinction is catastrophic versus cosmetic. A training job running on a spot instance that gets reclaimed at 1 hour 59 minutes into a 2-hour run loses 119 minutes of work with every orchestrator except Temporal. A batch inference job processing 1 million documents that crashes on document 847,321 must restart from document 1 — unless Temporal manages the work. A human approval gate that requires a reviewer to click "Approve" over a long weekend cannot live in a Python script's memory for 72 hours. Temporal handles all of these because its execution model is event-sourced: every state change is persisted, and recovery is replay, not restart.
 
-The name "Temporal" comes from the Latin *temporalis* — relating to time. The platform's core promise is that your code runs to completion over **arbitrary time periods**: minutes, hours, days, weeks, or months. Time becomes irrelevant to correctness. This module connects to the deployment pipelines in [[../20 - Deployment y Serving/...|Deployment y Serving]], the CI/CD patterns in [[../29 - CI-CD for ML/...|CI-CD for ML]], and the Go microservices architecture in [[../../13 - Go ML Backend/...|13/06 - Go ML Backend]].
+The name "Temporal" comes from the Latin *temporalis* — relating to time. The platform's core promise is that your code runs to completion over **arbitrary time periods**: minutes, hours, days, weeks, or months. Time becomes irrelevant to correctness. This module connects to the deployment pipelines in [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment y Serving]], the CI/CD patterns in [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI-CD for ML]], and the Go microservices architecture in [[../../13 - Go ML Backend/...|13/06 - Go ML Backend]].
 
 ---
 
@@ -32,8 +32,8 @@ This module contains two core notes that build from durable execution concepts t
 
 - **Python or Go proficiency**: Temporal's Python SDK for ML workflows; Go SDK for high-performance workers. See [[../../13 - Go ML Backend/06 - Go ML Backend|13/06 - Go ML Backend]].
 - **Container orchestration concepts**: Docker, Kubernetes, worker processes. See [[../20 - Deployment y Serving/01 - Docker para ML]].
-- **ML pipeline experience**: Training loops, evaluation, model deployment lifecycle. See [[../23 - Advanced MLOps/...|09/23 - Advanced MLOps]].
-- **CI/CD basics**: Automated deployment, approval gates. See [[../29 - CI-CD for ML/...|09/29 - CI-CD for ML]].
+- **ML pipeline experience**: Training loops, evaluation, model deployment lifecycle. See [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|09/23 - Advanced MLOps]].
+- **CI/CD basics**: Automated deployment, approval gates. See [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|09/29 - CI-CD for ML]].
 
 ---
 
@@ -100,6 +100,6 @@ python worker.py  # Registers workflow + activities with Temporal
 - [Temporal GitHub Repository](https://github.com/temporalio/temporal)
 - [Temporal Python SDK](https://github.com/temporalio/sdk-python)
 - [[../20 - Deployment y Serving/00 - Bienvenida|09/20 - Deployment y Serving]]
-- [[../23 - Advanced MLOps/...|09/23 - Advanced MLOps]]
-- [[../29 - CI-CD for ML/...|09/29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|09/23 - Advanced MLOps]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|09/29 - CI-CD for ML]]
 - [[../../13 - Go ML Backend/06 - Go ML Backend|13/06 - Go ML Backend]]

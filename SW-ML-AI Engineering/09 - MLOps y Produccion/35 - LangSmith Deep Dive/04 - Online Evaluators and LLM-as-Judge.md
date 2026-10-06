@@ -219,7 +219,7 @@ flowchart LR
     Both --> ReCompile[Trigger re-compilation]
 ```
 
-The offline eval is the **gate**: every PR must pass before merge. The online eval is the **drift detector**: production traffic may degrade even when offline passes (data drift, user distribution shift). Both signals feed into re-compilation ([[../../../06 - Large Language Models/21 - DSPy and Prompt Compilation/06 - Production DSPy - Caching Costs Evaluation.md|DSPy]] or model fine-tuning).
+The offline eval is the **gate**: every PR must pass before merge. The online eval is the **drift detector**: production traffic may degrade even when offline passes (data drift, user distribution shift). Both signals feed into re-compilation ([[06 - Large Language Models/21 - DSPy and Prompt Compilation/06 - Production DSPy - Caching Costs Evaluation|DSPy]] or model fine-tuning).
 
 ## 8. ❌/✅ Antipatterns
 
@@ -344,7 +344,7 @@ if avg < 0.85:
 ## References
 
 - [[00 - Welcome to LangSmith|Welcome]] — course map.
-- [[01 - LangSmith Core|Core primitives]] — runs, traces.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/01 - LangSmith Core - Traces Runs Projects|Core primitives]] — runs, traces.
 - [[03 - Datasets and Evaluations|Datasets]] — offline eval.
-- [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference.md|Judge Bias]] — cross-vendor pattern.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|Judge Bias]] — cross-vendor pattern.
 - LangSmith online evaluators: https://docs.smith.langchain.com/observability/how_to_guides/online_evaluators

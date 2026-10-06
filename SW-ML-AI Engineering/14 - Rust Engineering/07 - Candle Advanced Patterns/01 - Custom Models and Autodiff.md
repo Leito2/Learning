@@ -4,7 +4,7 @@
 - Build custom neural network architectures by implementing Candle's `Module` trait.
 - Understand how Candle's explicit autodiff differs from PyTorch's implicit gradient tape.
 - Use `VarBuilder` and `VarMap` to manage trainable parameters with type safety.
-- Connect custom model patterns to broader [[Rust Engineering]] principles.
+- Connect custom model patterns to broader [[14 - Rust Engineering/00 - Welcome to Rust Engineering|Rust Engineering]] principles.
 
 ## Introduction
 
@@ -265,7 +265,7 @@ fn forward(&self, xs: &Tensor) -> Result<Tensor> {
 - Candle `Module` trait: https://huggingface.github.io/candle/candle_nn/trait.Module.html
 - Auto-Encoding Variational Bayes (VAE paper): https://arxiv.org/abs/1312.6114
 - [[00 - Welcome to Candle Advanced Patterns]]
-- [[01 - Rust Fundamentals]]
+- [[14 - Rust Engineering/01 - Rust Fundamentals/00 - Welcome|01 - Rust Fundamentals]]
 
 ## 📦 Código de compresión
 

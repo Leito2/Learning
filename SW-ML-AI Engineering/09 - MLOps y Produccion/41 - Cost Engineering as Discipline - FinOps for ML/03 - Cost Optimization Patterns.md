@@ -501,9 +501,9 @@ cache.set(query, sanitized)
 - LiteLLM Router — [docs.litellm.ai/docs/routing](https://docs.litellm.ai/docs/routing)
 - Anthropic Prompt Caching — [docs.anthropic.com/en/docs/build-with-claude/prompt-caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)
 - vLLM Quantization — [docs.vllm.ai/en/latest/quantization](https://docs.vllm.ai/en/latest/quantization/)
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — cost-aware routing
-- [[06 - Large Language Models/23 - Serverless LLM Platforms/04 - Serverless Cost Optimization and Patterns|Serverless Cost Optimization]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals|Note 01 — Cost Fundamentals]]
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — cost-aware routing
+- [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|Serverless Cost Optimization]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals - Token Economics and Pricing Models|Note 01 — Cost Fundamentals]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility - Per-Tenant Attribution, Chargeback, and Showback|Note 02 — Cost Visibility]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/04 - Forecasting and Budget Management|Note 04 — Forecasting]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline|Note 05 — Capstone]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline for a Multi-Tenant LLM Service|Note 05 — Capstone]]

@@ -519,7 +519,7 @@ bentoml deploy --namespace production  # after tests pass
 - BentoML AWS Lambda — [docs.bentoml.com/en/latest/scale-with-aws-lambda](https://docs.bentoml.com/en/latest/scale-with-aws-lambda.html)
 - BentoML SageMaker — [docs.bentoml.com/en/latest/scale-with-aws-sagemaker](https://docs.bentoml.com/en/latest/scale-with-aws-sagemaker.html)
 - BentoML Cloud Run — [docs.bentoml.com/en/latest/scale-with-gcp](https://docs.bentoml.com/en/latest/scale-with-gcp.html)
-- [[09 - MLOps y Produccion/32 - KServe and Knative|KServe]] — K8s-native alternative
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — multi-cloud deploy
+- [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative|KServe]] — K8s-native alternative
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — multi-cloud deploy
 - [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/05 - Capstone - Production BentoML Platform|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/22 - End-to-End ML Project|E2E ML Project]] — CI/CD patterns
+- [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|E2E ML Project]] — CI/CD patterns

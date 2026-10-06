@@ -13,7 +13,7 @@
 
 The term "disaggregated serving" comes from the broader "disaggregated computing" trend in data centers — the idea that compute, memory, and storage should be pooled as independent resources rather than locked together in monolithic servers. Applied to LLM inference, "disaggregation" specifically refers to separating the prefill phase (which processes the entire prompt in parallel) from the decode phase (which generates tokens autoregressively). These phases have fundamentally different resource profiles: prefill saturates tensor cores (compute-bound), decode saturates HBM bandwidth (memory-bound). Running both on the same GPU means one of them is always underutilized. Splitting them across specialized GPU pools — high-compute GPUs for prefill, high-bandwidth GPUs for decode — can double overall system throughput.
 
-Before disaggregated serving, LLM inference systems treated prefill and decode as monolithic: every request followed the path prefill → decode → output on the same GPU. This is the architecture used in early vLLM, TGI, and most open-source serving frameworks. It works, but it's fundamentally inefficient because the GPU alternates between being compute-starved (during decode) and memory-bandwidth-starved (during prefill). Edge inference, meanwhile, was virtually nonexistent before 2024 — phones couldn't run anything beyond toy models. The combination of NPU hardware (dedicated matrix accelerators on consumer silicon), INT4 quantization, and ExecuTorch/ONNX Runtime deployment frameworks has changed that entirely. This matters for [[06/09 - Sistemas de LLMs en Producción]] because the architectural decisions made at the serving layer determine the cost structure of the entire ML product.
+Before disaggregated serving, LLM inference systems treated prefill and decode as monolithic: every request followed the path prefill → decode → output on the same GPU. This is the architecture used in early vLLM, TGI, and most open-source serving frameworks. It works, but it's fundamentally inefficient because the GPU alternates between being compute-starved (during decode) and memory-bandwidth-starved (during prefill). Edge inference, meanwhile, was virtually nonexistent before 2024 — phones couldn't run anything beyond toy models. The combination of NPU hardware (dedicated matrix accelerators on consumer silicon), INT4 quantization, and ExecuTorch/ONNX Runtime deployment frameworks has changed that entirely. This matters for [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]] because the architectural decisions made at the serving layer determine the cost structure of the entire ML product.
 
 ---
 
@@ -415,8 +415,8 @@ print(f"3B model: FP16={mem_fp16:.1f}GB, INT4={mem_int4:.1f}GB "
 - Qualcomm Technologies (2023). "Snapdragon 8 Gen 3 Mobile Platform: AI Engine Performance Brief."
 - ExecuTorch Documentation. *PyTorch Foundation, 2024*
 - ONNX Runtime: Mobile and Edge Deployment. *Microsoft, 2024*
-- [[06/09 - Sistemas de LLMs en Producción]]
-- [[06/13 - vLLM and Advanced RAG]]
+- [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]
 - [[06/17-03 - SGLang (current course)]]
-- [[14/05 - WebAssembly and Edge AI]]
-- [[05/03 - Deep Learning con PyTorch]]
+- [[14 - Rust Engineering/05 - WebAssembly and Edge AI/00 - Welcome|05 - WebAssembly and Edge AI]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]

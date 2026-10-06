@@ -15,7 +15,7 @@
 
 The problem before observability was SSH-based debugging: an engineer SSHes into a GPU node, runs `nvidia-smi`, sees 98% GPU utilization, concludes "everything is fine," and logs out. But on another node, GPU 3 has been in ECC error recovery mode for 8 hours, silently running at 30% throughput. On a third node, the EFS mount has hung, and training jobs are blocking on I/O. None of this is visible from `nvidia-smi` on a single node. Observability solves this by collecting metrics from ALL nodes into a centralized time-series database (Prometheus), visualizing them in dashboards (Grafana), and alerting when thresholds are breached (Alertmanager).
 
-For ML infrastructure specifically, observability must handle heterogeneous signals: GPU metrics (utilization, memory bandwidth, temperature, power draw), application metrics (inference latency per model, batch size, queue depth), infrastructure metrics (CPU, disk I/O, network throughput, EFS burst credits), and business metrics (predictions per second, error rate by model version, cold start latency). This note builds on monitoring concepts from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/04 - Redes y Seguridad en Cloud|Cloud Networking]] and connects to ML platform engineering patterns in [[09/21 - Monitoreo y Mantenimiento|Monitoring]] and [[09/26 - ML Platform Engineering|ML Platform Engineering]].
+For ML infrastructure specifically, observability must handle heterogeneous signals: GPU metrics (utilization, memory bandwidth, temperature, power draw), application metrics (inference latency per model, batch size, queue depth), infrastructure metrics (CPU, disk I/O, network throughput, EFS burst credits), and business metrics (predictions per second, error rate by model version, cold start latency). This note builds on monitoring concepts from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/04 - Redes y Seguridad en Cloud|Cloud Networking]] and connects to ML platform engineering patterns in [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|Monitoring]] and [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|ML Platform Engineering]].
 
 ---
 
@@ -391,7 +391,7 @@ volumes:
 - Grafana Labs. (2024). *Grafana Documentation*. https://grafana.com/docs/ — Dashboard design, templating, and alerting configuration.
 - NVIDIA. (2024). *DCGM Exporter Documentation*. https://docs.nvidia.com/datacenter/dcgm/latest/user-guide/ — GPU telemetry collection for Prometheus.
 - OpenTelemetry. (2024). *OpenTelemetry Documentation*. https://opentelemetry.io/docs/ — Vendor-neutral instrumentation for distributed tracing.
-- [[09/21 - Monitoreo y Mantenimiento]]
-- [[09/26 - ML Platform Engineering]]
-- [[09/20 - Deployment and Serving]]
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|21 - Monitoreo y Mantenimiento]]
+- [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|26 - ML Platform Engineering]]
+- [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|20 - Deployment and Serving]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/04 - Redes y Seguridad en Cloud|Cloud Networking]]

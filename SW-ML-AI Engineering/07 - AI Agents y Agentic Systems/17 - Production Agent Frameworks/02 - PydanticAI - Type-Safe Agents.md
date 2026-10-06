@@ -6,7 +6,7 @@
 - Master the **`Agent[DepT, OutT]` generic type signature** that makes dependencies and outputs compile-time-checked
 - Build **structured-output agents** with Pydantic `BaseModel` as the response contract, validated by the framework
 - Use **`RunContext` for dependency injection** so tools can access databases, API clients, and request-scoped state without globals
-- Integrate with [[../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM.md|LiteLLM]] for multi-provider routing and [[../../06 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI]] for production endpoints
+- Integrate with [[../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM.md|LiteLLM]] for multi-provider routing and [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI]] for production endpoints
 - Compose PydanticAI agents with [[../15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols.md|MCP servers]] and stream structured responses with `agent.iter()`
 
 ---
@@ -142,7 +142,7 @@ For real-time UI updates, PydanticAI provides `agent.iter()` which yields a stre
 - `ToolResultNode`: the tool has returned its result.
 - `EndNode`: the agent has finished, output is in `result.output`.
 
-The stream-based API is the right pattern for [[../../06 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML|WebSocket-based]] real-time ML serving: the FastAPI handler iterates over the events, sends each chunk to the WebSocket, and the UI updates incrementally. The same code works for `text/event-stream` HTTP responses (SSE), making PydanticAI a natural fit for both.
+The stream-based API is the right pattern for [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML|WebSocket-based]] real-time ML serving: the FastAPI handler iterates over the events, sends each chunk to the WebSocket, and the UI updates incrementally. The same code works for `text/event-stream` HTTP responses (SSE), making PydanticAI a natural fit for both.
 
 ### 2.5 Validation retries and `validation_retries`
 

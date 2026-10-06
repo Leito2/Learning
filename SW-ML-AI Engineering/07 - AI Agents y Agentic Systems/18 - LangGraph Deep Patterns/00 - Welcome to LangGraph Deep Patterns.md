@@ -22,7 +22,7 @@ By the end of these ten notes you will have rebuilt the Multi-Agent Research Sys
 | # | Note | Core Concept | Portfolio Hook |
 |:-:|------|--------------|----------------|
 | 00 | [[00 - Welcome to LangGraph Deep Patterns\|You are here]] | Why LangGraph still wins for stateful agents | Course map |
-| 01 | [[01 - StateGraph Fundamentals\|StateGraph Fundamentals]] | `TypedDict` state, reducers, node/edge contract | Rebuild any agent from scratch |
+| 01 | [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/01 - StateGraph Fundamentals - Nodes Edges State and Reducers\|StateGraph Fundamentals]] | `TypedDict` state, reducers, node/edge contract | Rebuild any agent from scratch |
 | 02 | [[02 - Conditional Routing and Dynamic Edges\|Conditional Routing]] | `add_conditional_edges`, path map, runtime branching | Triage router in agents |
 | 03 | [[03 - Persistence, Checkpointers and thread_id\|Persistence]] | `MemorySaver`, `PostgresSaver`, `thread_id`, time travel | Multi-day conversation resume |
 | 04 | [[04 - Subgraphs and Send API\|Subgraphs]] | Subgraph isolation, `Send` API, parallel fan-out | Multi-tenant research dispatch |
@@ -49,7 +49,7 @@ LangGraph's answer is the **state graph**: every interaction is a transition in 
 ## Prerequisites
 
 - **Python 3.11+** for `typing.Self`, `ParamSpec`, and the modern typing syntax.
-- **Advanced Python (03/03)**: type hints, async, decorators. The [[../../../03 - Advanced Python/03 - Python Avanzado/05 - Type Hints y Anotaciones.md|Type Hints note]] is the entry point.
+- **Advanced Python (03/03)**: type hints, async, decorators. The [[03 - Advanced Python/03 - Python Avanzado/05 - Type Hints y Anotaciones|Type Hints note]] is the entry point.
 - **Pydantic Deep Dive (03/06)**: most state schemas use `BaseModel`, `Annotated`, and `Field` for validation.
 - **Production RAG (06/12)** and **ColBERT/SGLang (06/17)**: the capstone uses RAG primitives.
 - **MCP and Agentic Protocols (07/15)**: the existing [[../15 - MCP and Agentic Protocols/03 - LangGraph + MCP Integration.md|LangGraph + MCP]] note shows dynamic tool discovery.

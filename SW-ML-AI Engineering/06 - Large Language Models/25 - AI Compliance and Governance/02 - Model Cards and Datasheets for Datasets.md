@@ -595,5 +595,5 @@ def regenerate_card():
 - [[06 - Large Language Models/25 - AI Compliance and Governance/01 - EU AI Act 2024 - Risk Classification and Compliance|Note 01 — EU AI Act]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/03 - Bias and Fairness - AI Fairness 360 and Demographic Parity|Note 03 — Bias and Fairness]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/05 - Capstone - Compliance Pipeline for a Regulated Industry|Note 05 — Capstone]]
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor]] — structured compliance outputs
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse]] — model usage audit trails
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor]] — structured compliance outputs
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse]] — model usage audit trails

@@ -16,7 +16,7 @@
 
 The problem before infrastructure CI/CD was the "works from my laptop" anti-pattern. An engineer runs `terraform apply` from their local machine, against the production statefile, without anyone reviewing the plan. If the apply succeeds, infrastructure changed — but there is no record of what changed, who approved it, or whether it matches what was intended. If the apply fails halfway through, the statefile is corrupted and the infrastructure is in an unknown, partially-provisioned state. Recovery means manual intervention in the cloud console — exactly what IaC was supposed to prevent. Infrastructure CI/CD replaces the laptop with a pipeline: the plan is generated on a CI runner, posted as a PR comment for review, and applied only after human approval. The pipeline runner has no local statefile — it always fetches from remote state (S3 + DynamoDB), ensuring consistency.
 
-**GitOps** takes this one step further. Coined by Weaveworks in 2017, GitOps declares that Git is the single source of truth for BOTH the desired state of infrastructure AND the mechanism for applying it. A GitOps agent (ArgoCD, Flux) runs inside the cluster, continuously watches a Git repository, and reconciles the live cluster state to match the desired state in Git. If someone manually edits a Kubernetes deployment from `replicas: 5` to `replicas: 3`, the agent detects the drift and reverts to `replicas: 5` within 3 minutes. This is the holy grail of infrastructure management: the cluster self-heals to Git. This note extends the Terraform patterns from earlier in the course into the operational domain, connecting deeply with [[09/29 - CI-CD for ML|CI-CD for ML]] and [[09/20 - Deployment and Serving|Deployment]].
+**GitOps** takes this one step further. Coined by Weaveworks in 2017, GitOps declares that Git is the single source of truth for BOTH the desired state of infrastructure AND the mechanism for applying it. A GitOps agent (ArgoCD, Flux) runs inside the cluster, continuously watches a Git repository, and reconciles the live cluster state to match the desired state in Git. If someone manually edits a Kubernetes deployment from `replicas: 5` to `replicas: 3`, the agent detects the drift and reverts to `replicas: 5` within 3 minutes. This is the holy grail of infrastructure management: the cluster self-heals to Git. This note extends the Terraform patterns from earlier in the course into the operational domain, connecting deeply with [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI-CD for ML]] and [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment]].
 
 ---
 
@@ -408,7 +408,7 @@ jobs:
 - Flux CD. (2024). *Open and Extensible Continuous Delivery Solution for Kubernetes*. https://fluxcd.io/docs/ — CNCF-graduated GitOps tool documentation.
 - HashiCorp. (2024). *Terraform Cloud Documentation — Run Tasks and Policy as Code*. https://developer.hashicorp.com/terraform/cloud-docs — CI/CD pipeline integration for Terraform.
 - Infracost. (2024). *Cloud Cost Estimates for Terraform*. https://www.infracost.io/docs/ — Cost estimation integration for infrastructure CI/CD.
-- [[09/29 - CI-CD for ML]]
-- [[09/20 - Deployment and Serving]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|20 - Deployment and Serving]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/04 - Redes y Seguridad en Cloud|Cloud Networking]]
-- [[13/02 - Go for Cloud Native]]
+- [[13 - Go Engineering/02 - Go for Cloud Native/00 - Welcome|02 - Go for Cloud Native]]

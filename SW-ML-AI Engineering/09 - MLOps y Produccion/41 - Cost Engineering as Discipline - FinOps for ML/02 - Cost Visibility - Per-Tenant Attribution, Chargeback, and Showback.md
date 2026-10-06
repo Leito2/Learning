@@ -417,7 +417,7 @@ The same SaaS with 100 customers can answer "what did tenant X cost us in Q3?" i
 
 ## 8. The LLM Gateway + Chargeback Integration
 
-Add per-tenant cost attribution to your LLM Gateway (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19]]):
+Add per-tenant cost attribution to your LLM Gateway (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19]]):
 
 ```python
 # In the gateway layer
@@ -523,10 +523,10 @@ This pattern works for any LLM gateway (LiteLLM, OpenLLMetry, custom).
 - LangFuse Metadata — [langfuse.com/docs/observability/features/metadata](https://langfuse.com/docs/observability/features/metadata)
 - Prometheus Labels — [prometheus.io/docs/prometheus/latest/configuration/recording_rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/)
 - CloudZero LLM Cost — [cloudzero.com/blog/llm-cost](https://www.cloudzero.com/blog/llm-cost/)
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]]
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals|Note 01 — Cost Fundamentals]]
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]]
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals - Token Economics and Pricing Models|Note 01 — Cost Fundamentals]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/03 - Cost Optimization Patterns|Note 03 — Cost Optimization]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/04 - Forecasting and Budget Management|Note 04 — Forecasting]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems|Incident Response]] — cost anomaly runbook
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline for a Multi-Tenant LLM Service|Note 05 — Capstone]]
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems|Incident Response]] — cost anomaly runbook

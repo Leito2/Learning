@@ -12,7 +12,7 @@
 
 Content safety is the most visible dimension of LLM security — it's what the public sees when an AI goes wrong. The Microsoft Tay incident (racist outputs in <24 hours), Bing Sydney's emotional breakdowns, and countless "grandma exploit" variants all stem from gaps in content safety. Unlike prompt injection (Note 01), which is about instruction manipulation, content safety is about output harm: preventing the LLM from producing content that causes real-world damage.
 
-Adversarial robustness adds another dimension: attackers who actively probe your defenses. The GCG (Greedy Coordinate Gradient) attack automatically discovers token sequences that jailbreak even safety-trained models. Multimodal attacks embed jailbreak instructions in images that vision-language models process. These are not accidents — they are engineered exploits, and they evolve faster than rule-based defenses can adapt. Your [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] must be continuously hardened against them.
+Adversarial robustness adds another dimension: attackers who actively probe your defenses. The GCG (Greedy Coordinate Gradient) attack automatically discovers token sequences that jailbreak even safety-trained models. Multimodal attacks embed jailbreak instructions in images that vision-language models process. These are not accidents — they are engineered exploits, and they evolve faster than rule-based defenses can adapt. Your [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] must be continuously hardened against them.
 
 This final note synthesizes all previous content — prompt injection defense (Note 01), guardrails (Note 02), and PII detection (Note 03) — into a complete, layered security pipeline. At the end, you'll have a production-ready security architecture for your gateway that addresses every OWASP Top 10 for LLM Applications category with measurable, auditable defenses.
 
@@ -1055,8 +1055,8 @@ layered_security_architecture:
 - LLM Guard: https://github.com/protectai/llm-guard
 - OWASP Top 10 for LLM Applications: https://owasp.org/www-project-top-10-for-large-language-model-applications/
 - Anthropic: "Many-shot Jailbreaking": https://www.anthropic.com/research/many-shot-jailbreaking
-- [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
-- [[../01 - Prompt Injection and Defense|Note 01 — Prompt injection defense]]
-- [[../02 - Guardrails AI and NeMo Guardrails|Note 02 — Guardrails]]
-- [[../03 - PII Detection and Data Privacy|Note 03 — PII detection]]
-- [[../../05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|Production monitoring]]
+- [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/01 - Prompt Injection and Defense|Note 01 — Prompt injection defense]]
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/02 - Guardrails AI and NeMo Guardrails|Note 02 — Guardrails]]
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/03 - PII Detection and Data Privacy|Note 03 — PII detection]]
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|Production monitoring]]

@@ -293,7 +293,7 @@ fused = reciprocal_rank_fusion(dense_ranking, bm25_ranking)
 
 ## 7. Multi-Vector (ColBERT-Style) Retrieval
 
-ColBERT-style retrieval (Note [[06/17 - ColBERT Next-Gen Retrieval]]) represents each token as a vector and performs MaxSim between query and document token vectors:
+ColBERT-style retrieval (Note [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT Next-Gen Retrieval]]) represents each token as a vector and performs MaxSim between query and document token vectors:
 
 $$
 \text{MaxSim}(q, d) = \sum_{t_q \in q} \max_{t_d \in d} \cos(E(t_q), E(t_d))
@@ -412,7 +412,7 @@ class HybridRetriever:
 
 ---
 
-[[04 - Reranking]] — next note: refining that top-100 into a perfect top-5.
-[[06/17 - ColBERT Next-Gen Retrieval]] — multi-vector token-level search.
-[[06/13 - vLLM and Advanced RAG]] — HyDE, self-RAG, FLARE.
+[[06 - Large Language Models/12 - Production RAG/04 - Reranking - Cross-Encoders, ColBERT and LLM-as-Reranker|04 - Reranking]] — next note: refining that top-100 into a perfect top-5.
+[[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT Next-Gen Retrieval]] — multi-vector token-level search.
+[[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]] — HyDE, self-RAG, FLARE.
 

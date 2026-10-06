@@ -121,12 +121,12 @@ For **non-LLM models** (sklearn, XGBoost, PyTorch, custom neural nets), BentoML 
 
 | Vault Module | Connection |
 |--------------|-----------|
-| [[06 - Large Language Models/13 - vLLM and Advanced RAG\|vLLM]] | LLM-specific serving |
-| [[09 - MLOps y Produccion/32 - KServe and Knative\|KServe]] | K8s-native serving |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | Multi-cloud deploy |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] | Custom FastAPI alternative |
-| [[09 - MLOps y Produccion/27 - Feast and Feature Stores\|Feast]] | Online feature store integration |
-| [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems\|Incident Response]] | Model rollback |
+| [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|vLLM]] | LLM-specific serving |
+| [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative\|KServe]] | K8s-native serving |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | Multi-cloud deploy |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | Custom FastAPI alternative |
+| [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps\|Feast]] | Online feature store integration |
+| [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems\|Incident Response]] | Model rollback |
 
 ---
 

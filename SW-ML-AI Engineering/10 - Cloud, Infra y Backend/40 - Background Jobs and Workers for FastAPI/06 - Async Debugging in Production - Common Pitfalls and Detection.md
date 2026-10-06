@@ -9,7 +9,7 @@
 - Recognize "zombie tasks" — coroutines that survive cancellation
 - Wire up async health endpoints that detect event loop stalls
 - Build a CI test suite that catches async antipatterns before deploy
-- Apply the seven incident-response patterns from [[../../39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Production Incident Response Note 04]] to async systems
+- Apply the seven incident-response patterns from [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Production Incident Response Note 04]] to async systems
 
 ## Introduction
 
@@ -17,9 +17,9 @@ The hardest kind of async bug to debug is the one that **only happens in product
 
 This note gives you the playbook for diagnosing and fixing these failures. It draws on:
 
-- [[../../31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]] (foundations)
-- [[../02 - ARQ Modern Async-Native|ARQ note]] (production framework)
-- [[../../39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Incident Response Note 04]] (resilience patterns)
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]] (foundations)
+- [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/02 - ARQ Modern Async-Native|ARQ note]] (production framework)
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Incident Response Note 04]] (resilience patterns)
 
 The goal: when an async bug shows up in production, you diagnose it in **<15 minutes** instead of <2 hours.
 
@@ -614,8 +614,8 @@ resources = {
 - py-spy — [github.com/benfred/py-spy](https://github.com/benfred/py-spy)
 - faulthandler — [docs.python.org/3/library/faulthandler.html](https://docs.python.org/3/library/faulthandler.html)
 - ruff ASYNC rules — [docs.astral.sh/ruff/rules/#flake8-async-async](https://docs.astral.sh/ruff/rules/#flake8-async-async)
-- [[../../31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]]
-- [[../02 - ARQ Modern Async-Native|ARQ note]]
-- [[../../39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Incident Response Note 04]]
-- [[../../39 - Production Incident Response for AI Systems/03 - Triage - Diagnosing AI Incidents|Incident Response Note 03]]
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]]
+- [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/02 - ARQ Modern Async-Native|ARQ note]]
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Incident Response Note 04]]
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/03 - Triage - Diagnosing AI Incidents|Incident Response Note 03]]
 - Google SRE Book — Cascading Failures — [sre.google/sre-book/addressing-cascading-failures](https://sre.google/sre-book/addressing-cascading-failures/)

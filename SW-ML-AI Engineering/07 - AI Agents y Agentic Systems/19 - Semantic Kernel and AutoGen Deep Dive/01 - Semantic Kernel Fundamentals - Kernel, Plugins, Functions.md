@@ -16,9 +16,9 @@ Semantic Kernel (SK) is Microsoft's enterprise SDK for building AI agents. It tr
 
 The library was open-sourced in 2023 after internal use at Microsoft for the Copilot stack. As of 2026 it sits at 23k+ GitHub stars, ships v1.x releases monthly, and is the foundation of Azure AI Agent Service, Microsoft 365 Copilot, and several Fortune 500 internal agents. The Python SDK (`semantic-kernel` on PyPI) is the most active; the .NET SDK (`Microsoft.SemanticKernel`) ships in lockstep with breaking changes announced 3 months ahead.
 
-The kernel itself is a small object — essentially a service registry + plugin registry + function dispatcher. Plugins are collections of functions (Python methods, prompt templates, or OpenAPI specs). The planner interprets the user's request, calls the LLM with the available functions, executes the function the LLM chose, feeds the result back, and repeats until completion. This is the classic ReAct loop from [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI]] — but expressed with typed functions, observable execution, and Azure-native credentials.
+The kernel itself is a small object — essentially a service registry + plugin registry + function dispatcher. Plugins are collections of functions (Python methods, prompt templates, or OpenAPI specs). The planner interprets the user's request, calls the LLM with the available functions, executes the function the LLM chose, feeds the result back, and repeats until completion. This is the classic ReAct loop from [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida|11 - Fundamentos de Agentes AI]] — but expressed with typed functions, observable execution, and Azure-native credentials.
 
-For the AI/ML Engineer profile, SK is the **enterprise-readiness upgrade**. Where LangChain and LangGraph (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]) are open-source Python, SK is multi-language, Azure-certified, and supported by Microsoft. Hiring managers at Microsoft shops (any company with a Microsoft Enterprise Agreement) recognize SK immediately.
+For the AI/ML Engineer profile, SK is the **enterprise-readiness upgrade**. Where LangChain and LangGraph (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]) are open-source Python, SK is multi-language, Azure-certified, and supported by Microsoft. Hiring managers at Microsoft shops (any company with a Microsoft Enterprise Agreement) recognize SK immediately.
 
 ```mermaid
 graph TB
@@ -240,7 +240,7 @@ Behind the scenes, the planner:
 4. The planner executes the function, captures the result, and feeds it back
 5. Repeats until the LLM signals completion
 
-This is the **function-calling pattern** from [[06 - Large Language Models/22 - Instructor and Structured Generation]], expressed at the agentic orchestration level.
+This is the **function-calling pattern** from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]], expressed at the agentic orchestration level.
 
 There are three planner strategies:
 
@@ -385,9 +385,9 @@ from semantic_kernel.telemetry import enable_telemetry
 enable_telemetry(kernel)
 ```
 
-This integrates with [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]] and [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse]] — every function call becomes an OTel span.
+This integrates with [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]] and [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse]] — every function call becomes an OTel span.
 
-For Phoenix (covered in [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix]]):
+For Phoenix (covered in [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|31 - Evidently AI and Phoenix]]):
 
 ```python
 from phoenix.otel import register
@@ -483,12 +483,12 @@ kernel.add_plugin_from_directory("./plugins", plugin_name=None)
 - Semantic Kernel docs — [learn.microsoft.com/en-us/semantic-kernel](https://learn.microsoft.com/en-us/semantic-kernel/)
 - Semantic Kernel Python GitHub — [github.com/microsoft/semantic-kernel](https://github.com/microsoft/semantic-kernel)
 - AutoFunction Calling — [learn.microsoft.com/en-us/semantic-kernel/concepts/ai-services/chat-completion/function-calling](https://learn.microsoft.com/en-us/semantic-kernel/concepts/ai-services/chat-completion/function-calling)
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — Pydantic validation pattern
-- [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI|Fundamentos de Agentes AI]] — ReAct loop pattern
-- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks|Production Agent Frameworks]] — agent framework landscape
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine alternative
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — observability
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol layer
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — self-hosted traces
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — Pydantic validation pattern
+- [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida|Fundamentos de Agentes AI]] — ReAct loop pattern
+- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|Production Agent Frameworks]] — agent framework landscape
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine alternative
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — observability
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol layer
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — self-hosted traces
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/02 - Semantic Kernel Process Framework and Memory|Note 02 — SK Process Framework]]
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/03 - AutoGen Fundamentals - Conversable Agents and GroupChat|Note 03 — AutoGen Fundamentals]]

@@ -13,7 +13,7 @@
 
 The term *inference-time scaling* originates from the broader *scaling laws* literature (Kaplan et al., 2020), which established that model performance scales as a power law with training compute. But those laws assume *fixed* inference compute. What if the inference budget itself becomes a variable you tune per query? This idea crystallized between 2022-2024 through a lineage of work: the self-consistency paper (Wang et al., 2022) showed that sampling multiple reasoning chains and voting improves accuracy; the self-refinement paper (Madaan et al., 2023) demonstrated that models can critique and iteratively improve their own outputs; and DeepSeek-R1 and OpenAI o1/o3 operationalized this at production scale through "reasoning tokens" — hidden intermediate computation that the user never sees but that dramatically improves final answer quality.
 
-The problem BEFORE this class of techniques was clear: you loaded a model, you ran `model.generate(prompt)`, and you got exactly one answer from exactly one forward pass through exactly one reasoning trajectory. For math, logic, or complex reasoning tasks, this meant catastrophic brittleness — a single unlucky token choice at step 3 could cascade into a completely wrong final answer, with no mechanism for the model to "double-check" itself. This matters for production ML because [[06/09 - Sistemas de LLMs en Producción]] makes clear: the cost of serving wrong answers (user churn, safety issues, downstream pipeline corruption) far exceeds the cost of extra inference FLOPs. Dynamic inference compute allocation bridges the gap between cheap guesses and expensive reliable reasoning.
+The problem BEFORE this class of techniques was clear: you loaded a model, you ran `model.generate(prompt)`, and you got exactly one answer from exactly one forward pass through exactly one reasoning trajectory. For math, logic, or complex reasoning tasks, this meant catastrophic brittleness — a single unlucky token choice at step 3 could cascade into a completely wrong final answer, with no mechanism for the model to "double-check" itself. This matters for production ML because [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]] makes clear: the cost of serving wrong answers (user churn, safety issues, downstream pipeline corruption) far exceeds the cost of extra inference FLOPs. Dynamic inference compute allocation bridges the gap between cheap guesses and expensive reliable reasoning.
 
 ---
 
@@ -33,7 +33,7 @@ $$\mathcal{B}(q) = f(\text{difficulty}(q))$$
 
 where $\mathcal{B}(q)$ is the total compute allocated to query $q$. Functions $f$ can be heuristics (length of question, domain classifier), learned (small router model predicting required depth), or dynamic (expand budget until confidence threshold).
 
-This connects directly to [[06/06 - Fundamentos de LLMs]] — the transformer's depth provides progressively more abstract representations. Shallow layers handle syntax and local dependencies; deep layers handle semantic reasoning and world knowledge. Not all queries require the deepest layers.
+This connects directly to [[06 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida|06 - Fundamentos de LLMs]] — the transformer's depth provides progressively more abstract representations. Shallow layers handle syntax and local dependencies; deep layers handle semantic reasoning and world knowledge. Not all queries require the deepest layers.
 
 ## 2. Self-Refinement (Draft-and-Audit)
 
@@ -131,7 +131,7 @@ where $\mathcal{L}_{\text{CE}}$ is cross-entropy loss and $\lambda$ controls the
 - Multilingual tasks where deep layers encode cross-lingual semantic alignment
 - Tasks requiring world knowledge stored in deeper MLP layers
 
-**Connection to MoE:** Dynamic depth is complementary to [[06/10 - Arquitecturas Avanzadas y MoE]] sparsity strategies. You can both skip layers (early exit) AND skip parameters within layers (MoE routing) — the two forms of dynamic compute allocation stack multiplicatively.
+**Connection to MoE:** Dynamic depth is complementary to [[06 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida|10 - Arquitecturas Avanzadas y MoE]] sparsity strategies. You can both skip layers (early exit) AND skip parameters within layers (MoE routing) — the two forms of dynamic compute allocation stack multiplicatively.
 
 ⚠️ Early exiting complicates KV cache management. If Token 1 exits at layer 20 and Token 2 exits at layer 5, their KV entries have different depths, and attention computation must handle this mismatched-dimensionality. Most implementations store K/V at ALL layers regardless of exit point and only skip the FFN. This limits actual FLOP savings to roughly 30-40% rather than the theoretical 85%.
 
@@ -142,7 +142,7 @@ where $\mathcal{L}_{\text{CE}}$ is cross-entropy loss and $\lambda$ controls the
 **Caso real: OpenAI o1/o3 "reasoning tokens"** — OpenAI's o-series models are the most prominent commercial deployment of inference-time scaling. When you query o1, the model generates hidden "reasoning tokens" — intermediate computation that the user pays for (via longer latency and higher token counts) but never sees. These are essentially a built-in self-consistency + self-refinement loop. The key commercial innovation: hiding the reasoning from the user allows the model to "think out loud" in tokens that don't need to be coherent to humans — they can use notations, abbreviations, and intermediate representations optimized purely for the model's own reasoning process. This is estimated to consume 5-20× more tokens than the visible output, explaining o1's higher per-query cost.
 
 **Practical deployment considerations:**
-- **Latency budget**: Self-consistency with $K=5$ multiplies latency by 5× in the naive implementation. Use continuous batching ([[06/13 - vLLM and Advanced RAG]]) to interleave path sampling across queries
+- **Latency budget**: Self-consistency with $K=5$ multiplies latency by 5× in the naive implementation. Use continuous batching ([[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]) to interleave path sampling across queries
 - **Cost budget**: At $0.01/1K tokens, a 1000-token query with $K=5$ self-consistency costs $0.05 instead of $0.01. Worth it for correctness-critical applications; wasteful for creative writing
 - **Quality thresholds**: Implement a gating function — if the model's initial single-path confidence is above a threshold (measured by log-prob agreement among top candidates), skip self-consistency. Only trigger multi-path when uncertainty is high
 
@@ -288,8 +288,8 @@ def self_consistent_inference(model, tokenizer, prompt, K=5, T=0.7):
 - DeepSeek-R1 Technical Report. *arXiv:2501.12948*
 - OpenAI (2024). "Learning to Reason with LLMs" (o1 system card)
 - Schuster, T., et al. (2022). "Confident Adaptive Language Modeling." *arXiv:2207.07061*
-- [[06/06 - Fundamentos de LLMs]]
-- [[06/08 - Generación de Texto y Decodificación]]
-- [[06/09 - Sistemas de LLMs en Producción]]
-- [[06/13 - vLLM and Advanced RAG]]
-- [[06/10 - Arquitecturas Avanzadas y MoE]]
+- [[06 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida|06 - Fundamentos de LLMs]]
+- [[06 - Large Language Models/08 - Generacion de Texto y Decodificacion/00 - Bienvenida|08 - Generación de Texto y Decodificación]]
+- [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]
+- [[06 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida|10 - Arquitecturas Avanzadas y MoE]]

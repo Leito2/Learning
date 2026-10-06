@@ -4,7 +4,7 @@
 
 Kaggle competitions represent one of the most effective ways to develop practical machine learning skills under real constraints. Unlike curated academic datasets, competition data is often noisy, imbalanced, and deliberately obfuscated to test a competitor's ability to engineer robust solutions. Participating in these contests teaches you to move beyond textbook accuracy and focus on the metrics that actually matter for business outcomes, such as LogLoss, AUC-ROC, or Mean Average Precision.
 
-This course covers the full competition lifecycle: from exploratory data analysis (EDA) and leakage detection to advanced ensemble strategies used by Kaggle Grandmasters. We will examine the psychological and technical dynamics of leaderboards, where overfitting the public test set is a constant risk. Understanding [[02 - End-to-End ML Project|end-to-end project management]] and [[03 - Fine-Tuning LLs|fine-tuning techniques]] can further amplify your competition results when dealing with unstructured data.
+This course covers the full competition lifecycle: from exploratory data analysis (EDA) and leakage detection to advanced ensemble strategies used by Kaggle Grandmasters. We will examine the psychological and technical dynamics of leaderboards, where overfitting the public test set is a constant risk. Understanding [[projects/02 - End-to-End ML Project - Project Guide|end-to-end project management]] and [[03 - Fine-Tuning LLs|fine-tuning techniques]] can further amplify your competition results when dealing with unstructured data.
 
 ## 1. Competition Landscape and Evaluation Metrics
 

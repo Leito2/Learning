@@ -470,4 +470,4 @@ validator.save_expectation_suite("churn_suite")
 
 💡 **Tip:** Combine Pandera's decorator pattern with pytest to run schema validations as part of your test suite. `@check_output(...)` on your inference functions means every CI run validates your model's output shape and types.
 
-[[../09 - MLOps y Produccion/31 - Evidently for Model Monitoring/|Evidently]] | [[../09 - MLOps y Produccion/27 - Feast Feature Store/|Feast Feature Store]] | [[../09 - MLOps y Produccion/29 - CI-CD for ML/|CI/CD for ML]]
+[[../09 - MLOps y Produccion/31 - Evidently for Model Monitoring/|Evidently]] | [[../09 - MLOps y Produccion/27 - Feast Feature Store/|Feast Feature Store]] | [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI/CD for ML]]

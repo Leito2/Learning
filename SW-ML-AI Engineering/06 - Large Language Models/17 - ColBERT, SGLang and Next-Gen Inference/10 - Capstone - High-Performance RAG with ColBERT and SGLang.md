@@ -13,7 +13,7 @@ The notes in this module have treated retrieval (ColBERT) and generation (SGLang
 
 The architecture is deliberately modular. Each stage can be swapped independently — replace Qdrant with Milvus, ColBERT with a cross-encoder, or SGLang with vLLM — without changing the interfaces between stages. This modularity is what distinguishes production-grade RAG from research prototypes. The system is designed for the 99th percentile query, not the median: it must handle long documents, ambiguous queries, and adversarial edge cases without collapsing into hallucinations or timeouts.
 
-The evaluation framework is equally production-oriented. Beyond standard retrieval metrics (recall@k, MRR), we measure end-to-end quality through SGLang's structured output verification: the generated answer must cite specific passages, and those citations must be independently verified as supporting the claim. This closes the loop between retrieval and generation, replacing "the model said it" with "the evidence supports it." For the broader context on each component, see [[01 - ColBERT - Token-Level Late Interaction]] for retrieval theory, [[02 - ColBERT in Production - PLAID and Vector Integration]] for scaling, [[03 - SGLang - Structured Generation and RadixAttention]] for generation, and [[06 - Production RAG]] for the RAG pipeline fundamentals.
+The evaluation framework is equally production-oriented. Beyond standard retrieval metrics (recall@k, MRR), we measure end-to-end quality through SGLang's structured output verification: the generated answer must cite specific passages, and those citations must be independently verified as supporting the claim. This closes the loop between retrieval and generation, replacing "the model said it" with "the evidence supports it." For the broader context on each component, see [[01 - ColBERT - Token-Level Late Interaction]] for retrieval theory, [[02 - ColBERT in Production - PLAID and Vector Integration]] for scaling, [[03 - SGLang - Structured Generation and RadixAttention]] for generation, and [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]] for the RAG pipeline fundamentals.
 
 ![Three-stage RAG architecture: dense ANN, ColBERT reranking, SGLang structured generation](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Pipeline%2C_4_stages.svg/1280px-Pipeline%2C_4_stages.svg)
 
@@ -602,9 +602,9 @@ The key production insight from Notion's engineering team: **index freshness mat
 - [[02 - ColBERT in Production - PLAID and Vector Integration]]
 - [[03 - SGLang - Structured Generation and RadixAttention]]
 - [[04 - SGLang in Production - Programs, Agents and Benchmarks]]
-- [[06 - Production RAG]]
-- [[10 - Vector Databases and Semantic Search]]
-- [[07 - MCP and Agentic Protocols]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10 - Vector Databases and Semantic Search]]
+- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|07 - MCP and Agentic Protocols]]
 
 ---
 

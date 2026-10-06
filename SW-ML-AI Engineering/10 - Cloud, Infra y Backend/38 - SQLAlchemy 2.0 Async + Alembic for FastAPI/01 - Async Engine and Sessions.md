@@ -227,7 +227,7 @@ print(user.profile.bio)  # works, already loaded
 session = SessionLocal()  # never do this in a web app
 ```
 
-Each request gets its own session. The session holds a connection from the pool; sharing a session across requests serializes all of them on one connection. The proper pattern is `Depends(get_session)` (covered in [[05 - FastAPI Integration|the next-but-two note]]).
+Each request gets its own session. The session holds a connection from the pool; sharing a session across requests serializes all of them on one connection. The proper pattern is `Depends(get_session)` (covered in [[10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/05 - FastAPI Integration DI and Lifespan|the next-but-two note]]).
 
 ### 3.4 Forgetting `await session.close()`
 

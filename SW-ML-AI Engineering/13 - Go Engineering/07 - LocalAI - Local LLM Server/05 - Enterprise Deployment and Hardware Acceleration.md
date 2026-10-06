@@ -4,7 +4,7 @@
 - Understand how to deploy LocalAI at scale using Docker, Kubernetes, and GPU scheduling
 - Learn the differences between CUDA, Metal, and Vulkan backends and when to use each
 - Master monitoring, logging, and health checks for production inference services
-- Connect production deployment patterns to [[Docker Profesional]] orchestration and [[Go Engineering]] systems design
+- Connect production deployment patterns to [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]] orchestration and [[13 - Go Engineering/00 - Welcome to Go Engineering|Go Engineering]] systems design
 
 ---
 
@@ -12,7 +12,7 @@
 
 Running a model on your laptop is a proof of concept; running it in production for thousands of users is an engineering discipline. This module covers the operational aspects of LocalAI: containerization, GPU acceleration, cluster orchestration, and observability. Enterprises adopt LocalAI not just for cost savings, but for data sovereignty, compliance, and predictable latency. However, productionizing local inference introduces challenges that do not exist in cloud APIs: GPU driver compatibility, memory fragmentation, model weight distribution, and scaling strategies that differ fundamentally from stateless microservices.
 
-If you have completed [[Docker Profesional]], you already know how to build images, manage volumes, and schedule GPU workloads. LocalAI extends these skills by adding model-specific concerns: multi-gigabyte image layers, CUDA version pinning, and the need for shared memory (shm) during backend initialization. If you are familiar with Kubernetes, you will recognize how LocalAI's StatefulSet semantics map to model loading: each pod is not interchangeable because it may be warming a specific set of weights into VRAM. This module provides the patterns to bridge DevOps expertise with ML inference requirements.
+If you have completed [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]], you already know how to build images, manage volumes, and schedule GPU workloads. LocalAI extends these skills by adding model-specific concerns: multi-gigabyte image layers, CUDA version pinning, and the need for shared memory (shm) during backend initialization. If you are familiar with Kubernetes, you will recognize how LocalAI's StatefulSet semantics map to model loading: each pod is not interchangeable because it may be warming a specific set of weights into VRAM. This module provides the patterns to bridge DevOps expertise with ML inference requirements.
 
 ---
 
@@ -582,4 +582,4 @@ Deploy a production-grade LocalAI cluster on Kubernetes that serves three models
 - Official docs: https://localai.io/docs/getting-started/run-other-models/
 - Kubernetes GPU scheduling: https://kubernetes.io/docs/tasks/manage-gpus/
 - Prometheus Go client: https://github.com/prometheus/client_golang
-- Docker GPU: [[Docker Profesional]]
+- Docker GPU: [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]]

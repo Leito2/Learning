@@ -370,7 +370,7 @@ converter = tf.lite.TFLiteConverter.from_concrete_functions([tf_serving_fn.get_c
 tflite_model = converter.convert()
 ```
 
-> **💡 Tip:** For production serving, consider ONNX export or JAX-native serving via `jax.jit(serving_fn)` in a Python server. The jit-compiled function is already optimized — no need for TensorFlow. See [[09/20 - Deployment y Serving]] for complete deployment patterns.
+> **💡 Tip:** For production serving, consider ONNX export or JAX-native serving via `jax.jit(serving_fn)` in a Python server. The jit-compiled function is already optimized — no need for TensorFlow. See [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|20 - Deployment y Serving]] for complete deployment patterns.
 
 ---
 
@@ -479,7 +479,7 @@ print("¡Sorpresa! One fused kernel: forward + backward + optimizer update = 1 X
 - Orbax Documentation: https://orbax.readthedocs.io/
 - JAX Profiling Guide: https://jax.readthedocs.io/en/latest/profiling.html
 - Chowdhery et al. (2022). "PaLM: Scaling Language Modeling with Pathways." *arXiv:2204.02311*.
-- [[05/03 - Deep Learning con PyTorch]]
-- [[05/09 - Deep Learning with TensorFlow]]
-- [[09/20 - Deployment y Serving]]
-- [[09/24 - Weights and Biases]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow|09 - Deep Learning with TensorFlow]]
+- [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|20 - Deployment y Serving]]
+- [[09 - MLOps y Produccion/24 - Weights and Biases/00 - Welcome to Weights and Biases|24 - Weights and Biases]]

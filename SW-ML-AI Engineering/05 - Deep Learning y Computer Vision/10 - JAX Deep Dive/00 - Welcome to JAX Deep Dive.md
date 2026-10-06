@@ -13,7 +13,7 @@
 
 Why does JAX exist when PyTorch already dominates both research and production? The answer lies in a fundamental architectural wager. PyTorch's eager-execution model — where every operation executes immediately and builds an implicit computation graph — is intuitive and debuggable, but it imposes a ceiling on compiler optimizations. JAX inverts this: your Python code is a **specification**, not an execution plan. When you decorate a function with `@jax.jit`, JAX **traces** it into a pure mathematical representation, fuses operations at the XLA (Accelerated Linear Algebra) level, eliminates dead code, and generates hardware-optimized kernels. The result is that JAX training loops routinely run **1.5–2× faster** than equivalent PyTorch, and scale to TPU pods with **tens of thousands of cores** — which is precisely why DeepMind chose JAX for Gemini, AlphaFold, Gopher, and PaLM. For the AI/ML engineer, JAX represents the **research frontier**: mastering it opens doors to neural ODEs, implicit layers, equivariant networks, and other cutting-edge architectures that PyTorch's autograd struggles to handle efficiently.
 
-This module, nestled within [[05 - Deep Learning y Computer Vision]], is the vault's definitive JAX reference. It assumes you already know PyTorch [[05/03 - Deep Learning con PyTorch]] and have worked with TensorFlow [[05/09 - Deep Learning with TensorFlow]]. It bridges the gap from "I can train models in PyTorch" to "I understand why JAX is different and when to use it." We'll draw on the mathematical foundations in [[04/01 - Matemáticas para ML]] — particularly vector calculus and linear algebra — and later modules on deployment [[09/20 - Deployment y Serving]] and experiment tracking [[09/24 - Weights and Biases]] will reference back to the JAX training patterns established here.
+This module, nestled within [[00 - Indice Maestro de Cursos|05 - Deep Learning y Computer Vision]], is the vault's definitive JAX reference. It assumes you already know PyTorch [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]] and have worked with TensorFlow [[05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow|09 - Deep Learning with TensorFlow]]. It bridges the gap from "I can train models in PyTorch" to "I understand why JAX is different and when to use it." We'll draw on the mathematical foundations in [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida|01 - Matemáticas para ML]] — particularly vector calculus and linear algebra — and later modules on deployment [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|20 - Deployment y Serving]] and experiment tracking [[09 - MLOps y Produccion/24 - Weights and Biases/00 - Welcome to Weights and Biases|24 - Weights and Biases]] will reference back to the JAX training patterns established here.
 
 > **💡 Key Insight:** JAX is not a deep learning framework. It's a numerical computing framework that happens to be excellent for deep learning. The distinction matters: Flax, Haiku, and Equinox are neural network libraries *built on top of* JAX. Understanding this separation of concerns is the first step to JAX mastery.
 
@@ -35,8 +35,8 @@ This module, nestled within [[05 - Deep Learning y Computer Vision]], is the vau
 ## 🔗 Prerequisites & Knowledge Graph
 
 ### What You Should Already Know
-- **PyTorch fundamentals**: `nn.Module`, `autograd`, training loops, DataLoader. See [[05/03 - Deep Learning con PyTorch]].
-- **Linear algebra**: matrix multiplication, gradients, Jacobians, Hessians. See [[04/01 - Matemáticas para ML]].
+- **PyTorch fundamentals**: `nn.Module`, `autograd`, training loops, DataLoader. See [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]].
+- **Linear algebra**: matrix multiplication, gradients, Jacobians, Hessians. See [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida|01 - Matemáticas para ML]].
 - **Basic calculus**: partial derivatives, chain rule, gradient descent.
 - **Python proficiency**: NumPy, Jupyter, command-line workflows.
 
@@ -54,7 +54,7 @@ graph TD
     E --> J[Implicit Layers]
 ```
 
-> **💡 Pro Tip:** If you're comfortable with PyTorch but rusty on vector calculus, revisit [[04/01 - Matemáticas para ML]] before diving into Note 03 on automatic differentiation. The jump from `loss.backward()` to `jax.grad(jax.grad(f))` is profound but requires comfort with Jacobians.
+> **💡 Pro Tip:** If you're comfortable with PyTorch but rusty on vector calculus, revisit [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida|01 - Matemáticas para ML]] before diving into Note 03 on automatic differentiation. The jump from `loss.backward()` to `jax.grad(jax.grad(f))` is profound but requires comfort with Jacobians.
 
 ---
 
@@ -65,7 +65,7 @@ graph TD
 - Google **DeepMind uses JAX** for Gemini, AlphaFold, PaLM, and Gopher because it scales to TPU pods
 - The four core transformations — `jit`, `vmap`, `grad`, `pmap` — are **composable**, enabling patterns impossible in other frameworks
 - This module bridges PyTorch knowledge to **research-grade JAX** in 6 comprehensive notes
-- JAX powers the `transformers` library backend [[06/16 - HuggingFace Transformers Deep Dive]] and serves as foundation for cutting-edge architectures covered in [[07/32 - Advanced ML Topics]]
+- JAX powers the `transformers` library backend [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive|16 - HuggingFace Transformers Deep Dive]] and serves as foundation for cutting-edge architectures covered in [[11 - Research y Ciencia de Datos/32 - Advanced ML Topics/01 - JAX and Flax|32 - Advanced ML Topics]]
 
 ## 📦 Código de Compresión
 
@@ -92,10 +92,10 @@ print(f"JAX compiled and done. ¡Sorpresa! No tensors mutated.")
 - Frostig, Johnson, Leary (2018). "Compiling Machine Learning Programs via High-Level Tracing." *SysML 2018*.
 - DeepMind (2023). "Scaling Language Models with JAX." Google Research.
 - Bradbury et al. (2018). "JAX: composable transformations of Python+NumPy programs." GitHub.
-- [[05/03 - Deep Learning con PyTorch]]
-- [[05/09 - Deep Learning with TensorFlow]]
-- [[04/01 - Matemáticas para ML]]
-- [[07/32 - Advanced ML Topics]]
-- [[09/20 - Deployment y Serving]]
-- [[06/16 - HuggingFace Transformers Deep Dive]]
-- [[09/24 - Weights and Biases]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow|09 - Deep Learning with TensorFlow]]
+- [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida|01 - Matemáticas para ML]]
+- [[11 - Research y Ciencia de Datos/32 - Advanced ML Topics/01 - JAX and Flax|32 - Advanced ML Topics]]
+- [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|20 - Deployment y Serving]]
+- [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive|16 - HuggingFace Transformers Deep Dive]]
+- [[09 - MLOps y Produccion/24 - Weights and Biases/00 - Welcome to Weights and Biases|24 - Weights and Biases]]

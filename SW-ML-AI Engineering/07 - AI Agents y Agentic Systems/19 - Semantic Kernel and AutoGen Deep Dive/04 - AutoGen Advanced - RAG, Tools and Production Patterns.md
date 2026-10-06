@@ -14,7 +14,7 @@
 
 Note 03 covered the foundation: agent types, GroupChat, termination conditions, and code execution. But production agents need more than multi-agent conversation — they need **tools, retrieval, error handling, and deployment patterns**. This note covers the patterns that turn AutoGen from a research framework into a production-grade agent system.
 
-The tool integration story is the first gap. AutoGen v0.5 supports **function-calling tools** natively: register a Python function as a tool, the agent calls it via the LLM's function-calling API. This is the same pattern as Semantic Kernel's `@kernel_function` (Note 01) and Instructor/Outlines (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation]]) — but expressed in AutoGen's actor model.
+The tool integration story is the first gap. AutoGen v0.5 supports **function-calling tools** natively: register a Python function as a tool, the agent calls it via the LLM's function-calling API. This is the same pattern as Semantic Kernel's `@kernel_function` (Note 01) and Instructor/Outlines (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]]) — but expressed in AutoGen's actor model.
 
 The RAG integration story is the second. An agent with retrieval can ground its answers in private data; this is the most common production use case. AutoGen v0.5 supports retrieval via `Memory` extensions: vector databases, keyword indexes, and episodic stores.
 
@@ -82,7 +82,7 @@ AutoGen runs async tools automatically. No special configuration needed.
 
 ### 1.2 MCP tools
 
-AutoGen v0.5 supports the **Model Context Protocol** (MCP, covered in [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols]]) for standardized tool servers:
+AutoGen v0.5 supports the **Model Context Protocol** (MCP, covered in [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|15 - MCP and Agentic Protocols]]) for standardized tool servers:
 
 ```python
 from autogen_ext.tools.mcp import McpTool
@@ -132,7 +132,7 @@ def search_typed(query: str, k: int = 5) -> SearchResponse:
 typed_tool = FunctionTool(search_typed, name="search_documents", description="...")
 ```
 
-The agent sees a typed response and can reason about its structure. The Pydantic model integrates with the structured-output libraries from [[06 - Large Language Models/22 - Instructor and Structured Generation]].
+The agent sees a typed response and can reason about its structure. The Pydantic model integrates with the structured-output libraries from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]].
 
 ---
 
@@ -187,7 +187,7 @@ The agent calls `search_documents` whenever it needs context. The Qdrant search 
 
 ### 2.2 With Azure AI Search
 
-For Azure-native deployments (covered in [[10 - Cloud, Infra y Backend/22 - Cloud Computing]]):
+For Azure-native deployments (covered in [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|22 - Cloud Computing]]):
 
 ```python
 from azure.search.documents import SearchClient
@@ -539,7 +539,7 @@ async def stream_agent(req: QueryRequest):
 
 ### 7.3 LangFuse integration
 
-Every agent run traces to LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability]]):
+Every agent run traces to LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|36 - LangFuse - Open-Source LLM Observability]]):
 
 ```python
 from langfuse import Langfuse, observe
@@ -637,13 +637,13 @@ def search(query: str) -> SearchResponse: return SearchResponse(...)
 - AutoGen Tools — [microsoft.github.io/autogen/dev/user-guide/core-user-guide/framework/tools.html](https://microsoft.github.io/autogen/dev/user-guide/core-user-guide/framework/tools.html)
 - AutoGen RAG — [microsoft.github.io/autogen/dev/user-guide/core-user-guide/framework/rag.html](https://microsoft.github.io/autogen/dev/user-guide/core-user-guide/framework/rag.html)
 - MCP integration — [modelcontextprotocol.io](https://modelcontextprotocol.io/)
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]] — RAG fundamentals
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — Pydantic validation for tool returns
-- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols|MCP and Agentic Protocols]] — MCP server tooling
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — graph orchestration alternative
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — RAG fundamentals
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — Pydantic validation for tool returns
+- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|MCP and Agentic Protocols]] — MCP server tooling
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — graph orchestration alternative
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/03 - AutoGen Fundamentals - Conversable Agents and GroupChat|Note 03 — AutoGen Fundamentals]]
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/05 - Capstone - Multi-Framework Enterprise Agent|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability for AutoGen traces
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service deployment patterns
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — Azure deployment
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant, pgvector, Milvus, ChromaDB, Pinecone
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability for AutoGen traces
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service deployment patterns
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — Azure deployment
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant, pgvector, Milvus, ChromaDB, Pinecone

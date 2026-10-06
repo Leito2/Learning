@@ -18,9 +18,9 @@
 
 By 2025, the LLM serving landscape has consolidated around a few battle-tested engines, and vLLM has emerged as the dominant open-source choice for production inference. Simultaneously, naive RAG pipelines that rely solely on cosine similarity over dense embeddings have proven brittle in production: lexical gaps cause missed retrievals, semantic gaps cause irrelevant results, and latency budgets collapse under naive batching. This course teaches the **engineered intersection** of these two pillars.
 
-If you have completed [[../../02 - Large Language Models/09 - Sistemas de LLMs en Produccion/05 - Caso Practico - API de LLM Escalable|the scalable LLM API case study]], you already understand the FastAPI + Redis + vLLM architecture at a high level. If you have worked through [[../04 - Production RAG System.md|the Production RAG System course]], you know how chunking, vector indexing, and reranking shape retrieval quality. This course goes deeper into both topics — and merges them.
+If you have completed [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/05 - Caso Practico - API de LLM Escalable|the scalable LLM API case study]], you already understand the FastAPI + Redis + vLLM architecture at a high level. If you have worked through [[projects/04 - Production RAG System - Project Guide|the Production RAG System course]], you know how chunking, vector indexing, and reranking shape retrieval quality. This course goes deeper into both topics — and merges them.
 
-When you are interviewing for your first AI/ML Engineer role, the ability to discuss **PagedAttention memory management** and **Reciprocal Rank Fusion** sets you apart from candidates who only know `model.generate()`. ML platform teams at companies like Anthropic, Notion, and Stripe build exactly these systems, and they test for this knowledge. [[../17 - ML Platform Engineering/05 - ML Platform Engineering.md|ML platform engineering]] roles increasingly expect hands-on inference serving expertise.
+When you are interviewing for your first AI/ML Engineer role, the ability to discuss **PagedAttention memory management** and **Reciprocal Rank Fusion** sets you apart from candidates who only know `model.generate()`. ML platform teams at companies like Anthropic, Notion, and Stripe build exactly these systems, and they test for this knowledge. [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|ML platform engineering]] roles increasingly expect hands-on inference serving expertise.
 
 ---
 
@@ -39,15 +39,15 @@ Each note is **self-contained** — you can work through them in any order. Note
 
 | Concept | Expected Knowledge | Review If Needed |
 |---------|-------------------|-----------------|
-| LLM fundamentals | Transformer architecture, tokenization, attention | [[../../02 - Large Language Models/06 - Fundamentos de LLMs/05 - Evaluacion de LLMs.md\|LLM Evaluation notes]] |
+| LLM fundamentals | Transformer architecture, tokenization, attention | [[06 - Large Language Models/06 - Fundamentos de LLMs/05 - Evaluacion de LLMs\|LLM Evaluation notes]] |
 | Python async | `async def`, `await`, `asyncio.gather` | FastAPI documentation |
 | Docker | Dockerfile, docker-compose, GPU passthrough | Docker Profesional course |
-| Vector search | Embedding models, cosine similarity, HNSW/IVF | [[../04 - Production RAG System.md\|Production RAG System]] |
-| Redis basics | Data structures, TTL, pub/sub | [[../../06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/03 - Redis y Caching.md\|Redis y Caching]] |
+| Vector search | Embedding models, cosine similarity, HNSW/IVF | [[projects/04 - Production RAG System - Project Guide\|Production RAG System]] |
+| Redis basics | Data structures, TTL, pub/sub | [[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/03 - Redis y Caching\|Redis y Caching]] |
 | GPU concepts | CUDA cores, VRAM, tensor parallelism | NVIDIA developer docs |
 | Kubernetes (optional) | Pods, deployments, GPU scheduling | ML Platform Engineering course |
 
-> 💡 **Tip**: If you are shaky on Redis, skim the [[../../06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/03 - Redis y Caching.md|Redis y Caching]] note before Note 02. Hybrid search assumes basic Redis fluency.
+> 💡 **Tip**: If you are shaky on Redis, skim the [[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/03 - Redis y Caching|Redis y Caching]] note before Note 02. Hybrid search assumes basic Redis fluency.
 
 ---
 

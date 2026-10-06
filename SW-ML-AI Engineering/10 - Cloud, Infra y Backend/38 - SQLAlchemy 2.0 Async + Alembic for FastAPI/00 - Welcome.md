@@ -18,7 +18,7 @@ Every non-trivial backend persists data. For Python + FastAPI services, the domi
 
 This course assumes you have used SQLAlchemy 1.x or have only worked with raw SQL ORMs in another language. We start from the architectural changes introduced in 2.0 and build toward patterns that work in production under load. The course is **FastAPI-first**: every pattern is shown inside a FastAPI request handler, with the dependency injection wiring spelled out.
 
-The course sits at a critical junction in the vault. It is a direct companion to [[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]] (which covers ASGI, Pydantic, streaming, and deployment but does not touch the data layer) and to [[../36 - PostgreSQL for AI-ML Workloads/00 - Bienvenida|PostgreSQL for AI-ML Workloads]] (which covers the database engine itself, tuning, and pgvector). Together, the three courses form a complete stack: **HTTP framework → data access → database engine**.
+The course sits at a critical junction in the vault. It is a direct companion to [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] (which covers ASGI, Pydantic, streaming, and deployment but does not touch the data layer) and to [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads|PostgreSQL for AI-ML Workloads]] (which covers the database engine itself, tuning, and pgvector). Together, the three courses form a complete stack: **HTTP framework → data access → database engine**.
 
 ```mermaid
 flowchart LR
@@ -53,10 +53,10 @@ flowchart LR
 | Topic | Required Proficiency | Vault Note |
 |-------|---------------------|------------|
 | Python typing | Intermediate — `List[str]`, `Optional`, generics | [[../../03 - Advanced Python/01 - Python Basico/01 - Variables y Tipos de Datos]] |
-| Async Python | Confident — `async def`, `await`, event loop | [[../../03 - Advanced Python/02 - Python Intermedio/07 - Async y Await]] |
+| Async Python | Confident — `async def`, `await`, event loop | [[03 - Advanced Python/02 - Python Intermedio/07 - Modulos y Paquetes|07 - Async y Await]] |
 | FastAPI basics | Confident — `Depends`, request/response models | [[../31 - FastAPI for ML/01 - ASGI Architecture and Async Python for ML]] |
-| SQL fundamentals | Confident — joins, indexes, transactions, ACID | [[../../01 - Curso SQL con PostgreSQL/00 - Bienvenida]] |
-| PostgreSQL | Basic — connection strings, psql, role management | [[../36 - PostgreSQL for AI-ML Workloads/00 - Bienvenida]] |
+| SQL fundamentals | Confident — joins, indexes, transactions, ACID | [[01 - Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL\|00 - Bienvenida]] |
+| PostgreSQL | Basic — connection strings, psql, role management | [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads\|00 - Bienvenida]] |
 
 ---
 
@@ -75,10 +75,10 @@ By the end of this course you will have a production-grade task management API t
 
 ## 🔗 Vault Connections
 
-- **[[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]** — the HTTP layer this course pairs with
-- **[[../36 - PostgreSQL for AI-ML Workloads/00 - Bienvenida|PostgreSQL for AI-ML Workloads]]** — engine tuning, pgvector, CDC
-- **[[../33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases|Vector Databases]]** — when SQL is not the right tool (semantic search)
-- **[[../25 - Bases de Datos y Message Queues/00 - Bases de Datos y Message Queues|Bases de Datos y Message Queues]]** — broader data infrastructure patterns
+- **[[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]** — the HTTP layer this course pairs with
+- **[[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads|PostgreSQL for AI-ML Workloads]]** — engine tuning, pgvector, CDC
+- **[[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]]** — when SQL is not the right tool (semantic search)
+- **[[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/00 - Bienvenida|Bases de Datos y Message Queues]]** — broader data infrastructure patterns
 - **[[../../09 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida|Feature Stores]]** — point-in-time joins, online feature serving
 
 ## References

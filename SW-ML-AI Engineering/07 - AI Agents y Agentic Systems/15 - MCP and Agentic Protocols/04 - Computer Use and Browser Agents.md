@@ -12,7 +12,7 @@
 
 ## Introduction
 
-Every agent you have built so far — the [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/04 - Caso Practico - Equipo de Agentes para Analisis de Mercado.md|Market Analysis Team]], the Research System, StayBot — operates through structured APIs. They call search endpoints, query databases, invoke MCP tools. But a vast portion of the world's information and functionality exists only through **graphical user interfaces**: websites with login flows, internal enterprise dashboards, legacy systems with no API. Computer Use agents bridge this gap by having AI control the mouse, keyboard, and browser just like a human would.
+Every agent you have built so far — the [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/04 - Caso Practico - Equipo de Agentes para Analisis de Mercado|Market Analysis Team]], the Research System, StayBot — operates through structured APIs. They call search endpoints, query databases, invoke MCP tools. But a vast portion of the world's information and functionality exists only through **graphical user interfaces**: websites with login flows, internal enterprise dashboards, legacy systems with no API. Computer Use agents bridge this gap by having AI control the mouse, keyboard, and browser just like a human would.
 
 This is a paradigm shift. Instead of "write a function that calls an API," you say "go to this website, log in, download the Q3 report, and summarize it." The agent sees screenshots, reasons about what it sees, and performs actions — clicking, typing, scrolling — in a loop until the task is complete. Anthropic's Claude Computer Use (Oct 2024), OpenAI's Operator (Jan 2025), and the open-source Browser-Use framework all implement variants of this pattern.
 
@@ -432,4 +432,4 @@ browser-research-agent/
 - Anthropic Computer Use: https://docs.anthropic.com/en/docs/build-with-claude/computer-use
 - OpenAI Operator: https://openai.com/index/introducing-operator/
 - [[../15 - Advanced ML Topics/05 - Browser Agents.md|Browser Agents (Advanced ML Topics)]]
-- [[../../03 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/03 - Agentes con Acceso a Codigo.md|Agents with Code Access]]
+- [[07 - AI Agents y Agentic Systems/14 - Agentes Autonomos y Auto-Mejora/03 - Agentes con Acceso a Codigo|Agents with Code Access]]

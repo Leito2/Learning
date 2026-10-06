@@ -294,7 +294,7 @@ curl -X POST https://api.portkey.ai/v1/chat/completions \
 
 ## 7. Real-World Example — Drop-in LiteLLM Replacement
 
-Your existing **LLM Edge Gateway** (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19]]) uses LiteLLM. Migration to Portkey is trivial:
+Your existing **LLM Edge Gateway** (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19]]) uses LiteLLM. Migration to Portkey is trivial:
 
 ```python
 # Before (LiteLLM)
@@ -467,8 +467,8 @@ response = client.chat.completions.create(model=model, ...)
 - Portkey docs — [portkey.ai/docs](https://portkey.ai/docs)
 - Portkey GitHub — [github.com/Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)
 - OpenAI SDK — [github.com/openai/openai-python](https://github.com/openai/openai-python)
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — LiteLLM comparison
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability alternative
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — LiteLLM comparison
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability alternative
 - [[06 - Large Language Models/23 - Serverless LLM Platforms|Serverless LLM Platforms]] — multi-provider
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor]] — structured outputs
-- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/02 - Observability and Cost Tracking|Note 02 — Observability]]
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor]] — structured outputs
+- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/02 - Observability and Cost Tracking - Per-Tenant Dashboards, Alerts|Note 02 — Observability]]

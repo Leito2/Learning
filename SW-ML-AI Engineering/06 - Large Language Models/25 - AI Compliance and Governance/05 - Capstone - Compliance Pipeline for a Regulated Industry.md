@@ -935,7 +935,7 @@ jobs:
 - Mitchell et al. — Model Cards — [arxiv.org/abs/1810.03993](https://arxiv.org/abs/1810.03993)
 - Gebru et al. — Datasheets — [arxiv.org/abs/1803.09010](https://arxiv.org/abs/1803.09010)
 - EU AI Act full text — [eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security and Guardrails]] — security foundation
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation]] — bias evaluation patterns
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor]] — structured compliance outputs
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse]] — model usage audit trail
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security and Guardrails]] — security foundation
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation]] — bias evaluation patterns
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor]] — structured compliance outputs
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse]] — model usage audit trail

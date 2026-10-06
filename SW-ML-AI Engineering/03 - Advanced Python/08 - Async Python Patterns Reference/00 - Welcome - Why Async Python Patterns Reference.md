@@ -16,8 +16,8 @@
 By 2026, asynchronous Python is the dominant pattern for I/O-bound workloads: web APIs, message queues, database drivers, LLM inference, vector databases. The previous courses in the vault have taught you how to use async:
 
 - [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/01 - ASGI Architecture and Async Python for ML|FastAPI note 01]] — 920 lines of foundations
-- [[../../10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI|SQLAlchemy Async course]] — 7 notes
-- [[../../10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI|Background Workers course]] — 5 notes
+- [[10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy Async course]] — 7 notes
+- [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/00 - Welcome|Background Workers course]] — 5 notes
 - [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]]
 
 But there's still a **reference gap**. When you're at 2 AM debugging a deadlock, you don't need another tutorial — you need a **lookup table**:
@@ -82,7 +82,7 @@ This course is that reference. Six notes:
 You should already be comfortable with:
 
 - **async/await fundamentals** — coroutines, event loop, `asyncio.gather`
-- **FastAPI or async web framework** — [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML|10/31]] course or equivalent
+- **FastAPI or async web framework** — [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|10/31]] course or equivalent
 - **Async testing** — `pytest-asyncio` basics
 - **Production deployment** — Docker, K8s, observability
 
@@ -97,8 +97,8 @@ This course complements the existing async coverage:
 | Vault Module | Connection |
 |--------------|-----------|
 | [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/01 - ASGI Architecture and Async Python for ML\|FastAPI note 01]] | Deep dive on FastAPI async specifics |
-| [[../../10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI\|SQLAlchemy Async]] | Async DB drivers |
-| [[../../10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI\|Background Workers]] | ARQ/Celery async patterns |
+| [[10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome\|SQLAlchemy Async]] | Async DB drivers |
+| [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/00 - Welcome\|Background Workers]] | ARQ/Celery async patterns |
 | [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing\|Note 11 — Advanced Async Patterns]] | Cancellation, debugging, testing |
 | [[../../03 - Advanced Python/03 - Python Avanzado/06 - Concurrencia - Threading y Asyncio\|Python Avanzado Concurrencia]] | Spanish fundamentals |
 | [[../../09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering\|Incident Response Note 04]] | Circuit breaker, async patterns |

@@ -352,7 +352,7 @@ class FraudDetectionModel:
         return model
 ```
 
-In production, this is trained on a balanced dataset with proper labeling (covered in [[09 - MLOps y Produccion/27 - Feast and Feature Stores|Feast]] for feature pipelines and [[09 - MLOps y Produccion/22 - End-to-End ML Project|E2E ML Project]] for training).
+In production, this is trained on a balanced dataset with proper labeling (covered in [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|Feast]] for feature pipelines and [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|E2E ML Project]] for training).
 
 ---
 
@@ -845,15 +845,15 @@ sequenceDiagram
 ## References
 
 - [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/01 - Apache Kafka|Kafka note 01]] — Kafka fundamentals
-- [[09 - MLOps y Produccion/27 - Feast and Feature Stores|Feast course]] — online feature store
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection foundation
-- [[09 - MLOps y Produccion/22 - End-to-End ML Project|E2E ML Project]] — training pipeline
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering|Note 01 — Streaming Features]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML|Note 02 — Online Inference]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/03 - Change Data Capture for ML|Note 03 — CDC]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/04 - Drift Detection in Real-time|Note 04 — Drift Detection]]
+- [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|Feast course]] — online feature store
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection foundation
+- [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|E2E ML Project]] — training pipeline
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering - Kafka, Faust-Bytewax, and Online Aggregations|Note 01 — Streaming Features]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML - Sub-50ms Predictions|Note 02 — Online Inference]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/03 - Change Data Capture for ML - Debezium, Kafka Connect, and Streaming ETL|Note 03 — CDC]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/04 - Drift Detection in Real-time - ADWIN, Page-Hinkley, and Auto-Retraining|Note 04 — Drift Detection]]
 - Bytewax — [bytewax.io](https://bytewax.io/)
 - Debezium — [debezium.io](https://debezium.io/)
 - Feast — [feast.dev](https://feast.dev/)
 - River ML — [riverml.xyz](https://riverml.xyz/)
-- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems|Incident Response]] — alerts for drift detection failures
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems|Incident Response]] — alerts for drift detection failures

@@ -386,7 +386,7 @@ def rag_pipeline(query: str, thread_id: str = "") -> dict:
 
 - [[00 - Welcome to OpenTelemetry for AI Engineers|Welcome]] — course map.
 - [[02 - Auto-Instrumentation for LLM SDKs|LLM SDKs]] — most spans come from auto-instrumentation.
-- [[03 - OTLP Exporters|Exporters]] — where traces go.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/03 - OTLP Exporters - Phoenix Tempo Jaeger and Beyond|Exporters]] — where traces go.
 - [[../31 - Evidently AI and Phoenix/03 - Phoenix by Arize - LLM Observability, Traces and Embedding Drift.md|Phoenix]] — RAG-specific dashboards.
 - [[../../06 - Large Language Models/12 - Production RAG/02 - Vector Databases for RAG - HNSW, IVF, PQ and Filtering.md|Vector Databases for RAG]] — the retrieval layer.
 - [[../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive.md|RAG Evaluation Deep Dive]] — eval integration.

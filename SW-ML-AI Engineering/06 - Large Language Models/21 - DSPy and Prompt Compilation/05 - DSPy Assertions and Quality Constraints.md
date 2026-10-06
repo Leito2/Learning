@@ -359,6 +359,6 @@ print(result.citations)
 
 - [[00 - Welcome to DSPy and Prompt Compilation|Welcome]] — course map.
 - [[01 - Signatures and Modules|Signatures]] — the building blocks.
-- [[02 - Optimizers|Optimizers]] — the compiler (uses assertions in metric).
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/02 - Optimizers - BootstrapFewShot MIPRO and COPRO|Optimizers]] — the compiler (uses assertions in metric).
 - [[04 - DSPy + LangGraph Integration|LangGraph integration]] — assertions in agents.
 - DSPy Assertions: https://dspy.ai/learn/constraints/

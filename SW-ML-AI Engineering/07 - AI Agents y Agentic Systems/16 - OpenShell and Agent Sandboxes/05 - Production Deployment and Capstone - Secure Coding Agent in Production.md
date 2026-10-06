@@ -5,7 +5,7 @@
 - Diagnose the **dev laptop vs production Kubernetes** gap for agent workloads — local Docker, host GPU, and `mise run` are not production paths
 - Master the **four compute drivers** (Docker, Podman, MicroVM, Kubernetes) and the OpenShift path for each
 - Design a **Helm values.yaml** for OpenShell that includes gateway replicas, sandbox size limits, GPU passthrough, telemetry opt-out, and ingress
-- Implement **GPU sandboxing** for local inference: CDI vs `--gpus all`, [[../../../06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome.md|SGLang]], and the [[../../../06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome.md|TensorRT-LLM]] engine inside the sandbox
+- Implement **GPU sandboxing** for local inference: CDI vs `--gpus all`, [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|SGLang]], and the [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM|TensorRT-LLM]] engine inside the sandbox
 - Operate the **TUI, structured logs, and telemetry opt-out** to debug a production agent fleet
 - Build the **Capstone: Secure Research Agent** — Deep Agents + OpenShell + custom policy + k3s Helm deploy
 
@@ -15,7 +15,7 @@
 
 You can run `openshell sandbox create -- claude` on your laptop in ten seconds. That is the **single-player mode** the README describes. The same command, on a Kubernetes cluster with three replicas of the gateway and ten sandboxes per gateway, with GPU passthrough, structured audit logging, and SIEM integration, is a different problem. The unit of deployment changes: from "a process I started in my shell" to "a Helm release with a Service, a StatefulSet, a ConfigMap, a Secret, and a NetworkPolicy".
 
-This is the same gap that [[../../../09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida.md|KServe and Knative]] close for ML models and that [[../../../10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code.md|Infrastructure as Code]] closes for cloud resources. The agent runtime is now a deployable artifact, not a developer convenience. The same **Harness Engineering** discipline from [[../../../16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD.md|Harness Engineering]] applies: the policy is the spec, the sandbox is the runtime, the cluster is the production surface.
+This is the same gap that [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|KServe and Knative]] close for ML models and that [[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|Infrastructure as Code]] closes for cloud resources. The agent runtime is now a deployable artifact, not a developer convenience. The same **Harness Engineering** discipline from [[16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD|Harness Engineering]] applies: the policy is the spec, the sandbox is the runtime, the cluster is the production surface.
 
 This note walks the full path from `docker run openshell-gateway` to `helm install openshell oci://ghcr.io/nvidia/openshell/helm-chart`. We will deploy a single-gateway local-k3s cluster (the cheapest production-like target), wire a Deep Agents-based research agent into it via the [[04 - Agent Integrations - Claude, OpenCode, Codex, Copilot, Deep Agents, Hermes, OpenClaw.md|provider abstraction]] from the previous note, and apply the [[03 - Declarative YAML Policies - Filesystem, Network, Process, Inference.md|declarative YAML policy]] from the note before that. The capstone at the end is a runnable project you can ship to a portfolio.
 
@@ -172,11 +172,11 @@ The fields are indexed by default in Grafana Loki's `json` parser. A typical das
 
 For a multi-cluster production deployment, the pattern is: (1) **Per-region gateway cluster** — one k3s/k8s cluster per region hosting the gateway. A sandbox survives a gateway restart (state is in etcd), but a sandbox running on a dead gateway needs to be re-scheduled. (2) **Sandbox clusters** — separate clusters (or node pools) that host the sandbox workloads; the gateway uses a `kubeconfig` to spawn sandboxes into the target cluster. This separation is what makes multi-tenancy work — the gateway cluster has lower blast radius. (3) **OpenShift** if you are on a regulated environment (finance, healthcare, government). OpenShift's SCCs and operator framework reduce the audit surface. (4) **GPU node pool** — dedicated nodes with the NVIDIA GPU Operator installed, MIG-sliced or time-sliced, labeled `nvidia.com/gpu.product=NVIDIA-H100-80GB-HBM3`. The Helm chart's `sandbox.defaults.gpu.nodeSelector` targets this label.
 
-The [[../../../09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative.md|KServe and Knative]] pattern of "scale-to-zero + per-request cold start" maps cleanly to OpenShell: a sandbox that has not been used for 5 minutes is a candidate for garbage collection, and a new request gets a fresh sandbox with the same policy in ~3 seconds.
+The [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative|KServe and Knative]] pattern of "scale-to-zero + per-request cold start" maps cleanly to OpenShell: a sandbox that has not been used for 5 minutes is a candidate for garbage collection, and a new request gets a fresh sandbox with the same policy in ~3 seconds.
 
 ### 3.2 GPU sandboxing for local inference
 
-For a research agent that wants to run [[../../../06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome.md|SGLang]] or [[../../../06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome.md|TensorRT-LLM]] locally — for cost, latency, or data-residency reasons — the community `nvidia-gpu` sandbox is the entry point.
+For a research agent that wants to run [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|SGLang]] or [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM|TensorRT-LLM]] locally — for cost, latency, or data-residency reasons — the community `nvidia-gpu` sandbox is the entry point.
 
 ```bash
 # Launch a GPU-enabled sandbox with a local model server
@@ -193,7 +193,7 @@ $ python -m sglang.launch_server --model-path meta-llama/Llama-3.3-70B-Instruct 
 
 The gateway's `inference.local` policy routes LLM calls from other sandboxes (or from the host) to this internal endpoint, with the credential strip-and-inject pattern from [[04 - Agent Integrations - Claude, OpenCode, Codex, Copilot, Deep Agents, Hermes, OpenClaw.md|note 04]]. The host never needs the model's API key; the gateway holds it.
 
-For a portfolio piece, this is the path that demonstrates "I can run a production-grade LLM inference stack in a sandboxed, policy-governed container". The combination of [[../../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns.md|LiteLLM]] as the gateway and SGLang as the engine is the most common production stack; the OpenShell sandbox adds the security layer on top.
+For a portfolio piece, this is the path that demonstrates "I can run a production-grade LLM inference stack in a sandboxed, policy-governed container". The combination of [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LiteLLM]] as the gateway and SGLang as the engine is the most common production stack; the OpenShell sandbox adds the security layer on top.
 
 ### 3.3 Brev launchable for cloud compute
 
@@ -446,7 +446,7 @@ openshell logs research-agent --level warn --tail --since 5m
 kubectl logs -n openshell -l app=openshell-gateway -c audit --tail -f | vector --config /etc/vector/vector.toml
 ```
 
-The seven commands are the production surface. They map 1:1 to the [[../../../16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD.md|Harness Engineering]] verification gates: lint (pre-commit), dry-run (CI), apply the chart (CD), wait for ready (smoke test), create the sandbox (integration test), watch the deny log (security test), stream to SIEM (production observability). This is what verifiable, policy-gated agent deployment looks like end-to-end.
+The seven commands are the production surface. They map 1:1 to the [[16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD|Harness Engineering]] verification gates: lint (pre-commit), dry-run (CI), apply the chart (CD), wait for ready (smoke test), create the sandbox (integration test), watch the deny log (security test), stream to SIEM (production observability). This is what verifiable, policy-gated agent deployment looks like end-to-end.
 
 > ⚠️ **Advertencia**: The `--dry-run` flag on `policy set` is the single most important CI guard. It compiles the policy and validates it against the active schema, but does not push to the gateway. Always lint + dry-run before the real apply, and never skip `--wait` in production.
 
@@ -487,13 +487,13 @@ The seven commands are the production surface. They map 1:1 to the [[../../../16
 - NemoClaw: https://github.com/NVIDIA/NemoClaw | OpenShell Deep Agent: https://github.com/langchain-ai/openshell-deepagent
 - k3s: https://k3s.io
 - NVIDIA Container Toolkit: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html | CDI: https://github.com/cncf-tags/container-device-interface
-- SGLang Inference: [[../../../06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome.md|ColBERT, SGLang and Next-Gen Inference]]
-- TensorRT-LLM: [[../../../06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome.md|TensorRT-LLM]]
-- LLM Gateway Patterns: [[../../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns.md|LLM Gateway Patterns and LiteLLM]]
-- KServe and Knative: [[../../../09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative.md|KServe and Knative]]
-- Infrastructure as Code: [[../../../10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code.md|Infrastructure as Code]]
-- Harness Engineering: [[../../../16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD.md|Harness Engineering]]
-- Verification and Quality Gates: [[../../../16 - Harness Engineering/08 - Verification and Quality Gates.md|Verification and Quality Gates]]
+- SGLang Inference: [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|ColBERT, SGLang and Next-Gen Inference]]
+- TensorRT-LLM: [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM|TensorRT-LLM]]
+- LLM Gateway Patterns: [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns and LiteLLM]]
+- KServe and Knative: [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative|KServe and Knative]]
+- Infrastructure as Code: [[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|Infrastructure as Code]]
+- Harness Engineering: [[16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD|Harness Engineering]]
+- Verification and Quality Gates: [[16 - Harness Engineering/08 - Verification and Quality Gates|Verification and Quality Gates]]
 - Declarative YAML Policies: [[03 - Declarative YAML Policies - Filesystem, Network, Process, Inference.md|Declarative YAML Policies]]
 - Agent Integrations: [[04 - Agent Integrations - Claude, OpenCode, Codex, Copilot, Deep Agents, Hermes, OpenClaw.md|Agent Integrations]]
 - MCP and Agentic Protocols: [[../15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols.md|MCP and Agentic Protocols]]

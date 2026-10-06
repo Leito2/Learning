@@ -69,13 +69,13 @@ The combo Python backend + TypeScript frontend is the **dominant pattern** for A
 
 | Vault Module | Connection |
 |--------------|-----------|
-| [[02 - Docker Profesional\|Docker]] | Container deployment |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | Edge compute |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI]] | Python↔TS via HTTP |
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | LLM Gateway can be TS or Python |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor]] | Python uses Pydantic; TS uses Zod |
-| [[Extra/Bun Runtime\|Bun Runtime]] | Bun = TS runtime alternative to Node |
-| [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive\|SK + AutoGen]] | SK has TS SDK |
+| [[02 - Docker Profesional/00 - Bienvenida\|Docker]] | Container deployment |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | Edge compute |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI]] | Python↔TS via HTTP |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | LLM Gateway can be TS or Python |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor]] | Python uses Pydantic; TS uses Zod |
+| [[Extra/Bun Runtime/00 - Welcome to Bun Runtime\|Bun Runtime]] | Bun = TS runtime alternative to Node |
+| [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/00 - Welcome - Why Microsoft Agentic Stack\|SK + AutoGen]] | SK has TS SDK |
 
 ---
 
@@ -96,9 +96,9 @@ This is the **fifteenth portfolio project**: full-stack AI engineering.
 
 You should already be comfortable with:
 
-- **Python async** — `asyncio`, `await`, `TaskGroup` from [[03 - Advanced Python/08 - Async Python Patterns Reference|03/08 Async Python Patterns Reference]]
-- **HTTP and REST APIs** — from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|10/31 FastAPI]]
-- **LLM fundamentals** — from [[06 - Large Language Models/22 - Instructor and Structured Generation|06/22 Instructor]]
+- **Python async** — `asyncio`, `await`, `TaskGroup` from [[03 - Advanced Python/08 - Async Python Patterns Reference/00 - Welcome - Why Async Python Patterns Reference|03/08 Async Python Patterns Reference]]
+- **HTTP and REST APIs** — from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|10/31 FastAPI]]
+- **LLM fundamentals** — from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|06/22 Instructor]]
 - **JavaScript basics** — variables, functions, async/await (the language is similar enough that AI engineers learn fast)
 
 ---

@@ -425,7 +425,7 @@ def cross_service_demo():
 
 - [[00 - Welcome to OpenTelemetry for AI Engineers|Welcome]] — course map.
 - [[02 - Auto-Instrumentation for LLM SDKs|Auto-Instrumentation]] — the 80% use case.
-- [[03 - OTLP Exporters|Exporters]] — what to do with the spans.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/03 - OTLP Exporters - Phoenix Tempo Jaeger and Beyond|Exporters]] — what to do with the spans.
 - [[04 - OTel for LangGraph and Agent Frameworks|Agent Tracing]] — context propagation across nodes.
 - OTel Python docs: https://opentelemetry.io/docs/languages/python/
 - W3C Trace Context: https://www.w3.org/TR/trace-context/

@@ -16,7 +16,7 @@ Terraform is **not** a scripting tool. It does not execute commands in sequence.
 
 Understanding Terraform's core engine — the DAG builder, the state file, and the provider plugin model — is the difference between someone who can run `terraform apply` and someone who can debug why their plan shows 47 unexpected destroys. The HCL language sits on top of this engine as a domain-specific configuration language, but the real work happens in the plan/apply cycle that reads state, calls provider APIs, computes diffs, and executes parallel resource operations.
 
-For ML infrastructure, this matters because GPU clusters involve tightly coupled resources: VPCs, subnets, security groups, IAM roles, instance profiles, EFS filesystems, S3 endpoints, and the GPU instances themselves. Each resource depends on others; misorder one dependency and your training job fails silently. The DAG gives you a visual, mathematically-grounded model of these dependencies. Paired with strong cloud fundamentals from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] and deployment patterns from [[09/20 - Deployment y Serving|Deployment]], Terraform becomes the backbone of reproducible ML infrastructure.
+For ML infrastructure, this matters because GPU clusters involve tightly coupled resources: VPCs, subnets, security groups, IAM roles, instance profiles, EFS filesystems, S3 endpoints, and the GPU instances themselves. Each resource depends on others; misorder one dependency and your training job fails silently. The DAG gives you a visual, mathematically-grounded model of these dependencies. Paired with strong cloud fundamentals from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] and deployment patterns from [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment]], Terraform becomes the backbone of reproducible ML infrastructure.
 
 ---
 
@@ -443,5 +443,5 @@ output "instance_public_ip" {
 - Hunt, A., & Thomas, D. (1999). *The Pragmatic Programmer*. Addison-Wesley. — Origin of "DRY" and "don't repeat yourself" that locals embody.
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/01 - Fundamentos de Cloud y Modelos de Servicio|Cloud Fundamentals]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/04 - Redes y Seguridad en Cloud|Cloud Networking]]
-- [[09/20 - Deployment y Serving]]
+- [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|20 - Deployment y Serving]]
 - [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML Infra]]

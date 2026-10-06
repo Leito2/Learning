@@ -468,7 +468,7 @@ def credit_check(ssn: str) -> bool:
     return llm_classify(f"Should we approve SSN hash {ssn_hash}?")
 ```
 
-For full PII redaction, use [[06 - Large Language Models/15 - LLM Security and Guardrails]] before tracing, or configure LangFuse's `mask` patterns.
+For full PII redaction, use [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|15 - LLM Security and Guardrails]] before tracing, or configure LangFuse's `mask` patterns.
 
 ### 7.2 Antipattern 2: Forgetting to flush in batch jobs
 
@@ -540,11 +540,11 @@ Self-hosted is the only universally compliant option. LangFuse Cloud offers a BA
 - LangFuse docs — [langfuse.com/docs](https://langfuse.com/docs)
 - Self-hosting guide — [langfuse.com/docs/deployment/self-host](https://langfuse.com/docs/deployment/self-host)
 - Helm chart — [github.com/langfuse/langfuse-helm](https://github.com/langfuse/langfuse-helm)
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix for LLM traces + drift
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol layer
-- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive|LangSmith Deep Dive]] — SaaS counterpart
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — Kubernetes deployment
-- [[02 - Docker Profesional|Docker Profesional]] — Docker Compose patterns
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service integration patterns
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix for LLM traces + drift
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol layer
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith|LangSmith Deep Dive]] — SaaS counterpart
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — Kubernetes deployment
+- [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]] — Docker Compose patterns
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service integration patterns
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/02 - LLM SDK Auto-Instrumentation|Note 02 — SDK Auto-Instrumentation]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/05 - Capstone - Self-Hosted LangFuse for Multi-Provider RAG|Note 05 — Capstone]]

@@ -1071,4 +1071,4 @@ Components:
 - [[04 - GraphRAG and Knowledge Graph-Enhanced RAG]] — When even reranking isn't enough for multi-hop reasoning
 - [[05 - RAG Evaluation with RAGAS and DeepEval]] — Measuring whether your reranking actually improves answer quality
 - [[Production RAG System]] — End-to-end RAG deployment patterns
-- [[System Design for ML]] — Scaling retrieval pipelines for production traffic
+- [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML|System Design for ML]] — Scaling retrieval pipelines for production traffic

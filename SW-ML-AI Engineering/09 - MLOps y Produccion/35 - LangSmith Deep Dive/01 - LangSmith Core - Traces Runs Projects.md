@@ -2,7 +2,7 @@
 
 LangSmith's data model has five primitives: **Projects** (organizational unit), **Traces** (one full request lifecycle), **Runs** (one LLM call or function), **Feedback** (annotation scores), and **Datasets** (versioned test sets). Master these five and the rest of the platform — evaluators, annotation queues, A/B tests — is composition. This note covers the data model, the trace tree structure, the project organization patterns, and the SDK API for working with each primitive programmatically.
 
-By the end you can build a complete observability workflow: projects per environment, traces per request, runs per node, feedback per evaluation, datasets per version. The [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/01 - OTel Primitives - Spans Traces and Context Propagation.md|OTel equivalent]] of these primitives is the same mental model with different terminology.
+By the end you can build a complete observability workflow: projects per environment, traces per request, runs per node, feedback per evaluation, datasets per version. The [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/01 - OTel Primitives - Spans Traces and Context Propagation|OTel equivalent]] of these primitives is the same mental model with different terminology.
 
 ## 🎯 Learning Objectives
 
@@ -319,6 +319,6 @@ for run in runs:
 - [[00 - Welcome to LangSmith|Welcome]] — course map.
 - [[02 - Auto-Instrumentation for LLM SDKs|Auto-Instrumentation]] — the SDK integrations.
 - [[03 - Datasets and Evaluations|Datasets]] — versioned test sets.
-- [[04 - Online Evaluators|Online Evals]] — production-time scoring.
-- [[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|LangGraph]] — native integration.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/04 - Online Evaluators and LLM-as-Judge|Online Evals]] — production-time scoring.
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph]] — native integration.
 - LangSmith API: https://docs.smith.langchain.com/observability

@@ -13,7 +13,7 @@ The previous note established SGLang as a paradigm for LLM programming, where `g
 
 The killer application that justifies SGLang's adoption is the **LLM-as-a-Judge** pattern. When evaluating 100 candidate answers against the same rubric, the rubric prompt (often 1500-3000 tokens) is identical across all evaluations. With traditional APIs, this is 100 × 3000 = 300,000 tokens of redundant prefill. With SGLang, the rubric is encoded once at the root of the Radix tree, and all 100 evaluations share it via `fork()`. The result is a 3-5× throughput improvement — not from faster GPU kernels, but from eliminating redundant computation at the architectural level. This is the same insight that powers LMSYS's Chatbot Arena evaluation infrastructure and Databricks's SQL generation quality pipeline.
 
-For agentic systems, SGLang's value proposition is equally compelling. Each conversation turn with tool calls triggers 2-5 LLM calls (planning, tool execution, synthesis, verification). Without prefix sharing, the system prompt and conversation history are recomputed for each call. SGLang maintains a single Radix tree per conversation session, so later calls extend from earlier ones without recomputing shared prefixes. Combined with structured decoding for tool schemas, this eliminates both the compute waste of redundant prefill and the brittleness of post-hoc JSON parsing. For the broader agent ecosystem, see [[07 - MCP and Agentic Protocols]].
+For agentic systems, SGLang's value proposition is equally compelling. Each conversation turn with tool calls triggers 2-5 LLM calls (planning, tool execution, synthesis, verification). Without prefix sharing, the system prompt and conversation history are recomputed for each call. SGLang maintains a single Radix tree per conversation session, so later calls extend from earlier ones without recomputing shared prefixes. Combined with structured decoding for tool schemas, this eliminates both the compute waste of redundant prefill and the brittleness of post-hoc JSON parsing. For the broader agent ecosystem, see [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|07 - MCP and Agentic Protocols]].
 
 ![Agent loop with tool calling: each LLM call shares conversation prefix via RadixAttention](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Hash_table_5_0_1_1_1_1_0_LL.svg/1280px-Hash_table_5_0_1_1_1_1_0_LL.svg)
 
@@ -556,8 +556,8 @@ print("Only the new tokens for the current turn require GPU computation.")
 - Databricks SQL generation evaluation pipeline (internal engineering blog)
 - LMSYS Chatbot Arena: https://chat.lmsys.org/
 - [[03 - SGLang - Structured Generation and RadixAttention]]
-- [[07 - MCP and Agentic Protocols]]
-- [[06 - vLLM and Advanced RAG]]
+- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|07 - MCP and Agentic Protocols]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]]
 
 ---
 

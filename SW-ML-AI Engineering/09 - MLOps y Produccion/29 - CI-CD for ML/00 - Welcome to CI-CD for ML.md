@@ -109,11 +109,11 @@ The ML CI/CD pipeline must detect the right failures — and it must detect them
 
 ## 4. Prerequisites
 
-- **Docker and containerization**: Building, tagging, pushing images to registries. See [[../../02 - Docker Profesional/]]
+- **Docker and containerization**: Building, tagging, pushing images to registries. See [[02 - Docker Profesional/00 - Bienvenida|02 - Docker Profesional]]
 - **Kubernetes basics**: Pods, Deployments, Services, ConfigMaps. See [[../20 - Deployment y Serving/03 - Kubernetes para ML|Deployment y Serving]]
 - **CI/CD concepts**: GitHub Actions workflows, stages, jobs, artifacts. General experience with any CI platform.
-- **ML pipeline fundamentals**: Training loop, model serialization, inference endpoint. See [[../22 - End-to-End ML Project/]]
-- **Testing in ML**: Data validation, model evaluation, behavioral testing. See [[../28 - Testing in ML Systems/]]
+- **ML pipeline fundamentals**: Training loop, model serialization, inference endpoint. See [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|22 - End-to-End ML Project]]
+- **Testing in ML**: Data validation, model evaluation, behavioral testing. See [[09 - MLOps y Produccion/28 - Testing in ML Systems/00 - Welcome to Testing in ML Systems|28 - Testing in ML Systems]]
 
 ---
 
@@ -121,12 +121,12 @@ The ML CI/CD pipeline must detect the right failures — and it must detect them
 
 | Prerequisite Concept | Where Used |
 |----------------------|------------|
-| [[../28 - Testing in ML Systems/]] | Tests run as CI pipeline stages; model evaluation gates |
-| [[../30 - TorchServe/]] | Model artifact packaging (.mar) and serving in CI deployment |
-| [[../32 - KServe and Knative/]] | InferenceService as CD deployment target |
-| [[../26 - ML Platform Engineering/]] | CI/CD as the backbone of the ML platform |
+| [[09 - MLOps y Produccion/28 - Testing in ML Systems/00 - Welcome to Testing in ML Systems\|28 - Testing in ML Systems]] | Tests run as CI pipeline stages; model evaluation gates |
+| [[09 - MLOps y Produccion/30 - TorchServe/00 - Welcome to TorchServe\|30 - TorchServe]] | Model artifact packaging (.mar) and serving in CI deployment |
+| [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative\|32 - KServe and Knative]] | InferenceService as CD deployment target |
+| [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow\|26 - ML Platform Engineering]] | CI/CD as the backbone of the ML platform |
 | [[../../10 - Cloud, Infra y Backend/23 - Infrastructure as Code/06 - CI-CD and GitOps for ML Infrastructure\|IaC CI/CD & GitOps]] | Infrastructure pipelines, Terraform plan as code review artifact |
-| [[../31 - Evidently AI and Phoenix/]] | Data/data drift monitoring integration with CI gates |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|31 - Evidently AI and Phoenix]] | Data/data drift monitoring integration with CI gates |
 | [[../../projects/04 - CI-CD for ML - Project Guide\|Project Guide]] | Hands-on implementation of an ML CI/CD pipeline |
 
 ---

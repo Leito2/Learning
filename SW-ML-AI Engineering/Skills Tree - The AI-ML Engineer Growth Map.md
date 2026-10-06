@@ -243,7 +243,7 @@
 | 🌿 | Polars — Rust DataFrame (10-100x Pandas) | 14 > 03 > 01 |
 | 🌿 | Apache Arrow & Zero-Copy Data | 14 > 03 > 02 |
 | 🌿 | High-Performance ETL in Rust | 14 > 03 > 03 |
-| 🌿 | Polars Internals (lazy, streaming, Arrow) | [[07 - Polars Internals and Advanced]] |
+| 🌿 | Polars Internals (lazy, streaming, Arrow) | [[14 - Rust Engineering/07 - Polars Internals and Advanced/00 - Welcome to Polars Internals\|07 - Polars Internals and Advanced]] |
 | 🌿 | DataFusion (Arrow query engine) | 14 > 03 > 03 |
 | 🌿 | uv — Python Package Manager (Rust) | 14 > 03 > 04 |
 | 🌿 | Ruff — Python Linter (Rust) | 14 > 03 > 05 |
@@ -271,7 +271,7 @@
 | 🌿 | Advanced ML Topics (SSL, GANs, Diffusion) | 07 > 32 |
 | 🌿 | ONNX Runtime (cross-framework inference) | 14 > 04 > 03 |
 | 🌿 | Model Quantization Research | 14 > 04 > 06 |
-| 🌿 | Custom Models with Candle (Rust) | [[07 - Candle Advanced Patterns]] |
+| 🌿 | Custom Models with Candle (Rust) | [[14 - Rust Engineering/07 - Candle Advanced Patterns/00 - Welcome to Candle Advanced Patterns\|07 - Candle Advanced Patterns]] |
 | 🌿 | Gorgonia — Computational Graphs & Autodiff | 13 > 07 - Gorgonia |
 | 🌿 | LocalAI — Local LLM Server Architecture | 13 > 07 - LocalAI |
 | 🌿 | WASM ML Pipelines (Browser + Edge) | 14 > 05 > 05 |

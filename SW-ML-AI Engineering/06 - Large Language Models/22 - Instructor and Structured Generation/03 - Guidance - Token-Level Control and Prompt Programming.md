@@ -444,5 +444,5 @@ Pick one orchestrator per call. Use Guidance directly when you need its expressi
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/01 - Instructor - Pydantic-Native Structured Outputs|Note 01 — Instructor]]
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/02 - Outlines - Constrained Decoding at the Token Level|Note 02 — Outlines]]
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/04 - LMQL - A Query Language for LLMs|Note 04 — LMQL]] — DSL alternative
-- [[06 - Large Language Models/21 - DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — alternative optimization-based approach
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — structured LLM-as-Judge (uses Instructor, not Guidance, due to multi-provider)
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — alternative optimization-based approach
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — structured LLM-as-Judge (uses Instructor, not Guidance, due to multi-provider)

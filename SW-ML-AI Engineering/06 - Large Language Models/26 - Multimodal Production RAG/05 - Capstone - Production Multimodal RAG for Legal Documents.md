@@ -656,7 +656,7 @@ def legal_document_pipeline(pdf_path: str) -> dict:
 - [ ] LangFuse tracing for every retrieval and generation
 - [ ] BGE-M3 embeddings (multilingual support)
 - [ ] FastAPI service with GPU support (vLLM)
-- [ ] Rate limiting per tenant (covered in [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems|Incident Response]])
+- [ ] Rate limiting per tenant (covered in [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems|Incident Response]])
 - [ ] PII redaction for legal documents
 - [ ] Encryption at rest and in transit
 - [ ] Audit trail for all retrievals (compliance)
@@ -673,14 +673,14 @@ def legal_document_pipeline(pdf_path: str) -> dict:
 
 ## References
 
-- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction|Note 01 — PDF Parsing]]
-- [[06 - Large Language Models/26 - Multimodal Production RAG/02 - Visual Document Retrieval - ColPali and Beyond|Note 02 — ColPali]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction - Text, Tables, OCR, and Layout Preservation|Note 01 — PDF Parsing]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/02 - Visual Document Retrieval - ColPali and the Late Interaction Revolution|Note 02 — ColPali]]
 - [[06 - Large Language Models/26 - Multimodal Production RAG/03 - Multimodal Embedding Models|Note 03 — Multimodal Embeddings]]
 - [[06 - Large Language Models/26 - Multimodal Production RAG/04 - Video and Audio RAG|Note 04 — Video/Audio RAG]]
 - ColPali — [github.com/illuin-tech/colpali](https://github.com/illuin-tech/colpali)
 - LlamaIndex multi-modal — [docs.llamaindex.ai](https://docs.llamaindex.ai)
 - Unstructured.io — [unstructured.io](https://unstructured.io/)
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant multi-vector
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]]
-- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai|Production RAG: Haystack + txtai]]
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant multi-vector
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]]
+- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks|Production RAG: Haystack + txtai]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]]

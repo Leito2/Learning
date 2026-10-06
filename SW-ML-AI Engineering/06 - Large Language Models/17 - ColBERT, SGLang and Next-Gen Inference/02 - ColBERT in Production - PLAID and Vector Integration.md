@@ -13,7 +13,7 @@ ColBERT's token-level late interaction is elegant in theory but brutal in practi
 
 **PLAID** — Performance-Optimized Late Interaction Driver — solves this by introducing a centroid-based pruning stage *before* MaxSim. The insight: token embeddings cluster naturally into semantic groups (centroids from k-means), and most documents are irrelevant to any given query. PLAID uses these centroids to quickly eliminate ~99.9% of documents, reducing the expensive MaxSim computation to only the most promising candidates. This is not an approximation of ColBERT — it produces exactly the same ranking as brute-force MaxSim for the documents it selects, and empirically selects ~99.5% of the true top-K documents.
 
-The production architecture that emerges is a **two-stage retrieval pipeline**: Stage 1 uses a dense bi-encoder with approximate nearest neighbor (ANN) search via Qdrant or FAISS to retrieve top-100 to top-1000 candidates. Stage 2 applies ColBERT MaxSim (accelerated by PLAID) to rerank these candidates into a final top-10. This architecture is now standard in enterprise search and RAG systems; it combines the scalability of vector databases with the accuracy of late interaction. For context on the vector database layer, see [[10 - Vector Databases and Semantic Search]]; for how this plugs into full RAG, see [[06 - Production RAG]].
+The production architecture that emerges is a **two-stage retrieval pipeline**: Stage 1 uses a dense bi-encoder with approximate nearest neighbor (ANN) search via Qdrant or FAISS to retrieve top-100 to top-1000 candidates. Stage 2 applies ColBERT MaxSim (accelerated by PLAID) to rerank these candidates into a final top-10. This architecture is now standard in enterprise search and RAG systems; it combines the scalability of vector databases with the accuracy of late interaction. For context on the vector database layer, see [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10 - Vector Databases and Semantic Search]]; for how this plugs into full RAG, see [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]].
 
 ![PLAID indexing pipeline: token embeddings clustered into centroids, then document token embeddings assigned to nearest centroids for fast pruning](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/K-means_convergence.gif/640px-K-means_convergence.gif)
 
@@ -322,8 +322,8 @@ for rank, (doc_id, score) in enumerate(
 - Qdrant documentation: https://qdrant.tech/documentation/
 - ColBERTv2 GitHub: https://github.com/stanford-futuredata/ColBERT
 - [[01 - ColBERT - Token-Level Late Interaction]]
-- [[10 - Vector Databases and Semantic Search]]
-- [[06 - Production RAG]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10 - Vector Databases and Semantic Search]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]]
 
 ---
 

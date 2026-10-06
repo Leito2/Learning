@@ -29,10 +29,10 @@ Welcome to the **Vector Databases and Semantic Search** course. This course cove
 
 ## 🔗 Related Vault Modules
 
-- [[06 - Large Language Models]] — Vector DBs are the memory layer for RAG pipelines
-- [[13 - Go Engineering]] — Client implementations for Go/Python
-- [[09 - MLOps y Produccion]] — Deploying vector pipelines in production
-- [[10 - Cloud, Infra y Backend]] — Serving infrastructure, Docker, K8s
+- [[00 - Indice Maestro de Cursos|06 - Large Language Models]] — Vector DBs are the memory layer for RAG pipelines
+- [[13 - Go Engineering/00 - Welcome to Go Engineering|13 - Go Engineering]] — Client implementations for Go/Python
+- [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]] — Deploying vector pipelines in production
+- [[00 - Indice Maestro de Cursos|10 - Cloud, Infra y Backend]] — Serving infrastructure, Docker, K8s
 
 ## 🛠️ Setup
 

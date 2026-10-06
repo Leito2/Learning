@@ -1,6 +1,6 @@
 # 🎯 01 - Instructor — Pydantic-Native Structured Outputs
 
-> **The orchestration layer for LLM validation. Pairs 1:1 with your Pydantic v2 skills from [[03 - Advanced Python/06 - Pydantic Deep Dive]].**
+> **The orchestration layer for LLM validation. Pairs 1:1 with your Pydantic v2 skills from [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|06 - Pydantic Deep Dive]].**
 
 ## 🎯 Learning Objectives
 - Wire `instructor.Instructor` into OpenAI, Anthropic, Groq, Cohere, Mistral, and local Ollama in 3 lines
@@ -84,7 +84,7 @@ print(person.name, person.age, person.role)  # Maria 28 ML engineer — typed
 
 Three lines replace twenty lines of `try/except` and string parsing. When `Person` validation fails (e.g. age not parseable as `int`), Instructor re-sends the prompt with the `ValidationError` appended and tries again — by default up to 3 times. The model sees its own mistake and corrects it on retry. In practice the success rate jumps from ~85% (naive JSON mode) to ~99.5% with `response_model=Person` because the model has the schema in its context and the validation errors as a feedback signal.
 
-💡 **Tip:** This "validation error as feedback" pattern is the same one DSPy uses for prompt optimization in [[06 - Large Language Models/21 - DSPy and Prompt Compilation]] and the same one your LangGraph state reducers use in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]. It is the canonical loop for any system that treats an LLM as a typed function.
+💡 **Tip:** This "validation error as feedback" pattern is the same one DSPy uses for prompt optimization in [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|21 - DSPy and Prompt Compilation]] and the same one your LangGraph state reducers use in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]. It is the canonical loop for any system that treats an LLM as a typed function.
 
 ### 1.3 Case real: Replit's bug-bot
 
@@ -134,7 +134,7 @@ from litellm import completion
 litellm_client = instructor.from_litellm(completion)
 ```
 
-💡 **Tip:** If you already use LiteLLM as your multi-provider transport (you do — see [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]]), `instructor.from_litellm(completion)` is the cleanest way to combine them. Instructor handles validation; LiteLLM handles routing across 100+ providers.
+💡 **Tip:** If you already use LiteLLM as your multi-provider transport (you do — see [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]]), `instructor.from_litellm(completion)` is the cleanest way to combine them. Instructor handles validation; LiteLLM handles routing across 100+ providers.
 
 ### 2.2 Mode selection
 
@@ -379,7 +379,7 @@ async def extract_with_retry(doc: str) -> Person:
         return await extract_one(doc)
 ```
 
-This pairs with the retry policy from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]] — same backoff pattern, different library.
+This pairs with the retry policy from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]] — same backoff pattern, different library.
 
 ---
 
@@ -421,7 +421,7 @@ logger.info(resp.choices[0].message.content)
 logger.info(person.model_dump_json(exclude={"raw_pii_field"}))
 ```
 
-Instructor's `response_model` is the natural scrubber — log the validated fields, not the raw response. For HIPAA / GDPR pipelines, pair with [[06 - Large Language Models/15 - LLM Security and Guardrails]] for PII redaction before logging.
+Instructor's `response_model` is the natural scrubber — log the validated fields, not the raw response. For HIPAA / GDPR pipelines, pair with [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|15 - LLM Security and Guardrails]] for PII redaction before logging.
 
 ### 6.4 Antipattern 4: Partial-validation ambiguity
 
@@ -484,13 +484,13 @@ Caso real: The `Automated LLM Evaluation Suite` in your portfolio uses Instructo
 ## References
 
 - Instructor docs — [python.use-instructor.com](https://python.use-instructor.com)
-- [[03 - Advanced Python/06 - Pydantic Deep Dive|Pydantic Deep Dive]] — foundation for `response_model`
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport (`instructor.from_litellm`)
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-Judge with structured outputs
-- [[06 - Large Language Models/21 - DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — alternative compilation-based approach
-- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks|Production Agent Frameworks]] — smolagents, PydanticAI internally use structured outputs
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — state validation with Pydantic
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — trace structured outputs as JSON attributes
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — the capstone service uses FastAPI streaming
+- [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|Pydantic Deep Dive]] — foundation for `response_model`
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport (`instructor.from_litellm`)
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-Judge with structured outputs
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — alternative compilation-based approach
+- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|Production Agent Frameworks]] — smolagents, PydanticAI internally use structured outputs
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — state validation with Pydantic
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — trace structured outputs as JSON attributes
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — the capstone service uses FastAPI streaming
 - Anthropic structured outputs docs — [docs.anthropic.com/en/docs/build-with-claude/structured-outputs](https://docs.anthropic.com/en/docs/build-with-claude/structured-outputs)
 - OpenAI structured outputs docs — [platform.openai.com/docs/guides/structured-outputs](https://platform.openai.com/docs/guides/structured-outputs)

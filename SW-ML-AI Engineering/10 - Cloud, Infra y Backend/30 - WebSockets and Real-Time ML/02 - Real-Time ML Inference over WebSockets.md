@@ -11,7 +11,7 @@
 
 The fundamental shift from batch to streaming inference is not just a protocol change—it's a UX transformation. When a user types "Explain quantum computing" into a chat interface, waiting 30 seconds for the full 500-token response is unacceptable. But receiving the first token in 200ms, with subsequent tokens arriving every 50ms, creates a perceived response time of 200ms rather than 30 seconds. This time-to-first-token (TTFT) metric, critical in LLM serving, is achievable only through streaming protocols.
 
-This note builds on the WebSocket protocol knowledge from [[01 - WebSocket Protocol Deep Dive for ML Engineers|Note 01]] and connects to your work with [[../../../Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG pipelines in Go]] where SSE streaming already handles token delivery. We extend that pattern to full WebSocket bidirectional streaming, enabling use cases like real-time audio transcription (whisper.cpp), collaborative inference sessions, and interruptible LLM generation—all running on the Fiber infrastructure you already know.
+This note builds on the WebSocket protocol knowledge from [[01 - WebSocket Protocol Deep Dive for ML Engineers|Note 01]] and connects to your work with [[13 - Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG pipelines in Go]] where SSE streaming already handles token delivery. We extend that pattern to full WebSocket bidirectional streaming, enabling use cases like real-time audio transcription (whisper.cpp), collaborative inference sessions, and interruptible LLM generation—all running on the Fiber infrastructure you already know.
 
 ---
 
@@ -204,7 +204,7 @@ flowchart TD
 
 ### 1.5 Application in ML/AI Systems 🤖
 
-- **[[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]**: Add WebSocket streaming endpoint alongside existing REST endpoint. Same auth, same rate limiting, same model routing—just a different transport.
+- **[[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]**: Add WebSocket streaming endpoint alongside existing REST endpoint. Same auth, same rate limiting, same model routing—just a different transport.
 - **Chat systems**: Multiple clients join a "room" (via Redis pub/sub) and receive token streams from a shared inference context. One user's prompt generates tokens visible to all participants.
 - **Interactive code generation**: The model streams code line-by-line; the client renders as you type. User can interrupt and refine mid-generation.
 
@@ -417,7 +417,7 @@ graph TB
 
 ### 2.5 Application in ML/AI Systems 🤖
 
-- **Zoom-style real-time transcription**: Audio chunks flow from client to server over WebSocket; partial transcripts flow back. The same pattern used in [[../../../Go Engineering/05 - Local AI with Go/03 - Building Chatbots with Go + LLMs|Go chatbot projects]] for voice input.
+- **Zoom-style real-time transcription**: Audio chunks flow from client to server over WebSocket; partial transcripts flow back. The same pattern used in [[13 - Go Engineering/05 - Local AI with Go/03 - Building Chatbots with Go + LLMs|Go chatbot projects]] for voice input.
 - **Security camera analytics**: Continuous video frames over WebSocket → object detection + tracking → alert on suspicious activity. Maintains persistent connection, avoiding the per-frame HTTP overhead.
 - **Live sports analytics**: Frame-level pose estimation streamed in real-time, with WebSocket enabling bidirectional communication for camera control (zoom, pan).
 
@@ -661,7 +661,7 @@ flowchart TD
 
 ### 3.5 Application in ML/AI Systems 🤖
 
-- **[[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] enhancement**: Add a `/ws/chat` endpoint alongside the existing REST `/v1/chat/completions`. Same caching, same circuit breaker, same model routing—but with bidirectional cancellation support.
+- **[[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] enhancement**: Add a `/ws/chat` endpoint alongside the existing REST `/v1/chat/completions`. Same caching, same circuit breaker, same model routing—but with bidirectional cancellation support.
 - **Multi-turn conversations with interruption**: The user can interrupt the model mid-generation ("no, that's wrong, try again") without waiting for completion. This requires WebSocket's bidirectional channel.
 - **Streaming function calls**: As the LLM generates a function call step-by-step, the client can validate and reject it mid-stream, saving inference time on invalid tool calls.
 
@@ -831,7 +831,7 @@ graph LR
 
 ### 4.5 Application in ML/AI Systems 🤖
 
-- **REST for one-shot + WS for streaming**: Your [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] uses REST for embeddings, token counting, and model listing (batch-appropriate), and WebSocket for chat completions and real-time inference (streaming-appropriate).
+- **REST for one-shot + WS for streaming**: Your [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] uses REST for embeddings, token counting, and model listing (batch-appropriate), and WebSocket for chat completions and real-time inference (streaming-appropriate).
 - **Batch when you can afford latency**: Offline processing of user feedback, nightly embedding generation, dataset preprocessing.
 - **Stream when latency matters**: Chat, voice assistants, live translation, collaborative editing.
 
@@ -884,6 +884,6 @@ Extend your Sudoku Together project's WebSocket infrastructure to support real-t
 
 - OpenAI Streaming API — https://platform.openai.com/docs/api-reference/streaming
 - vLLM Continuous Batching — https://docs.vllm.ai/en/latest/dev/kernel/continuous_batching.html
-- [[../../../Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG Pipelines with Go]]
-- [[../../../Go Engineering/05 - Local AI with Go/03 - Building Chatbots with Go + LLMs|Building Chatbots with Go + LLMs]]
+- [[13 - Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG Pipelines with Go]]
+- [[13 - Go Engineering/05 - Local AI with Go/03 - Building Chatbots with Go + LLMs|Building Chatbots with Go + LLMs]]
 - [[01 - WebSocket Protocol Deep Dive for ML Engineers|Note 01 — Frame Protocol]]

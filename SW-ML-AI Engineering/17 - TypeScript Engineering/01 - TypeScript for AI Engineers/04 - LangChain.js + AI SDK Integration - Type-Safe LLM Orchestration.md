@@ -336,7 +336,7 @@ const result = await agent.invoke({
 console.log(result.messages[result.messages.length - 1].content);
 ```
 
-The agent uses LangGraph under the hood (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|07/18 LangGraph]]). The TypeScript port is 1:1 with Python.
+The agent uses LangGraph under the hood (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|07/18 LangGraph]]). The TypeScript port is 1:1 with Python.
 
 ---
 
@@ -471,7 +471,7 @@ export default function LLMEdgeGatewayUI() {
 }
 ```
 
-Your Python LLM Edge Gateway (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19 LLM Gateway]]) gets a TypeScript UI.
+Your Python LLM Edge Gateway (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19 LLM Gateway]]) gets a TypeScript UI.
 
 ---
 
@@ -588,7 +588,7 @@ async function handler(req: Request) {
 - LangChain LangGraph.js — [langchain-ai.github.io/langgraphjs](https://langchain-ai.github.io/langgraphjs/)
 - Zod — [zod.dev](https://zod.dev)
 - Vercel AI SDK + LangChain — [sdk.vercel.ai/docs/ai-sdk-ui/chatbot-with-tool-calling](https://sdk.vercel.ai/docs/ai-sdk-ui/chatbot-with-tool-calling)
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals|Note 01 — TS Fundamentals]]
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/02 - Next.js + Vercel AI SDK|Note 02 — Next.js]]
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — Python counterpart
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals for Python Developers|Note 01 — TS Fundamentals]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/02 - Next.js + Vercel AI SDK - Streaming Chat UI for AI Products|Note 02 — Next.js]]
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — Python counterpart
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]]

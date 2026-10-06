@@ -14,7 +14,7 @@
 ## Introduction
 This capstone integrates every concept from the preceding modules into a single, production-grade computer vision pipeline. Computer vision remains one of the most deployed deep learning domains, powering applications from medical imaging to autonomous navigation. Building a robust CV system requires more than a pretrained network: it demands efficient data loading, distributed training, systematic tuning, rigorous evaluation, and a clean deployment path to serving infrastructure.
 
-This project connects to [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome]] for distributed strategy details, [[09 - MLOps y Produccion]] for pipeline automation, and [[10 - Cloud, Infra y Backend/32 - System Design for ML/02 - System Design for ML]] for serving architecture. The PyTorch equivalent patterns are noted where relevant for engineers working across frameworks, following the vault's coverage in [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida]].
+This project connects to [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome]] for distributed strategy details, [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]] for pipeline automation, and [[10 - Cloud, Infra y Backend/32 - System Design for ML/02 - Caching, CDNs and Storage Architectures for ML|02 - System Design for ML]] for serving architecture. The PyTorch equivalent patterns are noted where relevant for engineers working across frameworks, following the vault's coverage in [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida]].
 
 ---
 

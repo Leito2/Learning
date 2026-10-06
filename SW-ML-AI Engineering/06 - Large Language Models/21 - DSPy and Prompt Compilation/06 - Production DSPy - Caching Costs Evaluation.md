@@ -186,7 +186,7 @@ result = compiled(query=..., context=[...])
 # Span emitted: openai.chat, with gen_ai.system, gen_ai.request.model attributes
 ```
 
-For thread_id propagation, use the same [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/04 - OTel for LangGraph and Agent Frameworks.md|OTel baggage pattern]] from the LangGraph integration note.
+For thread_id propagation, use the same [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/04 - OTel for LangGraph and Agent Frameworks|OTel baggage pattern]] from the LangGraph integration note.
 
 ## 5. Cost Tracking and Attribution
 
@@ -414,9 +414,9 @@ async def query(req):
 ## References
 
 - [[00 - Welcome to DSPy and Prompt Compilation|Welcome]] — course map.
-- [[02 - Optimizers|Optimizers]] — the compiler.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/02 - Optimizers - BootstrapFewShot MIPRO and COPRO|Optimizers]] — the compiler.
 - [[04 - DSPy + LangGraph Integration|LangGraph]] — agent integration.
-- [[05 - DSPy Assertions|Assertions]] — quality constraints in production.
-- [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers.md|OTel]] — observability.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/05 - DSPy Assertions and Quality Constraints|Assertions]] — quality constraints in production.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OTel]] — observability.
 - DSPy caching: https://dspy.ai/deploy-production/
 - DSPy FastAPI: https://dspy.ai/tutorials/observability/

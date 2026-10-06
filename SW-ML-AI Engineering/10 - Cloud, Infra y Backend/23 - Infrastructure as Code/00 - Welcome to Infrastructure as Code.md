@@ -14,7 +14,7 @@
 
 The problem before IaC was grim. Engineers would SSH into servers, install packages by hand, tweak firewall rules from memory, and pray that the production environment matched staging. Snowflake servers — machines that had been patched so many times manually that no two were identical — were the norm. "Works on my machine" was a diagnosis, not a joke. When an instance died, recovery meant hours of manual reconstruction from (incomplete) runbooks. IaC eliminates this fragility by making infrastructure reproducible: a `terraform apply` or `pulumi up` rebuilds an entire environment from a configuration file in minutes.
 
-For ML/AI engineers, the stakes are higher still. A single `p4d.24xlarge` GPU instance costs roughly $32/hour on-demand. Clusters of 32 GPUs burn through $1,000/hour. Reproducing a training environment manually after a failure wastes thousands of dollars and hours of researcher time. IaC captures your VPC layout, security group rules, S3 bucket policies, and GPU instance configurations in a Git repository — versioned, peer-reviewed, and reproducible. Your ML infrastructure deserves the same rigor as your model code. This course builds on foundational cloud knowledge from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] and connects deeply with [[10 - Cloud, Infra y Backend/24 - Backend para ML/04 - Autenticacion y Seguridad en APIs|Backend Security]], [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]], and Go-native infrastructure tooling explored in [[13/02 - Go for Cloud Native|Go Cloud Native]].
+For ML/AI engineers, the stakes are higher still. A single `p4d.24xlarge` GPU instance costs roughly $32/hour on-demand. Clusters of 32 GPUs burn through $1,000/hour. Reproducing a training environment manually after a failure wastes thousands of dollars and hours of researcher time. IaC captures your VPC layout, security group rules, S3 bucket policies, and GPU instance configurations in a Git repository — versioned, peer-reviewed, and reproducible. Your ML infrastructure deserves the same rigor as your model code. This course builds on foundational cloud knowledge from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] and connects deeply with [[10 - Cloud, Infra y Backend/24 - Backend para ML/04 - Autenticacion y Seguridad en APIs|Backend Security]], [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]], and Go-native infrastructure tooling explored in [[13 - Go Engineering/02 - Go for Cloud Native/00 - Welcome|Go Cloud Native]].
 
 ---
 
@@ -139,7 +139,7 @@ resource "aws_instance" "ml_demo" {
 - Pulumi. (2024). *Pulumi Documentation*. https://www.pulumi.com/docs/ — Go/Python/TypeScript IaC SDK reference.
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/01 - Fundamentos de Cloud y Modelos de Servicio|Cloud Fundamentals]]
-- [[13/02 - Go for Cloud Native]]
+- [[13 - Go Engineering/02 - Go for Cloud Native/00 - Welcome|02 - Go for Cloud Native]]
 - [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML Infrastructure]]
-- [[09/29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|29 - CI-CD for ML]]
 - [[16/08 - SDD File Structures]]

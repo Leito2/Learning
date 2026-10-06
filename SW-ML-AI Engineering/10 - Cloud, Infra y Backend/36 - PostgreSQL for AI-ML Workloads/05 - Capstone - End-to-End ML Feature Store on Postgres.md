@@ -10,7 +10,7 @@
 
 ## Introduction
 
-The previous four notes built up the toolkit: HNSW tuning with `halfvec` and quantization ([[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]]), the cost case for Postgres over dedicated vector DBs ([[36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation|Note 02]]), pgvectorscale and time-series + embeddings ([[36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings|Note 03]]), and the operational patterns of NOTIFY, CDC, and pgbouncer ([[36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]]). This capstone synthesizes them all into one production-shaped artifact: **a complete ML feature store on Postgres**.
+The previous four notes built up the toolkit: HNSW tuning with `halfvec` and quantization ([[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]]), the cost case for Postgres over dedicated vector DBs ([[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation|Note 02]]), pgvectorscale and time-series + embeddings ([[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings|Note 03]]), and the operational patterns of NOTIFY, CDC, and pgbouncer ([[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]]). This capstone synthesizes them all into one production-shaped artifact: **a complete ML feature store on Postgres**.
 
 A feature store has two halves. The **offline store** holds the full history of every feature, indexed by `(entity_id, event_time)`, used to construct training data with point-in-time correctness (no leakage from the future). The **online store** holds the latest values of each feature, indexed only by `entity_id`, optimized for sub-10ms key-value lookups at inference time. Traditional feature stores use two different technologies — Snowflake or BigQuery for offline, Redis or DynamoDB for online — and accept the operational pain of keeping them consistent. **This capstone shows that one Postgres instance can serve both halves competently for the vast majority of teams.**
 
@@ -484,19 +484,19 @@ This is the wire that closes the loop. Whenever `online_features` is updated, th
 - Point-in-time correctness is achieved with `LATERAL` subqueries — there is no other way to do it correctly, and Postgres optimizes them well with the right index.
 - The inference latency budget is 50 ms total; Postgres handles its share (≤5 ms) with hot rows in shared_buffers and proper indexing.
 - Feast 0.30+ supports Postgres for registry, online store, and offline store — one database backs three Feast layers with zero extra operational cost.
-- All operational patterns from [[36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]] apply here: NOTIFY for cache invalidation, `pg_stat_statements` for observability, pgbouncer for concurrency, pg_prewarm for cold starts.
+- All operational patterns from [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]] apply here: NOTIFY for cache invalidation, `pg_stat_statements` for observability, pgbouncer for concurrency, pg_prewarm for cold starts.
 - The Docker Compose stack in section 4 is a runnable starting point. Adapt the schema to your features and you have a working feature store in hours, not weeks.
 
 ## References
 
-- [[36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads]] — course intro
-- [[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — HNSW config used in `online_features`
-- [[36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation]] — TCO framing for the "one DB" decision
-- [[36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings]] — DiskANN on `offline_features`
-- [[36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication]] — operational glue
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads|00 - Welcome to PostgreSQL for AI-ML Workloads]] — course intro
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — HNSW config used in `online_features`
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation|02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation]] — TCO framing for the "one DB" decision
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings|03 - pgvectorscale, DiskANN and Time-Series + Embeddings]] — DiskANN on `offline_features`
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication]] — operational glue
 - [[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/01 - PostgreSQL Avanzado]] — Postgres fundamentals (Spanish)
 - [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/05 - Production Deployment and Performance]] — inference service deployment
-- [[10 - Cloud, Infra y Backend/32 - System Design for ML]] — broader ML system design context
+- [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML|32 - System Design for ML]] — broader ML system design context
 - Feast Postgres documentation: https://docs.feast.dev/reference/online-stores/postgres
 - Feast offline store reference: https://docs.feast.dev/reference/offline-stores/postgres
 - TimescaleDB hypertable best practices: https://docs.timescale.com/use-timescale/latest/hypertables/about-hypertables/

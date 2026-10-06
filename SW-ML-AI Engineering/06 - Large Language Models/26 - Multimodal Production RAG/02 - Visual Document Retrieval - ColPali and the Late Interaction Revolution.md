@@ -252,7 +252,7 @@ Storage size: ~10KB per page × N pages = significant. For 10K pages, expect ~10
 
 ## 5. ColPali with vLLM for High Throughput
 
-For production scale, use **vLLM** (covered in [[06 - Large Language Models/13 - vLLM and Advanced RAG|06/13]]) for high-throughput embedding inference.
+For production scale, use **vLLM** (covered in [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06/13]]) for high-throughput embedding inference.
 
 ```python
 from vllm import LLM, SamplingParams
@@ -531,9 +531,9 @@ return reranked[:5]
 - ColPali v2 (ColQwen2) — [huggingface.co/vidore/colqwen2-v1.0](https://huggingface.co/vidore/colqwen2-v1.0)
 - ViDoRe benchmark — [huggingface.co/spaces/vidore/vidore-leaderboard](https://huggingface.co/spaces/vidore/vidore-leaderboard)
 - colpali_engine — [github.com/illuin-tech/colpali](https://github.com/illuin-tech/colpali)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — high-throughput inference
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — high-throughput inference
 - [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/05 - Vision, Audio, and Multimodal Transformers|06/16/05 Vision, Audio, and Multimodal Transformers]]
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant multi-vector
-- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction|Note 01 — PDF Parsing]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant multi-vector
+- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction - Text, Tables, OCR, and Layout Preservation|Note 01 — PDF Parsing]]
 - [[06 - Large Language Models/26 - Multimodal Production RAG/03 - Multimodal Embedding Models|Note 03 — Multimodal Embeddings]]
-- [[06 - Large Language Models/26 - Multimodal Production RAG/05 - Capstone - Production Multimodal RAG|Note 05 — Capstone]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/05 - Capstone - Production Multimodal RAG for Legal Documents|Note 05 — Capstone]]

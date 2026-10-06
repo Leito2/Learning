@@ -442,7 +442,7 @@ def setup(service_name: str = "ai-service"):
 ## References
 
 - [[00 - Welcome to OpenTelemetry for AI Engineers|Welcome]] — course map.
-- [[01 - OTel Primitives|Spans, traces, context]] — what gets emitted.
-- [[03 - OTLP Exporters|Exporters]] — where the spans go.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/01 - OTel Primitives - Spans Traces and Context Propagation|Spans, traces, context]] — what gets emitted.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/03 - OTLP Exporters - Phoenix Tempo Jaeger and Beyond|Exporters]] — where the spans go.
 - OTel Python contrib: https://github.com/open-telemetry/opentelemetry-python-contrib
 - OTel registry: https://opentelemetry.io/ecosystem/registry/

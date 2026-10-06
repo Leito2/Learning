@@ -20,9 +20,9 @@ By 2026 LangFuse has surpassed 13,000 GitHub stars, raised a $5M seed round in 2
 
 This course is the missing piece in the vault's observability track. You already have:
 
-- **OpenTelemetry for AI Engineers** ([[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]]) — the protocol-level foundation for any observability tool.
-- **Evidently AI and Phoenix** ([[09 - MLOps y Produccion/31 - Evidently AI and Phoenix]]) — drift detection + Phoenix spans for LLM traces.
-- **LangSmith Deep Dive** ([[09 - MLOps y Produccion/35 - LangSmith Deep Dive]]) — the SaaS gold standard.
+- **OpenTelemetry for AI Engineers** ([[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]]) — the protocol-level foundation for any observability tool.
+- **Evidently AI and Phoenix** ([[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|31 - Evidently AI and Phoenix]]) — drift detection + Phoenix spans for LLM traces.
+- **LangSmith Deep Dive** ([[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith|35 - LangSmith Deep Dive]]) — the SaaS gold standard.
 
 What you do not yet have is an **open-source, self-hostable** alternative with first-class dataset and prompt management. That is exactly what this module teaches.
 
@@ -65,13 +65,13 @@ By the end of these six notes you will have built a self-hosted LangFuse stack t
 
 You should already be comfortable with:
 
-- **OpenTelemetry concepts** — traces, spans, attributes from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]].
-- **FastAPI service patterns** — async, lifespan, dependency injection from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML]].
-- **Multi-provider LLM calls** — LiteLLM or instructor patterns from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]] and [[06 - Large Language Models/22 - Instructor and Structured Generation]].
-- **Docker and Docker Compose** — multi-service stacks from [[02 - Docker Profesional]].
-- **Basic Kubernetes** — Deployments, Services, Ingress from [[10 - Cloud, Infra y Backend/22 - Cloud Computing]].
+- **OpenTelemetry concepts** — traces, spans, attributes from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]].
+- **FastAPI service patterns** — async, lifespan, dependency injection from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|31 - FastAPI for ML]].
+- **Multi-provider LLM calls** — LiteLLM or instructor patterns from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]] and [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]].
+- **Docker and Docker Compose** — multi-service stacks from [[02 - Docker Profesional/00 - Bienvenida|02 - Docker Profesional]].
+- **Basic Kubernetes** — Deployments, Services, Ingress from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|22 - Cloud Computing]].
 
-💡 If you have not yet read [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]], skim it before Note 02 — LangFuse is an OTEL-compatible backend, not a replacement.
+💡 If you have not yet read [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]], skim it before Note 02 — LangFuse is an OTEL-compatible backend, not a replacement.
 
 ---
 
@@ -81,16 +81,16 @@ This course is part of the observability spine across modules 06, 09, and 10:
 
 | Vault Module | Connection to This Course |
 |--------------|---------------------------|
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently AI and Phoenix]] | Phoenix for drift detection + LangFuse for traces + evals |
-| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers\|OpenTelemetry for AI Engineers]] | LangFuse accepts OTLP — common span protocol |
-| [[09 - MLOps y Produccion/35 - LangSmith Deep Dive\|LangSmith Deep Dive]] | SaaS counterpart; comparison of features and cost |
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM callbacks integrate with LangFuse for cost tracking |
-| [[06 - Large Language Models/20 - RAG Evaluation Deep Dive\|RAG Evaluation]] | LangFuse evaluation runs replace RAGAS CI steps |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor and Structured Generation]] | `Instructor` traces via `InstructorInstrumentor` arrive in LangFuse |
-| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns\|LangGraph Deep Patterns]] | LangChain/LangGraph integration captures agent state |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] | FastAPI service in capstone uses `observe()` decorator |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | Kubernetes manifests for self-hosting |
-| [[02 - Docker Profesional\|Docker Profesional]] | Docker Compose stack in capstone |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | Phoenix for drift detection + LangFuse for traces + evals |
+| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry for AI Engineers]] | LangFuse accepts OTLP — common span protocol |
+| [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | SaaS counterpart; comparison of features and cost |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM callbacks integrate with LangFuse for cost tracking |
+| [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation]] | LangFuse evaluation runs replace RAGAS CI steps |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor and Structured Generation]] | `Instructor` traces via `InstructorInstrumentor` arrive in LangFuse |
+| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns\|LangGraph Deep Patterns]] | LangChain/LangGraph integration captures agent state |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | FastAPI service in capstone uses `observe()` decorator |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | Kubernetes manifests for self-hosting |
+| [[02 - Docker Profesional/00 - Bienvenida\|Docker Profesional]] | Docker Compose stack in capstone |
 
 ---
 
@@ -103,11 +103,11 @@ By Note 05, you will have a **self-hosted LangFuse stack** running locally on Do
 - Runs scheduled LLM-as-Judge evaluations against every new prompt version
 - Versions prompts with Git-like checkout semantics
 - Wires an online evaluator on 10% of production traffic for live drift detection
-- Emits OpenTelemetry-compatible spans to the same LangFuse UI used by Phoenix from [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix]]
+- Emits OpenTelemetry-compatible spans to the same LangFuse UI used by Phoenix from [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|31 - Evidently AI and Phoenix]]
 - Costs less than $50/month to operate on a small VM (1 vCPU, 4 GB RAM)
 - Is portable to Kubernetes via `Helm` and `langfuse/langfuse` chart
 
-This is the **observability spine of the production LLM stack**. Every portfolio project — LLM Edge Gateway, Automated LLM Evaluation Suite, Multi-Agent Research System, StayBot, and the capstone from [[06 - Large Language Models/22 - Instructor and Structured Generation]] — can be retrofitted to LangFuse with a few lines of integration code.
+This is the **observability spine of the production LLM stack**. Every portfolio project — LLM Edge Gateway, Automated LLM Evaluation Suite, Multi-Agent Research System, StayBot, and the capstone from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]] — can be retrofitted to LangFuse with a few lines of integration code.
 
 ---
 
@@ -132,7 +132,7 @@ If you are switching from LangSmith:
 
 Three frontiers are emerging:
 
-1. **Multi-modal traces.** Beyond text completions: image generation, audio TTS, video, embedding dimensions. LangFuse 2.x ships a generic `Observation` schema that captures any payload — useful for the multimodal capstone from [[15 - Transversal Skills/04 - WebGPU and On-Device ML]].
+1. **Multi-modal traces.** Beyond text completions: image generation, audio TTS, video, embedding dimensions. LangFuse 2.x ships a generic `Observation` schema that captures any payload — useful for the multimodal capstone from [[15 - Transversal Skills/04 - WebGPU and On-Device ML/00 - Welcome to WebGPU and On-Device ML|04 - WebGPU and On-Device ML]].
 2. **Prompt-as-code integration.** Linking prompt registry to source control via commit SHA so the trace shows exactly which code version produced the prompt. The capstone shows the GitHub Actions pattern.
 3. **Online evaluators at the edge.** Distributed scoring with `langfuse-edge` for sub-100ms feedback loops. Critical for voice agents and real-time UIs.
 

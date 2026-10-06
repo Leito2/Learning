@@ -1,6 +1,6 @@
 # 📊 Datasets and Evaluations — Versioned Golden Sets
 
-The [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid.md|06/20/01]] course taught you to construct test sets with synthetic + human-validated examples. That work ends with a JSONL file on disk. LangSmith's **Datasets** are the production-grade upgrade: versioned test sets with **first-class integration with evaluators**, **dataset schemas**, and **comparison runs** that show the diff between model versions.
+The [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|06/20/01]] course taught you to construct test sets with synthetic + human-validated examples. That work ends with a JSONL file on disk. LangSmith's **Datasets** are the production-grade upgrade: versioned test sets with **first-class integration with evaluators**, **dataset schemas**, and **comparison runs** that show the diff between model versions.
 
 A LangSmith dataset is more than a JSONL file. It has:
 
@@ -291,8 +291,8 @@ print(f"Average correctness: {results.aggregate['correctness']:.3f}")
 ## References
 
 - [[00 - Welcome to LangSmith|Welcome]] — course map.
-- [[01 - LangSmith Core|Core primitives]] — runs, traces.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/01 - LangSmith Core - Traces Runs Projects|Core primitives]] — runs, traces.
 - [[02 - Auto-Instrumentation for LLM SDKs|Auto-Instrumentation]] — the pipeline to instrument.
-- [[04 - Online Evaluators|Online Evals]] — production-time scoring.
-- [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid.md|RAG Test Set Construction]] — building the dataset.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/04 - Online Evaluators and LLM-as-Judge|Online Evals]] — production-time scoring.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|RAG Test Set Construction]] — building the dataset.
 - LangSmith datasets: https://docs.smith.langchain.com/evaluation

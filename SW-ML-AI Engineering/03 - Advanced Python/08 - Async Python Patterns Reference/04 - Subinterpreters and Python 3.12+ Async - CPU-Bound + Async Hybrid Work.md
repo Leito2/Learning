@@ -464,7 +464,7 @@ CPU-bound work?
 - PEP 684 — Per-Interpreter GIL — [peps.python.org/pep-0684](https://peps.python.org/pep-0684/)
 - PEP 554 — Multiple Interpreters in Stdlib — [peps.python.org/pep-0554](https://peps.python.org/pep-0554/)
 - asyncio.subprocess — [docs.python.org/3/library/asyncio-subprocess.html](https://docs.python.org/3/library/asyncio-subprocess.html)
-- [[../01 - Event Loop Internals - uvloop, Selectors, and the GIL Interplay|Note 01 — Event Loop Internals]]
-- [[../03 - Async Anti-Patterns Reference Card - 20 Patterns with Stack-Trace Signatures|Note 03 — Anti-Patterns Reference]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/01 - Event Loop Internals - uvloop, Selectors, and the GIL Interplay|Note 01 — Event Loop Internals]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/03 - Async Anti-Patterns Reference Card - 20 Patterns with Stack-Trace Signatures|Note 03 — Anti-Patterns Reference]]
 - [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]]
 - [[../../09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Incident Response Note 04]]

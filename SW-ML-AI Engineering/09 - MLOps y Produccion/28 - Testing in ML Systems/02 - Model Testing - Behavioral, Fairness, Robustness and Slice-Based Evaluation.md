@@ -555,4 +555,4 @@ def test_slice_regression(new_model, old_model, X_test, y_test):
 
 💡 **Tip:** Run fairness tests on EVERY model version, not just the ones you suspect might be biased. Bias is invisible to the engineer who trained the model.
 
-[[../09 - MLOps y Produccion/31 - Evidently for Model Monitoring/|Evidently]] | [[../09 - MLOps y Produccion/29 - CI-CD for ML/|CI/CD for ML]] | [[../09 - MLOps y Produccion/22 - End-to-End ML Pipeline/|End-to-End ML]]
+[[../09 - MLOps y Produccion/31 - Evidently for Model Monitoring/|Evidently]] | [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI/CD for ML]] | [[../09 - MLOps y Produccion/22 - End-to-End ML Pipeline/|End-to-End ML]]

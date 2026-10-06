@@ -1,6 +1,6 @@
 # 📚 DSPy for RAG — Retrieval Modules and Signatures
 
-The [[../../../10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search.md|10/33 Vector DBs]] course taught you to retrieve passages from Qdrant, Pinecone, ChromaDB. The [[../../../06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG.md|06/12 Production RAG]] course taught you to assemble prompts and call LLMs. This note teaches you to **wrap retrieval and generation in a DSPy program** and **compile it** so the optimizer finds the best retrieval parameters (top_k, query rewrite) and prompts simultaneously.
+The [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10/33 Vector DBs]] course taught you to retrieve passages from Qdrant, Pinecone, ChromaDB. The [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06/12 Production RAG]] course taught you to assemble prompts and call LLMs. This note teaches you to **wrap retrieval and generation in a DSPy program** and **compile it** so the optimizer finds the best retrieval parameters (top_k, query rewrite) and prompts simultaneously.
 
 The standard pattern is a multi-stage DSPy RAG: **query rewriting** (improve the user's query for vector search), **retrieval** (call Qdrant/Pinecone), **reranking** (bge-reranker or Cohere), and **generation** (LLM call with citations). Each stage is a DSPy module; the optimizer tunes them jointly.
 
@@ -177,7 +177,7 @@ trainset = [
 ]
 ```
 
-**Tip:** Use your RAGAS test set ([[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive.md|06/20]]) as the basis for compilation examples. The same examples that drive eval can drive compilation.
+**Tip:** Use your RAGAS test set ([[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|06/20]]) as the basis for compilation examples. The same examples that drive eval can drive compilation.
 
 ## 8. The RAG-Specific Metric
 
@@ -429,6 +429,6 @@ print(result.answer, result.citations)
 - [[01 - Signatures and Modules|Signatures]] — the building blocks.
 - [[02 - Optimizers - BootstrapFewShot MIPRO and COPRO|Optimizers]] — the compiler.
 - [[04 - DSPy + LangGraph Integration|LangGraph integration]] — agent + RAG.
-- [[../../../06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG.md|Production RAG]] — the RAG fundamentals.
-- [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive.md|RAG Evaluation Deep Dive]] — eval integration.
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — the RAG fundamentals.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — eval integration.
 - DSPy RAG tutorials: https://dspy.ai/tutorials/rag/

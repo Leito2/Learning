@@ -39,8 +39,8 @@ For your portfolio, the integration is direct. The **Multi-Agent Research System
 
 | Concept | Expected Knowledge | Review If Needed |
 |---------|-------------------|------------------|
-| Async Python | `async def`, `await`, `asyncio.gather`, context managers | [[../../03 - Advanced Python/02 - Python Intermedio\|Python Intermedio]] |
-| Pydantic | `BaseModel`, `Field`, `model_validator`, type hints | [[../../03 - Advanced Python/03 - Python Avanzado\|Python Avanzado]] |
+| Async Python | `async def`, `await`, `asyncio.gather`, context managers | [[03 - Advanced Python/02 - Python Intermedio/00 - Bienvenida\|Python Intermedio]] |
+| Pydantic | `BaseModel`, `Field`, `model_validator`, type hints | [[03 - Advanced Python/03 - Python Avanzado/00 - Bienvenida\|Python Avanzado]] |
 | Function calling | LLM tool schemas, JSON mode, parallel calls | [[../11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling\|Tool Use y Function Calling]] |
 | ReAct loop | Reason → Act → Observe cycle, plan/execute | [[../11 - Fundamentos de Agentes AI/04 - Planning y Razonamiento\|Planning y Razonamiento]] |
 | LiteLLM multi-provider | `completion(model="...")`, fallbacks, routing | [[../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] |

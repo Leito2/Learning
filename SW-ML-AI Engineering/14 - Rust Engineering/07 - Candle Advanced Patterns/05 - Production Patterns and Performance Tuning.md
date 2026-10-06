@@ -10,7 +10,7 @@
 
 Moving an ML model from a Jupyter notebook to production is not a deployment problem; it is an engineering problem. Production systems must handle concurrent requests without deadlocks, recover from OOM errors without crashing, and maintain consistent latency under load. Python frameworks were designed for research velocity, not for serving millions of requests per day. Their reliance on the GIL, dynamic memory allocation, and interpreter overhead creates a ceiling that Rust-native frameworks like Candle break through.
 
-This note covers the operational side of Candle: how to structure inference services, reuse memory across requests, batch inputs efficiently, and measure performance with statistical rigor. We connect these ideas to [[05 - MLOps y Produccion]] and [[06 - Cloud, Infra y Backend]].
+This note covers the operational side of Candle: how to structure inference services, reuse memory across requests, batch inputs efficiently, and measure performance with statistical rigor. We connect these ideas to [[00 - Indice Maestro de Cursos|05 - MLOps y Produccion]] and [[00 - Indice Maestro de Cursos|06 - Cloud, Infra y Backend]].
 
 ---
 
@@ -210,8 +210,8 @@ Each pod runs the same static binary. Model weights are either baked into the Do
 ## References
 - Axum docs: https://docs.rs/axum/latest/axum/
 - Tokio performance tuning: https://tokio.rs/tokio/topics/perf
-- [[05 - MLOps y Produccion]]
-- [[06 - Cloud, Infra y Backend]]
+- [[00 - Indice Maestro de Cursos|05 - MLOps y Produccion]]
+- [[00 - Indice Maestro de Cursos|06 - Cloud, Infra y Backend]]
 
 ## 📦 Código de compresión
 

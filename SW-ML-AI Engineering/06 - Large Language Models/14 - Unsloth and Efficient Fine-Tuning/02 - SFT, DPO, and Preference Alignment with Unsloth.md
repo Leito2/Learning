@@ -16,7 +16,7 @@ L_SFT = -1/T × Σₜ log P(yₜ | x, y_{<t})
 
 Critically, **only the response tokens contribute to the loss gradient**. The prompt tokens are used as context (keys/values in attention) but their cross-entropy is masked. This ensures the model learns to generate better responses without unlearning its prompt understanding.
 
-In the context of [[../03 - Fine-Tuning LLMs.md|your prior fine-tuning knowledge]], SFT is the simplest training mode — no reward model, no preference pairs, no reference model. It is also the most data-hungry: SFT quality scales directly with dataset size and diversity. A poorly formatted SFT dataset teaches the model to produce poorly formatted responses. This is why dataset curation ([[03 - Dataset Preparation and Curation for Fine-Tuning.md|covered in Note 03]]) is upstream of training.
+In the context of [[projects/03 - Fine-Tuning LLMs - Project Guide|your prior fine-tuning knowledge]], SFT is the simplest training mode — no reward model, no preference pairs, no reference model. It is also the most data-hungry: SFT quality scales directly with dataset size and diversity. A poorly formatted SFT dataset teaches the model to produce poorly formatted responses. This is why dataset curation ([[03 - Dataset Preparation and Curation for Fine-Tuning.md|covered in Note 03]]) is upstream of training.
 
 Unsloth accelerates SFT through all the kernel optimizations from [[01 - Unsloth Architecture and QLoRA Deep Dive.md|Note 01]] — fused attention, fused MLP, fused cross-entropy loss. The fused cross-entropy is particularly impactful for SFT: HuggingFace's standard pipeline computes logits for the full vocabulary (256K tokens for Gemma 4) and then applies cross-entropy. Unsloth fuses the LM head projection + log_softmax + nll_loss into a single kernel, never materializing the full vocabulary logits matrix.
 
@@ -426,7 +426,7 @@ sequenceDiagram
 
 **Real Case: Aligning Your Multi-Agent Research System's Gemma 4 Backbone**
 
-Your [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] (LangGraph/Gemma 4) relies on the model following system prompts to route queries, select tools, and format replies. Base Gemma 4 sometimes ignores system prompts, generating off-spec responses. DPO can fix this.
+Your [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] (LangGraph/Gemma 4) relies on the model following system prompts to route queries, select tools, and format replies. Base Gemma 4 sometimes ignores system prompts, generating off-spec responses. DPO can fix this.
 
 Create a preference dataset where:
 - **Prompt**: A system prompt like "You are a research assistant. Answer with citations in [Author, Year] format."
@@ -475,7 +475,7 @@ Evaluating a fine-tuned model requires answering: "Is this model actually better
 
 **Chatbot Arena ELO**: The gold standard — real humans compare two anonymous model responses and vote. ELO ratings are computed from pairwise comparisons. Expensive, slow, but most reliable.
 
-For your projects, start with **AlpacaEval 2.0** (fast, free via local judge models) and validate top performers with **MT-Bench** (gold-standard reference). Connect these evaluation results to your [[../../05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|Experiment Tracking]] system via MLflow or W&B.
+For your projects, start with **AlpacaEval 2.0** (fast, free via local judge models) and validate top performers with **MT-Bench** (gold-standard reference). Connect these evaluation results to your [[09 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|Experiment Tracking]] system via MLflow or W&B.
 
 ### 3.2 Mental Model 📐
 
@@ -754,7 +754,7 @@ if __name__ == "__main__":
 - **DPO eliminates the reward model** by deriving the loss directly from the Bradley-Terry model of preferences — one loss function, two models (policy + frozen reference), zero RL stability issues.
 - **`beta` controls the conservatism of DPO**: low (0.1) for preserving base capabilities, high (0.5–1.0) for aggressive preference alignment. Start low and increase only if the preference signal is weak.
 - **Evaluation must be multi-dimensional**: MT-Bench (quality), AlpacaEval (win rate), and a custom domain set (task accuracy) together tell the real story. Single-metric evaluation is misleading.
-- **Connect to your portfolio**: DPO-aligned models power better Multi-Agent Research System role adherence and more accurate LLM Edge Gateway routing — quantify these improvements in your [[../../05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|Experiment Tracker]].
+- **Connect to your portfolio**: DPO-aligned models power better Multi-Agent Research System role adherence and more accurate LLM Edge Gateway routing — quantify these improvements in your [[09 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|Experiment Tracker]].
 
 ---
 

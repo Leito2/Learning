@@ -1,8 +1,8 @@
 # ✍️ Annotation Queues and Human Feedback
 
-LLM-as-judge is fast and cheap but **biased** ([[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference.md|06/20/04]]). Human feedback is **gold standard** but **expensive and slow**. The production pattern is: **LLM judge for 100% of traces, human annotators for 1-5%** — feeding a small but authoritative human-labeled dataset that calibrates the LLM judge and detects drift in the judge's own accuracy.
+LLM-as-judge is fast and cheap but **biased** ([[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|06/20/04]]). Human feedback is **gold standard** but **expensive and slow**. The production pattern is: **LLM judge for 100% of traces, human annotators for 1-5%** — feeding a small but authoritative human-labeled dataset that calibrates the LLM judge and detects drift in the judge's own accuracy.
 
-LangSmith's **annotation queues** are the workflow that makes this scalable. They route specific traces (filtered by tag, score, sample) to human annotators, capture their scores with inter-annotator agreement metrics, and feed the labeled data back into evaluator training. This is the same workflow as the [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid.md|06/20/01]] test set construction, but as a continuous process: every week, more high-quality labels.
+LangSmith's **annotation queues** are the workflow that makes this scalable. They route specific traces (filtered by tag, score, sample) to human annotators, capture their scores with inter-annotator agreement metrics, and feed the labeled data back into evaluator training. This is the same workflow as the [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|06/20/01]] test set construction, but as a continuous process: every week, more high-quality labels.
 
 This note covers annotation queue setup, the human-in-the-loop workflow, inter-annotator agreement via Krippendorff's alpha, and the production pattern where human labels continuously improve the LLM judge.
 
@@ -340,7 +340,7 @@ model = Ridge().fit(df[["llm"]], df["human"])
 
 - [[00 - Welcome to LangSmith|Welcome]] — course map.
 - [[03 - Datasets and Evaluations|Datasets]] — the offline analog.
-- [[04 - Online Evaluators|Online Evals]] — the LLM judge.
-- [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid.md|Test Set Construction]] — Krippendorff's alpha in detail.
-- [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference.md|Judge Bias]] — why calibration matters.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/04 - Online Evaluators and LLM-as-Judge|Online Evals]] — the LLM judge.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|Test Set Construction]] — Krippendorff's alpha in detail.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|Judge Bias]] — why calibration matters.
 - LangSmith annotation queues: https://docs.smith.langchain.com/evaluation/annotation_queues

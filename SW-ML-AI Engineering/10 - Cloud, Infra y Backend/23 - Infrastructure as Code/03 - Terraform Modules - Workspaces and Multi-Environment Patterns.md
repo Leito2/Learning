@@ -16,7 +16,7 @@ A single `main.tf` with 500 resources, 80 variables, and 45 outputs is not infra
 
 The module ecosystem is one of Terraform's greatest strengths. The Terraform Registry hosts thousands of verified modules — the `terraform-aws-modules/vpc/aws` module alone has been downloaded over 15 million times and is maintained by AWS and HashiCorp jointly. But module composition requires discipline: flat composition (root calls independent modules), layered composition (networking → compute → application), and wrapper tools like Terragrunt each solve different scaling problems.
 
-Multi-environment management is where the discipline matters most. Dev, staging, and production must be isolated — a test VPC change must not affect production. But they must also share as much code as possible to avoid drift. The directory-per-environment pattern (with shared modules) is the industry consensus for production workloads. Workspaces are simpler but weaker; branch-per-environment is GitOps-native but operationally complex. This note builds on the DAG and lifecycle foundations from [[02 - Advanced Terraform - Loops, Functions, Dynamic Blocks and Lifecycle|Note 02]] and connects to CI/CD pipelines covered in [[09/29 - CI-CD for ML|CI/CD for ML]].
+Multi-environment management is where the discipline matters most. Dev, staging, and production must be isolated — a test VPC change must not affect production. But they must also share as much code as possible to avoid drift. The directory-per-environment pattern (with shared modules) is the industry consensus for production workloads. Workspaces are simpler but weaker; branch-per-environment is GitOps-native but operationally complex. This note builds on the DAG and lifecycle foundations from [[02 - Advanced Terraform - Loops, Functions, Dynamic Blocks and Lifecycle|Note 02]] and connects to CI/CD pipelines covered in [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI/CD for ML]].
 
 ---
 
@@ -413,5 +413,5 @@ output "model_bucket_arn" {
 - Brikman, Y. (2022). *Terraform: Up & Running*, 3rd ed. O'Reilly, Ch. 4: "Terraform Modules" and Ch. 8: "How to Use Terraform as a Team."
 - [[01 - Terraform Fundamentals - HCL, State and Resource Graph|Note 01 — HCL and State]]
 - [[02 - Advanced Terraform - Loops, Functions, Dynamic Blocks and Lifecycle|Note 02 — Advanced Terraform]]
-- [[09/29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|29 - CI-CD for ML]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/01 - Fundamentos de Cloud y Modelos de Servicio|Cloud Fundamentals]]

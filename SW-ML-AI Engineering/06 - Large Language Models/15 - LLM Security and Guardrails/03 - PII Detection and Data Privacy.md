@@ -10,11 +10,11 @@
 
 ## Introduction
 
-PII leakage through LLMs is not a hypothetical risk — it's an inevitability without explicit countermeasures. An LLM that has seen training data containing emails, phone numbers, and addresses will occasionally regenerate them. A RAG system that retrieves customer support tickets will inject raw PII into the LLM context. A caching layer that stores LLM responses containing PII creates a permanent data breach. Your [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] is the single chokepoint where all these flows converge — and where PII detection must live.
+PII leakage through LLMs is not a hypothetical risk — it's an inevitability without explicit countermeasures. An LLM that has seen training data containing emails, phone numbers, and addresses will occasionally regenerate them. A RAG system that retrieves customer support tickets will inject raw PII into the LLM context. A caching layer that stores LLM responses containing PII creates a permanent data breach. Your [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] is the single chokepoint where all these flows converge — and where PII detection must live.
 
 The regulatory landscape makes PII protection non-negotiable for production systems. GDPR Article 17 mandates the "right to erasure" — if PII is cached in your Redis layer or embedded in vector databases, can you truly delete it? CCPA requires disclosure of what personal information is collected and shared — can you audit what PII your LLM outputs? HIPAA's privacy rule imposes criminal penalties for healthcare data exposure. A single PII leak through your gateway can trigger multi-million-dollar fines and irreparable reputational damage.
 
-This note connects directly to [[../01 - Prompt Injection and Defense|prompt injection defense]] (attackers deliberately provoke PII output) and [[../02 - Guardrails AI and NeMo Guardrails|guardrails]] (PII validators in the guardrails pipeline). PII detection is both a standalone concern and a component of the broader security architecture. It must happen at multiple points: input sanitization (user shouldn't send PII in prompts), output redaction (LLM shouldn't return PII), and retrieval sanitization (RAG documents containing PII should be cleaned before injection).
+This note connects directly to [[06 - Large Language Models/15 - LLM Security and Guardrails/01 - Prompt Injection and Defense|prompt injection defense]] (attackers deliberately provoke PII output) and [[06 - Large Language Models/15 - LLM Security and Guardrails/02 - Guardrails AI and NeMo Guardrails|guardrails]] (PII validators in the guardrails pipeline). PII detection is both a standalone concern and a component of the broader security architecture. It must happen at multiple points: input sanitization (user shouldn't send PII in prompts), output redaction (LLM shouldn't return PII), and retrieval sanitization (RAG documents containing PII should be cleaned before injection).
 
 ---
 
@@ -26,7 +26,7 @@ Personally Identifiable Information (PII) exists on a spectrum from **direct ide
 
 Why are LLMs particularly dangerous for PII? Three reasons. First, **training data memorization**: large models memorize fragments of their training data, including PII. Research by Carlini et al. (2021) demonstrated that GPT-2 could be prompted to regurgitate training data containing names, phone numbers, and addresses. Newer, larger models memorize even more. Second, **context injection**: in RAG systems, retrieved documents containing PII are injected verbatim into the prompt — the LLM may reproduce this PII in its response even if the system prompt says not to. Third, **synthesis**: LLMs can generate realistic PII that isn't real data but matches valid patterns — creating false positive alerts in monitoring systems.
 
-The placement of PII detection in the request lifecycle is critical. [[../../Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Caching layers]] that store LLM responses before PII detection create permanent PII stores. Vector databases that index unredacted documents embed PII into retrieval pipelines. The correct order: **detect and redact before caching, before embedding, before LLM context injection**. Your gateway is the only place where all three insertion points can be intercepted.
+The placement of PII detection in the request lifecycle is critical. [[13 - Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Caching layers]] that store LLM responses before PII detection create permanent PII stores. Vector databases that index unredacted documents embed PII into retrieval pipelines. The correct order: **detect and redact before caching, before embedding, before LLM context injection**. Your gateway is the only place where all three insertion points can be intercepted.
 
 ### 1.2 Mental Model 📐
 
@@ -978,7 +978,7 @@ pii_detection_pipeline:
 - Microsoft Presidio: https://microsoft.github.io/presidio/
 - GDPR Article 17 — Right to Erasure: https://gdpr-info.eu/art-17-gdpr/
 - Carlini et al. (2021) "Extracting Training Data from Large Language Models": https://arxiv.org/abs/2012.07805
-- [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
-- [[../01 - Prompt Injection and Defense|Note 01 — Prompt injection defense]]
-- [[../02 - Guardrails AI and NeMo Guardrails|Note 02 — Guardrails (PII validators)]]
-- [[../../05 - MLOps y Produccion/20 - Deployment y Serving/03 - Kubernetes para ML|Kubernetes deployment for PII service]]
+- [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/01 - Prompt Injection and Defense|Note 01 — Prompt injection defense]]
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/02 - Guardrails AI and NeMo Guardrails|Note 02 — Guardrails (PII validators)]]
+- [[09 - MLOps y Produccion/20 - Deployment y Serving/03 - Kubernetes para ML|Kubernetes deployment for PII service]]

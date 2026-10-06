@@ -4,7 +4,7 @@
 - Understand what LocalAI is and why local LLM inference matters for privacy and cost
 - Learn how LocalAI provides a drop-in replacement for the OpenAI API without cloud dependency
 - Map out the complete learning path from architecture to enterprise deployment
-- Connect LocalAI concepts to the broader [[Go Engineering]] vault and [[02 - Large Language Models]] modules
+- Connect LocalAI concepts to the broader [[13 - Go Engineering/00 - Welcome to Go Engineering|Go Engineering]] vault and [[00 - Indice Maestro de Cursos|02 - Large Language Models]] modules
 - Identify prerequisites and set expectations for hands-on labs with local models
 
 ---
@@ -13,7 +13,7 @@
 
 LocalAI is an open-source project written in Go by Ettore Di Giacinto (mudler) that enables you to run Large Language Models (LLMs), image generation, audio transcription, and embedding models entirely on your own hardware. Unlike cloud-based APIs that send sensitive data to third-party servers, LocalAI keeps inference local, providing a powerful drop-in replacement for the OpenAI REST API. This matters profoundly for ML/AI engineering because it shifts the paradigm from "API key and rate limits" to "sovereign AI" where you control the stack, the data, and the latency.
 
-In the broader context of the [[Go Engineering]] vault, LocalAI sits at the intersection of systems programming and modern AI infrastructure. Go's goroutines and efficient concurrency model make it an ideal language for orchestrating multiple heavyweight C/C++ backends like llama.cpp and whisper.cpp. If you have already studied [[01 - Go Fundamentals]], you will recognize how LocalAI leverages Go's standard `net/http` package, gRPC via protobuf, and graceful process management to create a production-grade inference server. For those coming from [[02 - Large Language Models]], LocalAI offers the practical implementation layer that turns theoretical transformer knowledge into a runnable service.
+In the broader context of the [[13 - Go Engineering/00 - Welcome to Go Engineering|Go Engineering]] vault, LocalAI sits at the intersection of systems programming and modern AI infrastructure. Go's goroutines and efficient concurrency model make it an ideal language for orchestrating multiple heavyweight C/C++ backends like llama.cpp and whisper.cpp. If you have already studied [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]], you will recognize how LocalAI leverages Go's standard `net/http` package, gRPC via protobuf, and graceful process management to create a production-grade inference server. For those coming from [[00 - Indice Maestro de Cursos|02 - Large Language Models]], LocalAI offers the practical implementation layer that turns theoretical transformer knowledge into a runnable service.
 
 ---
 
@@ -93,8 +93,8 @@ This course is organized into five progressive modules:
 
 Before diving in, ensure you have the following foundations:
 
-1. **[[01 - Go Fundamentals]]** — You should be comfortable writing HTTP handlers, parsing YAML, and understanding Go interfaces.
-2. **[[Docker Profesional]]** — LocalAI distributes official container images; knowing how to mount volumes and pass GPU devices is essential.
+1. **[[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]]** — You should be comfortable writing HTTP handlers, parsing YAML, and understanding Go interfaces.
+2. **[[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]]** — LocalAI distributes official container images; knowing how to mount volumes and pass GPU devices is essential.
 3. **Basic LLM Theory** — Understanding of transformers, quantization (GGUF), and tokenization will help you grasp why certain backend parameters exist.
 
 ```yaml
@@ -197,4 +197,4 @@ Build a private chat API that mimics OpenAI's `/v1/chat/completions` but serves 
 
 - Official docs: https://localai.io/
 - Paper/library: https://github.com/ggerganov/llama.cpp
-- Go Engineering vault: [[Go Engineering]]
+- Go Engineering vault: [[13 - Go Engineering/00 - Welcome to Go Engineering|Go Engineering]]

@@ -11,9 +11,9 @@ By the end of this track, you will be able to reason about Go's memory model wit
 - [[01 - Go Memory Model and GC|🧠 01 - Memory Model and GC]]
 - [[02 - Advanced Concurrency Patterns|🧩 02 - Concurrency Patterns]]
 - [[03 - Go Performance Tuning|⚡ 03 - Performance Tuning]]
-- [[04 - Go in Large Codebases|🏢 04 - Large Codebases]]
+- [[13 - Go Engineering/extra/04 - Go in Large Codebases (Uber, Stripe)|🏢 04 - Large Codebases]]
 - [[05 - WebAssembly with TinyGo|🌐 05 - WebAssembly]]
-- [[06 - Go and eBPF|🔬 06 - eBPF]]
+- [[13 - Go Engineering/extra/06 - Go and eBPF for Observability|🔬 06 - eBPF]]
 
 ## Capstone Project
 

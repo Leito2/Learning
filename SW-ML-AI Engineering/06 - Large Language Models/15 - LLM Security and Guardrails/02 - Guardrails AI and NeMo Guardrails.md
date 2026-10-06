@@ -12,7 +12,7 @@
 
 Content filters answer a binary question: "Should this output be blocked?" Guardrails answer a richer question: "Should this output be reshaped, and if so, into what?" This distinction is fundamental. A content filter that blocks a healthcare chatbot from outputting the word "suicide" also blocks legitimate mental health crisis responses. A guardrail can instead detect the context and redirect to "If you're experiencing thoughts of self-harm, please call 988" — changing behavior, not just censoring tokens.
 
-Your [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] currently forwards LLM responses without validation. Adding a guardrails layer transforms it from a passive proxy into an active safety system that can refuse harmful outputs, reask the LLM with corrections, or filter specific content categories based on context. [[../01 - Prompt Injection and Defense|Note 01]] covered input-side defenses — this note covers output-side behavioral control.
+Your [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] currently forwards LLM responses without validation. Adding a guardrails layer transforms it from a passive proxy into an active safety system that can refuse harmful outputs, reask the LLM with corrections, or filter specific content categories based on context. [[06 - Large Language Models/15 - LLM Security and Guardrails/01 - Prompt Injection and Defense|Note 01]] covered input-side defenses — this note covers output-side behavioral control.
 
 Guardrails frameworks bridge the gap between ML engineering and policy enforcement. They let you codify rules like "never output PII," "always cite sources," and "refuse to role-play as a real person" as executable specifications — not just prompt engineering hopes. For enterprise LLM deployments, this is the difference between a demo and a production system that passes security audits.
 
@@ -1273,6 +1273,6 @@ guardrails_integration:
 - Guardrails AI Documentation: https://www.guardrailsai.com/docs
 - NeMo Guardrails: https://github.com/NVIDIA/NeMo-Guardrails
 - Colang Language Reference: https://docs.nvidia.com/nemo/guardrails/colang-language-reference.html
-- [[../01 - Prompt Injection and Defense|Note 01 — Input-side defenses]]
-- [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
-- [[../../Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Circuit breaker patterns]]
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/01 - Prompt Injection and Defense|Note 01 — Input-side defenses]]
+- [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
+- [[13 - Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Circuit breaker patterns]]

@@ -432,7 +432,7 @@ Provide:
     return response
 ```
 
-The Instructor client validates the response against the Pydantic schema; retries on failure feed the validation error back to the model (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor Deep Dive]]).
+The Instructor client validates the response against the Pydantic schema; retries on failure feed the validation error back to the model (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor Deep Dive]]).
 
 ---
 
@@ -764,19 +764,19 @@ The local stack: FastAPI service, Qdrant vector store, LangFuse, Phoenix, Postgr
 - Instructor docs — [python.use-instructor.com](https://python.use-instructor.com)
 - RAGAS — [docs.ragas.io](https://docs.ragas.io)
 - LiteLLM Router — [docs.litellm.ai/docs/routing](https://docs.litellm.ai/docs/routing)
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]] — foundational RAG patterns
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — vLLM as backend
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured outputs
-- [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization|Serverless LLM Platforms]] — Together/Fireworks for LLM
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — foundational RAG patterns
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — vLLM as backend
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured outputs
+- [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/00 - Welcome - Serverless LLM Platforms Landscape|Serverless LLM Platforms]] — Together/Fireworks for LLM
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/01 - Haystack Fundamentals - Pipelines, Components, Retrievers|Note 01 — Haystack Fundamentals]]
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/02 - Haystack Advanced Pipelines - Hybrid Search, Reranking, Agents, and Evaluation|Note 02 — Haystack Advanced]]
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/03 - txtai Fundamentals - Semantic Search, Graphs, and RAG in One Library|Note 03 — txtai]]
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/04 - Production RAG Patterns - Comparison, Selection, and Integration|Note 04 — Production Patterns]]
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — agentic workflows
-- [[09 - MLOps y Produccion/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — RAGAS
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — cost attribution
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service deployment
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — agentic workflows
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — RAGAS
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — cost attribution
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service deployment
 - [[16 - Harness Engineering/05 - File Architecture|File Architecture]] — project structure

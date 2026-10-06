@@ -209,8 +209,8 @@ results = await executor.submit_all([fetch_one(p) for p in prompts])
 ```
 
 This pattern is used in:
-- **Qdrant** (covered in [[../../../10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/02 - Production Async Patterns - FastAPI, Retries, Batching and Observability|Qdrant Production Async]])
-- **OpenAI batch inference** (covered in [[../../../06 - Large Language Models/22 - Instructor and Structured Generation/01 - Instructor - Pydantic-Native Structured Outputs|Instructor note 01]])
+- **Qdrant** (covered in [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/02 - Production Async Patterns - FastAPI, Retries, Batching and Observability|Qdrant Production Async]])
+- **OpenAI batch inference** (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation/01 - Instructor - Pydantic-Native Structured Outputs|Instructor note 01]])
 - **Background workers** (covered in [[../40 - Background Jobs and Workers for FastAPI/02 - ARQ Modern Async-Native|ARQ note 02]])
 
 ### 3.1 Connection pooling for HTTP
@@ -556,6 +556,6 @@ def fire_and_forget():
 - [[../31 - FastAPI for ML/04 - Dependency Injection, Middleware, and Testing|Note 04 — DI and Testing]]
 - [[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/01 - Async Engine and Sessions|Note — SQLAlchemy Async]]
 - [[../40 - Background Jobs and Workers for FastAPI/02 - ARQ Modern Async-Native|Note — ARQ async-native]]
-- [[../../33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/02 - Production Async Patterns - FastAPI, Retries, Batching and Observability|Qdrant Production Async]]
-- [[../../33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/03 - Capstone - Production RAG with Qdrant + LiteLLM + Phoenix|Qdrant Capstone]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/02 - Production Async Patterns - FastAPI, Retries, Batching and Observability|Qdrant Production Async]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/03 - Capstone - Production RAG with Qdrant + LiteLLM + Phoenix|Qdrant Capstone]]
 - [[05 - Production Deployment and Performance|Note — Production Deployment]]

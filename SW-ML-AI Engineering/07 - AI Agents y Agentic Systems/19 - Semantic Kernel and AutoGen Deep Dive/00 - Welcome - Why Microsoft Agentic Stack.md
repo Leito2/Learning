@@ -10,13 +10,13 @@
 
 ## Introduction
 
-By 2026 the agent framework market has crystallized into five dominant platforms. **LangGraph** (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]) and **LangChain** own the open-source Python ecosystem. **LlamaIndex** dominates data-heavy RAG agents. **smolagents** and **PydanticAI** are the lightweight ergonomic layer. And then there is **Microsoft**, which ships two complementary frameworks that no serious enterprise ignores: **Semantic Kernel** (production-grade function orchestration) and **AutoGen** (multi-agent conversation research).
+By 2026 the agent framework market has crystallized into five dominant platforms. **LangGraph** (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]) and **LangChain** own the open-source Python ecosystem. **LlamaIndex** dominates data-heavy RAG agents. **smolagents** and **PydanticAI** are the lightweight ergonomic layer. And then there is **Microsoft**, which ships two complementary frameworks that no serious enterprise ignores: **Semantic Kernel** (production-grade function orchestration) and **AutoGen** (multi-agent conversation research).
 
 The two frameworks solve different problems. **Semantic Kernel** is a **plugin orchestration layer**: it models agent capabilities as typed functions, plugins, and memories; the planner invokes them based on LLM reasoning. It is the Microsoft answer to LangChain's `Tool` abstraction — but with first-class .NET, TypeScript, and Java support, and with native Azure integration that makes it the default for enterprises running on Microsoft infrastructure. **AutoGen** is a **multi-agent conversation framework**: it models agents as conversational partners in a group chat, with researcher-critic structures, human-in-the-loop moderation, and code execution as a first-class action. It is the Microsoft answer to CrewAI's role-based orchestration — but with stronger research provenance and academic backing.
 
-Together, the two frameworks are the spine of enterprise agentic AI. Microsoft's own Copilot stack, the Azure AI Agent Service, and the AutoGen Studio IDE all build on these primitives. By mastering them you add to your portfolio a cluster of skills that immediately signals "enterprise-ready" to recruiters and hiring managers — the same way Go for ML Backend ([[13 - Go Engineering/06 - Go for ML Backend]]) signals "infrastructure-ready".
+Together, the two frameworks are the spine of enterprise agentic AI. Microsoft's own Copilot stack, the Azure AI Agent Service, and the AutoGen Studio IDE all build on these primitives. By mastering them you add to your portfolio a cluster of skills that immediately signals "enterprise-ready" to recruiters and hiring managers — the same way Go for ML Backend ([[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome|06 - Go for ML Backend]]) signals "infrastructure-ready".
 
-This course is the missing piece in the vault's agentic track. You already have LangGraph, LangChain, LlamaIndex, smolagents, PydanticAI, OpenAI Agents SDK, Google ADK, CrewAI 1.0 (all covered in [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks]]), and LangGraph Deep Patterns ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]). What you do not yet have is the **Microsoft-native path** through Azure, the multi-language story (.NET, TypeScript, Python), or the AutoGen multi-agent conversation research patterns.
+This course is the missing piece in the vault's agentic track. You already have LangGraph, LangChain, LlamaIndex, smolagents, PydanticAI, OpenAI Agents SDK, Google ADK, CrewAI 1.0 (all covered in [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|17 - Production Agent Frameworks]]), and LangGraph Deep Patterns ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]). What you do not yet have is the **Microsoft-native path** through Azure, the multi-language story (.NET, TypeScript, Python), or the AutoGen multi-agent conversation research patterns.
 
 By the end of these six notes you will have built a hybrid agent that uses Semantic Kernel to orchestrate enterprise plugin calls (calendar, CRM, database) and AutoGen for a multi-agent researcher-critic loop that validates the SK agent's answer before returning it to the user.
 
@@ -70,13 +70,13 @@ For the AI/ML Engineer profile (LangGraph + FastAPI + Redis + LangChain workflow
 You should already be comfortable with:
 
 - **Python async/await** — both frameworks use asyncio extensively.
-- **Function calling / structured outputs** — SK and AutoGen both model tools as typed functions (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation]]).
-- **Multi-agent patterns** — group chat, reflection, debate (covered in [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks]] and [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]).
-- **Vector databases and RAG** — for the AutoGen RAG integration in Note 04 (covered in [[06 - Large Language Models/12 - Production RAG]] and [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search]]).
-- **Azure basics** — for the capstone deployment (covered in [[10 - Cloud, Infra y Backend/22 - Cloud Computing]]).
+- **Function calling / structured outputs** — SK and AutoGen both model tools as typed functions (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]]).
+- **Multi-agent patterns** — group chat, reflection, debate (covered in [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|17 - Production Agent Frameworks]] and [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]).
+- **Vector databases and RAG** — for the AutoGen RAG integration in Note 04 (covered in [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]] and [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases and Semantic Search]]).
+- **Azure basics** — for the capstone deployment (covered in [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|22 - Cloud Computing]]).
 - **.NET fundamentals (optional)** — for the multi-language story in Note 01.
 
-💡 If you have not yet read [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]], skim it before Note 03 — AutoGen's GroupChat pattern is conceptually similar to LangGraph's supervisor pattern.
+💡 If you have not yet read [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]], skim it before Note 03 — AutoGen's GroupChat pattern is conceptually similar to LangGraph's supervisor pattern.
 
 ---
 
@@ -86,15 +86,15 @@ This course is part of the agentic AI spine across modules 06, 07, 09:
 
 | Vault Module | Connection to This Course |
 |--------------|---------------------------|
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor and Structured Generation]] | SK plugin functions use the same Pydantic-style validation pattern |
-| [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks\|Production Agent Frameworks]] | SK and AutoGen are two of the six frameworks covered; complements LangGraph + LangChain + LlamaIndex + smolagents + PydanticAI |
-| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns\|LangGraph Deep Patterns]] | The capstone combines SK + AutoGen + LangGraph subgraphs |
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently AI and Phoenix]] | SK functions emit OpenTelemetry spans; AutoGen emits Phoenix traces |
-| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability\|LangFuse Deep Dive]] | SK and AutoGen both integrate with LangFuse for trace/eval pipelines |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | The capstone deploys to Azure App Service + Azure OpenAI |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] | The capstone exposes the hybrid agent as a FastAPI endpoint |
-| [[13 - Go Engineering/06 - Go for ML Backend\|Go for ML Backend]] | The .NET interop story pairs naturally with Go microservices |
-| [[16 - Harness Engineering\|Harness Engineering]] | The capstone follows the file architecture pattern |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor and Structured Generation]] | SK plugin functions use the same Pydantic-style validation pattern |
+| [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks\|Production Agent Frameworks]] | SK and AutoGen are two of the six frameworks covered; complements LangGraph + LangChain + LlamaIndex + smolagents + PydanticAI |
+| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns\|LangGraph Deep Patterns]] | The capstone combines SK + AutoGen + LangGraph subgraphs |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | SK functions emit OpenTelemetry spans; AutoGen emits Phoenix traces |
+| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | SK and AutoGen both integrate with LangFuse for trace/eval pipelines |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | The capstone deploys to Azure App Service + Azure OpenAI |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | The capstone exposes the hybrid agent as a FastAPI endpoint |
+| [[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome\|Go for ML Backend]] | The .NET interop story pairs naturally with Go microservices |
+| [[16 - Harness Engineering/00 - Welcome to Harness Engineering and SDD\|Harness Engineering]] | The capstone follows the file architecture pattern |
 
 ---
 

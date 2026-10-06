@@ -417,6 +417,6 @@ def judge_randomized(question, a, b, judge_model="gpt-4o-mini"):
 
 - [[00 - Welcome to RAG Evaluation Deep Dive|Welcome]] — course map.
 - [[02 - Custom Metrics with RAGAS Protocol|Custom Metrics]] — judge prompt is the metric.
-- [[03 - Statistical Rigor|Statistical Rigor]] — biases inflate variance; statistical tests help detect.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar|Statistical Rigor]] — biases inflate variance; statistical tests help detect.
 - Zheng, L., et al. (2023). "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena." *NeurIPS 2023*.
 - Raina, V., et al. (2024). "Position Bias in LLM-as-a-Judge."

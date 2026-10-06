@@ -567,7 +567,7 @@ export async function POST(req: Request) {
 - Vercel AI SDK — [sdk.vercel.ai/docs](https://sdk.vercel.ai/docs)
 - Next.js 15 — [nextjs.org/docs](https://nextjs.org/docs)
 - React Server Components — [react.dev/reference/rsc/server-components](https://react.dev/reference/rsc/server-components)
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — Vercel deployment
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Note — Instructor for Python]]
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals|Note 01 — TS Fundamentals]]
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/04 - LangChain.js + AI SDK Integration|Note 04 — LangChain.js]]
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — Vercel deployment
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Note — Instructor for Python]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals for Python Developers|Note 01 — TS Fundamentals]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/04 - LangChain.js + AI SDK Integration - Type-Safe LLM Orchestration|Note 04 — LangChain.js]]

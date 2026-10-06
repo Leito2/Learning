@@ -14,7 +14,7 @@ Running a model on Kubernetes as a raw `Deployment` means you inherit all the in
 
 KServe's central thesis is that model serving should be a **single custom resource** — InferenceService — that declares *what* model to serve, *where* it lives, *how* to preprocess inputs, *how* to explain predictions, and *what percentage* of traffic each version receives. The Kubernetes controller reconciles this into a network of Knative Services, Istio VirtualServices, and autoscaling rules. The ML engineer writes one YAML; the platform handles the rest.
 
-Etymologically, the name "InferenceService" is deliberate: it is a **service** that performs inference, not a pod, not a deployment, not a job. This semantic distinction matters — KServe treats your model as a continuously available service with serverless lifecycle, not as a batch process that starts and stops. This note extends the deployment concepts from [[../20 - Deployment y Serving/...|Deployment y Serving]] and the platform architecture from [[../26 - ML Platform Engineering/...|ML Platform Engineering]], and it complements the model-serving specifics in [[../30 - TorchServe/...|TorchServe]].
+Etymologically, the name "InferenceService" is deliberate: it is a **service** that performs inference, not a pod, not a deployment, not a job. This semantic distinction matters — KServe treats your model as a continuously available service with serverless lifecycle, not as a batch process that starts and stops. This note extends the deployment concepts from [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment y Serving]] and the platform architecture from [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|ML Platform Engineering]], and it complements the model-serving specifics in [[09 - MLOps y Produccion/30 - TorchServe/00 - Welcome to TorchServe|TorchServe]].
 
 ---
 
@@ -607,6 +607,6 @@ kubectl patch inferenceservice nlp-classifier \
 - [KServe Fairing — Python SDK](https://kserve.github.io/website/latest/sdk_docs/fairing/)
 - [[../20 - Deployment y Serving/00 - Bienvenida|09/20 - Deployment y Serving]]
 - [[../20 - Deployment y Serving/02 - Model Serving Patterns|09/20 - Model Serving Patterns]]
-- [[../26 - ML Platform Engineering/...|09/26 - ML Platform Engineering]]
+- [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|09/26 - ML Platform Engineering]]
 - [[../30 - TorchServe/01 - TorchServe Architecture - MAR Files and Model Archiver|09/30 - TorchServe Architecture]]
-- [[../23 - Advanced MLOps/...|09/23 - Advanced MLOps]]
+- [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|09/23 - Advanced MLOps]]

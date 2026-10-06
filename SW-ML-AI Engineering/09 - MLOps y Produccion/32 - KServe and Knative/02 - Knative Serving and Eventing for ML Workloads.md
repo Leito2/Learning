@@ -14,7 +14,7 @@ KServe uses Knative Serving for scale-to-zero and request routing, but Knative i
 
 The thesis of this note is that Knative transforms Kubernetes from a **container orchestrator** into an **event-driven ML platform**. You can build a complete ML pipeline — file ingestion, preprocessing, inference, postprocessing, alerting — entirely from Knative Services and Eventing triggers, with every component scaling independently and consuming zero resources when idle. This is serverless ML: no long-running Airflow workers, no idle Kubernetes Jobs, no always-on pipeline infrastructure.
 
-Etymologically, Knative (pronounced "kay-native") is a portmanteau of **K**ubernetes + **native** — a framework that makes Kubernetes feel native for serverless workloads, the same way a native app feels natural on an operating system. This note extends the InferenceService abstraction from [[01 - KServe - Serverless Model Serving with InferenceService|Note 01]] and the platform patterns from [[../26 - ML Platform Engineering/...|ML Platform Engineering]].
+Etymologically, Knative (pronounced "kay-native") is a portmanteau of **K**ubernetes + **native** — a framework that makes Kubernetes feel native for serverless workloads, the same way a native app feels natural on an operating system. This note extends the InferenceService abstraction from [[01 - KServe - Serverless Model Serving with InferenceService|Note 01]] and the platform patterns from [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|ML Platform Engineering]].
 
 ---
 
@@ -586,5 +586,5 @@ kn service update document-classifier -n ml-pipelines \
 - [TriggerMesh Integration Platform](https://triggermesh.com/)
 - [[01 - KServe - Serverless Model Serving with InferenceService|Note 01 — KServe InferenceService]]
 - [[../20 - Deployment y Serving/00 - Bienvenida|09/20 - Deployment y Serving]]
-- [[../26 - ML Platform Engineering/...|09/26 - ML Platform Engineering]]
-- [[../23 - Advanced MLOps/...|09/23 - Advanced MLOps]]
+- [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|09/26 - ML Platform Engineering]]
+- [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|09/23 - Advanced MLOps]]

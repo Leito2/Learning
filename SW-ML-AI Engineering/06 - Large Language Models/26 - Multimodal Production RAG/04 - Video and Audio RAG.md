@@ -743,7 +743,7 @@ client.upsert(... payload={
 - Gemini Video — [ai.google.dev/gemini-api/docs/video-understanding](https://ai.google.dev/gemini-api/docs/video-understanding)
 - OpenAI TTS — [platform.openai.com/docs/guides/text-to-speech](https://platform.openai.com/docs/guides/text-to-speech)
 - [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/05 - Vision, Audio, and Multimodal Transformers|06/16/05 Vision, Audio, and Multimodal Transformers]]
-- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction|Note 01 — PDF Parsing]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction - Text, Tables, OCR, and Layout Preservation|Note 01 — PDF Parsing]]
 - [[06 - Large Language Models/26 - Multimodal Production RAG/03 - Multimodal Embedding Models|Note 03 — Multimodal Embeddings]]
-- [[06 - Large Language Models/26 - Multimodal Production RAG/05 - Capstone - Production Multimodal RAG|Note 05 — Capstone]]
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/05 - Capstone - Production Multimodal RAG for Legal Documents|Note 05 — Capstone]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]]

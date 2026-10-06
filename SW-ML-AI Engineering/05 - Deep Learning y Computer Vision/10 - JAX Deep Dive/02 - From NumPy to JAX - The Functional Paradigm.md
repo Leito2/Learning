@@ -436,7 +436,7 @@ demo_pytrees()
 - JAX PRNG Design: https://jax.readthedocs.io/en/latest/jep/263-prng.html
 - JAX PyTree documentation: https://jax.readthedocs.io/en/latest/pytrees.html
 - Frostig, Johnson, Leary (2018). "Compiling ML Programs via High-Level Tracing."
-- [[05/03 - Deep Learning con PyTorch]]
-- [[05/09 - Deep Learning with TensorFlow]]
-- [[04/01 - Matemáticas para ML]]
-- [[07/32 - Advanced ML Topics]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow|09 - Deep Learning with TensorFlow]]
+- [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida|01 - Matemáticas para ML]]
+- [[11 - Research y Ciencia de Datos/32 - Advanced ML Topics/01 - JAX and Flax|32 - Advanced ML Topics]]

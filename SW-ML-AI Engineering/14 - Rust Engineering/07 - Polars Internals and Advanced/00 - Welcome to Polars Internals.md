@@ -14,7 +14,7 @@ Machine learning pipelines are only as fast as their data layer. In production e
 
 Before Polars, the Python data ecosystem was dominated by Pandas, built on NumPy arrays that store data in contiguous blocks with Python objects for complex types. Every string incurred a 49-byte Python object header, missing values required separate masks, and the GIL forced single-threaded execution. When datasets grew past gigabytes, engineers reached for PySpark or Dask—distributed frameworks that introduce network overhead and scheduler complexity even for single-machine workloads.
 
-Polars was designed to fill this gap: single-machine, multi-core DataFrame processing without the GIL. Its creator, Ritchie Vink, chose Rust for zero-cost abstractions and fearless concurrency. The core insight is that analytical queries are declarative—you describe *what* to compute, not *how*—which opens the door to a query optimizer that rewrites your intent into an efficient physical plan, like a SQL database engine embedded in your data science workflow. This vault sits at the intersection of [[03 - Rust for Data Engineering]] and [[04 - Rust for ML and AI]], building on [[01 - Rust Fundamentals]]. It also connects to [[07 - Research y Ciencia de Datos]] for reproducible, high-throughput experimental pipelines. By the end of this course, you will not only write faster queries—you will understand exactly why they are fast.
+Polars was designed to fill this gap: single-machine, multi-core DataFrame processing without the GIL. Its creator, Ritchie Vink, chose Rust for zero-cost abstractions and fearless concurrency. The core insight is that analytical queries are declarative—you describe *what* to compute, not *how*—which opens the door to a query optimizer that rewrites your intent into an efficient physical plan, like a SQL database engine embedded in your data science workflow. This vault sits at the intersection of [[14 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|03 - Rust for Data Engineering]] and [[14 - Rust Engineering/04 - Rust for ML and AI/00 - Welcome|04 - Rust for ML and AI]], building on [[14 - Rust Engineering/01 - Rust Fundamentals/00 - Welcome|01 - Rust Fundamentals]]. It also connects to [[00 - Indice Maestro de Cursos|07 - Research y Ciencia de Datos]] for reproducible, high-throughput experimental pipelines. By the end of this course, you will not only write faster queries—you will understand exactly why they are fast.
 
 ---
 
@@ -218,8 +218,8 @@ println!("{}", plan);
 - [[01 - Lazy Evaluation and Query Optimization]]
 - [[02 - Memory Mapping and Zero-Copy Reads]]
 - [[03 - Streaming and Out-of-Core Processing]]
-- [[03 - Rust for Data Engineering]]
-- [[04 - Rust for ML and AI]]
+- [[14 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|03 - Rust for Data Engineering]]
+- [[14 - Rust Engineering/04 - Rust for ML and AI/00 - Welcome|04 - Rust for ML and AI]]
 - [Polars official docs](https://docs.pola.rs/)
 - [Apache Arrow specification](https://arrow.apache.org/docs/format/Columnar.html)
 

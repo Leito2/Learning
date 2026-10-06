@@ -436,8 +436,8 @@ print(f"Significant: {paired['significant']}")
 ## References
 
 - [[00 - Welcome to RAG Evaluation Deep Dive|Welcome]] — course map.
-- [[01 - Test Dataset Construction|Test Set]] — sample size feeds statistical power.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|Test Set]] — sample size feeds statistical power.
 - [[02 - Custom Metrics with RAGAS Protocol|Custom Metrics]] — paired tests over custom metrics.
-- [[05 - CI-CD Eval Pipelines|CI/CD]] — uses CIs and paired tests in the gate.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/05 - CI-CD Eval Pipelines - GitHub Actions Regression Detection|CI/CD]] — uses CIs and paired tests in the gate.
 - statsmodels: https://www.statsmodels.org/
 - SciPy: https://scipy.org/

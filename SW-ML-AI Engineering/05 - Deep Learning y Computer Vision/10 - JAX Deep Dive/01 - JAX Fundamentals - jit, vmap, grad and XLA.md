@@ -395,7 +395,7 @@ print(f"¡Sorpresa! jit + vmap + grad composed in one line.")
 - XLA Documentation: https://www.tensorflow.org/xla
 - JAX Quickstart: https://jax.readthedocs.io/en/latest/quickstart.html
 - DeepMind (2023). "Using JAX to accelerate our research."
-- [[05/03 - Deep Learning con PyTorch]]
-- [[05/09 - Deep Learning with TensorFlow]]
-- [[04/01 - Matemáticas para ML]]
-- [[07/32 - Advanced ML Topics]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow|09 - Deep Learning with TensorFlow]]
+- [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida|01 - Matemáticas para ML]]
+- [[11 - Research y Ciencia de Datos/32 - Advanced ML Topics/01 - JAX and Flax|32 - Advanced ML Topics]]

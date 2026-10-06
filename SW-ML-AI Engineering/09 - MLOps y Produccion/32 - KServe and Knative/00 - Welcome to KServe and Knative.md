@@ -13,7 +13,7 @@ KServe — originally KFServing, the serving component of Kubeflow — is the Ku
 
 The value proposition is brutally simple: traditional Kubernetes deployments keep GPU pods running 24/7, consuming electricity and cloud credits even at 3 AM when no one is calling the API. KServe + Knative scales the GPU pod to zero when idle, then spins it back up — cold start included — when a request arrives. For teams running dozens of models (research, staging, shadow), the difference is 60–80% GPU cost reduction. This is not a minor optimization; it is the difference between running 5 GPUs and running 20 GPUs for the same workload.
 
-KServe sits at the intersection of model serving and platform engineering. It does not replace TorchServe or Triton — it **wraps** them in a Kubernetes-native API that adds serverless capabilities and multi-framework support. If TorchServe is the engine, KServe is the car. This module bridges the deployment patterns from [[../20 - Deployment y Serving/...|Deployment y Serving]] and the platform architecture from [[../26 - ML Platform Engineering/...|ML Platform Engineering]], extending into the serverless paradigm covered in [[../30 - TorchServe/...|TorchServe]].
+KServe sits at the intersection of model serving and platform engineering. It does not replace TorchServe or Triton — it **wraps** them in a Kubernetes-native API that adds serverless capabilities and multi-framework support. If TorchServe is the engine, KServe is the car. This module bridges the deployment patterns from [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment y Serving]] and the platform architecture from [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|ML Platform Engineering]], extending into the serverless paradigm covered in [[09 - MLOps y Produccion/30 - TorchServe/00 - Welcome to TorchServe|TorchServe]].
 
 ---
 
@@ -97,6 +97,6 @@ kubectl get pod -l serving.knative.dev/service=sklearn-iris -w
 - [Knative Official Documentation](https://knative.dev/docs/)
 - [KServe GitHub Repository](https://github.com/kserve/kserve)
 - [[../20 - Deployment y Serving/00 - Bienvenida|09/20 - Deployment y Serving]]
-- [[../26 - ML Platform Engineering/...|09/26 - ML Platform Engineering]]
+- [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|09/26 - ML Platform Engineering]]
 - [[../30 - TorchServe/00 - Welcome to TorchServe|09/30 - TorchServe]]
-- [[../23 - Advanced MLOps/...|09/23 - Advanced MLOps]]
+- [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|09/23 - Advanced MLOps]]

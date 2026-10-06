@@ -526,7 +526,7 @@ restart_service()  # maybe that works?
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/02 - Detection - Alerts, Metrics, and Anomaly Detection|Note 02 — Detection]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Note 04 — Resolution Patterns]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/05 - Capstone - Production Incident Response Simulation|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — traces
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift traces
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security]] — prompt injection triage
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — failover triage
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — traces
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift traces
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security]] — prompt injection triage
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — failover triage

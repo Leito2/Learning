@@ -535,8 +535,8 @@ forecast = {
 - Prophet — [facebook.github.io/prophet](https://facebook.github.io/prophet/)
 - AWS Bedrock Reserved Capacity — [aws.amazon.com/bedrock/pricing](https://aws.amazon.com/bedrock/pricing)
 - Azure OpenAI Provisioned — [learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput)
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals|Note 01 — Cost Fundamentals]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility|Note 02 — Cost Visibility]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/01 - LLM Cost Fundamentals - Token Economics and Pricing Models|Note 01 — Cost Fundamentals]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility - Per-Tenant Attribution, Chargeback, and Showback|Note 02 — Cost Visibility]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/03 - Cost Optimization Patterns|Note 03 — Optimization]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems|Incident Response]] — cost alerts in runbooks
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline for a Multi-Tenant LLM Service|Note 05 — Capstone]]
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems|Incident Response]] — cost alerts in runbooks

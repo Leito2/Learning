@@ -227,7 +227,7 @@ with psycopg.connect("postgresql://user:pass@db:5432/vecdb") as conn:
     results = cur.fetchall()
 ```
 
-For deeper pgvector coverage see [[../36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads.md|PostgreSQL for AI-ML Workloads]].
+For deeper pgvector coverage see [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads|PostgreSQL for AI-ML Workloads]].
 
 ## 5. The Compatibility Wrapper
 
@@ -349,7 +349,7 @@ db = DualWriteVectorDB(
 db = QdrantBackend(...)  # one-line change at cutover time
 ```
 
-The pattern is: dual-write for a week, run an evaluation suite ([[../../06 - Large Language Models/12 - Production RAG/05 - RAG Evaluation - RAGAS, DeepEval and Production Metrics.md|RAGAS]]) on both backends, verify metrics are within tolerance, cutover.
+The pattern is: dual-write for a week, run an evaluation suite ([[06 - Large Language Models/12 - Production RAG/05 - RAG Evaluation - RAGAS, DeepEval and Production Metrics|RAGAS]]) on both backends, verify metrics are within tolerance, cutover.
 
 ## 7. The Migration Timeline
 
@@ -535,8 +535,8 @@ print(f"Uploaded {len(points)} points")
 ## References
 
 - [[00 - Welcome to ChromaDB|Welcome]] — course map.
-- [[02 - Chroma Server Mode|Server Mode]] — pre-migration deployment.
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/13 - ChromaDB Deep Dive/02 - Chroma Server Mode - Local and Docker Deployment|Server Mode]] — pre-migration deployment.
 - [[../05 - Qdrant I - Architecture and Collections.md|Qdrant I]] — destination.
-- [[../36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads.md|PostgreSQL for AI-ML Workloads]] — pgvector.
-- [[../../06 - Large Language Models/12 - Production RAG/05 - RAG Evaluation - RAGAS, DeepEval and Production Metrics.md|RAG Evaluation]] — the metric gate for cutover.
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/00 - Welcome to PostgreSQL for AI-ML Workloads|PostgreSQL for AI-ML Workloads]] — pgvector.
+- [[06 - Large Language Models/12 - Production RAG/05 - RAG Evaluation - RAGAS, DeepEval and Production Metrics|RAG Evaluation]] — the metric gate for cutover.
 - [[../10 - Advanced Patterns and Observability.md|Vector DB Observability]] — the monitoring that catches migration regressions.

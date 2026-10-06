@@ -14,7 +14,7 @@ A single-node Qdrant instance is sufficient for prototyping and many mid-scale p
 
 This note is the capstone of the course. It combines the algorithmic foundations from [[01 - Vector Search Fundamentals]] and [[02 - Indexing Algorithms Deep Dive]], the database mechanics from [[05 - Qdrant I - Architecture and Collections]], and operational practices from [[04 - pgvector II - Production and Hybrid Search]] to show how vector search scales to cloud-native deployments. We also cover integrations with the two dominant LLM orchestration frameworks — LangChain and LlamaIndex — because vector databases in production are almost always consumed through these interfaces.
 
-This module connects to [[15 - Docker and Kubernetes]] (container orchestration for stateful workloads), [[18 - MLOps and Model Serving]] (production SLAs and observability), and [[06 - Large Language Models]] (downstream RAG consumption of vector retrieval results).
+This module connects to [[15 - Docker and Kubernetes]] (container orchestration for stateful workloads), [[18 - MLOps and Model Serving]] (production SLAs and observability), and [[00 - Indice Maestro de Cursos|06 - Large Language Models]] (downstream RAG consumption of vector retrieval results).
 
 ---
 
@@ -296,7 +296,7 @@ print(f"p50={results['p50']:.1f}ms  p99={results['p99']:.1f}ms  QPS={results['qp
 - LlamaIndex Qdrant Integration: https://docs.llamaindex.ai/en/stable/examples/vector_stores/QdrantIndexDemo/
 - [[05 - Qdrant I - Architecture and Collections]] — Core Qdrant concepts and single-node operations
 - [[15 - Docker and Kubernetes]] — Container orchestration for stateful workloads
-- [[06 - Large Language Models]] — Downstream RAG consumption
+- [[00 - Indice Maestro de Cursos|06 - Large Language Models]] — Downstream RAG consumption
 
 ## 📦 Código de compresión
 

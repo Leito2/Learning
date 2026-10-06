@@ -12,9 +12,9 @@
 
 Gorgonia is a library that brings differential computing and neural networks to Go. Unlike Python-centric frameworks, Gorgonia is designed for environments where Go is the primary language. This matters because many backend systems, databases, and infrastructure tools are written in Go. When machine learning needs to live inside these systems, shipping a Python runtime is often impractical.
 
-In this vault, we explore Gorgonia from first principles: tensors, graphs, autodiff, and GPU acceleration. Each module connects to [[01 - Tensor Operations and ND Arrays]], [[02 - Computational Graphs and Autodiff]], and the broader [[Go Engineering]] ecosystem. If you are coming from PyTorch, you will find familiar concepts expressed in Go's explicit, type-safe idiom.
+In this vault, we explore Gorgonia from first principles: tensors, graphs, autodiff, and GPU acceleration. Each module connects to [[01 - Tensor Operations and ND Arrays]], [[02 - Computational Graphs and Autodiff]], and the broader [[13 - Go Engineering/00 - Welcome to Go Engineering|Go Engineering]] ecosystem. If you are coming from PyTorch, you will find familiar concepts expressed in Go's explicit, type-safe idiom.
 
-Prerequisites for this course include [[01 - Go Fundamentals]], basic linear algebra, and familiarity with machine-learning concepts such as gradient descent. We assume you understand why backpropagation works; here we focus on how to express it in Go.
+Prerequisites for this course include [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]], basic linear algebra, and familiarity with machine-learning concepts such as gradient descent. We assume you understand why backpropagation works; here we focus on how to express it in Go.
 
 ---
 

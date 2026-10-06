@@ -610,14 +610,14 @@ The dashboard shows:
 
 ## References
 
-- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/01 - BentoML Fundamentals|Note 01 — Fundamentals]]
-- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/02 - Service Patterns|Note 02 — Service Patterns]]
-- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/03 - Distributed Serving|Note 03 — Distributed Serving]]
-- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/04 - Deployment Targets|Note 04 — Deployment Targets]]
+- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/01 - BentoML Fundamentals - Saving, Loading, and the Bento Artifact|Note 01 — Fundamentals]]
+- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/02 - Service Patterns - REST, gRPC, Async, Batching|Note 02 — Service Patterns]]
+- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/03 - Distributed Serving - Multi-model, Ensembles, GPU Sharing|Note 03 — Distributed Serving]]
+- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/04 - Deployment Targets - Kubernetes, Lambda, SageMaker, Cloud Run|Note 04 — Deployment Targets]]
 - BentoML docs — [docs.bentoml.com](https://docs.bentoml.com)
 - Argo Rollouts — [argoproj.github.io/argo-rollouts](https://argoproj.github.io/argo-rollouts/)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM]] — LLM serving comparison
-- [[09 - MLOps y Produccion/32 - KServe and Knative|KServe]] — K8s-native alternative
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — multi-cloud deploy
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability
-- [[09 - MLOps y Produccion/22 - End-to-End ML Project|E2E ML Project]] — training pipeline
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM]] — LLM serving comparison
+- [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative|KServe]] — K8s-native alternative
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — multi-cloud deploy
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability
+- [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|E2E ML Project]] — training pipeline

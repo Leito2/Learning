@@ -115,11 +115,11 @@ The engineers who master real-time ML get hired first for senior ML platform rol
 
 You should already be comfortable with:
 
-- **Python async** — asyncio, FastAPI from [[03 - Advanced Python/08 - Async Python Patterns Reference|03/08 Async Python Patterns Reference]]
-- **Production LLM serving** — FastAPI, LiteLLM from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19 LLM Gateway]]
-- **Docker Compose** — multi-service stacks from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|10/31 FastAPI]]
-- **MLflow / observability** — basics from [[09 - MLOps y Produccion/22 - End-to-End ML Project|09/22 E2E ML Project]]
-- **Feast basics** — online feature store from [[09 - MLOps y Produccion/27 - Feast and Feature Stores|09/27 Feast]]
+- **Python async** — asyncio, FastAPI from [[03 - Advanced Python/08 - Async Python Patterns Reference/00 - Welcome - Why Async Python Patterns Reference|03/08 Async Python Patterns Reference]]
+- **Production LLM serving** — FastAPI, LiteLLM from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19 LLM Gateway]]
+- **Docker Compose** — multi-service stacks from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|10/31 FastAPI]]
+- **MLflow / observability** — basics from [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|09/22 E2E ML Project]]
+- **Feast basics** — online feature store from [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|09/27 Feast]]
 
 💡 If you have not yet read [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/01 - Apache Kafka|Kafka note 01]], skim it before Note 01 — Kafka fundamentals are assumed.
 
@@ -129,13 +129,13 @@ You should already be comfortable with:
 
 | Vault Module | Connection |
 |--------------|-----------|
-| [[09 - MLOps y Produccion/27 - Feast and Feature Stores\|Feast]] | Online feature store integration |
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently]] | Drift detection integration |
-| [[09 - MLOps y Produccion/22 - End-to-End ML Project\|E2E ML Project]] | CI/CD for retraining |
+| [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps\|Feast]] | Online feature store integration |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently]] | Drift detection integration |
+| [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project\|E2E ML Project]] | CI/CD for retraining |
 | [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/01 - Apache Kafka\|Kafka]] | Streaming foundation |
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | Multi-provider LLM in real-time |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | Multi-provider LLM in real-time |
 | [[06 - Large Language Models/23 - Serverless LLM Platforms\|Serverless LLM]] | Burst inference for real-time |
-| [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems\|Incident Response]] | Real-time alerting |
+| [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems\|Incident Response]] | Real-time alerting |
 
 ---
 
@@ -161,7 +161,7 @@ Three frontiers are emerging:
 
 1. **LLM + streaming features** — Realtime context for LLM agents: per-event features fed to LangChain agents for sub-second personalized responses.
 2. **Feature store convergence** — Feast, Tecton, and Hopswork are converging on online/offline parity. Same feature definition works for both batch training and online serving.
-3. **Auto-retraining at the edge** — Real-time model updates at edge devices (covered in [[15 - Transversal Skills/04 - WebGPU and On-Device ML|15/04 WebGPU]]) using streaming features.
+3. **Auto-retraining at the edge** — Real-time model updates at edge devices (covered in [[15 - Transversal Skills/04 - WebGPU and On-Device ML/00 - Welcome to WebGPU and On-Device ML|15/04 WebGPU]]) using streaming features.
 
 These map directly onto the user's portfolio: the **LLM Edge Gateway** benefits from real-time context; the **Automated LLM Evaluation Suite** can be triggered by drift; the **Multi-Agent Research System** needs streaming features for fresh context; the **StayBot** could use CDC to keep listing data fresh.
 

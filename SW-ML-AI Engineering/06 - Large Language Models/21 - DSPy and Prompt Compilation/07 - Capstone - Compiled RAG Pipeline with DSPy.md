@@ -2,7 +2,7 @@
 
 This capstone ties notes 01-06 into one deployable artifact: a **production-grade DSPy-compiled RAG pipeline** with multi-stage retrieval, query rewriting, reranking, citation-validated generation, **disk cache for cost control**, **OpenTelemetry instrumentation** for observability, and **FastAPI deployment** for serving. It is the integration test for the entire DSPy course: every primitive (Signatures, Modules, Optimizers, Assertions, LangGraph integration, Production patterns) is wired into a single reference implementation.
 
-The capstone compiles with MIPRO against your [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive.md|RAGAS test set]] (same test set from note 06/20), validates against the RAGAS metrics, deploys as a FastAPI service with OTel, and triggers re-compilation on quality drift. Total: ~400 lines of Python + 50 lines of FastAPI + 30 lines of CI config. Run locally, compile, deploy.
+The capstone compiles with MIPRO against your [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAGAS test set]] (same test set from note 06/20), validates against the RAGAS metrics, deploys as a FastAPI service with OTel, and triggers re-compilation on quality drift. Total: ~400 lines of Python + 50 lines of FastAPI + 30 lines of CI config. Run locally, compile, deploy.
 
 ## 🎯 Learning Objectives
 
@@ -454,10 +454,10 @@ async def query(req):
 
 - [[00 - Welcome to DSPy and Prompt Compilation|Welcome]] — course map.
 - [[01 - Signatures and Modules|Signatures]] — the building blocks.
-- [[02 - Optimizers|Optimizers]] — the compiler.
-- [[03 - DSPy for RAG|RAG]] — multi-stage retrieval.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/02 - Optimizers - BootstrapFewShot MIPRO and COPRO|Optimizers]] — the compiler.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/03 - DSPy for RAG - Retrieval Modules and Signatures|RAG]] — multi-stage retrieval.
 - [[04 - DSPy + LangGraph Integration|LangGraph integration]] — agent-level compilation.
-- [[05 - DSPy Assertions|Assertions]] — output validation.
-- [[06 - Production DSPy|Production]] — caching, costs, deployment.
-- [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive.md|RAG Evaluation Deep Dive]] — the test set.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/05 - DSPy Assertions and Quality Constraints|Assertions]] — output validation.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/06 - Production DSPy - Caching Costs Evaluation|Production]] — caching, costs, deployment.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — the test set.
 - DSPy examples: https://dspy.ai/examples/

@@ -13,7 +13,7 @@
 
 The name "speculative decoding" comes from the CPU architecture concept of *branch prediction* — the processor speculatively executes instructions down a predicted branch path, and rolls back if the prediction was wrong. Similarly, a draft model speculatively generates multiple tokens, and the target model verifies them. If a token is rejected, only the rejected token needs regeneration; everything before it stays valid. The seminal papers are Leviathan et al. (2023) from Google and Chen et al. (2023) for the "Fast Inference from Transformers via Speculative Decoding" formulation.
 
-Before speculative decoding, the production story for LLM inference was grim: every token cost one full model forward pass. At 20 tok/s, generating a 500-token response takes 25 seconds. Adding more GPUs (tensor parallelism) helps with model loading but does NOT increase tokens-per-second for a single request — it only increases throughput across requests. For latency-sensitive applications like chatbots, coding assistants, and real-time translation, you were fundamentally capped by physics: the speed of HBM. This matters for [[06/09 - Sistemas de LLMs en Producción]] because latency directly drives user satisfaction metrics, and speculative decoding is one of the few techniques that directly reduces per-request wall-clock time.
+Before speculative decoding, the production story for LLM inference was grim: every token cost one full model forward pass. At 20 tok/s, generating a 500-token response takes 25 seconds. Adding more GPUs (tensor parallelism) helps with model loading but does NOT increase tokens-per-second for a single request — it only increases throughput across requests. For latency-sensitive applications like chatbots, coding assistants, and real-time translation, you were fundamentally capped by physics: the speed of HBM. This matters for [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]] because latency directly drives user satisfaction metrics, and speculative decoding is one of the few techniques that directly reduces per-request wall-clock time.
 
 ---
 
@@ -291,7 +291,7 @@ print(f"Accepted {tokens} tokens in 1 target pass → {speedup:.1f}x speedup")
 - Gloeckle, F., et al. (2024). "Better & Faster Large Language Models via Multi-token Prediction." *arXiv:2404.19737*
 - Xia, H., et al. (2024). "Speculative Decoding: Exploiting Speculative Execution for Accelerating Seq2seq Generation." NVIDIA Technical Blog
 - NVIDIA TensorRT-LLM Speculative Decoding Documentation
-- [[06/09 - Sistemas de LLMs en Producción]]
-- [[06/13 - vLLM and Advanced RAG]]
+- [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]
 - [[06/17-03 - SGLang (current course)]]
-- [[05/03 - Deep Learning con PyTorch]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]

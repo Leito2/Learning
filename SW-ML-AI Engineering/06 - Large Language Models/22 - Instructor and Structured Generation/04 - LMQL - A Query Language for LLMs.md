@@ -34,7 +34,7 @@ print(summarize("LMQL is a declarative query language for LLMs that..."))
 
 That snippet declares a typed query, runs it against GPT-4o-mini, and returns a string. The `STOPS_AT("\n")` constraint is enforced at generation time. The `argmax` directive asks for the highest-probability decoding (vs sampling). The whole thing is one annotated string.
 
-The library was developed at ETH Zürich by Luca Beurer-Kellner and colleagues, with the goal of bringing **type safety, formal semantics, and declarative syntax** to LLM programming. It supports Transformers, llama.cpp, and OpenAI-compatible backends; it can be served as a standalone HTTP endpoint via `lmql serve`; and it integrates with DSPy for compiled optimization (covered in [[06 - Large Language Models/21 - DSPy and Prompt Compilation]]).
+The library was developed at ETH Zürich by Luca Beurer-Kellner and colleagues, with the goal of bringing **type safety, formal semantics, and declarative syntax** to LLM programming. It supports Transformers, llama.cpp, and OpenAI-compatible backends; it can be served as a standalone HTTP endpoint via `lmql serve`; and it integrates with DSPy for compiled optimization (covered in [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|21 - DSPy and Prompt Compilation]]).
 
 LMQL's bet is that **declarative beats imperative** for typed prompts. The DSL is harder to learn than a Python library, but the resulting programs are more readable, more reproducible, and easier to debug post-hoc — every variable has a declared type, every constraint is a first-class construct, and every assertion is logged with a counterexample.
 
@@ -268,7 +268,7 @@ resp = requests.post(
 print(resp.json()["SUMMARY"])
 ```
 
-`lmql serve` integrates with FastAPI middleware, OpenTelemetry traces from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]], and DSPy compilation pipelines from [[06 - Large Language Models/21 - DSPy and Prompt Compilation]]. For production, you can wrap LMQL queries inside a larger FastAPI app and route via LiteLLM from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]].
+`lmql serve` integrates with FastAPI middleware, OpenTelemetry traces from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]], and DSPy compilation pipelines from [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|21 - DSPy and Prompt Compilation]]. For production, you can wrap LMQL queries inside a larger FastAPI app and route via LiteLLM from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]].
 
 💡 **Tip:** `lmql serve` is great for small deployments, but for high-throughput production, the recommended pattern is to import LMQL queries as Python functions and run them in your existing FastAPI app. The server overhead is non-trivial compared to direct function calls.
 
@@ -423,7 +423,7 @@ class SummarizeLMQL(dspy.Module):
         return dspy.Prediction(summary=result)
 ```
 
-DSPy can then compile this module against a labeled dataset, optimizing the prompt and constraint parameters. This is the bridge between declarative LMQL and the compilation-based optimization of DSPy — covered in depth in [[06 - Large Language Models/21 - DSPy and Prompt Compilation]].
+DSPy can then compile this module against a labeled dataset, optimizing the prompt and constraint parameters. This is the bridge between declarative LMQL and the compilation-based optimization of DSPy — covered in depth in [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|21 - DSPy and Prompt Compilation]].
 
 Caso real: A customer-support automation team used LMQL+DSPy to compile a typed intent classifier. The pre-compiled LMQL query achieved 87% accuracy; after DSPy optimization (over 500 labeled examples), the same compiled query reached 94% — without changing the LMQL source. The optimization happened at the prompt-instruction and constraint-string level, leaving the schema and type declarations untouched.
 
@@ -445,7 +445,7 @@ Caso real: A customer-support automation team used LMQL+DSPy to compile a typed 
 - LMQL docs — [lmql.ai](https://lmql.ai)
 - LMQL GitHub — [github.com/eth-cscs/lmql](https://github.com/eth-cscs/lmql)
 - LMQL paper — Beurer-Kellner et al., 2023, "Prompting Is Programming: A Query Language for Large Language Models"
-- [[06 - Large Language Models/21 - DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — compiled optimization partner
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — compiled optimization partner
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/01 - Instructor - Pydantic-Native Structured Outputs|Note 01 — Instructor]] — multi-provider alternative
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/02 - Outlines - Constrained Decoding at the Token Level|Note 02 — Outlines]] — fastest constrained decoding
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/03 - Guidance - Token-Level Control and Prompt Programming|Note 03 — Guidance]] — token-level control flow

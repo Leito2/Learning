@@ -16,7 +16,7 @@ Your **Multi-Agent Research System** (LangGraph/Gemma 4/Tavily API) uses a cycli
 
 Connecting LangGraph to MCP changes this. Instead of `ToolNode([search, fact_check, format])` at graph definition time, the agent node uses an MCP client that queries `tools/list` at runtime. The LLM sees the list of available tools — discovered, not hardcoded — and selects which to call. Adding a new search backend means deploying a new MCP server. The graph never changes.
 
-This is the step beyond framework-level agent building. You already know [[../../03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/01 - LangChain en Profundidad.md|LangChain and LangGraph fundamentals]]. You have built [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/04 - Caso Practico - Equipo de Agentes para Analisis de Mercado.md|multi-agent systems]]. Now you are architecting the protocol layer that makes those systems interoperable and extensible. This is what distinguishes an agent framework user from an AI infrastructure engineer.
+This is the step beyond framework-level agent building. You already know [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/01 - LangChain en Profundidad|LangChain and LangGraph fundamentals]]. You have built [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/04 - Caso Practico - Equipo de Agentes para Analisis de Mercado|multi-agent systems]]. Now you are architecting the protocol layer that makes those systems interoperable and extensible. This is what distinguishes an agent framework user from an AI infrastructure engineer.
 
 ---
 
@@ -440,4 +440,4 @@ langgraph-mcp-research/
 - LangGraph MCP Adapter: https://github.com/langchain-ai/langgraph-mcp
 - LangGraph ToolNode docs: https://langchain-ai.github.io/langgraph/how-tos/tool-calling/
 - [[01 - Model Context Protocol Deep Dive.md|MCP Deep Dive (this course)]]
-- [[../../03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/01 - LangChain en Profundidad.md|LangChain Deep Dive]]
+- [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/01 - LangChain en Profundidad|LangChain Deep Dive]]

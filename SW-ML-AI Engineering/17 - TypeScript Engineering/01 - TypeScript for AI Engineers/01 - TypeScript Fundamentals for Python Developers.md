@@ -508,5 +508,5 @@ const response: OpenAI.Chat.ChatCompletion = await openai.chat.completions.creat
 - Zod — [zod.dev](https://zod.dev)
 - Vercel AI SDK — [sdk.vercel.ai/docs](https://sdk.vercel.ai/docs)
 - LangChain.js — [js.langchain.com](https://js.langchain.com)
-- [[03 - Advanced Python/08 - Async Python Patterns Reference|Note — Async Python Patterns]]
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|Note — FastAPI for ML]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/00 - Welcome - Why Async Python Patterns Reference|Note — Async Python Patterns]]
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|Note — FastAPI for ML]]

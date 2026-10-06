@@ -16,7 +16,7 @@ Note 01 covered the foundation: a Kernel registers services and plugins; the pla
 
 The **Kernel Memory** abstraction handles retrieval. It treats vector search, keyword search, and episodic memory as composable memory sources; the kernel queries them in parallel and merges the results. This is the SK equivalent of LangChain's `RetrievalQA` and LlamaIndex's `QueryEngine` — but with first-class Azure AI Search integration.
 
-Together, Process Framework + Kernel Memory give you the building blocks for production agents: long-running workflows with persisted state, retrieval-augmented context, and Azure-native deployment. The pattern maps directly to LangGraph subgraphs from [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]] — you could implement the same workflow in either; SK is the Microsoft-native choice.
+Together, Process Framework + Kernel Memory give you the building blocks for production agents: long-running workflows with persisted state, retrieval-augmented context, and Azure-native deployment. The pattern maps directly to LangGraph subgraphs from [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]] — you could implement the same workflow in either; SK is the Microsoft-native choice.
 
 ```mermaid
 stateDiagram-v2
@@ -600,10 +600,10 @@ else:
 - Azure AI Search integration — [learn.microsoft.com/en-us/azure/search/search-what-is-azure-search](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search)
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/01 - Semantic Kernel Fundamentals - Kernel, Plugins, Functions|Note 01 — SK Fundamentals]]
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/03 - AutoGen Fundamentals - Conversable Agents and GroupChat|Note 03 — AutoGen Fundamentals]]
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine alternative
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]] — RAG fundamentals
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — vector DB landscape
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — Azure deployment patterns
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — Pydantic validation pattern
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability for SK traces
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans for SK
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine alternative
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — RAG fundamentals
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — vector DB landscape
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — Azure deployment patterns
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — Pydantic validation pattern
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability for SK traces
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans for SK

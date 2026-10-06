@@ -3,9 +3,9 @@
 ## 🎯 Learning Objectives
 - Identify the five paradigms for forcing structure from LLMs and know when each fails
 - Choose between Instructor, Outlines, Guidance, and LMQL based on the workload profile
-- Reuse your Pydantic v2 skills (from [[03 - Advanced Python/06 - Pydantic Deep Dive]]) to build validated LLM pipelines
+- Reuse your Pydantic v2 skills (from [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|06 - Pydantic Deep Dive]]) to build validated LLM pipelines
 - Ship a production FastAPI service that streams structured outputs with partial validation, retries on validation error, and Phoenix traces
-- Recognize which agent frameworks in [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks]] depend on structured outputs under the hood
+- Recognize which agent frameworks in [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|17 - Production Agent Frameworks]] depend on structured outputs under the hood
 
 ## Introduction
 
@@ -13,7 +13,7 @@ For three years the LLM community treated structured outputs as a parsing proble
 
 Three converging waves made structured outputs a first-class engineering discipline rather than a prompt-engineering hack. First, OpenAI shipped **JSON mode** in late 2023 and **strict function calling** in mid-2024 — the model itself constrains its sampling to valid JSON via token masking. Second, the **Instructor** library (jina-ai, then independent) operationalized the Pydantic-native pattern: declare a `BaseModel`, pass it as `response_model=`, and let the library handle retries on `ValidationError` automatically. Third, a category of libraries — **Outlines**, **Guidance**, and **LMQL** — gave developers the ability to **constrain generation at the token level**, with regex, JSON Schema, and context-free grammars, so the model cannot generate invalid tokens in the first place.
 
-This course is the missing piece in the vault's LLM engineering track. You have already studied LLM serving with vLLM and SGLang in [[06 - Large Language Models/13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference]], and you have production RAG and LLM evaluation covered. What you have not had is the **structured-output substrate** that ties it all together: the LLM-as-Judge evaluators in [[06 - Large Language Models/20 - RAG Evaluation Deep Dive]] depend on it; the tool-use agents in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]] depend on it; the LLM Gateway capstone in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]] could not exist without it.
+This course is the missing piece in the vault's LLM engineering track. You have already studied LLM serving with vLLM and SGLang in [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT, SGLang and Next-Gen Inference]], and you have production RAG and LLM evaluation covered. What you have not had is the **structured-output substrate** that ties it all together: the LLM-as-Judge evaluators in [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|20 - RAG Evaluation Deep Dive]] depend on it; the tool-use agents in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]] depend on it; the LLM Gateway capstone in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]] could not exist without it.
 
 By the end of these six notes you will have written a production structured-extraction service that fans out across multiple providers, validates with Pydantic, retries on schema failure, streams partial objects, and emits OpenTelemetry-compatible traces. That service is the **fifth portfolio project** in your AI/ML Engineer toolkit.
 
@@ -35,7 +35,7 @@ Any system that forces an LLM to produce structure falls into one of five paradi
 
 💡 The historical progression is paradigm 1 → 2/3 → 4/5. The cutting edge in 2025-2026 is **paradigm 4 with provider integration**: libraries that sit on top of OpenAI's JSON mode, vLLM's guided decoding, or llama.cpp's grammar grammars, and orchestrate retries, validation, and streaming on top.
 
-Every production LLM application in your portfolio falls somewhere on this ladder. The LLM-as-Judge in [[06 - Large Language Models/20 - RAG Evaluation Deep Dive]] could use paradigm 3 (function calling). The RAG extraction pipeline in [[06 - Large Language Models/12 - Production RAG]] benefits from paradigm 4 (Outlines). The agent tool schemas in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]] are essentially paradigm 3 expressed in LangChain's `Tool` schema. Choosing the right paradigm per use case is a senior-engineer-level decision.
+Every production LLM application in your portfolio falls somewhere on this ladder. The LLM-as-Judge in [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|20 - RAG Evaluation Deep Dive]] could use paradigm 3 (function calling). The RAG extraction pipeline in [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]] benefits from paradigm 4 (Outlines). The agent tool schemas in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]] are essentially paradigm 3 expressed in LangChain's `Tool` schema. Choosing the right paradigm per use case is a senior-engineer-level decision.
 
 ---
 
@@ -73,11 +73,11 @@ Every production LLM application in your portfolio falls somewhere on this ladde
 
 You should already be comfortable with:
 
-- **Pydantic v2** — `BaseModel`, `Field`, validators, custom types from [[03 - Advanced Python/06 - Pydantic Deep Dive]]. Instructor reuses every Pydantic pattern you already know.
+- **Pydantic v2** — `BaseModel`, `Field`, validators, custom types from [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|06 - Pydantic Deep Dive]]. Instructor reuses every Pydantic pattern you already know.
 - **Async Python** — `asyncio`, `async/await`, `httpx`. The capstone service is async end-to-end.
-- **FastAPI basics** — Dependency injection, lifespan, streaming responses from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML]].
-- **LLM fundamentals** — chat completion, system/user/assistant messages, temperature, function calling from [[06 - Large Language Models/06 - Fundamentos de LLMs]] and [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]].
-- **OpenTelemetry basics** — spans, traces, attributes from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]]. We instrument structured outputs in the capstone.
+- **FastAPI basics** — Dependency injection, lifespan, streaming responses from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|31 - FastAPI for ML]].
+- **LLM fundamentals** — chat completion, system/user/assistant messages, temperature, function calling from [[06 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida|06 - Fundamentos de LLMs]] and [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]].
+- **OpenTelemetry basics** — spans, traces, attributes from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]]. We instrument structured outputs in the capstone.
 
 💡 If you have not used Instructor before, install it first: `pip install instructor`. For the capstone you also need `litellm`, `fastapi`, `openinference-instrumentation-instructor`, and `opentelemetry-instrumentation-fastapi`.
 
@@ -89,16 +89,16 @@ This course is the substrate for much of what is already in the vault:
 
 | Vault Module | Connection to This Course |
 |--------------|---------------------------|
-| [[03 - Advanced Python/06 - Pydantic Deep Dive\|Pydantic Deep Dive]] | Instructor and Outlines both reuse Pydantic v2 `BaseModel` as the schema source |
-| [[06 - Large Language Models/12 - Production RAG\|Production RAG]] | Structured extraction from chunks (entities, citations, summaries) is paradigm 4 territory |
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM is the multi-provider transport; Instructor wraps it transparently |
-| [[06 - Large Language Models/20 - RAG Evaluation Deep Dive\|RAG Evaluation Deep Dive]] | LLM-as-Judge evaluators are structured outputs — this course shows the underlying mechanism |
-| [[06 - Large Language Models/21 - DSPy and Prompt Compilation\|DSPy and Prompt Compilation]] | DSPy signatures compile down to structured-output libraries (Instructor, Outlines) for typed predictors |
-| [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks\|Production Agent Frameworks]] | smolagents, PydanticAI, OpenAI Agents SDK all rely on structured tool calls under the hood |
-| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns\|LangGraph Deep Patterns]] | LangGraph state reducers validate typed state with Pydantic — same patterns as Instructor |
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently AI and Phoenix]] | Phoenix spans capture structured outputs as JSON attributes — full lineage from prompt to schema to consumer |
-| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers\|OpenTelemetry]] | The capstone emits OTEL spans for every validation, retry, and streaming token |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] | The capstone is a FastAPI service with `EventSourceResponse` for partial streaming |
+| [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive\|Pydantic Deep Dive]] | Instructor and Outlines both reuse Pydantic v2 `BaseModel` as the schema source |
+| [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG\|Production RAG]] | Structured extraction from chunks (entities, citations, summaries) is paradigm 4 territory |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM is the multi-provider transport; Instructor wraps it transparently |
+| [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation Deep Dive]] | LLM-as-Judge evaluators are structured outputs — this course shows the underlying mechanism |
+| [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation\|DSPy and Prompt Compilation]] | DSPy signatures compile down to structured-output libraries (Instructor, Outlines) for typed predictors |
+| [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks\|Production Agent Frameworks]] | smolagents, PydanticAI, OpenAI Agents SDK all rely on structured tool calls under the hood |
+| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns\|LangGraph Deep Patterns]] | LangGraph state reducers validate typed state with Pydantic — same patterns as Instructor |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | Phoenix spans capture structured outputs as JSON attributes — full lineage from prompt to schema to consumer |
+| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry]] | The capstone emits OTEL spans for every validation, retry, and streaming token |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | The capstone is a FastAPI service with `EventSourceResponse` for partial streaming |
 
 ---
 

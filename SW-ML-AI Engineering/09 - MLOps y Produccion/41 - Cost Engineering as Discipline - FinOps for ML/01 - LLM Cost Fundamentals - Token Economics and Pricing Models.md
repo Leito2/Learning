@@ -121,7 +121,7 @@ actual_cost = base_cost * retry_multiplier
 
 ### 3.2 Function calling overhead
 
-For tool-using agents (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph]] and [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive|SK+AutoGen]]), each user request triggers multiple model calls:
+For tool-using agents (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph]] and [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/00 - Welcome - Why Microsoft Agentic Stack|SK+AutoGen]]), each user request triggers multiple model calls:
 
 ```
 User request → Agent decides tool → Tool call → Model → Tool result → Final response
@@ -410,9 +410,9 @@ total_cost = base_cost * (1 + failure_rate)
 - Together AI Pricing — [together.ai/pricing](https://www.together.ai/pricing)
 - Fireworks Pricing — [fireworks.ai/pricing](https://fireworks.ai/pricing)
 - CloudZero LLM Cost Analysis — [cloudzero.com/blog/llm-cost](https://www.cloudzero.com/blog/llm-cost/)
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider cost-aware routing
-- [[06 - Large Language Models/23 - Serverless LLM Platforms/04 - Serverless Cost Optimization and Patterns|Serverless Cost Optimization]]
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor]] — structured output overhead
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility - Per-Tenant Attribution|Note 02 — Cost Visibility]]
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider cost-aware routing
+- [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|Serverless Cost Optimization]]
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor]] — structured output overhead
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility - Per-Tenant Attribution, Chargeback, and Showback|Note 02 — Cost Visibility]]
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/03 - Cost Optimization Patterns|Note 03 — Cost Optimization]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline|Note 05 — Capstone]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/05 - Capstone - FinOps Pipeline for a Multi-Tenant LLM Service|Note 05 — Capstone]]

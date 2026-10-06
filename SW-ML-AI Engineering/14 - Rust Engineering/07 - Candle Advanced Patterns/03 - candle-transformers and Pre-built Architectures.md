@@ -4,7 +4,7 @@
 - Navigate the `candle-transformers` crate and understand its architecture.
 - Load and run pre-trained models (BERT, Llama, Whisper) from Hugging Face in Rust.
 - Understand how `Config` structs and `VarBuilder` enable safe model deserialization.
-- Connect transformer deployment to [[01 - Deep Learning y Computer Vision]] and [[04 - Rust for ML and AI]].
+- Connect transformer deployment to [[00 - Indice Maestro de Cursos|01 - Deep Learning y Computer Vision]] and [[14 - Rust Engineering/04 - Rust for ML and AI/00 - Welcome|04 - Rust for ML and AI]].
 
 ## Introduction
 
@@ -221,7 +221,7 @@ The benefit of this separation: you can use the same model with different tokeni
 - `candle-transformers` docs: https://huggingface.github.io/candle/candle_transformers/index.html
 - Attention Is All You Need: https://arxiv.org/abs/1706.03762
 - [[02 - GPU Acceleration and Device Abstraction]]
-- [[01 - Deep Learning y Computer Vision]]
+- [[00 - Indice Maestro de Cursos|01 - Deep Learning y Computer Vision]]
 
 ## 📦 Código de compresión
 

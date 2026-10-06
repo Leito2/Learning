@@ -323,7 +323,7 @@ class Number[T: (int, float)]:
 
 ## 8. Production Reality
 
-**Caso real — LangGraph state schemas:** Adopting PEP 695 for `class State[T]` reduced type-checker warnings by ~80% across the [[../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] course. The legacy `T = TypeVar("T"); class State(Generic[T])` pattern triggered variance conflicts when the same T was both read and written; PEP 695 inference handles it automatically.
+**Caso real — LangGraph state schemas:** Adopting PEP 695 for `class State[T]` reduced type-checker warnings by ~80% across the [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] course. The legacy `T = TypeVar("T"); class State(Generic[T])` pattern triggered variance conflicts when the same T was both read and written; PEP 695 inference handles it automatically.
 
 **Caso real — Pydantic generics:** A FastAPI service that returned `Response[User]`, `Response[list[User]]`, `Response[None]` was refactored from `Generic[T]` (verbose) to PEP 695 (clean). Code reduction: ~15 lines per model definition. mypy strict mode acceptance: 100%.
 

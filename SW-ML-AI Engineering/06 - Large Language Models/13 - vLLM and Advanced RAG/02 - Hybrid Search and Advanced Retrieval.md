@@ -170,7 +170,7 @@ class BM25:
 
 Redis is not just a cache. Redis Stack includes **RediSearch**, a full-text and vector search engine that runs inside Redis — no separate Elasticsearch cluster required. This is ideal for RAG systems because you get lexical search, vector search, and caching in a single infrastructure component.
 
-Your existing [[../../Go Engineering/projects/05 - ML Serving Gateway.md|ML Serving Gateway project]] already uses Redis for caching. Extending it to include RediSearch for hybrid retrieval creates a unified serving + retrieval backend — a strong interview talking point.
+Your existing [[13 - Go Engineering/projects/05 - ML Serving Gateway|ML Serving Gateway project]] already uses Redis for caching. Extending it to include RediSearch for hybrid retrieval creates a unified serving + retrieval backend — a strong interview talking point.
 
 ```python
 # redis_search_indexer.py — Index documents with BM25 + vector fields in Redis
@@ -848,7 +848,7 @@ Build a FastAPI endpoint that accepts text queries and returns the top-K most re
 6. **Test vector search.** `curl "http://localhost:8000/search/fast?q=efficient+GPU+memory+management&method=vector&top_k=3"`
 7. **Test hybrid search.** `curl -X POST http://localhost:8000/search -H "Content-Type: application/json" -d '{"query": "how to deploy Llama on multiple GPUs", "top_k": 5, "fusion": "rrf"}'`
 8. **Verify caching.** Send the same POST request twice. The second response should show `"from_cache": true`.
-9. **Connect to LLM Gateway (extension).** Integrate this search API into the [[../../Go Engineering/projects/05 - ML Serving Gateway.md|ML Serving Gateway]] by adding a Go route that forwards `/search` requests to this Python service, using the same Redis instance for caching.
+9. **Connect to LLM Gateway (extension).** Integrate this search API into the [[13 - Go Engineering/projects/05 - ML Serving Gateway|ML Serving Gateway]] by adding a Go route that forwards `/search` requests to this Python service, using the same Redis instance for caching.
 10. **Add observability (extension).** Add Prometheus metrics for cache hit rate, search latency, and result count. Use the same pattern from [[01 - vLLM and Production-Grade LLM Serving.md|Note 01]]'s `observability.py`.
 
 ### Success Criteria
@@ -879,4 +879,4 @@ Build a FastAPI endpoint that accepts text queries and returns the top-K most re
 - ColBERT: Khattab & Zaharia, "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT" (SIGIR 2020)
 - Coda Engineering Blog: "Building Hybrid Search at Coda" (2024)
 - Stripe Engineering Blog: "Scaling Documentation Search with Embeddings" (2023)
-- Related vault notes: [[../../Go Engineering/projects/05 - ML Serving Gateway.md]], [[../04 - Production RAG System.md]], [[../../06 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/03 - Redis y Caching.md]], [[01 - vLLM and Production-Grade LLM Serving.md]]
+- Related vault notes: [[13 - Go Engineering/projects/05 - ML Serving Gateway|05 - ML Serving Gateway]], [[projects/04 - Production RAG System - Project Guide|04 - Production RAG System]], [[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/03 - Redis y Caching|03 - Redis y Caching]], [[01 - vLLM and Production-Grade LLM Serving.md]]

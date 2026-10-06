@@ -26,7 +26,7 @@ By the end of this course, you will be able to:
 | 03 | [[03 - Microservices and Event Architecture]] | Microservices, events, and resilience |
 | 04 | [[04 - Authentication and API Security]] | Security, auth, and endpoint protection |
 | 05 | [[05 - Capstone: Model Serving Platform]] | Integrated ML serving project |
-| 06 | [[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML\|FastAPI for ML]] (merged) | ASGI, async, Pydantic, streaming, DI, production |
+| 06 | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] (merged) | ASGI, async, Pydantic, streaming, DI, production |
 | 07 | [[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome\|SQLAlchemy 2.0 + Alembic]] | Data layer for production services |
 | 08 | [[../40 - Background Jobs and Workers for FastAPI/00 - Welcome\|Background Jobs]] | Async work, retries, idempotency |
 | 09 | [[../41 - API Design Patterns for FastAPI/00 - Welcome\|API Design Patterns]] | RFC 7807, versioning, pagination, OpenAPI |

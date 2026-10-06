@@ -6,7 +6,7 @@ DSPy (Declarative Self-improving Python, Stanford NLP) replaces this manual loop
 
 This is the most important shift in LLM development since the introduction of function calling: **prompts become code that the compiler optimizes**, not text that humans tune. The course teaches you to use DSPy as the **compiler layer** on top of your existing RAG pipelines (10/33), LangGraph agents (07/18), and LLM gateways (06/19).
 
-This is the **operational depth** that the existing notes touch but never make first-class. The [[../../../06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG.md|Production RAG]] notes hand-write prompts. The [[../../../07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks.md|Production Agent Frameworks]] notes show how to swap frameworks. DSPy is the layer that **systematically improves** any of these — replacing the "tweak prompt and pray" loop with measured optimization.
+This is the **operational depth** that the existing notes touch but never make first-class. The [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] notes hand-write prompts. The [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|Production Agent Frameworks]] notes show how to swap frameworks. DSPy is the layer that **systematically improves** any of these — replacing the "tweak prompt and pray" loop with measured optimization.
 
 ## 🎯 Learning Objectives
 
@@ -98,8 +98,8 @@ The optimizer combines them into a compiled program. **No human writes a prompt.
 
 - **Python 3.11+** with `pip install dspy-ai`.
 - **LLM API keys** (OpenAI, Anthropic, or local model via Ollama).
-- **RAG fundamentals** ([[../../../10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search.md|10/33]]).
-- **LangGraph** ([[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|07/18]]) — for note 04 integration.
+- **RAG fundamentals** ([[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10/33]]).
+- **LangGraph** ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|07/18]]) — for note 04 integration.
 
 ## How to Read This Course
 
@@ -160,8 +160,8 @@ print(result.answer)
 
 ## References
 
-- [[../../../06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG.md|Production RAG]] — the RAG fundamentals DSPy compiles.
-- [[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|LangGraph Deep Patterns]] — for note 04 integration.
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — the RAG fundamentals DSPy compiles.
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — for note 04 integration.
 - DSPy docs: https://dspy.ai/
 - Khattab et al. (2023). "DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines."
 - Stanford NLP: https://github.com/stanfordnlp/dspy

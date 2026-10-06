@@ -192,7 +192,7 @@ agent = LlmAgent(
 )
 ```
 
-The callback system is what the [[../../06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails.md|LLM Security]] and [[../../05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|Monitoreo]] courses use in production: validate inputs, log token usage, intercept tool calls, and raise on errors. The callbacks are **synchronous Python functions**, not LLM calls, so they add zero latency in the happy path.
+The callback system is what the [[../../06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails.md|LLM Security]] and [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|Monitoreo]] courses use in production: validate inputs, log token usage, intercept tool calls, and raise on errors. The callbacks are **synchronous Python functions**, not LLM calls, so they add zero latency in the happy path.
 
 ### 2.5 The `Tool` class and pre-built tools
 

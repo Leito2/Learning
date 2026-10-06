@@ -256,7 +256,7 @@ def build_kernel() -> Kernel:
     return kernel
 ```
 
-The kernel uses Azure OpenAI (covered in [[10 - Cloud, Infra y Backend/22 - Cloud Computing]]) and Azure AI Search (covered in Note 02). Three plugins cover the typical enterprise use cases: calendar, CRM, document search.
+The kernel uses Azure OpenAI (covered in [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|22 - Cloud Computing]]) and Azure AI Search (covered in Note 02). Three plugins cover the typical enterprise use cases: calendar, CRM, document search.
 
 ---
 
@@ -373,7 +373,7 @@ def build_approval_graph():
     return graph.compile()
 ```
 
-The subgraph handles **multi-step approval workflows**: simple actions auto-approve; complex actions require human sign-off. The state schema is typed via TypedDict (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]).
+The subgraph handles **multi-step approval workflows**: simple actions auto-approve; complex actions require human sign-off. The state schema is typed via TypedDict (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]).
 
 ---
 
@@ -752,7 +752,7 @@ Before shipping:
 - [ ] AutoGen Docker code executor with `network_mode=none` and 60s timeout
 - [ ] AutoGen termination conditions: max 12 messages, max 50K tokens, max $1.00 per run
 - [ ] LangGraph human approval for destructive actions
-- [ ] Audit log of all SK plugin calls (PII redaction per [[06 - Large Language Models/15 - LLM Security and Guardrails]])
+- [ ] Audit log of all SK plugin calls (PII redaction per [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|15 - LLM Security and Guardrails]])
 - [ ] HPA on `agent.queue_depth` for burst handling
 - [ ] Disaster recovery: PostgreSQL backups + Key Vault replication
 
@@ -776,20 +776,20 @@ Before shipping:
 - Azure Container Apps — [learn.microsoft.com/en-us/azure/container-apps](https://learn.microsoft.com/en-us/azure/container-apps)
 - Azure OpenAI Service — [learn.microsoft.com/en-us/azure/ai-services/openai](https://learn.microsoft.com/en-us/azure/ai-services/openai)
 - Azure AI Search — [learn.microsoft.com/en-us/azure/search](https://learn.microsoft.com/en-us/azure/search)
-- [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI|Fundamentos de Agentes AI]] — ReAct loop foundation
-- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks|Production Agent Frameworks]] — framework landscape
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine
+- [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida|Fundamentos de Agentes AI]] — ReAct loop foundation
+- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|Production Agent Frameworks]] — framework landscape
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/01 - Semantic Kernel Fundamentals - Kernel, Plugins, Functions|Note 01 — SK Fundamentals]]
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/02 - Semantic Kernel Process Framework and Memory|Note 02 — SK Process + Memory]]
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/03 - AutoGen Fundamentals - Conversable Agents and GroupChat|Note 03 — AutoGen Fundamentals]]
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/04 - AutoGen Advanced - RAG, Tools and Production Patterns|Note 04 — AutoGen Advanced]]
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security and Guardrails]] — PII redaction
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured outputs
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol layer
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — Azure deployment
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service patterns
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Azure AI Search
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security and Guardrails]] — PII redaction
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured outputs
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol layer
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — Azure deployment
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service patterns
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Azure AI Search
 - [[16 - Harness Engineering/05 - File Architecture|File Architecture]] — project structure pattern

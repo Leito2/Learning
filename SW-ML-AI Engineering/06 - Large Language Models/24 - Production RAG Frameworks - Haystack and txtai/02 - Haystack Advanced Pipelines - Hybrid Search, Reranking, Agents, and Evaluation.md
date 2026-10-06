@@ -210,7 +210,7 @@ The agent:
 4. Eventually calls `calculate` to compute the growth rate
 5. Synthesizes a final answer
 
-This is the **agentic RAG pattern** from [[06 - Large Language Models/12 - Production RAG]] with Haystack's explicit tool registration.
+This is the **agentic RAG pattern** from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]] with Haystack's explicit tool registration.
 
 For production, register many tools:
 
@@ -331,7 +331,7 @@ Three evaluation dimensions:
 
 The faithfulness metric is the most important for production — it catches hallucination. Targets: context relevance >85%, faithfulness >90%.
 
-CI integration (per [[09 - MLOps y Produccion/28 - Testing in ML Systems]]):
+CI integration (per [[09 - MLOps y Produccion/28 - Testing in ML Systems/00 - Welcome to Testing in ML Systems|28 - Testing in ML Systems]]):
 
 ```yaml
 # .github/workflows/eval.yml
@@ -386,7 +386,7 @@ async def stream_query(query: str):
     return StreamingResponse(generate(), media_type="text/event-stream")
 ```
 
-This pattern integrates with [[06 - Large Language Models/22 - Instructor and Structured Generation]] and [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML]] for production streaming.
+This pattern integrates with [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]] and [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML|30 - WebSockets and Real-Time ML]] for production streaming.
 
 ---
 
@@ -486,7 +486,7 @@ trace.get_tracer_provider().add_span_processor(
 
 Every component invocation becomes a span. The Phoenix UI shows the pipeline DAG with timing per component.
 
-For LangFuse cost attribution (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability]]):
+For LangFuse cost attribution (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|36 - LangFuse - Open-Source LLM Observability]]):
 
 ```python
 from langfuse.decorators import langfuse_context, observe
@@ -637,14 +637,14 @@ pipeline.validate()  # raises on type mismatch
 - Haystack Evaluators — [docs.haystack.deepset.ai/docs/evaluation](https://docs.haystack.deepset.ai/docs/evaluation)
 - deepset Cloud — [cloud.deepset.ai](https://cloud.deepset.ai)
 - RAGAS — [docs.ragas.io](https://docs.ragas.io)
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]] — foundational RAG patterns
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — vLLM as backend
-- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang]] — token-level retrieval
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured RAG responses
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — foundational RAG patterns
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — vLLM as backend
+- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang]] — token-level retrieval
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured RAG responses
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/01 - Haystack Fundamentals - Pipelines, Components, Retrievers|Note 01 — Haystack Fundamentals]]
-- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/03 - txtai Fundamentals - Semantic Search + RAG|Note 03 — txtai]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans
-- [[09 - MLOps y Produccion/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — RAGAS deep dive
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone
+- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/03 - txtai Fundamentals - Semantic Search, Graphs, and RAG in One Library|Note 03 — txtai]]
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — RAGAS deep dive
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone

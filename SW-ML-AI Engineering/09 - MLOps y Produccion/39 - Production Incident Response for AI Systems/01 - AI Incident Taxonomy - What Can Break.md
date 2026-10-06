@@ -105,7 +105,7 @@ Mastering this taxonomy is the prerequisite for every other note in this course.
 3. Failover to secondary provider (LiteLLM Router fallback chain)
 4. Apply rate limiting to drain the queue
 
-**Case real:** During the November 2024 OpenAI outage, a chatbot service relying solely on GPT-4o was down for 6 hours. Teams with LiteLLM Router + multi-provider fallback (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]]) failed over to Anthropic automatically with < 30 seconds of degraded service.
+**Case real:** During the November 2024 OpenAI outage, a chatbot service relying solely on GPT-4o was down for 6 hours. Teams with LiteLLM Router + multi-provider fallback (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]]) failed over to Anthropic automatically with < 30 seconds of degraded service.
 
 ---
 
@@ -149,7 +149,7 @@ Mastering this taxonomy is the prerequisite for every other note in this course.
 
 **Blast radius:** Targeted. Often a single attacker; sometimes coordinated. Impact: data exfiltration, system prompt leak, unintended actions.
 
-**Detection signal:** Pattern-based detectors (covered in [[06 - Large Language Models/15 - LLM Security and Guardrails]]). Quality score outliers. Log analysis for sensitive tokens.
+**Detection signal:** Pattern-based detectors (covered in [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|15 - LLM Security and Guardrails]]). Quality score outliers. Log analysis for sensitive tokens.
 
 **First response:**
 1. Identify the malicious input (LangFuse trace)
@@ -338,10 +338,10 @@ client = OpenAI()  # uses "gpt-4o-2024-08-06"
 - Datadog Incident Response — [docs.datadoghq.com/incident_response](https://docs.datadoghq.com/incident_response/)
 - PagerDuty State of Digital Operations — [response.pagerduty.com](https://response.pagerduty.com/)
 - Anthropic Safety Library — [docs.anthropic.com/en/docs/safety](https://docs.anthropic.com/en/docs/safety)
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry]] — span propagation
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse]] — quality score traces
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security]] — prompt injection
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway]] — multi-provider failover
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry]] — span propagation
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse]] — quality score traces
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security]] — prompt injection
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway]] — multi-provider failover
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/02 - Detection - Alerts, Metrics, and Anomaly Detection|Note 02 — Detection]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/03 - Triage - Diagnosing AI Incidents|Note 03 — Triage]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Note 04 — Resolution Patterns]]

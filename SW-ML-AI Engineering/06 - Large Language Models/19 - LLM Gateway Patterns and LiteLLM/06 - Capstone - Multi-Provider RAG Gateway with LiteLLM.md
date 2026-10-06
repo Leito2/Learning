@@ -269,7 +269,7 @@ class Retriever:
         return [hit.payload["text"] for hit in results]
 ```
 
-The RAG pattern: embed the query, search Qdrant for the top-K similar documents, prepend them to the prompt. This is the same pattern as [[06 - Large Language Models/12 - Production RAG]] but with the gateway layer as the integration point.
+The RAG pattern: embed the query, search Qdrant for the top-K similar documents, prepend them to the prompt. This is the same pattern as [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]] but with the gateway layer as the integration point.
 
 ---
 
@@ -656,4 +656,4 @@ The capstone is a starting point. The natural extensions: per-team virtual keys 
 - Qdrant client, [python-client.qdrant.tech](https://python-client.qdrant.tech)
 - Phoenix documentation, [docs.arize.com/phoenix](https://docs.arize.com/phoenix)
 - FastAPI, [fastapi.tiangolo.com](https://fastapi.tiangolo.com)
-- Vault cross-links: [[02 - LiteLLM Core - Unified Multi-Provider Interface]], [[03 - Routing, Fallback and Retry Strategies]], [[04 - Observability, Cost Tracking and Rate Limiting]], [[05 - Self-Hosted LiteLLM Proxy - Docker, Kubernetes and Auth]], [[06 - Large Language Models/12 - Production RAG]], [[06 - Large Language Models/13 - vLLM and Advanced RAG/01 - vLLM and Production-Grade LLM Serving\|vLLM Serving]], [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/10 - Capstone - High-Performance RAG with ColBERT and SGLang]], [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/10 - Advanced Patterns and Observability\|Vector DB Observability]], [[13 - Go Engineering/06 - Go for ML Backend/06 - Building a Production ML Gateway]], [[Extra/Bun Runtime/06 - Bun for ML and Data Engineering]]
+- Vault cross-links: [[02 - LiteLLM Core - Unified Multi-Provider Interface]], [[03 - Routing, Fallback and Retry Strategies]], [[04 - Observability, Cost Tracking and Rate Limiting]], [[05 - Self-Hosted LiteLLM Proxy - Docker, Kubernetes and Auth]], [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]], [[06 - Large Language Models/13 - vLLM and Advanced RAG/01 - vLLM and Production-Grade LLM Serving\|vLLM Serving]], [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/10 - Capstone - High-Performance RAG with ColBERT and SGLang]], [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/10 - Advanced Patterns and Observability\|Vector DB Observability]], [[13 - Go Engineering/06 - Go for ML Backend/06 - Building a Production ML Gateway]], [[Extra/Bun Runtime/06 - Bun for ML and Data Engineering]]

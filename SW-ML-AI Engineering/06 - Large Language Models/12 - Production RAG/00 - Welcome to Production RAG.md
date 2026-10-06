@@ -12,8 +12,8 @@ This course is structured as five deep, focused notes that progressively build a
 
 | # | Note | Core Question |
 |---|------|--------------|
-| 01 | [[01 - Document Chunking Strategies]] | How do you split documents so the right passage is findable? |
-| 02 | [[02 - Vector Databases for RAG]] | How do you store and search millions of vectors at sub-10ms? |
+| 01 | [[06 - Large Language Models/12 - Production RAG/01 - Document Chunking Strategies - Fixed, Semantic, Hierarchical and Late\|01 - Document Chunking Strategies]] | How do you split documents so the right passage is findable? |
+| 02 | [[06 - Large Language Models/12 - Production RAG/02 - Vector Databases for RAG - HNSW, IVF, PQ and Filtering\|02 - Vector Databases for RAG]] | How do you store and search millions of vectors at sub-10ms? |
 | 03 | [[03 - Advanced Retrieval - Hybrid Search and Fusion]] | How do you combine dense + sparse search? |
 | 04 | [[04 - Reranking - Cross-Encoders, ColBERT and LLM-as-Reranker]] | How do you re-rank 100 candidates to get 10 perfect ones? |
 | 05 | [[05 - RAG Evaluation - RAGAS, DeepEval and Production Metrics]] | How do you measure and CI-test retrieval quality? |
@@ -39,7 +39,7 @@ flowchart LR
 - **Basic vector search** — you've run `faiss.IndexFlatL2` at least once
 - **LLM familiarity** — you've used `gpt-4o-mini` or similar via an API
 
-If you come from [[06 - Fundamentos de LLMs]], you're ready. If not, the [[06/13/00 - Welcome to vLLM and Advanced RAG]] course has a prerequisite refresher note.
+If you come from [[06 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida|06 - Fundamentos de LLMs]], you're ready. If not, the [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|00 - Welcome to vLLM and Advanced RAG]] course has a prerequisite refresher note.
 
 ---
 
@@ -55,9 +55,9 @@ If you come from [[06 - Fundamentos de LLMs]], you're ready. If not, the [[06/13
 
 This course is part of a larger RAG curriculum. When you finish, continue to:
 
-- **[[06/13 - vLLM and Advanced RAG]]** — GPU-accelerated inference, multi-GPU serving, continuous batching, and advanced RAG patterns (HyDE, self-RAG, FLARE)
-- **[[10/33 - Vector Databases]]** — deeper dive into Qdrant, Milvus, Weaviate internals; distributed index sharding, consistency models, multi-tenancy
-- **[[06/17 - ColBERT Next-Gen Retrieval]]** — token-level late interaction, PLAID indexing, MaxSim, ColBERTv2
+- **[[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]** — GPU-accelerated inference, multi-GPU serving, continuous batching, and advanced RAG patterns (HyDE, self-RAG, FLARE)
+- **[[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases]]** — deeper dive into Qdrant, Milvus, Weaviate internals; distributed index sharding, consistency models, multi-tenancy
+- **[[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT Next-Gen Retrieval]]** — token-level late interaction, PLAID indexing, MaxSim, ColBERTv2
 
 ![RAG pipeline overview](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Retrieval-Augmented_Generation_%28RAG%29_Architecture.svg/640px-Retrieval-Augmented_Generation_%28RAG%29_Architecture.svg.png)
 
@@ -100,5 +100,5 @@ RAG is not a fad — it's the default architecture for enterprise LLM applicatio
 
 The skills in this course — chunking strategy, vector index tuning, hybrid search fusion, reranker selection, RAGAS evaluation — appear directly in job descriptions from Stripe, Notion, Datadog, and every company building AI features.
 
-Let's start with the foundation: [[01 - Document Chunking Strategies]].
+Let's start with the foundation: [[06 - Large Language Models/12 - Production RAG/01 - Document Chunking Strategies - Fixed, Semantic, Hierarchical and Late|01 - Document Chunking Strategies]].
 

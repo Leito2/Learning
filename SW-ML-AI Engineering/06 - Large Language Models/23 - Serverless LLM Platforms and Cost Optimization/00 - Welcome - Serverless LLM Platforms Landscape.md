@@ -68,11 +68,11 @@ You should already be comfortable with:
 
 - **Python async/await** — all platforms use async patterns.
 - **Docker basics** — Modal, Replicate, and Fireworks build container images.
-- **LLM serving fundamentals** — vLLM, SGLang from [[06 - Large Language Models/13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference]].
-- **LiteLLM routing** — covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]].
-- **FastAPI service patterns** — covered in [[10 - Cloud, Infra y Backend/31 - FastAPI for ML]].
+- **LLM serving fundamentals** — vLLM, SGLang from [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT, SGLang and Next-Gen Inference]].
+- **LiteLLM routing** — covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]].
+- **FastAPI service patterns** — covered in [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|31 - FastAPI for ML]].
 
-💡 If you have not yet read [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]], skim it before Note 03 — LiteLLM is the standard routing layer for the capstone.
+💡 If you have not yet read [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]], skim it before Note 03 — LiteLLM is the standard routing layer for the capstone.
 
 ---
 
@@ -82,16 +82,16 @@ This course is part of the LLM serving spine across modules 06, 09, 10:
 
 | Vault Module | Connection to This Course |
 |--------------|---------------------------|
-| [[06 - Large Language Models/13 - vLLM and Advanced RAG\|vLLM and Advanced RAG]] | Self-hosted comparison; the alternative to serverless |
-| [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | Frontier inference patterns; what's available serverless |
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM routes across all four platforms |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor and Structured Generation]] | Structured outputs work seamlessly on all four |
-| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability\|LangFuse Deep Dive]] | Cost attribution per tenant via metadata |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | Deployment, GPU pricing |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] | The capstone FastAPI service |
-| [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML\|WebSockets for ML]] | Streaming responses via SSE |
-| [[02 - Docker Profesional\|Docker Profesional]] | Container fundamentals |
-| [[13 - Go Engineering/06 - Go for ML Backend\|Go ML Backend]] | The LLM Edge Gateway project integration |
+| [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|vLLM and Advanced RAG]] | Self-hosted comparison; the alternative to serverless |
+| [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | Frontier inference patterns; what's available serverless |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM routes across all four platforms |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor and Structured Generation]] | Structured outputs work seamlessly on all four |
+| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | Cost attribution per tenant via metadata |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | Deployment, GPU pricing |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | The capstone FastAPI service |
+| [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML\|WebSockets for ML]] | Streaming responses via SSE |
+| [[02 - Docker Profesional/00 - Bienvenida\|Docker Profesional]] | Container fundamentals |
+| [[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome\|Go ML Backend]] | The LLM Edge Gateway project integration |
 
 ---
 

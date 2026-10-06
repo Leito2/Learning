@@ -95,7 +95,7 @@ The project follows the structure recommended in [[16 - Harness Engineering/05 -
 
 ## 2. Schemas — The Contracts (`schemas.py`)
 
-The service exposes three Pydantic schemas that double as the API contract and the LLM structured-output schema. This is the **single source of truth** pattern from [[03 - Advanced Python/06 - Pydantic Deep Dive]].
+The service exposes three Pydantic schemas that double as the API contract and the LLM structured-output schema. This is the **single source of truth** pattern from [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|06 - Pydantic Deep Dive]].
 
 ```python
 from pydantic import BaseModel, Field, EmailStr, field_validator
@@ -310,7 +310,7 @@ def extraction_span(operation: str, **attributes):
 
 Every extraction emits a span with attributes for document length, response model name, LLM model, success/failure, retry count, and any exceptions. The `InstructorInstrumentor` from `openinference-instrumentation-instructor` automatically captures the prompt, response, retries, and validation errors as span attributes — no manual instrumentation needed.
 
-The Phoenix UI at `http://localhost:6006` shows the full call graph for every request: HTTP request → FastAPI handler → Instructor retry loop → LiteLLM → OpenAI/Anthropic/vLLM → response. Each span carries the prompt, completion, token counts, cost, and validation errors. This is the **observability pattern** from [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix]] applied to structured extraction.
+The Phoenix UI at `http://localhost:6006` shows the full call graph for every request: HTTP request → FastAPI handler → Instructor retry loop → LiteLLM → OpenAI/Anthropic/vLLM → response. Each span carries the prompt, completion, token counts, cost, and validation errors. This is the **observability pattern** from [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|31 - Evidently AI and Phoenix]] applied to structured extraction.
 
 💡 **Tip:** For multi-tenant deployments, add `team_id` to span attributes via `extraction_span` and filter the Phoenix UI by tenant. This is the production pattern for cost attribution per customer.
 
@@ -525,7 +525,7 @@ async def test_extract_one_real_openai(real_instructor_client):
     assert result.total > 0
 ```
 
-The split between unit tests (MOCK_JSON, free, fast) and integration tests (real API, costs money, slow) follows the testing pyramid from [[09 - MLOps y Produccion/28 - Testing in ML Systems]].
+The split between unit tests (MOCK_JSON, free, fast) and integration tests (real API, costs money, slow) follows the testing pyramid from [[09 - MLOps y Produccion/28 - Testing in ML Systems/00 - Welcome to Testing in ML Systems|28 - Testing in ML Systems]].
 
 ---
 
@@ -618,13 +618,13 @@ Before shipping to production:
 
 - [ ] All Pydantic schemas validated with `pytest --strict-markers` and 100% coverage
 - [ ] Instructor `max_retries` set to 3-4 per call (higher values balloon latency)
-- [ ] LiteLLM `Router` configured with fallback chains (see [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]])
+- [ ] LiteLLM `Router` configured with fallback chains (see [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]])
 - [ ] OTEL exporter pointing at production Phoenix (or Honeycomb, Tempo, Datadog)
 - [ ] Span attributes include `team_id` for cost attribution
 - [ ] Rate limiting at the FastAPI layer (slowapi or Kong)
-- [ ] Authentication via JWT (see [[10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI]])
+- [ ] Authentication via JWT (see [[10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI/00 - Welcome|39 - Authentication Deep Dive for FastAPI]])
 - [ ] Logging excludes raw PII (use the validated Pydantic dump, not raw LLM response)
-- [ ] Kubernetes deployment with HPA on `extraction.rate` custom metric (see [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]])
+- [ ] Kubernetes deployment with HPA on `extraction.rate` custom metric (see [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]])
 - [ ] CI runs `MOCK_JSON` tests on every PR; integration tests on merge to main
 
 ---
@@ -648,16 +648,16 @@ Before shipping to production:
 - FastAPI docs — [fastapi.tiangolo.com](https://fastapi.tiangolo.com)
 - SSE Starlette — [github.com/sysid/sse-starlette](https://github.com/sysid/sse-starlette)
 - OpenInference Instructor instrumentation — [github.com/Arize-ai/openinference](https://github.com/Arize-ai/openinference)
-- [[03 - Advanced Python/06 - Pydantic Deep Dive|Pydantic Deep Dive]] — the schema foundation
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-Judge use case
+- [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|Pydantic Deep Dive]] — the schema foundation
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-Judge use case
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/01 - Instructor - Pydantic-Native Structured Outputs|Note 01 — Instructor]]
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/02 - Outlines - Constrained Decoding at the Token Level|Note 02 — Outlines]] — alternative for self-hosted
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/03 - Guidance - Token-Level Control and Prompt Programming|Note 03 — Guidance]] — alternative for complex multi-step
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/04 - LMQL - A Query Language for LLMs|Note 04 — LMQL]] — alternative for declarative type-safe prompts
-- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks|Production Agent Frameworks]] — structured outputs for tool schemas
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — observability foundation
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — span instrumentation patterns
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — FastAPI service patterns
-- [[10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI|Authentication for FastAPI]] — JWT and rate limiting for production
+- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|Production Agent Frameworks]] — structured outputs for tool schemas
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — observability foundation
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — span instrumentation patterns
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — FastAPI service patterns
+- [[10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI/00 - Welcome|Authentication for FastAPI]] — JWT and rate limiting for production
 - [[16 - Harness Engineering/05 - File Architecture|File Architecture]] — project structure pattern

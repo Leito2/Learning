@@ -16,7 +16,7 @@ By completing this course, you will master:
 
 Authentication is the most security-critical layer of a backend service. A flawed implementation is not a bug — it is a compliance incident. Yet many production services get auth wrong in subtle ways: tokens that never expire, refresh tokens that never rotate, sessions that store sensitive data in plaintext, password hashing with the wrong algorithm, OAuth implementations that leak credentials in the redirect URL. This course treats auth as the security boundary it is, not a checkbox feature.
 
-The course builds on [[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]] and [[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]. It assumes a working FastAPI + SQLAlchemy stack. The patterns here assume PostgreSQL for sessions and refresh-token storage; SQLite is fine for examples but not for production.
+The course builds on [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] and [[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]. It assumes a working FastAPI + SQLAlchemy stack. The patterns here assume PostgreSQL for sessions and refresh-token storage; SQLite is fine for examples but not for production.
 
 The course is opinionated: it follows the OWASP ASVS Level 2 guidelines, the OAuth 2.1 draft, and the WebAuthn Level 2 spec. Where the spec allows choices, the course makes a recommendation and explains the rationale.
 
@@ -81,10 +81,10 @@ By the end of this course you will have a production-grade auth system that:
 
 ## 🔗 Vault Connections
 
-- **[[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]** — the HTTP layer
+- **[[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]** — the HTTP layer
 - **[[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]** — the data layer for users, sessions, audit logs
-- **[[../06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security and Guardrails]]** — when auth is for an LLM API (different concerns)
-- **[[../15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security]]** — the security-specific deep dive (overlap)
+- **[[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security and Guardrails]]** — when auth is for an LLM API (different concerns)
+- **[[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security]]** — the security-specific deep dive (overlap)
 
 ## References
 

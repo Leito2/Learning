@@ -597,4 +597,4 @@ kubectl patch inferenceservice model \
 - [[01 - GitOps and ArgoCD for ML Infrastructure]]
 - [[02 - ML Pipeline Design — Stages, GPU Runners and Artifacts]]
 - [[../32 - KServe and Knative/01 - KServe - Serverless Model Serving with InferenceService]]
-- [[../31 - Evidently AI and Phoenix/02 - Evidently AI — Reports, Test Suites and CI-CD Integration]]
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/02 - Evidently AI - Reports, Test Suites and CI-CD Integration|02 - Evidently AI — Reports, Test Suites and CI-CD Integration]]

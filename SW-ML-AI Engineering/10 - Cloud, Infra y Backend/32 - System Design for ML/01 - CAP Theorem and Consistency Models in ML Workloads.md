@@ -14,7 +14,7 @@ The CAP theorem, conjectured by Eric Brewer in 2000 and formally proved by Seth 
 
 For software systems, CAP is a well-understood tradeoff: banking chooses CP, social media chooses AP. For ML systems, tradeoffs are more nuanced because components have fundamentally different freshness requirements depending on their role in the pipeline. A fraud model needs strongly consistent features — a stale feature could approve a fraudulent transaction. A recommendation model tolerates eventual consistency — showing yesterday's trending items is acceptable. A model registry demands strong consistency — every serving replica must load the same model version. A prediction cache thrives on eventual consistency — cached predictions are approximate by design.
 
-Each step toward stronger consistency increases latency and infrastructure cost proportionally. The art of ML system design is choosing the weakest consistency that still satisfies the business requirement. This note provides the formal framework to classify every ML system component by its CAP profile. Connects to [[../../29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]] and [[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI]].
+Each step toward stronger consistency increases latency and infrastructure cost proportionally. The art of ML system design is choosing the weakest consistency that still satisfies the business requirement. This note provides the formal framework to classify every ML system component by its CAP profile. Connects to [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]] and [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI]].
 
 ![CAP Theorem](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/CAP_Limits.svg/640px-CAP_Limits.svg.png)
 
@@ -290,8 +290,8 @@ This is why DoorDash's 40% infrastructure savings came from right-sizing consist
 - Huyen, C. (2022). *Designing Machine Learning Systems*. O'Reilly. Chapter 10.
 - Uber Engineering. (2018). "Meet Michelangelo." https://eng.uber.com/michelangelo-machine-learning-platform/
 - DoorDash Engineering. (2023). "Building DoorDash's ML Platform." https://doordash.engineering/
-- [[../../29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]]
-- [[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]
+- [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]]
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]
 - [[02 - Caching, CDNs and Storage Architectures for ML|Caching for ML]]
 
 ## 📦 Código de compresión

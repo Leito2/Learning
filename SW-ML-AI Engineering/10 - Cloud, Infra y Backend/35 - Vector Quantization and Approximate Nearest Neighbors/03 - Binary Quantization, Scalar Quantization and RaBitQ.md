@@ -478,4 +478,4 @@ The trade-offs are stark: BQ is the fastest but worst recall; SQ int8 is the swe
 - FAISS Binary Indexes: https://github.com/facebookresearch/faiss/wiki/Binary-indexes
 - [[01 - Product Quantization - Theory, Code and Reconstruction Error]] — PQ foundation
 - [[02 - Optimized PQ, Anisotropic Quantization and ScaNN]] — OPQ and ScaNN
-- [[04 - Production FAISS Engineering]] — engineering these algorithms at scale
+- [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/04 - Production FAISS Engineering - Index Factories, Sharding and GPU|04 - Production FAISS Engineering]] — engineering these algorithms at scale

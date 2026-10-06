@@ -13,7 +13,7 @@
 
 ## Introduction
 
-You already have a working LLM gateway via **LiteLLM** (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19]]). **Portkey** is the next-generation alternative with more built-in features.
+You already have a working LLM gateway via **LiteLLM** (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19]]). **Portkey** is the next-generation alternative with more built-in features.
 
 | Feature | LiteLLM | Portkey |
 |---------|---------|---------|
@@ -76,9 +76,9 @@ For your portfolio: **LiteLLM + LangFuse** (existing) for the LLM Edge Gateway; 
 
 You should already be comfortable with:
 
-- **LiteLLM** — multi-provider routing from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19]]
+- **LiteLLM** — multi-provider routing from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19]]
 - **LLM providers** — OpenAI, Anthropic, Together, Fireworks from [[06 - Large Language Models/23 - Serverless LLM Platforms|06/23]]
-- **Observability** — LangFuse from [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|09/36]]
+- **Observability** — LangFuse from [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|09/36]]
 - **FastAPI or Next.js** — for the gateway proxy
 
 ---
@@ -87,12 +87,12 @@ You should already be comfortable with:
 
 | Vault Module | Connection |
 |--------------|-----------|
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM alternative |
-| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability\|LangFuse Deep Dive]] | Observability alternative |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor]] | Structured outputs |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM alternative |
+| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | Observability alternative |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor]] | Structured outputs |
 | [[06 - Large Language Models/23 - Serverless LLM Platforms\|Serverless LLM]] | Multi-provider cost |
 | [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility - Per-Tenant Attribution, Chargeback, and Showback\|Cost Visibility]] | Per-tenant tracking |
-| [[06 - Large Language Models/25 - AI Compliance and Governance\|AI Compliance]] | Compliance + audit |
+| [[06 - Large Language Models/25 - AI Compliance and Governance/00 - Welcome - Why AI Compliance is the New Enterprise Blocker\|AI Compliance]] | Compliance + audit |
 
 ---
 

@@ -24,12 +24,12 @@ K8s for ML is scattered across 5+ courses: vLLM Production Serving (06/20), CI-C
 ## Pre-requisites
 
 - Docker — [[../../02 - Docker Profesional/00 - Bienvenida|02]]
-- Python Production Flow for MLOps — [[../03 - Python Production Flow for MLOps/00 - Welcome|04/03]]
+- Python Production Flow for MLOps — [[04 - Engineering Fundamentals/03 - Python Production Flow for MLOps/00 - Welcome to Python Production Flow for MLOps|04/03]]
 - vLLM Production Serving — [[../../06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida|06/20]]
 
 ## Cross-links in the Vault
 
-- KServe + Knative: [[../../09 - MLOps y ML Platform/32 - KServe and Knative/00 - Welcome|09/32]]
-- CI/CD for ML (ArgoCD): [[../../09 - MLOps y ML Platform/29 - CI-CD for ML/00 - Welcome|09/29]]
+- KServe + Knative: [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative|09/32]]
+- CI/CD for ML (ArgoCD): [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|09/29]]
 - Ray on K8s: [[../../10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|10/29]]
-- ML Platform Engineering: [[../../09 - MLOps y ML Platform/26 - ML Platform Engineering/00 - Welcome|09/26]]
+- ML Platform Engineering: [[04 - Engineering Fundamentals/04 - Kubernetes for ML and LLM/00 - Welcome to Kubernetes for ML and LLM|09/26]]

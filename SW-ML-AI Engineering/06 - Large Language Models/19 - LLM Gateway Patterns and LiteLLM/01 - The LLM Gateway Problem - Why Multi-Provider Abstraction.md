@@ -31,7 +31,7 @@ The number of production-grade LLM providers that a serious engineering team mus
 | **OpenRouter** | Meta-router over many providers | 500ms–2s | Variable | Single API key for 100+ models |
 | **Cerebras** | Fastest inference for open models | 100ms–300ms | Low | Wafer-scale chip; Llama 3.1 70B |
 | **Hugging Face Inference** | Specialized hosted models | Variable | Variable | Best for niche or fine-tunes |
-| **Local vLLM / SGLang / Ollama** | Self-hosted open models | 100ms–500ms (GPU) | Capex | From [[06 - Large Language Models/13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference]] |
+| **Local vLLM / SGLang / Ollama** | Self-hosted open models | 100ms–500ms (GPU) | Capex | From [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|17 - ColBERT, SGLang and Next-Gen Inference]] |
 
 The diversity is not a curiosity — it is the shape of the modern LLM stack. A single chat request can legitimately benefit from GPT-4o for reasoning, Claude for the long-context summary, and a self-hosted Llama 3.3 8B for the cheap classifier. Hardcoding any single provider means leaving performance, cost, or both on the table.
 
@@ -355,4 +355,4 @@ The vLLM material in [[06 - Large Language Models/13 - vLLM and Advanced RAG/01 
 - Vault cross-links: [[02 - LiteLLM Core - Unified Multi-Provider Interface]], [[03 - Routing, Fallback and Retry Strategies]], [[13 - Go Engineering/06 - Go for ML Backend/06 - Building a Production ML Gateway]], [[Extra/Bun Runtime/06 - Bun for ML and Data Engineering]]
 - OpenAI November 2024 outage postmortems, [status.openai.com](https://status.openai.com)
 - BerriAI LiteLLM announcement thread on Hacker News, [news.ycombinator.com](https://news.ycombinator.com)
-- Self-hosted LLM cost benchmarks from [[06 - Large Language Models/13 - vLLM and Advanced RAG]]
+- Self-hosted LLM cost benchmarks from [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]

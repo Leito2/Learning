@@ -75,7 +75,7 @@ response = litellm.completion(
 )
 ```
 
-LiteLLM recognizes both as providers and handles the routing, retries, cost tracking automatically. This is the canonical integration pattern from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]].
+LiteLLM recognizes both as providers and handles the routing, retries, cost tracking automatically. This is the canonical integration pattern from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]].
 
 ---
 
@@ -169,7 +169,7 @@ response = client.chat.completions.create(
 )
 ```
 
-Combined with Instructor (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation]]):
+Combined with Instructor (covered in [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]]):
 
 ```python
 import instructor
@@ -352,7 +352,7 @@ response = router.completion(
 )
 ```
 
-This is the **canonical production routing pattern**: Fireworks as primary for latency, Together as cost-optimized fallback, OpenAI as last-resort fallback. The same code from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]].
+This is the **canonical production routing pattern**: Fireworks as primary for latency, Together as cost-optimized fallback, OpenAI as last-resort fallback. The same code from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]].
 
 ---
 
@@ -493,11 +493,11 @@ def chat(prompt, tier="primary"):
 - Fireworks AI docs — [docs.fireworks.ai](https://docs.fireworks.ai)
 - Together pricing — [together.ai/pricing](https://www.together.ai/pricing)
 - Fireworks pricing — [fireworks.ai/pricing](https://fireworks.ai/pricing)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured outputs
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured outputs
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/01 - Modal - Python-Native Serverless GPU|Note 01 — Modal]] — for custom GPU code
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/02 - Replicate - Cog-Powered Inference and the Model Marketplace|Note 02 — Replicate]] — for packaged models
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|Note 04 — Cost Optimization]]
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/05 - Capstone - Production Multi-Provider Serverless Stack|Note 05 — Capstone]]
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — provider quality comparison
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — provider quality comparison

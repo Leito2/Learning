@@ -464,7 +464,7 @@ print("¡Sorpresa! Model is stateless — only params carry state. No model.trai
 - DeepMind (2023). "Using Haiku + JAX for Research."
 - Kidger & Garcia (2021). "Equinox: neural networks in JAX via callable PyTrees and filtered transformations." *NeurIPS Workshop*.
 - Chowdhery et al. (2022). "PaLM: Scaling Language Modeling with Pathways." *arXiv:2204.02311*.
-- [[05/03 - Deep Learning con PyTorch]]
-- [[05/09 - Deep Learning with TensorFlow]]
-- [[07/32 - Advanced ML Topics]]
-- [[06/16 - HuggingFace Transformers Deep Dive]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow|09 - Deep Learning with TensorFlow]]
+- [[11 - Research y Ciencia de Datos/32 - Advanced ML Topics/01 - JAX and Flax|32 - Advanced ML Topics]]
+- [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive|16 - HuggingFace Transformers Deep Dive]]

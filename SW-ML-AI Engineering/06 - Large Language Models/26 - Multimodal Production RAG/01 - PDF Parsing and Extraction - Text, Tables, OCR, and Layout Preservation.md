@@ -601,6 +601,6 @@ chunks = extract_with_unstructured(pdf)
 - PaddleOCR — [github.com/PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 - TableTransformer — [huggingface.co/microsoft/table-transformer-detection](https://huggingface.co/microsoft/table-transformer-detection)
 - [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/05 - Vision, Audio, and Multimodal Transformers|06/16/05 Vision, Audio, and Multimodal Transformers]]
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]]
-- [[06 - Large Language Models/26 - Multimodal Production RAG/02 - Visual Document Retrieval - ColPali and Beyond|Note 02 — ColPali]]
-- [[06 - Large Language Models/26 - Multimodal Production RAG/05 - Capstone - Production Multimodal RAG|Note 05 — Capstone]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/02 - Visual Document Retrieval - ColPali and the Late Interaction Revolution|Note 02 — ColPali]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/05 - Capstone - Production Multimodal RAG for Legal Documents|Note 05 — Capstone]]

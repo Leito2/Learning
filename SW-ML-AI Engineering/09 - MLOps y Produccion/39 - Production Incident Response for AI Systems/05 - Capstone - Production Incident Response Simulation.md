@@ -683,9 +683,9 @@ After running the capstone, you have:
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/02 - Detection - Alerts, Metrics, and Anomaly Detection|Note 02 — Detection]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/03 - Triage - Diagnosing AI Incidents|Note 03 — Triage]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Note 04 — Resolution Patterns]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — quality scores
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry]] — span propagation
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider failover
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security]] — prompt injection detection
-- [[13 - Go Engineering/03 - Microservices with Go|Microservices]] — circuit breaker patterns
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — quality scores
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry]] — span propagation
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider failover
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security]] — prompt injection detection
+- [[13 - Go Engineering/03 - Microservices with Go/00 - Welcome|Microservices]] — circuit breaker patterns
 - [[16 - Harness Engineering/05 - File Architecture|File Architecture]] — project structure

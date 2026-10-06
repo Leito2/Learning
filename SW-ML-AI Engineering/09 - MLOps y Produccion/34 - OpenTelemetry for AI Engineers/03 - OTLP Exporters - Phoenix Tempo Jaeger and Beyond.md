@@ -430,8 +430,8 @@ trace.set_tracer_provider(provider)
 ## References
 
 - [[00 - Welcome to OpenTelemetry for AI Engineers|Welcome]] — course map.
-- [[01 - OTel Primitives|Spans, traces, context]] — what gets exported.
-- [[04 - OTel for LangGraph|Agent Tracing]] — span propagation in agent loops.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/01 - OTel Primitives - Spans Traces and Context Propagation|Spans, traces, context]] — what gets exported.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/04 - OTel for LangGraph and Agent Frameworks|Agent Tracing]] — span propagation in agent loops.
 - [[../31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix.md|Phoenix]] — the AI-specific OTel backend.
 - OTel Collector: https://opentelemetry.io/docs/collector/
 - OTLP spec: https://opentelemetry.io/docs/specs/otlp/

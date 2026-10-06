@@ -1,6 +1,6 @@
 # 🔗 DSPy + LangGraph Integration
 
-Your [[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|LangGraph Deep Patterns]] course taught you to build state machines with `StateGraph`, persistence via `PostgresSaver`, and human-in-the-loop with `interrupt()`. Your DSPy course taught you to compile prompts automatically. Now: **put them together**. A DSPy-compiled module inside a LangGraph node gives you state management + compiled prompts. **The best of both worlds: structured orchestration + auto-optimized LLM calls.**
+Your [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] course taught you to build state machines with `StateGraph`, persistence via `PostgresSaver`, and human-in-the-loop with `interrupt()`. Your DSPy course taught you to compile prompts automatically. Now: **put them together**. A DSPy-compiled module inside a LangGraph node gives you state management + compiled prompts. **The best of both worlds: structured orchestration + auto-optimized LLM calls.**
 
 This note covers the integration patterns: DSPy modules as LangGraph nodes, the `thread_id` propagation story, optimization for graph-level metrics, and a capstone that combines a multi-agent LangGraph system with DSPy-compiled agents.
 
@@ -166,7 +166,7 @@ def make_node(dspy_module):
     return node
 ```
 
-Every DSPy call inside the node inherits `thread_id` baggage, which propagates to all LLM calls via Phoenix ([[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers.md|09/34]]) traces.
+Every DSPy call inside the node inherits `thread_id` baggage, which propagates to all LLM calls via Phoenix ([[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|09/34]]) traces.
 
 ## 4. Human-in-the-Loop with DSPy Prompts
 
@@ -413,9 +413,9 @@ app = graph.compile()
 
 - [[00 - Welcome to DSPy and Prompt Compilation|Welcome]] — course map.
 - [[01 - Signatures and Modules|Signatures]] — the building blocks.
-- [[02 - Optimizers|Optimizers]] — the compiler.
-- [[03 - DSPy for RAG|RAG]] — retrieval module compilation.
-- [[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|LangGraph Deep Patterns]] — the graph primitive.
-- [[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/05 - Human-in-the-Loop with interrupt() and Command.md|HITL]] — interrupt() integration.
-- [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/04 - OTel for LangGraph and Agent Frameworks.md|OTel for LangGraph]] — thread_id propagation.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/02 - Optimizers - BootstrapFewShot MIPRO and COPRO|Optimizers]] — the compiler.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/03 - DSPy for RAG - Retrieval Modules and Signatures|RAG]] — retrieval module compilation.
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — the graph primitive.
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/05 - Human-in-the-Loop with interrupt() and Command|HITL]] — interrupt() integration.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/04 - OTel for LangGraph and Agent Frameworks|OTel for LangGraph]] — thread_id propagation.
 - DSPy + LangGraph: https://dspy.ai/tutorials/langgraph/

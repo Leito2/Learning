@@ -15,7 +15,7 @@ The fundamental tension in neural information retrieval is the **interaction-eff
 
 The name ColBERT is a direct acronym: **Co**ntextualized **L**ate Interaction over **BERT**. The "contextualized" refers to using BERT's last hidden state as token representations, where each token embedding inherently encodes its surrounding context. This is what distinguishes ColBERT from earlier "late fusion" approaches that used static word vectors. The BERT backbone means every token representation already "knows" its neighbors, so the late interaction doesn't lose the disambiguation that cross-encoders perform with full attention.
 
-This matters because the brute-force cross-encoder approach — running the full transformer over every query-document pair — is computationally impossible for web-scale search. Bing's index contains trillions of passages; a cross-encoder would require more GPU-years than the age of the universe. ColBERT reduces this to a two-stage pipeline: fast ANN retrieval over pooled embeddings → exact MaxSim over top-K candidates, cutting the compute by orders of magnitude while preserving near-cross-encoder accuracy. For context, see [[10 - Vector Databases and Semantic Search]] for dense retrieval fundamentals and [[06 - Production RAG]] for how this plugs into end-to-end pipelines.
+This matters because the brute-force cross-encoder approach — running the full transformer over every query-document pair — is computationally impossible for web-scale search. Bing's index contains trillions of passages; a cross-encoder would require more GPU-years than the age of the universe. ColBERT reduces this to a two-stage pipeline: fast ANN retrieval over pooled embeddings → exact MaxSim over top-K candidates, cutting the compute by orders of magnitude while preserving near-cross-encoder accuracy. For context, see [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10 - Vector Databases and Semantic Search]] for dense retrieval fundamentals and [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]] for how this plugs into end-to-end pipelines.
 
 ![ColBERT architecture: query and document are encoded independently via BERT, then token embeddings interact via MaxSim](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/ColBERT_architecture.png/1280px-ColBERT_architecture.png)
 
@@ -304,9 +304,9 @@ with Run().context(RunConfig(nranks=1, experiment='my_index')):
 - Santhanam, K., Khattab, O., et al. (2021). "ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction." *NAACL 2022*.
 - ColBERT GitHub: https://github.com/stanford-futuredata/ColBERT
 - [[02 - ColBERT in Production - PLAID and Vector Integration]]
-- [[10 - Vector Databases and Semantic Search]]
-- [[06 - Production RAG]]
-- [[06 - vLLM and Advanced RAG]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10 - Vector Databases and Semantic Search]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]]
 
 ---
 

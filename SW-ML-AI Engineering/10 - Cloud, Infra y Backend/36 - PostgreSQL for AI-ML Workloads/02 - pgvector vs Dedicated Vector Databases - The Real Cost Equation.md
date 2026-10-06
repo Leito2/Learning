@@ -23,7 +23,7 @@ The 2021–2023 era of vector search had a strong implicit assumption: **embeddi
 
 **Observation 1 was overturned by pgvector 0.5+ and pgvectorscale.** HNSW in pgvector now closely tracks Faiss-HNSW performance on identical hardware (within ~1.5× on most public benchmarks). pgvectorscale's StreamingDiskANN further closes the gap on large datasets where memory is the bottleneck.
 
-**Observation 2 was overturned by `halfvec` and `bit`.** Once pgvector added float16 and binary quantization (covered in [[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]]), it matched the memory efficiency of Faiss IVF-PQ for most use cases. Recall is comparable, latency is comparable, and you keep ACID transactions on top.
+**Observation 2 was overturned by `halfvec` and `bit`.** Once pgvector added float16 and binary quantization (covered in [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|Note 01]]), it matched the memory efficiency of Faiss IVF-PQ for most use cases. Recall is comparable, latency is comparable, and you keep ACID transactions on top.
 
 **Observation 3 was overturned by operational consolidation reality.** Teams discovered that maintaining two databases (transactional + vector) doubles backup complexity, doubles security audits, doubles the on-call rotation surface, and creates **dual-write consistency bugs** that are genuinely hard to fix. The hidden cost of operating two systems was much higher than the explicit subscription cost.
 
@@ -51,7 +51,7 @@ pgvector also wins decisively on **operational maturity**: 30 years of backup to
 
 ### 2.2 What Pgvector Is Actually Bad At
 
-**Billion-scale single-node search.** A single Postgres node typically tops out at ~100M vectors with pgvectorscale's DiskANN (see [[36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings|Note 03]]) and ~10–50M with vanilla HNSW. Above that, you're sharding manually or paying for very large machines.
+**Billion-scale single-node search.** A single Postgres node typically tops out at ~100M vectors with pgvectorscale's DiskANN (see [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings|Note 03]]) and ~10–50M with vanilla HNSW. Above that, you're sharding manually or paying for very large machines.
 
 **Distributed vector search.** Postgres has no native vector-aware sharding. Citus (the multi-node Postgres extension) supports pgvector but distributes by metadata, not by vector ANN structure — meaning a query has to hit every shard. Milvus, in contrast, partitions vectors by IVF clusters and only queries the relevant shards.
 
@@ -167,7 +167,7 @@ For teams in the middle — say, 50M vectors with moderate filter requirements �
 
 - **Postgres** stores all transactional data, user records, ACLs, metadata, and a *small* embedding subset (recent or frequently-accessed)
 - **Qdrant or Milvus** stores the full embedding set, indexed by document ID
-- **CDC pipeline** (see [[36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]]) keeps them in sync
+- **CDC pipeline** (see [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/04 - Advanced Patterns - LISTEN-NOTIFY, pg_stat_statements and Logical Replication|Note 04]]) keeps them in sync
 - Queries route based on selectivity: high-selectivity filtered queries hit Postgres only; low-selectivity / open-search queries hit the vector DB then Postgres for hydration
 
 This adds operational complexity but lets each system play to its strengths. **It's the worst of both worlds if you don't actually need it**, so default to single-system pgvector unless the workload demands the split.
@@ -318,12 +318,12 @@ Qdrant is roughly 2× faster at this scale. The relevant question is whether 2×
 
 ## References
 
-- [[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — pgvector tuning details referenced here
-- [[36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings]] — pgvectorscale scale-up path
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — pgvector tuning details referenced here
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings|03 - pgvectorscale, DiskANN and Time-Series + Embeddings]] — pgvectorscale scale-up path
 - [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/05 - Qdrant I - Architecture and Collections]] — Qdrant deep dive
 - [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/07 - Milvus I - Distributed Architecture]] — Milvus deep dive
 - [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/09 - Vector Database Comparison Matrix]] — wider comparison
-- [[10 - Cloud, Infra y Backend/32 - System Design for ML]] — TCO patterns for ML infrastructure
+- [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML|32 - System Design for ML]] — TCO patterns for ML infrastructure
 - ANN Benchmarks project: http://ann-benchmarks.com
 - Notion engineering blog on pgvector: https://www.notion.so/blog/data-model-behind-notion (and related search posts)
 - Supabase pgvector vs Pinecone comparison: https://supabase.com/blog/pgvector-vs-pinecone

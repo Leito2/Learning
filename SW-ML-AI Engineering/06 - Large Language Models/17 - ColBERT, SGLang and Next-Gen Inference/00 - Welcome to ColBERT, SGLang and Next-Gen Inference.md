@@ -12,7 +12,7 @@ The landscape of LLM inference has bifurcated into two distinct frontiers: how w
 
 **SGLang** — Structured Generation Language — attacks the generation side. Traditional LLM APIs treat each request as an isolated string, forcing multi-step agents and LLM-as-Judge pipelines to recompute the same system prompt and conversation history for every turn. SGLang models LLM calls as first-class programming primitives (`gen()`, `select()`, `fork()`) and introduces **RadixAttention**, which caches KV states in a prefix-aware radix tree. When 100 evaluations share the same rubric prompt, only new tokens are computed. This is not an incremental optimization — it is a paradigm shift from "prompt engineering" to "LLM programming."
 
-Both technologies represent the maturation of inference from research curiosities into production-grade infrastructure. This course sits at the intersection of retrieval-augmented generation, structured decoding, speculative execution, and disaggregated serving — all themes you'll recognize from [[06 - Production RAG]] and [[06 - vLLM and Advanced RAG]].
+Both technologies represent the maturation of inference from research curiosities into production-grade infrastructure. This course sits at the intersection of retrieval-augmented generation, structured decoding, speculative execution, and disaggregated serving — all themes you'll recognize from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]] and [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]].
 
 ![ColBERT MaxSim illustration — query and document token embeddings interact via max-similarity](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/ColBERT_Late_Interaction.svg/1280px-ColBERT_Late_Interaction.svg.png)
 
@@ -58,12 +58,12 @@ Each vector compounds: compressed KV caches enable larger batches, which make sp
 You should be comfortable with:
 
 - **Python** and the `transformers` library — the code examples use HuggingFace idioms throughout
-- **Embeddings** and vector search — you've worked with dense retrievers in [[10 - Vector Databases and Semantic Search]]
-- **RAG fundamentals** — the retrieval-augmented generation pipeline from [[06 - Production RAG]]
-- **LLM serving basics** — PagedAttention and continuous batching from [[06 - vLLM and Advanced RAG]]
-- **Transformer internals** — attention mechanisms and the KV cache from [[06 - HuggingFace Transformers Deep Dive]]
+- **Embeddings** and vector search — you've worked with dense retrievers in [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10 - Vector Databases and Semantic Search]]
+- **RAG fundamentals** — the retrieval-augmented generation pipeline from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]]
+- **LLM serving basics** — PagedAttention and continuous batching from [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]]
+- **Transformer internals** — attention mechanisms and the KV cache from [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive|06 - HuggingFace Transformers Deep Dive]]
 
-💡 If you haven't read [[06 - vLLM and Advanced RAG]] recently, skim the PagedAttention section before Note 03 — RadixAttention builds directly on that concept.
+💡 If you haven't read [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]] recently, skim the PagedAttention section before Note 03 — RadixAttention builds directly on that concept.
 
 ---
 
@@ -87,7 +87,7 @@ The technologies in this course are not speculative research. Their production f
 - The 5 vectors of next-gen inference compound: compressed KV caches → larger batches → better speculative decoding → more efficient scheduling
 - RadixAttention is the core insight behind SGLang's 2-5× speedup on structured workloads like LLM-as-a-Judge
 - Every technique in this course is production-deployed at scale by Microsoft, DeepSeek, Databricks, or LMSYS
-- The course assumes fluency with HuggingFace, vector search, and vLLM — review [[06 - HuggingFace Transformers Deep Dive]] if needed
+- The course assumes fluency with HuggingFace, vector search, and vLLM — review [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive|06 - HuggingFace Transformers Deep Dive]] if needed
 - Notes 01-04 cover ColBERT and SGLang (the "what"); Notes 05-09 cover the scaling infrastructure (the "how"); Note 10 ties them together
 
 ---
@@ -97,11 +97,11 @@ The technologies in this course are not speculative research. Their production f
 - ColBERTv2: Santhanam, Khattab et al. (2021), "ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction", NAACL 2022
 - SGLang paper: Zheng et al. (2024), "SGLang: Efficient Execution of Structured Language Model Programs", NeurIPS 2024
 - DeepSeek-V2: "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model" (2024)
-- [[06 - Production RAG]]
-- [[06 - vLLM and Advanced RAG]]
-- [[06 - HuggingFace Transformers Deep Dive]]
-- [[10 - Vector Databases and Semantic Search]]
-- [[07 - MCP and Agentic Protocols]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]]
+- [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive|06 - HuggingFace Transformers Deep Dive]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10 - Vector Databases and Semantic Search]]
+- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|07 - MCP and Agentic Protocols]]
 
 ---
 

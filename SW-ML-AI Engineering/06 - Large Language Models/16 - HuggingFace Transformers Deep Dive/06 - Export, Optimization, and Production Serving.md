@@ -14,11 +14,11 @@
 
 ## Introduction
 
-Training a state-of-the-art transformer is only half the battle. The other half is serving predictions with millisecond latency under bursty traffic on hardware your finance team approved. This note bridges the gap between the research checkpoint and the production endpoint. While [[06 - Large Language Models]] teaches you to fine-tune, and [[09 - MLOps y Produccion]] covers the CI/CD lifecycle, this module focuses on the mechanical transformation of a PyTorch `nn.Module` into a production artifact.
+Training a state-of-the-art transformer is only half the battle. The other half is serving predictions with millisecond latency under bursty traffic on hardware your finance team approved. This note bridges the gap between the research checkpoint and the production endpoint. While [[00 - Indice Maestro de Cursos|06 - Large Language Models]] teaches you to fine-tune, and [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]] covers the CI/CD lifecycle, this module focuses on the mechanical transformation of a PyTorch `nn.Module` into a production artifact.
 
 The HuggingFace ecosystem provides a dedicated optimization library, `optimum`, that acts as a compiler and runtime adapter for transformers. It supports ONNX for framework interoperability, TensorRT for NVIDIA GPU inference, and OpenVINO for Intel hardware. Beyond export, `torch.compile` (PyTorch 2.0+) offers graph compilation with minimal code changes. For serving, `text-generation-inference` (TGI) wraps `transformers` with a Rust-based HTTP server, continuous batching, and flash attention kernels.
 
-Understanding these tools is non-negotiable for ML engineers in [[10 - Cloud, Infra y Backend]] roles. A model taking 2 seconds per request on a naive `model.generate()` loop can often be pushed below 200 ms with the right combination of quantization, compilation, and serving infrastructure.
+Understanding these tools is non-negotiable for ML engineers in [[00 - Indice Maestro de Cursos|10 - Cloud, Infra y Backend]] roles. A model taking 2 seconds per request on a naive `model.generate()` loop can often be pushed below 200 ms with the right combination of quantization, compilation, and serving infrastructure.
 
 The three axes of production optimization are:
 - **Graph optimization**: Removing Python overhead via static graphs (ONNX, torch.compile)

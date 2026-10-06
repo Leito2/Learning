@@ -74,12 +74,12 @@ The engineers who understand compliance get hired first. The engineers who ignor
 
 You should already be comfortable with:
 
-- **Python production patterns** — async, testing, observability from [[03 - Advanced Python/08 - Async Python Patterns Reference|03/08 Async Python Patterns Reference]]
-- **LLM engineering fundamentals** — function calling, structured outputs from [[06 - Large Language Models/22 - Instructor and Structured Generation|06/22 Instructor]]
-- **ML evaluation basics** — accuracy, RAGAS, LLM-as-judge from [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|06/20 RAG Evaluation]]
-- **Production deployment** — Docker, K8s, CI/CD from [[09 - MLOps y Produccion/22 - End-to-End ML Project|09/22 E2E ML Project]]
+- **Python production patterns** — async, testing, observability from [[03 - Advanced Python/08 - Async Python Patterns Reference/00 - Welcome - Why Async Python Patterns Reference|03/08 Async Python Patterns Reference]]
+- **LLM engineering fundamentals** — function calling, structured outputs from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|06/22 Instructor]]
+- **ML evaluation basics** — accuracy, RAGAS, LLM-as-judge from [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|06/20 RAG Evaluation]]
+- **Production deployment** — Docker, K8s, CI/CD from [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|09/22 E2E ML Project]]
 
-💡 If you have not yet read [[06 - Large Language Models/15 - LLM Security and Guardrails|06/15 LLM Security]], skim Note 04 (Red-Teaming) before this course — the concepts build on each other.
+💡 If you have not yet read [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|06/15 LLM Security]], skim Note 04 (Red-Teaming) before this course — the concepts build on each other.
 
 ---
 
@@ -89,14 +89,14 @@ This course draws on every regulatory-adjacent module in the vault:
 
 | Vault Module | Connection |
 |--------------|-----------|
-| [[06 - Large Language Models/15 - LLM Security and Guardrails\|LLM Security]] | Adversarial testing foundation |
-| [[06 - Large Language Models/20 - RAG Evaluation Deep Dive\|RAG Evaluation]] | Bias evaluation patterns |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor]] | Structured compliance outputs |
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently AI and Phoenix]] | Bias drift detection |
-| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability\|LangFuse]] | Audit trail for production usage |
-| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers\|OpenTelemetry]] | Compliance telemetry |
+| [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails\|LLM Security]] | Adversarial testing foundation |
+| [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Evaluation]] | Bias evaluation patterns |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor]] | Structured compliance outputs |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | Bias drift detection |
+| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse]] | Audit trail for production usage |
+| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry]] | Compliance telemetry |
 | [[12 - Producto, Negocio y Open Source/30 - Producto y Estrategia de IA/04 - Legal y Compliance en IA\|Legal y Compliance en IA]] | Spanish-language legal primer |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | Compliance deployment (BAA, SOC 2) |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | Compliance deployment (BAA, SOC 2) |
 
 ---
 

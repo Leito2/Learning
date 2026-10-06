@@ -475,8 +475,8 @@ OpenAIInstrumentor().instrument(
 ## References
 
 - [[00 - Welcome to OpenTelemetry for AI Engineers|Welcome]] — course map.
-- [[01 - OTel Primitives|Context, baggage]] — how attributes flow.
-- [[02 - Auto-Instrumentation|Auto-Instrumentation]] — what to instrument.
-- [[03 - OTLP Exporters|Exporters]] — backend configuration.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/01 - OTel Primitives - Spans Traces and Context Propagation|Context, baggage]] — how attributes flow.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/02 - Auto-Instrumentation for LLM SDKs|Auto-Instrumentation]] — what to instrument.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/03 - OTLP Exporters - Phoenix Tempo Jaeger and Beyond|Exporters]] — backend configuration.
 - OTel Sampling: https://opentelemetry.io/docs/specs/otel/trace/sdk/#sampling
 - OTel Collector tail sampling: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/tailsamplingprocessor

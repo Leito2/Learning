@@ -30,7 +30,7 @@ The 2026 production pattern is **multi-framework composition**: each framework i
 
 ### 1.2 The observability gap
 
-The other half of the equation is observability. Most RAG systems of the previous generation had no tracing: the developer could not answer "why did the agent retrieve this passage" or "why did the agent generate this answer" without reproducing the run with debug logging. The capstone wires **[[../../05 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix]]** as the observability backend: every retrieval, every rerank, every LLM call, every tool call is traced. The Phoenix dashboard shows the full conversation flow with retrieval scores, rerank scores, token counts, and latencies. This is the observability that production RAG needs.
+The other half of the equation is observability. Most RAG systems of the previous generation had no tracing: the developer could not answer "why did the agent retrieve this passage" or "why did the agent generate this answer" without reproducing the run with debug logging. The capstone wires **[[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix]]** as the observability backend: every retrieval, every rerank, every LLM call, every tool call is traced. The Phoenix dashboard shows the full conversation flow with retrieval scores, rerank scores, token counts, and latencies. This is the observability that production RAG needs.
 
 ### 1.3 The security gap
 

@@ -91,7 +91,7 @@ class CrossEncoderReranker:
 
 ## 3. ColBERT Reranking
 
-ColBERT (Contextualized Late Interaction over BERT) sits between bi-encoders and cross-encoders in the accuracy-speed tradeoff. See [[06/17 - ColBERT Next-Gen Retrieval]] for the full technical deep dive.
+ColBERT (Contextualized Late Interaction over BERT) sits between bi-encoders and cross-encoders in the accuracy-speed tradeoff. See [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT Next-Gen Retrieval]] for the full technical deep dive.
 
 **Token-level MaxSim:**
 
@@ -399,7 +399,7 @@ class TwoStageRetriever:
 
 ---
 
-[[05 - RAG Evaluation]] — next note: measuring your pipeline's quality.
-[[06/17 - ColBERT Next-Gen Retrieval]] — PLAID indexing, MaxSim deep dive.
-[[06/13 - vLLM and Advanced RAG]] — GPU-accelerated reranking at scale.
+[[06 - Large Language Models/12 - Production RAG/05 - RAG Evaluation - RAGAS, DeepEval and Production Metrics|05 - RAG Evaluation]] — next note: measuring your pipeline's quality.
+[[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT Next-Gen Retrieval]] — PLAID indexing, MaxSim deep dive.
+[[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]] — GPU-accelerated reranking at scale.
 

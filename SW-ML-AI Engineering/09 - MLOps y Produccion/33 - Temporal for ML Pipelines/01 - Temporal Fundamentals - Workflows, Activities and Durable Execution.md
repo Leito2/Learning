@@ -14,7 +14,7 @@ A workflow in Temporal is **regular code** — loops, conditionals, function cal
 
 For ML engineers, this changes everything. A training job that crashes after 1 hour 59 minutes of a 2-hour run restarts from 1 hour 59 minutes, not from zero. A batch inference job processing 1 million documents that crashes on document 847,321 resumes from document 847,322. A human approval gate that sits for 3 weeks over the holiday season is persisted durably in Temporal's database, not in ephemeral Python memory. The code you write is the code that runs — without retry boilerplate, without checkpointing logic, without state-machine orchestration frameworks.
 
-Etymologically, "Temporal" refers to the management of time in distributed systems. The event history is a temporal log: a totally ordered sequence of events that, when replayed, deterministically reproduces the program's state at any point in time. This note connects to the CI/CD patterns in [[../29 - CI-CD for ML/...|CI-CD for ML]], the deployment strategies in [[../20 - Deployment y Serving/...|Deployment y Serving]], and the Go backend architecture in [[../../13 - Go ML Backend/...|13/06 - Go ML Backend]].
+Etymologically, "Temporal" refers to the management of time in distributed systems. The event history is a temporal log: a totally ordered sequence of events that, when replayed, deterministically reproduces the program's state at any point in time. This note connects to the CI/CD patterns in [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI-CD for ML]], the deployment strategies in [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment y Serving]], and the Go backend architecture in [[../../13 - Go ML Backend/...|13/06 - Go ML Backend]].
 
 ---
 
@@ -454,7 +454,7 @@ class TrainingPipeline:
         return result
 ```
 
-This means you can deploy a new training algorithm, and workflows started with the old algorithm continue to completion with the old logic — no forced restarts, no stuck pipelines, no data corruption. This is the holy grail of CI/CD for long-running ML pipelines, and it connects directly to the deployment strategies in [[../29 - CI-CD for ML/...|CI-CD for ML]].
+This means you can deploy a new training algorithm, and workflows started with the old algorithm continue to completion with the old logic — no forced restarts, no stuck pipelines, no data corruption. This is the holy grail of CI/CD for long-running ML pipelines, and it connects directly to the deployment strategies in [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI-CD for ML]].
 
 > **Caso real: Snap** uses Temporal for deploying new ML models with human approval workflows. Model training completes → Temporal signals the ML review team → a human reviews the model metrics in a dashboard → clicks "Approve" → signal sent to the running workflow → workflow resumes → triggers deployment to KServe → monitors deployment metrics for 4 hours → if metrics degrade, the workflow triggers automatic rollback. The entire process can take 5 business days, and Temporal persists the workflow state across the entire duration.
 
@@ -631,6 +631,6 @@ temporal workflow signal --workflow-id ml-training-2026-01 \
 - [Temporal Go SDK Guide](https://docs.temporal.io/dev-guide/go)
 - [Temporal Architecture — Event History](https://docs.temporal.io/clusters)
 - [[../20 - Deployment y Serving/00 - Bienvenida|09/20 - Deployment y Serving]]
-- [[../23 - Advanced MLOps/...|09/23 - Advanced MLOps]]
-- [[../29 - CI-CD for ML/...|09/29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|09/23 - Advanced MLOps]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|09/29 - CI-CD for ML]]
 - [[../../13 - Go ML Backend/06 - Go ML Backend|13/06 - Go ML Backend]]

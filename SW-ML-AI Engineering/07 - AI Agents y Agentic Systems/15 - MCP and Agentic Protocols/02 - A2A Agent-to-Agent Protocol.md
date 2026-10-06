@@ -18,7 +18,7 @@ The Agent-to-Agent (A2A) protocol, announced by Google in early 2025, solves thi
 
 For your portfolio, A2A would transform StayBot from a monolithic CrewAI workflow into a network of specialized subagents — a calendar agent, a pricing agent, a messaging agent — each independently developed and deployed, all communicating through a standard protocol. Your Research System could accept task delegations from external agents, making it not just a pipeline but a service.
 
-The mindset shift is from [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/02 - Comunicacion entre Agentes.md|ad-hoc agent communication]] patterns to a protocol that any framework can implement. Just as HTTP let any web server talk to any browser, A2A lets any agent talk to any other agent.
+The mindset shift is from [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/02 - Comunicacion entre Agentes|ad-hoc agent communication]] patterns to a protocol that any framework can implement. Just as HTTP let any web server talk to any browser, A2A lets any agent talk to any other agent.
 
 ---
 
@@ -432,5 +432,5 @@ staybot-a2a/
 
 - Google A2A Specification: https://github.com/google/A2A
 - A2A Announcement: https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/
-- [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/02 - Comunicacion entre Agentes.md|Agent Communication]]
-- [[../../03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/03 - CrewAI y AutoGen.md|CrewAI & AutoGen]]
+- [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/02 - Comunicacion entre Agentes|Agent Communication]]
+- [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/03 - CrewAI y AutoGen|CrewAI & AutoGen]]

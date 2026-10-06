@@ -44,14 +44,14 @@ Each note is self-contained with theory-before-code, Mermaid diagrams, LaTeX der
 | Concept | Expected Knowledge | Review If Needed |
 |---------|-------------------|-----------------|
 | Transformer architecture | Attention mechanism, multi-head attention, positional encoding | [[../06 - Fundamentos de LLMs/01 - Arquitectura Transformer\|Transformer Architecture]] |
-| PyTorch fundamentals | Autograd, DataLoader, `torch.nn.Module`, optimizer state dicts | [[../../../05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida\|Deep Learning with PyTorch]] |
+| PyTorch fundamentals | Autograd, DataLoader, `torch.nn.Module`, optimizer state dicts | [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida\|Deep Learning with PyTorch]] |
 | HuggingFace ecosystem | `transformers`, `datasets`, `Trainer`, `from_pretrained` | [[../16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive\|HF Transformers Deep Dive]] |
 | PEFT conceptual awareness | What LoRA, QLoRA, Adapters are at a high level | [[../07 - Fine-Tuning y Adaptacion de LLMs/00 - Bienvenida\|Spanish Fine-Tuning Course]] |
 | Unsloth fundamentals | Kernel fusion, QLoRA setup, SFT workflows | [[../14 - Unsloth and Efficient Fine-Tuning/00 - Welcome to Unsloth and Efficient Fine-Tuning\|Unsloth Course]] |
 | Experiment tracking | MLflow, Weights & Biases, metric logging | [[../../../09 - MLOps y Produccion/18 - Experiment Tracking/00 - Welcome to Experiment Tracking\|Experiment Tracking]] |
 | GPU hardware | CUDA, VRAM, mixed precision (fp16/bf16) | NVIDIA documentation |
 
-> ⚠️ **GPU Requirement:** A GPU with ≥ 24 GB VRAM (RTX 4090, A10, A5000) suffices for QLoRA fine-tuning of 7B models. A 48 GB GPU (A6000, L40S) handles 70B models with QLoRA. Cloud alternatives: Lambda Labs, RunPod, or your own [[../../../10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] resources.
+> ⚠️ **GPU Requirement:** A GPU with ≥ 24 GB VRAM (RTX 4090, A10, A5000) suffices for QLoRA fine-tuning of 7B models. A 48 GB GPU (A6000, L40S) handles 70B models with QLoRA. Cloud alternatives: Lambda Labs, RunPod, or your own [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] resources.
 
 ---
 

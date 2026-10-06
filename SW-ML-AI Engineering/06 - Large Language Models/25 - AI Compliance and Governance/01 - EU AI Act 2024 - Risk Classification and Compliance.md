@@ -448,7 +448,7 @@ def deploy_gpai(model, deployment):
 - Mitchell et al. — Model Cards for Model Reporting — [arxiv.org/abs/1810.03993](https://arxiv.org/abs/1810.03993)
 - Gebru et al. — Datasheets for Datasets — [arxiv.org/abs/1803.09010](https://arxiv.org/abs/1803.09010)
 - [[12 - Producto, Negocio y Open Source/30 - Producto y Estrategia de IA/04 - Legal y Compliance en IA|Legal y Compliance en IA (Spanish)]]
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security and Guardrails]]
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security and Guardrails]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/02 - Model Cards and Datasheets for Datasets|Note 02 — Model Cards]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/03 - Bias and Fairness - AI Fairness 360 and Demographic Parity|Note 03 — Bias and Fairness]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/04 - Red-Teaming and Adversarial Testing|Note 04 — Red-Teaming]]

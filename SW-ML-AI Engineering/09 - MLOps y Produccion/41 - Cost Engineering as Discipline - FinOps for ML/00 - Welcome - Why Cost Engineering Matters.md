@@ -11,7 +11,7 @@
 
 ## Introduction
 
-Cost engineering is the **highest-paid discipline** in production ML in 2026. A senior FinOps engineer earns $200-400K because LLM bills scale linearly with usage, and runaway agents can rack up **$47,000 in 4 hours** (covered in [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/01 - AI Incident Taxonomy|Incident Response Note 01]]).
+Cost engineering is the **highest-paid discipline** in production ML in 2026. A senior FinOps engineer earns $200-400K because LLM bills scale linearly with usage, and runaway agents can rack up **$47,000 in 4 hours** (covered in [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/01 - AI Incident Taxonomy - What Can Break|Incident Response Note 01]]).
 
 The companies that ship LLM products at scale have a **FinOps practice** as part of their MLOps team. This isn't ad-hoc cost optimization — it's a discipline with:
 
@@ -87,10 +87,10 @@ These pillars compose into a complete FinOps practice. Most teams have visibilit
 
 You should already be comfortable with:
 
-- **LLM serving** — LiteLLM, providers from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19 LLM Gateway]]
-- **Serverless LLM cost optimization** — [[06 - Large Language Models/23 - Serverless LLM Platforms/04 - Serverless Cost Optimization and Patterns|06/23 Cost Optimization]]
-- **LangFuse observability** — [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|09/36 LangFuse]]
-- **Prometheus + Grafana** — [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|09/34 OpenTelemetry]]
+- **LLM serving** — LiteLLM, providers from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19 LLM Gateway]]
+- **Serverless LLM cost optimization** — [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|06/23 Cost Optimization]]
+- **LangFuse observability** — [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|09/36 LangFuse]]
+- **Prometheus + Grafana** — [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|09/34 OpenTelemetry]]
 
 ---
 
@@ -98,12 +98,12 @@ You should already be comfortable with:
 
 | Vault Module | Connection |
 |--------------|-----------|
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | Multi-provider cost-aware routing |
-| [[06 - Large Language Models/23 - Serverless LLM Platforms/04 - Serverless Cost Optimization and Patterns\|Serverless Cost Optimization]] | Caching, batching, hybrid architecture |
-| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability\|LangFuse]] | Per-tenant cost attribution |
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently]] | Cost anomaly dashboards |
-| [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems\|Incident Response]] | Cost explosion runbook |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | Reserved capacity planning |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | Multi-provider cost-aware routing |
+| [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns\|Serverless Cost Optimization]] | Caching, batching, hybrid architecture |
+| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse]] | Per-tenant cost attribution |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently]] | Cost anomaly dashboards |
+| [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems\|Incident Response]] | Cost explosion runbook |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | Reserved capacity planning |
 
 ---
 

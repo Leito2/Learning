@@ -286,7 +286,7 @@ def hybrid_search(coll, query: str, category: str, year: int) -> dict:
     )
 ```
 
-The result feeds [[../../06 - Large Language Models/12 - Production RAG/04 - Reranking - Cross-Encoders, ColBERT and LLM-as-Reranker.md|Reranking notes]] for second-stage precision.
+The result feeds [[06 - Large Language Models/12 - Production RAG/04 - Reranking - Cross-Encoders, ColBERT and LLM-as-Reranker|Reranking notes]] for second-stage precision.
 
 ## 9. ❌/✅ Antipatterns
 
@@ -475,7 +475,7 @@ r = coll.query(
 ## References
 
 - [[00 - Welcome to ChromaDB|Welcome]] — course map.
-- [[01 - Chroma Fundamentals|Fundamentals]] — collections and metadata basics.
-- [[02 - Chroma Server Mode|Server Mode]] — `TenantScopedCollection` over `HttpClient`.
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/13 - ChromaDB Deep Dive/01 - Chroma Fundamentals - Collections, Embeddings and Query|Fundamentals]] — collections and metadata basics.
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/13 - ChromaDB Deep Dive/02 - Chroma Server Mode - Local and Docker Deployment|Server Mode]] — `TenantScopedCollection` over `HttpClient`.
 - Chroma filtering: https://docs.trychroma.com/queries
-- [[../../06 - Large Language Models/12 - Production RAG/04 - Reranking - Cross-Encoders, ColBERT and LLM-as-Reranker.md|Reranking]] — the second-stage partner to filtering.
+- [[06 - Large Language Models/12 - Production RAG/04 - Reranking - Cross-Encoders, ColBERT and LLM-as-Reranker|Reranking]] — the second-stage partner to filtering.

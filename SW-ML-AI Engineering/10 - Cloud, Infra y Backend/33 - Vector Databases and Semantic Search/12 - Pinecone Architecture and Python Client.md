@@ -19,7 +19,7 @@ Pinecone is the **default managed vector database** for teams that want zero ope
 
 The vault already covers Pinecone in comparison tables (10/33/09, 10/35/04, 10/36/02) and the Timescale benchmark (10/36/03) that compares pgvectorscale against Pinecone Pods. This note goes the other way: it teaches Pinecone **on its own terms** as a primary choice, not as a comparison reference. The next mini-course (`[[../../../10 - Cloud, Infra y Backend/37 - Vector Search on Google Cloud/00 - Welcome|10/37]]`) covers the GCP-native alternative for users already in that ecosystem.
 
-We connect to [[../05 - Qdrant I - Architecture and Collections]] and [[../06 - Qdrant II - Distributed and Cloud Deployment]] (the Rust-based open-source alternative), [[../10 - Advanced Patterns and Observability]] (the hybrid search baseline), and `[[../../../10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation|10/36/02]]` (the cost equation that often argues against Pinecone for greenfield projects in 2026).
+We connect to [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/05 - Qdrant I - Architecture and Collections|05 - Qdrant I - Architecture and Collections]] and [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/06 - Qdrant II - Distributed and Cloud Deployment|06 - Qdrant II - Distributed and Cloud Deployment]] (the Rust-based open-source alternative), [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/10 - Advanced Patterns and Observability|10 - Advanced Patterns and Observability]] (the hybrid search baseline), and `[[../../../10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation|10/36/02]]` (the cost equation that often argues against Pinecone for greenfield projects in 2026).
 
 ---
 
@@ -421,8 +421,8 @@ PINECONE_API_KEY=xxx python scratch.py
 - Pinecone Python client: https://github.com/pinecone-io/pinecone-python-client
 - Pinecone Inference: https://docs.pinecone.io/guides/inference/overview
 - Hybrid search with alpha: https://docs.pinecone.io/guides/search/hybrid-search
-- Related Vault: [[../05 - Qdrant I - Architecture and Collections]] (Rust-based open-source alternative)
-- Related Vault: [[../09 - Vector Database Comparison Matrix]] (cross-engine comparison)
-- Related Vault: [[../10 - Advanced Patterns and Observability]] (hybrid search baseline)
+- Related Vault: [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/05 - Qdrant I - Architecture and Collections|05 - Qdrant I - Architecture and Collections]] (Rust-based open-source alternative)
+- Related Vault: [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/09 - Vector Database Comparison Matrix|09 - Vector Database Comparison Matrix]] (cross-engine comparison)
+- Related Vault: [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/10 - Advanced Patterns and Observability|10 - Advanced Patterns and Observability]] (hybrid search baseline)
 - Related Vault: `[[../../../10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/02 - pgvector vs Dedicated Vector Databases - The Real Cost Equation|10/36/02]]` (cost equation)
 - Related Vault: `[[../../../10 - Cloud, Infra y Backend/37 - Vector Search on Google Cloud/00 - Welcome|10/37]]` (GCP-native alternative)

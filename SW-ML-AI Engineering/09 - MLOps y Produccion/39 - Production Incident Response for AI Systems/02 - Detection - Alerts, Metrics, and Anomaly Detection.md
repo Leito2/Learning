@@ -26,7 +26,7 @@ This note covers the complete detection stack for an AI service:
 5. **Multi-window burn rate alerts** — SRE best practice for catching issues early without alert fatigue
 6. **PagerDuty / Slack routing** — severity-based escalation
 
-The patterns here draw from [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] (covered previously) and [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry]] (the span protocol layer). Mastering detection is the prerequisite for triage (Note 03) and resolution (Note 04).
+The patterns here draw from [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] (covered previously) and [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry]] (the span protocol layer). Mastering detection is the prerequisite for triage (Note 03) and resolution (Note 04).
 
 ![Detection dashboard mockup](https://example.com/dashboard.png)
 
@@ -94,7 +94,7 @@ sum(increase(llm_cost_usd_total[1h])) > 5 * avg_over_time(sum(increase(llm_cost_
 
 ### 1.3 Quality Dashboard
 
-LangFuse quality score traces (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability]]):
+LangFuse quality score traces (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|36 - LangFuse - Open-Source LLM Observability]]):
 
 ```python
 # Sampled LLM-as-judge scoring (10% sampling rate)
@@ -562,13 +562,13 @@ prometheus_alerts = [
 - Google SRE Book — Multi-Window Burn Rate Alerts — [sre.google/workbook/alerting-on-slos](https://sre.google/workbook/alerting-on-slos/)
 - Prometheus Alerting Best Practices — [prometheus.io/docs/practices/alerting](https://prometheus.io/docs/practices/alerting/)
 - PagerDuty Incident Response — [response.pagerduty.com](https://response.pagerduty.com/)
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]]
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]]
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]]
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/01 - AI Incident Taxonomy - What Can Break|Note 01 — Taxonomy]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/03 - Triage - Diagnosing AI Incidents|Note 03 — Triage]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/04 - Resolution Patterns and Resilience Engineering|Note 04 — Resolution Patterns]]
 - [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/05 - Capstone - Production Incident Response Simulation|Note 05 — Capstone]]
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security]] — prompt injection detection
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — failover patterns
-- [[13 - Go Engineering/03 - Microservices with Go|Microservices]] — circuit breakers
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security]] — prompt injection detection
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — failover patterns
+- [[13 - Go Engineering/03 - Microservices with Go/00 - Welcome|Microservices]] — circuit breakers

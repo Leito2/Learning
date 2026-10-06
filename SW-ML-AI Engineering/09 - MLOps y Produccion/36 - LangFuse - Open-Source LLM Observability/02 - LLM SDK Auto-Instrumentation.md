@@ -158,7 +158,7 @@ Mistral's OpenAI-compatible API works with the LangFuse OpenAI wrapper. Same aut
 
 ## 2. LiteLLM Integration
 
-If you use LiteLLM as your multi-provider transport (per [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]]), enable the LangFuse callback:
+If you use LiteLLM as your multi-provider transport (per [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]]), enable the LangFuse callback:
 
 ```python
 import litellm
@@ -222,7 +222,7 @@ response = chain.invoke(
 
 Every LangChain component (LLM, retriever, agent) becomes a LangFuse observation. For chains with multiple steps, each step is a Span; each LLM call is a Generation. The handler captures tokens, model, latency, and tool use automatically.
 
-For more details on LangGraph patterns, see [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]] and [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/03 - Datasets and Evaluations|Datasets and Evaluations in LangSmith]] — the same callback pattern works for both.
+For more details on LangGraph patterns, see [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]] and [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/03 - Datasets and Evaluations|Datasets and Evaluations in LangSmith]] — the same callback pattern works for both.
 
 ### 3.2 LlamaIndex
 
@@ -245,11 +245,11 @@ query_engine = index.as_query_engine()
 response = query_engine.query("What is the capital of France?")
 ```
 
-LlamaIndex operations (loading, splitting, embedding, retrieval, synthesis) all become LangFuse observations. Useful for debugging RAG pipelines — see the LlamaIndex pattern from [[06 - Large Language Models/12 - Production RAG]].
+LlamaIndex operations (loading, splitting, embedding, retrieval, synthesis) all become LangFuse observations. Useful for debugging RAG pipelines — see the LlamaIndex pattern from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]].
 
 ### 3.3 Instructor (the structured-output library)
 
-The capstone of [[06 - Large Language Models/22 - Instructor and Structured Generation]] uses Instructor with Pydantic. The LangFuse trace captures the LLM call (under the hood) plus the validation retries:
+The capstone of [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]] uses Instructor with Pydantic. The LangFuse trace captures the LLM call (under the hood) plus the validation retries:
 
 ```python
 import instructor
@@ -289,7 +289,7 @@ def extract_person(text: str) -> Person:
 
 ### 3.4 DSPy and LangGraph
 
-For DSPy (covered in [[06 - Large Language Models/21 - DSPy and Prompt Compilation]]), wrap the DSPy module call in `@observe()`:
+For DSPy (covered in [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|21 - DSPy and Prompt Compilation]]), wrap the DSPy module call in `@observe()`:
 
 ```python
 import dspy
@@ -305,7 +305,7 @@ def run_dspy_module(question: str) -> str:
     return result.answer
 ```
 
-For LangGraph agents (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]), use the LangChain CallbackHandler from section 3.1 — LangGraph is built on LangChain.
+For LangGraph agents (covered in [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]), use the LangChain CallbackHandler from section 3.1 — LangGraph is built on LangChain.
 
 ---
 
@@ -526,9 +526,9 @@ from langfuse.openai import openai as langfuse_openai  # NOW the wrapper reads t
 - LangChain integration — [langfuse.com/docs/integrations/langchain](https://langfuse.com/docs/integrations/langchain)
 - LlamaIndex integration — [langfuse.com/docs/integrations/llamaindex](https://langfuse.com/docs/integrations/llamaindex)
 - LiteLLM integration — [langfuse.com/docs/integrations/litellm](https://langfuse.com/docs/integrations/litellm)
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured output library
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — agent observability
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol-level observability
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured output library
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — agent observability
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol-level observability
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/01 - LangFuse Fundamentals - Architecture and Core Primitives|Note 01 — Fundamentals]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/05 - Capstone - Self-Hosted LangFuse for Multi-Provider RAG|Note 05 — Capstone]]

@@ -13,7 +13,7 @@
 
 The name "hybrid precision" captures the crucial insight: ONE format does NOT fit all tensors. Weights and activations have fundamentally different statistical properties. Weights are relatively well-behaved (Gaussian-like distributions centered near zero with moderate variance). Activations have heavy-tailed distributions with large outliers — a single neuron can fire 100× harder than average on certain inputs. Using the same format for both guarantees suboptimal results. The solution uses two FP8 variants: **E4M3 for weights** (prioritizes precision in the range where most weights live) and **E5M2 for activations** (prioritizes dynamic range to capture outlier activations without clipping).
 
-Before FP8, the quantization landscape was dominated by INT8. INT8 works well for weights (uniform quantization bins, weights are somewhat uniform) but catastrophically for activations. The outlier problem: if 99.9% of activation values lie in [-2, 2] but one outlier is 500, uniform INT8 quantization must allocate half its bins to [-500, -2] and [2, 500] — leaving only 128/2 = 64 levels for the 99.9% of values in [-2, 2]. The effective precision in the dense region drops to approximately $4/64 \approx 0.06$ per bin — barely 4 bits of effective precision. FP8 solves this with its floating-point format: a single exponent bit difference handles the dynamic range, while mantissa bits provide uniform precision within each exponent range. This matters for [[06/09 - Sistemas de LLMs en Producción]] because accuracy degradation in production is measured in user-facing metrics (wrong answers, safety violations), not abstract perplexity scores.
+Before FP8, the quantization landscape was dominated by INT8. INT8 works well for weights (uniform quantization bins, weights are somewhat uniform) but catastrophically for activations. The outlier problem: if 99.9% of activation values lie in [-2, 2] but one outlier is 500, uniform INT8 quantization must allocate half its bins to [-500, -2] and [2, 500] — leaving only 128/2 = 64 levels for the 99.9% of values in [-2, 2]. The effective precision in the dense region drops to approximately $4/64 \approx 0.06$ per bin — barely 4 bits of effective precision. FP8 solves this with its floating-point format: a single exponent bit difference handles the dynamic range, while mantissa bits provide uniform precision within each exponent range. This matters for [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]] because accuracy degradation in production is measured in user-facing metrics (wrong answers, safety violations), not abstract perplexity scores.
 
 ---
 
@@ -343,6 +343,6 @@ print(f"Output shape: {out.shape}, mean: {out.mean():.4f}")
 - Noune, B., et al. (2022). "8-bit Numerical Formats for Deep Neural Networks." *arXiv:2206.02915*
 - Dettmers, T., et al. (2022). "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale." *arXiv:2208.07339*
 - Sun, X., et al. (2024). "FP8-LM: Training FP8 Large Language Models." *arXiv:2310.18313*
-- [[06/09 - Sistemas de LLMs en Producción]]
-- [[05/03 - Deep Learning con PyTorch]]
-- [[05/09 - Deep Learning with TensorFlow]]
+- [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[05 - Deep Learning y Computer Vision/09 - Deep Learning with TensorFlow/00 - Welcome to Deep Learning with TensorFlow|09 - Deep Learning with TensorFlow]]

@@ -67,10 +67,10 @@ By the end of this course you will have a production-grade email system that:
 
 ## 🔗 Vault Connections
 
-- **[[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]** — the HTTP framework
+- **[[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]** — the HTTP framework
 - **[[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]** — the data layer for the email log
 - **[[../40 - Background Jobs and Workers for FastAPI/00 - Welcome|Background Jobs and Workers]]** — emails are sent as jobs
-- **[[../45 - Webhooks In/Out for FastAPI/00 - Welcome|Webhooks In/Out]]** — bounce webhooks are incoming webhooks
+- **[[10 - Cloud, Infra y Backend/45 - Webhooks In and Out for FastAPI/00 - Welcome|Webhooks In/Out]]** — bounce webhooks are incoming webhooks
 
 ## References
 

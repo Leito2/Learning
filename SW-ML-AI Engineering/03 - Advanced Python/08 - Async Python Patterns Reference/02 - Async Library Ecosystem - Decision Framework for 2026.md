@@ -572,6 +572,6 @@ async def process_batch(data_list):
 - aiokafka — [aiokafka.readthedocs.io](https://aiokafka.readthedocs.io/)
 - pottery — [github.com/brainix/pottery](https://github.com/brainix/pottery)
 - [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]]
-- [[../../10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI|SQLAlchemy Async]]
-- [[../../10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI|Background Workers]]
+- [[10 - Cloud, Infra y Backend/38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy Async]]
+- [[10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/00 - Welcome|Background Workers]]
 - [[../../10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/12 - Qdrant Python Client Deep Dive/02 - Production Async Patterns - FastAPI, Retries, Batching and Observability|Qdrant Production Async]]

@@ -5,7 +5,7 @@
 - Engineer time-based and categorical features with DuckDB SQL window functions and joins
 - Build a zero-copy data highway: DuckDB → Arrow → pandas → PyTorch DataLoader
 - Deploy DuckDB as a production sidecar for embedded analytics and model monitoring
-- Integrate DuckDB with Go-based ML backends (relevant to the portfolio project in [[13/06 - Go for ML Backend]])
+- Integrate DuckDB with Go-based ML backends (relevant to the portfolio project in [[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome|06 - Go for ML Backend]])
 - Evaluate when DuckDB out-of-core execution beats distributed Spark for feature engineering
 
 ## Introduction
@@ -21,7 +21,7 @@ DuckDB query → Arrow Table → numpy array → PyTorch tensor
 
 Each step is a pointer handoff. No serialization. No double memory. DuckDB's in-process architecture means the Arrow buffers live in the same process heap as PyTorch's tensor storage. This is the fastest path from SQL to stochastic gradient descent that exists today.
 
-This note covers three production patterns: RAG document preprocessing, time-series feature engineering, and embedded production analytics. We also cover DuckDB + Go for the portfolio project's ML Gateway ([[13/06 - Go for ML Backend]]), and contrast DuckDB pipelines against the Spark and pandas alternatives.
+This note covers three production patterns: RAG document preprocessing, time-series feature engineering, and embedded production analytics. We also cover DuckDB + Go for the portfolio project's ML Gateway ([[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome|06 - Go for ML Backend]]), and contrast DuckDB pipelines against the Spark and pandas alternatives.
 
 ---
 
@@ -29,7 +29,7 @@ This note covers three production patterns: RAG document preprocessing, time-ser
 
 ### The RAG Data Quality Problem
 
-Retrieval-Augmented Generation ([[06/12 - Production RAG]]) requires clean, deduplicated, and well-structured document corpora. Raw document dumps from web crawls, internal wikis, or customer support logs are messy: mixed languages, near-duplicates, empty documents, outdated versions, and inconsistent metadata. Before embedding documents into a vector database ([[10/33 - Vector Databases]]), you need to:
+Retrieval-Augmented Generation ([[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]]) requires clean, deduplicated, and well-structured document corpora. Raw document dumps from web crawls, internal wikis, or customer support logs are messy: mixed languages, near-duplicates, empty documents, outdated versions, and inconsistent metadata. Before embedding documents into a vector database ([[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases]]), you need to:
 
 1. **Filter** low-quality documents (too short, wrong language, missing metadata)
 2. **Deduplicate** near-identical documents (same content, different filenames/timestamps)
@@ -243,7 +243,7 @@ FROM transactions
 
 ### Feature Store Integration with Feast
 
-The [[09/27 - Feast]] feature store uses DuckDB as one of its supported offline stores. The pattern:
+The [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|27 - Feast]] feature store uses DuckDB as one of its supported offline stores. The pattern:
 
 ```python
 # DuckDB as the offline batch processing engine for Feast
@@ -336,7 +336,7 @@ This is an **embedded analytics sidecar**: DuckDB runs inside your ML service pr
 
 ### DuckDB + Go — Embedded Analytics for the ML Gateway
 
-The portfolio project includes a Go-based ML Gateway ([[13/06 - Go for ML Backend]]) that routes inference requests to different model backends. DuckDB can run embedded inside this Go service via `go-duckdb`:
+The portfolio project includes a Go-based ML Gateway ([[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome|06 - Go for ML Backend]]) that routes inference requests to different model backends. DuckDB can run embedded inside this Go service via `go-duckdb`:
 
 ```go
 package main
@@ -476,8 +476,8 @@ flowchart LR
 - Window functions (`RANGE BETWEEN INTERVAL`) are the most efficient way to engineer time-series features in SQL — no Python loops, no `apply`, no `rolling()`.
 - The Arrow highway (DuckDB → pandas → numpy → PyTorch) achieves zero-copy from SQL query to tensor — saving ~3x memory and reducing latency.
 - DuckDB as a production sidecar provides embedded analytics (model monitoring, performance drift detection) without a separate database service.
-- The Go ML Gateway ([[13/06 - Go for ML Backend]]) can embed DuckDB via `go-duckdb` for request logging and analytics — no external dependency.
-- Feast ([[09/27 - Feast]]) integrates with DuckDB as an offline feature store: DuckDB computes features, Feast serves them online at millisecond latency.
+- The Go ML Gateway ([[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome|06 - Go for ML Backend]]) can embed DuckDB via `go-duckdb` for request logging and analytics — no external dependency.
+- Feast ([[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|27 - Feast]]) integrates with DuckDB as an offline feature store: DuckDB computes features, Feast serves them online at millisecond latency.
 - DuckDB compresses CSV to ZSTD Parquet at ~200 MB/s — a 100 GB CSV becomes 15 GB of Parquet in ~10 minutes on a laptop.
 
 ## 📦 Código de Compresión
@@ -549,10 +549,10 @@ conn.close()
 - [DuckDB + PyTorch Integration Guide](https://duckdb.org/docs/guides/python/pytorch)
 - [Modal Blog: Analytics at Modal with DuckDB](https://modal.com/blog/duckdb)
 - [go-duckdb: DuckDB driver for Go (CGO binding)](https://github.com/marcboeker/go-duckdb)
-- [[06/12 - Production RAG]]
-- [[10/33 - Vector Databases]]
-- [[09/27 - Feast]]
-- [[05/03 - Deep Learning con PyTorch]]
-- [[13/06 - Go for ML Backend]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases]]
+- [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|27 - Feast]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome|06 - Go for ML Backend]]
 - [[01 - DuckDB Fundamentals - In-Process OLAP with SQL]]
 - [[02 - DuckDB with Python - DataFrames, Parquet and SQL Integration]]

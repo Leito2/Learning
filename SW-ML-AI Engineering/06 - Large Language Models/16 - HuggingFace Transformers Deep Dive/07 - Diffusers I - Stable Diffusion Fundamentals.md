@@ -14,11 +14,11 @@
 
 ## Introduction
 
-Generative AI has captured the world's imagination, and at the heart of this revolution lies latent diffusion. While [[06 - Large Language Models]] taught us to generate text token-by-token, diffusion models generate images latent-by-latent. Stable Diffusion, released by Stability AI in 2022, democratized high-quality image generation by operating in latent space rather than pixel space, reducing memory requirements from A100-only (16+ GB) to consumer GPUs (6–8 GB).
+Generative AI has captured the world's imagination, and at the heart of this revolution lies latent diffusion. While [[00 - Indice Maestro de Cursos|06 - Large Language Models]] taught us to generate text token-by-token, diffusion models generate images latent-by-latent. Stable Diffusion, released by Stability AI in 2022, democratized high-quality image generation by operating in latent space rather than pixel space, reducing memory requirements from A100-only (16+ GB) to consumer GPUs (6–8 GB).
 
 The `diffusers` library is HuggingFace's dedicated toolkit for diffusion models. It decouples the generation process into four modular components: a **pipeline** orchestrates the loop, a **scheduler** defines the noise update rule, a **UNet** predicts noise, and a **VAE** compresses and decompresses images between pixel and latent space. This modularity allows engineers to swap schedulers (DPM++ for speed, Euler for creativity), fine-tune UNets for specific styles (DreamBooth), and compose pipelines (img2img, inpainting, ControlNet) without rewriting the inference stack.
 
-This note is foundational for [[08 - Diffusers II - Advanced Pipelines and ControlNet]], where we extend these basics with ControlNet conditioning, LoRA adaptation, and community pipelines. Understanding the fundamentals here is also essential for [[09 - MLOps y Produccion]] when deploying diffusion endpoints that must handle concurrent requests within strict latency budgets.
+This note is foundational for [[08 - Diffusers II - Advanced Pipelines and ControlNet]], where we extend these basics with ControlNet conditioning, LoRA adaptation, and community pipelines. Understanding the fundamentals here is also essential for [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]] when deploying diffusion endpoints that must handle concurrent requests within strict latency budgets.
 
 ---
 

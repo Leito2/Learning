@@ -1065,6 +1065,6 @@ Una vez operando este sistema, los siguientes movimientos naturales son:
 - [[../09 - Sistemas de LLMs en Produccion/00 - Bienvenida|Sistemas de LLMs en Producción]] — patrones de serving, gateways
 - [[../12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — cómo construir RAG sobre vLLM
 - [[../18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM|TensorRT-LLM]] — alternativa NVIDIA pura
-- [[../17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome|ColBERT, SGLang and Next-Gen Inference]] — técnicas avanzadas
+- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|ColBERT, SGLang and Next-Gen Inference]] — técnicas avanzadas
 
 ¡Felicitaciones por completar el curso de vLLM Production Serving! Ahora tienes el conocimiento para operar un sistema de inferencia LLM a escala de producción.

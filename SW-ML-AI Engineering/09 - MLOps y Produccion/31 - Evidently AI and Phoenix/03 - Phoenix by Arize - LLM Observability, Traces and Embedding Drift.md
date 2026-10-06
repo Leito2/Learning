@@ -14,7 +14,7 @@ The LLM revolution has shattered classical ML monitoring assumptions. When your 
 
 The name is deliberate. *Arize* derives from "arise," and *Phoenix* invokes the mythological fire-bird that cyclically regenerates from its own ashes. LLM deployments burn: hallucination rates spike when a new model version ships, embedding spaces collapse when the knowledge base drifts, and prompts that worked perfectly last week suddenly produce toxic outputs. Phoenix provides the instrumentation to see the fire before it spreads — span-level traces that decompose every request into its constituent operations, UMAP visualizations that reveal embedding clusters drifting apart, and LLM-native evaluations (hallucination, QA correctness, toxicity) that measure what actually matters for language outputs.
 
-Your portfolio project — the **Automated LLM Evaluation Suite** — already implements semantic drift detection with a Gemma Golden Judge. Phoenix formalizes this same pattern with production-grade instrumentation: OpenTelemetry spans for every pipeline step, automatic embedding drift monitoring, and LLM-as-a-Judge evaluations that run on sampled traces. This note maps the conceptual bridge between your implementation and the open-source standard. See [[07/12 - Despliegue y Observabilidad de Agentes]] for the agent monitoring context and [[07/15 - Agent Evaluation and Observability]] for semantic drift detection at the agent level.
+Your portfolio project — the **Automated LLM Evaluation Suite** — already implements semantic drift detection with a Gemma Golden Judge. Phoenix formalizes this same pattern with production-grade instrumentation: OpenTelemetry spans for every pipeline step, automatic embedding drift monitoring, and LLM-as-a-Judge evaluations that run on sampled traces. This note maps the conceptual bridge between your implementation and the open-source standard. See [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida|12 - Despliegue y Observabilidad de Agentes]] for the agent monitoring context and [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|15 - Agent Evaluation and Observability]] for semantic drift detection at the agent level.
 
 ---
 
@@ -346,7 +346,7 @@ print("Traces & UMAP at: http://localhost:6006")
 - OpenTelemetry Specification: [opentelemetry.io/docs/specs/otel](https://opentelemetry.io/docs/specs/otel)
 - McInnes, L., Healy, J., & Melville, J. (2018). *UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.* arXiv:1802.03426.
 - Zheng, L. et al. (2023). *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.* NeurIPS. — Foundation for LLM-based evaluation scoring
-- [[07/12 - Despliegue y Observabilidad de Agentes]] — Phoenix in agent observability frameworks
-- [[07/15 - Agent Evaluation and Observability]] — Semantic drift detection at the agent level
-- [[09/21 - Monitoreo y Mantenimiento]] — ML monitoring architecture
-- [[09/23 - Advanced MLOps]] — Advanced MLOps patterns with drift detection
+- [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida|12 - Despliegue y Observabilidad de Agentes]] — Phoenix in agent observability frameworks
+- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|15 - Agent Evaluation and Observability]] — Semantic drift detection at the agent level
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|21 - Monitoreo y Mantenimiento]] — ML monitoring architecture
+- [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|23 - Advanced MLOps]] — Advanced MLOps patterns with drift detection

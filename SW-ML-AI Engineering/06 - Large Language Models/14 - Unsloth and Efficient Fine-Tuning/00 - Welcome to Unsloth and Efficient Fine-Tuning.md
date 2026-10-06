@@ -37,16 +37,16 @@ Each note is self-contained and includes theory BEFORE code, ASCII mental models
 
 | Concept | Expected Knowledge | Review If Needed |
 |---------|-------------------|-----------------|
-| LLM fundamentals | Transformer architecture, attention mechanism, tokenization | [[../../02 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida\|LLM Fundamentals]] |
-| PEFT concepts | LoRA, QLoRA, Adapters, gradient checkpointing | [[../03 - Fine-Tuning LLMs.md\|Fine-Tuning LLMs course]] |
-| PyTorch training loop | Autograd, DataLoader, optimizer state dict | [[../../01 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida\|Deep Learning with PyTorch]] |
-| HuggingFace ecosystem | `transformers`, `datasets`, `peft`, `trl` (SFTTrainer, DPOTrainer) | HF documentation + [[../03 - Fine-Tuning LLMs.md\|Fine-Tuning LLMs]] |
+| LLM fundamentals | Transformer architecture, attention mechanism, tokenization | [[06 - Large Language Models/06 - Fundamentos de LLMs/00 - Bienvenida\|LLM Fundamentals]] |
+| PEFT concepts | LoRA, QLoRA, Adapters, gradient checkpointing | [[projects/03 - Fine-Tuning LLMs - Project Guide\|Fine-Tuning LLMs course]] |
+| PyTorch training loop | Autograd, DataLoader, optimizer state dict | [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida\|Deep Learning with PyTorch]] |
+| HuggingFace ecosystem | `transformers`, `datasets`, `peft`, `trl` (SFTTrainer, DPOTrainer) | HF documentation + [[projects/03 - Fine-Tuning LLMs - Project Guide\|Fine-Tuning LLMs]] |
 | GPU fundamentals | CUDA devices, VRAM, mixed precision (fp16/bf16) | NVIDIA Ampere architecture docs |
 | Python ≥ 3.10 | Type hints, dataclasses, `torch.compile` | [[../../Advanced Python/00 - Bienvenida\|Advanced Python]] |
 | Gemma 4 familiarity | Model family, tokenizer, chat template | Google Gemma docs + your portfolio projects |
 | Linux + pip/conda | Environment management, CUDA toolkit installation | System administration basics |
 
-> ⚠️ **GPU Requirement**: A GPU with ≥ 24 GB VRAM (RTX 4090, A10, A5000) is sufficient for Gemma 4 9B QLoRA fine-tuning. A 48 GB GPU (A6000, L40S) handles 27B comfortably. Connect to your [[../../06 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] resources for on-demand access.
+> ⚠️ **GPU Requirement**: A GPU with ≥ 24 GB VRAM (RTX 4090, A10, A5000) is sufficient for Gemma 4 9B QLoRA fine-tuning. A 48 GB GPU (A6000, L40S) handles 27B comfortably. Connect to your [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] resources for on-demand access.
 
 ---
 

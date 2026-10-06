@@ -12,7 +12,7 @@
 
 Prompt injection is the SQL injection of the LLM era — but worse. While SQL injection was eventually mitigated by parameterized queries (a true architectural fix), prompt injection has no equivalent. The fundamental problem is structural: an LLM consumes a single token stream where user data and system instructions are indistinguishable. [[../20 - MCP and Agentic Protocols/01 - Model Context Protocol Deep Dive|Agentic systems]] that grant LLMs access to tools, file systems, and APIs magnify the blast radius of every successful injection.
 
-Your [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] sits at the perfect interception point. Every prompt from every client passes through your Fiber handlers before reaching any LLM backend. Adding injection detection at this layer protects all downstream models — local Gemma 4, cloud APIs, and future backends — with a single defense. This is defense-in-depth applied to the LLM stack, and it's the most impactful security investment you can make for your gateway.
+Your [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] sits at the perfect interception point. Every prompt from every client passes through your Fiber handlers before reaching any LLM backend. Adding injection detection at this layer protects all downstream models — local Gemma 4, cloud APIs, and future backends — with a single defense. This is defense-in-depth applied to the LLM stack, and it's the most impactful security investment you can make for your gateway.
 
 The adversarial nature of prompt injection means defense is an arms race. Attackers continuously discover new obfuscation techniques (base64 encoding, role-playing scenarios, emotional manipulation) that bypass keyword-based filters. Defenders respond with ML-based detection, semantic analysis, and architectural constraints. Understanding both sides of this race is essential for building systems that are genuinely robust, not just checkbox-compliant.
 
@@ -26,7 +26,7 @@ Prompt injection occurs when an attacker crafts input that causes the LLM to int
 
 This means an LLM cannot, by construction, distinguish "execute this instruction" from "the user mentioned an instruction." Every token influences every subsequent token's probability distribution equally, regardless of its origin. An attacker who controls 30% of the token stream can often override the other 70%. This is not a bug — it is an inescapable consequence of the autoregressive transformer architecture.
 
-Why does this matter for your gateway? [[../../Go Engineering/03 - Microservices with Go/02 - Middleware, Auth, and JWT|Traditional middleware]] authenticates users, validates request schemas, and rate-limits — but never inspects the semantic content of a payload. LLM security requires a new class of middleware that understands language, not just JSON schemas. Your gateway must become semantically aware.
+Why does this matter for your gateway? [[13 - Go Engineering/03 - Microservices with Go/02 - Middleware, Auth, and JWT|Traditional middleware]] authenticates users, validates request schemas, and rate-limits — but never inspects the semantic content of a payload. LLM security requires a new class of middleware that understands language, not just JSON schemas. Your gateway must become semantically aware.
 
 The academic literature categorizes injection by **attack vector** (direct vs indirect), **goal** (jailbreak vs leak vs command execution), and **visibility** (visible in prompt vs hidden in retrieved documents). We'll explore each dimension.
 
@@ -561,7 +561,7 @@ secure_prompt = sandwich.build_prompt(canonicalize_input(attack))
 
 The LLM Edge Gateway is the optimal insertion point for security middleware because it processes every request and response. Unlike per-backend security that must be replicated across Ollama, vLLM, and cloud APIs, gateway-level security applies once and protects all backends. This follows the same architectural principle as API gateways handling authentication — centralize the cross-cutting concern.
 
-A Fiber middleware for injection detection must satisfy three constraints: (1) **sub-millisecond fast path** for clean requests to not degrade P99 latency, (2) **pluggable** so detection engines can be swapped without changing application code, (3) **observable** with metrics for false positive rate, detection latency, and bypass rate feeding into your [[../../05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|production monitoring]] dashboard.
+A Fiber middleware for injection detection must satisfy three constraints: (1) **sub-millisecond fast path** for clean requests to not degrade P99 latency, (2) **pluggable** so detection engines can be swapped without changing application code, (3) **observable** with metrics for false positive rate, detection latency, and bypass rate feeding into your [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|production monitoring]] dashboard.
 
 The pattern is: reject known-bad at the regex layer (<1ms), escalate ambiguous to the LLM classifier (50-200ms), and apply structural defenses (delimiters, sandwich) on the prompt template before forwarding. The output path gets a separate guardrail layer (see Notes 02-04).
 
@@ -884,7 +884,7 @@ graph TB
 
 - OWASP LLM01: Prompt Injection: https://owasp.org/www-project-top-10-for-large-language-model-applications/
 - Anthropic: "Many-shot Jailbreaking" research: https://www.anthropic.com/research/many-shot-jailbreaking
-- [[../../Go Engineering/03 - Microservices with Go/02 - Middleware, Auth, and JWT|Middleware patterns in Go/Fiber]]
-- [[../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway architecture]]
-- [[../../05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|Production model monitoring]]
+- [[13 - Go Engineering/03 - Microservices with Go/02 - Middleware, Auth, and JWT|Middleware patterns in Go/Fiber]]
+- [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway architecture]]
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|Production model monitoring]]
 - [[../20 - MCP and Agentic Protocols/01 - Model Context Protocol Deep Dive|Agent tool-calling security implications]]

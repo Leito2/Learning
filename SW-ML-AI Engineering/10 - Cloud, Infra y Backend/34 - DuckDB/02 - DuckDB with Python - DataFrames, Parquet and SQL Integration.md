@@ -12,7 +12,7 @@
 
 **Core thesis.** DuckDB does not compete with pandas — it *complements* it. pandas excels at interactive data exploration, custom Python transformations, and integration with the visualization/ML stack (matplotlib, scikit-learn, PyTorch). DuckDB excels at the heavy-lifting operations that make pandas sweat: multi-gigabyte aggregations, large joins, window functions, and multi-file queries. The integration between them is seamless because **both speak Apache Arrow natively**. A DuckDB query result converts to a pandas DataFrame with a pointer swap over the Arrow C Data Interface, not a row-by-row serialization loop. When the data exceeds 1 GB, you filter and aggregate in DuckDB and load only the small, cleaned result set into pandas. This is the workflow that every data team should adopt by default.
 
-**The Arrow Highway.** Apache Arrow ([[14/03 - Rust Polars Internals]]) defines a language-agnostic columnar memory format that DuckDB, pandas, Polars, NumPy, and PyTorch all support. When DuckDB finishes executing a query, it holds the result as an Arrow `Table`. pandas' `pyarrow` backend can wrap that same memory buffer without copying. Polars is built entirely on Arrow — its DataFrames *are* Arrow Tables. This means data can flow `DuckDB → pandas → Polars → PyTorch` without a single byte being copied, provided the pipeline stays within the Arrow format and avoids Python-object-heavy operations like `apply()`.
+**The Arrow Highway.** Apache Arrow ([[14 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|03 - Rust Polars Internals]]) defines a language-agnostic columnar memory format that DuckDB, pandas, Polars, NumPy, and PyTorch all support. When DuckDB finishes executing a query, it holds the result as an Arrow `Table`. pandas' `pyarrow` backend can wrap that same memory buffer without copying. Polars is built entirely on Arrow — its DataFrames *are* Arrow Tables. This means data can flow `DuckDB → pandas → Polars → PyTorch` without a single byte being copied, provided the pipeline stays within the Arrow format and avoids Python-object-heavy operations like `apply()`.
 
 This note covers the Python API surface, the integration patterns with pandas and Polars, multi-file and cloud-storage querying, the SQL vs DataFrame API tradeoff, and the profiling tools that let you verify whether zero-copy is actually happening.
 
@@ -399,6 +399,6 @@ conn.close()
 - [Apache Arrow — C Data Interface Specification](https://arrow.apache.org/docs/format/CDataInterface.html)
 - [DuckDB + Polars Integration Guide](https://duckdb.org/docs/guides/python/polars)
 - [[01 - DuckDB Fundamentals - In-Process OLAP with SQL]]
-- [[14/03 - Rust Polars Internals]]
-- [[01 - Curso SQL con PostgreSQL]]
+- [[14 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|03 - Rust Polars Internals]]
+- [[01 - Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|01 - Curso SQL con PostgreSQL]]
 - [[03 - DuckDB in ML Pipelines - RAG Preprocessing, Feature Engineering and Production]]

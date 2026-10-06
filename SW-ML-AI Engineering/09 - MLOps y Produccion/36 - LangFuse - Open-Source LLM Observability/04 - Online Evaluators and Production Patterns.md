@@ -464,7 +464,7 @@ Multiple scorers should attach scores with different names, not multiple scores 
 - LangFuse Online Evaluations — [langfuse.com/docs/evaluation/online-evaluation](https://langfuse.com/docs/evaluation/online-evaluation)
 - LangFuse User Feedback — [langfuse.com/docs/scores/user-feedback](https://langfuse.com/docs/scores/user-feedback)
 - LangFuse Alerting — [langfuse.com/docs/scores/alerting](https://langfuse.com/docs/scores/alerting)
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — offline evaluation rigor
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection on input features (orthogonal to LLM-judge drift)
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — offline evaluation rigor
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection on input features (orthogonal to LLM-judge drift)
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/03 - Datasets, Evaluations and Prompt Management|Note 03 — Datasets, Evaluations and Prompt Management]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/05 - Capstone - Self-Hosted LangFuse for Multi-Provider RAG|Note 05 — Capstone]]

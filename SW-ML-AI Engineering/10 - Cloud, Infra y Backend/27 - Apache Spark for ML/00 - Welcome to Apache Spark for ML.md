@@ -12,7 +12,7 @@ This course covers Spark from fundamentals to production ML pipelines: the RDD/D
 2. [[02 - Spark SQL for ML|Spark SQL and ML Data Preparation]]
 3. [[03 - Spark MLlib|Spark MLlib: Distributed Machine Learning]]
 4. [[04 - Structured Streaming|Structured Streaming for Real-Time ML]]
-5. [[05 - Spark + Delta Lake + MLflow|Spark + Delta Lake + MLflow: The Enterprise MLOps Triad]]
+5. [[10 - Cloud, Infra y Backend/27 - Apache Spark for ML/05 - Spark + Delta Lake + MLflow Integration|Spark + Delta Lake + MLflow: The Enterprise MLOps Triad]]
 
 ---
 

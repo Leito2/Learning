@@ -4,7 +4,7 @@
 
 WebAssembly (WASM) is a binary instruction format designed as a portable compilation target for high-level languages. It runs in browsers at near-native speed and on servers via runtimes like Wasmtime and WasmEdge. Go can compile to WASM, but the standard Go compiler produces large binaries (~2 MB+) due to the included runtime. TinyGo is an alternative compiler that targets a subset of Go and generates dramatically smaller WASM modules, making it ideal for browsers, edge functions, and embedded environments.
 
-This course bridges [[03 - Go Performance Tuning|performance tuning]] (binary size is a performance metric on the web) and [[06 - Go and eBPF|systems programming]] because WASM is increasingly used for sandboxed plugins and edge compute. Understanding TinyGo's limitations—such as restricted reflection and no goroutine scheduler in some targets—is essential for choosing the right tool.
+This course bridges [[03 - Go Performance Tuning|performance tuning]] (binary size is a performance metric on the web) and [[13 - Go Engineering/extra/06 - Go and eBPF for Observability|systems programming]] because WASM is increasingly used for sandboxed plugins and edge compute. Understanding TinyGo's limitations—such as restricted reflection and no goroutine scheduler in some targets—is essential for choosing the right tool.
 
 ## 1. WASM Fundamentals and TinyGo
 

@@ -12,7 +12,7 @@
 
 By late 2024, the assumption that an LLM application could be built on a single provider was no longer defensible. The November 2024 OpenAI outage, the rotating Claude capacity throttling, the silent price wars between Google, Anthropic, and Mistral, and the rapid rise of self-hosted models (Llama, Qwen, DeepSeek) running on vLLM and SGLang forced engineering teams to confront a hard truth: **the abstraction layer between your application and the model is now product-critical, not infrastructure boilerplate**.
 
-This course is the missing piece in the vault's LLM engineering track. You have already studied high-performance serving with vLLM in [[06 - Large Language Models/13 - vLLM and Advanced RAG]], advanced retrieval with ColBERT and SGLang in [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference]], and production RAG. What you have not yet had is a **provider-agnostic interface** that lets you swap GPT-4o for Claude 3.5 Sonnet for a self-hosted Llama 3.3 70B in a single line of code. That is exactly what this module teaches.
+This course is the missing piece in the vault's LLM engineering track. You have already studied high-performance serving with vLLM in [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]], advanced retrieval with ColBERT and SGLang in [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT, SGLang and Next-Gen Inference]], and production RAG. What you have not yet had is a **provider-agnostic interface** that lets you swap GPT-4o for Claude 3.5 Sonnet for a self-hosted Llama 3.3 70B in a single line of code. That is exactly what this module teaches.
 
 The cross-cutting angle is that gateways are not just Python libraries. The vault already covers the Go perspective in [[13 - Go Engineering/06 - Go for ML Backend/06 - Building a Production ML Gateway]] and the Bun/TypeScript perspective in [[Extra/Bun Runtime/06 - Bun for ML and Data Engineering]]. LiteLLM is the **Python standard** — the de facto interface used in LangChain, LlamaIndex, instructor, autogen, and most agent frameworks. Mastering it means you can move between the polyglot gateway world and the data-science-native world without friction.
 
@@ -47,9 +47,9 @@ LiteLLM, originally a 100-line wrapper written by Ishaan Jaffer and Krrish Dhola
 You should already be comfortable with:
 
 - **Python async/await** — LiteLLM's proxy and async client are built on `asyncio` and FastAPI
-- **LLM serving basics** — PagedAttention and vLLM concepts from [[06 - Large Language Models/13 - vLLM and Advanced RAG]]
-- **RAG fundamentals** — retrieval pipelines from [[06 - Large Language Models/12 - Production RAG]]
-- **Vector databases** — Qdrant and pgvector from [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search]]
+- **LLM serving basics** — PagedAttention and vLLM concepts from [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]
+- **RAG fundamentals** — retrieval pipelines from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]]
+- **Vector databases** — Qdrant and pgvector from [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases and Semantic Search]]
 - **Containerization** — Docker Compose, basic Kubernetes from the Cloud, Infra y Backend track
 
 💡 If you have not read [[13 - Go Engineering/06 - Go for ML Backend/06 - Building a Production ML Gateway]], skim it before Note 01 — it is the Go-native counterpart to this course and clarifies which patterns are language-agnostic and which are Python-specific.

@@ -9,7 +9,7 @@ By the end of this note you will have a reference deployment with the full LangS
 ## 🎯 Learning Objectives
 
 - Deploy a FastAPI service with LangSmith auto-instrumentation.
-- Wire the [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar.md|RAGAS]] eval gate.
+- Wire the [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar|RAGAS]] eval gate.
 - Set up online evaluators with sampling.
 - Configure annotation queues for human feedback.
 - Apply PII filters at the project level.
@@ -406,12 +406,12 @@ if avg < 0.85:
 ## References
 
 - [[00 - Welcome to LangSmith|Welcome]] — course map.
-- [[01 - LangSmith Core|Core primitives]] — traces, runs.
-- [[02 - Auto-Instrumentation|Auto-Instrumentation]] — the SDK integrations.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/01 - LangSmith Core - Traces Runs Projects|Core primitives]] — traces, runs.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/02 - Auto-Instrumentation for LLM SDKs|Auto-Instrumentation]] — the SDK integrations.
 - [[03 - Datasets and Evaluations|Datasets]] — versioned test sets.
-- [[04 - Online Evaluators|Online Evals]] — production-time scoring.
-- [[05 - Annotation Queues|Human Feedback]] — the calibration loop.
-- [[06 - Production Patterns|Sampling, costs, PII]] — the production discipline.
-- [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers.md|OpenTelemetry]] — the vendor-neutral alternative.
-- [[../../../06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive.md|RAG Evaluation Deep Dive]] — the eval methodology.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/04 - Online Evaluators and LLM-as-Judge|Online Evals]] — production-time scoring.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/05 - Annotation Queues and Human Feedback|Human Feedback]] — the calibration loop.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/06 - Production Patterns - Sampling Costs PII|Sampling, costs, PII]] — the production discipline.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry]] — the vendor-neutral alternative.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — the eval methodology.
 - LangSmith docs: https://docs.smith.langchain.com/

@@ -211,7 +211,7 @@ sequenceDiagram
 
 ### 2.1 Theoretical Foundation 🧠
 
-If you have studied [[../../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|multi-agent architectures]], you know that every agent turn requires a model forward pass — often 10+ per conversation. Unsloth's 2-5x speedup directly reduces agent response latency and makes agentic systems viable on consumer hardware.
+If you have studied [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|multi-agent architectures]], you know that every agent turn requires a model forward pass — often 10+ per conversation. Unsloth's 2-5x speedup directly reduces agent response latency and makes agentic systems viable on consumer hardware.
 
 Unsloth's speed comes from three categories of kernel optimization: **attention fusion, RoPE fusion, and MLP fusion**. Each eliminates redundant GPU kernel launches and intermediate tensor materializations that HuggingFace's modular autograd design imposes.
 
@@ -549,7 +549,7 @@ flowchart TD
 
 **Real Case: Your Multi-Agent Research System Performance**
 
-Your [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] (LangGraph/Gemma 4) runs multiple model forward passes per user query: research agent → critic agent → synthesis agent. Without Unsloth, rapid prototyping of fine-tuned agent backbones is infeasible — each fine-tuning iteration costs hours. With Unsloth QLoRA on an RTX 4090, you can fine-tune a new agent backbone in under 2 hours, evaluate it with your [[03 - Fine-Tuning LLMs - Project Guide|Automated LLM Evaluation Suite]], and deploy to your [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|LLM Edge Gateway]] — all in a single afternoon session.
+Your [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] (LangGraph/Gemma 4) runs multiple model forward passes per user query: research agent → critic agent → synthesis agent. Without Unsloth, rapid prototyping of fine-tuned agent backbones is infeasible — each fine-tuning iteration costs hours. With Unsloth QLoRA on an RTX 4090, you can fine-tune a new agent backbone in under 2 hours, evaluate it with your [[03 - Fine-Tuning LLMs - Project Guide|Automated LLM Evaluation Suite]], and deploy to your [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/00 - Bienvenida|LLM Edge Gateway]] — all in a single afternoon session.
 
 **Real Case: Together AI's Custom Fine-Tuning Service**
 

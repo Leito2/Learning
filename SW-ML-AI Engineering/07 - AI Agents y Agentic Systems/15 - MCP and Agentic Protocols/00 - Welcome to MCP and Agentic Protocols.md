@@ -15,11 +15,11 @@
 
 In 2025, the agentic AI landscape has a fragmentation problem. Every framework — LangGraph, CrewAI, AutoGen, OpenAI Agents SDK — implements its own tool-calling protocol. Every LLM provider — Anthropic, OpenAI, Google — defines its own function-calling schema. The result: agents built in one ecosystem cannot discover or invoke tools from another. An agent you build in LangGraph cannot dynamically call a tool defined in an MCP server. A research agent cannot delegate a subtask to a verification agent unless both speak the same protocol.
 
-This course addresses the **interoperability layer** that sits below frameworks and above individual LLM APIs. If you already understand agent architectures from [[../../03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling.md|Tool Use y Function Calling]] and have built multi-agent systems with [[../../03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/03 - CrewAI y AutoGen.md|CrewAI y AutoGen]], you know the pain of tool integration. MCP solves this by providing a universal interface that any LLM can use to discover and invoke any tool. A2A solves the equivalent problem for agent-to-agent delegation.
+This course addresses the **interoperability layer** that sits below frameworks and above individual LLM APIs. If you already understand agent architectures from [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling|Tool Use y Function Calling]] and have built multi-agent systems with [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/03 - CrewAI y AutoGen|CrewAI y AutoGen]], you know the pain of tool integration. MCP solves this by providing a universal interface that any LLM can use to discover and invoke any tool. A2A solves the equivalent problem for agent-to-agent delegation.
 
 For your portfolio projects — the **Multi-Agent Research System** with LangGraph cyclic agents and the **StayBot Airbnb Agent** with CrewAI orchestration — MCP would let you replace hardcoded tool bindings with a dynamic registry. Your Research agent could discover new Tavily-like search tools at runtime without code changes. Your StayBot booking agent could delegate calendar availability checks to a specialized A2A subagent. The evaluation layer from your **Automated LLM Evaluation Suite** could hook into the same protocol to audit every tool call. This course teaches you to build the protocol infrastructure that makes all of this possible.
 
-Production agent deployments need the same rigor as production ML systems. [[../../05 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida.md|Deployment patterns]] like canary releases and [[../../05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida.md|monitoring]] apply equally to agent pipelines. This course extends MLOps practices into the agent domain.
+Production agent deployments need the same rigor as production ML systems. [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment patterns]] like canary releases and [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|monitoring]] apply equally to agent pipelines. This course extends MLOps practices into the agent domain.
 
 ---
 
@@ -41,11 +41,11 @@ Each note is **self-contained** and includes complete runnable code, ASCII menta
 
 | Concept | Expected Knowledge | Review If Needed |
 |---------|-------------------|-----------------|
-| LangGraph fundamentals | StateGraph, nodes, edges, conditional routing | [[../../03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/01 - LangChain en Profundidad.md\|LangChain en Profundidad]] |
-| Function calling / tool use | LLM tool schemas, JSON mode, parallel calls | [[../../03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling.md\|Tool Use y Function Calling]] |
+| LangGraph fundamentals | StateGraph, nodes, edges, conditional routing | [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/01 - LangChain en Profundidad\|LangChain en Profundidad]] |
+| Function calling / tool use | LLM tool schemas, JSON mode, parallel calls | [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling\|Tool Use y Function Calling]] |
 | Python async | `async def`, `await`, `asyncio.gather`, context managers | FastAPI documentation |
 | REST / gRPC concepts | HTTP methods, status codes, streaming, protobuf basics | General backend knowledge |
-| Agent architecture | ReAct loop, planning, memory systems | [[../../03 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/04 - Planning y Razonamiento.md\|Planning y Razonamiento]] |
+| Agent architecture | ReAct loop, planning, memory systems | [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/04 - Planning y Razonamiento\|Planning y Razonamiento]] |
 
 > 💡 **Tip**: If you built the Multi-Agent Research System, you already understand agent orchestration. This course moves one layer down — into the protocols that make orchestration interoperable across frameworks.
 

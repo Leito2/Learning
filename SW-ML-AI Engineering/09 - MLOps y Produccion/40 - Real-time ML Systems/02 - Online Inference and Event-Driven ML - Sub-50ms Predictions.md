@@ -401,7 +401,7 @@ response = client.chat.completions.create(
 )
 ```
 
-Saves 80%+ on input token cost. See [[06 - Large Language Models/23 - Serverless LLM Platforms/04 - Serverless Cost Optimization and Patterns|06/23 Cost Optimization]] for details.
+Saves 80%+ on input token cost. See [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|06/23 Cost Optimization]] for details.
 
 ---
 
@@ -600,10 +600,10 @@ async def predict(request):
 - Triton Inference Server — [github.com/triton-inference-server](https://github.com/triton-inference-server)
 - TensorRT — [developer.nvidia.com/tensorrt](https://developer.nvidia.com/tensorrt)
 - ONNX Runtime — [onnxruntime.ai](https://onnxruntime.ai/)
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns|Note 11 — Advanced Async Patterns]] — async patterns
-- [[06 - Large Language Models/23 - Serverless LLM Platforms/04 - Serverless Cost Optimization and Patterns|Serverless Cost Optimization]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering|Note 01 — Streaming Features]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/03 - Change Data Capture for ML|Note 03 — CDC]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/04 - Drift Detection in Real-time|Note 04 — Drift Detection]]
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]] — async patterns
+- [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|Serverless Cost Optimization]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering - Kafka, Faust-Bytewax, and Online Aggregations|Note 01 — Streaming Features]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/03 - Change Data Capture for ML - Debezium, Kafka Connect, and Streaming ETL|Note 03 — CDC]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/04 - Drift Detection in Real-time - ADWIN, Page-Hinkley, and Auto-Retraining|Note 04 — Drift Detection]]
 - [[09 - MLOps y Produccion/40 - Real-time ML Systems/05 - Capstone - Production Real-time ML Pipeline|Note 05 — Capstone]]
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM]] — high-throughput LLM serving
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM]] — high-throughput LLM serving

@@ -11,7 +11,7 @@
 
 Writing a TorchServe handler is the easy part — roughly 30% of the production effort. The remaining 70% is infrastructure: containerizing with sub-1GB images, orchestrating on Kubernetes with GPU constraints, tuning batching parameters against latency/throughput SLAs, and instrumenting observability so that silent model degradation is detected before users complain. Production ML serving is as much a systems engineering problem as it is a data science problem.
 
-This note completes the TorchServe trilogy. In [[01 - TorchServe Architecture - MAR Files and Model Archiver|Note 01]] we learned how TorchServe's frontend/backend architecture enables production-grade serving. In [[02 - Custom Handlers - Multi-Model Endpoints and Advanced Config|Note 02]] we mastered the handler lifecycle. Now we deploy. We will reference containerization patterns from [[../20 - Deployment y Serving/01 - Docker para ML|Docker para ML]], Kubernetes configurations from [[../20 - Deployment y Serving/03 - Kubernetes para ML|Kubernetes para ML]], monitoring strategies from [[../21 - Monitoreo y Mantenimiento/...|Monitoreo]], and CI/CD from [[../29 - CI-CD for ML/...|CI-CD for ML]].
+This note completes the TorchServe trilogy. In [[01 - TorchServe Architecture - MAR Files and Model Archiver|Note 01]] we learned how TorchServe's frontend/backend architecture enables production-grade serving. In [[02 - Custom Handlers - Multi-Model Endpoints and Advanced Config|Note 02]] we mastered the handler lifecycle. Now we deploy. We will reference containerization patterns from [[../20 - Deployment y Serving/01 - Docker para ML|Docker para ML]], Kubernetes configurations from [[../20 - Deployment y Serving/03 - Kubernetes para ML|Kubernetes para ML]], monitoring strategies from [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|Monitoreo]], and CI/CD from [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI-CD for ML]].
 
 The torchbearer metaphor is apt: in production, you carry the flame of model performance through a gauntlet of infrastructure constraints. A 95% accurate model deployed with 2000ms latency is less useful than an 85% accurate model deployed with 50ms latency. Performance tuning is part of model quality.
 
@@ -648,5 +648,5 @@ docker compose down
 - [[../20 - Deployment y Serving/01 - Docker para ML|09/20 - Docker para ML]]
 - [[../20 - Deployment y Serving/03 - Kubernetes para ML|09/20 - Kubernetes para ML]]
 - [[../21 - Monitoreo y Mantenimiento/00 - Bienvenida|09/21 - Monitoreo]]
-- [[../29 - CI-CD for ML/04 - CI-CD for ML|09/29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|09/29 - CI-CD for ML]]
 - [[../../10 - APIs y Microservicios/23 - Infraestructura como Código/...|10/23 - Infra as Code]]

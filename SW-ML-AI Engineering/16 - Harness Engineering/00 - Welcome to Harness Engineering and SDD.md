@@ -174,10 +174,10 @@ This course synthesizes knowledge from multiple production-grade sources:
 | **Alan Buscalas (Gentle Creator)** | Complete harness philosophy: phase gating, result contracts, agent isolation |
 
 Cross-references within this vault:
-- [[../13 - Go Engineering/13 - Go Engineering]] — Language-level harness patterns (provider abstraction, interfaces)
+- [[13 - Go Engineering/00 - Welcome to Go Engineering|13 - Go Engineering]] — Language-level harness patterns (provider abstraction, interfaces)
 - [[../07 - AI Agents/07 - AI Agents]] — Agent architecture fundamentals
 - [[../09 - MLOps/09 - MLOps]] — Production ML infrastructure patterns
-- [[../06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference]] — Inference optimization that benefits from harness control
+- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT, SGLang and Next-Gen Inference]] — Inference optimization that benefits from harness control
 
 ---
 

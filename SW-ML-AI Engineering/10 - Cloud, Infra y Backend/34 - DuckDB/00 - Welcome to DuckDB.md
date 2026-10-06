@@ -12,7 +12,7 @@
 
 **The Problem.** Data scientists love pandas for exploration on datasets under 1 GB. But real-world analytics routinely hit 10 GB, 50 GB, or 500 GB. At that scale pandas' in-memory model collapses with an out-of-memory kill, and Apache Spark becomes the default answer — but Spark requires a cluster, JVM tuning, and YAML ceremonies that would distract any ML engineer. Between the "too small" (pandas) and "too big" (Spark) extremes sits DuckDB: an embedded columnar database that runs analytical SQL at 10-100x pandas speed on the same laptop, with automatic spilling to disk when data exceeds RAM. It is the database that ML engineers never knew they needed.
 
-**Course Map.** This course has 4 notes. Note 00 (you are here) provides context and orientation. [[01 - DuckDB Fundamentals - In-Process OLAP with SQL]] covers the core engine: columnar storage, vectorized execution, the full SQL feature set, and direct Parquet/CSV/JSON queries. [[02 - DuckDB with Python - DataFrames, Parquet and SQL Integration]] explores the Python API and the zero-copy Arrow interop with pandas and Polars. [[03 - DuckDB in ML Pipelines - RAG Preprocessing, Feature Engineering and Production]] applies DuckDB to RAG document preprocessing, feature engineering pipelines, and production analytics sidecars. Prerequisites: working knowledge of SQL ([[01 - Curso SQL con PostgreSQL]]), basic Python, and familiarity with pandas DataFrames.
+**Course Map.** This course has 4 notes. Note 00 (you are here) provides context and orientation. [[01 - DuckDB Fundamentals - In-Process OLAP with SQL]] covers the core engine: columnar storage, vectorized execution, the full SQL feature set, and direct Parquet/CSV/JSON queries. [[02 - DuckDB with Python - DataFrames, Parquet and SQL Integration]] explores the Python API and the zero-copy Arrow interop with pandas and Polars. [[03 - DuckDB in ML Pipelines - RAG Preprocessing, Feature Engineering and Production]] applies DuckDB to RAG document preprocessing, feature engineering pipelines, and production analytics sidecars. Prerequisites: working knowledge of SQL ([[01 - Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|01 - Curso SQL con PostgreSQL]]), basic Python, and familiarity with pandas DataFrames.
 
 ---
 
@@ -78,7 +78,7 @@ conn.close()
 - [DuckDB Architecture Paper (CIDR 2022)](https://duckdb.org/why_duckdb)
 - [MotherDuck — Managed DuckDB Cloud](https://motherduck.com/)
 - [[01 - DuckDB Fundamentals - In-Process OLAP with SQL]]
-- [[01 - Curso SQL con PostgreSQL]]
-- [[06/27 - Apache Spark for ML]]
-- [[14/03 - Rust Polars Internals]]
-- [[10/28 - BigQuery for ML]]
+- [[01 - Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|01 - Curso SQL con PostgreSQL]]
+- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/00 - Welcome - Portkey AI Gateway and Observability|27 - Apache Spark for ML]]
+- [[14 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|03 - Rust Polars Internals]]
+- [[10 - Cloud, Infra y Backend/28 - BigQuery for ML/00 - Welcome to BigQuery for ML|28 - BigQuery for ML]]

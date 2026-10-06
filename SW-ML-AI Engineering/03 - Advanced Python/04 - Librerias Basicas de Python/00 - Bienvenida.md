@@ -11,7 +11,7 @@ A continuación se presenta el mapa de ruta de este curso. Cada nota está dise�
 
 | # | Nota | Enlace Interno | Enfoque Principal |
 |---|------|----------------|-------------------|
-| 00 | Bienvenida | [[01 - Advanced Python/04 - Librerias Basicas de Python/00 - Bienvenida]] | Contexto, glosario y objetivos |
+| 00 | Bienvenida | [[03 - Advanced Python/04 - Librerias Basicas de Python/00 - Bienvenida\|00 - Bienvenida]] | Contexto, glosario y objetivos |
 | 01 | Math y Random | [[01 - Math y Random]] | Cálculo numérico, estadística y aleatoriedad |
 | 02 | Datetime y Calendar | [[02 - Datetime y Calendar]] | Manejo temporal y zonas horarias |
 | 03 | Os y Sys | [[03 - Os y Sys]] | Interacción con el sistema operativo |
@@ -122,7 +122,7 @@ Caso real: En una startup de analítica de datos, el pipeline de entrenamiento n
 
 ## 6. Mapa de Conocimientos Previos
 
-Este módulo asume que ya dominas los conceptos de [[02 - Python Intermedio]] y [[03 - Python Avanzado]]. En particular, se espera familiaridad con comprensiones de listas, manejo de excepciones, funciones de orden superior y clases. Si encuentras dificultades con los ejemplos orientados a objetos, revisa las notas de fundamentos avanzados antes de continuar.
+Este módulo asume que ya dominas los conceptos de [[03 - Advanced Python/02 - Python Intermedio/00 - Bienvenida|02 - Python Intermedio]] y [[03 - Advanced Python/03 - Python Avanzado/00 - Bienvenida|03 - Python Avanzado]]. En particular, se espera familiaridad con comprensiones de listas, manejo de excepciones, funciones de orden superior y clases. Si encuentras dificultades con los ejemplos orientados a objetos, revisa las notas de fundamentos avanzados antes de continuar.
 
 
 📦 **Código de Compresión**

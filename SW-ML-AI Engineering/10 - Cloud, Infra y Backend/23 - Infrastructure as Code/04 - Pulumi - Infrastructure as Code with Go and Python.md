@@ -13,7 +13,7 @@
 
 Pulumi asks a simple question that had profound consequences for the IaC landscape: what if you could use real programming languages instead of a domain-specific configuration language? Under the hood, Pulumi uses the **exact same Terraform providers**. When you `pulumi up`, the Pulumi engine translates your Go (or Python, or TypeScript) code into the same gRPC calls to the same `hashicorp/aws` provider binary that Terraform uses. The state engine, the DAG, the dependency graph — all conceptually identical. The difference is entirely in the authoring experience: instead of writing HCL, you write Go.
 
-The name "Pulumi" comes from the Māori word *pulumi*, meaning "to embrace" or "to encompass." Pulumi Inc. founders (former Microsoft Cloud executives) chose it to evoke the idea of infrastructure that embraces the full power of general-purpose programming. The tool was launched in 2018, and as of 2024 has surpassed 1 billion cumulative downloads. For a vault with 73+ Go notes — including [[13/02 - Go for Cloud Native|Go Cloud Native]] and [[13/04 - DevSecOps and CLI Tools|DevSecOps Go]] — Pulumi is the natural IaC choice. Your infrastructure becomes Go code in the same monorepo, reviewed by the same team, tested with the same `go test` command, and deployed through the same CI pipeline.
+The name "Pulumi" comes from the Māori word *pulumi*, meaning "to embrace" or "to encompass." Pulumi Inc. founders (former Microsoft Cloud executives) chose it to evoke the idea of infrastructure that embraces the full power of general-purpose programming. The tool was launched in 2018, and as of 2024 has surpassed 1 billion cumulative downloads. For a vault with 73+ Go notes — including [[13 - Go Engineering/02 - Go for Cloud Native/00 - Welcome|Go Cloud Native]] and [[13 - Go Engineering/04 - DevSecOps and CLI Tools/00 - Welcome|DevSecOps Go]] — Pulumi is the natural IaC choice. Your infrastructure becomes Go code in the same monorepo, reviewed by the same team, tested with the same `go test` command, and deployed through the same CI pipeline.
 
 This matters concretely for ML infrastructure. In HCL, computing the number of GPU instances based on model size, desired parallelism, and spot instance availability requires fragile combinations of `count`, `for`, and `locals`. In Go, it's a function. In HCL, conditional resource creation (only deploy the GPU cluster if a flag is set) requires the `count = var.enable_gpu ? 1 : 0` idiom. In Go, it's an `if` statement. Pulumi does not replace Terraform — it extends the same infrastructure engine with the expressive power of general-purpose languages. Foundational IaC concepts (state, DAG, providers) are covered in [[01 - Terraform Fundamentals - HCL, State and Resource Graph|Note 01]].
 
@@ -553,6 +553,6 @@ func main() {
 - Turner, J. (2024). *Pulumi in Action*. Manning Publications. — Comprehensive guide to Pulumi with examples in Go, Python, and TypeScript.
 - [[01 - Terraform Fundamentals - HCL, State and Resource Graph|Note 01 — HCL, State, and DAG]]
 - [[02 - Advanced Terraform - Loops, Functions, Dynamic Blocks and Lifecycle|Note 02 — Advanced Terraform]]
-- [[13/02 - Go for Cloud Native]]
-- [[13/04 - DevSecOps and CLI Tools]]
+- [[13 - Go Engineering/02 - Go for Cloud Native/00 - Welcome|02 - Go for Cloud Native]]
+- [[13 - Go Engineering/04 - DevSecOps and CLI Tools/00 - Welcome|04 - DevSecOps and CLI Tools]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/01 - Fundamentos de Cloud y Modelos de Servicio|Cloud Fundamentals]]

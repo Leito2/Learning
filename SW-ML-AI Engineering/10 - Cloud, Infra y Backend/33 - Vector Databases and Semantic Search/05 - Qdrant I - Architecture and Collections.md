@@ -14,7 +14,7 @@ Qdrant is an open-source vector database written in **Rust**, designed from the 
 
 Qdrant's architecture centers on three core abstractions. **Collections** are logical namespaces that hold points sharing the same vector configuration (dimension, distance metric, HNSW parameters). Collections are independently configurable and isolated, making them ideal for multi-tenant deployments. **Points** are the unit of storage: a unique ID, one or more named vectors, and an arbitrary JSON payload. **Payload indexes** accelerate metadata filtering on payload fields, enabling Qdrant to apply business logic (category filters, price ranges, geo-radius) before or after the vector search.
 
-This note covers all three abstractions in depth: creating and configuring collections, modeling points with payloads, building payload indexes, and understanding the filtering pipeline. The next note, [[06 - Qdrant II - Distributed and Cloud Deployment]], covers clustering, replication, snapshots, cloud operations, and integration with LangChain and LlamaIndex. This module also connects to [[02 - Indexing Algorithms Deep Dive]] (HNSW internals) and [[14 - Rust Engineering]] for the Rust performance context.
+This note covers all three abstractions in depth: creating and configuring collections, modeling points with payloads, building payload indexes, and understanding the filtering pipeline. The next note, [[06 - Qdrant II - Distributed and Cloud Deployment]], covers clustering, replication, snapshots, cloud operations, and integration with LangChain and LlamaIndex. This module also connects to [[02 - Indexing Algorithms Deep Dive]] (HNSW internals) and [[14 - Rust Engineering/00 - Welcome to Rust Engineering|14 - Rust Engineering]] for the Rust performance context.
 
 ---
 
@@ -290,7 +290,7 @@ curl -s -X POST http://localhost:6333/collections/products/points/search \
 - Qdrant Go Client: https://github.com/qdrant/go-client
 - [[02 - Indexing Algorithms Deep Dive]] — HNSW algorithmic foundations
 - [[06 - Qdrant II - Distributed and Cloud Deployment]] — Clustering, replication, cloud ops
-- [[14 - Rust Engineering]] — Rust systems programming context
+- [[14 - Rust Engineering/00 - Welcome to Rust Engineering|14 - Rust Engineering]] — Rust systems programming context
 
 ## 📦 Código de compresión
 

@@ -32,7 +32,7 @@ This course fixes that: 10 modules covering the entire Pydantic v2 surface area 
 ## Pre-requisites
 
 - Python 3.10+ typing – [[../03 - Python Avanzado/00 - Bienvenida|Python Avanzado]]
-- Basic FastAPI – [[../../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]
+- Basic FastAPI – [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]
 
 ## References
 
@@ -43,8 +43,8 @@ This course fixes that: 10 modules covering the entire Pydantic v2 surface area 
 
 ## Cross-links in the Vault
 
-- PydanticAI agent framework: [[../../../07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/02 - PydanticAI - Type-Safe Agents|07/17/02 - PydanticAI]]
-- Pydantic for ML schemas: [[../../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/02 - Pydantic v2 for ML Input Output Schemas|10/31/02 - Pydantic v2 for ML]]
-- FastAPI caching with Pydantic: [[../../../10 - Cloud, Infra y Backend/42 - Caching Strategies for FastAPI/03 - Response Caching Decorators|10/42/03 - Response Caching]]
-- Structured LLM outputs: [[../../../06 - Large Language Models/08 - Generacion de Texto y Decodificacion/02 - Control de Generacion|06/08/02 - Control de Generacion]]
-- LLM Gateway: [[../../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/06 - Capstone - Multi-Provider RAG Gateway with LiteLLM|06/19/06 - LiteLLM Capstone]]
+- PydanticAI agent framework: [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/02 - PydanticAI - Type-Safe Agents|07/17/02 - PydanticAI]]
+- Pydantic for ML schemas: [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/02 - Pydantic v2 for ML Input Output Schemas|10/31/02 - Pydantic v2 for ML]]
+- FastAPI caching with Pydantic: [[10 - Cloud, Infra y Backend/42 - Caching Strategies for FastAPI/03 - Response Caching Decorators|10/42/03 - Response Caching]]
+- Structured LLM outputs: [[06 - Large Language Models/08 - Generacion de Texto y Decodificacion/02 - Control de Generacion|06/08/02 - Control de Generacion]]
+- LLM Gateway: [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/06 - Capstone - Multi-Provider RAG Gateway with LiteLLM|06/19/06 - LiteLLM Capstone]]

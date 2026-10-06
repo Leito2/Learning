@@ -17,7 +17,7 @@ Cualquier pipeline de Machine Learning — desde un CSV de Titanic hasta un batc
 
 Esta nota cubre el mínimo que necesitas para esa prueba y para tu trabajo diario. La profundidad teórica es deliberadamente inferior a la de un curso de ML: aquí el objetivo es **destreza operativa**, no maestría. Si ya dominas las colecciones built-in de Python (listas, tuplas, dicts, sets), NumPy te resultará natural — es la misma idea (colección indexada de elementos) con tres superpoderes: **layout de memoria contiguo**, **operaciones vectorizadas** y **broadcasting**.
 
-Conectamos con [[01 - Math y Random]] (cuándo basta con `math`/`random` y cuándo necesitas NumPy), con [[05 - Computer Vision Pipeline]] (donde NumPy se usa intensivamente para mAP, IoU, cumulativos) y con [[../05 - Librerias Especificas]] (Requests, Sqlite3, Pathlib — NumPy no es stdlib pero vive en el mismo orbit de "herramientas que tocas a diario").
+Conectamos con [[01 - Math y Random]] (cuándo basta con `math`/`random` y cuándo necesitas NumPy), con [[05 - Computer Vision Pipeline]] (donde NumPy se usa intensivamente para mAP, IoU, cumulativos) y con [[03 - Advanced Python/05 - Librerias Especificas/00 - Bienvenida|05 - Librerias Especificas]] (Requests, Sqlite3, Pathlib — NumPy no es stdlib pero vive en el mismo orbit de "herramientas que tocas a diario").
 
 ---
 
@@ -322,4 +322,4 @@ print(f"np.sum:     {(t3-t2)*1000:6.1f} ms  ({s1/s2:.0f}× más rápido)")
 - Related Vault: [[05 - Json y Pickle]] (JSON → np.array)
 - Related Vault: [[../../05 - Deep Learning y Computer Vision/06 - Computer Vision Pipeline/05 - Computer Vision Pipeline|Computer Vision Pipeline]] (uso real de NumPy)
 - Related Vault: [[09 - Pandas para Analisis de Datos|Pandas para Análisis de Datos]] (próxima nota)
-- Related Vault: [[../../../projects/01 - Kaggle Competitions - Project Guide|Kaggle Competitions]] (NumPy en competencia)
+- Related Vault: [[projects/01 - Kaggle Competitions - Project Guide|Kaggle Competitions]] (NumPy en competencia)

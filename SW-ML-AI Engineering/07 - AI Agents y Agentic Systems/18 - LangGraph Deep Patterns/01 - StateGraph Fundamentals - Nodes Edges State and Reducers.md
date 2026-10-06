@@ -1,6 +1,6 @@
 # 🕸️ StateGraph Fundamentals — Nodes, Edges, State and Reducers
 
-The `StateGraph` is LangGraph's only primitive. Every LangGraph agent — from the simplest "call an LLM" one-shot to the cyclic [[../15 - MCP and Agentic Protocols/03 - LangGraph + MCP Integration.md|LangGraph + MCP]] graph or the [[../../../13 - Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs.md|Go RAG pipelines]] that pass messages back and forth — is a `StateGraph`. Once you internalize the four contracts (state, node, edge, runtime), the framework becomes predictable: every "advanced" feature is a permutation of those four.
+The `StateGraph` is LangGraph's only primitive. Every LangGraph agent — from the simplest "call an LLM" one-shot to the cyclic [[../15 - MCP and Agentic Protocols/03 - LangGraph + MCP Integration.md|LangGraph + MCP]] graph or the [[13 - Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|Go RAG pipelines]] that pass messages back and forth — is a `StateGraph`. Once you internalize the four contracts (state, node, edge, runtime), the framework becomes predictable: every "advanced" feature is a permutation of those four.
 
 This note builds that mental model from first principles. We start with the simplest possible graph and progressively add state, reducers, partial updates, and the `config["configurable"]` runtime context. By the end, you will be able to read any LangGraph source code in the wild and predict the state transitions.
 
@@ -407,6 +407,6 @@ This file is the entry point. The next note ([[02 - Conditional Routing and Dyna
 
 - [[00 - Welcome to LangGraph Deep Patterns|Welcome]] — course map and prerequisites.
 - [[../15 - MCP and Agentic Protocols/03 - LangGraph + MCP Integration.md|LangGraph + MCP Integration]] — applies `StateGraph` to dynamic tool discovery.
-- [[../../../03 - Advanced Python/06 - Pydantic Deep Dive/01 - BaseModel, Field and Type System.md|Pydantic BaseModel]] — the alternative state schema.
-- [[../../../03 - Advanced Python/03 - Python Avanzado/05 - Type Hints y Anotaciones.md|Type Hints y Anotaciones]] — the `Annotated` syntax from PEP 593.
+- [[03 - Advanced Python/06 - Pydantic Deep Dive/01 - BaseModel, Field and Type System|Pydantic BaseModel]] — the alternative state schema.
+- [[03 - Advanced Python/03 - Python Avanzado/05 - Type Hints y Anotaciones|Type Hints y Anotaciones]] — the `Annotated` syntax from PEP 593.
 - LangGraph StateGraph API: https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.StateGraph

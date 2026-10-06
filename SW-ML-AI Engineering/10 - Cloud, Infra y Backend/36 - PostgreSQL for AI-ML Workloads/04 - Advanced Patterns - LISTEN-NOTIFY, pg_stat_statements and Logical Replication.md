@@ -397,9 +397,9 @@ This config allows 10,000 client connections multiplexed across 50 server connec
 
 ## References
 
-- [[36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — vector queries that this observability targets
-- [[36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings]] — pg_prewarm essential for DiskANN
-- [[36 - PostgreSQL for AI-ML Workloads/05 - Capstone - End-to-End ML Feature Store on Postgres]] — puts all these patterns together
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search|01 - pgvector Production Tuning - HNSW, Quantization and Hybrid Search]] — vector queries that this observability targets
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/03 - pgvectorscale, DiskANN and Time-Series + Embeddings|03 - pgvectorscale, DiskANN and Time-Series + Embeddings]] — pg_prewarm essential for DiskANN
+- [[10 - Cloud, Infra y Backend/36 - PostgreSQL for AI-ML Workloads/05 - Capstone - End-to-End ML Feature Store on Postgres|05 - Capstone - End-to-End ML Feature Store on Postgres]] — puts all these patterns together
 - [[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/01 - PostgreSQL Avanzado]] — base Postgres mechanics (Spanish)
 - [[10 - Cloud, Infra y Backend/25 - Bases de Datos y Message Queues/04 - Message Queues y Streaming]] — alternative event-bus options
 - [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/05 - Production Deployment and Performance]] — connection pooling in inference services

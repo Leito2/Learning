@@ -119,7 +119,7 @@ nparr = np.frombuffer(jpg_bytes, dtype=np.uint8)
 img_decoded = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 ```
 
-Esto evita escribir a disco y es esencial para microservicios con FastAPI (ver [[../10 - Cloud, Infra y Backend/31 - FastAPI for ML/03 - Streaming, Background Tasks, and Real-Time Endpoints|FastAPI para ML]]).
+Esto evita escribir a disco y es esencial para microservicios con FastAPI (ver [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/03 - Streaming, Background Tasks, and Real-Time Endpoints|FastAPI para ML]]).
 
 ---
 

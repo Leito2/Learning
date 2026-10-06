@@ -489,5 +489,5 @@ In production, these flow to your SIEM. The `dst_host`, `l7_action`, `l7_target`
 - LangGraph + MCP Integration: [[../15 - MCP and Agentic Protocols/03 - LangGraph + MCP Integration.md|LangGraph + MCP Integration]]
 - Tool Use y Function Calling: [[../11 - Fundamentos de Agentes AI/02 - Tool Use y Function Calling.md|Tool Use y Function Calling]]
 - Multi-Agent Research Architecture: [[../13 - Sistemas Multi-Agente/01 - Arquitecturas Multi-Agente.md|Multi-Agent Research System]]
-- LLM Security and Guardrails: [[../../../06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security.md|LLM Security and Guardrails]]
+- LLM Security and Guardrails: [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security and Guardrails]]
 - Capstone: Secure Coding Agent in Production: [[05 - Production Deployment and Capstone - Secure Coding Agent in Production.md|Production Deployment]]

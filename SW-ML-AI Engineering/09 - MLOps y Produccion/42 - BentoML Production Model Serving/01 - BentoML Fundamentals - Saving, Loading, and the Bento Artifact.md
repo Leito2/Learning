@@ -521,7 +521,7 @@ bentoml.sklearn.save_model("iris_classifier", model_v2)  # new version
 - BentoML docs — [docs.bentoml.com](https://docs.bentoml.com)
 - BentoML GitHub — [github.com/bentoml/BentoML](https://github.com/bentoml/BentoML)
 - BentoML examples — [github.com/bentoml/BentoML/tree/main/examples](https://github.com/bentoml/BentoML/tree/main/examples)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM]] — LLM serving comparison
-- [[09 - MLOps y Produccion/32 - KServe and Knative\|KServe]] — K8s-native serving
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] — custom FastAPI alternative
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM]] — LLM serving comparison
+- [[09 - MLOps y Produccion/32 - KServe and Knative/00 - Welcome to KServe and Knative\|KServe]] — K8s-native serving
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] — custom FastAPI alternative
 - [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/02 - Service Patterns - REST, gRPC, Async, Batching|Note 02 — Service Patterns]]

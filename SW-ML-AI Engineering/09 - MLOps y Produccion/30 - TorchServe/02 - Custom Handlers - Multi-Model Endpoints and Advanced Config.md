@@ -11,7 +11,7 @@
 
 Default handlers serve 80% of use cases, but the remaining 20% — custom preprocessing, multi-model ensembles, inference-time logic, and specialized batching — require understanding the handler system at depth. A TorchServe handler is not just a function wrapper; it is a class that controls the **entire lifecycle** of model serving: initialization (one-time heavy ops), preprocessing (per-request light ops), inference (per-request computation), and postprocessing (per-request serialization). This lifecycle design is the key insight: amortizing expensive operations (model loading, GPU warmup) across thousands of requests while keeping per-request costs minimal.
 
-This note extends the architecture discussed in [[01 - TorchServe Architecture - MAR Files and Model Archiver]] and prepares you for the production deployment patterns in [[03 - Production Deployment - Docker, Kubernetes, Performance and Monitoring]]. We will build on the PyTorch fundamentals from [[../../05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/...|05/03 - DL con PyTorch]] and connect to API design patterns from [[../../10 - APIs y Microservicios/31 - FastAPI for ML/...|10/31 - FastAPI for ML]].
+This note extends the architecture discussed in [[01 - TorchServe Architecture - MAR Files and Model Archiver]] and prepares you for the production deployment patterns in [[03 - Production Deployment - Docker, Kubernetes, Performance and Monitoring]]. We will build on the PyTorch fundamentals from [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|05/03 - DL con PyTorch]] and connect to API design patterns from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|10/31 - FastAPI for ML]].
 
 The handler system is where ML engineering truly diverges from software engineering: you are not just responding to HTTP requests — you are managing GPU memory, orchestrating model ensembles, performing feature engineering at inference time, and ensuring that a model trained on one pipeline runs correctly on a serving pipeline with different input formats. A bad handler silently returns wrong predictions; a good handler is invisible.
 
@@ -525,4 +525,4 @@ class BertClassifierHandler(BaseHandler):
 - [[03 - Production Deployment - Docker, Kubernetes, Performance and Monitoring|Note 03 — Production]]
 - [[../20 - Deployment y Serving/02 - Model Serving Patterns|09/20 - Model Serving Patterns]]
 - [[../../05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|05/03 - DL con PyTorch]]
-- [[../../10 - APIs y Microservicios/31 - FastAPI for ML/...|10/31 - FastAPI for ML]]
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|10/31 - FastAPI for ML]]

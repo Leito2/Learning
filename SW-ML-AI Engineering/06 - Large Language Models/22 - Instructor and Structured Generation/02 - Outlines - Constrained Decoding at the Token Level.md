@@ -270,7 +270,7 @@ model = llamacpp("models/llama-3.1-8b-instruct.Q5_K_M.gguf")
 - Best for: edge deployment, on-device, llama.cpp/GGUF models.
 - Constraint overhead: 15-25% (GBNF grammar evaluation).
 - Throughput: 50-300 tokens/sec on M2 Pro / M3 Max; 20-80 on CPU server.
-- Pairs well with the on-device ML track from [[15 - Transversal Skills/04 - WebGPU and On-Device ML|WebGPU and On-Device ML]] for browser-side constraints (via WebLLM).
+- Pairs well with the on-device ML track from [[15 - Transversal Skills/04 - WebGPU and On-Device ML/00 - Welcome to WebGPU and On-Device ML|WebGPU and On-Device ML]] for browser-side constraints (via WebLLM).
 
 ### 3.4 Ollama (server, OpenAI-compatible)
 
@@ -364,7 +364,7 @@ resp = requests.post(
 
 Every completion returns valid JSON — no validation loop needed in the application code. The same applies to SGLang, TGI, and llama.cpp server.
 
-Caso real: A fintech client deployed vLLM + Outlines for KYC (Know Your Customer) form extraction. Pre-Outlines, their QA team manually reviewed ~12% of forms for malformed fields. Post-Outlines, the review queue was reduced to forms where the **OCR** was uncertain — a different problem (image quality) that OpenTelemetry traces from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]] can flag at intake. Zero schema violations in 6 months of operation.
+Caso real: A fintech client deployed vLLM + Outlines for KYC (Know Your Customer) form extraction. Pre-Outlines, their QA team manually reviewed ~12% of forms for malformed fields. Post-Outlines, the review queue was reduced to forms where the **OCR** was uncertain — a different problem (image quality) that OpenTelemetry traces from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]] can flag at intake. Zero schema violations in 6 months of operation.
 
 ---
 
@@ -478,9 +478,9 @@ If your schema has all-optional fields with no required token, the model can emi
 - vLLM guided decoding — [docs.vllm.ai/en/latest/features/structured_outputs](https://docs.vllm.ai/en/latest/features/structured_outputs.html)
 - XGrammar (alternative) — [github.com/mlc-ai/xgrammar](https://github.com/mlc-ai/xgrammar)
 - Lark grammar syntax — [lark-parser.readthedocs.io](https://lark-parser.readthedocs.io/)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — backend for high-throughput Outlines
-- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference|ColBERT/SGLang]] — SGLang structured output with regex/JSON
-- [[03 - Advanced Python/06 - Pydantic Deep Dive|Pydantic Deep Dive]] — schema source for Outlines
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — backend for high-throughput Outlines
+- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|ColBERT/SGLang]] — SGLang structured output with regex/JSON
+- [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|Pydantic Deep Dive]] — schema source for Outlines
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/01 - Instructor - Pydantic-Native Structured Outputs|Note 01 — Instructor]] — orchestration layer, complements Outlines
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/04 - LMQL - A Query Language for LLMs|Note 04 — LMQL]] — alternative declarative approach
 - [[06 - Large Language Models/22 - Instructor and Structured Generation/05 - Capstone - Production Structured Extraction Service|Note 05 — Capstone]] — combines Outlines + Instructor + FastAPI

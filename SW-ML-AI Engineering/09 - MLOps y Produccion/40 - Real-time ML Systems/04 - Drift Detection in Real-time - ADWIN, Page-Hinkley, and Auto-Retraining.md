@@ -7,7 +7,7 @@
 - Implement streaming drift detection with ADWIN, Page-Hinkley, EDDM
 - Set up real-time drift dashboards with Evidently + Prometheus
 - Configure auto-retraining triggered by drift signals
-- Use the drift detection patterns from [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently]] in production
+- Use the drift detection patterns from [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently]] in production
 - Calibrate drift thresholds to minimize false positives
 - Apply drift detection to portfolio projects (LLM Eval Suite, AutoTrain)
 
@@ -15,7 +15,7 @@
 
 Models degrade in production. Data distributions shift. User behavior changes. Adversaries adapt. Without drift detection, your model silently becomes wrong.
 
-**Evidently AI** (covered in [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|09/31]]) gives you offline drift reports on batch data. But real-time drift detection requires **streaming algorithms**: ADWIN, Page-Hinkley, EDDM. These process one sample at a time, in O(1) memory, and detect distribution shifts as they happen.
+**Evidently AI** (covered in [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|09/31]]) gives you offline drift reports on batch data. But real-time drift detection requires **streaming algorithms**: ADWIN, Page-Hinkley, EDDM. These process one sample at a time, in O(1) memory, and detect distribution shifts as they happen.
 
 This note covers:
 - The three types of drift (concept, data, label)
@@ -249,7 +249,7 @@ class DriftDetector:
 
 ## 5. Wiring Drift Detection to LangFuse
 
-LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|09/36]]) tracks prediction quality via LLM-as-judge scores. Combine with ADWIN:
+LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|09/36]]) tracks prediction quality via LLM-as-judge scores. Combine with ADWIN:
 
 ```python
 from langfuse import observe
@@ -603,10 +603,10 @@ if adwin.drift_detected:
 - River ML — [riverml.xyz](https://riverml.xyz/)
 - ADWIN paper — [riverml.xyz/latest/api/drift/ADWIN](https://riverml.xyz/latest/api/drift/ADWIN/)
 - Evidently AI — [evidentlyai.com](https://evidentlyai.com/)
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently course]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]]
-- [[09 - MLOps y Produccion/22 - End-to-End ML Project|E2E ML Project]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering|Note 01 — Streaming Features]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML|Note 02 — Online Inference]]
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently course]]
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]]
+- [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|E2E ML Project]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering - Kafka, Faust-Bytewax, and Online Aggregations|Note 01 — Streaming Features]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML - Sub-50ms Predictions|Note 02 — Online Inference]]
 - [[09 - MLOps y Produccion/40 - Real-time ML Systems/05 - Capstone - Production Real-time ML Pipeline|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems|Incident Response]] — drift triggers alerts
+- [[09 - MLOps y Produccion/39 - Production Incident Response for AI Systems/00 - Welcome - Why Incident Response for AI Systems|Incident Response]] — drift triggers alerts

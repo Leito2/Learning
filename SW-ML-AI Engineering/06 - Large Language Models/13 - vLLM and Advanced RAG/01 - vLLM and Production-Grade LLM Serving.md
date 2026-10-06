@@ -795,4 +795,4 @@ Deploy a production-ready inference API that accepts prompts and returns generat
 - HuggingFace TGI: https://github.com/huggingface/text-generation-inference
 - TensorRT-LLM: https://github.com/NVIDIA/TensorRT-LLM
 - NVIDIA GPU Operator for Kubernetes: https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest
-- Related vault notes: [[../../02 - Large Language Models/09 - Sistemas de LLMs en Produccion/05 - Caso Practico - API de LLM Escalable.md]], [[../17 - ML Platform Engineering/05 - ML Platform Engineering.md]], [[../04 - Production RAG System.md]]
+- Related vault notes: [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/05 - Caso Practico - API de LLM Escalable|05 - Caso Practico - API de LLM Escalable]], [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|05 - ML Platform Engineering]], [[projects/04 - Production RAG System - Project Guide|04 - Production RAG System]]

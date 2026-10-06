@@ -486,4 +486,4 @@ def test_metamorphic_roundtrip_translation(classifier, tokenizer, translator):
 
 💡 **Tip:** Combine differential testing with CI: every model training run generates a `candidate_model.pkl` and a `production_model.pkl`. A differential test runs 10,000 random inputs through both and flags discrepancies > a configurable threshold. This catches regression bugs in training that no metric can detect.
 
-[[../09 - MLOps y Produccion/29 - CI-CD for ML/|CI/CD for ML]] | [[../09 - MLOps y Produccion/22 - End-to-End ML Pipeline/|End-to-End ML Pipeline]] | [[../09 - MLOps y Produccion/31 - Evidently for Model Monitoring/|Evidently]]
+[[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI/CD for ML]] | [[../09 - MLOps y Produccion/22 - End-to-End ML Pipeline/|End-to-End ML Pipeline]] | [[../09 - MLOps y Produccion/31 - Evidently for Model Monitoring/|Evidently]]

@@ -230,7 +230,7 @@ op.output("kafka_out", aggregated, KafkaSink(...))
 
 ### 3.3 Storing aggregated features to Feast
 
-Feast (covered in [[09 - MLOps y Produccion/27 - Feast and Feature Stores|09/27 Feast]]) provides online feature storage. Push aggregated features to Feast from Bytewax:
+Feast (covered in [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|09/27 Feast]]) provides online feature storage. Push aggregated features to Feast from Bytewax:
 
 ```python
 from feast import FeatureStore
@@ -493,7 +493,7 @@ op.map("batch_feast", features, batch_writes_to_feast)  # accumulates 1000 event
 - Faust archived — [github.com/faust-streaming/faust](https://github.com/faust-streaming/faust)
 - Feast — [feast.dev](https://feast.dev/)
 - [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/01 - Apache Kafka|Kafka note 01]] — Kafka basics
-- [[09 - MLOps y Produccion/27 - Feast and Feature Stores|Feast course]] — online feature store
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML|Note 02 — Online Inference]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/03 - Change Data Capture for ML|Note 03 — CDC]]
+- [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|Feast course]] — online feature store
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML - Sub-50ms Predictions|Note 02 — Online Inference]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/03 - Change Data Capture for ML - Debezium, Kafka Connect, and Streaming ETL|Note 03 — CDC]]
 - [[09 - MLOps y Produccion/40 - Real-time ML Systems/05 - Capstone - Production Real-time ML Pipeline|Note 05 — Capstone]]

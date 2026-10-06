@@ -471,7 +471,7 @@ jobs:
 - Bridgecrew. (2024). *Checkov Documentation*. https://www.checkov.io/ — Compliance and security scanning for IaC.
 - HashiCorp. (2024). *Terraform Test Documentation*. https://developer.hashicorp.com/terraform/language/tests — HCL-native testing framework.
 - [[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/06 - CI-CD and GitOps for ML Infrastructure|CI-CD and GitOps]]
-- [[09/29 - CI-CD for ML]]
-- [[09/21 - Monitoreo y Mantenimiento]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|21 - Monitoreo y Mantenimiento]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/04 - Redes y Seguridad en Cloud|Cloud Networking]]
-- [[13/04 - DevSecOps Go]]
+- [[13 - Go Engineering/04 - DevSecOps and CLI Tools/00 - Welcome|04 - DevSecOps Go]]

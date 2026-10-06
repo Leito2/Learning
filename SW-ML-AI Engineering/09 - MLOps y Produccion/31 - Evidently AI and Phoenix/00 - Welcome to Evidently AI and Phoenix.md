@@ -13,7 +13,7 @@
 
 Why do ML monitoring and LLM observability exist as **separate disciplines** from traditional DevOps monitoring? Because infrastructure metrics — CPU %, memory pressure, p99 latency, error rate — measure whether your *servers* are healthy. They say nothing about whether your *model* is healthy. A Kubernetes pod serving predictions at 50ms with 0.5% error rate can be perfectly operational while every prediction it serves is garbage, because the input data distribution shifted three weeks ago and nobody noticed. ML monitoring must answer a fundamentally different question: **"Is the world the model was trained on still the same world it's operating in?"** This requires distributional statistics (KS tests, JS divergence, Wasserstein distance), not threshold alerts on RAM consumption.
 
-Your portfolio project — the **Automated LLM Evaluation Suite** — already implements semantic drift detection with a Gemma Golden Judge. This course gives that work theoretical depth: the statistical foundations that justify *why* drift detection matters, the test suites that catch degradation before it hits production, and the trace-level observability framework (Phoenix) that extends these ideas from classical ML into the LLM era. You are not learning abstract tools — you are learning the discipline that your project embodies. See [[09/21 - Monitoreo y Mantenimiento]], which introduces Evidently in its case study context, and [[07/15 - Agent Evaluation and Observability]], which covers semantic drift at the agent level.
+Your portfolio project — the **Automated LLM Evaluation Suite** — already implements semantic drift detection with a Gemma Golden Judge. This course gives that work theoretical depth: the statistical foundations that justify *why* drift detection matters, the test suites that catch degradation before it hits production, and the trace-level observability framework (Phoenix) that extends these ideas from classical ML into the LLM era. You are not learning abstract tools — you are learning the discipline that your project embodies. See [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|21 - Monitoreo y Mantenimiento]], which introduces Evidently in its case study context, and [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|15 - Agent Evaluation and Observability]], which covers semantic drift at the agent level.
 
 ---
 
@@ -30,7 +30,7 @@ ML monitoring splits cleanly along a fault line created by the LLM revolution:
 | **Primary output** | HTML reports, JSON → CI/CD gates | Traces, UMAP clusters, eval scores |
 | **Where in the pipeline** | Training-time + periodic batch | Real-time streaming traces |
 
-This is not a "vs." comparison — these tools address different generations of the same problem. Evidently is used inside [[09/21 - Monitoreo y Mantenimiento]] as the reference implementation for drift detection; Phoenix appears in [[07/12 - Despliegue y Observabilidad de Agentes]] as the agent observability layer. Together they span the full MLOps monitoring stack.
+This is not a "vs." comparison — these tools address different generations of the same problem. Evidently is used inside [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|21 - Monitoreo y Mantenimiento]] as the reference implementation for drift detection; Phoenix appears in [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida|12 - Despliegue y Observabilidad de Agentes]] as the agent observability layer. Together they span the full MLOps monitoring stack.
 
 ## 2. Why Data Changes, Not Code Changes, Cause Most Failures
 
@@ -113,8 +113,8 @@ print(f"LLM output (traced by Phoenix): {result[:100]}...")
 
 - Evidently AI Documentation: [docs.evidentlyai.com](https://docs.evidentlyai.com)
 - Phoenix by Arize Documentation: [docs.arize.com/phoenix](https://docs.arize.com/phoenix)
-- [[09/21 - Monitoreo y Mantenimiento]] — Evidently in production monitoring case study
-- [[09/22 - End-to-End ML Project]] — Evidently integrated into end-to-end pipeline
-- [[09/26 - ML Platform Engineering]] — Evidently in monitoring tool comparison table
-- [[07/12 - Despliegue y Observabilidad de Agentes]] — Phoenix in agent observability frameworks
-- [[07/15 - Agent Evaluation and Observability]] — Semantic drift detection and LLM evaluation
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|21 - Monitoreo y Mantenimiento]] — Evidently in production monitoring case study
+- [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|22 - End-to-End ML Project]] — Evidently integrated into end-to-end pipeline
+- [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow|26 - ML Platform Engineering]] — Evidently in monitoring tool comparison table
+- [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/00 - Bienvenida|12 - Despliegue y Observabilidad de Agentes]] — Phoenix in agent observability frameworks
+- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|15 - Agent Evaluation and Observability]] — Semantic drift detection and LLM evaluation

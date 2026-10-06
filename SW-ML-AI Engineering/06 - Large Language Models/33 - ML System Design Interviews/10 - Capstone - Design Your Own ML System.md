@@ -311,6 +311,6 @@ PUSHBACKS = [
 
 - CLEAR framework: [[01 - The CLEAR Framework - 5-Step Method|The CLEAR Framework]]
 - Canonical problems: [[02 - Problem 1 - Airbnb Search Ranking|Airbnb]] | [[03 - Problem 2 - DoorDash Dispatch|DoorDash]] | [[04 - Problem 3 - Twitter-X Timeline|Twitter]] | [[05 - Problem 4 - Uber ETA Prediction|Uber]] | [[06 - Problem 5 - Netflix Recommendations|Netflix]] | [[07 - Problem 6 - YouTube Recommendations|YouTube]] | [[08 - Problem 7 - TikTok For You Page|TikTok]] | [[09 - Problem 8 - Spotify Discover Weekly|Spotify]]
-- Related course: [[../32 - System Design for ML/00 - Welcome to System Design for ML|System Design for ML]]
+- Related course: [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML|System Design for ML]]
 - Plan C reference: Second Brain RAG (from Continuity Prompt planning session)
 - Mock interview platforms: Pramp, interviewing.io, LockedIn AI

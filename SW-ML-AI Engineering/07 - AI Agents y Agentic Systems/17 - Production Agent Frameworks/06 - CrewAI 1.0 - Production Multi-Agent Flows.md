@@ -6,7 +6,7 @@
 - Master the new **Flow API** as the production state-machine that orchestrates crews with explicit state, persistence, and event listeners
 - Author crews in **declarative YAML** for non-developer authors, or programmatically in Python for full control
 - Use **structured outputs** with Pydantic models so every crew produces a typed result, not a free-form string
-- Wire **observability** with the built-in `crewai-telemetry`, or export traces to [[../../05 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix]] via OpenTelemetry
+- Wire **observability** with the built-in `crewai-telemetry`, or export traces to [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix]] via OpenTelemetry
 - Migrate a CrewAI 0.x crew to 1.0 syntax, and decide when CrewAI 1.0 is the right framework vs [[../15 - MCP and Agentic Protocols/04 - Computer Use and Browser Agents.md|OpenAI Agents SDK]] (handoffs) or [[../15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols.md|Google ADK]] (SequentialAgent)
 
 ---
@@ -79,7 +79,7 @@ flow = StayBotFlow()
 flow.kickoff()
 ```
 
-The Flow is a **state machine with Pydantic state, event listeners, and async support**. The pattern is the same as Temporal workflows (covered in [[../../05 - MLOps y Produccion/33 - Temporal for ML Pipelines/00 - Welcome to Temporal for ML Pipelines|Temporal note]]) or AWS Step Functions, but expressed in Python with the agent-crew primitives on top.
+The Flow is a **state machine with Pydantic state, event listeners, and async support**. The pattern is the same as Temporal workflows (covered in [[09 - MLOps y Produccion/33 - Temporal for ML Pipelines/00 - Welcome to Temporal for ML Pipelines|Temporal note]]) or AWS Step Functions, but expressed in Python with the agent-crew primitives on top.
 
 ### 1.3 The declarative YAML crew
 

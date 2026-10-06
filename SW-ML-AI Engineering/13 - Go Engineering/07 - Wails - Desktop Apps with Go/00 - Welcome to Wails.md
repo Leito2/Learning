@@ -3,7 +3,7 @@
 ## 🎯 Learning Objectives
 - Understand why Wails represents a paradigm shift in desktop application development by combining Go's systems performance with modern web frontends.
 - Map the five-module learning trajectory from low-level bridge mechanics to production signing and distribution pipelines.
-- Articulate how local AI tooling on the desktop connects to broader [[05 - MLOps y Produccion]] workflows and data privacy requirements.
+- Articulate how local AI tooling on the desktop connects to broader [[00 - Indice Maestro de Cursos|05 - MLOps y Produccion]] workflows and data privacy requirements.
 
 ---
 
@@ -11,7 +11,7 @@
 
 The history of desktop application development is a pendulum swinging between native performance and developer ergonomics. In the 1990s, developers wrote Win32 MFC or Cocoa applications in C++ and Objective-C, achieving bare-metal efficiency at the cost of brutal complexity. The 2010s saw Electron democratize desktop development by bundling Chromium and Node.js, but at a catastrophic cost: 150MB+ bundles, gigabytes of RAM consumption, and a security surface area measured in millions of lines of C++. For ML engineers shipping local AI tools — where users expect instant startup, offline resilience, and direct GPU access — Electron's trade-offs are increasingly untenable.
 
-Wails v2 occupies a unique position in this landscape. It compiles a Go backend into a native binary, pairs it with any modern JavaScript frontend framework via the operating system's native WebView, and generates type-safe bindings at compile time. This course dives deep into the theoretical underpinnings of that architecture: why native WebViews are a superior distribution strategy, how the Go-JavaScript bridge avoids reflection overhead, and how cross-platform abstraction layers map to OS-specific APIs. We assume you have completed [[01 - Go Fundamentals]] and possess basic frontend literacy (HTML, JavaScript, and a framework like Svelte or Vue). Throughout, we connect back to the broader [[Go Engineering]] vault, showing how desktop apps serve as the final mile for ML pipelines built in earlier modules.
+Wails v2 occupies a unique position in this landscape. It compiles a Go backend into a native binary, pairs it with any modern JavaScript frontend framework via the operating system's native WebView, and generates type-safe bindings at compile time. This course dives deep into the theoretical underpinnings of that architecture: why native WebViews are a superior distribution strategy, how the Go-JavaScript bridge avoids reflection overhead, and how cross-platform abstraction layers map to OS-specific APIs. We assume you have completed [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]] and possess basic frontend literacy (HTML, JavaScript, and a framework like Svelte or Vue). Throughout, we connect back to the broader [[13 - Go Engineering/00 - Welcome to Go Engineering|Go Engineering]] vault, showing how desktop apps serve as the final mile for ML pipelines built in earlier modules.
 
 ---
 

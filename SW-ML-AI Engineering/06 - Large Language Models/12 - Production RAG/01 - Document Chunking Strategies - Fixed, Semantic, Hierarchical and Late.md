@@ -402,7 +402,7 @@ class MultiChunker:
 
 ---
 
-[[02 - Vector Databases for RAG]] — next note: storing and searching those chunks.
+[[06 - Large Language Models/12 - Production RAG/02 - Vector Databases for RAG - HNSW, IVF, PQ and Filtering|02 - Vector Databases for RAG]] — next note: storing and searching those chunks.
 [[06/13/06 - Late Chunking]] — deep dive on Jina's late chunking.
-[[10/33 - Vector Databases]] — full Qdrant/Milvus course.
+[[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases]] — full Qdrant/Milvus course.
 

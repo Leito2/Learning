@@ -4,7 +4,7 @@
 - Understand how LocalAI maintains exact OpenAI API parity across endpoints, status codes, and error schemas
 - Learn the internals of Backend Manager: process lifecycle, health checks, and gRPC protobuf contracts
 - Master dynamic model loading, unloading, and hot-swapping without server restarts
-- Connect backend lifecycle management to [[01 - Go Fundamentals]] interfaces and [[Docker Profesional]] container signals
+- Connect backend lifecycle management to [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]] interfaces and [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]] container signals
 
 ---
 
@@ -12,7 +12,7 @@
 
 API compatibility is not merely about matching JSON fields; it is about matching semantics, failure modes, and streaming behavior. When a developer switches from `api.openai.com` to a LocalAI instance, they expect the same HTTP status codes, the same SSE chunk format, and the same rate-limit headers. This module dives into the mechanics of that parity and the backend management system that makes it possible. We will explore how LocalAI's Backend Manager acts as a process supervisor, how gRPC bridges the Go/C++ divide, and why dynamic model loading is essential for multi-tenant deployments.
 
-From a systems perspective, LocalAI is a **polyglot orchestrator**. It coordinates binaries written in Go, C, and C++, each with different memory models, crash behaviors, and concurrency assumptions. If you have studied [[01 - Go Fundamentals]], you will recognize how Go interfaces allow the API layer to treat all backends uniformly despite their heterogeneous implementations. If you have operational experience from [[Docker Profesional]], you will appreciate how signal handling and graceful shutdown prevent data loss when a backend process is terminated.
+From a systems perspective, LocalAI is a **polyglot orchestrator**. It coordinates binaries written in Go, C, and C++, each with different memory models, crash behaviors, and concurrency assumptions. If you have studied [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]], you will recognize how Go interfaces allow the API layer to treat all backends uniformly despite their heterogeneous implementations. If you have operational experience from [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]], you will appreciate how signal handling and graceful shutdown prevent data loss when a backend process is terminated.
 
 ---
 
@@ -421,4 +421,4 @@ Implement a minimal but complete OpenAI-compatible chat server in Go that proxie
 - Official docs: https://localai.io/docs/advanced/
 - gRPC Go docs: https://grpc.io/docs/languages/go/
 - OpenAI API spec: https://platform.openai.com/docs/api-reference
-- Go fundamentals: [[01 - Go Fundamentals]]
+- Go fundamentals: [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]]

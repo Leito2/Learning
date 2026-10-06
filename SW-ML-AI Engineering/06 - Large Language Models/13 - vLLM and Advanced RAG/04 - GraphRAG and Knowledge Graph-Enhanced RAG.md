@@ -1450,5 +1450,5 @@ Evaluation Metrics:
 - Lewis, P., et al. (2020). "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks." *NeurIPS 2020*.
 - [[03 - Reranking and Evaluation-Driven Retrieval]] — Two-stage retrieval for precision in standard RAG
 - [[05 - RAG Evaluation with RAGAS and DeepEval]] — Evaluating GraphRAG vs baseline RAG quality
-- [[Graph Neural Networks]] — GNN foundations for graph-based reasoning
-- [[System Design for ML]] — Scaling graph databases for production workloads
+- [[05 - Deep Learning y Computer Vision/08 - Graph Neural Networks/00 - Welcome to GNN|Graph Neural Networks]] — GNN foundations for graph-based reasoning
+- [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML|System Design for ML]] — Scaling graph databases for production workloads

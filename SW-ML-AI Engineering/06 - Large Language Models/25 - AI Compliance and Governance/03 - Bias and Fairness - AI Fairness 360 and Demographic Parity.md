@@ -628,5 +628,5 @@ optimize_for_demographic_parity()
 - [[06 - Large Language Models/25 - AI Compliance and Governance/02 - Model Cards and Datasheets for Datasets|Note 02 — Model Cards]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/04 - Red-Teaming and Adversarial Testing|Note 04 — Red-Teaming]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/05 - Capstone - Compliance Pipeline for a Regulated Industry|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — bias drift detection
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation]] — LLM-as-judge for bias
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — bias drift detection
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation]] — LLM-as-judge for bias

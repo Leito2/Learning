@@ -20,7 +20,7 @@ The prompt registry stores versioned prompt templates with variables and configu
 
 The evaluation engine ties everything together: it runs a target function (typically an LLM call with the chosen prompt) against every item in a dataset, scores each result via LLM-as-Judge or deterministic metrics, and aggregates scores into experiment-level statistics. Statistical significance is computed across runs so you know if prompt v2 is actually better than v1 or just noise.
 
-This is the operational layer for [[06 - Large Language Models/20 - RAG Evaluation Deep Dive]] (RAGAS-style evaluation) and [[06 - Large Language Models/21 - DSPy and Prompt Compilation]] (compiled optimization). Where those courses teach the algorithmic patterns, this one teaches the **plumbing** that turns a one-off eval script into a continuous evaluation pipeline.
+This is the operational layer for [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|20 - RAG Evaluation Deep Dive]] (RAGAS-style evaluation) and [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|21 - DSPy and Prompt Compilation]] (compiled optimization). Where those courses teach the algorithmic patterns, this one teaches the **plumbing** that turns a one-off eval script into a continuous evaluation pipeline.
 
 ![LangFuse datasets view](https://langfuse.com/_next/image?url=%2Fstatic%2Fimages%2Fdocs%2Fdatasets.png&w=1920&q=75)
 
@@ -256,7 +256,7 @@ print(comparison.summary)
 
 Welch's t-test for normally-distributed scores; Mann-Whitney U for non-normal. p<0.05 means the difference is statistically significant; p≥0.05 means you cannot conclude which version is better.
 
-This rigor is exactly what the [[06 - Large Language Models/20 - RAG Evaluation Deep Dive]] course recommends. Without statistical tests, teams ship "improvements" that are actually noise.
+This rigor is exactly what the [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|20 - RAG Evaluation Deep Dive]] course recommends. Without statistical tests, teams ship "improvements" that are actually noise.
 
 ---
 
@@ -411,7 +411,7 @@ target = lambda item: gpt_4o_mini(item)  # small model
 evaluator = lambda item, output: claude_3_5_sonnet_judge(item, output)  # larger, different model
 ```
 
-LLM-as-Judge has known biases (verbosity, position, self-style preference). Using a different, stronger model as judge reduces but does not eliminate them. The [[06 - Large Language Models/20 - RAG Evaluation Deep Dive]] course covers the calibration patterns.
+LLM-as-Judge has known biases (verbosity, position, self-style preference). Using a different, stronger model as judge reduces but does not eliminate them. The [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|20 - RAG Evaluation Deep Dive]] course covers the calibration patterns.
 
 ### 6.2 Antipattern 2: Treating dataset v1 as the ground truth forever
 
@@ -495,9 +495,9 @@ A single comparison is one statistical test. Multiple runs reduce false positive
 - LangFuse Datasets docs — [langfuse.com/docs/evaluation/dataset](https://langfuse.com/docs/evaluation/dataset)
 - LangFuse Evaluation docs — [langfuse.com/docs/evaluation/evaluation](https://langfuse.com/docs/evaluation/evaluation)
 - LangFuse Prompt Management — [langfuse.com/docs/prompts](https://langfuse.com/docs/prompts)
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-Judge statistical rigor
-- [[06 - Large Language Models/21 - DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — compiled optimization partner
-- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive|LangSmith Deep Dive]] — SaaS counterpart with same primitives
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-Judge statistical rigor
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation|DSPy and Prompt Compilation]] — compiled optimization partner
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith|LangSmith Deep Dive]] — SaaS counterpart with same primitives
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/01 - LangFuse Fundamentals - Architecture and Core Primitives|Note 01 — Fundamentals]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/04 - Online Evaluators and Production Patterns|Note 04 — Online Evaluators]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/05 - Capstone - Self-Hosted LangFuse for Multi-Provider RAG|Note 05 — Capstone]]

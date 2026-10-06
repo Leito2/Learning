@@ -18,7 +18,7 @@ The framework originated in 2023 from Microsoft Research (paper: "AutoGen: Enabl
 
 AutoGen's killer feature is the **GroupChat orchestrator**: a special agent that selects which speaker is next based on the conversation history. Combined with termination conditions and human-in-the-loop moderation, this gives you the research-grade multi-agent patterns that no other framework matches out of the box.
 
-For the AI/ML Engineer profile, AutoGen complements LangGraph ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]]) and Semantic Kernel (Note 01) by providing **multi-agent debate** — a pattern that requires explicit cyclic orchestration in LangGraph but is the default in AutoGen. If your agent needs to think by talking to itself (researcher → critic → revision → critic → final), AutoGen is the most ergonomic tool.
+For the AI/ML Engineer profile, AutoGen complements LangGraph ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]]) and Semantic Kernel (Note 01) by providing **multi-agent debate** — a pattern that requires explicit cyclic orchestration in LangGraph but is the default in AutoGen. If your agent needs to think by talking to itself (researcher → critic → revision → critic → final), AutoGen is the most ergonomic tool.
 
 ```mermaid
 sequenceDiagram
@@ -396,7 +396,7 @@ trace.get_tracer_provider().add_span_processor(
 )
 ```
 
-The spans include each agent's messages, model calls, and tool executions. Compatible with LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability]]) and Phoenix (covered in [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix]]).
+The spans include each agent's messages, model calls, and tool executions. Compatible with LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|36 - LangFuse - Open-Source LLM Observability]]) and Phoenix (covered in [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|31 - Evidently AI and Phoenix]]).
 
 ---
 
@@ -508,11 +508,11 @@ critic = AssistantAgent(name="critic", model_client=gpt4o_mini_client)
 - AutoGen v0.5 GitHub — [github.com/microsoft/autogen](https://github.com/microsoft/autogen)
 - AG2 fork — [github.com/ag2ai/ag2](https://github.com/ag2ai/ag2)
 - AutoGen paper — Wu et al., 2023, "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation"
-- [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI|Fundamentos de Agentes AI]] — ReAct loop pattern
-- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks|Production Agent Frameworks]] — agent framework landscape
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine alternative
+- [[07 - AI Agents y Agentic Systems/11 - Fundamentos de Agentes AI/00 - Bienvenida|Fundamentos de Agentes AI]] — ReAct loop pattern
+- [[07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks|Production Agent Frameworks]] — agent framework landscape
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — cyclic state machine alternative
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/01 - Semantic Kernel Fundamentals - Kernel, Plugins, Functions|Note 01 — SK Fundamentals]]
 - [[07 - AI Agents y Agentic Systems/19 - Semantic Kernel and AutoGen Deep Dive/04 - AutoGen Advanced - RAG, Tools and Production Patterns|Note 04 — AutoGen Advanced]]
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-judge biases
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability for AutoGen traces
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans for AutoGen
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-judge biases
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability for AutoGen traces
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — Phoenix spans for AutoGen

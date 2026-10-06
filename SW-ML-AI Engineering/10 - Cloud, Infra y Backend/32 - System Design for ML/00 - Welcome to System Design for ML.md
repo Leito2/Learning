@@ -13,7 +13,7 @@ System design interviews dominate FAANG+ hiring for ML engineer roles. The forma
 
 The etymology is instructive. *System* comes from Greek *systēma* (organized whole, from *syn-* "together" + *histanai* "to set up"). *Design* comes from Latin *designare* (to mark out, from *de-* "out" + *signare* "to mark"). ML system design is the art of marking out an organized whole where every component — feature store, model server, cache layer, load balancer — fits together under mathematical constraints of latency, throughput, and cost. A software engineer designs for correctness under concurrency. An ML engineer designs for correctness under staleness, GPU saturation, and embedding dimension explosion.
 
-This course bridges the gap between knowing ML algorithms and demonstrating senior engineering judgment in an interview. You will learn to classify every component by its CAP profile, estimate GPU requirements with back-of-envelope math, design multi-tiered caching strategies, and walk through complete system designs the way FAANG interviewers expect. The patterns here connect deeply to the FastAPI serving layer ([[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]), cloud infrastructure provisioning ([[../../23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]]), and distributed training ([[../../29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]]).
+This course bridges the gap between knowing ML algorithms and demonstrating senior engineering judgment in an interview. You will learn to classify every component by its CAP profile, estimate GPU requirements with back-of-envelope math, design multi-tiered caching strategies, and walk through complete system designs the way FAANG interviewers expect. The patterns here connect deeply to the FastAPI serving layer ([[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]), cloud infrastructure provisioning ([[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]]), and distributed training ([[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]]).
 
 ---
 
@@ -31,10 +31,10 @@ This course bridges the gap between knowing ML algorithms and demonstrating seni
 
 | Topic | Required Proficiency | Related Vault Note |
 |-------|---------------------|--------------------|
-| Cloud computing fundamentals | Regions, VMs, object storage, networking | [[../../22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] |
-| Backend API design | REST, FastAPI, async patterns, middleware | [[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]] |
-| ML deployment patterns | Containerization, serving, model artifacts | [[../../../05 - MLOps y Produccion/20 - Deployment y Serving/00 - Deployment y Serving|Deployment and Serving]] |
-| Vector databases and embeddings | ANN search, embedding storage, approximate retrieval | [[../../33 - Vector Databases and Semantic Search/00 - Welcome|Vector Databases]] |
+| Cloud computing fundamentals | Regions, VMs, object storage, networking | [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] |
+| Backend API design | REST, FastAPI, async patterns, middleware | [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] |
+| ML deployment patterns | Containerization, serving, model artifacts | [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment and Serving]] |
+| Vector databases and embeddings | ANN search, embedding storage, approximate retrieval | [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] |
 | Basic Python | Data structures, async/await, type hints | [[../../24 - Backend para ML/00 - Backend para ML|Backend for ML]] |
 
 ---
@@ -57,13 +57,13 @@ These artifacts collectively demonstrate the senior engineering judgment that FA
 
 This course sits at the intersection of several knowledge domains:
 
-- **Cloud & Infrastructure**: [[../../23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]] — provisioning GPU clusters, networking, and storage programmatically
-- **Serving & APIs**: [[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI]] — async inference servers, streaming, middleware patterns
-- **Real-Time Systems**: [[../../30 - WebSockets and Real-Time ML/00 - WebSockets and Real-Time ML|WebSockets]] — bidirectional streaming, low-latency prediction endpoints
-- **Distributed Training**: [[../../29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]] — model parallelism, data parallelism, pipeline parallelism
+- **Cloud & Infrastructure**: [[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]] — provisioning GPU clusters, networking, and storage programmatically
+- **Serving & APIs**: [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI]] — async inference servers, streaming, middleware patterns
+- **Real-Time Systems**: [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML|WebSockets]] — bidirectional streaming, low-latency prediction endpoints
+- **Distributed Training**: [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML]] — model parallelism, data parallelism, pipeline parallelism
 - **Feature Stores**: [[../../25 - Bases de Datos y Message Queues/20 - Feature Stores y ML Metadata/20 - Feature Stores y ML Metadata|Feature Stores]] — online/offline feature serving, consistency guarantees
-- **Vector Search**: [[../../33 - Vector Databases and Semantic Search/00 - Welcome|Vector Databases]] — ANN indices, embedding retrieval, semantic caching
-- **MLOps**: [[../../../05 - MLOps y Produccion/20 - Deployment y Serving/00 - Deployment y Serving|Deployment]] — CI/CD for ML, model versioning, A/B testing infrastructure
+- **Vector Search**: [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — ANN indices, embedding retrieval, semantic caching
+- **MLOps**: [[09 - MLOps y Produccion/20 - Deployment y Serving/00 - Bienvenida|Deployment]] — CI/CD for ML, model versioning, A/B testing infrastructure
 
 ---
 
@@ -73,6 +73,6 @@ This course sits at the intersection of several knowledge domains:
 - Donnemartin. (2024). *System Design Primer*. https://github.com/donnemartin/system-design-primer — Open-source system design resource with flashcard-style concepts.
 - AWS Well-Architected Framework. (2024). *Machine Learning Lens*. https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/ — Production ML architecture patterns.
 - Huyen, C. (2022). *Designing Machine Learning Systems*. O'Reilly. — ML-specific system design patterns, feature stores, and serving architectures.
-- [[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]
-- [[../../23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]]
-- [[../../29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML Infrastructure]]
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]
+- [[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]]
+- [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|Distributed ML Infrastructure]]

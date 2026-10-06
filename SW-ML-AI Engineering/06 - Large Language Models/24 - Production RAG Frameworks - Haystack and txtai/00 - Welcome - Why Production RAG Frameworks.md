@@ -14,11 +14,11 @@ The RAG framework ecosystem has crystallized into **four serious contenders** by
 
 This course is the missing piece in the vault's RAG track. You already have:
 
-- **Production RAG** ([[06 - Large Language Models/12 - Production RAG]]) — the canonical patterns
-- **vLLM and Advanced RAG** ([[06 - Large Language Models/13 - vLLM and Advanced RAG]]) — retrieval + serving
-- **ColBERT, SGLang and Next-Gen Inference** ([[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference]]) — token-level retrieval
+- **Production RAG** ([[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]]) — the canonical patterns
+- **vLLM and Advanced RAG** ([[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]]) — retrieval + serving
+- **ColBERT, SGLang and Next-Gen Inference** ([[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference|17 - ColBERT, SGLang and Next-Gen Inference]]) — token-level retrieval
 - **Advanced RAG** (covered in the Production RAG course)
-- **LangGraph + RAG** ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]])
+- **LangGraph + RAG** ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]])
 
 What you do not yet have is **enterprise-grade RAG pipelines** with Haystack's explicit DAG semantics, deepset Cloud deployment, and the kind of testing/CI rigor that distinguishes a real production system from a research demo. And you do not yet have **txtai's all-in-one** semantic search + RAG pattern that some teams prefer for its simplicity.
 
@@ -84,14 +84,14 @@ txtai is the right choice. It is not as flexible as Haystack for complex multi-s
 
 You should already be comfortable with:
 
-- **RAG fundamentals** — retrieval, chunking, embedding, reranking from [[06 - Large Language Models/12 - Production RAG]]
-- **Vector databases** — Qdrant, Milvus, Pinecone from [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search]]
-- **Pydantic models** — for schemas from [[03 - Advanced Python/06 - Pydantic Deep Dive]]
-- **FastAPI service patterns** — async, lifespan from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML]]
-- **LLM serving** — vLLM, LiteLLM from [[06 - Large Language Models/13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]]
-- **Instructor + structured outputs** — for typed RAG responses from [[06 - Large Language Models/22 - Instructor and Structured Generation]]
+- **RAG fundamentals** — retrieval, chunking, embedding, reranking from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]]
+- **Vector databases** — Qdrant, Milvus, Pinecone from [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases and Semantic Search]]
+- **Pydantic models** — for schemas from [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|06 - Pydantic Deep Dive]]
+- **FastAPI service patterns** — async, lifespan from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|31 - FastAPI for ML]]
+- **LLM serving** — vLLM, LiteLLM from [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|13 - vLLM and Advanced RAG]] and [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]]
+- **Instructor + structured outputs** — for typed RAG responses from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]]
 
-💡 If you have not yet read [[06 - Large Language Models/12 - Production RAG]], skim it before Note 01 — the canonical RAG patterns are assumed.
+💡 If you have not yet read [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]], skim it before Note 01 — the canonical RAG patterns are assumed.
 
 ---
 
@@ -101,17 +101,17 @@ This course is part of the RAG spine across modules 06, 07, 09:
 
 | Vault Module | Connection to This Course |
 |--------------|---------------------------|
-| [[06 - Large Language Models/12 - Production RAG\|Production RAG]] | Foundational RAG patterns |
-| [[06 - Large Language Models/13 - vLLM and Advanced RAG\|vLLM and Advanced RAG]] | vLLM as the LLM backend in the capstone |
-| [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference\|ColBERT/SGLang]] | Token-level retrieval integration |
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM routing across providers |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor and Structured Generation]] | Structured RAG responses |
-| [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization\|Serverless LLM Platforms]] | Modal for custom reranking, Together/Fireworks for LLM |
-| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns\|LangGraph Deep Patterns]] | Agentic RAG patterns |
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently AI and Phoenix]] | RAG observability |
-| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability\|LangFuse Deep Dive]] | Cost attribution per tenant |
-| [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search\|Vector Databases]] | Qdrant/Milvus/Pinecone as Haystack document stores |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] | Capstone service architecture |
+| [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG\|Production RAG]] | Foundational RAG patterns |
+| [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|vLLM and Advanced RAG]] | vLLM as the LLM backend in the capstone |
+| [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT/SGLang]] | Token-level retrieval integration |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns]] | LiteLLM routing across providers |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor and Structured Generation]] | Structured RAG responses |
+| [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/00 - Welcome - Serverless LLM Platforms Landscape\|Serverless LLM Platforms]] | Modal for custom reranking, Together/Fireworks for LLM |
+| [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns\|LangGraph Deep Patterns]] | Agentic RAG patterns |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently AI and Phoenix]] | RAG observability |
+| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | Cost attribution per tenant |
+| [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases]] | Qdrant/Milvus/Pinecone as Haystack document stores |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | Capstone service architecture |
 
 ---
 
@@ -145,7 +145,7 @@ If you already have RAG mastery:
 
 If you are new to RAG:
 
-1. Read [[06 - Large Language Models/12 - Production RAG]] first
+1. Read [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]] first
 2. Then return here for Note 01
 
 ---

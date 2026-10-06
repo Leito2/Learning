@@ -487,7 +487,7 @@ def __init__(self):
 - BentoML IO Descriptors — [docs.bentoml.com/en/latest/reference/io_descriptors](https://docs.bentoml.com/en/latest/reference/io_descriptors/)
 - BentoML batching — [docs.bentoml.com/en/latest/guides/batching](https://docs.bentoml.com/en/latest/guides/batching.html)
 - BentoML examples — [github.com/bentoml/BentoML/tree/main/examples](https://github.com/bentoml/BentoML/tree/main/examples)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM]] — LLM serving comparison
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — custom FastAPI alternative
-- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/01 - BentoML Fundamentals|Note 01 — Fundamentals]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM]] — LLM serving comparison
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — custom FastAPI alternative
+- [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/01 - BentoML Fundamentals - Saving, Loading, and the Bento Artifact|Note 01 — Fundamentals]]
 - [[09 - MLOps y Produccion/42 - BentoML Production Model Serving/03 - Distributed Serving - Multi-model, Ensembles, GPU Sharing|Note 03 — Distributed Serving]]

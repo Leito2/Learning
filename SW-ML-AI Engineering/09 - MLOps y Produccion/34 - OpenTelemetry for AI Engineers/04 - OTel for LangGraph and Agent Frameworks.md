@@ -418,7 +418,7 @@ def invoke_with_tracing(app, input, config):
 
 - [[00 - Welcome to OpenTelemetry for AI Engineers|Welcome]] — course map.
 - [[02 - Auto-Instrumentation for LLM SDKs|LLM SDK instrumentors]] — covered in note 02.
-- [[03 - OTLP Exporters|Exporters]] — where traces go.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/03 - OTLP Exporters - Phoenix Tempo Jaeger and Beyond|Exporters]] — where traces go.
 - [[../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|LangGraph Deep Patterns]] — the graph primitive.
 - [[../../07 - AI Agents y Agentic Systems/17 - Production Agent Frameworks/00 - Welcome to Production Agent Frameworks.md|Production Agent Frameworks]] — multi-framework capstones.
 - CrewAI: https://docs.crewai.com/how-to/Enable-OTel-Tracing

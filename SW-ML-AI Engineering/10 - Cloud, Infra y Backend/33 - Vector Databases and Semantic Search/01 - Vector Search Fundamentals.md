@@ -14,7 +14,7 @@ Modern AI systems do not search by keywords; they search by **meaning**. When a 
 
 This note establishes the mathematical and conceptual bedrock for the entire course. Every indexing algorithm, database extension, and deployment pattern we will study — from IVF cluster pruning to HNSW graph navigation to DiskANN's SSD-backed search — is an optimization of a single primitive: **given a query vector $q \in \mathbb{R}^d$, find its $k$ nearest neighbors in a collection of $N$ vectors**. Understanding *why* this problem is hard in high dimensions, and *how* distance metrics encode different notions of similarity, is essential before we touch any database syntax or index configuration.
 
-This module connects directly to [[22 - NLP and Transformers]] (where embeddings are produced via transformer models like BERT and Sentence-T5) and [[06 - Large Language Models]] (where vector search powers Retrieval-Augmented Generation). We will also reference concepts from [[03 - Mathematics for ML]] when discussing norms, high-dimensional geometry, and the concentration of measure phenomenon.
+This module connects directly to [[22 - NLP and Transformers]] (where embeddings are produced via transformer models like BERT and Sentence-T5) and [[00 - Indice Maestro de Cursos|06 - Large Language Models]] (where vector search powers Retrieval-Augmented Generation). We will also reference concepts from [[03 - Mathematics for ML]] when discussing norms, high-dimensional geometry, and the concentration of measure phenomenon.
 
 ---
 

@@ -218,7 +218,7 @@ The PR run only computes its own scores; the baseline's scores are reused. PR co
 
 ## 6. Selective Cross-Vendor Ensemble
 
-The cross-vendor ensemble ([[04 - LLM-as-Judge Bias|note 04]]) costs ~3×. Use it selectively:
+The cross-vendor ensemble ([[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|note 04]]) costs ~3×. Use it selectively:
 
 ```python
 # eval/selective_ensemble.py
@@ -456,7 +456,7 @@ print(f"Main eval: ${full_main['estimated_total']:.2f} (200 samples)")
 ## References
 
 - [[00 - Welcome to RAG Evaluation Deep Dive|Welcome]] — course map.
-- [[04 - LLM-as-Judge Bias|Judge Bias]] — cross-vendor ensemble rationale.
-- [[05 - CI-CD Eval Pipelines|CI/CD]] — where cost discipline shows up.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|Judge Bias]] — cross-vendor ensemble rationale.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/05 - CI-CD Eval Pipelines - GitHub Actions Regression Detection|CI/CD]] — where cost discipline shows up.
 - OpenAI pricing: https://openai.com/api/pricing/
 - Anthropic pricing: https://www.anthropic.com/pricing

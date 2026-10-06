@@ -233,7 +233,7 @@ cross_encoder_ranker = SentenceTransformersSimilarityRanker(
 cohere_ranker = CohereRanker(api_key=Secret.from_env_var("COHERE_API_KEY"), top_k=3)
 ```
 
-Rankers are typically applied after retrieval to refine the top-k. The pattern is the canonical **dense retrieve → rerank → generate** from [[06 - Large Language Models/12 - Production RAG]].
+Rankers are typically applied after retrieval to refine the top-k. The pattern is the canonical **dense retrieve → rerank → generate** from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]].
 
 ### 4.3 Generators
 
@@ -544,12 +544,12 @@ pipeline.validate()
 - Haystack GitHub — [github.com/deepset-ai/haystack](https://github.com/deepset-ai/haystack)
 - deepset Cloud — [cloud.deepset.ai](https://cloud.deepset.ai)
 - Haystack integrations — [haystack.deepset.ai/integrations](https://haystack.deepset.ai/integrations)
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]] — foundational RAG patterns
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — vLLM as LLM backend
-- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang]] — token-level retrieval
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured RAG responses
-- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/02 - Haystack Advanced Pipelines|Note 02 — Haystack Advanced]]
-- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/03 - txtai Fundamentals - Semantic Search + RAG|Note 03 — txtai]]
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — RAG observability
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — foundational RAG patterns
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — vLLM as LLM backend
+- [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang]] — token-level retrieval
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured RAG responses
+- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/02 - Haystack Advanced Pipelines - Hybrid Search, Reranking, Agents, and Evaluation|Note 02 — Haystack Advanced]]
+- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/03 - txtai Fundamentals - Semantic Search, Graphs, and RAG in One Library|Note 03 — txtai]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — RAG observability

@@ -50,7 +50,7 @@ Before starting, ensure you are comfortable with:
 - **pgvector basics** — install, `vector(n)` type, distance operators, basic HNSW indexes. Covered in [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/03 - pgvector I - Core Operations and Indexing]] and [[04 - pgvector II - Production and Hybrid Search]].
 - **Vector search theory** — recall vs precision, ANN vs kNN, embedding models. Covered in [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/01 - Vector Search Fundamentals]] and [[02 - Indexing Algorithms Deep Dive]].
 - **Docker and Python** — for the capstone. See [[10 - Cloud, Infra y Backend/15 - Docker and Kubernetes]] (if present) or equivalent.
-- **Basic ML concepts** — what an embedding is, how RAG works, what a feature store is. See [[10 - Cloud, Infra y Backend/26 - Databricks for ML]] or [[10 - Cloud, Infra y Backend/31 - FastAPI for ML]].
+- **Basic ML concepts** — what an embedding is, how RAG works, what a feature store is. See [[10 - Cloud, Infra y Backend/26 - Databricks for ML/00 - Welcome to Databricks for ML|26 - Databricks for ML]] or [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|31 - FastAPI for ML]].
 
 ## 4. The 2024–2026 Inflection Point
 

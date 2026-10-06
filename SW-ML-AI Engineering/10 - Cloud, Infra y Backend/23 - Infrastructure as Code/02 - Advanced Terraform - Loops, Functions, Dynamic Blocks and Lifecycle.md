@@ -14,7 +14,7 @@
 
 Basic Terraform treats each resource as a unique, hand-written block. You write `resource "aws_instance" "node_0"`, then `resource "aws_instance" "node_1"`, then `resource "aws_instance" "node_2"`. This works for three instances. It does not work for a 64-GPU training cluster. Production Terraform requires iteration: create N resources from a data structure, conditionally skip resources based on environment flags, and generate nested blocks (20 ingress rules for a security group) from a single template. These patterns separate "demo Terraform" — the kind you write on day one of learning — from "production Terraform" that manages infrastructure at scale.
 
-The three iteration mechanisms — `count`, `for_each`, and `for` — are superficially similar but have radically different semantic guarantees. Choosing `count` over `for_each` is the single most common cause of production destruction incidents in Terraform history. This note dissects each mechanism, explains when the wrong choice causes disasters, and builds toward a complete mental model of lifecycle rules, dynamic blocks, and the function library that glues it all together. Scaled ML infrastructure — where a single `terraform apply` might manage 200+ resources across VPCs, GPU clusters, model registries, and monitoring dashboards — demands these patterns. Foundational HCL and DAG concepts are covered in [[01 - Terraform Fundamentals - HCL, State and Resource Graph|Note 01]]; deployment orchestration connects to [[09/29 - CI-CD for ML|CI/CD for ML]].
+The three iteration mechanisms — `count`, `for_each`, and `for` — are superficially similar but have radically different semantic guarantees. Choosing `count` over `for_each` is the single most common cause of production destruction incidents in Terraform history. This note dissects each mechanism, explains when the wrong choice causes disasters, and builds toward a complete mental model of lifecycle rules, dynamic blocks, and the function library that glues it all together. Scaled ML infrastructure — where a single `terraform apply` might manage 200+ resources across VPCs, GPU clusters, model registries, and monitoring dashboards — demands these patterns. Foundational HCL and DAG concepts are covered in [[01 - Terraform Fundamentals - HCL, State and Resource Graph|Note 01]]; deployment orchestration connects to [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI/CD for ML]].
 
 ---
 
@@ -476,5 +476,5 @@ output "trainer_ips" {
 - HashiCorp. (2024). *Terraform Registry*. https://registry.terraform.io/ — Reference implementations using `for_each` and `dynamic` in production modules.
 - [[01 - Terraform Fundamentals - HCL, State and Resource Graph|Note 01 — HCL and State]]
 - [[03 - Terraform Modules - Workspaces and Multi-Environment Patterns|Note 03 — Modules]]
-- [[09/29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|29 - CI-CD for ML]]
 - [[10 - Cloud, Infra y Backend/22 - Cloud Computing/01 - Fundamentos de Cloud y Modelos de Servicio|Cloud Fundamentals]]

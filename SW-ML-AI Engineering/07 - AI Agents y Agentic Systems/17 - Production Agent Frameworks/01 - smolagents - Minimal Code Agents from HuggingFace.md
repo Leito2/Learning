@@ -364,7 +364,7 @@ If you deploy the [[../../13 - Go Engineering/06 - Go for ML Backend/00 - Welcom
 
 ### 5.4 smolagents + Phoenix observability
 
-[[../../05 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix]] (Arize) is the OpenTelemetry-native observability backend that integrates with smolagents via the `openinference-instrumentation-smolagents` package. With one line (`Phoenix().launch()` + auto-instrumentation), every agent step is traced: the LLM call latency, the code execution latency, the tool call arguments, the result, and the final answer. For the **Automated LLM Evaluation Suite** portfolio project, this is the same tracing backend you already use for your LLM eval runs.
+[[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix]] (Arize) is the OpenTelemetry-native observability backend that integrates with smolagents via the `openinference-instrumentation-smolagents` package. With one line (`Phoenix().launch()` + auto-instrumentation), every agent step is traced: the LLM call latency, the code execution latency, the tool call arguments, the result, and the final answer. For the **Automated LLM Evaluation Suite** portfolio project, this is the same tracing backend you already use for your LLM eval runs.
 
 ---
 

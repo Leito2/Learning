@@ -30,7 +30,7 @@ This course covers the four critical gaps in Python engineering for production M
 
 ## Cross-links in the Vault
 
-- CI/CD for ML: [[../../09 - MLOps y ML Platform/29 - CI-CD for ML/00 - Welcome|09/29]]
-- ML Platform Engineering: [[../../09 - MLOps y ML Platform/26 - ML Platform Engineering/00 - Welcome|09/26]]
+- CI/CD for ML: [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|09/29]]
+- ML Platform Engineering: [[04 - Engineering Fundamentals/03 - Python Production Flow for MLOps/00 - Welcome to Python Production Flow for MLOps|09/26]]
 - Distributed ML Infrastructure: [[../../10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome|10/29]]
 - Performance patterns: [[../../03 - Advanced Python/06 - Pydantic Deep Dive/09 - Performance and Production Patterns|03/06/09 - Pydantic Performance]]

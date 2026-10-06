@@ -14,7 +14,7 @@ Caching is the single most cost-effective optimization in ML system design. A ca
 
 The word *cache* enters English from French *cacher* (to hide), ultimately from Latin *coacticare* (to constrain, store up). In computing, a cache hides the latency of a slower storage layer behind a faster one. For ML systems, the cache hierarchy is deeper than for traditional software: GPU VRAM (fastest, most expensive) > system RAM > NVMe SSD > S3/CDN (slowest, cheapest). Each layer trades access latency for storage cost, and right-sizing data placement across these tiers is the central problem of ML storage architecture.
 
-This note builds on caching patterns from [[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI]] and extends them to ML-specific cache types. The KV cache inside LLM inference engines is covered as a system-level pattern. Tiered storage connects to [[../../23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]].
+This note builds on caching patterns from [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI]] and extends them to ML-specific cache types. The KV cache inside LLM inference engines is covered as a system-level pattern. Tiered storage connects to [[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/00 - Welcome to Infrastructure as Code|IaC]].
 
 ![Memory hierarchy](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/ComputerMemoryHierarchy.svg/640px-ComputerMemoryHierarchy.svg.png)
 
@@ -295,7 +295,7 @@ With RadixAttention: one shared 1000-token prefix ($2.6$ GB) + two 500-token suf
 - Kleppmann, M. (2017). *Designing Data-Intensive Applications*. O'Reilly.
 - [[03 - Load Balancing, Sharding and Scaling ML Systems|Load Balancing for ML]]
 - [[01 - CAP Theorem and Consistency Models in ML Workloads|CAP Theorem]]
-- [[../../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]
 
 ## 📦 Código de compresión
 

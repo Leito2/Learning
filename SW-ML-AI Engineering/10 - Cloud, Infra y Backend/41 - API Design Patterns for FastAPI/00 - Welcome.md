@@ -71,10 +71,10 @@ By the end of this course you will have a production-grade API that:
 
 ## 🔗 Vault Connections
 
-- **[[../31 - FastAPI for ML/00 - Welcome to FastAPI for ML|FastAPI for ML]]** — the HTTP framework
+- **[[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]]** — the HTTP framework
 - **[[../38 - SQLAlchemy 2.0 Async + Alembic for FastAPI/00 - Welcome|SQLAlchemy 2.0 Async + Alembic]]** — the data layer for pagination/filtering
 - **[[../39 - Authentication Deep Dive for FastAPI/00 - Welcome|Authentication Deep Dive]]** — auth flows into the API design
-- **[[../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]]** — a real-world multi-provider API
+- **[[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]]** — a real-world multi-provider API
 
 ## References
 

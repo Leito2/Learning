@@ -529,9 +529,9 @@ sequenceDiagram
 - LangChain.js — [js.langchain.com](https://js.langchain.com)
 - Vercel AI SDK — [sdk.vercel.ai](https://sdk.vercel.ai)
 - LangFuse TypeScript — [langfuse.com/docs/sdk/typescript](https://langfuse.com/docs/sdk/typescript)
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals|Note 01 — TS Fundamentals]]
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/02 - Next.js + Vercel AI SDK|Note 02 — Next.js]]
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/03 - Cloudflare Workers for Edge AI|Note 03 — Cloudflare Workers]]
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/04 - LangChain.js + AI SDK Integration|Note 04 — LangChain.js]]
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — Python counterpart
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals for Python Developers|Note 01 — TS Fundamentals]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/02 - Next.js + Vercel AI SDK - Streaming Chat UI for AI Products|Note 02 — Next.js]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/03 - Cloudflare Workers for Edge AI - Sub-50ms Global Inference|Note 03 — Cloudflare Workers]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/04 - LangChain.js + AI SDK Integration - Type-Safe LLM Orchestration|Note 04 — LangChain.js]]
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — Python counterpart
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]]

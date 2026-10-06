@@ -69,7 +69,7 @@ A single GPU is not required for notes 01–03. Note `04` (multi-GPU sharding) a
 - [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/02 - Indexing Algorithms Deep Dive]] — survey of IVF, HNSW, PQ, DiskANN, ScaNN
 - [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/05 - Qdrant I - Architecture and Collections]] — HNSW inside Qdrant
 - [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/07 - Milvus I - Distributed Architecture]] — Milvus's quantization options
-- [[06 - Large Language Models]] — RAG consumes quantized indices as the retrieval layer
+- [[00 - Indice Maestro de Cursos|06 - Large Language Models]] — RAG consumes quantized indices as the retrieval layer
 
 ## References
 

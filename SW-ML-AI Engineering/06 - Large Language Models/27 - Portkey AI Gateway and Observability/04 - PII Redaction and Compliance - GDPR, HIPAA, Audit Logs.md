@@ -506,6 +506,6 @@ config = {
 - Portkey Audit Logs — [portkey.ai/docs/product/observability/audit-logs](https://portkey.ai/docs/product/observability/audit-logs)
 - Portkey Data Residency — [portkey.ai/docs/product/ai-gateway/data-residency](https://portkey.ai/docs/product/ai-gateway/data-residency)
 - [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/01 - Portkey Core - Gateway Fundamentals|Note 01 — Portkey Core]]
-- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/02 - Observability and Cost Tracking|Note 02 — Observability]]
-- [[06 - Large Language Models/25 - AI Compliance and Governance|AI Compliance and Governance]] — EU AI Act
+- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/02 - Observability and Cost Tracking - Per-Tenant Dashboards, Alerts|Note 02 — Observability]]
+- [[06 - Large Language Models/25 - AI Compliance and Governance/00 - Welcome - Why AI Compliance is the New Enterprise Blocker|AI Compliance and Governance]] — EU AI Act
 - [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/02 - Cost Visibility - Per-Tenant Attribution, Chargeback, and Showback|Cost Visibility]]

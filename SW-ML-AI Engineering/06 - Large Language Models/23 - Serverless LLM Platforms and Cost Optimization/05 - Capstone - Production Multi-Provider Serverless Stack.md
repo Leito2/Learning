@@ -665,7 +665,7 @@ The local stack includes the FastAPI service, Redis with vector search, LangFuse
 - [ ] Modal app deployed for custom LoRA inference
 - [ ] Replicate Cog model pushed for one-off LoRA testing
 - [ ] Together + Fireworks API keys in Vault
-- [ ] Self-hosted vLLM deployment (via K8s from [[10 - Cloud, Infra y Backend/22 - Cloud Computing]])
+- [ ] Self-hosted vLLM deployment (via K8s from [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|22 - Cloud Computing]])
 - [ ] Redis Stack with vector search deployed (3-node cluster for HA)
 - [ ] LangFuse self-hosted for cost attribution
 - [ ] Prometheus + Grafana for metrics
@@ -696,14 +696,14 @@ The local stack includes the FastAPI service, Redis with vector search, LangFuse
 - Fireworks AI docs — [docs.fireworks.ai](https://docs.fireworks.ai)
 - LiteLLM Router — [docs.litellm.ai/docs/routing](https://docs.litellm.ai/docs/routing)
 - Redis Stack vector search — [redis.io/docs/stack/search](https://redis.io/docs/stack/search/)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured outputs
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured outputs
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/01 - Modal - Python-Native Serverless GPU|Note 01 — Modal]]
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/02 - Replicate - Cog-Powered Inference and the Model Marketplace|Note 02 — Replicate]]
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/03 - Together AI and Fireworks - Production-Grade LLM APIs|Note 03 — Together/Fireworks]]
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|Note 04 — Cost Optimization]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — cost attribution
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — K8s deployment
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service patterns
-- [[13 - Go Engineering/06 - Go for ML Backend\|Go ML Backend]] — LLM Edge Gateway integration
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — cost attribution
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — K8s deployment
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service patterns
+- [[13 - Go Engineering/06 - Go for ML Backend/00 - Welcome\|Go ML Backend]] — LLM Edge Gateway integration

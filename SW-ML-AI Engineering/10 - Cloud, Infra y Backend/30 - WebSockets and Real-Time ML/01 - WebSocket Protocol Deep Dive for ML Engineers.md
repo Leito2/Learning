@@ -11,7 +11,7 @@
 
 Most ML engineers interact with WebSockets through high-level libraries and never touch the protocol internals. But when a streaming LLM inference drops tokens mid-response, or a real-time object detection pipeline accumulates 2-second lag, understanding the frame protocol is the difference between hours of blind debugging and a targeted fix. The WebSocket protocol (RFC 6455) is elegantly simple: a 2-byte header base, variable-length payload, and four opcodes that govern the entire lifecycle.
 
-This deep dive builds on your existing HTTP knowledge from [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/01 - FastAPI y APIs REST|REST API design]] and prepares you for the real-time inference architectures in [[02 - Real-Time ML Inference over WebSockets|Note 02]]. The Go/Fiber WebSocket implementation will connect directly to the patterns you already use in the [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]], where adding a `c.Upgrade()` call transforms a REST endpoint into a bidirectional streaming channel.
+This deep dive builds on your existing HTTP knowledge from [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/01 - FastAPI y APIs REST|REST API design]] and prepares you for the real-time inference architectures in [[02 - Real-Time ML Inference over WebSockets|Note 02]]. The Go/Fiber WebSocket implementation will connect directly to the patterns you already use in the [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]], where adding a `c.Upgrade()` call transforms a REST endpoint into a bidirectional streaming channel.
 
 ---
 
@@ -610,7 +610,7 @@ timeline
 ### 3.5 Application in ML/AI Systems 🤖
 
 - **SSE**: OpenAI, Anthropic, and most LLM APIs use SSE for token streaming. It's the simplest to implement and debug, but limits client interaction to "send request, receive stream, done."
-- **WebSocket**: Used by [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|your LLM Edge Gateway]] for real-time bidirectional inference with cancellation, re-prompting, and session management.
+- **WebSocket**: Used by [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|your LLM Edge Gateway]] for real-time bidirectional inference with cancellation, re-prompting, and session management.
 - **gRPC-Stream**: Internal microservice communication in [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/02 - gRPC y Comunicacion entre Servicios|microservice architectures]] where strong typing and HTTP/2 multiplexing matter.
 - **WebTransport**: Future-proofing for edge AI where network conditions are unreliable. QUIC's connection migration handles WiFi-to-cellular switches seamlessly during long inference sessions.
 
@@ -669,5 +669,5 @@ Build a WebSocket protocol analyzer: a Go tool that connects to a WS endpoint, c
 - RFC 6455 — https://datatracker.ietf.org/doc/html/rfc6455
 - Fiber WebSocket Contrib — https://github.com/gofiber/contrib/tree/main/websocket
 - [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/02 - gRPC y Comunicacion entre Servicios|gRPC for Service Communication]]
-- [[../../../Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG Pipelines with Go]] — SSE streaming in Go
+- [[13 - Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG Pipelines with Go]] — SSE streaming in Go
 - WebTransport W3C Spec — https://www.w3.org/TR/webtransport/

@@ -471,8 +471,8 @@ print(result["simple_support"])  # [0.95]
 ## References
 
 - [[00 - Welcome to RAG Evaluation Deep Dive|Welcome]] — course map.
-- [[01 - Test Dataset Construction|Test Set]] — the input to metrics.
-- [[03 - Statistical Rigor|Statistical Rigor]] — when 0.71 is and isn't significant.
-- [[04 - LLM-as-Judge Bias|Judge Bias]] — your judge prompt has biases; this note explains how.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|Test Set]] — the input to metrics.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar|Statistical Rigor]] — when 0.71 is and isn't significant.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|Judge Bias]] — your judge prompt has biases; this note explains how.
 - RAGAS custom metrics: https://docs.ragas.io/en/stable/concepts/metrics/index_custom
 - Pydantic: https://docs.pydantic.dev/

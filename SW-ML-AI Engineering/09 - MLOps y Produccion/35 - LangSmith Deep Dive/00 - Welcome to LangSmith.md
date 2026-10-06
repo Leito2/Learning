@@ -2,7 +2,7 @@
 
 You just deployed a LangGraph agent to production. A user reports "the answer is wrong." You open your dashboard and see **a trace tree**: `chat_handler → research → fact_audit → synthesis`. Each node has its inputs, outputs, latency, and the exact prompt sent to the LLM. You click the failing trace, compare it to a successful trace, and identify the bad prompt in 5 minutes. **That's LangSmith.**
 
-LangSmith (LangChain's commercial observability platform) is the most-used LLM observability backend in production. Where [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers.md|09/34 OpenTelemetry]] is the **vendor-neutral standard**, LangSmith is the **LLM-specific opinionated platform**. It ships:
+LangSmith (LangChain's commercial observability platform) is the most-used LLM observability backend in production. Where [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|09/34 OpenTelemetry]] is the **vendor-neutral standard**, LangSmith is the **LLM-specific opinionated platform**. It ships:
 
 - **Trace explorer** with prompts, completions, and tool calls visible inline.
 - **Datasets** for golden test sets, versioning, and management.
@@ -10,7 +10,7 @@ LangSmith (LangChain's commercial observability platform) is the most-used LLM o
 - **Annotation queues** for human feedback workflows.
 - **A/B testing** with statistical comparison built in.
 
-This is the second observability course in the vault. After [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers.md|09/34]], you understand the standard. After this one, you understand the most-used LLM-specific platform. **The two are complementary**: LangSmith projects can export to OTel, and OTel traces can be enriched with LangChain-specific metadata.
+This is the second observability course in the vault. After [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|09/34]], you understand the standard. After this one, you understand the most-used LLM-specific platform. **The two are complementary**: LangSmith projects can export to OTel, and OTel traces can be enriched with LangChain-specific metadata.
 
 ## 🎯 Learning Objectives
 
@@ -56,8 +56,8 @@ Both are popular LLM observability backends. The choice is usually ecosystem fit
 ## Prerequisites
 
 - **Python 3.10+** with `pip install langsmith langchain langchain-openai`.
-- **LangChain or LangGraph basics** ([[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|07/18]]).
-- **OpenTelemetry basics** (recommended, not required — [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers.md|09/34]]).
+- **LangChain or LangGraph basics** ([[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|07/18]]).
+- **OpenTelemetry basics** (recommended, not required — [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|09/34]]).
 - **LLM API keys** (OpenAI or Anthropic).
 
 ## How to Read This Course
@@ -96,8 +96,8 @@ That's it. Every LangChain call, every `@traceable` function, every custom span 
 
 ## References
 
-- [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers.md|OpenTelemetry]] — the vendor-neutral alternative.
-- [[../../../09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix.md|Phoenix]] — the OSS alternative.
-- [[../../../07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns.md|LangGraph Deep Patterns]] — LangSmith integrates with LangGraph natively.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry]] — the vendor-neutral alternative.
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix]] — the OSS alternative.
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — LangSmith integrates with LangGraph natively.
 - LangSmith docs: https://docs.smith.langchain.com/
 - LangSmith pricing: https://smith.langchain.com/#pricing

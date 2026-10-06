@@ -12,7 +12,7 @@
 ## Introduction
 A trained model in a Jupyter notebook has zero business value until it serves predictions in production. The gap between research artifact and production system is where most ML projects fail. TensorFlow's production ecosystem provides a standardized, language-agnostic serialization format (SavedModel), a high-performance serving system (TF Serving), and lightweight runtimes for edge and mobile (TFLite). Together, these tools form a continuum from data-center GPU clusters to microcontroller inference, all sharing the same core graph representation.
 
-This note is the bridge between model training and the MLOps practices covered in [[09 - MLOps y Produccion]], the distributed infrastructure topics in [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome]], and the system design principles in [[10 - Cloud, Infra y Backend/32 - System Design for ML/02 - System Design for ML]]. While [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida]] covers PyTorch deployment via TorchScript and ONNX, this note focuses on the TensorFlow-native path.
+This note is the bridge between model training and the MLOps practices covered in [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]], the distributed infrastructure topics in [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome]], and the system design principles in [[10 - Cloud, Infra y Backend/32 - System Design for ML/02 - Caching, CDNs and Storage Architectures for ML|02 - System Design for ML]]. While [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida]] covers PyTorch deployment via TorchScript and ONNX, this note focuses on the TensorFlow-native path.
 
 ---
 

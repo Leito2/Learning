@@ -324,7 +324,7 @@ Cost-aware routing avoids the expensive GPT-4o unless the cheaper providers fail
 
 ## 5. Cost Monitoring with LangFuse
 
-Track per-tenant cost with LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability]]):
+Track per-tenant cost with LangFuse (covered in [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|36 - LangFuse - Open-Source LLM Observability]]):
 
 ```python
 from langfuse import observe
@@ -476,9 +476,9 @@ def generate(prompt: str) -> str:
 - Replicate keep_warm — [replicate.com/docs/topics/deployments/keep-warm](https://replicate.com/docs/topics/deployments/keep-warm)
 - Together caching — [docs.together.ai/docs/prompt-caching](https://docs.together.ai/docs/prompt-caching)
 - LiteLLM Router — [docs.litellm.ai/docs/routing](https://docs.litellm.ai/docs/routing)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured outputs
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — cost attribution
-- [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML|WebSockets for ML]] — streaming patterns
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — K8s autoscaling
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured outputs
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — cost attribution
+- [[10 - Cloud, Infra y Backend/30 - WebSockets and Real-Time ML/00 - Welcome to WebSockets and Real-Time ML|WebSockets for ML]] — streaming patterns
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — K8s autoscaling

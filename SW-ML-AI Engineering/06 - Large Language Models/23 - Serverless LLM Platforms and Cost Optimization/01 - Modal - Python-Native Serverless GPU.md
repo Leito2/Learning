@@ -103,7 +103,7 @@ For a typical workload:
 - **Dev / small inference**: `L4` ($0.80/hr) is the sweet spot
 - **Production 7-13B models**: `A10G` ($1.10/hr)
 - **Production 70B models**: `A100-80GB` ($3.50/hr) or split across multiple GPUs
-- **Frontier training**: `H100` ($4.50/hr) with FSDP from [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive]]
+- **Frontier training**: `H100` ($4.50/hr) with FSDP from [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive|16 - HuggingFace Transformers Deep Dive]]
 - **Cutting-edge**: `H200` or `B200`
 
 The cost economics: a 1-second inference on `A100` costs $0.0007. At 1M inferences/day, that's $700/day or $21k/month. Compare to Together AI Llama 3.1 70B at ~$0.88/M tokens: 1M inferences × 1000 output tokens × $0.88/M = $880/day or $26k/month. Modal is competitive for high-throughput inference but loses on per-token cost for low-throughput.
@@ -209,7 +209,7 @@ def stream(request: dict) -> StreamingResponse:
     return StreamingResponse(generate(), media_type="text/event-stream")
 ```
 
-The streaming endpoint keeps the connection open and emits tokens as Server-Sent Events — same pattern as the FastAPI streaming from [[06 - Large Language Models/22 - Instructor and Structured Generation]].
+The streaming endpoint keeps the connection open and emits tokens as Server-Sent Events — same pattern as the FastAPI streaming from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]].
 
 ---
 
@@ -551,11 +551,11 @@ def process(docs: list[dict]) -> list[dict]:
 - Modal examples — [github.com/modal-labs/modal-examples](https://github.com/modal-labs/modal-examples)
 - Modal pricing — [modal.com/pricing](https://modal.com/pricing)
 - HuggingFace + Modal — [modal.com/docs/guide/huggingface](https://modal.com/docs/guide/huggingface)
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured outputs
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — GPU pricing comparisons
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service deployment
-- [[02 - Docker Profesional|Docker Profesional]] — container fundamentals
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM and Advanced RAG]] — self-hosted comparison
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured outputs
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — GPU pricing comparisons
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service deployment
+- [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]] — container fundamentals
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/03 - Together AI and Fireworks - Production-Grade LLM APIs|Note 03 — Together/Fireworks]]
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/05 - Capstone - Production Multi-Provider Serverless Stack|Note 05 — Capstone]]

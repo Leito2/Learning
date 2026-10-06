@@ -403,7 +403,7 @@ compiled.save("compiled_rag.json")
 
 - [[00 - Welcome to DSPy and Prompt Compilation|Welcome]] — course map.
 - [[01 - Signatures and Modules|Signatures]] — the input to compilation.
-- [[03 - DSPy for RAG|RAG]] — the retrieval module compilation.
+- [[06 - Large Language Models/21 - DSPy and Prompt Compilation/03 - DSPy for RAG - Retrieval Modules and Signatures|RAG]] — the retrieval module compilation.
 - [[04 - DSPy + LangGraph Integration|LangGraph]] — compiled agents in graphs.
 - DSPy optimizers: https://dspy.ai/learn/optimization/
 - MIPRO paper: https://arxiv.org/abs/2406.11695

@@ -299,7 +299,7 @@ This config:
 
 ## 8. The Portfolio Pattern — LLM Edge Gateway
 
-Your existing **LLM Edge Gateway** (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|06/19]]) uses LiteLLM. Migration to Portkey adds reliability features:
+Your existing **LLM Edge Gateway** (covered in [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|06/19]]) uses LiteLLM. Migration to Portkey adds reliability features:
 
 ```python
 # Before (LiteLLM)
@@ -437,7 +437,7 @@ config = {
 
 - Portkey Reliability — [portkey.ai/docs/product/reliability](https://portkey.ai/docs/product/reliability)
 - Portkey Configurations — [portkey.ai/docs/product/ai-gateway-stream](https://portkey.ai/docs/product/ai-gateway-stream)
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — LiteLLM comparison
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — LiteLLM comparison
 - [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/01 - Portkey Core - Gateway Fundamentals|Note 01 — Portkey Core]]
-- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/04 - PII Redaction and Compliance|Note 04 — PII Redaction]]
+- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/04 - PII Redaction and Compliance - GDPR, HIPAA, Audit Logs|Note 04 — PII Redaction]]
 - [[06 - Large Language Models/23 - Serverless LLM Platforms|Serverless LLM Platforms]] — multi-provider cost

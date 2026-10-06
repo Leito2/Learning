@@ -436,11 +436,11 @@ docker compose up -d
 ## References
 
 - [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/01 - Portkey Core - Gateway Fundamentals|Note 01 — Portkey Core]]
-- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/02 - Observability and Cost Tracking|Note 02 — Observability]]
+- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/02 - Observability and Cost Tracking - Per-Tenant Dashboards, Alerts|Note 02 — Observability]]
 - [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/03 - Fallbacks, Load Balancing, and Conditional Routing|Note 03 — Reliability]]
-- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/04 - PII Redaction and Compliance|Note 04 — PII Compliance]]
+- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/04 - PII Redaction and Compliance - GDPR, HIPAA, Audit Logs|Note 04 — PII Compliance]]
 - Portkey Gateway — [github.com/Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)
 - Portkey Docs — [portkey.ai/docs](https://portkey.ai/docs)
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — LiteLLM comparison
-- [[06 - Large Language Models/25 - AI Compliance and Governance|AI Compliance and Governance]]
-- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML|Cost Engineering / FinOps]]
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — LiteLLM comparison
+- [[06 - Large Language Models/25 - AI Compliance and Governance/00 - Welcome - Why AI Compliance is the New Enterprise Blocker|AI Compliance and Governance]]
+- [[09 - MLOps y Produccion/41 - Cost Engineering as Discipline - FinOps for ML/00 - Welcome - Why Cost Engineering Matters|Cost Engineering / FinOps]]

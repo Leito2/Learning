@@ -18,7 +18,7 @@ Welcome to the TensorFlow track. This course teaches production-grade deep learn
 
 - Solid Python (3.8+) and NumPy
 - Backpropagation, activation functions, CNN/RNN basics
-- Familiarity with PyTorch helps, see [[03 - Deep Learning con PyTorch/00 - Bienvenida]]
+- Familiarity with PyTorch helps, see [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|00 - Bienvenida]]
 - Basic CLI comfort for distributed training sections
 
 ## 🔄 TF 2 vs TF 1
@@ -43,7 +43,7 @@ TF 1.x used static graphs and `Session.run()`. TF 2.x adopted **eager execution 
 | Production pipelines requiring SavedModel | ✅ Stable format with TF Serving, TFX, TFLite |
 | Research flexibility / HuggingFace | ✅ PyTorch ecosystem is dominant here |
 
-For deployment context see [[09 - MLOps y Produccion]] and [[32 - System Design for ML]]. For LLM training see [[06 - Large Language Models]].
+For deployment context see [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]] and [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML|32 - System Design for ML]]. For LLM training see [[00 - Indice Maestro de Cursos|06 - Large Language Models]].
 
 ## 🛠️ Environment
 

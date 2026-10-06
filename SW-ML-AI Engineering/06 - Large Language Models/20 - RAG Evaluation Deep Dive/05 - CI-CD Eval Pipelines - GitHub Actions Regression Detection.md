@@ -6,7 +6,7 @@ Three building blocks:
 
 1. **GitHub Actions workflow** that runs RAGAS on every PR, posts a comment with metric deltas, and blocks merges on regression.
 2. **Regression detection** that compares the current run to the previous baseline, with CIs and statistical tests.
-3. **Dashboarding** with Phoenix ([[../../../09 - MLOps y Produccion/31 - Evidently AI and Phoenix/03 - Phoenix by Arize - LLM Observability, Traces and Embedding Drift.md|Phoenix]]) or Grafana that tracks metric trends over time and alerts on drift.
+3. **Dashboarding** with Phoenix ([[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/03 - Phoenix by Arize - LLM Observability, Traces and Embedding Drift|Phoenix]]) or Grafana that tracks metric trends over time and alerts on drift.
 
 By the end you will have a CI pipeline that:
 - Runs RAGAS on every PR (3-5 minutes, $2-5 per run).
@@ -548,8 +548,8 @@ jobs:
 ## References
 
 - [[00 - Welcome to RAG Evaluation Deep Dive|Welcome]] — course map.
-- [[01 - Test Dataset Construction|Test Set]] — the input to CI.
-- [[03 - Statistical Rigor|Statistical Rigor]] — the gate's decisions.
-- [[06 - Cost-Optimized Evaluation|Cost Optimization]] — how to keep this affordable.
-- [[../../../09 - MLOps y Produccion/31 - Evidently AI and Phoenix/03 - Phoenix by Arize - LLM Observability, Traces and Embedding Drift.md|Phoenix]] — observability backend.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|Test Set]] — the input to CI.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar|Statistical Rigor]] — the gate's decisions.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/06 - Cost-Optimized Evaluation - Judge Selection Sampling Caching|Cost Optimization]] — how to keep this affordable.
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/03 - Phoenix by Arize - LLM Observability, Traces and Embedding Drift|Phoenix]] — observability backend.
 - GitHub Actions: https://docs.github.com/en/actions

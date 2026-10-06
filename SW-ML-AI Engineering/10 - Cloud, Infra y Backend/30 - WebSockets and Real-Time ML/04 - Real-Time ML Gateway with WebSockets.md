@@ -9,9 +9,9 @@
 
 ## Introduction
 
-The final evolution of your ML infrastructure is the **Unified Real-Time ML Gateway**: a single Go/Fiber service that serves REST endpoints for embeddings, token counting, and model listing, alongside WebSocket endpoints for streaming chat, real-time ASR, and live video inference. This is not a new service—it's the natural extension of the [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] you've already built, enhanced with bidirectional streaming capabilities.
+The final evolution of your ML infrastructure is the **Unified Real-Time ML Gateway**: a single Go/Fiber service that serves REST endpoints for embeddings, token counting, and model listing, alongside WebSocket endpoints for streaming chat, real-time ASR, and live video inference. This is not a new service—it's the natural extension of the [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] you've already built, enhanced with bidirectional streaming capabilities.
 
-The gateway pattern solves a real problem in ML serving: backends like vLLM, Ollama, and cloud APIs each have different interfaces (SSE, REST, gRPC), authentication models, and rate limits. A unified gateway abstracts these differences behind a consistent API—REST for simple queries, WebSocket for streaming inference. Your existing knowledge of [[../../../Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|circuit breakers]], [[../../../Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG pipelines]], and [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/03 - Microservicios y Arquitectura de Eventos|microservice architecture]] converges here into a single, cohesive system.
+The gateway pattern solves a real problem in ML serving: backends like vLLM, Ollama, and cloud APIs each have different interfaces (SSE, REST, gRPC), authentication models, and rate limits. A unified gateway abstracts these differences behind a consistent API—REST for simple queries, WebSocket for streaming inference. Your existing knowledge of [[13 - Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|circuit breakers]], [[13 - Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG pipelines]], and [[../../06 - Cloud, Infra y Backend/24 - Backend para ML/03 - Microservicios y Arquitectura de Eventos|microservice architecture]] converges here into a single, cohesive system.
 
 ---
 
@@ -594,7 +594,7 @@ sequenceDiagram
 
 ### 3.1 Theoretical Foundation 🧠
 
-This module is the direct integration point—showing how to enhance your existing [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] with WebSocket streaming. The key insight: **your existing infrastructure (auth, rate limiting, Redis cache, circuit breaker) applies to WebSocket connections with minimal changes**.
+This module is the direct integration point—showing how to enhance your existing [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]] with WebSocket streaming. The key insight: **your existing infrastructure (auth, rate limiting, Redis cache, circuit breaker) applies to WebSocket connections with minimal changes**.
 
 The only new components needed are:
 1. A WebSocket handler registered alongside existing REST handlers
@@ -1134,9 +1134,9 @@ This is your portfolio's centerpiece: a production-grade ML serving infrastructu
 
 - Fiber WebSocket Contrib — https://github.com/gofiber/contrib/tree/main/websocket
 - Prometheus Go Client — https://github.com/prometheus/client_golang
-- [[../../../Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
-- [[../../../Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Circuit Breakers in Go]]
-- [[../../../Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG Pipelines with Go]]
+- [[13 - Go Engineering/03 - Microservices with Go/01 - Building APIs with Gin and Fiber|LLM Edge Gateway]]
+- [[13 - Go Engineering/03 - Microservices with Go/05 - Rate Limiting and Circuit Breakers|Circuit Breakers in Go]]
+- [[13 - Go Engineering/05 - Local AI with Go/04 - RAG Pipelines with Go and Vector DBs|RAG Pipelines with Go]]
 - [[01 - WebSocket Protocol Deep Dive for ML Engineers|Note 01 — Protocol Deep Dive]]
 - [[02 - Real-Time ML Inference over WebSockets|Note 02 — Streaming Inference]]
 - [[03 - Scaling WebSockets for ML Services|Note 03 — Scaling]]

@@ -422,7 +422,7 @@ print(results["ids"])
 ## References
 
 - [[00 - Welcome to ChromaDB|Welcome]] — course map.
-- [[01 - Chroma Fundamentals|Fundamentals]] — collections and embedding function slot.
-- [[02 - Chroma Server Mode|Server Mode]] — embedding functions work the same on the server.
-- [[../../06 - Large Language Models/12 - Production RAG/02 - Vector Databases for RAG - HNSW, IVF, PQ and Filtering.md|Vector Databases for RAG]] — embedding quality comparison.
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/13 - ChromaDB Deep Dive/01 - Chroma Fundamentals - Collections, Embeddings and Query|Fundamentals]] — collections and embedding function slot.
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/13 - ChromaDB Deep Dive/02 - Chroma Server Mode - Local and Docker Deployment|Server Mode]] — embedding functions work the same on the server.
+- [[06 - Large Language Models/12 - Production RAG/02 - Vector Databases for RAG - HNSW, IVF, PQ and Filtering|Vector Databases for RAG]] — embedding quality comparison.
 - Chroma embeddings: https://docs.trychroma.com/embeddings

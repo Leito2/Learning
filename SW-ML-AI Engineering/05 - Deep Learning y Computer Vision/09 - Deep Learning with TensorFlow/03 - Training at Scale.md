@@ -12,7 +12,7 @@
 
 Training modern models with billions of parameters requires computation beyond any single device. TensorFlow addresses this through `tf.distribute`, which abstracts all-reduce communication, variable placement, and gradient synchronization behind a strategy object.
 
-Distribution alone is insufficient: Python-level loops are too slow. TensorFlow solves this with `tf.function`, which traces Python into optimizable graphs, and XLA, which compiles them into fused device code. This note connects to [[01 - tf.keras Architectures]] and [[02 - tf.data and TFRecord Pipelines]], and bridges to [[09 - MLOps y Produccion]] and [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome]]. For PyTorch users, strategy scope replaces `DistributedDataParallel` wrapping, and `tf.function` replaces `torch.compile`.
+Distribution alone is insufficient: Python-level loops are too slow. TensorFlow solves this with `tf.function`, which traces Python into optimizable graphs, and XLA, which compiles them into fused device code. This note connects to [[01 - tf.keras Architectures]] and [[02 - tf.data and TFRecord Pipelines]], and bridges to [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]] and [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/00 - Welcome]]. For PyTorch users, strategy scope replaces `DistributedDataParallel` wrapping, and `tf.function` replaces `torch.compile`.
 
 ---
 

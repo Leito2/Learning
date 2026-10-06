@@ -10,7 +10,7 @@
 
 Deploying ML models to the browser has historically been a trade-off between performance and portability. TensorFlow.js runs in JavaScript but cannot escape V8's garbage collection pauses. ONNX Runtime Web offers better performance but drags a multi-megabyte WASM blob. For engineers who need sub-second cold starts, deterministic memory usage, and a single toolchain from training to deployment, these options feel like compromises.
 
-Candle's `candle-wasm` crate takes a different approach. Because Candle is written in Rust, and Rust compiles directly to WebAssembly via `wasm32-unknown-unknown`, the entire inference pipeline—from tensor creation to model forward pass—becomes a portable, sandboxed module. There is no JavaScript glue layer interpreting opcodes; the model *is* a Wasm module. This note connects these ideas to [[05 - MLOps y Produccion]] and [[04 - Rust for ML and AI]].
+Candle's `candle-wasm` crate takes a different approach. Because Candle is written in Rust, and Rust compiles directly to WebAssembly via `wasm32-unknown-unknown`, the entire inference pipeline—from tensor creation to model forward pass—becomes a portable, sandboxed module. There is no JavaScript glue layer interpreting opcodes; the model *is* a Wasm module. This note connects these ideas to [[00 - Indice Maestro de Cursos|05 - MLOps y Produccion]] and [[14 - Rust Engineering/04 - Rust for ML and AI/00 - Welcome|04 - Rust for ML and AI]].
 
 ---
 
@@ -233,7 +233,7 @@ The key detail: `Float32Array` is **not** serialized. `wasm-bindgen` passes a ra
 - Candle Wasm guide: https://huggingface.github.io/candle/guide-wasm.html
 - `wasm-bindgen` docs: https://rustwasm.github.io/wasm-bindgen/
 - WebGPU status: https://github.com/gpuweb/gpuweb
-- [[05 - MLOps y Produccion]]
+- [[00 - Indice Maestro de Cursos|05 - MLOps y Produccion]]
 
 ## 📦 Código de compresión
 

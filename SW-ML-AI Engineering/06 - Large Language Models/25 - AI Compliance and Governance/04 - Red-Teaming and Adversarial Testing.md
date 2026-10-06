@@ -589,7 +589,7 @@ garak.test(
 - OWASP Top 10 for LLMs — [owasp.org/www-project-top-10-for-large-language-model-applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 - Microsoft AI Red Team — [learn.microsoft.com/en-us/azure/ai-services/openai/concepts/red-teaming](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/red-teaming)
 - EU AI Act Article 9 — Risk management — [eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
-- [[06 - Large Language Models/15 - LLM Security and Guardrails|LLM Security and Guardrails]] — guardrails
+- [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|LLM Security and Guardrails]] — guardrails
 - [[06 - Large Language Models/25 - AI Compliance and Governance/01 - EU AI Act 2024 - Risk Classification and Compliance|Note 01 — EU AI Act]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/03 - Bias and Fairness - AI Fairness 360 and Demographic Parity|Note 03 — Bias and Fairness]]
 - [[06 - Large Language Models/25 - AI Compliance and Governance/05 - Capstone - Compliance Pipeline for a Regulated Industry|Note 05 — Capstone]]

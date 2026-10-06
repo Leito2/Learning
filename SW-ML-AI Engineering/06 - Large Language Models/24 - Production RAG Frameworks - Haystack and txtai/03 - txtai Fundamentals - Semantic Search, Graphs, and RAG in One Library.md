@@ -522,9 +522,9 @@ workflow = langgraph_builder.compile()
 - txtai docs — [neuml.github.io/txtai](https://neuml.github.io/txtai/)
 - txtai GitHub — [github.com/neuml/txtai](https://github.com/neuml/txtai)
 - txtai API server — [neuml.github.io/txtai/server](https://neuml.github.io/txtai/server/)
-- [[06 - Large Language Models/12 - Production RAG|Production RAG]] — foundational RAG patterns
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|Production RAG]] — foundational RAG patterns
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/01 - Haystack Fundamentals - Pipelines, Components, Retrievers|Note 01 — Haystack Fundamentals]]
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/02 - Haystack Advanced Pipelines - Hybrid Search, Reranking, Agents, and Evaluation|Note 02 — Haystack Advanced]]
 - [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/05 - Capstone - Production Hybrid RAG Service|Note 05 — Capstone]]
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — agentic workflows
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]] — Qdrant, Milvus, Pinecone
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — agentic workflows

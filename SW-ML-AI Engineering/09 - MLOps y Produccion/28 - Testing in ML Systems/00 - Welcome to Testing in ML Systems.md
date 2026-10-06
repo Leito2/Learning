@@ -89,7 +89,7 @@ Where scenarios include: null values, out-of-range numeric values, schema change
 | Prerequisite Concepts | Where Used |
 |-----------------------|------------|
 | Feast feature stores | Referenced in data validation (offline/online parity checks) |
-| CI/CD for ML ([[../09 - MLOps y Produccion/29 - CI-CD for ML/]]) | Tests run in CI; model deployment gates |
+| CI/CD for ML ([[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML\|29 - CI-CD for ML]]) | Tests run in CI; model deployment gates |
 | Monitoring and drift ([[../09 - MLOps y Produccion/31 - Evidently for Model Monitoring/]]) | Data validation is the first line of drift defense |
 | End-to-End ML pipelines ([[../09 - MLOps y Produccion/22 - End-to-End ML Pipeline/]]) | Testing integrates at every pipeline stage |
 

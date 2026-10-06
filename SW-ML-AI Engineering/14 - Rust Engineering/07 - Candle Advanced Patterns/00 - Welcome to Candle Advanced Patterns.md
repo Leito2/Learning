@@ -4,13 +4,13 @@
 - Understand why Candle exists as a Rust-native ML framework and how it differs from Python stacks.
 - Map the architecture of Candle across its crates: `candle-core`, `candle-nn`, `candle-transformers`, `candle-wasm`.
 - Identify prerequisites and the learning path for production-grade ML systems in Rust.
-- Connect advanced Candle patterns to broader [[Rust Engineering]] principles and deep learning fundamentals.
+- Connect advanced Candle patterns to broader [[14 - Rust Engineering/00 - Welcome to Rust Engineering|Rust Engineering]] principles and deep learning fundamentals.
 
 ## Introduction
 
 The modern ML landscape is dominated by Python frameworks like PyTorch and TensorFlow. While these excel at research velocity, they hit a wall when engineers try to deploy models into latency-sensitive, resource-constrained, or safety-critical production environments. Python's GIL, dynamic typing, and heavy runtime dependencies make it difficult to achieve the memory safety and predictable performance that systems like autonomous vehicles, real-time recommendation engines, and edge devices demand.
 
-Candle, developed by Hugging Face, is a Rust-native ML framework designed to bridge this gap. It offers a PyTorch-like API while leveraging Rust's ownership model, zero-cost abstractions, and cross-compilation capabilities. This course explores advanced Candle patterns—from custom autodiff and GPU abstraction to WebAssembly edge deployment. You will learn not just *how* to write Candle code, but *why* each pattern exists and how it maps to production ML engineering. These notes build on [[01 - Rust Fundamentals]] and [[04 - Rust for ML and AI]], as well as deep learning theory from [[01 - Deep Learning y Computer Vision]].
+Candle, developed by Hugging Face, is a Rust-native ML framework designed to bridge this gap. It offers a PyTorch-like API while leveraging Rust's ownership model, zero-cost abstractions, and cross-compilation capabilities. This course explores advanced Candle patterns—from custom autodiff and GPU abstraction to WebAssembly edge deployment. You will learn not just *how* to write Candle code, but *why* each pattern exists and how it maps to production ML engineering. These notes build on [[14 - Rust Engineering/01 - Rust Fundamentals/00 - Welcome|01 - Rust Fundamentals]] and [[14 - Rust Engineering/04 - Rust for ML and AI/00 - Welcome|04 - Rust for ML and AI]], as well as deep learning theory from [[00 - Indice Maestro de Cursos|01 - Deep Learning y Computer Vision]].
 
 ---
 
@@ -169,7 +169,7 @@ flowchart LR
 | 4 | Compile to Wasm, bridge JS ↔ Rust | Privacy-preserving browser inference |
 | 5 | Dynamic batching, memory pools, `Arc<Model>` sharing | High-throughput serving with P99 SLOs |
 
-**Prerequisites:** Comfort with Rust ownership and traits ([[01 - Rust Fundamentals]]), basic deep learning terminology (activation functions, loss functions, backpropagation from [[01 - Deep Learning y Computer Vision]]).
+**Prerequisites:** Comfort with Rust ownership and traits ([[14 - Rust Engineering/01 - Rust Fundamentals/00 - Welcome|01 - Rust Fundamentals]]), basic deep learning terminology (activation functions, loss functions, backpropagation from [[00 - Indice Maestro de Cursos|01 - Deep Learning y Computer Vision]]).
 
 ### Setting Up a Candle Project
 
@@ -232,9 +232,9 @@ Candle is not a universal replacement for Python ML frameworks. Consider alterna
 ## References
 - Official docs: https://huggingface.github.io/candle/
 - Repository: https://github.com/huggingface/candle
-- [[01 - Rust Fundamentals]]
-- [[04 - Rust for ML and AI]]
-- [[01 - Deep Learning y Computer Vision]]
+- [[14 - Rust Engineering/01 - Rust Fundamentals/00 - Welcome|01 - Rust Fundamentals]]
+- [[14 - Rust Engineering/04 - Rust for ML and AI/00 - Welcome|04 - Rust for ML and AI]]
+- [[00 - Indice Maestro de Cursos|01 - Deep Learning y Computer Vision]]
 
 ## 📦 Código de compresión
 

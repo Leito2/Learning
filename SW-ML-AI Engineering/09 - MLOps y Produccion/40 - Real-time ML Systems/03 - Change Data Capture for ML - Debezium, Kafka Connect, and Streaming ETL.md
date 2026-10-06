@@ -529,8 +529,8 @@ First-run systems need a snapshot. Otherwise, the feature store starts empty.
 - Karapace (open-source Schema Registry) — [github.com/Aiven-Open/karapace](https://github.com/Aiven-Open/karapace)
 - PostgreSQL Logical Replication — [postgresql.org/docs/current/logical-replication.html](https://www.postgresql.org/docs/current/logical-replication.html)
 - Feast — [feast.dev](https://feast.dev/)
-- [[09 - MLOps y Produccion/27 - Feast and Feature Stores|Feast course]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering|Note 01 — Streaming Features]]
-- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML|Note 02 — Online Inference]]
+- [[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|Feast course]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/01 - Streaming Feature Engineering - Kafka, Faust-Bytewax, and Online Aggregations|Note 01 — Streaming Features]]
+- [[09 - MLOps y Produccion/40 - Real-time ML Systems/02 - Online Inference and Event-Driven ML - Sub-50ms Predictions|Note 02 — Online Inference]]
 - [[09 - MLOps y Produccion/40 - Real-time ML Systems/05 - Capstone - Production Real-time ML Pipeline|Note 05 — Capstone]]
 - [[10 - Cloud, Infra y Backend/29 - Distributed ML Infrastructure/01 - Apache Kafka|Kafka note 01]]

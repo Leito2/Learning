@@ -368,8 +368,8 @@ def call_llm(prompt):
 ## References
 
 - [[00 - Welcome to LangSmith|Welcome]] — course map.
-- [[01 - LangSmith Core|Core primitives]] — runs, traces.
-- [[02 - Auto-Instrumentation|Auto-Instrumentation]] — what gets traced.
-- [[04 - Online Evaluators|Online Evals]] — sampling for evals.
-- [[../../../09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/06 - Production Patterns - Sampling Costs and PII Redaction.md|OTel production patterns]] — the standard alternative.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/01 - LangSmith Core - Traces Runs Projects|Core primitives]] — runs, traces.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/02 - Auto-Instrumentation for LLM SDKs|Auto-Instrumentation]] — what gets traced.
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/04 - Online Evaluators and LLM-as-Judge|Online Evals]] — sampling for evals.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/06 - Production Patterns - Sampling Costs and PII Redaction|OTel production patterns]] — the standard alternative.
 - LangSmith sampling: https://docs.smith.langchain.com/observability/how_to_guides/sample_traces

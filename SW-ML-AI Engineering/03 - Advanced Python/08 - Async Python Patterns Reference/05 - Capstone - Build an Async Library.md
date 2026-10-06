@@ -770,10 +770,10 @@ After running the capstone, you have:
 
 ## References
 
-- [[../01 - Event Loop Internals - uvloop, Selectors, and the GIL Interplay|Note 01 — Event Loop Internals]]
-- [[../02 - Async Library Ecosystem - Decision Framework for 2026|Note 02 — Library Ecosystem]]
-- [[../03 - Async Anti-Patterns Reference Card - 20 Patterns with Stack-Trace Signatures|Note 03 — Anti-Patterns Reference]]
-- [[../04 - Subinterpreters and Python 3.12+ Async - CPU-Bound + Async Hybrid Work|Note 04 — Subinterpreters]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/01 - Event Loop Internals - uvloop, Selectors, and the GIL Interplay|Note 01 — Event Loop Internals]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/02 - Async Library Ecosystem - Decision Framework for 2026|Note 02 — Library Ecosystem]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/03 - Async Anti-Patterns Reference Card - 20 Patterns with Stack-Trace Signatures|Note 03 — Anti-Patterns Reference]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/04 - Subinterpreters and Python 3.12+ Async - CPU-Bound + Async Hybrid Work|Note 04 — Subinterpreters]]
 - [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]]
 - [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/01 - ASGI Architecture and Async Python for ML|Note 01 — ASGI Architecture and Async Python for ML]]
 - [[../../10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/06 - Async Debugging in Production - Common Pitfalls and Detection|Note — Async Debugging]]

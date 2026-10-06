@@ -13,9 +13,9 @@ The standard LLM API call is a stateless black box: `prompt → model.generate()
 
 **SGLang** — Structured Generation Language — reimagines the interface between programs and language models. Instead of treating LLM calls as opaque string transformations, SGLang exposes them as first-class programming primitives within a domain-specific language. A SGLang program is a graph of generation operations connected by control flow: `gen()` produces constrained text, `select()` chooses from a fixed set of options (via logit masking), `fork()` creates parallel branches that share a common prefix, and `+=` appends to the accumulating context. The key insight is that because the runtime understands the *structure* of the program — not just individual requests — it can optimize across boundaries that opaque APIs cannot see.
 
-The engine underneath this DSL is **RadixAttention**. Where vLLM's PagedAttention manages KV cache blocks *within* a single request (see [[06 - vLLM and Advanced RAG]]), RadixAttention manages KV cache sharing *across* an entire program graph. It indexes all KV cache states in a global radix tree (prefix tree) keyed by token sequence. When a new request arrives — or a `fork()` creates a branch — the runtime finds the longest matching prefix in the tree and only computes attention for the suffix tokens. In the LLM-as-a-Judge example: the rubric prompt is cached once at the root, and all 100 evaluations inherit it as a shared prefix, computing only the candidate-specific tokens.
+The engine underneath this DSL is **RadixAttention**. Where vLLM's PagedAttention manages KV cache blocks *within* a single request (see [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]]), RadixAttention manages KV cache sharing *across* an entire program graph. It indexes all KV cache states in a global radix tree (prefix tree) keyed by token sequence. When a new request arrives — or a `fork()` creates a branch — the runtime finds the longest matching prefix in the tree and only computes attention for the suffix tokens. In the LLM-as-a-Judge example: the rubric prompt is cached once at the root, and all 100 evaluations inherit it as a shared prefix, computing only the candidate-specific tokens.
 
-This is the difference between optimizing a single function call and optimizing the entire call graph. For structured generation workloads, SGLang delivers 2-5× higher throughput than vLLM, not because its attention kernel is faster, but because it eliminates redundant computation at the architectural level. For more on agent protocols, see [[07 - MCP and Agentic Protocols]].
+This is the difference between optimizing a single function call and optimizing the entire call graph. For structured generation workloads, SGLang delivers 2-5× higher throughput than vLLM, not because its attention kernel is faster, but because it eliminates redundant computation at the architectural level. For more on agent protocols, see [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|07 - MCP and Agentic Protocols]].
 
 ![SGLang vs traditional LLM APIs: programs are graphs, not isolated strings](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Prefix_tree_example.svg/1280px-Prefix_tree_example.svg)
 
@@ -417,9 +417,9 @@ for i, branch in enumerate(state.fork_results()):
 - Kwon, W., et al. (2023). "Efficient Memory Management for Large Language Model Serving with PagedAttention." *SOSP 2023*.
 - LMSYS Chatbot Arena: https://chat.lmsys.org/
 - [[04 - SGLang in Production - Programs, Agents and Benchmarks]]
-- [[06 - vLLM and Advanced RAG]]
-- [[07 - MCP and Agentic Protocols]]
-- [[06 - Production RAG]]
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|06 - vLLM and Advanced RAG]]
+- [[07 - AI Agents y Agentic Systems/15 - MCP and Agentic Protocols/00 - Welcome to MCP and Agentic Protocols|07 - MCP and Agentic Protocols]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06 - Production RAG]]
 
 ---
 

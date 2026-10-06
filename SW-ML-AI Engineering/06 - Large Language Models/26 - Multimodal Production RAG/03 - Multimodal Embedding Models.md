@@ -270,7 +270,7 @@ def multimodal_search(
 
 ## 4. LlamaIndex Multimodal Pipelines
 
-LlamaIndex (covered in [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai|06/24]]) provides high-level multimodal RAG.
+LlamaIndex (covered in [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks|06/24]]) provides high-level multimodal RAG.
 
 ```python
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
@@ -558,8 +558,8 @@ if jina_clip_v2:
 - BGE-M3 — [huggingface.co/BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3)
 - MTEB benchmark — [huggingface.co/spaces/mteb/leaderboard](https://huggingface.co/spaces/mteb/leaderboard)
 - LlamaIndex multi-modal — [docs.llamaindex.ai/en/stable/module_guides/models/multi_modal](https://docs.llamaindex.ai/en/stable/module_guides/models/multi_modal)
-- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction|Note 01 — PDF Parsing]]
-- [[06 - Large Language Models/26 - Multimodal Production RAG/02 - Visual Document Retrieval - ColPali and Beyond|Note 02 — ColPali]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/01 - PDF Parsing and Extraction - Text, Tables, OCR, and Layout Preservation|Note 01 — PDF Parsing]]
+- [[06 - Large Language Models/26 - Multimodal Production RAG/02 - Visual Document Retrieval - ColPali and the Late Interaction Revolution|Note 02 — ColPali]]
 - [[06 - Large Language Models/26 - Multimodal Production RAG/04 - Video and Audio RAG|Note 04 — Video/Audio RAG]]
-- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai|Production RAG: Haystack + txtai]]
-- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|Vector Databases]]
+- [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks|Production RAG: Haystack + txtai]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|Vector Databases]]

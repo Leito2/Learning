@@ -597,5 +597,5 @@ py-spy dump --pid $TEST_PID --non-blocking --duration 30
 - py-spy — [github.com/benfred/py-spy](https://github.com/benfred/py-spy)
 - [[../../10 - Cloud, Infra y Backend/31 - FastAPI for ML/11 - Advanced Async Patterns - Cancellation, Debugging, and Testing|Note 11 — Advanced Async Patterns]]
 - [[../../10 - Cloud, Infra y Backend/40 - Background Jobs and Workers for FastAPI/06 - Async Debugging in Production - Common Pitfalls and Detection|Note — Async Debugging]]
-- [[../01 - Event Loop Internals - uvloop, Selectors, and the GIL Interplay|Note 01 — Event Loop Internals]]
-- [[../02 - Async Library Ecosystem - Decision Framework for 2026|Note 02 — Library Ecosystem]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/01 - Event Loop Internals - uvloop, Selectors, and the GIL Interplay|Note 01 — Event Loop Internals]]
+- [[03 - Advanced Python/08 - Async Python Patterns Reference/02 - Async Library Ecosystem - Decision Framework for 2026|Note 02 — Library Ecosystem]]

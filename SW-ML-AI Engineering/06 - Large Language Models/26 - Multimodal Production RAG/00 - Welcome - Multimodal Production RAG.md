@@ -13,7 +13,7 @@
 
 The biggest gap in most RAG systems is **the 60% of enterprise data that lives in non-text formats**: PDFs with tables, scanned contracts, technical diagrams, product images, video recordings, and audio calls.
 
-Traditional RAG (covered in [[06 - Large Language Models/12 - Production RAG|06/12]] and [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai|06/24]]) assumes clean text. Real-world documents are:
+Traditional RAG (covered in [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06/12]] and [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks|06/24]]) assumes clean text. Real-world documents are:
 
 - **PDFs** with embedded tables, images, footnotes, headers/footers
 - **Scanned documents** that need OCR before any extraction
@@ -97,9 +97,9 @@ The production multimodal RAG stack:
 
 You should already be comfortable with:
 
-- **RAG fundamentals** — chunking, embedding, retrieval from [[06 - Large Language Models/12 - Production RAG|06/12 Production RAG]]
-- **Vector databases** — Qdrant, pgvector from [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search|10/33]]
-- **RAG frameworks** — LangChain, LlamaIndex from [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai|06/24]]
+- **RAG fundamentals** — chunking, embedding, retrieval from [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|06/12 Production RAG]]
+- **Vector databases** — Qdrant, pgvector from [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|10/33]]
+- **RAG frameworks** — LangChain, LlamaIndex from [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks|06/24]]
 - **Vision models** — basics from [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/05 - Vision, Audio, and Multimodal Transformers|06/16/05 Vision, Audio, and Multimodal Transformers]]
 
 ---
@@ -108,13 +108,13 @@ You should already be comfortable with:
 
 | Vault Module | Connection |
 |--------------|-----------|
-| [[06 - Large Language Models/12 - Production RAG\|Production RAG]] | Foundational RAG patterns |
-| [[06 - Large Language Models/13 - vLLM and Advanced RAG\|vLLM and Advanced RAG]] | High-throughput inference for multimodal |
+| [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG\|Production RAG]] | Foundational RAG patterns |
+| [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|vLLM and Advanced RAG]] | High-throughput inference for multimodal |
 | [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/05 - Vision, Audio, and Multimodal Transformers\|Vision, Audio, and Multimodal]] | Vision model architecture |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor]] | Structured outputs for table extraction |
-| [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai\|Production RAG: Haystack + txtai]] | Multimodal RAG frameworks |
-| [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search\|Vector Databases]] | Multimodal embedding stores |
-| [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors\|Vector Quantization]] | Compression for high-dim embeddings |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor]] | Structured outputs for table extraction |
+| [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks\|Production RAG: Haystack + txtai]] | Multimodal RAG frameworks |
+| [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search\|Vector Databases]] | Multimodal embedding stores |
+| [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/00 - Welcome to Vector Quantization and Approximate Nearest Neighbors\|Vector Quantization]] | Compression for high-dim embeddings |
 
 ---
 

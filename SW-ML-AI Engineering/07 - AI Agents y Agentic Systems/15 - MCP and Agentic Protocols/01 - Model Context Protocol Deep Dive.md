@@ -12,11 +12,11 @@
 
 ## Introduction
 
-Every agent you have built — whether the Research → Fact-Audit → Synthesis pipeline in your [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/01 - Arquitecturas Multi-Agente.md|Multi-Agent Research System]] or the StayBot property management agent — relies on tools. Tools are how agents escape the text sandbox and affect the world. But the way tools are currently integrated is fundamentally broken: every framework hardcodes tool definitions, every LLM provider uses a different schema, and adding a new tool requires code changes and redeployment. This is the **agent-tool communication problem**.
+Every agent you have built — whether the Research → Fact-Audit → Synthesis pipeline in your [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/01 - Arquitecturas Multi-Agente|Multi-Agent Research System]] or the StayBot property management agent — relies on tools. Tools are how agents escape the text sandbox and affect the world. But the way tools are currently integrated is fundamentally broken: every framework hardcodes tool definitions, every LLM provider uses a different schema, and adding a new tool requires code changes and redeployment. This is the **agent-tool communication problem**.
 
 The Model Context Protocol (MCP), introduced by Anthropic in late 2024, solves this by providing a universal client-server protocol for tool discovery and invocation. Think of MCP as what USB did for peripherals: instead of every device requiring a custom driver (every tool requiring framework-specific integration), you plug into a standard interface. An MCP-compatible agent can discover and invoke any MCP-compatible tool without knowing about it at development time. For your portfolio, this means your Research agent could discover new search APIs, your Fact-Audit agent could pick up new verification tools, and your Synthesis agent could access new formatting backends — all without touching the LangGraph graph definition.
 
-Protocols are the missing layer between [[../../05 - MLOps y Produccion/20 - Deployment y Serving/02 - Model Serving Patterns.md|model serving patterns]] and agent orchestration. Just as gRPC standardized microservice communication and REST standardized web APIs, MCP standardizes LLM-tool interaction. Understanding this protocol layer is what separates framework users from AI infrastructure engineers.
+Protocols are the missing layer between [[09 - MLOps y Produccion/20 - Deployment y Serving/02 - Model Serving Patterns|model serving patterns]] and agent orchestration. Just as gRPC standardized microservice communication and REST standardized web APIs, MCP standardizes LLM-tool interaction. Understanding this protocol layer is what separates framework users from AI infrastructure engineers.
 
 ---
 
@@ -523,4 +523,4 @@ research-mcp/
 - MCP Python SDK: https://github.com/modelcontextprotocol/python-sdk
 - Anthropic MCP Blog: https://www.anthropic.com/news/model-context-protocol
 - MCP Inspector: `npx @modelcontextprotocol/inspector`
-- [[../../03 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/04 - Despliegue y Observabilidad de Agentes.md|Agent Deployment & Observability]]
+- [[07 - AI Agents y Agentic Systems/12 - Frameworks y Orquestacion/04 - Despliegue y Observabilidad de Agentes|Agent Deployment & Observability]]

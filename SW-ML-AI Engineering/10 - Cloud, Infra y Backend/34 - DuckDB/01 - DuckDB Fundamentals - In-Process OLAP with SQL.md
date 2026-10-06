@@ -14,7 +14,7 @@
 
 **Why in-process matters so deeply.** Every client-server database (PostgreSQL, MySQL, even BigQuery) pays a serialization tax: your Python code sends SQL text over a socket, the server parses it, plans the query, executes it, serializes the result rows into a wire protocol (usually PostgreSQL's text-heavy format), sends them back, and Python deserializes them into native objects. DuckDB eliminates every step after "plan the query." The engine runs in the same address space as your code. Results are exchanged via Apache Arrow's C Data Interface — a pointer swap, not a copy. This eliminates the serialization/deserialization bottleneck that consumes 40-70% of query latency in traditional architectures. For an ML engineer iterating on `WHERE date > '2024-01-01' GROUP BY category`, the difference is visible: 2 seconds becomes 50 milliseconds.
 
-The engines we compare: pandas for familiar in-memory DataFrames ([[02 - DuckDB with Python - DataFrames, Parquet and SQL Integration]]), Spark for distributed workloads ([[06/27 - Apache Spark for ML]]), BigQuery for cloud-scale OLAP ([[10/28 - BigQuery for ML]]), and Polars as another Arrow-native DataFrame library ([[14/03 - Rust Polars Internals]]). DuckDB does not replace any of them — it fills the gap they leave open.
+The engines we compare: pandas for familiar in-memory DataFrames ([[02 - DuckDB with Python - DataFrames, Parquet and SQL Integration]]), Spark for distributed workloads ([[06 - Large Language Models/27 - Portkey AI Gateway and Observability/00 - Welcome - Portkey AI Gateway and Observability|27 - Apache Spark for ML]]), BigQuery for cloud-scale OLAP ([[10 - Cloud, Infra y Backend/28 - BigQuery for ML/00 - Welcome to BigQuery for ML|28 - BigQuery for ML]]), and Polars as another Arrow-native DataFrame library ([[14 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|03 - Rust Polars Internals]]). DuckDB does not replace any of them — it fills the gap they leave open.
 
 ---
 
@@ -223,7 +223,7 @@ print(result.shape)
 
 ### Caso real: A Data Science Team Replaced 3-Hour Spark Jobs
 
-A fintech data science team analyzed 20 GB of transaction event logs daily to compute user-level features (rolling 30-day aggregates, session counts, churn indicators). Their Spark pipeline ran on a 5-node cluster and took **3 hours**: 45 minutes for cluster startup and autoscaling, 2 hours for the actual computation, and 15 minutes to serialize results to the feature store. The ML team migrated the pipeline to DuckDB: the same 20 GB stored as ZSTD-compressed Parquet, the same window-function-heavy queries, running on a single large EC2 instance (32 vCPU, 256 GB RAM). Total execution time: **27 seconds**. The DuckDB file was then shipped to the Feast online store ([[09/27 - Feast]]). The annual infrastructure cost dropped from $1.2M (Spark cluster) to $18K (on-demand EC2 + S3).
+A fintech data science team analyzed 20 GB of transaction event logs daily to compute user-level features (rolling 30-day aggregates, session counts, churn indicators). Their Spark pipeline ran on a 5-node cluster and took **3 hours**: 45 minutes for cluster startup and autoscaling, 2 hours for the actual computation, and 15 minutes to serialize results to the feature store. The ML team migrated the pipeline to DuckDB: the same 20 GB stored as ZSTD-compressed Parquet, the same window-function-heavy queries, running on a single large EC2 instance (32 vCPU, 256 GB RAM). Total execution time: **27 seconds**. The DuckDB file was then shipped to the Feast online store ([[09 - MLOps y Produccion/27 - Feast and Feature Stores/00 - Welcome to Feast and Feature Stores for MLOps|27 - Feast]]). The annual infrastructure cost dropped from $1.2M (Spark cluster) to $18K (on-demand EC2 + S3).
 
 ### Caso real: MotherDuck Powers 100 GB Dashboards
 
@@ -289,8 +289,8 @@ con.close()
 - [DuckDB SQL Reference](https://duckdb.org/docs/sql/introduction)
 - [DuckDB Parquet Reader Benchmarks](https://duckdb.org/2021/12/03/duck-royale.html)
 - [MotherDuck: Serverless DuckDB Cloud](https://motherduck.com)
-- [[01 - Curso SQL con PostgreSQL]]
-- [[06/27 - Apache Spark for ML]]
-- [[10/28 - BigQuery for ML]]
-- [[14/03 - Rust Polars Internals]]
+- [[01 - Curso SQL con PostgreSQL/00 - Bienvenida al Curso SQL|01 - Curso SQL con PostgreSQL]]
+- [[06 - Large Language Models/27 - Portkey AI Gateway and Observability/00 - Welcome - Portkey AI Gateway and Observability|27 - Apache Spark for ML]]
+- [[10 - Cloud, Infra y Backend/28 - BigQuery for ML/00 - Welcome to BigQuery for ML|28 - BigQuery for ML]]
+- [[14 - Rust Engineering/03 - Rust for Data Engineering/00 - Welcome|03 - Rust Polars Internals]]
 - [[02 - DuckDB with Python - DataFrames, Parquet and SQL Integration]]

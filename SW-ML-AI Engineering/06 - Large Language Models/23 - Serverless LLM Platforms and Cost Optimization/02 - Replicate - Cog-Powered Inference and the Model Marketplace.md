@@ -306,7 +306,7 @@ async def stream(prompt: str):
     return StreamingResponse(generate(), media_type="text/event-stream")
 ```
 
-Standard FastAPI SSE pattern, same as the LangGraph streaming notes from [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns]].
+Standard FastAPI SSE pattern, same as the LangGraph streaming notes from [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|18 - LangGraph Deep Patterns]].
 
 ---
 
@@ -454,11 +454,11 @@ Replicate passes inputs as HTTP query params — long prompts inflate cost and l
 - Cog docs — [github.com/replicate/cog](https://github.com/replicate/cog)
 - Replicate Python client — [github.com/replicate/replicate-python](https://github.com/replicate/replicate-python)
 - Replicate pricing — [replicate.com/pricing](https://replicate.com/pricing)
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured outputs on Replicate
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider routing
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured outputs on Replicate
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/01 - Modal - Python-Native Serverless GPU|Note 01 — Modal]] — alternative serverless approach
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/03 - Together AI and Fireworks - Production-Grade LLM APIs|Note 03 — Together/Fireworks]] — alternative production APIs
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/04 - Serverless Cost Optimization and Patterns|Note 04 — Cost Optimization]]
 - [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/05 - Capstone - Production Multi-Provider Serverless Stack|Note 05 — Capstone]]
-- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]] — observability
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service deployment
+- [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]] — observability
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service deployment

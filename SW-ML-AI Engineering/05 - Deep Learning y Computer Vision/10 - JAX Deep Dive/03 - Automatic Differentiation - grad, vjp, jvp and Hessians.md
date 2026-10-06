@@ -459,6 +459,6 @@ print("¡Sorpresa! grad → jacobian → hessian → hvp — all composable, all
 - Baydin, Pearlmutter, Radul, Siskind (2018). "Automatic Differentiation in Machine Learning: a Survey." *JMLR*.
 - JAX Autodiff Cookbook: https://jax.readthedocs.io/en/latest/notebooks/autodiff_cookbook.html
 - DeepMind (2022). "The DeepMind JAX Ecosystem."
-- [[05/03 - Deep Learning con PyTorch]]
-- [[04/01 - Matemáticas para ML]]
-- [[07/32 - Advanced ML Topics]]
+- [[05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida|03 - Deep Learning con PyTorch]]
+- [[04 - Engineering Fundamentals/01 - Matematicas para ML/00 - Bienvenida|01 - Matemáticas para ML]]
+- [[11 - Research y Ciencia de Datos/32 - Advanced ML Topics/01 - JAX and Flax|32 - Advanced ML Topics]]

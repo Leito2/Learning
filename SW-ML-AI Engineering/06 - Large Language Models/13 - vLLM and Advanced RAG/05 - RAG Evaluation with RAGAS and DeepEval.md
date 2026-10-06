@@ -2065,4 +2065,4 @@ Integration with Portfolio Project:
 - [[03 - Reranking and Evaluation-Driven Retrieval]] — Improving retrieval quality reduces evaluation burden
 - [[04 - GraphRAG and Knowledge Graph-Enhanced RAG]] — Different architectures require different evaluation strategies
 - [[Production RAG System]] — Building the systems that these evaluation frameworks measure
-- [[CI-CD for ML]] — Integrating ML evaluation into deployment pipelines
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|CI-CD for ML]] — Integrating ML evaluation into deployment pipelines

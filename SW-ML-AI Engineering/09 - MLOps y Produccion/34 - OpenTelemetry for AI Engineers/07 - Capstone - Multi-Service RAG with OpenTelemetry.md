@@ -580,11 +580,11 @@ def setup_telemetry(service_name: str, sampling_rate: float = 0.1):
 ## References
 
 - [[00 - Welcome to OpenTelemetry for AI Engineers|Welcome]] — course map.
-- [[01 - OTel Primitives|Spans, traces, context]] — the foundation.
-- [[02 - Auto-Instrumentation|LLM SDKs]] — instrumented automatically.
-- [[03 - OTLP Exporters|Exporters]] — Phoenix + Tempo + Datadog.
-- [[04 - OTel for LangGraph|Agent tracing]] — LangGraph with OTel.
-- [[05 - OTel for RAG Pipelines|RAG tracing]] — the 5-stage tree.
-- [[06 - Production Patterns|Sampling, costs, PII]] — the production discipline.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/01 - OTel Primitives - Spans Traces and Context Propagation|Spans, traces, context]] — the foundation.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/02 - Auto-Instrumentation for LLM SDKs|LLM SDKs]] — instrumented automatically.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/03 - OTLP Exporters - Phoenix Tempo Jaeger and Beyond|Exporters]] — Phoenix + Tempo + Datadog.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/04 - OTel for LangGraph and Agent Frameworks|Agent tracing]] — LangGraph with OTel.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/05 - OTel for RAG Pipelines - Retrieval and Generation|RAG tracing]] — the 5-stage tree.
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/06 - Production Patterns - Sampling Costs and PII Redaction|Sampling, costs, PII]] — the production discipline.
 - Docker Compose example: https://opentelemetry.io/docs/collector/deployment/
 - Phoenix: https://docs.arize.com/phoenix

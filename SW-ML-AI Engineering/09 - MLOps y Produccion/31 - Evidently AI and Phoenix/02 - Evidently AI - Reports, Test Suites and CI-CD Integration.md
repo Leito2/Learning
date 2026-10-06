@@ -12,7 +12,7 @@
 
 Drift detection — the subject of Note 01 — is **Day-2 monitoring**: observing a model that is already in production and detecting when the world has changed around it. But the most impactful moment to catch problems is **before deployment**, at training time. If your training data has 40% missing values in a critical column, or if the feature distribution in this week's training batch is radically different from last month's, or if the new model candidate performs worse than the current production model — you should never ship it. This is the thesis of Evidently's Test Suites: monitoring should start at training time, as automated gates in your CI/CD pipeline, before a single prediction serves.
 
-This shift — from *observing* model decay to *preventing* model decay — is the inflection point between reactive MLOps and mature MLOps. It is the same philosophy that drives your Automated LLM Evaluation Suite portfolio: don't wait for users to report bad outputs; build automated quality gates that validate every model change before it reaches a user. Evidently provides the classical ML equivalent with JSON-serializable, CI/CD-friendly test assertions. See [[09/29 - CI-CD for ML]] for pipeline patterns and [[09/18 - Experiment Tracking y Model Registry]] for where model quality validation fits in the experiment lifecycle.
+This shift — from *observing* model decay to *preventing* model decay — is the inflection point between reactive MLOps and mature MLOps. It is the same philosophy that drives your Automated LLM Evaluation Suite portfolio: don't wait for users to report bad outputs; build automated quality gates that validate every model change before it reaches a user. Evidently provides the classical ML equivalent with JSON-serializable, CI/CD-friendly test assertions. See [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|29 - CI-CD for ML]] for pipeline patterns and [[09 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|18 - Experiment Tracking y Model Registry]] for where model quality validation fits in the experiment lifecycle.
 
 ---
 
@@ -324,7 +324,7 @@ for name, suite in gates.items():
 - Evidently AI — Test Suites Documentation: [docs.evidentlyai.com/user-guide/tests](https://docs.evidentlyai.com/user-guide/tests)
 - Evidently AI — CI/CD Integration Guide: [docs.evidentlyai.com/integrations](https://docs.evidentlyai.com/integrations)
 - Sculley, D. et al. (2015). *Hidden Technical Debt in Machine Learning Systems.* NeurIPS. — The foundational paper on why ML pipelines need automated validation gates
-- [[09/29 - CI-CD for ML]] — CI/CD patterns for ML pipelines
-- [[09/18 - Experiment Tracking y Model Registry]] — Where model quality tests fit in the experiment lifecycle
-- [[09/21 - Monitoreo y Mantenimiento]] — Production monitoring architecture
-- [[09/22 - End-to-End ML Project]] — Evidently integrated into complete MLOps workflow
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|29 - CI-CD for ML]] — CI/CD patterns for ML pipelines
+- [[09 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|18 - Experiment Tracking y Model Registry]] — Where model quality tests fit in the experiment lifecycle
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/00 - Bienvenida|21 - Monitoreo y Mantenimiento]] — Production monitoring architecture
+- [[09 - MLOps y Produccion/22 - End-to-End ML Project/00 - Welcome to End-to-End ML Project|22 - End-to-End ML Project]] — Evidently integrated into complete MLOps workflow

@@ -48,7 +48,7 @@ The capstone in note `03` builds the **Qdrant layer of the LLM Gateway capstone*
 | Qdrant cluster ops (Raft, sharding, snapshots) | [[../06 - Qdrant II - Distributed and Cloud Deployment]] |
 | Hybrid search (sparse + dense) | [[../10 - Advanced Patterns and Observability]] |
 | Async Python (`async`/`await`, `asyncio.gather`, `httpx`) | `03 - Python Avanzado/06 - Concurrencia - Threading y Asyncio` |
-| FastAPI dependency injection, lifespan, Pydantic | [[../../../13 - Go Engineering]] is a different stack — use the FastAPI docs; the vault has FastAPI examples in `10/31/01` |
+| FastAPI dependency injection, lifespan, Pydantic | [[13 - Go Engineering/00 - Welcome to Go Engineering\|13 - Go Engineering]] is a different stack — use the FastAPI docs; the vault has FastAPI examples in `10/31/01` |
 | OpenTelemetry basics | `09 - MLOps y Produccion/31 - Evidently AI and Phoenix` |
 | LiteLLM router | `[[../../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/02 - LiteLLM Core - Unified Multi-Provider Interface]]` |
 
@@ -77,7 +77,7 @@ All four components are runnable locally with `uv sync && docker compose up` and
 | [[../06 - Qdrant II - Distributed and Cloud Deployment]] | Production deployment context |
 | [[../10 - Advanced Patterns and Observability]] | Hybrid search baseline |
 | [[../11 - Capstone Project - Multi-DB Semantic Search Platform]] | The async + FastAPI pattern we extend |
-| [[../../35 - Vector Quantization/01 - Product Quantization]] | Quantization internals referenced in note 01 |
+| [[10 - Cloud, Infra y Backend/35 - Vector Quantization and Approximate Nearest Neighbors/01 - Product Quantization - Theory, Code and Reconstruction Error\|01 - Product Quantization]] | Quantization internals referenced in note 01 |
 | `[[../../../06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/06 - Capstone - Multi-Provider RAG Gateway with LiteLLM]]` | The peer capstone we deepen in note 03 |
 | `[[../../../09 - MLOps y Produccion/31 - Evidently AI and Phoenix/03 - Phoenix by Arize - LLM Observability, Traces and Embedding Drift]]` | Observability layer in note 03 |
 | `[[../../../14 - Rust Engineering/04 - Rust for ML and AI/07 - Vector Databases in Rust (Qdrant, pgvector)]]` | The Rust client peer (different language) |

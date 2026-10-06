@@ -4,7 +4,7 @@
 - Understand how Candle abstracts CUDA, Metal, and CPU backends behind a unified `Device` enum.
 - Write device-agnostic code that compiles for multiple hardware targets.
 - Profile and optimize device transfers to minimize CPU-GPU synchronization overhead.
-- Connect device abstraction to systems programming in [[Rust Engineering]].
+- Connect device abstraction to systems programming in [[14 - Rust Engineering/00 - Welcome to Rust Engineering|Rust Engineering]].
 
 ## Introduction
 

@@ -12,7 +12,7 @@ Three properties define dataset quality for fine-tuning: **diversity** (coverage
 
 The foundational paper on data quality for instruction tuning is Zhou et al. (2023), "LIMA: Less Is More for Alignment." They demonstrated that a Llama model fine-tuned on only **1,000 carefully curated examples** produced outputs preferred by human evaluators over models trained on 52,000 Alpaca examples. The LIMA dataset prioritized: diverse task types (brainstorming, editing, coding, Q&A), high-quality human-written responses, and uniform coverage across difficulty levels.
 
-This module connects to your [[../../07 - Research y Ciencia de Datos/28 - ETL y Data Engineering/00 - Bienvenida|Data Engineering knowledge]] — dataset curation is an ETL problem. You extract from sources (model outputs, human annotations, existing datasets), transform (format, filter, deduplicate), and load (into training-ready formats).
+This module connects to your [[11 - Research y Ciencia de Datos/28 - ETL y Data Engineering/00 - Bienvenida|Data Engineering knowledge]] — dataset curation is an ETL problem. You extract from sources (model outputs, human annotations, existing datasets), transform (format, filter, deduplicate), and load (into training-ready formats).
 
 ### 1.2 Mental Model 📐
 
@@ -201,7 +201,7 @@ Three major paradigms exist:
 
 **Constitutional / Critique-based**: Generate a response, then have the LLM critique and rewrite it. The rewritten version becomes the "chosen" example; the original is "rejected." This creates **preference pairs for DPO** automatically.
 
-For your projects: use Gemma 4 27B (or a cloud-hosted larger model) to generate synthetic data for fine-tuning Gemma 4 9B. The 27B model produces higher-quality output than 9B can, so the 9B model learns from a stronger teacher — **knowledge distillation through data generation**. This pattern mirrors the multi-agent architecture you built in [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|the Multi-Agent Research System]]: a stronger model (research agent) generates content, a critic (judge) evaluates it, and the final output trains the deployment model. Connect this pipeline to your [[../../05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|Experiment Tracking]] system to log dataset versions alongside model metrics.
+For your projects: use Gemma 4 27B (or a cloud-hosted larger model) to generate synthetic data for fine-tuning Gemma 4 9B. The 27B model produces higher-quality output than 9B can, so the 9B model learns from a stronger teacher — **knowledge distillation through data generation**. This pattern mirrors the multi-agent architecture you built in [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|the Multi-Agent Research System]]: a stronger model (research agent) generates content, a critic (judge) evaluates it, and the final output trains the deployment model. Connect this pipeline to your [[09 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/00 - Bienvenida|Experiment Tracking]] system to log dataset versions alongside model metrics.
 
 ### 2.2 Mental Model 📐
 
@@ -661,7 +661,7 @@ OpenAI's fine-tuning API for GPT-3.5/GPT-4 requires training data in ChatML form
 
 **Real Case: Your Multi-Agent Research System Dataset**
 
-Your [[../../03 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] produces logs of agent interactions: user queries, research agent outputs, critic agent critiques, final responses. You can extract these logs and curate a dataset for fine-tuning Gemma 4 to perform better as a research agent:
+Your [[07 - AI Agents y Agentic Systems/13 - Sistemas Multi-Agente/00 - Bienvenida|Multi-Agent Research System]] produces logs of agent interactions: user queries, research agent outputs, critic agent critiques, final responses. You can extract these logs and curate a dataset for fine-tuning Gemma 4 to perform better as a research agent:
 
 1. **Source**: LangGraph trace logs from production runs
 2. **Format**: Convert agent interactions to ChatML messages with roles mapped to user/assistant

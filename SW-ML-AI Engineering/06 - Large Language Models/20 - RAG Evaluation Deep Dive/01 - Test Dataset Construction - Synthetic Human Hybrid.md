@@ -2,7 +2,7 @@
 
 Every RAGAS metric is only as good as the test set it scores against. A 95% faithfulness on 20 hand-crafted questions is a number; on 200 representative questions it's evidence; on 2,000 stratified questions it's a baseline you can defend. The dataset is the **ground truth of your ground truth** — and ground truth is what most AI engineers get wrong, either by being too small (underpowered) or by being too synthetic (mimicking the LLM that will judge it).
 
-This note covers the three construction patterns: **synthetic generation** (LLM creates questions and reference answers), **human annotation** (humans write or validate), and **hybrid** (synthetic scaled, then human-verified). It also covers sample-size calculation ([[03 - Statistical Rigor|note 03]] builds on this), stratification across query types, and the production storage format (`SingleTurnSample` JSONL).
+This note covers the three construction patterns: **synthetic generation** (LLM creates questions and reference answers), **human annotation** (humans write or validate), and **hybrid** (synthetic scaled, then human-verified). It also covers sample-size calculation ([[06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar|note 03]] builds on this), stratification across query types, and the production storage format (`SingleTurnSample` JSONL).
 
 ## 🎯 Learning Objectives
 
@@ -536,7 +536,7 @@ print(f"Total: {len(all_samples)}, stratified: {len(stratified)}, power: {n_need
 
 - [[00 - Welcome to RAG Evaluation Deep Dive|Welcome]] — course map.
 - [[02 - Custom Metrics with RAGAS Protocol|Custom Metrics]] — builds on the test set.
-- [[03 - Statistical Rigor|Statistical Rigor]] — power analysis in depth.
-- [[04 - LLM-as-Judge Bias|Judge Bias]] — judge leakage mitigation.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar|Statistical Rigor]] — power analysis in depth.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|Judge Bias]] — judge leakage mitigation.
 - RAGAS: https://docs.ragas.io/en/stable/concepts/testset_generation
 - Krippendorff: https://github.com/pln-fsa-uvt/Krippendorff-alpha

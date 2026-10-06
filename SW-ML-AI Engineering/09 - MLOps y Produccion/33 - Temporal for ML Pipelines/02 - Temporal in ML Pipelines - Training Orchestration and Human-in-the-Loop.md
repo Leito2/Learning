@@ -937,6 +937,6 @@ temporal workflow signal --workflow-id <workflow-id> \
 - [Temporal + MLflow Integration Patterns](https://temporal.io/blog/temporal-machine-learning)
 - [[01 - Temporal Fundamentals - Workflows, Activities and Durable Execution|Note 01 — Temporal Fundamentals]]
 - [[../20 - Deployment y Serving/00 - Bienvenida|09/20 - Deployment y Serving]]
-- [[../23 - Advanced MLOps/...|09/23 - Advanced MLOps]]
-- [[../29 - CI-CD for ML/...|09/29 - CI-CD for ML]]
+- [[09 - MLOps y Produccion/23 - Advanced MLOps/06 - Advanced MLOps|09/23 - Advanced MLOps]]
+- [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML|09/29 - CI-CD for ML]]
 - [[../../13 - Go ML Backend/06 - Go ML Backend|13/06 - Go ML Backend]]

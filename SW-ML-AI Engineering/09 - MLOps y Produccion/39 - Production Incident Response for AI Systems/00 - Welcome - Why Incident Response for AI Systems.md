@@ -63,12 +63,12 @@ The implication: **traditional monitoring alone is insufficient**. AI systems ne
 
 You should already be comfortable with:
 
-- **Observability basics** — Prometheus, OpenTelemetry from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers]] and [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability]]
-- **Production LLM serving** — FastAPI, LiteLLM from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM]] and [[10 - Cloud, Infra y Backend/31 - FastAPI for ML]]
+- **Observability basics** — Prometheus, OpenTelemetry from [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|34 - OpenTelemetry for AI Engineers]] and [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|36 - LangFuse - Open-Source LLM Observability]]
+- **Production LLM serving** — FastAPI, LiteLLM from [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|19 - LLM Gateway Patterns and LiteLLM]] and [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|31 - FastAPI for ML]]
 - **Python async/await** — for the resilience patterns
 - **Basic system administration** — Linux, Docker, logs
 
-💡 If you have not yet read [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability|LangFuse Deep Dive]], skim it before Note 02 — LangFuse spans are the primary detection signal.
+💡 If you have not yet read [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability|LangFuse Deep Dive]], skim it before Note 02 — LangFuse spans are the primary detection signal.
 
 ---
 
@@ -78,20 +78,20 @@ This course draws on every operational pattern in the vault:
 
 | Vault Module | Connection to This Course |
 |--------------|---------------------------|
-| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix\|Evidently and Phoenix]] | Drift detection signals |
-| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers\|OpenTelemetry]] | Span propagation across services |
-| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability\|LangFuse]] | Quality score traces |
-| [[09 - MLOps y Produccion/28 - Testing in ML Systems\|Testing in ML]] | Pre-production checks |
-| [[09 - MLOps y Produccion/29 - CI-CD for ML\|CI/CD]] | Rollback pipelines |
-| [[09 - MLOps y Produccion/20 - RAG Evaluation Deep Dive\|RAG Eval]] | Quality metrics for RAG pipelines |
-| [[09 - MLOps y Produccion/26 - ML Platform Engineering\|ML Platform Engineering]] | On-call rotation design |
-| [[06 - Large Language Models/15 - LLM Security and Guardrails\|LLM Security]] | Prompt injection detection |
-| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | Multi-provider failover |
-| [[06 - Large Language Models/22 - Instructor and Structured Generation\|Instructor]] | Validation as incident containment |
+| [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix\|Evidently and Phoenix]] | Drift detection signals |
+| [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers\|OpenTelemetry]] | Span propagation across services |
+| [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse]] | Quality score traces |
+| [[09 - MLOps y Produccion/28 - Testing in ML Systems/00 - Welcome to Testing in ML Systems\|Testing in ML]] | Pre-production checks |
+| [[09 - MLOps y Produccion/29 - CI-CD for ML/00 - Welcome to CI-CD for ML\|CI/CD]] | Rollback pipelines |
+| [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive\|RAG Eval]] | Quality metrics for RAG pipelines |
+| [[09 - MLOps y Produccion/26 - ML Platform Engineering/01 - Kubeflow\|ML Platform Engineering]] | On-call rotation design |
+| [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails\|LLM Security]] | Prompt injection detection |
+| [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway]] | Multi-provider failover |
+| [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor]] | Validation as incident containment |
 | [[06 - Large Language Models/23 - Serverless LLM Platforms\|Serverless LLM]] | Cold-start incident patterns |
-| [[10 - Cloud, Infra y Backend/22 - Cloud Computing\|Cloud Computing]] | Multi-region failover |
-| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML\|FastAPI for ML]] | Service-level incident patterns |
-| [[13 - Go Engineering/03 - Microservices with Go\|Microservices]] | Circuit breaker patterns |
+| [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida\|Cloud Computing]] | Multi-region failover |
+| [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome\|FastAPI for ML]] | Service-level incident patterns |
+| [[13 - Go Engineering/03 - Microservices with Go/00 - Welcome\|Microservices]] | Circuit breaker patterns |
 
 ---
 
@@ -135,7 +135,7 @@ Three frontiers are emerging:
 
 1. **AI-aware SLOs.** Traditional SLOs (99.9% availability, p99 latency) miss quality degradation. The new pattern: combined health + quality SLOs (e.g., "99% of responses < 2s AND > 95% of responses have quality score > 0.8").
 2. **Auto-remediation for LLM pipelines.** Roll back the prompt automatically when quality scores drop below threshold. Roll back the model when the provider's health check fails. The 2026 pattern is "auto-mitigate, then page" — the system resolves common incidents without waking anyone up.
-3. **Adversarial incident detection.** Prompt injection is now detected via gradient-based and embedding-based detectors (covered in [[06 - Large Language Models/15 - LLM Security and Guardrails]]). The on-call engineer gets paged when the detector triggers, with the malicious input and the agent's response captured.
+3. **Adversarial incident detection.** Prompt injection is now detected via gradient-based and embedding-based detectors (covered in [[06 - Large Language Models/15 - LLM Security and Guardrails/00 - Welcome to LLM Security and Guardrails|15 - LLM Security and Guardrails]]). The on-call engineer gets paged when the detector triggers, with the malicious input and the agent's response captured.
 
 These frontiers map directly onto the user's portfolio: the **LLM Edge Gateway** needs circuit breakers and graceful degradation; the **Automated LLM Evaluation Suite** is the detection signal; the **Multi-Agent Research System** is the test environment for incident simulation; the **StayBot** is the production service for runbook validation.
 

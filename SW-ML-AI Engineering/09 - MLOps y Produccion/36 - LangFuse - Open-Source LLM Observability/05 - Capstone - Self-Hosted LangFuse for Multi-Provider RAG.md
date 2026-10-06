@@ -76,7 +76,7 @@ The flow:
 6. Offline evaluation runs on a fixed dataset via CI
 7. Prompt registry stores versioned prompts with rollback
 
-This is the **observability spine of a production RAG service**. Every line of every project — LLM Edge Gateway, Automated LLM Evaluation Suite, Multi-Agent Research System, StayBot, and the capstone from [[06 - Large Language Models/22 - Instructor and Structured Generation]] — can be retrofitted to this pattern.
+This is the **observability spine of a production RAG service**. Every line of every project — LLM Edge Gateway, Automated LLM Evaluation Suite, Multi-Agent Research System, StayBot, and the capstone from [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]] — can be retrofitted to this pattern.
 
 ![Self-hosted LangFuse UI](https://langfuse.com/_next/image?url=%2Fstatic%2Fimages%2Flanding%2Fself-host-light.png&w=1920&q=75)
 
@@ -430,7 +430,7 @@ class Generator:
 
 The Generator uses:
 - `langfuse.openai.openai.AsyncOpenAI()` — drop-in replacement for OpenAI client with auto-tracing
-- `instructor.from_openai(...)` — wraps for Pydantic validation per [[06 - Large Language Models/22 - Instructor and Structured Generation]]
+- `instructor.from_openai(...)` — wraps for Pydantic validation per [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|22 - Instructor and Structured Generation]]
 - `@observe(name="rag_query")` — root span for the entire RAG flow
 - `langfuse_context.update_current_observation(...)` — enrich with metadata
 - `langfuse_context.score_current_observation(...)` — attach self-reported confidence
@@ -792,19 +792,19 @@ Before shipping to production:
 - LangFuse Evaluations — [langfuse.com/docs/evaluation](https://langfuse.com/docs/evaluation)
 - LangFuse Prompt Management — [langfuse.com/docs/prompts](https://langfuse.com/docs/prompts)
 - Docker Compose reference — [github.com/langfuse/langfuse/blob/main/docker-compose.yml](https://github.com/langfuse/langfuse/blob/main/docker-compose.yml)
-- [[02 - Docker Profesional|Docker Profesional]] — multi-service stack patterns
-- [[03 - Advanced Python/06 - Pydantic Deep Dive|Pydantic Deep Dive]] — schemas for RAGResponse, Citation
-- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
-- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-judge rigor
-- [[06 - Large Language Models/22 - Instructor and Structured Generation|Instructor and Structured Generation]] — structured output for RAGResponse
-- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns|LangGraph Deep Patterns]] — agent observability
-- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection on input features
-- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol foundation
-- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive|LangSmith Deep Dive]] — SaaS counterpart
+- [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]] — multi-service stack patterns
+- [[03 - Advanced Python/06 - Pydantic Deep Dive/00 - Welcome to Pydantic Deep Dive|Pydantic Deep Dive]] — schemas for RAGResponse, Citation
+- [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM|LLM Gateway Patterns]] — multi-provider transport
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/00 - Welcome to RAG Evaluation Deep Dive|RAG Evaluation Deep Dive]] — LLM-as-judge rigor
+- [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis|Instructor and Structured Generation]] — structured output for RAGResponse
+- [[07 - AI Agents y Agentic Systems/18 - LangGraph Deep Patterns/00 - Welcome to LangGraph Deep Patterns|LangGraph Deep Patterns]] — agent observability
+- [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Evidently AI and Phoenix]] — drift detection on input features
+- [[09 - MLOps y Produccion/34 - OpenTelemetry for AI Engineers/00 - Welcome to OpenTelemetry for AI Engineers|OpenTelemetry for AI Engineers]] — protocol foundation
+- [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith|LangSmith Deep Dive]] — SaaS counterpart
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/01 - LangFuse Fundamentals - Architecture and Core Primitives|Note 01 — Fundamentals]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/02 - LLM SDK Auto-Instrumentation|Note 02 — SDK Auto-Instrumentation]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/03 - Datasets, Evaluations and Prompt Management|Note 03 — Datasets, Evaluations and Prompt Management]]
 - [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/04 - Online Evaluators and Production Patterns|Note 04 — Online Evaluators]]
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — Kubernetes production deployment
-- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML|FastAPI for ML]] — service patterns
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — Kubernetes production deployment
+- [[10 - Cloud, Infra y Backend/31 - FastAPI for ML/00 - Welcome|FastAPI for ML]] — service patterns
 - [[16 - Harness Engineering/05 - File Architecture|File Architecture]] — project structure

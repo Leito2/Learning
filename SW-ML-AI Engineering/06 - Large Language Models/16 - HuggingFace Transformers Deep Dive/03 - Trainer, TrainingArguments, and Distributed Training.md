@@ -11,7 +11,7 @@
 
 Training a transformer at scale is not merely a matter of calling `.fit()`. It requires orchestrating optimizers, schedulers, checkpointing, logging, distributed synchronization, and memory management across heterogeneous hardware. The `Trainer` class in Hugging Face `transformers` abstracts this complexity into a single, extensible loop, while `TrainingArguments` exposes every knob an ML engineer needs to tune.
 
-This note deconstructs that loop. We examine why `Trainer` exists (to prevent every research team from rewriting the same boilerplate), how `TrainingArguments` maps to deep learning theory, and how to scale beyond a single GPU using `accelerate`, DeepSpeed, and FSDP. These topics bridge data preparation ([[02 - Tokenizers and Data Processing]]) and model deployment ([[09 - MLOps y Produccion|MLOps]]). If you have worked with PyTorch Lightning, think of `Trainer` as its more opinionated, Hub-integrated cousin.
+This note deconstructs that loop. We examine why `Trainer` exists (to prevent every research team from rewriting the same boilerplate), how `TrainingArguments` maps to deep learning theory, and how to scale beyond a single GPU using `accelerate`, DeepSpeed, and FSDP. These topics bridge data preparation ([[02 - Tokenizers and Data Processing]]) and model deployment ([[00 - Indice Maestro de Cursos|MLOps]]). If you have worked with PyTorch Lightning, think of `Trainer` as its more opinionated, Hub-integrated cousin.
 
 ---
 
@@ -306,7 +306,7 @@ trainer.train()
 - Rajbhandari et al., "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models", SC 2020.
 - Related Vault: [[02 - Tokenizers and Data Processing]]
 - Related Vault: [[04 - Generation, Decoding, and Structured Output]]
-- Related Vault: [[09 - MLOps y Produccion]]
+- Related Vault: [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]]
 
 ## Código de compresión
 

@@ -78,7 +78,7 @@ The guardrail runs as a separate agent call (with its own model and instructions
 
 Production agents need observability: what tools were called, with what arguments, how long did the LLM take, what was the cost, what was the conversation flow. Every other framework of the previous generation made you wire up your own tracing (LangSmith, Phoenix, OpenTelemetry). The OpenAI Agents SDK ships with **first-class tracing** to the OpenAI dashboard: every `Runner.run()` call creates a trace, every tool call creates a span, and the dashboard shows the full conversation flow with token counts and latencies.
 
-For teams already on the OpenAI platform, the tracing is the killer feature. For teams that need OpenTelemetry, the SDK also exports traces in OTel format, so you can wire them into your own observability stack. The pattern is what the [[../../05 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix note]] covers at a deeper level.
+For teams already on the OpenAI platform, the tracing is the killer feature. For teams that need OpenTelemetry, the SDK also exports traces in OTel format, so you can wire them into your own observability stack. The pattern is what the [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix note]] covers at a deeper level.
 
 ---
 
@@ -216,7 +216,7 @@ tracer_provider = register(project_name="my-agents")
 # ... configure the OpenAIAgentsTracingProcessor to use the OTel exporter
 ```
 
-For your **Automated LLM Evaluation Suite**, the tracing export is the same backend as your eval dashboard — Phoenix or Langfuse — and the eval results and the agent traces can be correlated by `trace_id`. This is the same pattern the [[../../05 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix note]] covers in depth.
+For your **Automated LLM Evaluation Suite**, the tracing export is the same backend as your eval dashboard — Phoenix or Langfuse — and the eval results and the agent traces can be correlated by `trace_id`. This is the same pattern the [[09 - MLOps y Produccion/31 - Evidently AI and Phoenix/00 - Welcome to Evidently AI and Phoenix|Phoenix note]] covers in depth.
 
 ### 2.6 MCP and hosted tools
 

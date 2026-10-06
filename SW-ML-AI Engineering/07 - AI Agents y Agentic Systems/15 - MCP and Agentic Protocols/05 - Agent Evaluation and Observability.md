@@ -16,7 +16,7 @@ Evaluating an LLM is straightforward: compare generated text to a reference, com
 
 This is the **agent evaluation gap**. Traditional NLP metrics measure output quality. Agent evaluation must also measure **process quality**: tool call accuracy, task completion rate, latency budgets, cost per task, and failure recovery patterns. For the MCP and A2A protocols you have studied in this course, evaluation becomes even more critical — when tools are discovered at runtime (MCP) and tasks are delegated to unknown subagents (A2A), you need observability to understand what actually happened.
 
-Your **Automated LLM Evaluation Suite** portfolio project already handles text-output evaluation with Gemma 4 as Golden Judge. This note extends that foundation into agent evaluation territory — tracing multi-step agent runs, measuring end-to-end task success, and building dashboards that make agent behavior visible. This connects to [[../../05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion.md|model monitoring practices]] but adds agent-specific dimensions like tool call accuracy and workflow path analysis.
+Your **Automated LLM Evaluation Suite** portfolio project already handles text-output evaluation with Gemma 4 as Golden Judge. This note extends that foundation into agent evaluation territory — tracing multi-step agent runs, measuring end-to-end task success, and building dashboards that make agent behavior visible. This connects to [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|model monitoring practices]] but adds agent-specific dimensions like tool call accuracy and workflow path analysis.
 
 ---
 
@@ -525,5 +525,5 @@ agent-eval-suite/
 - LangSmith Docs: https://docs.smith.langchain.com
 - Braintrust Docs: https://www.braintrust.dev/docs
 - OpenTelemetry Python: https://opentelemetry.io/docs/languages/python/
-- [[../../05 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion.md|Model Monitoring in Production]]
-- [[../../05 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/04 - Testing de ML.md|ML Testing]]
+- [[09 - MLOps y Produccion/21 - Monitoreo y Mantenimiento/02 - Monitoreo de Modelos en Produccion|Model Monitoring in Production]]
+- [[09 - MLOps y Produccion/18 - Experiment Tracking y Model Registry/04 - Testing de ML|ML Testing]]

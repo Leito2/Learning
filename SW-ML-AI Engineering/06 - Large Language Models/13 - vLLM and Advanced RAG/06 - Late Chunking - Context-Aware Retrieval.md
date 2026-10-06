@@ -648,5 +648,5 @@ for r in results:
 - [[03 - Reranking and Evaluation-Driven Retrieval.md]]
 - [[04 - GraphRAG and Knowledge Graph-Enhanced RAG.md]]
 - [[05 - RAG Evaluation with RAGAS and DeepEval.md]]
-- [[../../12 - Production RAG/04 - Production RAG System.md]]
-- [[../../../10 - MLOps y Edge AI/33 - Vector Databases and Semantic Search.md]]
+- [[06 - Large Language Models/12 - Production RAG/04 - Reranking - Cross-Encoders, ColBERT and LLM-as-Reranker|04 - Production RAG System]]
+- [[10 - Cloud, Infra y Backend/33 - Vector Databases and Semantic Search/00 - Welcome to Vector Databases and Semantic Search|33 - Vector Databases and Semantic Search]]

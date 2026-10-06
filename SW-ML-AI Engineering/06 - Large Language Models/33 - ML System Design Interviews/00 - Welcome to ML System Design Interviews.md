@@ -14,7 +14,7 @@
 
 The 2026 ML Engineer interview has three rounds that catch every candidate off-guard: **system design for ML** (DoorDash dispatch, Airbnb search ranking, Twitter timeline), **ML system design** (LLM serving, RAG, fine-tuning pipelines), and **coding in production** (feature pipelines, model evaluation, A/B test analysis). The first round is the one most candidates fail — it requires a different mental model than coding interviews and a different vocabulary than SWE system design. This course is the systematic preparation for that round.
 
-If you have already studied [[../32 - System Design for ML/00 - Welcome to System Design for ML|System Design for ML]] (06/32), you know the SWE-flavored patterns: microservices, queues, caches, sharding. This course adds the **ML-specific layer**: feature stores, online/offline skew, model retraining cadence, exploration vs exploitation, multi-objective optimization, and the data feedback loop that turns every prediction into training data for the next iteration. The combination of SWE system design + ML-specific concerns is what makes an ML System Design interview.
+If you have already studied [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML|System Design for ML]] (06/32), you know the SWE-flavored patterns: microservices, queues, caches, sharding. This course adds the **ML-specific layer**: feature stores, online/offline skew, model retraining cadence, exploration vs exploitation, multi-objective optimization, and the data feedback loop that turns every prediction into training data for the next iteration. The combination of SWE system design + ML-specific concerns is what makes an ML System Design interview.
 
 For your **portfolio projects**, the same problem statements appear in your interview prep. The **LLM Edge Gateway** in Go/Fiber is a small-scale version of a system design interview problem; the **Multi-Agent Research System** is a multi-agent RAG architecture question; the **StayBot** Airbnb agent is a property-search ranking problem. The interview asks you to design a system; you already built one. The course teaches you to articulate the design decisions you already made implicitly.
 
@@ -42,7 +42,7 @@ For your **portfolio projects**, the same problem statements appear in your inte
 
 | Concept | Expected Knowledge | Review If Needed |
 |---------|-------------------|------------------|
-| System design for SWE | Microservices, queues, caches, sharding | [[../32 - System Design for ML/00 - Welcome to System Design for ML\|System Design for ML]] |
+| System design for SWE | Microservices, queues, caches, sharding | [[10 - Cloud, Infra y Backend/32 - System Design for ML/00 - Welcome to System Design for ML\|System Design for ML]] |
 | ML fundamentals | Supervised, unsupervised, eval metrics | [[../../05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/00 - Bienvenida\|DL con PyTorch]] |
 | Feature stores | Online/offline skew, point-in-time joins | [[../../09 - MLOps y Produccion/19 - Feature Engineering y Feature Stores/00 - Bienvenida\|Feature Engineering y Feature Stores]] |
 | A/B testing | Experiment design, statistical significance | [[../../05 - Deep Learning y Computer Vision/03 - Deep Learning con PyTorch/04 - Training Strategies\|Training Strategies]] |

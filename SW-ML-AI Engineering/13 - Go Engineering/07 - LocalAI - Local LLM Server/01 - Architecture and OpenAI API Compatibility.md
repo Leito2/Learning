@@ -4,7 +4,7 @@
 - Understand the layered architecture of LocalAI and how each layer isolates concerns
 - Learn how Go's standard library and gRPC provide the foundation for backend orchestration
 - Master the design rationale behind API compatibility: why mirroring OpenAI unlocks ecosystem portability
-- Connect LocalAI's design to [[01 - Go Fundamentals]] concurrency patterns and [[Docker Profesional]] container strategies
+- Connect LocalAI's design to [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]] concurrency patterns and [[02 - Docker Profesional/00 - Bienvenida|Docker Profesional]] container strategies
 
 ---
 
@@ -12,7 +12,7 @@
 
 When engineering ML systems, the most expensive decision is often not the model choice but the integration surface. Every custom API requires new client libraries, authentication logic, retry policies, and documentation. LocalAI's central architectural bet is that **API compatibility is a form of portability**: by speaking the exact same REST dialect as OpenAI, it inherits an ecosystem of thousands of clients, agents, and frameworks without writing a single additional SDK line. This module deconstructs how LocalAI achieves this compatibility through a clean, layered architecture written in Go.
 
-This matters deeply for ML/AI engineering because production systems rarely run a single model. They run a constellation of models—chat, embeddings, vision, audio—each with different resource requirements. LocalAI's architecture uses a backend manager pattern to isolate these concerns. If you have studied [[01 - Go Fundamentals]], you will recognize how interfaces and goroutines enable this decoupling. If you are familiar with [[02 - Large Language Models]], you will appreciate why quantization-aware backends like llama.cpp need a thin, language-agnostic wrapper to fit into a larger service mesh.
+This matters deeply for ML/AI engineering because production systems rarely run a single model. They run a constellation of models—chat, embeddings, vision, audio—each with different resource requirements. LocalAI's architecture uses a backend manager pattern to isolate these concerns. If you have studied [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]], you will recognize how interfaces and goroutines enable this decoupling. If you are familiar with [[00 - Indice Maestro de Cursos|02 - Large Language Models]], you will appreciate why quantization-aware backends like llama.cpp need a thin, language-agnostic wrapper to fit into a larger service mesh.
 
 ---
 
@@ -432,4 +432,4 @@ Implement a miniature backend manager in Go that exposes a REST endpoint `/v1/mo
 
 - Official docs: https://localai.io/docs/getting-started/
 - Paper/library: https://github.com/mudler/LocalAI
-- Go concurrency: [[01 - Go Fundamentals]]
+- Go concurrency: [[13 - Go Engineering/01 - Go Fundamentals/00 - Welcome|01 - Go Fundamentals]]

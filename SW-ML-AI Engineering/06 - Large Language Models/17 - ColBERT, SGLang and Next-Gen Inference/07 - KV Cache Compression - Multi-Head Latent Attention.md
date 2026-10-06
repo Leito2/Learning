@@ -13,7 +13,7 @@
 
 The term "KV cache" originates from the transformer's autoregressive decode optimization: during generation, you don't need to recompute attention for all previous tokens — you can cache the K and V projections and only compute attention for the new token against the cached keys and values. This converts the decode step from $O(n^2)$ to $O(n)$, where $n$ is the sequence length. The problem: the cache itself is $O(L \times H \times d_k \times n)$ bytes. As $n$ grows (128K, 256K, 1M tokens), the cache dominates memory. The techniques in this note — Multi-Head Latent Attention (MLA) and eviction policies — attack this from two angles: MLA compresses WHAT you store, and eviction policies reduce HOW MUCH you store.
 
-Before these techniques, long-context inference was achieved through crude workarounds: sliding window attention (drop all tokens beyond a fixed window), sparse attention patterns (only attend to every K-th token), or simply buying more GPUs. Each approach has catastrophic failure modes. Sliding window loses the beginning of a document — fatal for summarization. Sparse attention misses critical dependencies — fatal for code generation. More GPUs costs linearly with context length. This matters for [[06/09 - Sistemas de LLMs en Producción]] because the economics of long-context serving (RAG with large document corpora, multi-turn chat with long history, codebase-level code completion) are dominated by KV cache memory costs, not model weight costs.
+Before these techniques, long-context inference was achieved through crude workarounds: sliding window attention (drop all tokens beyond a fixed window), sparse attention patterns (only attend to every K-th token), or simply buying more GPUs. Each approach has catastrophic failure modes. Sliding window loses the beginning of a document — fatal for summarization. Sparse attention misses critical dependencies — fatal for code generation. More GPUs costs linearly with context length. This matters for [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]] because the economics of long-context serving (RAG with large document corpora, multi-turn chat with long history, codebase-level code completion) are dominated by KV cache memory costs, not model weight costs.
 
 ---
 
@@ -154,7 +154,7 @@ As the sequence length grows, if ALL tokens receive roughly uniform attention, e
 3. **Evict** everything between the sinks and the window
 4. **Total cache:** $4 + w$ tokens, regardless of total context length
 
-This enables "infinite-length" conversations — you can chat with a model for hours and the KV cache never grows beyond $4 + w$ tokens. [[06/12 - Production RAG]] benefits from this when maintaining long conversation histories.
+This enables "infinite-length" conversations — you can chat with a model for hours and the KV cache never grows beyond $4 + w$ tokens. [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]] benefits from this when maintaining long conversation histories.
 
 **SnapKV:** A more adaptive approach that profiles attention patterns to decide what to keep.
 
@@ -328,7 +328,7 @@ compressed, indices = h2o_compress(mock_cache, mock_attn, k_heavy=32, w_recent=1
 - Li, Y., et al. (2024). "SnapKV: LLM Knows What You are Looking for Before Generation." *arXiv:2404.14469*
 - Ainslie, J., et al. (2023). "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints." *arXiv:2305.13245*
 - Vaswani, A., et al. (2017). "Attention Is All You Need." *arXiv:1706.03762*
-- [[06/09 - Sistemas de LLMs en Producción]]
-- [[06/10 - Arquitecturas Avanzadas y MoE]]
-- [[06/12 - Production RAG]]
+- [[06 - Large Language Models/09 - Sistemas de LLMs en Produccion/00 - Bienvenida|09 - Sistemas de LLMs en Producción]]
+- [[06 - Large Language Models/10 - Arquitecturas Avanzadas y MoE/00 - Bienvenida|10 - Arquitecturas Avanzadas y MoE]]
+- [[06 - Large Language Models/12 - Production RAG/00 - Welcome to Production RAG|12 - Production RAG]]
 - [[06 - Speculative Decoding 2.0]]

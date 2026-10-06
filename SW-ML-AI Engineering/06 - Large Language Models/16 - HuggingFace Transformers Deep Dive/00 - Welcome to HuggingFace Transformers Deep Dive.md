@@ -28,24 +28,24 @@
 - **PyTorch**: `nn.Module`, `Tensor`, `DataLoader`, `torch.cuda`
 - **Docker**: For distributed training and reproducible environments
 - **Math**: Linear algebra, probability, gradient-based optimization
-- **Foundations**: Completion of [[05 - Deep Learning y Computer Vision]] and exposure to [[06 - Large Language Models]]
+- **Foundations**: Completion of [[00 - Indice Maestro de Cursos|05 - Deep Learning y Computer Vision]] and exposure to [[00 - Indice Maestro de Cursos|06 - Large Language Models]]
 - **Git**: Comfortable with branching and merge conflicts
 
 ## 🌍 Philosophy
 
 The Hugging Face ecosystem democratizes AI by combining open model weights with open-source tooling. `transformers`, `datasets`, and `tokenizers` form the backbone of modern NLP engineering. Understanding these libraries at a deep level—beyond copy-pasting snippets—is what separates notebook experiments from production systems that serve millions of requests.
 
-This course assumes you want to build, not just consume. We focus on **why** each abstraction exists, **how** it is implemented, and **where** it connects to neighboring domains like [[09 - MLOps y Produccion]], [[10 - Cloud, Infra y Backend]], and [[06 - Large Language Models]].
+This course assumes you want to build, not just consume. We focus on **why** each abstraction exists, **how** it is implemented, and **where** it connects to neighboring domains like [[00 - Indice Maestro de Cursos|09 - MLOps y Produccion]], [[00 - Indice Maestro de Cursos|10 - Cloud, Infra y Backend]], and [[00 - Indice Maestro de Cursos|06 - Large Language Models]].
 
 ## 🔗 Related Vault Modules
 
 | Module | Connection |
 |--------|------------|
-| [[06 - Large Language Models]] | Foundational LLM theory and architecture |
-| [[06 - Large Language Models/13 - vLLM and Advanced RAG]] | High-throughput inference serving |
+| [[00 - Indice Maestro de Cursos\|06 - Large Language Models]] | Foundational LLM theory and architecture |
+| [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG\|13 - vLLM and Advanced RAG]] | High-throughput inference serving |
 | [[06 - Large Language Models/14 - Unsloth]] | Memory-efficient fine-tuning |
-| [[09 - MLOps y Produccion]] | Model deployment, monitoring, CI/CD |
-| [[10 - Cloud, Infra y Backend]] | Serving infrastructure, FastAPI, Docker |
+| [[00 - Indice Maestro de Cursos\|09 - MLOps y Produccion]] | Model deployment, monitoring, CI/CD |
+| [[00 - Indice Maestro de Cursos\|10 - Cloud, Infra y Backend]] | Serving infrastructure, FastAPI, Docker |
 
 ## 📝 How to Use These Notes
 

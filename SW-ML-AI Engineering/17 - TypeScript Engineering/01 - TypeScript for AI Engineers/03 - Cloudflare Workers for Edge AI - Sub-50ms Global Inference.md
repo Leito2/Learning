@@ -512,7 +512,7 @@ return new Response(stream, {
 - Durable Objects — [developers.cloudflare.com/durable-objects](https://developers.cloudflare.com/durable-objects)
 - Hono framework — [hono.dev](https://hono.dev)
 - Cloudflare Vectorize — [developers.cloudflare.com/vectorize](https://developers.cloudflare.com/vectorize)
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals|Note 01 — TS Fundamentals]]
-- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/02 - Next.js + Vercel AI SDK|Note 02 — Next.js]]
-- [[10 - Cloud, Infra y Backend/22 - Cloud Computing|Cloud Computing]] — edge compute
-- [[06 - Large Language Models/13 - vLLM and Advanced RAG|vLLM]] — high-throughput LLM serving
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/01 - TypeScript Fundamentals for Python Developers|Note 01 — TS Fundamentals]]
+- [[17 - TypeScript Engineering/01 - TypeScript for AI Engineers/02 - Next.js + Vercel AI SDK - Streaming Chat UI for AI Products|Note 02 — Next.js]]
+- [[10 - Cloud, Infra y Backend/22 - Cloud Computing/00 - Bienvenida|Cloud Computing]] — edge compute
+- [[06 - Large Language Models/13 - vLLM and Advanced RAG/00 - Welcome to vLLM and Advanced RAG|vLLM]] — high-throughput LLM serving

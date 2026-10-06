@@ -1,6 +1,6 @@
 # 🎓 Capstone — Production RAG Eval Harness for Your Portfolio Project
 
-This capstone ties notes 01-06 into one deployable artifact: a **production RAG eval harness** you can drop into your portfolio's Production RAG project ([[../../../projects/04 - Production RAG System - Project Guide.md|projects/04]]), run on every PR, monitor in a dashboard, and defend in an interview. It is the integration test for the entire course: synthetic test set construction, custom RAGAS metrics, statistical rigor, judge bias mitigation, CI gates, and cost optimization — all wired together as one `python -m eval.run` command.
+This capstone ties notes 01-06 into one deployable artifact: a **production RAG eval harness** you can drop into your portfolio's Production RAG project ([[projects/04 - Production RAG System - Project Guide|projects/04]]), run on every PR, monitor in a dashboard, and defend in an interview. It is the integration test for the entire course: synthetic test set construction, custom RAGAS metrics, statistical rigor, judge bias mitigation, CI gates, and cost optimization — all wired together as one `python -m eval.run` command.
 
 This note is intentionally a **reference implementation**, not a tutorial. The prior six notes built the vocabulary; this capstone shows the integration. The complete harness is ~400 lines of Python plus a GitHub Actions workflow. It runs at $5/PR (vs $50 for the naive setup), detects 5% regressions with 80% power, comments metric deltas on every PR, blocks merges on significant regressions, and updates a Phoenix dashboard for trend monitoring.
 
@@ -519,10 +519,10 @@ The complete harness is ~400 lines. The compression is the run.py entry point ab
 ## References
 
 - [[00 - Welcome to RAG Evaluation Deep Dive|Welcome]] — course map.
-- [[01 - Test Dataset Construction|Test Set]] — input to the harness.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/01 - Test Dataset Construction - Synthetic Human Hybrid|Test Set]] — input to the harness.
 - [[02 - Custom Metrics with RAGAS Protocol|Custom Metrics]] — `CitationAccuracy`, `DomainFaithfulness`.
-- [[03 - Statistical Rigor|Statistical Rigor]] — paired tests, CIs.
-- [[04 - LLM-as-Judge Bias|Judge Bias]] — bias mitigation patterns.
-- [[05 - CI-CD Eval Pipelines|CI/CD]] — the GitHub Actions gate.
-- [[06 - Cost-Optimized Evaluation|Cost Optimization]] — tiered judges and stratified sampling.
-- [[../../../projects/04 - Production RAG System - Project Guide.md|Production RAG project]] — the target system.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/03 - Statistical Rigor - CI Paired Tests McNemar|Statistical Rigor]] — paired tests, CIs.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/04 - LLM-as-Judge Bias - Position Verbosity Self-Preference|Judge Bias]] — bias mitigation patterns.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/05 - CI-CD Eval Pipelines - GitHub Actions Regression Detection|CI/CD]] — the GitHub Actions gate.
+- [[06 - Large Language Models/20 - RAG Evaluation Deep Dive/06 - Cost-Optimized Evaluation - Judge Selection Sampling Caching|Cost Optimization]] — tiered judges and stratified sampling.
+- [[projects/04 - Production RAG System - Project Guide|Production RAG project]] — the target system.
