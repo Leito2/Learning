@@ -160,7 +160,7 @@ Va **justo después de C1** para no perder el hilo.
 |---|---|---|---|
 | Modelo | **XGBoost** (ONNX) + challenger PyTorch en shadow | **Laya** + agente LangGraph para casos de baja confianza | **Haiku** (solo en el test final) + Qdrant/pgvector |
 | Motor de stream | **Flink** (SQL) | **Bytewax** | **Spark Structured Streaming** |
-| Transporte | Kafka | Kafka/Redpanda + FastAPI | Kafka + **SSE** |
+| Transporte | Kafka (KRaft) | Redpanda (API Kafka) + FastAPI | Redpanda + outbox CDC + **SSE** |
 | Cloud | Local | Local | **GCP** (Cloud Run + Qdrant Cloud free) |
 | Gasto | $0 | $0 | $0 hasta el test final |
 | Frase del CV | "Kafka + Flink, X ev/s, p95 de Y ms" | "Router System 1/2: X% resuelto en Y ms, Z% menos costo de LLM" | "RAG con índice en vivo: N s de frescura, TTFT de X ms, faithfulness de Y" |
@@ -209,7 +209,7 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 
 | Fase | Trabajo | Sale |
 |---|---|---|
-| **F0** | Plan de los 3 proyectos, módulo por módulo (con el usuario) — P1 ✅ · P2 ⬜ · P3 ⬜ | Los 3 `.md` de planeación |
+| **F0** | Plan de los 3 proyectos, módulo por módulo (con el usuario) — P1 ✅ · P2 ✅ · P3 ✅ | Los 3 `.md` de planeación |
 | **F1** | C1 Flink → C2 Engines Compared | 14 notas |
 | **F2** | C3 Redis → C4 Triton/ONNX → C6 Grafana/Latency | 17 notas |
 | **F3** | **Implementar P1** | Repo P1 + README + resultados |
