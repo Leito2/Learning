@@ -36,7 +36,7 @@ Además, respaldar el CV con **5 proyectos medibles** (P0 gateway compartido + P
 | 📐 Formato | Las notas siguen el **Deep Format** del `Continuity Prompt.md`, con profundidad adaptativa y el estilo de "Course Design Patterns" |
 
 ### Fuera de alcance (decidido)
-Linux administration, JAX, TensorFlow, Azure y Kubernetes en los proyectos (ya hay cursos de K8s; aquí todo es Compose). **AWS solo como SDK en modo local** (SageMaker Processing local + MinIO como S3); una corrida en AWS real queda como decisión pendiente del usuario.
+Linux administration, JAX, TensorFlow, Azure y Kubernetes en los proyectos (ya hay cursos de K8s; aquí todo es Compose). **Sin AWS ni SageMaker** (decisión del usuario, 2026-10-06): la evaluación batch corre en contenedores propios con KFP local sobre MinIO (API S3).
 
 ---
 
@@ -154,21 +154,21 @@ Va **justo después de C1** para no perder el hilo.
 | **Total** | **~49 notas** | | |
 
 ### C8 · `06/35 - GraphRAG and Knowledge Graph Engineering` 🟠 Prioridad 2 → P4 (pendiente)
-Neo4j y Cypher · modelado de grafos de conocimiento · GDS (Leiden, PageRank, proyecciones) · GraphRAG local vs global (Microsoft GraphRAG, LightRAG, neo4j-graphrag) · grafos temporales (Graphiti) · extracción y resolución de entidades (GLiNER) · Text2Cypher seguro · evaluación de GraphRAG. El vault solo tiene una nota (`06/13/04`) y menciones sueltas de Neo4j; Graphiti no aparece.
+Neo4j y Cypher · modelado de grafos de conocimiento (incluido el grafo de un vault de Obsidian: wikilinks, tags, frontmatter) · GDS (Leiden, PageRank, proyecciones) · GraphRAG local vs global (Microsoft GraphRAG, LightRAG, neo4j-graphrag) · grafos temporales (Graphiti) · extracción y resolución de entidades (GLiNER) · Text2Cypher seguro · evaluación de GraphRAG. El vault solo tiene una nota (`06/13/04`) y menciones sueltas de Neo4j; Graphiti no aparece.
 
 ---
 
 ## 3. Los proyectos (resumen; detalle en el `PLAN.md` de cada repo)
 
-| | P1 · Fraude en tiempo real | P2 · Router inteligente | P3 · RAG en vivo | P4 · GraphRAG multiagente |
+| | P1 · Fraude en tiempo real | P2 · Router inteligente | P3 · RAG en vivo | P4 · Investigación de estudio (GraphRAG multiagente) |
 |---|---|---|---|---|
-| Modelo | **XGBoost** (ONNX) + challenger PyTorch en shadow | **Laya** + agente LangGraph para casos de baja confianza | **Haiku** (solo en el test final) + Qdrant/pgvector | **Gemma 4 31B** (texto y visión, free tier) vía P0 |
+| Modelo | **XGBoost** (ONNX) + challenger PyTorch en shadow | **Laya** + agente LangGraph para casos de baja confianza | **Haiku** (solo en el test final) + Qdrant/pgvector | **Gemma 4 31B** (texto y visión, free tier) vía P0 sobre el **vault de Obsidian** |
 | Motor / núcleo | **Flink** (SQL) | **Quix Streams** | **Spark Structured Streaming** | **Neo4j + LangGraph** (GraphRAG) |
 | Transporte | Kafka (KRaft) | Redpanda (API Kafka) + FastAPI | Redpanda + outbox CDC + **SSE** | MCP + SSE |
 | Cloud | Local | Local | **GCP** (Cloud Run + Qdrant Cloud free + Vertex AI Pipelines) | Local |
 | Gasto | $0 | $0 | $0 hasta el test final | $0 |
-| Absorbe del CV | Evidently, SageMaker Processing local, auditoría de explicaciones | `judgekit` (Evaluation Suite completa) + Langfuse | Auditoría de alucinaciones, Vertex AI Pipelines, caché invalidada por CDC | Multi-Agent Research System completo + GraphRAG |
-| Frase del CV | "Kafka + Flink, X ev/s, p95 de Y ms" | "Router System 1/2: X% resuelto en Y ms, Z% menos costo de LLM" | "RAG con índice en vivo: N s de frescura, TTFT de X ms, faithfulness de Y" | "GraphRAG multiagente: X% en multi-hop con verdad conocida, +Y pp sobre RAG vectorial" |
+| Absorbe del CV | Evidently, backtesting en contenedor sobre MinIO, auditoría de explicaciones | `judgekit` (Evaluation Suite completa) + Langfuse | Auditoría de alucinaciones, Vertex AI Pipelines, caché invalidada por CDC | Multi-Agent Research System completo + GraphRAG sobre las notas de estudio |
+| Frase del CV | "Kafka + Flink, X ev/s, p95 de Y ms" | "Router System 1/2: X% resuelto en Y ms, Z% menos costo de LLM" | "RAG con índice en vivo: N s de frescura, TTFT de X ms, faithfulness de Y" | "Agentes de investigación de estudio sobre ~1.000 notas de Obsidian: X% en multi-hop, +Y pp sobre RAG vectorial, Z notas desactualizadas detectadas" |
 
 **P0 · `llm-gateway`** (base de todos): absorbe por completo el *LLM Edge Gateway* en Go del CV (caché semántica obligatoria, circuit breaker obligatorio, fallback Gemma 3 1B, Groq, UI de chat) y agrega Gemma 4 vía Google AI Studio, hedging, concurrencia adaptativa, cuotas de free tiers, guardrails y presupuesto atómico.
 
@@ -186,7 +186,7 @@ Neo4j y Cypher · modelado de grafos de conocimiento · GDS (Leiden, PageRank, p
 
    P2 Router ──(intención "pregunta de conocimiento")──► P3 RAG
    P2 Router ──(intención "disputa de pago")───────────► consulta de decisiones de P1
-   P1 ──(topic entity-edges / vista v_entity_edges)──► grafo de P4
+   Vault de Obsidian (Learning) ──(lectura)──► grafo de P4 ──(notas de investigación)──► carpeta del vault
    P2 judgekit ──(librería)──► P1 · P3 · P4          P3 kb-changes ──(invalidación por tags)──► caché de P0
    P4 agentes ──(smart · vision · extract · judge)──► P0
 ```
@@ -236,7 +236,6 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | Pruebas de falla con réplicas reales | P1 |
 | Debezium + Kafka Connect en lugar del CDC ligero | P3 |
 | Langfuse self-hosted (Postgres + ClickHouse) junto con los stacks | P2 · P3 · P4 |
-| Grafo de P4 alimentado en vivo desde `entity-edges` (P1 y P4 a la vez) | P1 · P4 |
 | Microsoft GraphRAG sobre el corpus completo | P4 |
 | LLM local de 4B cuantizado (en lugar de 1-2B) | P2 · P3 |
 
@@ -260,6 +259,7 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | 2026-10-06 | **Gateway nuevo:** el usuario descarta el gateway en Go del CV. Se crea **P0 `llm-gateway`** (Python, FastAPI, desde cero): API compatible con OpenAI, fallback, circuit breakers, presupuesto atómico en Redis, caché exacta y semántica, SSE con cancelación. Los 4 repos tienen su setup M0 en `Documents/AI Engineer proyects/` (20 tests en verde, ruff limpio). Faltan **Docker Desktop y uv** en la máquina |
 | 2026-10-06 | Los 4 repos quedan **públicos** con CI en verde; commit `edbf348` de Learning subido. Se mantienen 4 repos + P4 (el gateway no se fusiona) |
 | 2026-10-06 | **v2 de los planes:** los 3 proyectos del CV quedan aparte y se absorben en P0–P4 (§8). P0 v2 (todo el gateway en Go + caché semántica y breaker obligatorios, Groq, Gemma 4, hedging, guardrails, UI). `judgekit` nace en P2 (Evaluation Suite + Langfuse). P1 suma Evidently, SageMaker Processing local y el grafo para P4. P3 suma auditoría de alucinaciones, Vertex AI Pipelines y caché invalidada por CDC. **P4 `graphrag-research-agents`** creado (plan + M0 + repo público). Nuevo curso pendiente C8 GraphRAG |
+| 2026-10-06 | **v3:** (1) **sin SageMaker**: la evaluación batch corre en contenedores propios con KFP local sobre MinIO; (2) **P4 se re-enfoca** en investigación de estudio sobre el **vault de Obsidian** (`Learning/SW-ML-AI Engineering`, ~1.000 notas, ~4.700 wikilinks): grafo determinista desde wikilinks y tags, detección de notas desactualizadas, notas de investigación escritas en una carpeta propia del vault; (3) **Tavily reemplazado** por SearXNG self-hosted + Crawl4AI + arXiv/OpenAlex (Exa opcional); (4) se elimina la integración P1 → P4 (`entity-edges`) |
 
 
 ---
@@ -291,9 +291,9 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | Hugging Face Transformers, Tokenizers y Evaluate; token matching | `judgekit` (P2 §12) |
 | Auditoría de alucinaciones | P2 (rationale del agente), P1 (explicaciones), P3 (NLI + panel de jueces), P4 (Critic) |
 | Benchmarking de alineamiento, seguridad y marca; gating de producción | `judgekit gate` (P2 §12) |
-| SageMaker Processing Jobs sobre S3 versionado | P2 §12 (evaluación) y P1 §13 (backtesting), modo local + MinIO |
+| Jobs de evaluación distribuida sobre S3 versionado | P2 §12 (evaluación) y P1 §13 (backtesting): contenedores propios con KFP local + MinIO (**sin SageMaker**) |
 | Vertex AI Pipelines (reentrenar o re-promptear al degradarse) | P2 §12 (KFP local) → P3 §14 (ejecución en Vertex en la prueba final) |
-| SageMaker Model Monitor (drift semántico) | Evidently en P1 §13 y P2 §12, con la equivalencia documentada |
+| Monitoreo de modelos (drift semántico) | Evidently en P1 §13 y P2 §12 |
 | Gobernanza de datos | P1 §13 y P2 §12 (dataset cards, manifiestos, linaje, Presidio) |
 | **Langfuse** (mejora pedida) | P2 §12.2 (datasets, experiments, scores, LLM-as-a-judge gestionado, prompts, anotación), P3 y P4 |
 
@@ -302,14 +302,14 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 |---|---|
 | LangGraph cíclico; agentes Research, Fact-Auditing, Synthesis; Leader determinista | P4 §5 |
 | Qdrant + ChromaDB tras `VectorStore`; `bge-small-en-v1.5`; `RecursiveCharacterTextSplitter` 512/64; umbral 0.70 | P4 §3–4 y P3 §14 (baselines) |
-| Tavily con backoff y modo solo-RAG | P4 §6 |
+| Búsqueda web con backoff y modo solo-RAG (Tavily **reemplazado**: el usuario lo probó y rinde mal) | P4 §6: SearXNG self-hosted + Crawl4AI, arXiv y OpenAlex para fuentes académicas, Exa opcional; todo detrás de `web-mcp` |
 | Gemma 4 multimodal y *function calling*; auditoría visual | P4 §5.3, P0 alias `vision` |
 | Ejecución de código para verificación | P4 §6.3 (sandbox vía MCP) |
 | Compactación de contexto (ventana 5 + resumen cada 10) | P4 §7.2 |
 | MLflow file-based con `metrics.jsonl`, saneamiento y hashes | P4 §10, P3 §14 |
 | Abstracción de proveedores, fábrica, `mock`, fail-closed, "evidencia insuficiente" | P4 §5.5, requisitos EARS |
 | **Harness SDD** (EARS, compuertas humanas, contratos de rol, ADRs JSON, contexto < 20%, diffs < 400) | P4 §9 (completo); EARS también en P0 §11 |
-| **GraphRAG** (mejora pedida) | P4 §4: Neo4j, GDS Leiden, neo4j-graphrag, Graphiti, GLiNER, Text2Cypher; baselines Microsoft GraphRAG y LightRAG |
+| **GraphRAG** (mejora pedida) | P4 §4: el vault de Obsidian como grafo (wikilinks deterministas + conceptos extraídos), Neo4j, GDS Leiden, neo4j-graphrag, Graphiti, GLiNER, Text2Cypher; baselines Microsoft GraphRAG y LightRAG |
 
 ### 8.4 Skills del CV y dónde quedan demostradas
 | Skill del CV | P0 | P1 | P2 | P3 | P4 |
@@ -328,4 +328,3 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | Harness Engineering | EARS | — | Eval harness | Eval harness | SDD completo |
 | Docker | ✅ | ✅ | ✅ | ✅ | ✅ |
 | GCP | — | — | (KFP compilado) | Cloud Run + Vertex AI Pipelines | — |
-| AWS (SDK) | — | SageMaker Processing local + S3 (MinIO) | SageMaker Processing local + S3 (MinIO) | — | — |
