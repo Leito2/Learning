@@ -1,7 +1,7 @@
 # 🗺️ PLAN — Cierre de Gaps + 3 Proyectos de Portafolio
 
 > **Documento temporal.** Vive en la raíz de `Learning` mientras se implementa. Se borra al terminar todos los cursos del vault.
-> Los planes de cada proyecto están aparte en `_Planes Proyectos/`. Se moverán a sus propios repos.
+> Los planes de cada proyecto viven en sus repos, como `PLAN.md`, dentro de `Documents/AI Engineer proyects/` (`llm-gateway`, `realtime-fraud-detection`, `smart-request-router`, `live-rag-platform`).
 > **Estado:** 🟡 En planeación · **Creado:** 2026-10-05
 
 ---
@@ -154,7 +154,7 @@ Va **justo después de C1** para no perder el hilo.
 
 ---
 
-## 3. Los 3 proyectos (resumen; detalle en `_Planes Proyectos/`)
+## 3. Los proyectos (resumen; detalle en el `PLAN.md` de cada repo)
 
 | | P1 · Fraude en tiempo real | P2 · Router inteligente | P3 · RAG en vivo |
 |---|---|---|---|
@@ -168,7 +168,7 @@ Va **justo después de C1** para no perder el hilo.
 ### Mapa de integración
 ```
                 ┌───────────────────────────────┐
-                │  LLM Edge Gateway (Go)         │  ← proyecto existente del CV
+                │  P0 · llm-gateway (Python)     │  ← nuevo, desde cero (reemplaza al de Go)
                 │  cache semántica · breaker ·   │     punto único de control de costos
                 │  mock / Ollama / Haiku         │
                 └──────▲────────▲─────────▲──────┘
@@ -197,7 +197,7 @@ Cada proyecto funciona **solo**. La integración es un extra demostrable al fina
 | LLMOps / LLM-as-a-Judge | — | ✅ | ✅ |
 | Harness Engineering | — | Eval harness | Eval harness |
 | Langfuse / OTel | OTel | ✅ | ✅ |
-| Go (gateway) | ✅ | ✅ | ✅ |
+| `llm-gateway` (P0, Python) | ✅ | ✅ | ✅ |
 | Docker | ✅ | ✅ | ✅ |
 | GCP + Terraform | — | — | ✅ |
 
@@ -209,7 +209,8 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 
 | Fase | Trabajo | Sale |
 |---|---|---|
-| **F0** | Plan de los 3 proyectos, módulo por módulo (con el usuario) — P1 ✅ · P2 ✅ · P3 ✅ | Los 3 `.md` de planeación |
+| **F0** ✅ | Planes de los proyectos (P0 gateway · P1 · P2 · P3) + **setup M0 de los 4 repos** (git, CI, tests, Compose, `doctor`) | `AI Engineer proyects/` |
+| **F2.5** | **Implementar P0 `llm-gateway`** M1–M2 (antes del M7 de P1 y del M5 de P2); M3–M7 antes de la prueba final de P3 | Gateway usable por los 3 |
 | **F1** ✅ | C1 Flink → C2 Engines Compared (`10/46`, `10/47`, commit cc64557) | 14 notas |
 | **F2** ✅ | C3 Redis → C4 Triton/ONNX → C6 Grafana/Latency (`09/43`, `09/44`, `09/45`) | 17 notas |
 | **F3** | **Implementar P1** | Repo P1 + README + resultados |
@@ -252,10 +253,11 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | 2026-10-05 | Un modelo por proyecto: XGBoost (P1), Laya (P2), Haiku (P3) |
 | 2026-10-05 | C7 documenta la comparativa de todos los decision models; los proyectos usan solo Laya |
 | 2026-10-05 | Solo P3 en GCP; costo mínimo; Terraform para crear y destruir |
-| 2026-10-05 | Todas las llamadas al LLM pasan por el LLM Edge Gateway (Go) existente |
+| 2026-10-05 | ~~Todas las llamadas al LLM pasan por el LLM Edge Gateway (Go) existente~~ → reemplazado el 2026-10-06 |
 | 2026-10-05 | Diseño base para 8 GB de RAM y 4 GB de VRAM; lo más pesado queda como `⏳ 16GB` |
 | 2026-10-05 | Cada proyecto tiene un README progresivo: teoría y visión macro primero, detalle técnico al final de cada componente |
 | 2026-10-05 | F1 completada. Hallazgo: Bytewax sin release desde nov-2024 (v0.21.1); Quix Streams activo (v3.27.0, sep-2026) → **propuesto** cambiar el motor de P2 a Quix Streams (pendiente de confirmación del usuario) |
 | 2026-10-06 | F2 completada. Hallazgo: **TorchServe archivado** (ago-2025) → el curso `09/30` necesita aviso de deprecación (pendiente de confirmación); P1 sigue sin depender de él |
 | 2026-10-06 | **Confirmado por el usuario:** P2 usa **Quix Streams** en lugar de Bytewax (plan de P2 actualizado). Aviso de deprecación agregado a `09/30 - TorchServe` |
 | 2026-10-06 | F4 y F6 completadas (adelantadas a F3/F5 por decisión del usuario). Hallazgos: Laya colapsa con >20 opciones (P2 ya usa ~12 rutas), multilingual sin calibrar, latencia CPU incierta (riesgos R1b–R1d en P2); FastAPI trae SSE nativo con ping cada 15 s |
+| 2026-10-06 | **Gateway nuevo:** el usuario descarta el gateway en Go del CV. Se crea **P0 `llm-gateway`** (Python, FastAPI, desde cero): API compatible con OpenAI, fallback, circuit breakers, presupuesto atómico en Redis, caché exacta y semántica, SSE con cancelación. Los 4 repos tienen su setup M0 en `Documents/AI Engineer proyects/` (20 tests en verde, ruff limpio). Faltan **Docker Desktop y uv** en la máquina |
