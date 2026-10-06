@@ -550,6 +550,7 @@ SW-ML-AI Engineering/
 │   └── 37 - Vector Search on Google Cloud (3 EN)
 │   └── 46 - Apache Flink for Real-time ML (8 EN)
 │   └── 47 - Stream Processing Engines Compared (6 EN)
+│   └── 48 - LLM Token Streaming - SSE, WebSockets and gRPC (5 EN)
 │
 ├── 11 - Research/                      (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
@@ -797,6 +798,7 @@ Filtered from a broader tech scan — only technologies that directly complement
 | 51 | **Embed de banners en 3 Welcome notes** | Añadir `![Banner del Curso X](<slug>-course-banner.svg)` como línea 2 (después del H1) en cada Welcome note. | 3 markdown files |
 | 52 | **Crear cursos Apache Flink for Real-time ML (10/46) + Stream Processing Engines Compared (10/47) — Gap-closing F1** | 14 notas, 3,506 líneas, English. Flink: architecture, time/watermarks, state/exactly-once, SQL features, PyFlink, laptop ops, capstone Kafka→Flink→Redis. Engines: execution models, Spark SS for ML ingestion, Python-native (Bytewax/Quix/Faust/Kafka Streams — Bytewax sin release desde nov-2024), lab 3 motores, decision framework. Main thread, 0 subagents; todos los códigos de compresión ejecutados. Ver `PLAN - Cierre de Gaps y Proyectos.md` (raíz). | `10 - Cloud, Infra y Backend/46 - Apache Flink for Real-time ML/`, `.../47 - Stream Processing Engines Compared/` |
 | 53 | **Crear cursos Redis Feature Serving (09/43) + Triton/ONNX Runtime (09/44) + Grafana & Latency Engineering (09/45) — Gap-closing F2** | 17 notas, ~3,570 líneas, English. Redis: data modeling (listpack, hash tags, pipelining, Lua monotonic writes), Streams vs Kafka, point-in-time/skew, latency budgets. Serving: ONNX Runtime (benchmark real en i5-10300H: ~17× vs XGBoost nativo a batch 1, se invierte a batch 500), Triton (FIL, dynamic batching), ensembles/perf_analyzer, shadow/champion-challenger (McNemar, sample size), choosing a stack (**TorchServe archivado ago-2025**). Grafana: metrics design, dashboards as code, SLOs/burn rates (cap 1/(1-s)), load-testing methodology, LLM dashboards. Todos los códigos de compresión ejecutados. | `09 - MLOps y Produccion/43…`, `/44…`, `/45…` |
+| 54 | **Crear cursos Decision Models - System One AI (06/34) + LLM Token Streaming (10/48) — Gap-closing F4 + F6** | 11 notas, ~2,280 líneas, English. Decision models: mecánica (noul/choice/score, option-scoring, ECE, temperature, RLCD), Jev y landscape (Laya, Kev, Von, Clef...; cifras vendor), Laya en práctica (77 opciones → 0.425; multilingual sin calibrar; CPU 193–464 ms vendor vs segundos reportados), DIY head en Qwen3 (verificado con torch), System1/System2 (risk–coverage, mezcla de latencias). Streaming: SSE wire format + parser, **FastAPI nativo `fastapi.sse` (verificado 0.142: headers + ping 15 s)**, cancelación verificada con servidor real (cliente corta en 5 tokens → servidor genera 5/50), SSE vs WS vs gRPC. P2 cambiado a Quix Streams; aviso de deprecación en 09/30 TorchServe. | `06 - Large Language Models/34 - Decision Models - System One AI/`, `10 - Cloud, Infra y Backend/48 - LLM Token Streaming - SSE, WebSockets and gRPC/` |
 
 ### 🟡 Pendientes (esperando decisión del usuario)
 

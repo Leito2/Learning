@@ -213,9 +213,9 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | **F1** ✅ | C1 Flink → C2 Engines Compared (`10/46`, `10/47`, commit cc64557) | 14 notas |
 | **F2** ✅ | C3 Redis → C4 Triton/ONNX → C6 Grafana/Latency (`09/43`, `09/44`, `09/45`) | 17 notas |
 | **F3** | **Implementar P1** | Repo P1 + README + resultados |
-| **F4** | C7 Decision Models | 6 notas |
+| **F4** ✅ | C7 Decision Models (`06/34`) | 6 notas |
 | **F5** | **Implementar P2** | Repo P2 + README |
-| **F6** | C5 Token Streaming | 5 notas |
+| **F6** ✅ | C5 Token Streaming (`10/48`) | 5 notas |
 | **F7** | **Implementar P3** (local → GCP solo en el test final) | Repo P3 + README |
 | **F8** | Integración con el gateway + pruebas finales (el único momento con gasto) | Cifras finales del CV |
 | **F9** | `⏳ 16GB`: re-medir P1 con carga máxima, CDC completo en P3, Langfuse self-hosted | Cifras actualizadas |
@@ -258,3 +258,4 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | 2026-10-05 | F1 completada. Hallazgo: Bytewax sin release desde nov-2024 (v0.21.1); Quix Streams activo (v3.27.0, sep-2026) → **propuesto** cambiar el motor de P2 a Quix Streams (pendiente de confirmación del usuario) |
 | 2026-10-06 | F2 completada. Hallazgo: **TorchServe archivado** (ago-2025) → el curso `09/30` necesita aviso de deprecación (pendiente de confirmación); P1 sigue sin depender de él |
 | 2026-10-06 | **Confirmado por el usuario:** P2 usa **Quix Streams** en lugar de Bytewax (plan de P2 actualizado). Aviso de deprecación agregado a `09/30 - TorchServe` |
+| 2026-10-06 | F4 y F6 completadas (adelantadas a F3/F5 por decisión del usuario). Hallazgos: Laya colapsa con >20 opciones (P2 ya usa ~12 rutas), multilingual sin calibrar, latencia CPU incierta (riesgos R1b–R1d en P2); FastAPI trae SSE nativo con ping cada 15 s |

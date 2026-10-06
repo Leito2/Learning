@@ -117,6 +117,8 @@
 | Semantic Search & Hybrid Retrieval | 04 > 17 > 04 | ✅ |
 | Knowledge Graphs for LLMs | 04 > 17 > 03 | ✅ |
 | Multilingual LLMs | 04 > 17 > 01 | ✅ |
+| Decision Models / System One AI (Jev, Laya, calibration, System 1/2 routing) | 06 > 34 | ✅ |
+| LLM Token Streaming (SSE, WebSockets, gRPC; cancellation) | 10 > 48 | ✅ |
 
 ---
 

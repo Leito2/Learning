@@ -65,7 +65,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 25 - AI Compliance and Governance (6 — NEW — Tier-2 #3)
 ├── 26 - Multimodal Production RAG (6 — NEW — Tier-2 #5)
 ├── 27 - Portkey AI Gateway and Observability (6 — NEW — Plan X)
-└── 33 - ML System Design Interviews (11 — English, NEW)
+├── 33 - ML System Design Interviews (11 — English, NEW)
+└── 34 - Decision Models - System One AI (6 — English, NEW)
 
 07 - AI Agents y Agentic Systems (50)
 ├── 11 - Fundamentos de Agentes AI (6)
@@ -126,7 +127,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 44 - Email and Notifications for FastAPI (3 — English)
 ├── 45 - Webhooks In and Out for FastAPI (3 — English)
 ├── 46 - Apache Flink for Real-time ML (8 — English)
-└── 47 - Stream Processing Engines Compared (6 — English)
+├── 47 - Stream Processing Engines Compared (6 — English)
+└── 48 - LLM Token Streaming - SSE, WebSockets and gRPC (5 — English)
 
 11 - Research y Ciencia de Datos (33)
 ├── 26 - Metodología de Investigación en ML (6)
@@ -214,7 +216,7 @@ Misceláneo
 | 10 | [[05 - Deep Learning y Computer Vision/10 - JAX Deep Dive/00 - Welcome to JAX Deep Dive\|JAX Deep Dive]] | 6 | ✅ NEW | 🇬🇧 |
 | 11 | [[05 - Deep Learning y Computer Vision/11 - OpenCV/00 - Bienvenida\|OpenCV]] | 7 | ✅ NEW | 🇪🇸 |
 
-### 06 — Large Language Models (70 notas)
+### 06 — Large Language Models (76 notas)
 
 | # | Curso | Notas | Estado | Idioma |
 |---|-------|:-----:|:------:|:------:|
@@ -242,6 +244,7 @@ Misceláneo
 | 21 | [[06 - Large Language Models/21 - DSPy and Prompt Compilation/00 - Welcome to DSPy and Prompt Compilation\|DSPy and Prompt Compilation]] | 8 | ✅ NEW | 🇬🇧 |
 | 20 | [[06 - Large Language Models/20 - vLLM Production Serving/00 - Bienvenida\|vLLM Production Serving]] | 9 | ✅ NEW | 🇪🇸 |
 | 33 | [[06 - Large Language Models/33 - ML System Design Interviews/00 - Welcome to ML System Design Interviews\|ML System Design Interviews]] | 11 | ✅ NEW | 🇬🇧 |
+| 34 | [[06 - Large Language Models/34 - Decision Models - System One AI/00 - Welcome to Decision Models\|Decision Models — System One AI]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 07 — AI Agents y Agentic Systems (40 notas)
 
@@ -293,7 +296,7 @@ Misceláneo
 | 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 | 36 | [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | 6 | ✅ NEW | 🇬🇧 |
 
-### 10 — Cloud, Infra y Backend (78 notas)
+### 10 — Cloud, Infra y Backend (83 notas)
 
 | # | Curso | Notas | Estado | Idioma |
 |---|-------|:-----:|:------:|:------:|
@@ -323,6 +326,7 @@ Misceláneo
 | 45 | [[10 - Cloud, Infra y Backend/45 - Webhooks In and Out for FastAPI/00 - Welcome\|Webhooks In/Out]] | 3 | ✅ NEW | 🇬🇧 |
 | 46 | [[10 - Cloud, Infra y Backend/46 - Apache Flink for Real-time ML/00 - Welcome to Apache Flink for Real-time ML\|Apache Flink for Real-time ML]] | 8 | ✅ NEW | 🇬🇧 |
 | 47 | [[10 - Cloud, Infra y Backend/47 - Stream Processing Engines Compared/00 - Welcome to Stream Processing Engines Compared\|Stream Processing Engines Compared]] | 6 | ✅ NEW | 🇬🇧 |
+| 48 | [[10 - Cloud, Infra y Backend/48 - LLM Token Streaming - SSE, WebSockets and gRPC/00 - Welcome to LLM Token Streaming\|LLM Token Streaming — SSE, WebSockets and gRPC]] | 5 | ✅ NEW | 🇬🇧 |
 
 ### 11 — Research y Ciencia de Datos (33 notas)
 
@@ -461,14 +465,14 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 73 |
+| Cursos totales | 75 |
 | Cursos en Español | 26 |
-| Cursos en English | 47 |
+| Cursos en English | 49 |
 | Módulos numerados (00-17) | 18 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
 | Cursos TypeScript | 1 |
-| Notas totales | 771+ |
+| Notas totales | 782+ |
 | Guías de proyecto | 14 |
 
 ---
