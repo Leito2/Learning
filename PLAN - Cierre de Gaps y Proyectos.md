@@ -210,7 +210,7 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | Fase | Trabajo | Sale |
 |---|---|---|
 | **F0** | Plan de los 3 proyectos, módulo por módulo (con el usuario) — P1 ✅ · P2 ✅ · P3 ✅ | Los 3 `.md` de planeación |
-| **F1** | C1 Flink → C2 Engines Compared | 14 notas |
+| **F1** ✅ | C1 Flink → C2 Engines Compared (`10/46`, `10/47`, commit cc64557) | 14 notas |
 | **F2** | C3 Redis → C4 Triton/ONNX → C6 Grafana/Latency | 17 notas |
 | **F3** | **Implementar P1** | Repo P1 + README + resultados |
 | **F4** | C7 Decision Models | 6 notas |
@@ -255,3 +255,4 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | 2026-10-05 | Todas las llamadas al LLM pasan por el LLM Edge Gateway (Go) existente |
 | 2026-10-05 | Diseño base para 8 GB de RAM y 4 GB de VRAM; lo más pesado queda como `⏳ 16GB` |
 | 2026-10-05 | Cada proyecto tiene un README progresivo: teoría y visión macro primero, detalle técnico al final de cada componente |
+| 2026-10-05 | F1 completada. Hallazgo: Bytewax sin release desde nov-2024 (v0.21.1); Quix Streams activo (v3.27.0, sep-2026) → **propuesto** cambiar el motor de P2 a Quix Streams (pendiente de confirmación del usuario) |
