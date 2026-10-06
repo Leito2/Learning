@@ -6,7 +6,7 @@ Copy and paste this entire file into a new session to continue the project witho
 
 ## ⚠️ CRITICAL: CONTEXT & COST MANAGEMENT
 
-> **Last revised:** June 2026. The vault now has **~628+ notes** (4 new courses added). The previous "always-subagent-for-3+-notes" rule was redesigned around **AI subscription cost**, not just context saturation. Subagents reload the entire Deep Format spec, vault structure, and writing rules in their own context — that duplication is **expensive**. The new default inverts the priority.
+> **Last revised:** 2026-10-06. The vault now has **~990 notes** in 17 areas. **Note format = Compact Deep Format** (see below). Gap-closing plan: `Learning/PLAN - Cierre de Gaps y Proyectos.md`. The previous "always-subagent-for-3+-notes" rule was redesigned around **AI subscription cost**, not just context saturation. Subagents reload the entire Deep Format spec, vault structure, and writing rules in their own context — that duplication is **expensive**. The new default inverts the priority.
 
 ### Core Philosophy
 
@@ -65,88 +65,98 @@ head -5 "/path/to/course/00 - ...md"   # confirm H1 + format correct
 
 ---
 
-## ⚠️ DEEP FORMAT SPECIFICATION — DEFAULT STANDARD FOR ALL NOTES
+## ⚠️ COMPACT DEEP FORMAT — DEFAULT STANDARD FOR ALL NEW NOTES (since 2026-10-06)
 
-> **This is the DEFAULT and MANDATORY format for every note in the vault.** No exceptions.
+> **Replaces the old "Deep Format".** Built for the user's learning style: hungry and fast, wants the **maximum number of up-to-date (2025-2026) concepts, methods, features and architectures**, with **compressed theory**, **visual but minimalist** knowledge, and **example code** in courses. Heavy hands-on practice lives **only in the mini-projects** (portfolio repos P0–P4), never as long labs inside courses.
 >
-> **Core philosophy:** What matters most is **deep conceptual and functional theory** — WHY something exists, HOW it works under the hood, and WHAT problems it solves. Every note must build complete technical and practical mastery of its topic. Theory always precedes code. Code demonstrates understanding, it does not replace it.
+> **Core philosophy:** maximum concept density per line. Each concept is explained with the most compact carrier that keeps all the information: a sentence, a formula, a table row, or a diagram node — never paragraphs of history or context. **Every fact appears once** (single source of truth inside the note): if a diagram or table says it, the prose does not repeat it.
+>
+> Applies to **all new notes** and to old notes when they are touched. Style references the user likes: `10/23/01 - Terraform Fundamentals` (❌/✅, `¡Sorpresa!`, one formula replacing a paragraph, block-type table, DAG diagram) and `13/04/04 - GitHub Actions` (`# WHY:` comments on every meaningful line, mental model before syntax).
 
-Applies to **all new notes** and **all expansions**. No exceptions.
+### Required Skeleton
 
-### Required Sections
+~~~markdown
+# 🏷️ NN - Title (with emoji)
 
-```markdown
-# 🏷️ Title (with emoji)
+(Hook: 1-2 lines tying the concept to a real AI/ML engineering problem. No "Introduction" section.)
 
-## 🎯 Learning Objectives
-(Bullet list of what the reader will master)
+## 🎯 Objectives
+(3-4 bullets, verbs: explain / choose / implement / debug)
 
-## Introduction
-(2-3 paragraphs. Deep context: WHY this matters for ML/AI engineering.
-Connect to other vault modules via [[...]] links.)
-
----
-
-## 1. The Problem and Why This Solution Exists
-(Deep historical context. Competing approaches and their failures.
-Architecture diagrams from OFFICIAL sources or Wikimedia, NOT ASCII.
-No artificial paragraph limit — let the theory breathe.)
-
-## 2. Conceptual Deep Dive
-(Algorithms, data flow, mathematics. LaTeX for equations.
-Code integrated into explanation, not isolated.
-ONE Mermaid diagram ONLY IF it adds genuine architectural insight.)
-
-## 3. Production Reality
-(Hardware requirements, tradeoffs, known failure modes.
-Real case: <Company X uses this for Y>.
-Comparison table ONLY when comparing multiple approaches.)
-
-## 4. Code in Practice
-(Minimal, focused, runnable code. Not a "compression code"
-that tries to cover everything — just the key pattern.)
-
----
-
-## 🎯 Key Takeaways
-(5-7 bullet points)
-
-## References
-(Papers, docs, vault [[links]])
+```mermaid
+(Concept map: ONE diagram that compresses the whole note and works as its visual index)
 ```
 
-### Visual Guidelines
+> [!info] Estado 2026
+> Current version · what changed in 2025-2026 · what is deprecated/archived · verified: YYYY-MM
 
+---
+
+## 1. <Concept A>            ← headings name concepts, never template slots
+Compressed theory (1-3 sentences, or a formula, or a table) → annotated example code → ⚠️/💡 right after
+the code → "Caso real:" in ONE line.
+
+## 2. <Concept B> ...
+
+## N. Landscape 2026         ← when the topic has alternatives
+| Tool | What it is | Use it when |   (1 line per tool; breadth without depth)
+
+---
+
+## 🧠 Cheat Sheet
+(Table or diagram that is the ONLY summary of the note. Replaces "Key Takeaways". No repeated sentences.)
+
+## 🎤 Interview Angle
+(2-3 bullets: the key trade-off + a 30-second answer)
+
+## 🔁 Recall
+> [!question]- Question?
+> Answer in 1-2 lines.
+(3-5 foldable callouts: native Obsidian active recall, no plugin needed)
+
+## References
+(Max 3 primary sources: official docs, paper, release notes) + vault links
+⬅️ [[previous note]] · ➡️ [[next note]] · 🧭 [[course 00 note]] · 🛠️ project milestone (e.g. P1 M7c)
+~~~
+
+### Code Rules
+- **Example code, not labs.** One snippet per concept, **≤ 25-30 lines**, runnable in isolation when possible.
+- Every meaningful line explains itself: `# WHY:` comments or inline results (`# -> 0.93`).
+- **❌/✅ pairs** and **`¡Sorpresa!`** gotchas are the primary teaching tools.
+- No full Docker Compose stacks, no multi-file setups, no long walkthroughs: those belong to the portfolio repos.
+- "Código de compresión" is **optional** (15-25 lines) and only when the note's snippets don't already cover the concept end to end.
+
+### Visual Rules (minimalist)
 | Rule | Detail |
 |------|--------|
-| **ASCII art** | **BANNED.** No `┌─│└├┘┤┬┴┼` diagrams. |
-| **Real images** | Prefer Wikimedia Commons URLs: `![Alt](https://upload.wikimedia.org/...)` |
-| **Official diagrams** | Use arxiv figures, GitHub docs, NVIDIA/Apple docs for project-specific architecture |
-| **Mermaid** | Maximum 1-2 per note. Only for architecture/data flow that genuinely needs visualization. |
-| **LaTeX** | Use aggressively for mathematical concepts. |
-| **Tables** | Only when comparing approaches or listing tradeoffs — not as filler. |
+| **Concept map** | Exactly 1 Mermaid map per note (+1 flow/sequence diagram only if it adds information not shown elsewhere) |
+| **Mermaid style** | Few words per node; edge labels say what travels (`event`, `request`, `features`); one consistent palette via `classDef`; max ~12 nodes |
+| **Tables** | As cheat sheets and comparisons only; aligned columns |
+| **LaTeX** | Only when one equation replaces a paragraph (latency budgets, metrics, losses) |
+| **Images** | Official architecture figures only when a diagram can't express it; **no decorative logos** |
+| **ASCII art** | **BANNED** (backlog of old notes to convert: see "ASCII backlog" below) |
 
 ### Line Targets
-
 | Note Type | Lines |
 |-----------|:-----:|
-| Course welcome (00) | 60-90 |
-| Core concept note | 300-450 |
-| Capstone note | 350-500 |
-| Quick-reference | 150-250 |
-| Tool comparison | 150-300 |
+| Course welcome (00) | 40-60 (course map diagram + 10-15 term glossary table + which project applies it) |
+| Core concept note | 150-250 |
+| Landscape / comparison note | 120-200 |
+| Bridge to Project (last note) | 100-150 (course cheat sheet + project milestone + checklist of what to prove in the repo) |
 
 ### Key Rules
-- **Theory BEFORE code** in every section. Conceptual and functional theory is the HIGHEST priority.
-- Each note covers **ONE concept deeply** — do not cram multiple topics into a single note.
-- **English** for all new content; **Spanish** only for existing M00-M08 modules.
-- Code blocks MUST have language tag: ` ```python `, ` ```go `, ` ```rust `, ` ```sql `, ` ```bash `, ` ```yaml `, ` ```json `.
-- Tables MUST use aligned columns.
-- Mermaid MUST use ` ```mermaid ` wrapper.
-- Use `[[...]]` for internal Obsidian links.
-- File names: `## - Descriptive Name.md`. **Never use `/`** (Windows restriction).
-- One H1 per note only.
-- **THIS DEEP FORMAT IS THE DEFAULT STANDARD.** All notes must follow it. All subagents must be instructed to follow it.
+- **Compressed theory before code** in every section; the WHY stays, the history goes.
+- **One concept per note** (unchanged). If a topic has 3+ distinct sub-concepts, split it.
+- **Up-to-date first:** every note carries the `Estado 2026` callout; prefer 2025-2026 tools, flag deprecated ones (e.g. TorchServe archived 2025-08, Bytewax without releases since 2024-11). Verify version-dependent facts against primary sources before writing.
+- **No repetition:** prose, tables and diagrams never restate each other; there is exactly one summary (the Cheat Sheet).
+- **English** for all new content; Spanish only for existing M00-M04 modules.
+- **Wikilinks:** always full vault path (`[[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/01 - Terraform Fundamentals - HCL, State and Resource Graph|Terraform]]`) or the exact file name. **Never shorthand** like `[[09/29 - CI-CD for ML]]` (it caused 37.5% broken links; repaired 2026-10-06). Inside table rows, escape the alias pipe: `[[path\|alias]]`. Validate links with the P4 vault parser before committing.
+- **File names** short enough to keep full paths under 260 characters (Windows). Never use `/` or `:`.
+- Code blocks MUST have a language tag; Mermaid MUST use the ` ```mermaid ` wrapper; one H1 per note.
+- **THIS COMPACT DEEP FORMAT IS THE DEFAULT STANDARD.** Subagents must be instructed to follow it.
+
+### ASCII Backlog
+145 older notes still contain box-drawing diagrams (mostly `13 - Go Engineering` and `10 - Cloud, Infra y Backend`). Convert each one to a minimalist Mermaid diagram **when the note is touched**; do not batch-rewrite them.
 
 ---
 
@@ -186,6 +196,8 @@ All new courses MUST prioritize the most modern, production-grade technologies.
 | The capstone/project is a **separate note** (note 12) | "Documented Project" forced into every note |
 
 **Rule**: If a topic has 3+ distinct sub-concepts, split it into separate notes. No exceptions.
+
+**Compact Deep Format update:** the last note of a course is a **Bridge to Project** note (course cheat sheet + the portfolio milestone that implements it + a checklist of what to prove in the repo), not a long lab. Hands-on practice lives in the portfolio repos P0–P4.
 
 ### 2. Code That Converses (Inline Annotations)
 
@@ -240,7 +252,7 @@ Every concept MUST have at least one "Caso real" that anchors it to a concrete M
 
 ### 5. Código de Compresión (End-of-Note Runnable Summary)
 
-Every note MUST end with a runnable script that exercises all key concepts in ~20-40 lines:
+**Optional under the Compact Deep Format:** a 15-25 line runnable script, only when the note's snippets do not already show the concept end to end:
 
 ```python
 # 📦 Código de compresión: Variables y Tipos de Datos
@@ -325,7 +337,10 @@ Theory, table, tip, code, and case study appear in the SAME section. The section
 | Mandatory "Knowledge Check ❓" per module | Verification is the compression code, not quizzes |
 | Mandatory `| ML Use Case | This Concept | Impact |` tables | Replaced by "Caso real" mini-stories |
 | "Compression Code" trying to cover ALL topics | End-of-note code exercises only THIS note's concepts |
-| 400-600 line targets | 300-450 is enough when each note is focused |
+| 400-600 line targets | **150-250** (Compact Deep Format) |
+| Introduction of 2-3 paragraphs and historical context | 1-2 line hook; history only if it explains a design choice |
+| "Key Takeaways" restating the note | One **Cheat Sheet** (the only summary) + Recall callouts |
+| Long labs/capstones inside courses | **Bridge to Project** note; practice lives in P0–P4 |
 
 ### 10. Adaptive Depth: Flexibility by Course Type
 
@@ -339,11 +354,11 @@ Theory, table, tip, code, and case study appear in the SAME section. The section
 
 | Course Type | Vault Examples | Theory | Images | LaTeX | Code | Line Target |
 |-------------|---------------|:------:|:------:|:-----:|:----:|:-----------:|
-| **Language / Framework** | Python, Go, Rust, SQL, Docker, Markdown | Medium | Low | Low | **HIGH** | 250-400 |
-| **ML Theory & Algorithms** | DL with PyTorch, CV, NLP, GNN, RL, TF | **HIGH** | Medium-High | **HIGH** | Medium-High | 350-500 |
-| **Production / Infrastructure** | ColBERT, SGLang, Inference Opt., MLOps, Cloud, K8s | **HIGH** | **HIGH** | **HIGH** | Low-Medium | 350-500 |
-| **Agents / Protocols** | MCP, A2A, LangGraph, CrewAI, Multi-Agent | High | Medium | Low-Medium | Medium-High | 300-450 |
-| **Transversal / Business** | Leadership, Communication, Product Strategy | Low-Medium | Low | None | None | 150-300 |
+| **Language / Framework** | Python, Go, Rust, SQL, Docker, Markdown | Medium | Low | Low | **HIGH** | 150-250 |
+| **ML Theory & Algorithms** | DL with PyTorch, CV, NLP, GNN, RL, TF | **HIGH** | Medium-High | **HIGH** | Medium-High | 200-300 |
+| **Production / Infrastructure** | ColBERT, SGLang, Inference Opt., MLOps, Cloud, K8s | Compressed | **HIGH** (diagrams) | Medium | **HIGH** (examples) | 150-250 |
+| **Agents / Protocols** | MCP, A2A, LangGraph, CrewAI, Multi-Agent | Compressed | Medium | Low | **HIGH** | 150-250 |
+| **Transversal / Business** | Leadership, Communication, Product Strategy | Low-Medium | Low | None | None | 100-200 |
 
 #### Concrete Guidelines Per Type
 
@@ -358,8 +373,8 @@ Theory, table, tip, code, and case study appear in the SAME section. The section
 - Example: `SW-ML-AI Engineering/05 - Deep Learning y CV/03 - DL con PyTorch/`
 
 **Production / Infrastructure** (ColBERT, SGLang, Inference, MLOps):
-- Theory is the **protagonist**. Code demonstrates, not replaces.
-- 70% theory + LaTeX + images, 30% code. Images are ESSENTIAL: GPU memory hierarchy, KV cache structure, quantization error distributions, hardware diagrams.
+- Compressed theory sets the mental model; **annotated examples and gotchas carry the learning**.
+- 40% compressed theory (diagrams, tables, formulas), 60% annotated examples. (Previously 70/30.) Images are ESSENTIAL: GPU memory hierarchy, KV cache structure, quantization error distributions, hardware diagrams.
 - LaTeX for compression ratios, throughput math, latency calculations.
 - Example: The new `06/17 - ColBERT, SGLang and Next-Gen Inference/`
 
@@ -382,7 +397,10 @@ Theory, table, tip, code, and case study appear in the SAME section. The section
 | **Mermaid diagrams** | 🟡 Often | 🟡 Often | 🔴 Always | 🔴 Always | 🟡 Often |
 | **Comparison tables** | 🟡 Often | 🔴 Always | 🔴 Always | 🔴 Always | 🟡 Often |
 | **Caso real: Company X** | 🟡 Often | 🔴 Always | 🔴 Always | 🔴 Always | 🟡 Often |
-| **Código de compresión** | 🔴 Always | 🔴 Always | 🔴 Always | 🔴 Always | 🟢 Rarely |
+| **Código de compresión** | 🟡 Optional | 🟡 Optional | 🟡 Optional | 🟡 Optional | 🟢 Rarely |
+| **Concept map (1 Mermaid)** | 🔴 Always | 🔴 Always | 🔴 Always | 🔴 Always | 🟡 Often |
+| **`Estado 2026` callout** | 🔴 Always | 🔴 Always | 🔴 Always | 🔴 Always | 🟢 Rarely |
+| **Cheat Sheet + Recall + Interview Angle** | 🔴 Always | 🔴 Always | 🔴 Always | 🔴 Always | 🟡 Often |
 | **Long inline code blocks** | 🔴 Always | 🟡 Often | 🟡 Often | 🟡 Often | 🟢 Never |
 
 #### Specific Example: How 06/17 Differs from Python Básico
@@ -404,7 +422,8 @@ Before writing any note, answer these 3 questions:
 
 1. **"Can a reader explain WHY this works after reading?"** → If no, add more theoretical foundation.
 2. **"Can a reader spot the WRONG way to do this?"** → If no, add a ❌/✅ pair.
-3. **"Can a reader run ONE script and see the concept working?"** → If no, add a Código de Compresión.
+3. **"Can a reader run ONE snippet and see the concept working?"** → If no, add an annotated example.
+4. **"Is it current (2025-2026), and does every fact appear exactly once?"** → If no, update the `Estado 2026` callout and delete the repetition.
 
 These 3 questions ensure every note hits the minimum quality bar, regardless of course type.
 
@@ -412,37 +431,32 @@ These 3 questions ensure every note hits the minimum quality bar, regardless of 
 
 ## Project Context
 
-We are building an **Obsidian vault** inside `/home/white/Learning`, a **Git repo** connected to `https://github.com/Leito2/Learning.git`. The vault contains compressed markdown courses for an **AI/ML Engineer** learning path (~600 notes).
+We are building an **Obsidian vault** (vault root: `C:\Users\Leito\Documents\Learning`, notes in `SW-ML-AI Engineering/`), a **Git repo** connected to `https://github.com/Leito2/Learning.git` (branch `master`). It holds compressed courses for an **AI/ML Engineer** path: **~990 notes in 17 areas, ~4,500 wikilinks**.
 
-**Current Goal:** Maintain and deepen the vault as a job-ready knowledge base. The user is seeking their first ML/AI Engineer role.
+**Current goal:** close the real-time ML + LLMOps gaps and back the CV with five measurable portfolio projects. The live plan is `Learning/PLAN - Cierre de Gaps y Proyectos.md` (Spanish): courses C1-C7 done (~42 notes); **pending: E1 `06/19/07-09`, C10 `10/49` gRPC, C11 `09/46` KFP v2 + Vertex AI, E2 `06/20/08`, E3 `10/28/03-05` BigQuery, C8 `06/35` GraphRAG, C9 `07/20` Web Research Tooling** (~33 notes, one at a time, in that order, each right before the project that applies it).
 
-**Gap-fill initiative:** ✅ COMPLETE — 22 original gaps filled (50 notes across 12 courses).
-
-**Current total: ~603 notes** — all redistributed into logical numbered modules (00-16).
-
-**Format update initiative:** ✅ COMPLETE — All 4 courses with full old-format (X.1-X.7 template) rewritten to Deep Format: 05/09 TF (7 notes), 06/16 HuggingFace (10 notes), 10/32 System Design (6 notes), 10/33 Vector DBs (12 notes). Plus 14 Rust Engineering: 01 Fundamentals (6), 07 Candle (5), 07 Polars (6) full rewrites. Remaining 70+ notes cleaned of minor old elements (Documented Project, Knowledge Check, ASCII art). Only 03 Advanced Python remains as the canonical new-format reference; all other courses ~600+ notes now consistently follow the new format.
+**Maintenance done 2026-10-06:** 1,543 broken wikilinks repaired (unresolved 37.5% → 6.6%); the remaining ~295 point to notes that were never written.
 
 ## User Profile (Leandro Cataño Cardeño)
 
 | Field | Detail |
 |-------|--------|
-| **Role** | AI & ML Engineer — LLMs, RAG Systems, Agentic AI |
+| **Role** | AI & ML Engineer seeking a first ML/AI Engineer role — LLMs, RAG, agentic systems, real-time ML |
+| **Learning style** | Hungry and fast: maximum up-to-date concepts with compressed theory, minimalist visuals, example code; practice only in mini-projects |
 | **Location** | Medellín, Colombia |
 | **Languages** | English B2/Advanced, Spanish Native |
-| **Portfolio** | https://white-portfolio-ia-ml-engineer.netlify.app/ |
+| **Machine** | Windows 11, i5-10300H (4C/8T), 8 GB RAM (16 GB upgrade coming), 4 GB VRAM — design everything for 8/4 GB |
 | **GitHub** | https://github.com/Leito2 |
-| **Resume keywords** | Python, Go, SQL, Redis, Linux, Git, Docker, Kubernetes, PyTorch, LangGraph, Hugging Face, FastAPI, Fiber, AWS, GCP |
+| **CV** | `C:\Users\Leito\Videos\Catano-Cardeno-AI-Engineer-Resume.pdf` |
 
-### Portfolio Projects (4 core)
-1. **LLM Edge Gateway** — Go/Fiber + Redis semantic caching + Gemma 4 failover. 30-40% API cost reduction, <10ms cached responses, 99.9% uptime.
-2. **Automated LLM Evaluation Suite** — Python asyncio + Gemma 4 as Golden Judge + AWS SageMaker + GCP Vertex AI. 90% audit automation, real-time semantic drift detection.
-3. **Multi-Agent Research System** — LangGraph cyclic agents (Research → Fact-Audit → Synthesis) + Gemma 4 function calling + Tavily API. 85%+ accuracy on multi-hop tasks.
-4. **StayBot — Airbnb Property Agent** — LangGraph + CrewAI + FastAPI + Supabase. Multi-agent property management automation.
+### Portfolio Projects (P0–P4, public, in `C:\Users\Leito\Documents\AI Engineer proyects\`)
+0. **llm-gateway** — Python/FastAPI OpenAI-compatible gateway: semantic cache, circuit breakers, hedging, atomic Redis budget, guardrails, SSE (successor of the Go LLM Edge Gateway).
+1. **realtime-fraud-detection** — Kafka + Flink SQL + Redis + XGBoost/ONNX, gRPC scoring, Evidently, shadow mode.
+2. **smart-request-router** — Laya decision model (System 1) + LangGraph agent (System 2), Quix Streams, `judgekit` LLM-as-a-Judge + Langfuse.
+3. **live-rag-platform** — outbox CDC + Spark Structured Streaming + Qdrant/pgvector, agentic RAG over SSE, BigQuery analytics, GCP final test.
+4. **graphrag-research-agents** — GraphRAG multi-agent study research over this Obsidian vault (Neo4j, MCP, SearXNG + Crawl4AI).
 
-### Vault Skills Coverage
-**Strong (have courses + portfolio projects):** Python, Go, LangGraph, FastAPI, Fiber, Docker, Redis, AWS, GCP, PyTorch, RAG
-**Present (have course notes):** Rust, Kubernetes, HuggingFace, TensorFlow, MLOps, CI/CD, SQL
-**Gaps (need new courses):** See "High-Value Technologies" section below
+The three older CV projects (Go LLM Edge Gateway, LLM Evaluation Suite, Multi-Agent Research System) are archived and fully absorbed by P0–P4.
 
 ---
 
@@ -596,22 +610,23 @@ SW-ML-AI Engineering/
 ## Git Commands
 
 ```bash
-# Linux paths (current environment)
-git -C /home/white/Learning status
-git -C /home/white/Learning add -A
-git -C /home/white/Learning commit -m "message"
-git -C /home/white/Learning push origin master
+# Windows (Git Bash) paths — current environment
+git -C "/c/Users/Leito/Documents/Learning" status
+git -C "/c/Users/Leito/Documents/Learning" add -A
+git -C "/c/Users/Leito/Documents/Learning" commit -m "message"
+git -C "/c/Users/Leito/Documents/Learning" push origin master
 
-# Verify course files after subagents
-find /home/white/Learning/PATH/TO/COURSE -type f | sort
-wc -l /home/white/Learning/PATH/TO/COURSE/*.md
+# Verify course files
+ls "/c/Users/Leito/Documents/Learning/SW-ML-AI Engineering/PATH/TO/COURSE"
+wc -l "/c/Users/Leito/Documents/Learning/SW-ML-AI Engineering/PATH/TO/COURSE/"*.md
 ```
 
 ## Repository
 - **GitHub:** https://github.com/Leito2/Learning.git
 - **Branch:** master
-- **Linux path:** /home/white/Learning
-- **Actual vault path:** /home/white/Learning/SW-ML-AI Engineering/
+- **Windows path:** `C:\Users\Leito\Documents\Learning` (Obsidian vault root; `.obsidian/` lives here)
+- **Notes path:** `C:\Users\Leito\Documents\Learning\SW-ML-AI Engineering\`
+- **Windows gotchas:** paths over 260 chars need `core.longpaths=true`; never use `:` in file names.
 
 ---
 

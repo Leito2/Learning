@@ -32,45 +32,12 @@ The theoretical motivation for reuse is the DRY (Don't Repeat Yourself) principl
 
 Think of a GitHub Actions workflow as a directed acyclic graph (DAG) where events are the root nodes, jobs are intermediate processing nodes, and artifacts are the leaf nodes.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    EVENT-DRIVEN WORKFLOW DAG                │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   ┌──────────┐    ┌──────────┐    ┌──────────┐            │
-│   │  push    │    │  pull_   │    │ schedule │            │
-│   │  event   │    │ request  │    │  (cron)  │            │
-│   └────┬─────┘    └────┬─────┘    └────┬─────┘            │
-│        │               │               │                   │
-│        └───────────────┼───────────────┘                   │
-│                        ▼                                   │
-│              ┌─────────────────┐                           │
-│              │  ci.yml workflow │                           │
-│              │   (caller)       │                           │
-│              └────────┬────────┘                           │
-│                       │                                    │
-│        ┌──────────────┼──────────────┐                    │
-│        ▼              ▼              ▼                    │
-│   ┌─────────┐   ┌─────────┐   ┌─────────┐               │
-│   │  Lint   │   │  Test   │   │  Build  │               │
-│   │  Job    │   │  Job    │   │  Job    │               │
-│   └────┬────┘   └────┬────┘   └────┬────┘               │
-│        │             │             │                       │
-│        └─────────────┼─────────────┘                       │
-│                      ▼                                     │
-│           ┌─────────────────────┐                         │
-│           │ reusable_security.yml│                         │
-│           │   (reusable wf)      │                         │
-│           └──────────┬──────────┘                         │
-│                      │                                     │
-│           ┌──────────┴──────────┐                        │
-│           ▼                     ▼                        │
-│      ┌─────────┐           ┌─────────┐                  │
-│      │  gosec  │           │  trivy  │                  │
-│      │  scan   │           │  scan   │                  │
-│      └─────────┘           └─────────┘                  │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    E1[push] & E2[pull_request] & E3[schedule] --> CI[ci.yml caller]
+    CI --> L[Lint] & T[Test] & B[Build]
+    L & T & B --> R[reusable-security.yml]
+    R --> G[gosec] & V[trivy]
 ```
 
 Events flow downward into the caller workflow, which fans out into parallel jobs. Upon completion, the caller invokes a reusable workflow that itself fans out into security scanning jobs. The DAG ensures that no job executes before its dependencies complete.
@@ -190,8 +157,6 @@ graph TB
     J --> K[Artifacts + Docker Images]
 ```
 
-![GitHub Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/GitHub_logo_2013.svg/440px-GitHub_logo_2013.svg.png)
-
 The self-hosted runner topology for enterprises with private infrastructure:
 
 ```mermaid
@@ -202,8 +167,6 @@ graph LR
     D --> E[Internal Registry]
     D --> F[On-Prem K8s]
 ```
-
-![CI CD Pipeline](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/CI_CD_Pipeline.png/440px-CI_CD_Pipeline.png)
 
 ### 1.5 Application in ML/AI Systems 🤖
 
@@ -242,63 +205,23 @@ The theoretical motivation for release automation is rooted in the principle of 
 
 Visualize the release pipeline as a factory assembly line with distinct stations:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                  RELEASE AUTOMATION ASSEMBLY LINE            │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐   │
-│  │ Source  │──▶│  Build  │──▶│ Package │──▶│ Publish │   │
-│  │  Code   │   │  Matrix │   │ Archive │   │  Point  │   │
-│  └─────────┘   └────┬────┘   └────┬────┘   └────┬────┘   │
-│                     │             │             │         │
-│                     ▼             ▼             ▼         │
-│              ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│              │ linux-amd │  │ tar.gz   │  │ GitHub   │   │
-│              │ linux-arm │  │ zip      │  │ Releases │   │
-│              │ darwin-amd│  │ checksums│  │ Homebrew │   │
-│              │ windows-amd│ │   sbom   │  │  Docker  │   │
-│              └──────────┘  └──────────┘  │ Registry │   │
-│                                          └──────────┘   │
-│                                                             │
-│  Trigger: git tag v1.0.0                                    │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │  GitHub Actions detects tag → invokes GoReleaser    │   │
-│  │  GoReleaser reads .goreleaser.yml → executes DAG    │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    TAG[git tag v1.0.0] --> GA[GitHub Actions] --> GR[GoReleaser reads .goreleaser.yml]
+    GR --> BM[Build matrix: linux/darwin/windows x amd64/arm64]
+    BM --> PK[Package: tar.gz, zip, checksums, SBOM]
+    PK --> PB[Publish: GitHub Releases, Homebrew, Docker registry]
 ```
 
 The tag push is the catalyst that starts the assembly line. Each station is idempotent—rerunning the same tag produces identical artifacts (assuming deterministic builds).
 
 The secrets isolation model shows how permissions are scoped per job:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│              SECRETS ISOLATION PERIMETER MODEL               │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   ┌─────────────────────────────────────────────────────┐   │
-│   │  Repository Secret (encrypted at rest)               │   │
-│   │  ─────────────────────────────────                  │   │
-│   │  GITHUB_TOKEN  │  DOCKER_HUB_TOKEN  │  GPG_KEY     │   │
-│   └────────────────────────┬────────────────────────────┘   │
-│                            │                                │
-│                   ┌────────┴────────┐                       │
-│                   ▼                 ▼                       │
-│            ┌──────────┐      ┌──────────┐                  │
-│            │  CI Job  │      │  Deploy  │                  │
-│            │  (test)  │      │  (prod)  │                  │
-│            │          │      │          │                  │
-│            │ read-only│      │ write    │                  │
-│            │ access   │      │ access   │                  │
-│            └──────────┘      └──────────┘                  │
-│                                                             │
-│   GITHUB_TOKEN is scoped to the repository.                │
-│   Environment secrets require approval gates.              │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    S[Repository secrets: GITHUB_TOKEN, DOCKER_HUB_TOKEN, GPG_KEY] --> CI[CI job - test: read-only]
+    S --> D[Deploy job - prod: write]
+    D -.->|environment secrets need an approval gate| A[Reviewer]
 ```
 
 ### 2.3 Syntax and Semantics 📝

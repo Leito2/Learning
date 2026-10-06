@@ -33,7 +33,7 @@ Además, respaldar el CV con **5 proyectos medibles** (P0 gateway compartido + P
 | 💸 Gasto | **$0 hasta el testeo final.** El LLM se llama vía mock o local (Ollama) durante el desarrollo. Haiku se usa **solo en P3** y **solo en la prueba final** |
 | 📏 Honestidad | Las metas (20k ev/s, p95 de 80 ms) son objetivos, no resultados garantizados. Al CV va la cifra medida, con su hardware declarado |
 | 🌐 Idioma | Cursos nuevos del vault en **inglés** (Language Policy del Continuity Prompt). Planes en español. READMEs de proyectos en inglés (portafolio) |
-| 📐 Formato | Las notas siguen el **Deep Format** del `Continuity Prompt.md`, con profundidad adaptativa y el estilo de "Course Design Patterns" |
+| 📐 Formato | Desde el 2026-10-06 las notas nuevas siguen el **Compact Deep Format** del `Continuity Prompt.md`: teoría comprimida, un mapa Mermaid por nota, callout `Estado 2026`, código de ejemplo anotado (≤ 30 líneas), cheat sheet único, ángulo de entrevista, recall con callouts plegables, 150–250 líneas. La práctica pesada vive solo en P0–P4; la última nota de cada curso es un **Bridge to Project** |
 
 ### Fuera de alcance (decidido)
 Linux administration, JAX, TensorFlow, Azure y Kubernetes en los proyectos (ya hay cursos de K8s; aquí todo es Compose). **Sin AWS ni SageMaker** (decisión del usuario, 2026-10-06): la evaluación batch corre en contenedores propios con KFP local sobre MinIO (API S3).
@@ -62,7 +62,7 @@ Linux administration, JAX, TensorFlow, Azure y Kubernetes en los proyectos (ya h
 | GraphRAG, Neo4j, Graphiti | ❌ | `06/13/04` (1 nota) | **Curso nuevo (C8)** |
 | Búsqueda web para agentes (SearXNG, Crawl4AI, OpenAlex) | ❌ | — | **Curso nuevo (C9)** |
 | gRPC en producción (protobuf, `buf`, `grpc.aio`) | 🟡 | `10/31/07`, `10/48/04` | **Curso nuevo (C10)** |
-| KFP v2 y Vertex AI Pipelines | ❌ | Solo menciones | **Curso nuevo (C11)** |
+| KFP v2 y Vertex AI Pipelines | 🟡 | `09/26/01` (Kubeflow general, 1 nota) | **Curso nuevo (C11)**: KFP v2, `kfp.local`, Vertex |
 | Construir un gateway LLM (caché semántica, hedging, overload) | 🟡 | `06/19`, `06/27` (configurar, no construir) | **Ampliación E1** |
 | Validación de jueces a escala | 🟡 | `06/20` | **Ampliación E2** |
 | BigQuery (costos, ingesta, analítica portable) | 🟡 | `10/28` (3 notas) | **Ampliación E3** |
@@ -159,13 +159,13 @@ Va **justo después de C1** para no perder el hilo.
 | C7 Decision Models | 6 | 🟠 2 | P2 |
 | C5 Token Streaming | 5 | 🟡 3 | P3 |
 | C8 GraphRAG & Knowledge Graphs | 8 | 🟠 2 | P4 |
-| C9 Web Research Tooling for Agents | 6 | 🟠 2 | P4 |
-| C10 gRPC for ML Services | 6 | 🟠 2 | P1 |
+| C9 Web Research Tooling for Agents | 7 | 🟠 2 | P4 |
+| C10 gRPC for ML Services | 7 | 🟠 2 | P1 |
 | C11 KFP v2 + Vertex AI Pipelines | 6 | 🟠 2 | P2 · P3 |
 | E1 Ampliación `06/19` (gateway desde cero) | +3 | 🟠 2 | P0 |
 | E2 Ampliación `06/20` (validación de jueces) | +1 | 🟠 2 | P2 |
 | E3 Ampliación `10/28` (BigQuery) | +3 | 🟡 3 | P3 |
-| **Total** | **~42 hechas + 33 pendientes** | | |
+| **Total** | **~42 hechas + 35 pendientes** | | |
 
 ### C8 · `06/35 - GraphRAG and Knowledge Graph Engineering` 🟠 Prioridad 2 → P4
 El vault solo tiene una nota de GraphRAG (`06/13/04`) y menciones sueltas de Neo4j; Graphiti y LightRAG no aparecen.
@@ -178,7 +178,7 @@ El vault solo tiene una nota de GraphRAG (`06/13/04`) y menciones sueltas de Neo
 | 04 | GraphRAG Retrieval Patterns | Búsqueda local vs global (map-reduce), híbrida con RRF, Cypher parametrizado vs Text2Cypher seguro; Microsoft GraphRAG, LightRAG y neo4j-graphrag comparados |
 | 05 | Temporal Knowledge Graphs with Graphiti | Hechos con validez en el tiempo, actualización incremental, detección de información desactualizada |
 | 06 | Evaluating GraphRAG | Verdad conocida (enlaces ocultos, preguntas multi-hop con fuente conocida), baselines vectoriales, costo de construcción del grafo |
-| 07 | Capstone — GraphRAG over an Obsidian Vault | Parser de wikilinks → Neo4j → búsquedas local y global → respuestas citadas (lo que P4 extiende) |
+| 07 | Bridge to Project — GraphRAG over an Obsidian Vault | Cheat sheet del curso + hitos M1–M4 de P4 (parser → Neo4j → local/global) + checklist de qué demostrar en el repo |
 
 ### C9 · `07/20 - Web Research Tooling for Agents` 🟠 Prioridad 2 → P4
 Ninguna de estas herramientas aparece en el vault. Justifica con método el reemplazo de Tavily.
@@ -190,6 +190,7 @@ Ninguna de estas herramientas aparece en el vault. Justifica con método el reem
 | 03 | Scholarly and Primary Sources | arXiv, OpenAlex, Semantic Scholar; PyPI y GitHub como fuentes de verdad para versiones y proyectos archivados |
 | 04 | Fusion, Reranking and Source Quality | Fan-out multi-proveedor, RRF, deduplicación, cross-encoder local, puntuación de calidad de fuente, caché |
 | 05 | Untrusted Content and Prompt Injection | El contenido web como dato y no como instrucción, delimitado, Prompt Guard, herramientas restringidas por rol; benchmark de proveedores (nDCG juzgado) |
+| 06 | Bridge to Project — The Search Stack of P4 | Cheat sheet + hito M6 de P4 (`web-mcp`) + checklist |
 
 ### C10 · `10/49 - gRPC for ML Services in Python` 🟠 Prioridad 2 → P1
 Hoy solo hay una nota introductoria (`10/31/07`) y la comparación de `10/48/04`.
@@ -201,6 +202,7 @@ Hoy solo hay una nota introductoria (`10/31/07`) y la comparación de `10/48/04`
 | 03 | Deadlines, Retries and Error Handling | Deadlines propagados, *service config* con reintentos, keepalive, códigos de estado y detalles |
 | 04 | Production gRPC: Interceptors, Health and Observability | Interceptores (métricas y trazas OTel), health checking, reflection y `grpcurl`, TLS y auth por metadata |
 | 05 | Benchmarking REST vs gRPC | ghz y k6, open-loop, p95/p99, tamaño de payload y CPU; cómo leer el resultado cuando la inferencia domina |
+| 06 | Bridge to Project — Synchronous Scoring in P1 | Cheat sheet + hito M7c de P1 (`scoring.proto` ya en el repo) + checklist del experimento E11 |
 
 ### C11 · `09/46 - ML Pipelines with KFP v2 and Vertex AI` 🟠 Prioridad 2 → P2, P3
 Kubeflow solo aparece mencionado en el vault, sin curso propio.
@@ -211,7 +213,7 @@ Kubeflow solo aparece mencionado en el vault, sin curso propio.
 | 02 | Running Pipelines Locally | `kfp.local` (DockerRunner y SubprocessRunner), MinIO como S3, datasets versionados y linaje |
 | 03 | Evaluation-Driven Pipelines | El ciclo evaluar → comparar umbrales → reentrenar o re-promptear → compuerta → promover; integración con MLflow |
 | 04 | Vertex AI Pipelines in Production | Ejecutar el mismo YAML en Vertex, cuentas de servicio, caching de pasos, costo por corrida y cómo mantenerlo en centavos |
-| 05 | Capstone — Quality Loop for an LLM System | El `quality-loop` de P2 (judgekit + Laya) que P3 ejecuta en Vertex |
+| 05 | Bridge to Project — The Quality Loop | Cheat sheet + hito M7b de P2 (`quality-loop` con judgekit + Laya) y su ejecución en Vertex en el M8 de P3 + checklist |
 
 ### Ampliaciones de cursos existentes
 | ID | Curso | Notas nuevas | Contenido clave | Alimenta a |
@@ -272,7 +274,7 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | **F2.5** | **Implementar P0 `llm-gateway`** M1–M2 (antes del M7 de P1 y del M5 de P2); M3–M7 antes de la prueba final de P3 | Gateway usable por los 3 |
 | **F1** ✅ | C1 Flink → C2 Engines Compared (`10/46`, `10/47`, commit cc64557) | 14 notas |
 | **F2** ✅ | C3 Redis → C4 Triton/ONNX → C6 Grafana/Latency (`09/43`, `09/44`, `09/45`) | 17 notas |
-| **F2.9** | **C10** gRPC for ML Services (`10/49`) | 6 notas |
+| **F2.9** | **C10** gRPC for ML Services (`10/49`) | 7 notas |
 | **F3** | **Implementar P1** | Repo P1 + README + resultados |
 | **F4** ✅ | C7 Decision Models (`06/34`) | 6 notas |
 | **F4.5** | **C11** KFP v2 + Vertex AI (`09/46`) y **E2** ampliación `06/20` | 6 + 1 notas |
@@ -280,7 +282,7 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | **F6** ✅ | C5 Token Streaming (`10/48`) | 5 notas |
 | **F6.5** | **E3** ampliación `10/28` (BigQuery) | +3 notas |
 | **F7** | **Implementar P3** (local → GCP solo en el test final) | Repo P3 + README |
-| **F7.5** | **C8** GraphRAG (`06/35`) → **C9** Web Research Tooling (`07/20`) → **Implementar P4** (M0 ✅ hecho el 2026-10-06) | 8 + 6 notas, repo P4 + README |
+| **F7.5** | **C8** GraphRAG (`06/35`) → **C9** Web Research Tooling (`07/20`) → **Implementar P4** (M0 ✅ hecho el 2026-10-06) | 8 + 7 notas, repo P4 + README |
 | **F8** | Integración con el gateway + pruebas finales (el único momento con gasto) | Cifras finales del CV |
 | **F9** | `⏳ 16GB`: re-medir P1 con carga máxima, CDC completo en P3, Langfuse self-hosted | Cifras actualizadas |
 | **F10** | Cierre: actualizar el índice maestro, el Continuity Prompt y el Skills Tree, y **borrar este archivo** | — |
@@ -294,6 +296,8 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 - [ ] Enlaces cruzados: nota existente ↔ curso nuevo (Kafka `10/29/01`, Spark `10/27/04`, Triton `10/29/03`, OTel `09/34`…)
 - [ ] Nombres de archivo sin `:` ni caracteres inválidos en Windows; rutas cortas (por el límite de longitud)
 - [ ] Commit por curso: `feat: add <course> (N notes)`
+- [ ] Validar wikilinks con el parser de P4 (0 enlaces nuevos sin resolver) y que ninguna ruta pase de 260 caracteres
+- [ ] Cada nota cumple el Compact Deep Format (mapa, `Estado 2026`, cheat sheet, recall, 150–250 líneas)
 
 ---
 
@@ -329,6 +333,7 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | 2026-10-06 | **v2 de los planes:** los 3 proyectos del CV quedan aparte y se absorben en P0–P4 (§8). P0 v2 (todo el gateway en Go + caché semántica y breaker obligatorios, Groq, Gemma 4, hedging, guardrails, UI). `judgekit` nace en P2 (Evaluation Suite + Langfuse). P1 suma Evidently, SageMaker Processing local y el grafo para P4. P3 suma auditoría de alucinaciones, Vertex AI Pipelines y caché invalidada por CDC. **P4 `graphrag-research-agents`** creado (plan + M0 + repo público). Nuevo curso pendiente C8 GraphRAG |
 | 2026-10-06 | **v3:** (1) **sin SageMaker**: la evaluación batch corre en contenedores propios con KFP local sobre MinIO; (2) **P4 se re-enfoca** en investigación de estudio sobre el **vault de Obsidian** (`Learning/SW-ML-AI Engineering`, ~1.000 notas, ~4.700 wikilinks): grafo determinista desde wikilinks y tags, detección de notas desactualizadas, notas de investigación escritas en una carpeta propia del vault; (3) **Tavily reemplazado** por SearXNG self-hosted + Crawl4AI + arXiv/OpenAlex (Exa opcional); (4) se elimina la integración P1 → P4 (`entity-edges`) |
 | 2026-10-06 | **v5 (cursos pendientes):** auditoría del vault contra todas las tecnologías de P0–P4. Se registran 4 cursos nuevos (**C8** GraphRAG `06/35`, **C9** Web Research Tooling `07/20`, **C10** gRPC `10/49`, **C11** KFP v2 + Vertex AI `09/46`) y 3 ampliaciones (**E1** `06/19/07-09`, **E2** `06/20/08`, **E3** `10/28/03-05`): ~33 notas, intercaladas en F2.4–F7.5. Lo ya cubierto se reutiliza (Evidently, Langfuse, MCP, sandboxes, LangGraph, Harness, guardrails, DuckDB, Terraform) |
+| 2026-10-06 | **v6 (formato y mantenimiento):** las notas nuevas adoptan el **Compact Deep Format** (Continuity Prompt reescrito: perfil, rutas Windows, matriz de profundidad, metas de líneas). Se repararon **1.543 wikilinks rotos** en 312 notas (37,5% → 6,6% sin resolver). La nota de GitHub Actions quedó sin ASCII; quedan 145 notas con ASCII para convertir cuando se toquen. C9 y C10 suman una nota *Bridge to Project*; C8 y C11 cambian su capstone por un *Bridge* (total pendiente: 35 notas) |
 | 2026-10-06 | **v4:** `VAULT_CLOUD_CONSENT=true` en P4 (decisión del usuario). **gRPC** en P1 (`scoring.proto`: unario, streaming bidireccional, `GetDecision`; deadlines, health, reflection, `buf`; experimento E11 REST vs gRPC; hito M7c). **BigQuery** en P3 (free tier: load jobs + Storage Write API, tablas particionadas, Terraform, Looker Studio; el mismo SQL corre en DuckDB vía sqlglot en la CI; hito M6b). SSE ya está en P0, P3 y P4; GKE queda documentado como alternativa (no es $0) |
 
 
