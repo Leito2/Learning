@@ -124,7 +124,9 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 42 - Caching Strategies for FastAPI (4 — English)
 ├── 43 - File Storage and Uploads for FastAPI (4 — English)
 ├── 44 - Email and Notifications for FastAPI (3 — English)
-└── 45 - Webhooks In and Out for FastAPI (3 — English)
+├── 45 - Webhooks In and Out for FastAPI (3 — English)
+├── 46 - Apache Flink for Real-time ML (8 — English)
+└── 47 - Stream Processing Engines Compared (6 — English)
 
 11 - Research y Ciencia de Datos (33)
 ├── 26 - Metodología de Investigación en ML (6)
@@ -288,7 +290,7 @@ Misceláneo
 | 35 | [[09 - MLOps y Produccion/35 - LangSmith Deep Dive/00 - Welcome to LangSmith\|LangSmith Deep Dive]] | 8 | ✅ NEW | 🇬🇧 |
 | 36 | [[09 - MLOps y Produccion/36 - LangFuse - Open-Source LLM Observability/00 - Welcome - Why Open-Source LLM Observability\|LangFuse Deep Dive]] | 6 | ✅ NEW | 🇬🇧 |
 
-### 10 — Cloud, Infra y Backend (64 notas)
+### 10 — Cloud, Infra y Backend (78 notas)
 
 | # | Curso | Notas | Estado | Idioma |
 |---|-------|:-----:|:------:|:------:|
@@ -316,6 +318,8 @@ Misceláneo
 | 43 | [[10 - Cloud, Infra y Backend/43 - File Storage and Uploads for FastAPI/00 - Welcome\|File Storage and Uploads]] | 4 | ✅ NEW | 🇬🇧 |
 | 44 | [[10 - Cloud, Infra y Backend/44 - Email and Notifications for FastAPI/00 - Welcome\|Email and Notifications]] | 3 | ✅ NEW | 🇬🇧 |
 | 45 | [[10 - Cloud, Infra y Backend/45 - Webhooks In and Out for FastAPI/00 - Welcome\|Webhooks In/Out]] | 3 | ✅ NEW | 🇬🇧 |
+| 46 | [[10 - Cloud, Infra y Backend/46 - Apache Flink for Real-time ML/00 - Welcome to Apache Flink for Real-time ML\|Apache Flink for Real-time ML]] | 8 | ✅ NEW | 🇬🇧 |
+| 47 | [[10 - Cloud, Infra y Backend/47 - Stream Processing Engines Compared/00 - Welcome to Stream Processing Engines Compared\|Stream Processing Engines Compared]] | 6 | ✅ NEW | 🇬🇧 |
 
 ### 11 — Research y Ciencia de Datos (33 notas)
 
@@ -454,14 +458,14 @@ Fase 7 (Contínuo):     15-16 — Transversal Skills + Harness Engineering + Pro
 
 | Métrica | Valor |
 |---------|:-----:|
-| Cursos totales | 68 |
+| Cursos totales | 70 |
 | Cursos en Español | 26 |
-| Cursos en English | 42 |
+| Cursos en English | 44 |
 | Módulos numerados (00-17) | 18 |
 | Cursos Go | 11 |
 | Cursos Rust | 10 |
 | Cursos TypeScript | 1 |
-| Notas totales | 740+ |
+| Notas totales | 754+ |
 | Guías de proyecto | 14 |
 
 ---

@@ -214,6 +214,8 @@
 | 🌿 | PostgreSQL & NoSQL Databases | 06 > 25 |
 | 🌿 | Redis & Caching Strategies | 06 > 25 > 03 |
 | 🌿 | Message Queues & Event Streaming | 06 > 25 > 04 |
+| 🌿 | Apache Flink (stateful stream processing, real-time features) | 10 > 46 |
+| 🌿 | Stream Engine Selection (Flink vs Spark SS vs Python-native) | 10 > 47 |
 | 🌿 | WebAssembly & Edge AI | 14 > 05 |
 | 🌿 | WASI & Serverless Edge | 14 > 05 > 03 |
 | 🌿 | Edge AI Deployment | 14 > 05 > 06 |
