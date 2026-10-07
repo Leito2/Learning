@@ -15,8 +15,8 @@ This repo is an Obsidian vault (`SW-ML-AI Engineering/`) of compressed AI/ML Eng
 3. When the last note of a course (the Bridge to Project) is done: give a **5-line mini summary** (what the course covers, 3 key ideas, the project milestone that applies it), update the Master Index, Continuity Prompt and Skills Tree, and make **one commit per course**: `feat: add <course> (N notes)`, then push.
 4. If the user asks to see the structure of what is pending, read it from the plan; never invent titles.
 
-## English practice stays in the chat
-The English Corner, recaps and vocabulary live **only in the chat**, never inside vault notes. Notes stay in plain, clear English. The `/english-vocabulary` skill (`.claude/skills/english-vocabulary/`) does the same on demand for any topic or text.
+## English practice: chat always, artifact as a plus
+The English Corner, recaps and vocabulary live **in the chat**, never inside vault notes, and the chat is never replaced. The `/learnenglish` skill (`.claude/skills/learnenglish/`) adds a live Artifact named `learnenglish` (map, tiny practice and words per note). It is a plus: update it only after the user runs `/learnenglish`. Once the user has run it in a session, keep adding one block to the page after each new note until the topic changes (then rebuild it from the template at the same URL). The same applies when reviewing a course or researching a topic.
 
 ## Windows notes
 Paths over 260 characters need `core.longpaths=true`. Never use `:` or `/` in file names.

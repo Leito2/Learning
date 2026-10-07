@@ -1,0 +1,187 @@
+<title>learnenglish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow reading column; a topic header, one map, then one block per note (core idea, try it, words). */
+:root {
+  --bg: #f6f8f9; --surface: #ffffff; --fg: #14212b; --muted: #5b6b77;
+  --line: #d6dee3; --accent: #0b7a75; --accent-soft: #dff1ef; --code: #eef2f4;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171c; --surface: #162229; --fg: #e6edf1; --muted: #93a4af;
+    --line: #28373f; --accent: #4fd1c5; --accent-soft: #123530; --code: #0c1317; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171c; --surface: #162229; --fg: #e6edf1; --muted: #93a4af;
+  --line: #28373f; --accent: #4fd1c5; --accent-soft: #123530; --code: #0c1317; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.6;
+  padding-inline: 16px; padding-block: 28px 56px; }
+main { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: 28px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.2; margin: 0; }
+h1 { font-size: 1.9rem; font-weight: 600; letter-spacing: -0.02em; }
+h2 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip { font-family: var(--mono); font-size: 0.75rem; padding: 2px 9px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); }
+.chip.on { border-color: var(--accent); color: var(--accent); }
+.lede { color: var(--muted); margin-top: 10px; max-width: 62ch; }
+section { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 12px; }
+.scroll svg { display: block; min-width: 560px; width: 100%; height: auto; color: var(--fg); }
+figcaption { color: var(--muted); font-size: 0.86rem; max-width: 68ch; }
+.node { fill: var(--surface); stroke: currentColor; stroke-width: 1.3; }
+.node.key { fill: var(--accent-soft); stroke: var(--accent); }
+.edge { fill: none; stroke: currentColor; stroke-width: 1.3; }
+.lbl { font: 500 12px var(--sans); fill: currentColor; }
+.sub { font: 400 11px var(--sans); fill: var(--muted); }
+.note { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; gap: 18px; }
+.note-head { display: flex; flex-direction: column; gap: 4px; }
+.label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.block { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ideas { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 4px; }
+pre { margin: 0; background: var(--code); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font: 400 0.82rem/1.55 var(--mono); }
+code { font-family: var(--mono); font-size: 0.86em; }
+.words { display: flex; flex-direction: column; }
+.word { display: grid; grid-template-columns: minmax(140px, 200px) 1fr; gap: 4px 16px; padding: 10px 0; border-top: 1px solid var(--line); min-width: 0; }
+.word:first-child { border-top: 0; padding-top: 2px; }
+.word b { font-weight: 600; }
+.kind { display: block; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+.word p { overflow-wrap: anywhere; }
+.word em { color: var(--muted); }
+details { border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+details + details { margin-top: 6px; }
+summary { cursor: pointer; font-weight: 500; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+details p { color: var(--muted); margin-top: 6px; }
+footer { color: var(--muted); font-size: 0.82rem; }
+@media (max-width: 560px) {
+  .word { grid-template-columns: 1fr; }
+  h1 { font-size: 1.55rem; }
+  .note { padding: 14px; }
+}
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow">Topic in progress</div>
+    <h1>LLM gateways, built from scratch</h1>
+    <div class="meta">
+      <span class="chip">Course 06/19</span>
+      <span class="chip">Project P0</span>
+      <span class="chip on">Notes so far: 07</span>
+    </div>
+    <p class="lede">A small gateway sits between your apps and the model providers. This page keeps the basics, one tiny practice and the English from each note. It grows as the course moves on.</p>
+  </header>
+
+  <section aria-labelledby="map">
+    <h2 id="map">The map</h2>
+    <figure>
+      <div class="scroll">
+        <svg viewBox="0 0 700 250" role="img" aria-label="A request is reserved against a budget, goes through a chain of providers with fallback, and the real cost is settled after the response. Over the cap, it stops with 429.">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <rect class="node" x="6" y="98" width="76" height="44" rx="6"/>
+          <text class="lbl" x="44" y="124" text-anchor="middle">Client</text>
+
+          <line class="edge" x1="82" y1="120" x2="140" y2="120" marker-end="url(#arr)"/>
+          <text class="sub" x="111" y="110" text-anchor="middle">request</text>
+
+          <rect class="node key" x="142" y="98" width="104" height="44" rx="6"/>
+          <text class="lbl" x="194" y="117" text-anchor="middle">Reserve</text>
+          <text class="lbl" x="194" y="133" text-anchor="middle">budget</text>
+
+          <line class="edge" x1="246" y1="120" x2="304" y2="120" marker-end="url(#arr)"/>
+          <text class="sub" x="275" y="110" text-anchor="middle">ok</text>
+
+          <rect class="node" x="306" y="98" width="100" height="44" rx="6"/>
+          <text class="lbl" x="356" y="117" text-anchor="middle">Chain</text>
+          <text class="lbl" x="356" y="133" text-anchor="middle">runner</text>
+
+          <polyline class="edge" points="406,120 440,120 440,44 474,44" marker-end="url(#arr)"/>
+          <line class="edge" x1="440" y1="120" x2="474" y2="120" marker-end="url(#arr)"/>
+          <polyline class="edge" points="440,120 440,196 474,196" marker-end="url(#arr)"/>
+
+          <rect class="node" x="476" y="20" width="112" height="48" rx="6"/>
+          <text class="lbl" x="532" y="41" text-anchor="middle">Provider A</text>
+          <text class="sub" x="532" y="58" text-anchor="middle">try 1</text>
+
+          <rect class="node" x="476" y="96" width="112" height="48" rx="6"/>
+          <text class="lbl" x="532" y="117" text-anchor="middle">Provider B</text>
+          <text class="sub" x="532" y="134" text-anchor="middle">on 5xx / timeout</text>
+
+          <rect class="node" x="476" y="172" width="112" height="48" rx="6"/>
+          <text class="lbl" x="532" y="193" text-anchor="middle">Local Ollama</text>
+          <text class="sub" x="532" y="210" text-anchor="middle">last resort</text>
+
+          <line class="edge" x1="588" y1="44" x2="604" y2="44"/>
+          <line class="edge" x1="588" y1="196" x2="604" y2="196"/>
+          <line class="edge" x1="604" y1="44" x2="604" y2="196"/>
+          <line class="edge" x1="588" y1="120" x2="620" y2="120" marker-end="url(#arr)"/>
+
+          <rect class="node key" x="622" y="98" width="72" height="44" rx="6"/>
+          <text class="lbl" x="658" y="117" text-anchor="middle">Settle</text>
+          <text class="lbl" x="658" y="133" text-anchor="middle">cost</text>
+
+          <line class="edge" x1="194" y1="142" x2="194" y2="206" marker-end="url(#arr)"/>
+          <text class="sub" x="194" y="228" text-anchor="middle">429 if over the cap</text>
+        </svg>
+      </div>
+      <figcaption>Teal boxes are the two budget steps. The gateway reserves the worst-case cost first, tries the providers in order, then settles the real cost and refunds the difference.</figcaption>
+    </figure>
+  </section>
+
+  <section class="note" id="n07" aria-labelledby="n07h">
+    <div class="note-head">
+      <div class="eyebrow">Note 07 · P0 milestones M1–M2</div>
+      <h2 id="n07h">Building an LLM Gateway from Scratch</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>Build a gateway only when configuration cannot do what you need, such as an exact budget cap.</li>
+        <li>Clients ask for a purpose (<code>fast</code>, <code>smart</code>). The alias maps to an ordered chain that ends with a local model.</li>
+        <li>Fall back only on transient errors: timeouts, 5xx and 429. A 400 means the request itself is wrong.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>Input 1000 tokens, <code>max_tokens</code> 500, prices $0.20 and $0.60 per million. The answer uses 120 output tokens. How much is reserved, and how much is refunded?</p>
+<pre><code>reserve = 1000*0.20 + 500*0.60      # = 500 micro-USD, worst case
+actual  = 1000*0.20 + 120*0.60      # = 272 micro-USD, real usage
+refund  = reserve - actual          # = 228 micro-USD back to the budget
+# keep money as integers (micro-USD): floats drift after millions of calls</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>fall back on</b><span class="kind">phrasal verb</span></div><p>Use something else when the first option fails.<br><em>The gateway falls back on a local model when the cloud is down.</em></p></div>
+        <div class="word"><div><b>burn through</b><span class="kind">phrasal verb</span></div><p>Use up a resource quickly.<br><em>A bad loop can burn through your free quota in minutes.</em></p></div>
+        <div class="word"><div><b>hard cap</b><span class="kind">compound noun</span></div><p>A limit that cannot be exceeded.<br><em>We set a hard cap of 1 USD per client.</em></p></div>
+        <div class="word"><div><b>transient failure</b><span class="kind">collocation</span></div><p>A temporary error that may disappear if you retry.<br><em>Retry only transient failures, such as timeouts.</em></p></div>
+        <div class="word"><div><b>runaway</b><span class="kind">adjective</span></div><p>Out of control and growing fast.<br><em>A runaway loop caused the surprise bill.</em></p></div>
+        <div class="word"><div><b>at the cost of</b><span class="kind">phrase</span></div><p>Accepting a disadvantage to get a benefit.<br><em>You get more control at the cost of more maintenance.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>Why must the last link of every chain be a local model?</summary><p>It keeps the service answering when every cloud provider is down or the quota is gone.</p></details>
+      <details><summary>Why reserve first and settle after, instead of checking the balance?</summary><p>The check and the update happen in one atomic step, so two concurrent requests cannot both pass.</p></details>
+    </div>
+  </section>
+
+  <footer>Next note: Semantic Caching Without False Hits. This page is rebuilt when the topic changes.</footer>
+</main>
