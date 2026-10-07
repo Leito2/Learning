@@ -55,7 +55,7 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 16 - HuggingFace Transformers Deep Dive (10 — English)
 ├── 17 - ColBERT, SGLang and Next-Gen Inference (11 — English)
 ├── 18 - TensorRT-LLM (3 — English)
-├── 19 - LLM Gateway Patterns and LiteLLM (7 — English)
+├── 19 - LLM Gateway Patterns and LiteLLM (10 — English)
 ├── 20 - vLLM Production Serving (9)
 ├── 20 - RAG Evaluation Deep Dive (8 — English, NEW — Plan I)
 ├── 21 - DSPy and Prompt Compilation (8 — English, NEW — Plan K)
@@ -233,7 +233,7 @@ Misceláneo
 | 16 | [[06 - Large Language Models/16 - HuggingFace Transformers Deep Dive/00 - Welcome to HuggingFace Transformers Deep Dive\|HuggingFace Transformers Deep Dive]] | 10 | ✅ NEW | 🇬🇧 |
 | 17 | [[06 - Large Language Models/17 - ColBERT, SGLang and Next-Gen Inference/00 - Welcome to ColBERT, SGLang and Next-Gen Inference\|ColBERT, SGLang and Next-Gen Inference]] | 11 | ✅ REWRITTEN | 🇬🇧 |
 | 18 | [[06 - Large Language Models/18 - TensorRT-LLM/00 - Welcome to TensorRT-LLM\|TensorRT-LLM]] | 3 | ✅ NEW | 🇬🇧 |
-| 19 | [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 7 | ✅ NEW | 🇬🇧 |
+| 19 | [[06 - Large Language Models/19 - LLM Gateway Patterns and LiteLLM/00 - Welcome to LLM Gateway Patterns and LiteLLM\|LLM Gateway Patterns and LiteLLM]] | 10 | ✅ NEW | 🇬🇧 |
 | 22 | [[06 - Large Language Models/22 - Instructor and Structured Generation/00 - Welcome - The Structured Output Crisis\|Instructor and Structured Generation]] | 6 | ✅ NEW | 🇬🇧 |
 | 23 | [[06 - Large Language Models/23 - Serverless LLM Platforms and Cost Optimization/00 - Welcome - Serverless LLM Platforms Landscape\|Serverless LLM Platforms]] | 6 | ✅ NEW | 🇬🇧 |
 | 24 | [[06 - Large Language Models/24 - Production RAG Frameworks - Haystack and txtai/00 - Welcome - Why Production RAG Frameworks\|Production RAG: Haystack + txtai]] | 6 | ✅ NEW | 🇬🇧 |
