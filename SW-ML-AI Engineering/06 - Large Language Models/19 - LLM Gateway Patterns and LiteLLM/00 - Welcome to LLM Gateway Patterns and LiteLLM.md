@@ -5,7 +5,7 @@
 ## 🎯 Learning Objectives
 - Understand the post-2024 multi-provider LLM reality and why gateways became non-negotiable
 - Identify the failure modes that exposed the "single-vendor" illusion
-- Navigate the 6 notes of this course and their dependencies
+- Navigate the 9 notes of this course and their dependencies
 - Recognize where LiteLLM fits against DIY, Portkey, OpenRouter, Cloudflare AI Gateway, and Kong
 
 ## Introduction
@@ -39,6 +39,9 @@ LiteLLM, originally a 100-line wrapper written by Ishaan Jaffer and Krrish Dhola
 | 04 | Observability, Cost Tracking and Rate Limiting | Callbacks, virtual keys, spend limits, custom loggers |
 | 05 | Self-Hosted LiteLLM Proxy — Docker, Kubernetes and Auth | `litellm-proxy`, `config.yaml`, SSO, Helm, Postgres |
 | 06 | Capstone — Multi-Provider RAG Gateway with LiteLLM | End-to-end FastAPI + Redis cache + Qdrant + Phoenix |
+| 07 | Building an LLM Gateway from Scratch | Adapters, aliases with fallback chains, atomic budget (reserve and settle), streaming |
+| 08 | Semantic Caching Without False Hits | Namespaces, calibrated thresholds, lexical guards, verifier, tag invalidation |
+| 09 | Tail Latency and Overload Control | Hedging, AIMD, load shedding, singleflight, outbound quotas |
 
 ---
 
