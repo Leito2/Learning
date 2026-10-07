@@ -114,9 +114,6 @@ the code → "Caso real:" in ONE line.
 > Answer in 1-2 lines.
 (3-5 foldable callouts: native Obsidian active recall, no plugin needed)
 
-## 🗣️ English Corner
-(4-6 items: advanced term, phrasal verb or collocation seen in THIS note -> short meaning -> example sentence about the note's topic. Table with 3 columns.)
-
 ## References
 (Max 3 primary sources: official docs, paper, release notes) + vault links
 ⬅️ [[previous note]] · ➡️ [[next note]] · 🧭 [[course 00 note]] · 🛠️ project milestone (e.g. P1 M7c)
@@ -143,7 +140,7 @@ the code → "Caso real:" in ONE line.
 | Note Type | Lines |
 |-----------|:-----:|
 | Course welcome (00) | 40-60 (course map diagram + 10-15 term glossary table + which project applies it) |
-| Core concept note | 150-260 (includes English Corner) |
+| Core concept note | 150-250 |
 | Landscape / comparison note | 120-200 |
 | Bridge to Project (last note) | 100-150 (course cheat sheet + project milestone + checklist of what to prove in the repo) |
 
@@ -153,9 +150,6 @@ the code → "Caso real:" in ONE line.
 - **Up-to-date first:** every note carries the `Estado 2026` callout; prefer 2025-2026 tools, flag deprecated ones (e.g. TorchServe archived 2025-08, Bytewax without releases since 2024-11). Verify version-dependent facts against primary sources before writing.
 - **No repetition:** prose, tables and diagrams never restate each other; there is exactly one summary (the Cheat Sheet).
 - **English** for all new content; Spanish only for existing M00-M04 modules.
-- **Clear English for a B2-advanced reader (rule since 2026-10-06):** sentences of ~20 words or fewer, active voice, one idea per sentence, no slang or obscure idioms inside the theory. Technical terms are explained the first time they appear. Richer vocabulary (phrasal verbs, collocations, formal terms) goes ONLY in the **English Corner**, never inside definitions, so the theory stays easy to read.
-- **English Corner:** every course note ends with 4-6 items (`| Expression | Meaning | Example |`). Mix: 2 phrasal verbs (e.g. *fall back on*, *roll out*, *back off*), 2 collocations or formal terms (e.g. *tail latency spikes*, *mitigate risk*), 1-2 compound phrases. Do not repeat an item already used in an earlier note of the course. Adds ~8 lines to the budget.
-- **Mini summary per course:** when the last note (Bridge) is done, tell the user in chat a 5-line summary: what the course covers, 3 key ideas, the project milestone that applies it. After every note, a 2-line recap in chat (not in the file).
 - **Wikilinks:** always full vault path (`[[10 - Cloud, Infra y Backend/23 - Infrastructure as Code/01 - Terraform Fundamentals - HCL, State and Resource Graph|Terraform]]`) or the exact file name. **Never shorthand** like `[[09/29 - CI-CD for ML]]` (it caused 37.5% broken links; repaired 2026-10-06). Inside table rows, escape the alias pipe: `[[path\|alias]]`. Validate links with the P4 vault parser before committing.
 - **File names** short enough to keep full paths under 260 characters (Windows). Never use `/` or `:`.
 - Code blocks MUST have a language tag; Mermaid MUST use the ` ```mermaid ` wrapper; one H1 per note.
