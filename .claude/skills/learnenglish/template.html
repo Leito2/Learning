@@ -34,13 +34,13 @@ p { margin: 0; }
 section { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 12px; }
-.scroll svg { display: block; min-width: 560px; width: 100%; height: auto; color: var(--fg); }
+.scroll svg { display: block; min-width: 760px; width: 100%; height: auto; color: var(--fg); }
 figcaption { color: var(--muted); font-size: 0.86rem; max-width: 68ch; }
 .node { fill: var(--surface); stroke: currentColor; stroke-width: 1.3; }
 .node.key { fill: var(--accent-soft); stroke: var(--accent); }
 .edge { fill: none; stroke: currentColor; stroke-width: 1.3; }
-.lbl { font: 500 12px var(--sans); fill: currentColor; }
-.sub { font: 400 11px var(--sans); fill: var(--muted); }
+.lbl { font: 500 13px var(--sans); fill: currentColor; }
+.sub { font: 400 11.5px var(--sans); fill: var(--muted); }
 .note { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; gap: 18px; }
 .note-head { display: flex; flex-direction: column; gap: 4px; }
 .label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
@@ -75,7 +75,7 @@ footer { color: var(--muted); font-size: 0.82rem; }
     <div class="meta">
       <span class="chip">Course 06/19</span>
       <span class="chip">Project P0</span>
-      <span class="chip on">Notes so far: 07</span>
+      <span class="chip on">Notes so far: 07 to 09</span>
     </div>
     <p class="lede">A small gateway sits between your apps and the model providers. This page keeps the basics, one tiny practice and the English from each note. It grows as the course moves on.</p>
   </header>
@@ -84,7 +84,7 @@ footer { color: var(--muted); font-size: 0.82rem; }
     <h2 id="map">The map</h2>
     <figure>
       <div class="scroll">
-        <svg viewBox="0 0 700 250" role="img" aria-label="A request is reserved against a budget, goes through a chain of providers with fallback, and the real cost is settled after the response. Over the cap, it stops with 429.">
+        <svg viewBox="0 0 826 250" role="img" aria-label="A request first checks the cache and returns on a hit. On a miss it reserves budget, goes through a chain of providers with fallback, and the real cost is settled after the response. Over the cap, it stops with 429.">
           <defs>
             <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0 0L10 5L0 10z" fill="currentColor"/>
@@ -93,9 +93,20 @@ footer { color: var(--muted); font-size: 0.82rem; }
           <rect class="node" x="6" y="98" width="76" height="44" rx="6"/>
           <text class="lbl" x="44" y="124" text-anchor="middle">Client</text>
 
-          <line class="edge" x1="82" y1="120" x2="140" y2="120" marker-end="url(#arr)"/>
-          <text class="sub" x="111" y="110" text-anchor="middle">request</text>
+          <line class="edge" x1="82" y1="120" x2="130" y2="120" marker-end="url(#arr)"/>
+          <text class="sub" x="106" y="110" text-anchor="middle">request</text>
 
+          <rect class="node key" x="132" y="98" width="88" height="44" rx="6"/>
+          <text class="lbl" x="176" y="117" text-anchor="middle">Cache</text>
+          <text class="sub" x="176" y="133" text-anchor="middle">exact + semantic</text>
+
+          <polyline class="edge" points="176,98 176,36 44,36 44,96" marker-end="url(#arr)"/>
+          <text class="sub" x="110" y="28" text-anchor="middle">hit: answer back</text>
+
+          <line class="edge" x1="220" y1="120" x2="266" y2="120" marker-end="url(#arr)"/>
+          <text class="sub" x="243" y="110" text-anchor="middle">miss</text>
+
+          <g transform="translate(126,0)">
           <rect class="node key" x="142" y="98" width="104" height="44" rx="6"/>
           <text class="lbl" x="194" y="117" text-anchor="middle">Reserve</text>
           <text class="lbl" x="194" y="133" text-anchor="middle">budget</text>
@@ -104,8 +115,8 @@ footer { color: var(--muted); font-size: 0.82rem; }
           <text class="sub" x="275" y="110" text-anchor="middle">ok</text>
 
           <rect class="node" x="306" y="98" width="100" height="44" rx="6"/>
-          <text class="lbl" x="356" y="117" text-anchor="middle">Chain</text>
-          <text class="lbl" x="356" y="133" text-anchor="middle">runner</text>
+          <text class="lbl" x="356" y="117" text-anchor="middle">Chain runner</text>
+          <text class="sub" x="356" y="133" text-anchor="middle">AIMD + hedging</text>
 
           <polyline class="edge" points="406,120 440,120 440,44 474,44" marker-end="url(#arr)"/>
           <line class="edge" x1="440" y1="120" x2="474" y2="120" marker-end="url(#arr)"/>
@@ -133,10 +144,11 @@ footer { color: var(--muted); font-size: 0.82rem; }
           <text class="lbl" x="658" y="133" text-anchor="middle">cost</text>
 
           <line class="edge" x1="194" y1="142" x2="194" y2="206" marker-end="url(#arr)"/>
-          <text class="sub" x="194" y="228" text-anchor="middle">429 if over the cap</text>
+          <text class="sub" x="194" y="228" text-anchor="middle">429 if over the cap or queue full</text>
+          </g>
         </svg>
       </div>
-      <figcaption>Teal boxes are the two budget steps. The gateway reserves the worst-case cost first, tries the providers in order, then settles the real cost and refunds the difference.</figcaption>
+      <figcaption>Teal boxes are the cache and the two budget steps. A hit returns at once. On a miss, the gateway reserves the worst-case cost, tries the providers in order, then settles the real cost and refunds the difference. The chain runner limits concurrency with AIMD and hedges a late call to the next provider.</figcaption>
     </figure>
   </section>
 
@@ -183,5 +195,90 @@ refund  = reserve - actual          # = 228 micro-USD back to the budget
     </div>
   </section>
 
-  <footer>Next note: Semantic Caching Without False Hits. This page is rebuilt when the topic changes.</footer>
+  <section class="note" id="n08" aria-labelledby="n08h">
+    <div class="note-head">
+      <div class="eyebrow">Note 08 · P0 milestone M4</div>
+      <h2 id="n08h">Semantic Caching Without False Hits</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>Similarity measures topic closeness, not equal meaning. "National" and "international" fee questions can both score about 0.93.</li>
+        <li>Layer the defenses: namespace, search inside it, two calibrated thresholds, lexical guards, and a verifier for the gray zone.</li>
+        <li>Store only safe answers. When a source document changes, delete the entries that carry its tag. Never <code>FLUSHDB</code>.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>Pairs are (similarity, same question?). You need 100% precision. Which threshold do you pick?</p>
+<pre><code>pairs = [(0.97, 1), (0.95, 1), (0.93, 0), (0.92, 1), (0.91, 0)]
+# sorted high to low, precision stays 1.0 until 0.93 adds a false hit
+# threshold = 0.95
+# 0.93 is the "national" vs "international" fee pair: a similar score, a different answer</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>rule out</b><span class="kind">phrasal verb</span></div><p>Decide that something is not possible or not right.<br><em>The lexical guards rule out hits where the numbers differ.</em></p></div>
+        <div class="word"><div><b>narrow down</b><span class="kind">phrasal verb</span></div><p>Reduce many options to a smaller set.<br><em>The namespace narrows down the search to one context.</em></p></div>
+        <div class="word"><div><b>false positive</b><span class="kind">compound noun</span></div><p>A result marked as correct that is actually wrong.<br><em>A false positive here means a wrong cached answer.</em></p></div>
+        <div class="word"><div><b>gray zone</b><span class="kind">compound noun</span></div><p>An unclear area between two clear options.<br><em>Scores in the gray zone go to the verifier.</em></p></div>
+        <div class="word"><div><b>stale</b><span class="kind">adjective</span></div><p>Old and no longer correct.<br><em>Tags remove stale answers when a document changes.</em></p></div>
+        <div class="word"><div><b>err on the side of caution</b><span class="kind">idiom</span></div><p>Choose the safer option when you are not sure.<br><em>Guards should err on the side of caution and reject doubtful hits.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>Why must the namespace filter be inside the KNN query?</summary><p>A filter after KNN can remove all 5 neighbors, because they may belong to other namespaces. The result would be empty even when a valid entry exists.</p></details>
+      <details><summary>Why use two thresholds instead of one?</summary><p>Above the high one, guards are enough. Between the two, a verifier must agree. Below the low one, it is always a miss.</p></details>
+    </div>
+  </section>
+
+  <section class="note" id="n09" aria-labelledby="n09h">
+    <div class="note-head">
+      <div class="eyebrow">Note 09 · P0 milestones M3 and M6</div>
+      <h2 id="n09h">Tail Latency and Overload Control</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>Track p95 and p99, not the mean. A request makes several calls, so a rare slow call becomes a common slow request.</li>
+        <li>Hedge a late call to the next provider, adapt concurrency with AIMD on time to first token, and cap both so cost stays under control.</li>
+        <li>When overloaded, shed batch traffic first. Use singleflight for identical requests and token buckets for free-tier quotas.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>Each call is slow 2% of the time and a request makes 3 calls. What share of requests is slow? Then, an AIMD limit of 10 sees a slow call: what is the new limit?</p>
+<pre><code>p, n = 0.02, 3
+print(1 - (1 - p) ** n)   # 0.0588 -> about 5.9% of requests hit a slow call
+limit = 10 * 0.7          # multiplicative decrease -> 7.0</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>ramp up</b><span class="kind">phrasal verb</span></div><p>Increase gradually.<br><em>AIMD ramps up the limit slowly while latency stays healthy.</em></p></div>
+        <div class="word"><div><b>back off</b><span class="kind">phrasal verb</span></div><p>Reduce activity to avoid overload.<br><em>Clients should back off when they receive a 429.</em></p></div>
+        <div class="word"><div><b>tail latency</b><span class="kind">compound noun</span></div><p>The slowest few percent of response times.<br><em>Hedging reduces tail latency.</em></p></div>
+        <div class="word"><div><b>load shedding</b><span class="kind">compound noun</span></div><p>Rejecting some requests on purpose to protect the system.<br><em>Load shedding drops batch jobs before user requests.</em></p></div>
+        <div class="word"><div><b>stampede</b><span class="kind">noun</span></div><p>Many requests arriving at the same moment.<br><em>Singleflight prevents a stampede when a cache entry expires.</em></p></div>
+        <div class="word"><div><b>safety margin</b><span class="kind">collocation</span></div><p>Extra space left to avoid reaching a limit.<br><em>Keep a 10% safety margin below the free-tier quota.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>Why hedge at the p95 and not earlier?</summary><p>An earlier delay sends a second copy too often, which raises cost and load. At p95, only the slowest 5% of requests pay for a hedge.</p></details>
+      <details><summary>Why use asyncio.shield in singleflight?</summary><p>One waiting caller may be cancelled. Shield stops that cancellation from killing the shared call that other callers still need.</p></details>
+    </div>
+  </section>
+
+  <footer>This topic is complete. The next topic (gRPC) rebuilds this page from the template.</footer>
 </main>
