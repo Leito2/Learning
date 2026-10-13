@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "04 - Engineering Fundamentals/00 - Python Avanzado para ML/07 - Caso Practico - Pipeline de Datos en Streaming.md",
+                "file": "Continuity Prompt.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "07 - Caso Practico - Pipeline de Datos en Streaming"
+              "title": "Continuity Prompt"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -185,6 +187,7 @@
   },
   "active": "bae8341a095f3cbd",
   "lastOpenFiles": [
+    "04 - Engineering Fundamentals/00 - Python Avanzado para ML/07 - Caso Practico - Pipeline de Datos en Streaming.md",
     "04 - Engineering Fundamentals/00 - Python Avanzado para ML/06 - Metaclases y Metaprogramacion.md",
     "04 - Engineering Fundamentals/00 - Python Avanzado para ML/05 - Typing y Type Hints.md",
     "03 - Advanced Python/03 - Python Avanzado/05 - Type Hints y Anotaciones.md",
@@ -210,7 +213,6 @@
     "10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI/05 - MFA Passkeys and WebAuthn.md",
     "10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI/04 - Multi-Tenant Auth.md",
     "10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI/03 - RBAC Scopes and ABAC.md",
-    "10 - Cloud, Infra y Backend/39 - Authentication Deep Dive for FastAPI/02 - OAuth2 Flows in FastAPI.md",
     "10 - Cloud, Infra y Backend/44 - Email and Notifications for FastAPI",
     "10 - Cloud, Infra y Backend/43 - File Storage and Uploads for FastAPI",
     "10 - Cloud, Infra y Backend/42 - Caching Strategies for FastAPI",

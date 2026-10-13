@@ -71,214 +71,105 @@ footer { color: var(--muted); font-size: 0.82rem; }
 <main>
   <header>
     <div class="eyebrow">Topic in progress</div>
-    <h1>LLM gateways, built from scratch</h1>
+    <h1>gRPC for ML services</h1>
     <div class="meta">
-      <span class="chip">Course 06/19</span>
-      <span class="chip">Project P0</span>
-      <span class="chip on">Notes so far: 07 to 09</span>
+      <span class="chip">Course 10/49</span>
+      <span class="chip">Project P1</span>
+      <span class="chip on">Notes so far: 00</span>
     </div>
-    <p class="lede">A small gateway sits between your apps and the model providers. This page keeps the basics, one tiny practice and the English from each note. It grows as the course moves on.</p>
+    <p class="lede">gRPC lets one service call another with a typed contract and a deadline. This page keeps the basics, one tiny practice and the English from each note. It grows as the course moves on.</p>
   </header>
 
   <section aria-labelledby="map">
     <h2 id="map">The map</h2>
     <figure>
       <div class="scroll">
-        <svg viewBox="0 0 826 250" role="img" aria-label="A request first checks the cache and returns on a hit. On a miss it reserves budget, goes through a chain of providers with fallback, and the real cost is settled after the response. Over the cap, it stops with 429.">
+        <svg viewBox="0 0 720 230" role="img" aria-label="A .proto contract generates the client stub and the server. The client sends a request with a deadline over one reused HTTP/2 channel, and the server answers with a response or a status code.">
           <defs>
             <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0 0L10 5L0 10z" fill="currentColor"/>
             </marker>
           </defs>
-          <rect class="node" x="6" y="98" width="76" height="44" rx="6"/>
-          <text class="lbl" x="44" y="124" text-anchor="middle">Client</text>
+          <rect class="node key" x="285" y="10" width="130" height="44" rx="6"/>
+          <text class="lbl" x="350" y="29" text-anchor="middle">.proto contract</text>
+          <text class="sub" x="350" y="45" text-anchor="middle">single source of truth</text>
 
-          <line class="edge" x1="82" y1="120" x2="130" y2="120" marker-end="url(#arr)"/>
-          <text class="sub" x="106" y="110" text-anchor="middle">request</text>
+          <polyline class="edge" points="320,54 320,76 166,76 166,96" marker-end="url(#arr)"/>
+          <text class="sub" x="243" y="68" text-anchor="middle">generates client stub</text>
+          <polyline class="edge" points="380,54 380,76 500,76 500,96" marker-end="url(#arr)"/>
+          <text class="sub" x="440" y="68" text-anchor="middle">generates server</text>
 
-          <rect class="node key" x="132" y="98" width="88" height="44" rx="6"/>
-          <text class="lbl" x="176" y="117" text-anchor="middle">Cache</text>
-          <text class="sub" x="176" y="133" text-anchor="middle">exact + semantic</text>
+          <rect class="node" x="6" y="98" width="96" height="44" rx="6"/>
+          <text class="lbl" x="54" y="117" text-anchor="middle">Client app</text>
+          <text class="sub" x="54" y="133" text-anchor="middle">e.g. checkout</text>
 
-          <polyline class="edge" points="176,98 176,36 44,36 44,96" marker-end="url(#arr)"/>
-          <text class="sub" x="110" y="28" text-anchor="middle">hit: answer back</text>
+          <line class="edge" x1="102" y1="120" x2="124" y2="120" marker-end="url(#arr)"/>
 
-          <line class="edge" x1="220" y1="120" x2="266" y2="120" marker-end="url(#arr)"/>
-          <text class="sub" x="243" y="110" text-anchor="middle">miss</text>
+          <rect class="node" x="126" y="98" width="80" height="44" rx="6"/>
+          <text class="lbl" x="166" y="124" text-anchor="middle">Stub</text>
 
-          <g transform="translate(126,0)">
-          <rect class="node key" x="142" y="98" width="104" height="44" rx="6"/>
-          <text class="lbl" x="194" y="117" text-anchor="middle">Reserve</text>
-          <text class="lbl" x="194" y="133" text-anchor="middle">budget</text>
+          <line class="edge" x1="206" y1="110" x2="438" y2="110" marker-end="url(#arr)"/>
+          <text class="sub" x="322" y="102" text-anchor="middle">request + 50 ms deadline, one reused connection</text>
+          <line class="edge" x1="438" y1="132" x2="208" y2="132" marker-end="url(#arr)"/>
+          <text class="sub" x="322" y="150" text-anchor="middle">response or status code</text>
 
-          <line class="edge" x1="246" y1="120" x2="304" y2="120" marker-end="url(#arr)"/>
-          <text class="sub" x="275" y="110" text-anchor="middle">ok</text>
+          <rect class="node key" x="440" y="98" width="120" height="44" rx="6"/>
+          <text class="lbl" x="500" y="117" text-anchor="middle">gRPC server</text>
+          <text class="sub" x="500" y="133" text-anchor="middle">interceptors</text>
 
-          <rect class="node" x="306" y="98" width="100" height="44" rx="6"/>
-          <text class="lbl" x="356" y="117" text-anchor="middle">Chain runner</text>
-          <text class="sub" x="356" y="133" text-anchor="middle">AIMD + hedging</text>
+          <line class="edge" x1="560" y1="120" x2="598" y2="120" marker-end="url(#arr)"/>
 
-          <polyline class="edge" points="406,120 440,120 440,44 474,44" marker-end="url(#arr)"/>
-          <line class="edge" x1="440" y1="120" x2="474" y2="120" marker-end="url(#arr)"/>
-          <polyline class="edge" points="440,120 440,196 474,196" marker-end="url(#arr)"/>
-
-          <rect class="node" x="476" y="20" width="112" height="48" rx="6"/>
-          <text class="lbl" x="532" y="41" text-anchor="middle">Provider A</text>
-          <text class="sub" x="532" y="58" text-anchor="middle">try 1</text>
-
-          <rect class="node" x="476" y="96" width="112" height="48" rx="6"/>
-          <text class="lbl" x="532" y="117" text-anchor="middle">Provider B</text>
-          <text class="sub" x="532" y="134" text-anchor="middle">on 5xx / timeout</text>
-
-          <rect class="node" x="476" y="172" width="112" height="48" rx="6"/>
-          <text class="lbl" x="532" y="193" text-anchor="middle">Local Ollama</text>
-          <text class="sub" x="532" y="210" text-anchor="middle">last resort</text>
-
-          <line class="edge" x1="588" y1="44" x2="604" y2="44"/>
-          <line class="edge" x1="588" y1="196" x2="604" y2="196"/>
-          <line class="edge" x1="604" y1="44" x2="604" y2="196"/>
-          <line class="edge" x1="588" y1="120" x2="620" y2="120" marker-end="url(#arr)"/>
-
-          <rect class="node key" x="622" y="98" width="72" height="44" rx="6"/>
-          <text class="lbl" x="658" y="117" text-anchor="middle">Settle</text>
-          <text class="lbl" x="658" y="133" text-anchor="middle">cost</text>
-
-          <line class="edge" x1="194" y1="142" x2="194" y2="206" marker-end="url(#arr)"/>
-          <text class="sub" x="194" y="228" text-anchor="middle">429 if over the cap or queue full</text>
-          </g>
+          <rect class="node" x="600" y="98" width="110" height="44" rx="6"/>
+          <text class="lbl" x="655" y="117" text-anchor="middle">Handler</text>
+          <text class="sub" x="655" y="133" text-anchor="middle">runs the model</text>
         </svg>
       </div>
-      <figcaption>Teal boxes are the cache and the two budget steps. A hit returns at once. On a miss, the gateway reserves the worst-case cost, tries the providers in order, then settles the real cost and refunds the difference. The chain runner limits concurrency with AIMD and hedges a late call to the next provider.</figcaption>
+      <figcaption>Teal boxes are where the contract and the call rules live. Both sides are generated from the same .proto, so they always line up. The deadline travels with the request, so the server can stop work the caller no longer wants.</figcaption>
     </figure>
   </section>
 
-  <section class="note" id="n07" aria-labelledby="n07h">
+  <section class="note" id="n00" aria-labelledby="n00h">
     <div class="note-head">
-      <div class="eyebrow">Note 07 · P0 milestones M1–M2</div>
-      <h2 id="n07h">Building an LLM Gateway from Scratch</h2>
+      <div class="eyebrow">Note 00 · Applied in P1 milestone M7c</div>
+      <h2 id="n00h">Welcome to gRPC for ML Services</h2>
     </div>
 
     <div class="block">
       <div class="label">Core idea</div>
       <ul class="ideas">
-        <li>Build a gateway only when configuration cannot do what you need, such as an exact budget cap.</li>
-        <li>Clients ask for a purpose (<code>fast</code>, <code>smart</code>). The alias maps to an ordered chain that ends with a local model.</li>
-        <li>Fall back only on transient errors: timeouts, 5xx and 429. A 400 means the request itself is wrong.</li>
+        <li>gRPC is typed calls between services: a contract in a <code>.proto</code> file, generated stubs, and binary messages over HTTP/2.</li>
+        <li>Use it for service-to-service calls with a latency budget. Keep REST for public and demo APIs, and SSE for streams to a browser.</li>
+        <li>A deadline travels with the call, so a slow service can stop work the caller has already given up on.</li>
       </ul>
     </div>
 
     <div class="block">
       <div class="label">Try it</div>
-      <p>Input 1000 tokens, <code>max_tokens</code> 500, prices $0.20 and $0.60 per million. The answer uses 120 output tokens. How much is reserved, and how much is refunded?</p>
-<pre><code>reserve = 1000*0.20 + 500*0.60      # = 500 micro-USD, worst case
-actual  = 1000*0.20 + 120*0.60      # = 272 micro-USD, real usage
-refund  = reserve - actual          # = 228 micro-USD back to the budget
-# keep money as integers (micro-USD): floats drift after millions of calls</code></pre>
+      <p>A checkout allows 50 ms in total. The call spent 12 ms on the network and 18 ms on feature lookup. The model needs 25 ms. What should the server do?</p>
+<pre><code>budget_ms = 50
+left = budget_ms - 12 - 18     # 20 ms left for the model
+# the model needs 25 ms > 20 ms: the caller will give up first,
+# so answer early (fallback or DEADLINE_EXCEEDED) instead of working for nothing</code></pre>
     </div>
 
     <div class="block">
       <div class="label">Words from this note</div>
       <div class="words">
-        <div class="word"><div><b>fall back on</b><span class="kind">phrasal verb</span></div><p>Use something else when the first option fails.<br><em>The gateway falls back on a local model when the cloud is down.</em></p></div>
-        <div class="word"><div><b>burn through</b><span class="kind">phrasal verb</span></div><p>Use up a resource quickly.<br><em>A bad loop can burn through your free quota in minutes.</em></p></div>
-        <div class="word"><div><b>hard cap</b><span class="kind">compound noun</span></div><p>A limit that cannot be exceeded.<br><em>We set a hard cap of 1 USD per client.</em></p></div>
-        <div class="word"><div><b>transient failure</b><span class="kind">collocation</span></div><p>A temporary error that may disappear if you retry.<br><em>Retry only transient failures, such as timeouts.</em></p></div>
-        <div class="word"><div><b>runaway</b><span class="kind">adjective</span></div><p>Out of control and growing fast.<br><em>A runaway loop caused the surprise bill.</em></p></div>
-        <div class="word"><div><b>at the cost of</b><span class="kind">phrase</span></div><p>Accepting a disadvantage to get a benefit.<br><em>You get more control at the cost of more maintenance.</em></p></div>
+        <div class="word"><div><b>hand off</b><span class="kind">phrasal verb</span></div><p>Pass work or control to another part.<br><em>The gateway hands off the scoring to a separate service.</em></p></div>
+        <div class="word"><div><b>line up</b><span class="kind">phrasal verb</span></div><p>Match or fit together correctly.<br><em>Client and server must line up on the same contract.</em></p></div>
+        <div class="word"><div><b>latency budget</b><span class="kind">compound noun</span></div><p>The total time a request is allowed to take.<br><em>Checkout gives the model a 50 ms latency budget.</em></p></div>
+        <div class="word"><div><b>round trip</b><span class="kind">compound noun</span></div><p>A request and its response together.<br><em>One gRPC call is one round trip.</em></p></div>
+        <div class="word"><div><b>contract-first</b><span class="kind">adjective</span></div><p>Designing the interface before writing the code.<br><em>A contract-first API starts with the .proto file.</em></p></div>
+        <div class="word"><div><b>under the hood</b><span class="kind">phrase</span></div><p>In the hidden internal part of a system.<br><em>Under the hood, gRPC sends binary messages over HTTP/2.</em></p></div>
       </div>
     </div>
 
     <div class="block">
       <div class="label">Quick check</div>
-      <details><summary>Why must the last link of every chain be a local model?</summary><p>It keeps the service answering when every cloud provider is down or the quota is gone.</p></details>
-      <details><summary>Why reserve first and settle after, instead of checking the balance?</summary><p>The check and the update happen in one atomic step, so two concurrent requests cannot both pass.</p></details>
+      <details><summary>When would you choose SSE instead of gRPC?</summary><p>When a server pushes tokens to a browser. SSE is a one-way stream over plain HTTP, and browsers support it directly.</p></details>
+      <details><summary>What is a deadline, and who sets it?</summary><p>The moment after which the caller no longer wants the answer. The client sets it, and it travels with the call so the server can see it.</p></details>
     </div>
   </section>
 
-  <section class="note" id="n08" aria-labelledby="n08h">
-    <div class="note-head">
-      <div class="eyebrow">Note 08 · P0 milestone M4</div>
-      <h2 id="n08h">Semantic Caching Without False Hits</h2>
-    </div>
-
-    <div class="block">
-      <div class="label">Core idea</div>
-      <ul class="ideas">
-        <li>Similarity measures topic closeness, not equal meaning. "National" and "international" fee questions can both score about 0.93.</li>
-        <li>Layer the defenses: namespace, search inside it, two calibrated thresholds, lexical guards, and a verifier for the gray zone.</li>
-        <li>Store only safe answers. When a source document changes, delete the entries that carry its tag. Never <code>FLUSHDB</code>.</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <div class="label">Try it</div>
-      <p>Pairs are (similarity, same question?). You need 100% precision. Which threshold do you pick?</p>
-<pre><code>pairs = [(0.97, 1), (0.95, 1), (0.93, 0), (0.92, 1), (0.91, 0)]
-# sorted high to low, precision stays 1.0 until 0.93 adds a false hit
-# threshold = 0.95
-# 0.93 is the "national" vs "international" fee pair: a similar score, a different answer</code></pre>
-    </div>
-
-    <div class="block">
-      <div class="label">Words from this note</div>
-      <div class="words">
-        <div class="word"><div><b>rule out</b><span class="kind">phrasal verb</span></div><p>Decide that something is not possible or not right.<br><em>The lexical guards rule out hits where the numbers differ.</em></p></div>
-        <div class="word"><div><b>narrow down</b><span class="kind">phrasal verb</span></div><p>Reduce many options to a smaller set.<br><em>The namespace narrows down the search to one context.</em></p></div>
-        <div class="word"><div><b>false positive</b><span class="kind">compound noun</span></div><p>A result marked as correct that is actually wrong.<br><em>A false positive here means a wrong cached answer.</em></p></div>
-        <div class="word"><div><b>gray zone</b><span class="kind">compound noun</span></div><p>An unclear area between two clear options.<br><em>Scores in the gray zone go to the verifier.</em></p></div>
-        <div class="word"><div><b>stale</b><span class="kind">adjective</span></div><p>Old and no longer correct.<br><em>Tags remove stale answers when a document changes.</em></p></div>
-        <div class="word"><div><b>err on the side of caution</b><span class="kind">idiom</span></div><p>Choose the safer option when you are not sure.<br><em>Guards should err on the side of caution and reject doubtful hits.</em></p></div>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="label">Quick check</div>
-      <details><summary>Why must the namespace filter be inside the KNN query?</summary><p>A filter after KNN can remove all 5 neighbors, because they may belong to other namespaces. The result would be empty even when a valid entry exists.</p></details>
-      <details><summary>Why use two thresholds instead of one?</summary><p>Above the high one, guards are enough. Between the two, a verifier must agree. Below the low one, it is always a miss.</p></details>
-    </div>
-  </section>
-
-  <section class="note" id="n09" aria-labelledby="n09h">
-    <div class="note-head">
-      <div class="eyebrow">Note 09 · P0 milestones M3 and M6</div>
-      <h2 id="n09h">Tail Latency and Overload Control</h2>
-    </div>
-
-    <div class="block">
-      <div class="label">Core idea</div>
-      <ul class="ideas">
-        <li>Track p95 and p99, not the mean. A request makes several calls, so a rare slow call becomes a common slow request.</li>
-        <li>Hedge a late call to the next provider, adapt concurrency with AIMD on time to first token, and cap both so cost stays under control.</li>
-        <li>When overloaded, shed batch traffic first. Use singleflight for identical requests and token buckets for free-tier quotas.</li>
-      </ul>
-    </div>
-
-    <div class="block">
-      <div class="label">Try it</div>
-      <p>Each call is slow 2% of the time and a request makes 3 calls. What share of requests is slow? Then, an AIMD limit of 10 sees a slow call: what is the new limit?</p>
-<pre><code>p, n = 0.02, 3
-print(1 - (1 - p) ** n)   # 0.0588 -> about 5.9% of requests hit a slow call
-limit = 10 * 0.7          # multiplicative decrease -> 7.0</code></pre>
-    </div>
-
-    <div class="block">
-      <div class="label">Words from this note</div>
-      <div class="words">
-        <div class="word"><div><b>ramp up</b><span class="kind">phrasal verb</span></div><p>Increase gradually.<br><em>AIMD ramps up the limit slowly while latency stays healthy.</em></p></div>
-        <div class="word"><div><b>back off</b><span class="kind">phrasal verb</span></div><p>Reduce activity to avoid overload.<br><em>Clients should back off when they receive a 429.</em></p></div>
-        <div class="word"><div><b>tail latency</b><span class="kind">compound noun</span></div><p>The slowest few percent of response times.<br><em>Hedging reduces tail latency.</em></p></div>
-        <div class="word"><div><b>load shedding</b><span class="kind">compound noun</span></div><p>Rejecting some requests on purpose to protect the system.<br><em>Load shedding drops batch jobs before user requests.</em></p></div>
-        <div class="word"><div><b>stampede</b><span class="kind">noun</span></div><p>Many requests arriving at the same moment.<br><em>Singleflight prevents a stampede when a cache entry expires.</em></p></div>
-        <div class="word"><div><b>safety margin</b><span class="kind">collocation</span></div><p>Extra space left to avoid reaching a limit.<br><em>Keep a 10% safety margin below the free-tier quota.</em></p></div>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="label">Quick check</div>
-      <details><summary>Why hedge at the p95 and not earlier?</summary><p>An earlier delay sends a second copy too often, which raises cost and load. At p95, only the slowest 5% of requests pay for a hedge.</p></details>
-      <details><summary>Why use asyncio.shield in singleflight?</summary><p>One waiting caller may be cancelled. Shield stops that cancellation from killing the shared call that other callers still need.</p></details>
-    </div>
-  </section>
-
-  <footer>This topic is complete. The next topic (gRPC) rebuilds this page from the template.</footer>
+  <footer>Next note: Protocol Buffers and Contract-First APIs.</footer>
 </main>
