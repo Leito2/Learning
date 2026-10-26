@@ -128,7 +128,8 @@ Bienvenido al índice completo de tu ruta de aprendizaje como **AI/ML Engineer**
 ├── 45 - Webhooks In and Out for FastAPI (3 — English)
 ├── 46 - Apache Flink for Real-time ML (8 — English)
 ├── 47 - Stream Processing Engines Compared (6 — English)
-└── 48 - LLM Token Streaming - SSE, WebSockets and gRPC (5 — English)
+├── 48 - LLM Token Streaming - SSE, WebSockets and gRPC (5 — English)
+└── 49 - gRPC for ML Services in Python (7 — English)
 
 11 - Research y Ciencia de Datos (33)
 ├── 26 - Metodología de Investigación en ML (6)
@@ -327,6 +328,7 @@ Misceláneo
 | 46 | [[10 - Cloud, Infra y Backend/46 - Apache Flink for Real-time ML/00 - Welcome to Apache Flink for Real-time ML\|Apache Flink for Real-time ML]] | 8 | ✅ NEW | 🇬🇧 |
 | 47 | [[10 - Cloud, Infra y Backend/47 - Stream Processing Engines Compared/00 - Welcome to Stream Processing Engines Compared\|Stream Processing Engines Compared]] | 6 | ✅ NEW | 🇬🇧 |
 | 48 | [[10 - Cloud, Infra y Backend/48 - LLM Token Streaming - SSE, WebSockets and gRPC/00 - Welcome to LLM Token Streaming\|LLM Token Streaming — SSE, WebSockets and gRPC]] | 5 | ✅ NEW | 🇬🇧 |
+| 49 | [[10 - Cloud, Infra y Backend/49 - gRPC for ML Services in Python/00 - Welcome to gRPC for ML Services\|gRPC for ML Services in Python]] | 7 | ✅ NEW | 🇬🇧 |
 
 ### 11 — Research y Ciencia de Datos (33 notas)
 

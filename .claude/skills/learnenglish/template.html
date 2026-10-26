@@ -75,7 +75,7 @@ footer { color: var(--muted); font-size: 0.82rem; }
     <div class="meta">
       <span class="chip">Course 10/49</span>
       <span class="chip">Project P1</span>
-      <span class="chip on">Notes so far: 00</span>
+      <span class="chip on">Notes so far: 00 to 06</span>
     </div>
     <p class="lede">gRPC lets one service call another with a typed contract and a deadline. This page keeps the basics, one tiny practice and the English from each note. It grows as the course moves on.</p>
   </header>
@@ -84,7 +84,7 @@ footer { color: var(--muted); font-size: 0.82rem; }
     <h2 id="map">The map</h2>
     <figure>
       <div class="scroll">
-        <svg viewBox="0 0 720 230" role="img" aria-label="A .proto contract generates the client stub and the server. The client sends a request with a deadline over one reused HTTP/2 channel, and the server answers with a response or a status code.">
+        <svg viewBox="0 0 720 240" role="img" aria-label="A .proto contract generates the client stub and the server, and is checked by buf in CI. A stream is grouped into micro-batches before the model runs in a thread. The client sends a request with a deadline over one reused HTTP/2 channel, and the server answers with a response or a status code.">
           <defs>
             <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0 0L10 5L0 10z" fill="currentColor"/>
@@ -93,6 +93,12 @@ footer { color: var(--muted); font-size: 0.82rem; }
           <rect class="node key" x="285" y="10" width="130" height="44" rx="6"/>
           <text class="lbl" x="350" y="29" text-anchor="middle">.proto contract</text>
           <text class="sub" x="350" y="45" text-anchor="middle">single source of truth</text>
+
+          <line class="edge" x1="415" y1="32" x2="478" y2="32" marker-end="url(#arr)"/>
+          <text class="sub" x="446" y="24" text-anchor="middle">checks</text>
+          <rect class="node" x="480" y="10" width="150" height="44" rx="6"/>
+          <text class="lbl" x="555" y="29" text-anchor="middle">buf in CI</text>
+          <text class="sub" x="555" y="45" text-anchor="middle">lint + breaking vs main</text>
 
           <polyline class="edge" points="320,54 320,76 166,76 166,96" marker-end="url(#arr)"/>
           <text class="sub" x="243" y="68" text-anchor="middle">generates client stub</text>
@@ -111,20 +117,31 @@ footer { color: var(--muted); font-size: 0.82rem; }
           <line class="edge" x1="206" y1="110" x2="438" y2="110" marker-end="url(#arr)"/>
           <text class="sub" x="322" y="102" text-anchor="middle">request + 50 ms deadline, one reused connection</text>
           <line class="edge" x1="438" y1="132" x2="208" y2="132" marker-end="url(#arr)"/>
-          <text class="sub" x="322" y="150" text-anchor="middle">response or status code</text>
+          <text class="sub" x="322" y="150" text-anchor="middle">response, or status code (retry UNAVAILABLE)</text>
 
           <rect class="node key" x="440" y="98" width="120" height="44" rx="6"/>
           <text class="lbl" x="500" y="117" text-anchor="middle">gRPC server</text>
-          <text class="sub" x="500" y="133" text-anchor="middle">interceptors</text>
+          <text class="sub" x="500" y="133" text-anchor="middle">auth, metrics, traces</text>
 
           <line class="edge" x1="560" y1="120" x2="598" y2="120" marker-end="url(#arr)"/>
 
           <rect class="node" x="600" y="98" width="110" height="44" rx="6"/>
           <text class="lbl" x="655" y="117" text-anchor="middle">Handler</text>
-          <text class="sub" x="655" y="133" text-anchor="middle">runs the model</text>
+          <text class="sub" x="655" y="133" text-anchor="middle">model in a thread</text>
+          <line class="edge" x1="500" y1="142" x2="500" y2="176" marker-end="url(#arr)"/>
+          <text class="sub" x="508" y="164">time left is short</text>
+          <rect class="node" x="440" y="178" width="120" height="44" rx="6"/>
+          <text class="lbl" x="500" y="197" text-anchor="middle">Fallback features</text>
+          <text class="sub" x="500" y="213" text-anchor="middle">degraded = true</text>
+
+          <line class="edge" x1="655" y1="142" x2="655" y2="176" marker-end="url(#arr)"/>
+          <text class="sub" x="663" y="164">stream</text>
+          <rect class="node key" x="600" y="178" width="110" height="44" rx="6"/>
+          <text class="lbl" x="655" y="197" text-anchor="middle">Micro-batch</text>
+          <text class="sub" x="655" y="213" text-anchor="middle">N items or T ms</text>
         </svg>
       </div>
-      <figcaption>Teal boxes are where the contract and the call rules live. Both sides are generated from the same .proto, so they always line up. The deadline travels with the request, so the server can stop work the caller no longer wants.</figcaption>
+      <figcaption>Teal boxes are where the contract and the call rules live. Both sides are generated from the same .proto, so they always line up. The deadline travels with the request, so the server can stop work the caller no longer wants. For streams, the handler collects messages into a micro-batch before scoring them together. If the deadline is close, the server answers with fallback features instead of failing, and the client retries only transient errors. In production, interceptors on the server add auth, metrics and traces, while the health service and reflection let balancers and grpcurl check it.</figcaption>
     </figure>
   </section>
 
@@ -171,5 +188,259 @@ left = budget_ms - 12 - 18     # 20 ms left for the model
     </div>
   </section>
 
-  <footer>Next note: Protocol Buffers and Contract-First APIs.</footer>
+  <section class="note" id="n01" aria-labelledby="n01h">
+    <div class="note-head">
+      <div class="eyebrow">Note 01 · Applied in P1 milestone M7c</div>
+      <h2 id="n01h">Protocol Buffers and Contract-First APIs</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>The <code>.proto</code> file is the API. Client and server code are generated from it, so they cannot drift apart.</li>
+        <li>The wire carries field numbers, not names. Never change or reuse a number, and write <code>reserved</code> when you remove a field.</li>
+        <li>Enum zero is <code>UNSPECIFIED</code>. Use <code>optional</code> when "not sent" must differ from the default. <code>buf breaking</code> in CI checks compatibility.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>Which of these changes break old clients?</p>
+<pre><code># a) add field 14             -> safe (old readers ignore it)
+# b) rename amount to total   -> binary safe, JSON and generated code break
+# c) double amount -> string  -> BREAKS (the wire type changes)
+# d) reuse removed number 3   -> BREAKS (old data lands in the new field)</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>drift apart</b><span class="kind">phrasal verb</span></div><p>Slowly become different from each other.<br><em>Without a shared contract, client and server drift apart.</em></p></div>
+        <div class="word"><div><b>roll out</b><span class="kind">phrasal verb</span></div><p>Release something step by step.<br><em>Roll out the new field first, then update the clients.</em></p></div>
+        <div class="word"><div><b>single source of truth</b><span class="kind">phrase</span></div><p>One place that holds the correct information.<br><em>The .proto file is the single source of truth for the API.</em></p></div>
+        <div class="word"><div><b>backward compatible</b><span class="kind">collocation</span></div><p>Works with older versions of the software.<br><em>Adding a field with a new number is backward compatible.</em></p></div>
+        <div class="word"><div><b>breaking change</b><span class="kind">compound noun</span></div><p>A change that makes existing clients fail.<br><em>buf detects a breaking change before the merge.</em></p></div>
+        <div class="word"><div><b>by convention</b><span class="kind">phrase</span></div><p>Because most people usually do it this way.<br><em>By convention, the first enum value is UNSPECIFIED.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>Why can you rename a field but not renumber it?</summary><p>The wire carries the number, not the name. Old binary clients still decode the field by its number.</p></details>
+      <details><summary>What does reserved 3; do?</summary><p>It stops anyone from using number 3 in this message again, so old data cannot land in a new field.</p></details>
+    </div>
+  </section>
+
+  <section class="note" id="n02" aria-labelledby="n02h">
+    <div class="note-head">
+      <div class="eyebrow">Note 02 · Applied in P1 milestone M7c</div>
+      <h2 id="n02h">Async gRPC Servers and Clients in Python</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>There are four call types: unary and three kinds of streaming. Bidirectional streams keep one call open for many messages.</li>
+        <li>Never run the model directly on the event loop. Use <code>asyncio.to_thread</code>, and create the channel once per process.</li>
+        <li>A micro-batch sends N messages or waits T ms, whichever comes first. A bigger T gives more throughput and more delay.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>Messages arrive every 1 ms, starting at 0. The limits are N = 8 and T = 5 ms. When is the batch sent, and how many items does it hold?</p>
+<pre><code># t = 0, 1, 2, 3, 4 ms -> 5 items, still below N = 8
+# at t = 5 ms the time limit hits: send the batch now
+# the first item waited 5 ms, the last one about 1 ms</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>tie up</b><span class="kind">phrasal verb</span></div><p>Keep busy so that others cannot use it.<br><em>A blocking model call ties up the event loop.</em></p></div>
+        <div class="word"><div><b>spin up</b><span class="kind">phrasal verb</span></div><p>Start something new, often quickly.<br><em>Do not spin up a new channel for every request.</em></p></div>
+        <div class="word"><div><b>hot path</b><span class="kind">compound noun</span></div><p>The code that runs on every request.<br><em>Creating connections on the hot path slows every call.</em></p></div>
+        <div class="word"><div><b>throughput</b><span class="kind">noun</span></div><p>The amount of work done in a period of time.<br><em>Micro-batching raises throughput but adds a small delay.</em></p></div>
+        <div class="word"><div><b>fail fast</b><span class="kind">phrase</span></div><p>Report an error at once instead of waiting.<br><em>The server fails fast when it is already full.</em></p></div>
+        <div class="word"><div><b>whichever comes first</b><span class="kind">sentence frame</span></div><p>Use the one that happens earlier.<br><em>Send the batch after 8 items or 5 ms, whichever comes first.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>Why must model inference not run directly inside an async handler?</summary><p>It blocks the event loop, so no other call is served and every pending deadline gets closer. Use asyncio.to_thread or a process pool.</p></details>
+      <details><summary>Why create the channel once?</summary><p>A channel is a long-lived HTTP/2 connection that carries many calls. A new channel per request pays the connection setup every time.</p></details>
+    </div>
+  </section>
+
+  <section class="note" id="n03" aria-labelledby="n03h">
+    <div class="note-head">
+      <div class="eyebrow">Note 03 · Applied in P1 milestone M7c</div>
+      <h2 id="n03h">Deadlines, Retries and Error Handling</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>Set a deadline on every call. The default is no deadline, so a forgotten one waits forever.</li>
+        <li>The server reads <code>context.time_remaining()</code> and answers with fallback features when time is short. Python does not forward deadlines for you.</li>
+        <li>Retry only <code>UNAVAILABLE</code> on idempotent calls, inside the same deadline. Return typed errors with <code>context.abort</code>.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>The deadline is 50 ms. Attempt 1 fails with UNAVAILABLE after 20 ms. The backoff is 10 ms and a second attempt needs 25 ms. Does it fit?</p>
+<pre><code>left = 50 - 20 - 10        # 20 ms left after the failure and the backoff
+fits = left >= 25          # False: the retry cannot finish
+# answer with fallback features (degraded) instead of retrying</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>cut off</b><span class="kind">phrasal verb</span></div><p>Stop something before it finishes.<br><em>A deadline cuts off a call that takes too long.</em></p></div>
+        <div class="word"><div><b>bail out</b><span class="kind">phrasal verb</span></div><p>Leave a situation early to avoid a problem.<br><em>The server bails out early when no time is left.</em></p></div>
+        <div class="word"><div><b>graceful degradation</b><span class="kind">collocation</span></div><p>Giving a reduced service instead of failing completely.<br><em>Fallback features are a form of graceful degradation.</em></p></div>
+        <div class="word"><div><b>idempotent</b><span class="kind">adjective</span></div><p>Safe to repeat: the result is the same.<br><em>Only retry calls that are idempotent.</em></p></div>
+        <div class="word"><div><b>retry storm</b><span class="kind">compound noun</span></div><p>Many retries together that overload a service.<br><em>Backoff and limits prevent a retry storm.</em></p></div>
+        <div class="word"><div><b>on top of</b><span class="kind">phrase</span></div><p>In addition to something that already exists.<br><em>Retries add load on top of the normal traffic.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>What is the difference between a timeout and a deadline?</summary><p>A timeout is a duration from now. A deadline is a fixed moment that travels with the call, so every hop knows how much time is left.</p></details>
+      <details><summary>Why must retried calls be idempotent?</summary><p>The first attempt may have reached the server before the connection failed. A repeat must not apply the same action twice.</p></details>
+    </div>
+  </section>
+
+  <section class="note" id="n04" aria-labelledby="n04h">
+    <div class="note-head">
+      <div class="eyebrow">Note 04 · Applied in P1 milestone M7c</div>
+      <h2 id="n04h">Production gRPC: Interceptors, Health and Observability</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>Interceptors wrap every call for auth, metrics and traces. Put auth first. Metric labels stay small: method and status code.</li>
+        <li>The health service reports SERVING only after the model loads, and NOT_SERVING before shutdown. Reflection plus <code>grpcurl</code> lets you debug without the <code>.proto</code>.</li>
+        <li>A layer-4 balancer picks a server once per connection, so one long gRPC channel sticks to one server. Use a layer-7 proxy or client-side balancing.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>A client opens one channel through a layer-4 balancer to 4 servers and sends 1,000 calls. How many servers receive traffic? What changes with a layer-7 proxy?</p>
+<pre><code># L4: the server is chosen once, when the connection opens
+servers_used = 1            # all 1,000 calls go to the same server
+# L7 proxy or client-side round_robin: each call is balanced
+servers_used = 4            # about 250 calls per server</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>plug in</b><span class="kind">phrasal verb</span></div><p>Add a component that connects to a system.<br><em>You can plug in an interceptor to collect metrics.</em></p></div>
+        <div class="word"><div><b>pin to</b><span class="kind">phrasal verb</span></div><p>Attach to one fixed place.<br><em>A layer-4 balancer pins a channel to one server.</em></p></div>
+        <div class="word"><div><b>cross-cutting concern</b><span class="kind">compound noun</span></div><p>A need that affects many parts, like logging.<br><em>Authentication is a cross-cutting concern, so it lives in an interceptor.</em></p></div>
+        <div class="word"><div><b>golden signals</b><span class="kind">compound noun</span></div><p>The key measures of a service: traffic, errors, latency, saturation.<br><em>Track the golden signals for every method.</em></p></div>
+        <div class="word"><div><b>drain</b><span class="kind">verb</span></div><p>Stop new work and let current work finish.<br><em>The balancer drains traffic when the health check says NOT_SERVING.</em></p></div>
+        <div class="word"><div><b>out of the box</b><span class="kind">phrase</span></div><p>Working without extra setup.<br><em>OpenTelemetry gives you gRPC traces out of the box.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>Why report NOT_SERVING before the service stops?</summary><p>The balancer or orchestrator stops sending new calls, and the running calls can finish during the grace period.</p></details>
+      <details><summary>Why avoid a user_id label in metrics?</summary><p>Each value creates a new time series. Millions of series overload the metrics system.</p></details>
+    </div>
+  </section>
+
+  <section class="note" id="n05" aria-labelledby="n05h">
+    <div class="note-head">
+      <div class="eyebrow">Note 05 · Applied in P1 experiment E11</div>
+      <h2 id="n05h">Benchmarking REST vs gRPC</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>A protocol only speeds up what it controls: connections and serialization. If the model dominates the time, the gain is small. That is an honest result.</li>
+        <li>Use open-loop load (a fixed arrival rate). Closed-loop tests slow down with the server and hide the delay (coordinated omission).</li>
+        <li>Hold everything else constant, warm up, repeat 3 or more times, and use a confidence interval before you claim a difference.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>Inference takes 20 ms. REST overhead is 4 ms and gRPC overhead is 1.5 ms. What is the best-case gain of gRPC?</p>
+<pre><code>rest, grpc = 20 + 4, 20 + 1.5      # 24 ms vs 21.5 ms
+gain = (rest - grpc) / rest        # 0.104 -> about 10% at best
+# if inference were 90% of the time, the gain would be even smaller</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>zero in on</b><span class="kind">phrasal verb</span></div><p>Focus your attention on one thing.<br><em>Zero in on the p99, not the average.</em></p></div>
+        <div class="word"><div><b>warm up</b><span class="kind">phrasal verb</span></div><p>Run the system before measuring, so it is stable.<br><em>Warm up the service for 20 seconds before the test.</em></p></div>
+        <div class="word"><div><b>apples to apples</b><span class="kind">idiom</span></div><p>A fair comparison between similar things.<br><em>Use the same model for an apples-to-apples comparison.</em></p></div>
+        <div class="word"><div><b>hold constant</b><span class="kind">collocation</span></div><p>Keep a variable the same in every run.<br><em>Hold the payload constant and change only the protocol.</em></p></div>
+        <div class="word"><div><b>margin of error</b><span class="kind">compound noun</span></div><p>The range in which a result may be wrong.<br><em>A 3 ms gap inside the margin of error is not a result.</em></p></div>
+        <div class="word"><div><b>headline number</b><span class="kind">compound noun</span></div><p>The most important result, the one you report first.<br><em>Capacity at the SLO is the headline number.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>Why use an open-loop test for latency?</summary><p>Requests arrive at a fixed rate even when the server is slow, so queueing shows up in the latency. A closed-loop test slows down with the server and hides the problem.</p></details>
+      <details><summary>What is capacity at SLO?</summary><p>The highest request rate at which the p99 latency stays under the agreed budget.</p></details>
+    </div>
+  </section>
+
+  <section class="note" id="n06" aria-labelledby="n06h">
+    <div class="note-head">
+      <div class="eyebrow">Note 06 · Bridge to P1 milestone M7c</div>
+      <h2 id="n06h">Bridge to Project: Synchronous Scoring in P1</h2>
+    </div>
+
+    <div class="block">
+      <div class="label">Core idea</div>
+      <ul class="ideas">
+        <li>P1 keeps the Kafka path and adds gRPC for checkout: <code>Score</code> (50 ms deadline), <code>ScoreStream</code> (micro-batches) and <code>GetDecision</code> (for P2).</li>
+        <li>The gRPC server is a second entrypoint that shares the same scoring use case, so both paths score the same way.</li>
+        <li>M7c is done when grpcurl calls all 3 methods, an expired deadline returns DEADLINE_EXCEEDED in a test, and experiment E11 is published.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="label">Try it</div>
+      <p>Write the test that proves the deadline rule. What status code must the client receive?</p>
+<pre><code>with pytest.raises(grpc.aio.AioRpcError) as err:
+    await stub.Score(payment, timeout=0.0001)    # no server answers in 0.1 ms
+assert err.value.code() == grpc.StatusCode.DEADLINE_EXCEEDED</code></pre>
+    </div>
+
+    <div class="block">
+      <div class="label">Words from this note</div>
+      <div class="words">
+        <div class="word"><div><b>sign off on</b><span class="kind">phrasal verb</span></div><p>Officially approve something.<br><em>The milestone is signed off on when the tests and E11 are published.</em></p></div>
+        <div class="word"><div><b>carry over</b><span class="kind">phrasal verb</span></div><p>Move something from one place to another.<br><em>Decisions from the course carry over to the project.</em></p></div>
+        <div class="word"><div><b>acceptance criteria</b><span class="kind">compound noun</span></div><p>The conditions that show that work is finished.<br><em>The acceptance criteria include a deadline test.</em></p></div>
+        <div class="word"><div><b>end to end</b><span class="kind">phrase</span></div><p>Covering the whole process, from start to finish.<br><em>The checkout call is tested end to end.</em></p></div>
+        <div class="word"><div><b>proof point</b><span class="kind">compound noun</span></div><p>A result that shows a claim is true.<br><em>The E11 table is a proof point for the CV.</em></p></div>
+        <div class="word"><div><b>in lockstep</b><span class="kind">phrase</span></div><p>Changing together, always at the same time.<br><em>The two entrypoints evolve in lockstep because they share one use case.</em></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="label">Quick check</div>
+      <details><summary>What must happen when Redis is too slow for the deadline?</summary><p>The server uses fallback features and returns degraded = true inside the deadline, instead of failing with DEADLINE_EXCEEDED.</p></details>
+      <details><summary>When is "parity" the right conclusion of E11?</summary><p>When the p99 difference between REST and gRPC is inside the confidence interval, usually because inference dominates latency.</p></details>
+    </div>
+  </section>
+
+  <footer>This course is complete. The next course (KFP v2 and Vertex AI) rebuilds this page from the template.</footer>
 </main>

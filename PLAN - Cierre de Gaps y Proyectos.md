@@ -61,9 +61,9 @@ Linux administration, JAX, TensorFlow, Azure y Kubernetes en los proyectos (ya h
 | Decision models (Jev, Kev, Laya…) | ❌ | — | **Curso nuevo (C7)** |
 | GraphRAG, Neo4j, Graphiti | ❌ | `06/13/04` (1 nota) | **Curso nuevo (C8)** |
 | Búsqueda web para agentes (SearXNG, Crawl4AI, OpenAlex) | ❌ | — | **Curso nuevo (C9)** |
-| gRPC en producción (protobuf, `buf`, `grpc.aio`) | 🟡 | `10/31/07`, `10/48/04` | **Curso nuevo (C10)** |
+| gRPC en producción (protobuf, `buf`, `grpc.aio`) | ✅ | `10/49` (7 notas) | **C10 hecho (2026-10-26)** |
 | KFP v2 y Vertex AI Pipelines | 🟡 | `09/26/01` (Kubeflow general, 1 nota) | **Curso nuevo (C11)**: KFP v2, `kfp.local`, Vertex |
-| Construir un gateway LLM (caché semántica, hedging, overload) | 🟡 | `06/19`, `06/27` (configurar, no construir) | **Ampliación E1** |
+| Construir un gateway LLM (caché semántica, hedging, overload) | ✅ | `06/19/07-09` | **E1 hecho (2026-10-26)** |
 | Validación de jueces a escala | 🟡 | `06/20` | **Ampliación E2** |
 | BigQuery (costos, ingesta, analítica portable) | 🟡 | `10/28` (3 notas) | **Ampliación E3** |
 | Evidently, Langfuse, MCP, sandboxes, LangGraph, Harness/SDD, guardrails, DuckDB, Terraform | ✅ | `09/31`, `09/36`, `07/15`, `07/16`, `07/18`, `16`, `06/15`, `10/34`, `10/23` | Reutilizar |
@@ -165,7 +165,7 @@ Va **justo después de C1** para no perder el hilo.
 | E1 Ampliación `06/19` (gateway desde cero) | +3 | 🟠 2 | P0 |
 | E2 Ampliación `06/20` (validación de jueces) | +1 | 🟠 2 | P2 |
 | E3 Ampliación `10/28` (BigQuery) | +3 | 🟡 3 | P3 |
-| **Total** | **~42 hechas + 35 pendientes** | | |
+| **Total** | **~52 hechas + 25 pendientes** | | |
 
 ### C8 · `06/35 - GraphRAG and Knowledge Graph Engineering` 🟠 Prioridad 2 → P4
 El vault solo tiene una nota de GraphRAG (`06/13/04`) y menciones sueltas de Neo4j; Graphiti y LightRAG no aparecen.
@@ -270,11 +270,11 @@ Los cursos y los proyectos se intercalan: cada curso se escribe justo antes de u
 | Fase | Trabajo | Sale |
 |---|---|---|
 | **F0** ✅ | Planes de los proyectos (P0 gateway · P1 · P2 · P3) + **setup M0 de los 4 repos** (git, CI, tests, Compose, `doctor`) | `AI Engineer proyects/` |
-| **F2.4** | **E1** ampliación `06/19` (gateway desde cero, caché semántica, overload) | +3 notas |
+| **F2.4** ✅ | **E1** ampliación `06/19` (gateway desde cero, caché semántica, overload) | +3 notas |
 | **F2.5** | **Implementar P0 `llm-gateway`** M1–M2 (antes del M7 de P1 y del M5 de P2); M3–M7 antes de la prueba final de P3 | Gateway usable por los 3 |
 | **F1** ✅ | C1 Flink → C2 Engines Compared (`10/46`, `10/47`, commit cc64557) | 14 notas |
 | **F2** ✅ | C3 Redis → C4 Triton/ONNX → C6 Grafana/Latency (`09/43`, `09/44`, `09/45`) | 17 notas |
-| **F2.9** | **C10** gRPC for ML Services (`10/49`) | 7 notas |
+| **F2.9** ✅ | **C10** gRPC for ML Services (`10/49`) | 7 notas |
 | **F3** | **Implementar P1** | Repo P1 + README + resultados |
 | **F4** ✅ | C7 Decision Models (`06/34`) | 6 notas |
 | **F4.5** | **C11** KFP v2 + Vertex AI (`09/46`) y **E2** ampliación `06/20` | 6 + 1 notas |

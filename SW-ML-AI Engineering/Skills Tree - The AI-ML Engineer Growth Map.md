@@ -119,6 +119,8 @@
 | Multilingual LLMs | 04 > 17 > 01 | ✅ |
 | Decision Models / System One AI (Jev, Laya, calibration, System 1/2 routing) | 06 > 34 | ✅ |
 | LLM Token Streaming (SSE, WebSockets, gRPC; cancellation) | 10 > 48 | ✅ |
+| gRPC for ML services (protobuf, `grpc.aio`, deadlines, interceptors, benchmarking) | 10 > 49 | ✅ |
+| Building an LLM gateway (semantic cache, hedging, adaptive concurrency, atomic budget) | 06 > 19 > 07-09 | ✅ |
 
 ---
 

@@ -433,7 +433,7 @@ These 3 questions ensure every note hits the minimum quality bar, regardless of 
 
 We are building an **Obsidian vault** (vault root: `C:\Users\Leito\Documents\Learning`, notes in `SW-ML-AI Engineering/`), a **Git repo** connected to `https://github.com/Leito2/Learning.git` (branch `master`). It holds compressed courses for an **AI/ML Engineer** path: **~990 notes in 17 areas, ~4,500 wikilinks**.
 
-**Current goal:** close the real-time ML + LLMOps gaps and back the CV with five measurable portfolio projects. The live plan is `Learning/PLAN - Cierre de Gaps y Proyectos.md` (Spanish): courses C1-C7 done (~42 notes); **pending: E1 `06/19/07-09`, C10 `10/49` gRPC, C11 `09/46` KFP v2 + Vertex AI, E2 `06/20/08`, E3 `10/28/03-05` BigQuery, C8 `06/35` GraphRAG, C9 `07/20` Web Research Tooling** (~33 notes, one at a time, in that order, each right before the project that applies it).
+**Current goal:** close the real-time ML + LLMOps gaps and back the CV with five measurable portfolio projects. The live plan is `Learning/PLAN - Cierre de Gaps y Proyectos.md` (Spanish): courses C1-C7, E1 (`06/19/07-09`) and C10 (`10/49` gRPC) done (~52 notes); **pending: C11 `09/46` KFP v2 + Vertex AI, E2 `06/20/08`, E3 `10/28/03-05` BigQuery, C8 `06/35` GraphRAG, C9 `07/20` Web Research Tooling** (~25 notes, one at a time, in that order, each right before the project that applies it).
 
 **Maintenance done 2026-10-06:** 1,543 broken wikilinks repaired (unresolved 37.5% → 6.6%); the remaining ~295 point to notes that were never written.
 
@@ -512,7 +512,7 @@ SW-ML-AI Engineering/
 │   ├── 16 - HuggingFace Transf Deep Dive (10 EN)
 │   ├── 17 - ColBERT, SGLang and Next-Gen Inference (11 EN)
 │   ├── 18 - TensorRT-LLM           (3 EN)
-│   └── 19 - LLM Gateway Patterns and LiteLLM (7 EN)
+│   └── 19 - LLM Gateway Patterns and LiteLLM (10 EN)
 │
 ├── 07 - AI Agents/                     (34 notes: 22 Spanish + 12 English)
 │   ├── 11 - Fundamentos Agentes    (6)
@@ -564,7 +564,8 @@ SW-ML-AI Engineering/
 │   └── 37 - Vector Search on Google Cloud (3 EN)
 │   └── 46 - Apache Flink for Real-time ML (8 EN)
 │   └── 47 - Stream Processing Engines Compared (6 EN)
-│   └── 48 - LLM Token Streaming - SSE, WebSockets and gRPC (5 EN)
+│   ├── 48 - LLM Token Streaming - SSE, WebSockets and gRPC (5 EN)
+│   └── 49 - gRPC for ML Services in Python (7 EN)
 │
 ├── 11 - Research/                      (33 notes: 24 Spanish + 9 English)
 │   ├── 26 - Metodologia            (6)
